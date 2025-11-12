@@ -1,0 +1,13 @@
+# Python cache & virtual environment
+__pycache__/
+*.pyc
+venv/
+.env/
+
+# Output / generated code
+output/*.py
+*.log
+
+# IDE settings
+.vscode/
+.idea/

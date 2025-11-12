@@ -1,0 +1,70 @@
+@prefix : <http://www.w3id.org/agentic-ai/onto#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+#################################################################
+# Agentic AI Pattern Example: Literature Review Workflow
+# Based on AgentO ontology (Kurniawan et al., 2025)
+#################################################################
+
+### Agents
+:GoogleSearchAgent a :Agent ;
+    dcterms:title "Research Agent" ;
+    dcterms:description "Responsible for searching scientific papers on Agentic AI." ;
+    :hasTask :GoogleSearchTask ;
+    :usesTool :GoogleSearchTool ;
+    :hasGoal :FindLiteratureGoal .
+
+:SummarizerAgent a :Agent ;
+    dcterms:title "Summarizer Agent" ;
+    dcterms:description "Summarizes retrieved research papers." ;
+    :hasTask :SummarizationTask ;
+    :hasGoal :SummarizeGoal .
+
+### Tasks
+:GoogleSearchTask a :Task ;
+    dcterms:title "Google Search Task" ;
+    dcterms:description "Search for relevant Agentic AI papers using Google Search API." ;
+    :expected_output "List of research papers" .
+
+:SummarizationTask a :Task ;
+    dcterms:title "Summarization Task" ;
+    dcterms:description "Summarize abstracts from the retrieved research papers." ;
+    :expected_output "Summary report of Agentic AI studies" .
+
+### Tools
+:GoogleSearchTool a :Tool ;
+    dcterms:title "Google Search API Wrapper" ;
+    dcterms:description "Tool to query Google Search results programmatically." ;
+    :accessesResource :GoogleSearchAPI .
+
+### Goals
+:FindLiteratureGoal a :Goal ;
+    dcterms:title "Find Relevant Literature" ;
+    dcterms:description "Identify the most cited and relevant papers in Agentic AI research." .
+
+:SummarizeGoal a :Goal ;
+    dcterms:title "Summarize Literature" ;
+    dcterms:description "Generate concise summaries of the selected papers." .
+
+### Workflow Pattern
+:LiteratureReviewWorkflow a :WorkflowPattern ;
+    dcterms:title "Sequential Pattern" ;
+    :hasWorkflowStep :Step1, :Step2 .
+
+### Workflow Steps
+:Step1 a :WorkflowStep ;
+    dcterms:title "Search Papers Step" ;
+    :performedBy :GoogleSearchAgent ;
+    :nextStep :Step2 ;
+    :stepOrder "1"^^xsd:int .
+
+:Step2 a :WorkflowStep ;
+    dcterms:title "Summarize Papers Step" ;
+    :performedBy :SummarizerAgent ;
+    :stepOrder "2"^^xsd:int .
+
+### Resources
+:GoogleSearchAPI a :Resource ;
+    dcterms:title "Google Search API" ;
+    dcterms:description "External search API endpoint for scholarly documents." .
