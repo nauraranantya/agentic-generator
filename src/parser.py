@@ -21,7 +21,7 @@ def parse_kg(file_path: str):
 
     # Parse Agents
     for agent in g.subjects(RDF.type, AGENTO.Agent):
-        role = g.value(agent, DCT.title) or g.value(agent, AGENTO.role)
+        role = g.value(agent, AGENTO.agentRole) or g.value(agent, DCT.title)
         goal = g.value(agent, AGENTO.hasGoal)
         goal_label = None
         if goal:
@@ -41,7 +41,7 @@ def parse_kg(file_path: str):
     # Parse Tasks
     for task in g.subjects(RDF.type, AGENTO.Task):
         desc = g.value(task, DCT.description)
-        expected = g.value(task, AGENTO.expected_output)
+        expected = g.value(task, AGENTO.taskExpectedOutput)
         parsed["tasks"].append({
             "id": str(task),
             "description": str(desc) if desc else "",
@@ -87,7 +87,7 @@ def parse_kg(file_path: str):
 
 # Quick test
 if __name__ == "__main__":
-    example_path = "data/dummy_kg.ttl"
+    example_path = "rdf_g3/crewai/email_auto_responder_flow.rdf"
     try:
         result = parse_kg(example_path)
         print("\n=== Agents ===")
@@ -97,4 +97,4 @@ if __name__ == "__main__":
         for t in result["tasks"]:
             print(t)
     except FileNotFoundError:
-        print("[ERROR] dummy_kg.ttl not found. Place an example KG in /data first.")
+        print("[ERROR] RDF file not found. Check rdf_g3/ directory.")

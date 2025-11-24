@@ -1,0 +1,79 @@
+@prefix : <http://www.w3id.org/agentic-ai/onto#> .
+@prefix agento: <http://www.w3id.org/agentic-ai/onto#> .
+@prefix ex: <http://www.w3id.org/agentic-ai/instances#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+### ======================================
+### Instances (Entities)
+### ======================================
+
+### ======================================
+### Instances (Entities)
+### ======================================
+
+### Main Workflow
+ex:email_responder_workflow a agento:WorkflowPattern ;
+    dcterms:title "Email Auto-Responder Workflow" ;
+    dcterms:description "Automated email monitoring, classification, and response generation workflow" .
+
+### Email Classifier Agent
+ex:email_classifier a :Agent ;
+    :agentID "email_classifier_001" ;
+    :agentRole "Email Classifier" ;
+    dcterms:title "Email Classification Agent" ;
+    dcterms:description "You are an experienced email triage specialist" ;
+    :hasGoal ex:goal_classify ;
+    :hasTask ex:task_monitoring ;
+    :hasTask ex:task_classification .
+
+### Response Generator Agent
+ex:response_generator a :Agent ;
+    :agentID "response_generator_001" ;
+    :agentRole "Response Generator" ;
+    dcterms:title "Email Response Generator" ;
+    dcterms:description "You are a skilled communication professional" ;
+    :hasGoal ex:goal_generate ;
+    :hasTask ex:task_generate .
+
+### Human Reviewer Agent
+ex:human_reviewer a :Agent ;
+    :agentID "human_reviewer_001" ;
+    :agentRole "Human Reviewer" ;
+    dcterms:title "Quality Reviewer" ;
+    dcterms:description "You are a quality assurance specialist" ;
+    :hasGoal ex:goal_review ;
+    :hasTask ex:task_approval .
+
+### Goals
+ex:goal_classify a :Goal ;
+    dcterms:title "Email Classification" ;
+    dcterms:description "Categorize incoming emails by priority and type" .
+
+ex:goal_generate a :Goal ;
+    dcterms:title "Response Generation" ;
+    dcterms:description "Generate appropriate and professional email responses" .
+
+ex:goal_review a :Goal ;
+    dcterms:title "Quality Review" ;
+    dcterms:description "Review and approve email responses" .
+
+### Tasks
+ex:task_monitoring a :Task ;
+    dcterms:description "Monitor inbox for new emails continuously" ;
+    :taskExpectedOutput "List of unread emails with metadata" .
+
+ex:task_classification a :Task ;
+    dcterms:description "Classify emails by priority (urgent, normal, low) and type (support, sales, info)" ;
+    :taskExpectedOutput "Classified email categories with priority labels" .
+
+ex:task_generate a :Task ;
+    dcterms:description "Generate contextual responses based on email content and classification" ;
+    :taskExpectedOutput "Draft email responses ready for review" .
+
+ex:task_approval a :Task ;
+    dcterms:description "Review generated responses and approve or request modifications" ;
+    :taskExpectedOutput "Approved responses ready to send" .
