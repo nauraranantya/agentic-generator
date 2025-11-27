@@ -1,12 +1,25 @@
 """
 Test Script for Email Auto-Responder Flow (CrewAI)
-Modified to include OpenAI LLM configuration
+Modified to include OpenAI LLM configuration with environment variable
 """
 
 from crewai import Agent, Task, Crew, LLM
+import os
+from dotenv import load_dotenv
 
-# Configure OpenAI LLM
-llm = LLM(model="gpt-4o-mini")
+# Load environment variables from .env file
+load_dotenv()
+
+# Read API key from environment
+api_key = os.environ.get("OPENAI_API_KEY")
+if not api_key:
+    raise RuntimeError("OPENAI_API_KEY environment variable is not set. Please create a .env file with your API key.")
+
+# Configure OpenAI LLM with API key from environment
+llm = LLM(
+    model="gpt-4o-mini",
+    api_key=api_key
+)
 
 # Email Classifier Agent
 email_classifier = Agent(

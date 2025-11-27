@@ -9,7 +9,15 @@ def parse_kg(file_path: str):
 
     # Load RDF Graph
     g = Graph()
-    g.parse(file_path, format="turtle")
+    try:
+        g.parse(file_path, format="turtle")
+    except Exception as e:
+        # Coba dengan format lain jika turtle gagal
+        try:
+            g.parse(file_path, format="xml")
+        except:
+            # Jika masih gagal, lempar error dengan pesan yang jelas
+            raise ValueError(f"Failed to parse RDF file. Please check TTL syntax in {file_path}. Error: {str(e)}")
 
     parsed = {
         "agents": [],
@@ -87,7 +95,7 @@ def parse_kg(file_path: str):
 
 # Quick test
 if __name__ == "__main__":
-    example_path = "rdf_g3/crewai/email_auto_responder_flow.rdf"
+    example_path = "kg_g3/crewai/email_auto_responder_flow.rdf"
     try:
         result = parse_kg(example_path)
         print("\n=== Agents ===")
@@ -97,4 +105,4 @@ if __name__ == "__main__":
         for t in result["tasks"]:
             print(t)
     except FileNotFoundError:
-        print("[ERROR] RDF file not found. Check rdf_g3/ directory.")
+        print("[ERROR] RDF file not found. Check rdf/ directory.")

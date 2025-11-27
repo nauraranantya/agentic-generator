@@ -89,7 +89,7 @@ print("Starting AutoGen conversation workflow...")
 # Quick test 
 if __name__ == "__main__":
     from parser import parse_kg
-    parsed = parse_kg("rdf_g3/autogen/chess_game.rdf")
+    parsed = parse_kg("kg_g3/autogen/chess_game.rdf")
 
     code = generate_autogen_code(parsed)
 

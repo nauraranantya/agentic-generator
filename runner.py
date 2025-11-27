@@ -1,18 +1,24 @@
 import os
+import shutil
 from src.parser import parse_kg
 from src.mapper_crewai import generate_crewai_code
 from src.mapper_autogen import generate_autogen_code
 
-DATA_DIR = "rdf_g3"
+DATA_DIR = "kg_g3"
 OUTPUT_DIR = "output"
 PROCESSED_COUNT = 0
 
-if not os.path.exists(OUTPUT_DIR):
-    os.makedirs(OUTPUT_DIR)
+# Hapus directory output jika sudah ada untuk clean start
+if os.path.exists(OUTPUT_DIR):
+    shutil.rmtree(OUTPUT_DIR)
+    print(f"[Cleanup] Directory '{OUTPUT_DIR}' dihapus untuk hasil yang bersih")
+
+# Buat directory output baru
+os.makedirs(OUTPUT_DIR)
     
 print("Memulai Konversi KG ke Script Agentic AI (Group 3)")
 
-# Recursive scan semua file .ttl dan .rdf di rdf_g3/
+# Recursive scan semua file .ttl dan .rdf di kg_g3/
 for root, dirs, files in os.walk(DATA_DIR):
     for filename in files:
         if filename.endswith(".ttl") or filename.endswith(".rdf"):
@@ -21,7 +27,7 @@ for root, dirs, files in os.walk(DATA_DIR):
             base_name = os.path.splitext(filename)[0]
             # Tambahkan subdirectory name untuk avoid collision
             subdir = os.path.basename(root)
-            if subdir != "rdf_g3":
+            if subdir != "kg_g3":
                 base_name = f"{subdir}_{base_name}"
 
             print(f"\n[Processing] {os.path.relpath(kg_path, DATA_DIR)}")
