@@ -35,7 +35,7 @@
    - `crewai_generated.py`
    - `autogen_generated.py`
 
-### Option 2: Test Email Workflow Simulation (Demo)
+### Option 2: Test Workflow Simulation (Demo)
 1. Place your OpenAI API key in a `.env` file in the root directory:
    ```
    OPENAI_API_KEY=your-api-key-here
