@@ -36,7 +36,7 @@
    - `autogen_generated.py`
 
 ### Option 2: Test Workflow Simulation (Demo)
-1. Place your OpenAI API key in a `.env` file in the root directory:
+1. Place your gpt-4o-mini API key in a `.env` file in the root directory:
    ```
    OPENAI_API_KEY=your-api-key-here
    ```
@@ -53,7 +53,7 @@
    OR
    
    ```bash
-   python test_cust_support.py
+   python test_cust_support_workflow.py
    ```
    This demonstrates a customer support ticket handling workflow using AutoGen with:
    - Ticket classification and prioritization
