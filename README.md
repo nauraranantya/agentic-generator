@@ -41,7 +41,7 @@
    OPENAI_API_KEY=your-api-key-here
    ```
 
-2. Run the pre-configured email workflow test:
+2. Run the pre-configured workflow test:
    ```bash
    python test_email_workflow.py
    ```
@@ -50,4 +50,13 @@
    - Automated response generation
    - Quality review process
 
+   OR
+   
+   ```bash
+   python test_cust_support.py
+   ```
+   This demonstrates a customer support ticket handling workflow using AutoGen with:
+   - Ticket classification and prioritization
+   - Multi-agent collaboration for resolution
+   - Automated response generation
 3. View the complete workflow execution and results in the console output.
