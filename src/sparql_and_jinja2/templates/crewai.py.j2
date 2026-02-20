@@ -1,0 +1,73 @@
+"""
+Auto-generated CrewAI Script
+Source : AgentO Knowledge Graph
+Pipeline: SPARQL extraction + Jinja2 template rendering
+"""
+
+from crewai import Agent, Task, Crew
+{% if tools %}
+from crewai.tools import tool
+{% endif %}
+import os
+
+{% if tools %}
+# ===========================================================
+# Tools
+# ===========================================================
+{% for t in tools %}
+
+@tool('{{ t.var }}')
+def {{ t.var }}(query: str) -> str:
+    """{{ t.title }}"""
+    return f"[Tool stub: {{ t.var }}] Executed with input: {query}"
+
+{% endfor %}
+{% endif %}
+# ===========================================================
+# Agents
+# ===========================================================
+{% for agent in agents %}
+
+{{ agent.var }} = Agent(
+    role={{ agent.role | pystr }},
+    goal={{ agent.goal | pystr }},
+    backstory={{ agent.backstory | pystr }},
+{% if agent.tools %}
+    tools=[{{ agent.tools | join(', ') }}],
+{% endif %}
+    verbose=True
+)
+{% endfor %}
+
+# ===========================================================
+# Tasks (ordered by workflow steps)
+# ===========================================================
+{% for task in tasks %}
+
+{{ task.var }} = Task(
+    description={{ task.description | pystr }},
+    expected_output={{ task.expected_output | pystr }},
+{% if task.agent_var %}
+    agent={{ task.agent_var }}
+{% else %}
+    # WARNING: No agent assigned to this task in the KG
+{% endif %}
+)
+{% endfor %}
+
+# ===========================================================
+# Crew & Main
+# ===========================================================
+
+def main():
+    crew = Crew(
+        agents=[{{ agents | map(attribute='var') | join(', ') }}],
+        tasks=[{{ tasks | map(attribute='var') | join(', ') }}],
+        verbose=True
+    )
+    result = crew.kickoff()
+    print(result)
+
+
+if __name__ == "__main__":
+    main()
