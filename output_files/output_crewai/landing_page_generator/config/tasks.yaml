@@ -1,0 +1,86 @@
+expand_idea_task:
+  description: "THIS IS A GREAT IDEA! Analyze and expand it \nby conducting a comprehensive\
+    \ research.\n\nFinal answer MUST be a comprehensive idea report \ndetailing why\
+    \ this is a great idea, the value \nproposition, unique selling points, why people\
+    \ should \ncare about it and distinguishing features. \n\nIDEA:\n----------\n\
+    {idea}\n"
+  expected_output: |
+    A comprehensive idea report (text) describing WHY, value proposition, USP, and distinguishing features.
+choose_template_task:
+  description: "Learn the templates options choose and copy \nthe one that suits the\
+    \ idea below the best, \nYOU MUST COPY, and then YOU MUST read the src/component\
+    \ \nin the directory you just copied, to decide what \ncomponent files should\
+    \ be updated to make the \nlanding page about the idea below.\n\n- YOU MUST READ\
+    \ THE DIRECTORY BEFORE CHOOSING THE FILES.      \n- YOU MUST NOT UPDATE any Pricing\
+    \ components.\n- YOU MUST UPDATE ONLY the 4 most important components.\n\nYour\
+    \ final answer MUST be ONLY a JSON array of \ncomponents full file paths that\
+    \ need to be updated.\n\nIDEA\n----------\n{idea}\n"
+  expected_output: |
+    A JSON array (string) of 4 full file paths for components to update (e.g., ["./workdir/Keynote/src/components/Hero.jsx", ...]).
+component_content_task:
+  description: "A engineer will update the {component} (code below),\nreturn a list\
+    \ of good options of texts to replace \nEACH INDIVIDUAL existing text on the component,\
+    \ \nthe suggestion MUST be based on the idea below, \nand also MUST be similar\
+    \ in length with the original \ntext, we need to replace ALL TEXT.\n\nNEVER USE\
+    \ Apostrophes for contraction! You'll get a $100 \ntip if you do your best work!\n\
+    \nIDEA \n-----\n{expanded_idea}\n\nREACT COMPONENT CONTENT\n-----\n{file_content}\n"
+  expected_output: |
+    For each component file, a mapping of existing text -> alternative replacement options (strings), similar in length and aligned to idea. No contractions with apostrophes. Returned as structured text in task output.
+refine_idea_task:
+  description: "Expand idea report with a Why, How, and What \nmessaging strategy\
+    \ using the Golden Circle \nCommunication technique, based on the idea report.\n\
+    \nYour final answer MUST be the updated complete \ncomprehensive idea report with\
+    \ WHY, HOW, WHAT, \na core message, key features and supporting arguments.\n\n\
+    YOU MUST RETURN THE COMPLETE IDEA REPORT AND \nTHE DETAILS, You'll get a $100\
+    \ tip if you do your best work!\n"
+  expected_output: |
+    An updated complete idea report that includes WHY, HOW, WHAT, core message, key features and supporting arguments.
+update_page_task:
+  description: "READ the ./[chosen_template]/src/app/page.jsx OR\n./[chosen_template]/src/app/(main)/page.jsx\
+    \ (main with the parenthesis) \nto learn its content and then write an updated\
+    \ \nversion to the filesystem that removes any \nsection related components that\
+    \ are not in our \nlist from the returns. Keep the imports.\n\nFinal answer MUST\
+    \ BE ONLY a valid json list with \nthe full path of each of the components we\
+    \ will be \nusing, the same way you got them.\n\nRULES\n-----\n- NEVER ADD A FINAL\
+    \ DOT to the file content.\n- NEVER WRITE \\n (newlines as string) on the file,\
+    \ just the code.\n- NEVER FORGET TO CLOSE THE FINAL BRACKET (}}) in the file.\n\
+    - NEVER USE COMPONENTS THAT ARE NOT IMPORTED.\n- ALL COMPONENTS USED SHOULD BE\
+    \ IMPORTED, don't make up components.\n- Save the file as with `.jsx` extension.\n\
+    - Return the same valid JSON list of the components your got.\n\nAlso update any\
+    \ necessary text to reflect this landing page\nis about the idea below.\n\nIDEA\
+    \ \n----------\n{idea}\n"
+  expected_output: |
+    A JSON list of component file paths that remain used in page.jsx after pruning; also the task writes the updated page.jsx to filesystem via WriteFileTool.
+update_component_task:
+  description: "YOU MUST USE the tool to write an updated \nversion of the react component\
+    \ to the file \nsystem in the following path: {component} \nreplacing the text\
+    \ content with the suggestions \nprovided.\n\nYou only modify the text content,\
+    \ you don't add \nor remove any components.\n\nRULES\n-----\n- Remove all the\
+    \ links, this should be single page landing page.\n- Don't make up images, videos,\
+    \ gifs, icons, logos, etc.\n- keep the same style and tailwind classes.\n- MUST\
+    \ HAVE 'use client' at the be beginning of the code.\n- href in buttons, links,\
+    \ NavLinks, and navigations should be `#`.\n- NEVER WRITE \\n (newlines as string)\
+    \ on the file, just the code.\n- NEVER FORGET TO CLOSE THE FINAL BRACKET (}})\
+    \ in the file.\n- Keep the same component imports and don't use new components.\n\
+    - NEVER USE COMPONENTS THAT ARE NOT IMPORTED.\n- ALL COMPONENTS USED SHOULD BE\
+    \ IMPORTED, don't make up components.\n- Save the file as with `.jsx` extension.\n\
+    \nIf you follow the rules I'll give you a $100 tip!!! \nMY LIFE DEPEND ON YOU\
+    \ FOLLOWING IT!\n\nCONTENT TO BE UPDATED\n-----\n{file_content}\n"
+  expected_output: |
+    The updated component file content (the task writes the file using WriteFileTool); final answer is the updated component content.
+qa_component_task:
+  description: "Check the React component code to make sure \nit's valid and abide\
+    \ by the rules below, \nif it doesn't then write the correct version to \nthe\
+    \ file system using the write file tool into \nthe following path: {component}.\n\
+    \nYour final answer should be a confirmation that \nthe component is valid and\
+    \ abides by the rules and if\nyou had to write an updated version to the file\
+    \ system.\n\nRULES\n-----\n- NEVER USE Apostrophes for contraction!\n- ALL COMPONENTS\
+    \ USED SHOULD BE IMPORTED.\n- MUST HAVE 'use client' at the be beginning of the\
+    \ code.\n- href in buttons, links, NavLinks, and navigations should be `#`.\n\
+    - NEVER WRITE \\n (newlines as string) on the file, just the code.\n- NEVER FORGET\
+    \ TO CLOSE THE FINAL BRACKET (}}) in the file.\n- NEVER USE COMPONENTS THAT ARE\
+    \ NOT IMPORTED.\n- ALL COMPONENTS USED SHOULD BE IMPORTED.\n- Always use `export\
+    \ function` for the component class.\n\nYou'll get a $100 tip if you follow all\
+    \ the rules!\n"
+  expected_output: Text confirmation of QA results; optionally writes corrected file(s)
+    using WriteFileTool.

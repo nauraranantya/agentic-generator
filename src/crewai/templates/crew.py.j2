@@ -1,0 +1,109 @@
+{# ────────────────────────────────────────────────────────
+   Jinja2 Template: crew.py
+   Generates a CrewAI crew class with @CrewBase decorator
+   pattern, matching the official CrewAI project structure.
+   ──────────────────────────────────────────────────────── #}
+"""
+Auto-generated CrewAI Crew: {{ crew_name }}
+
+Source  : AgentO Knowledge Graph → SPARQL → Pydantic → Jinja2
+Pipeline: 3-Layer Conversion Pipeline
+"""
+
+from crewai import Agent, Crew, Process, Task
+from crewai.project import CrewBase, agent, crew, task
+{% if has_tools %}
+
+{% for module, classes in import_groups.items() %}
+from {{ module }} import {{ classes | join(', ') }}
+{% endfor %}
+{% endif %}
+{% if has_custom_llm %}
+from langchain.llms import Ollama
+{% endif %}
+
+{% if has_tools %}
+# ===========================================================
+# Tool Instances
+# ===========================================================
+{% for ti in tool_imports %}
+{% if ti.is_known %}
+{{ ti.var_name }} = {{ ti.class_name }}({{ ti.args }})
+{% else %}
+# TODO: {{ ti.var_name }} — unknown tool class "{{ ti.class_name }}"
+#   Description: {{ ti.description }}
+#   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
+# {{ ti.var_name }} = SomeCustomTool({{ ti.args }})
+{% endif %}
+{% endfor %}
+{% endif %}
+
+{% if has_custom_llm %}
+# ===========================================================
+# Custom LLM
+# ===========================================================
+{% for agent_item in agents %}
+{% if agent_item.llm and agent_item.llm.provider == "ollama" %}
+{{ agent_item.var_name }}_llm = Ollama(model="{{ agent_item.llm.model_name or 'llama3.1' }}")
+{% endif %}
+{% endfor %}
+{% endif %}
+
+
+@CrewBase
+class {{ crew_name }}:
+    """{{ crew_name }} crew"""
+
+    agents_config = 'config/agents.yaml'
+    tasks_config = 'config/tasks.yaml'
+
+    # ── Agents ──────────────────────────────────────────
+{% for agent_item in agents %}
+
+    @agent
+    def {{ agent_item.var_name }}(self) -> Agent:
+        return Agent(
+            config=self.agents_config['{{ agent_item.var_name }}'],
+{% if agent_item.tool_var_names %}
+            tools=[{{ agent_item.tool_var_names | join(', ') }}],
+{% endif %}
+{% if agent_item.llm and agent_item.llm.provider == "ollama" %}
+            llm={{ agent_item.var_name }}_llm,
+{% endif %}
+{% if agent_item.allow_delegation is not none %}
+            allow_delegation={{ agent_item.allow_delegation }},
+{% endif %}
+            verbose=True,
+        )
+{% endfor %}
+
+    # ── Tasks ───────────────────────────────────────────
+{% for task_item in tasks %}
+
+    @task
+    def {{ task_item.var_name }}(self) -> Task:
+        return Task(
+            config=self.tasks_config['{{ task_item.var_name }}'],
+{% if task_item.agent_var_name %}
+            agent=self.{{ task_item.agent_var_name }}(),
+{% endif %}
+{% if task_item.context_task_var_names %}
+            context=[{% for ctx_name in task_item.context_task_var_names %}self.{{ ctx_name }}(){{ ", " if not loop.last }}{% endfor %}],
+{% endif %}
+{% if task_item.output_json_model %}
+            output_json={{ task_item.output_json_model }},
+{% endif %}
+        )
+{% endfor %}
+
+    # ── Crew ────────────────────────────────────────────
+
+    @crew
+    def crew(self) -> Crew:
+        """Creates the {{ crew_name }}"""
+        return Crew(
+            agents=self.agents,
+            tasks=self.tasks,
+            process=Process.{{ process }},
+            verbose=True,
+        )
