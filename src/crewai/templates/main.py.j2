@@ -1,0 +1,53 @@
+{# ────────────────────────────────────────────────────────
+   Jinja2 Template: main.py
+   Generates the entry point for a CrewAI project.
+   ──────────────────────────────────────────────────────── #}
+"""
+Auto-generated CrewAI Main: {{ crew_name }}
+
+Source  : AgentO Knowledge Graph → SPARQL → Pydantic → Jinja2
+Pipeline: 3-Layer Conversion Pipeline
+"""
+
+import sys
+
+from crew import {{ crew_name }}
+
+
+def run():
+    """Run the {{ crew_name }}."""
+    inputs = {
+{% for var in input_variables %}
+{% if var.default_value %}
+        '{{ var.name }}': '{{ var.default_value | py_escape }}',
+{% else %}
+        '{{ var.name }}': '',  # TODO: provide a value
+{% endif %}
+{% endfor %}
+    }
+    {{ crew_name }}().crew().kickoff(inputs=inputs)
+
+
+def train():
+    """Train the {{ crew_name }} for a given number of iterations."""
+    inputs = {
+{% for var in input_variables %}
+{% if var.default_value %}
+        '{{ var.name }}': '{{ var.default_value | py_escape }}',
+{% else %}
+        '{{ var.name }}': '',  # TODO: provide a value
+{% endif %}
+{% endfor %}
+    }
+    try:
+        {{ crew_name }}().crew().train(
+            n_iterations=int(sys.argv[1]),
+            inputs=inputs,
+        )
+    except Exception as e:
+        raise Exception(f"An error occurred while training the crew: {e}")
+
+
+if __name__ == "__main__":
+    result = run()
+    print(result)

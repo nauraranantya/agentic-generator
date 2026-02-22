@@ -1,0 +1,19 @@
+senior_idea_analyst:
+  role: Senior Idea Analyst
+  goal: |
+    Understand and expand the idea into a comprehensive idea report, detailing value proposition and features.
+  backstory: Senior Idea Analyst
+senior_strategist:
+  role: Senior Communications Strategist
+  goal: Provide WHY, HOW, WHAT messaging and core message for the idea.
+  backstory: Senior Communications Strategist
+senior_react_engineer:
+  role: Senior React Engineer
+  goal: |
+    Select a Tailwind template that fits the idea and copy it into the working folder; then update components.
+  backstory: Senior React Engineer
+senior_content_editor:
+  role: Senior Content Editor
+  goal: Produce content for components, update components, and QA them according to
+    rules.
+  backstory: Senior Content Editor
