@@ -6,6 +6,7 @@ Pipeline: 3-Layer Conversion Pipeline
 """
 
 import sys
+import yaml
 from dotenv import load_dotenv
 
 # Load .env from this directory BEFORE importing crew (which triggers crewai init)
@@ -16,16 +17,32 @@ from crew import GameBuilderCrew
 
 def run():
     """Run the GameBuilderCrew."""
+    print("## Welcome to the Game Crew")
+    print("-------------------------------")
+
+    with open('config/gamedesign.yaml', 'r', encoding='utf-8') as file:
+        examples = yaml.safe_load(file)
+
     inputs = {
-        'game': 'a 2D space shooter game in Python using pygame, with player ship, enemies, bullets, scoring, and game over screen',
+        'game': examples['example3_snake'],
     }
-    GameBuilderCrew().crew().kickoff(inputs=inputs)
+    result = GameBuilderCrew().crew().kickoff(inputs=inputs)
+
+    print("\n\n########################")
+    print("## Here is the result")
+    print("########################\n")
+    print("final code for the game:")
+    print(result)
+    return result
 
 
 def train():
     """Train the GameBuilderCrew for a given number of iterations."""
+    with open('config/gamedesign.yaml', 'r', encoding='utf-8') as file:
+        examples = yaml.safe_load(file)
+
     inputs = {
-        'game': '',  # TODO: provide a value
+        'game': examples['example1_pacman'],
     }
     try:
         GameBuilderCrew().crew().train(
