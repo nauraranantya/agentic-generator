@@ -1,0 +1,52 @@
+{# ────────────────────────────────────────────────────────
+   Jinja2 Template: src/mastra/agents/{agent}.ts
+   Generates Agent definition with new Agent({...})
+   ──────────────────────────────────────────────────────── #}
+/**
+ * Agent: {{ agent.name }}
+ * ID: {{ agent.agent_id }}
+ * 
+ * Auto-generated from AgentO Knowledge Graph
+ */
+
+import { Agent } from '@mastra/core/agent'
+{% if agent.tool_var_names %}
+
+// Import tools
+{% for tool_var in agent.tool_var_names %}
+import { {{ tool_var }} } from '../tools/{{ tool_var }}'
+{% endfor %}
+{% endif %}
+{% if agent.memory_var_name %}
+
+// Import memory
+import { {{ agent.memory_var_name }} } from '../memory/{{ agent.memory_var_name }}'
+{% endif %}
+
+/**
+ * {{ agent.name }}
+ * 
+{% if agent.instructions %}
+ * Instructions:
+ * {{ agent.instructions | ts_comment }}
+{% endif %}
+ */
+export const {{ agent.var_name }} = new Agent({
+  id: `{{ agent.agent_id | ts_escape }}`,
+  name: `{{ agent.name | ts_escape }}`,
+  instructions: `{{ agent.instructions | ts_escape }}`,
+  model: '{{ agent.model }}',
+{% if agent.tool_var_names %}
+  tools: {
+{% for tool_var in agent.tool_var_names %}
+    {{ tool_var }},
+{% endfor %}
+  },
+{% endif %}
+{% if agent.memory_var_name %}
+  memory: {{ agent.memory_var_name }},
+{% endif %}
+{% if agent.max_retries %}
+  maxRetries: {{ agent.max_retries }},
+{% endif %}
+})

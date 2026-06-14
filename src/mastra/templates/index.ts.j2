@@ -1,0 +1,64 @@
+{# ────────────────────────────────────────────────────────
+   Jinja2 Template: src/mastra/index.ts
+   Generates Mastra instance + agent/workflow/memory registration
+   ──────────────────────────────────────────────────────── #}
+/**
+ * Mastra AI Instance - {{ project.project_name }}
+ * 
+ * Auto-generated from AgentO Knowledge Graph
+ * Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
+ */
+
+import { Mastra } from '@mastra/core'
+{% if agents %}
+
+// Import agents
+{% for agent in agents %}
+import { {{ agent.var_name }} } from './agents/{{ agent.var_name }}'
+{% endfor %}
+{% endif %}
+{% if workflows %}
+
+// Import workflows
+{% for workflow in workflows %}
+import { {{ workflow.var_name }} } from './workflows/{{ workflow.var_name }}'
+{% endfor %}
+{% endif %}
+{% if memory_configs %}
+
+// Import memory instances
+{% for mem in memory_configs %}
+import { {{ mem.var_name }} } from './memory/{{ mem.var_name }}'
+{% endfor %}
+{% endif %}
+
+/**
+ * Mastra instance with registered agents, workflows, and memory.
+ *
+{% if project.description %}
+ * {{ project.description | ts_escape }}
+{% endif %}
+ */
+export const mastra = new Mastra({
+{% if agents %}
+  agents: {
+{% for agent in agents %}
+    {{ agent.var_name }},
+{% endfor %}
+  },
+{% endif %}
+{% if workflows %}
+  workflows: {
+{% for workflow in workflows %}
+    {{ workflow.var_name }},
+{% endfor %}
+  },
+{% endif %}
+{% if memory_configs %}
+  memory: {
+{% for mem in memory_configs %}
+    {{ mem.var_name }},
+{% endfor %}
+  },
+{% endif %}
+})

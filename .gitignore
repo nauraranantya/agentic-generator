@@ -7,7 +7,11 @@ venv/
 # Output / generated code
 output/*.py
 *.log
+*.md
+
 
 # IDE settings
 .vscode/
 .idea/
+
+# Big directories

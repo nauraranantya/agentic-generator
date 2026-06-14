@@ -1,0 +1,11 @@
+prefix=/Users/ravie/dev/agento/.agento-env
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+toolexeclibdir=${libdir}
+includedir=/Users/ravie/dev/agento/.agento-env/include
+
+Name: libffi
+Description: Library supporting Foreign Function Interfaces
+Version: 3.4.8
+Libs: -L${toolexeclibdir} -lffi
+Cflags: -I${includedir}
