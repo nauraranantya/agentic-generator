@@ -8,6 +8,9 @@ venv/
 # Output / generated code
 output/*.py
 *.log
+*.md
+!README.md
+*.txt
 
 # IDE settings
 .vscode/
