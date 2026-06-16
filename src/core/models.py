@@ -94,6 +94,10 @@ class AgentModel(BaseModel):
     role: str = Field(..., description="Agent role")
     goal: str = Field(..., description="Agent goal")
     backstory: str = Field(..., description="Agent backstory / system prompt")
+    interacts_with: List[str] = Field(
+
+        default_factory=list
+    )
 
     # crew.py fields
     tool_var_names: List[str] = Field(default_factory=list, description="Tool variable names")

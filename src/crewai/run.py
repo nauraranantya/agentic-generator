@@ -20,13 +20,13 @@ import shutil
 
 # Support both `python -m` and direct script execution
 try:
-    from .extractor import extract_crew_project
+    from ..core.extractor import extract_crew_project
     from .generator import generate_project
 except ImportError:
     sys.path.insert(
         0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
     )
-    from src.crewai.extractor import extract_crew_project
+    from core.extractor import extract_crew_project
     from src.crewai.generator import generate_project
 
 

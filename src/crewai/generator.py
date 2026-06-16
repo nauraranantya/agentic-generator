@@ -23,7 +23,7 @@ from typing import Any, Dict, List
 import yaml
 from jinja2 import Environment, FileSystemLoader
 
-from .models import AgentModel, CrewProject, TaskModel, ToolModel
+from ..core.models import AgentModel, CrewProject, TaskModel, ToolModel
 
 
 # ─────────────────────── YAML helpers ───────────────────────
