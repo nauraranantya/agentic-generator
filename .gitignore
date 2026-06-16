@@ -3,12 +3,11 @@ __pycache__/
 *.pyc
 venv/
 .env
+.agento-env
 
 # Output / generated code
 output/*.py
 *.log
-*.md
-
 
 # IDE settings
 .vscode/
