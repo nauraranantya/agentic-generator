@@ -27,16 +27,19 @@ from typing import Any, Dict, List, Optional, Set, Tuple
 from rdflib import Graph
 
 from .models import (
+    AgenticProject,
     AgentModel,
     ConfigModel,
-    CrewProject,
     InputVariableModel,
     LanguageModelModel,
+    MemoryModel,
     ProcessType,
     TaskModel,
     ToolConfigModel,
     ToolModel,
+    WorkflowPatternModel,
     WorkflowStepModel,
+    WorkflowType,
 )
 
 
@@ -225,6 +228,24 @@ WHERE {
 }
 """
 
+AGENT_ALL_CONFIGS_QUERY = PREFIXES + """
+SELECT ?agent ?key ?value
+WHERE {
+    ?agent a :LLMAgent ;
+           :hasAgentConfig ?cfg .
+    ?cfg :configKey ?key ;
+         :configValue ?value .
+}
+"""
+
+AGENT_KNOWLEDGE_QUERY = PREFIXES + """
+SELECT DISTINCT ?agent ?knowledge
+WHERE {
+    ?agent a :LLMAgent ;
+           :hasKnowledge ?knowledge .
+}
+"""
+
 
 
 # ── Tasks ──
@@ -240,7 +261,7 @@ WHERE {
 """
 
 TASK_PROMPT_QUERY = PREFIXES + """
-SELECT ?task ?instruction ?outputIndicator
+SELECT ?task ?instruction ?inputData ?outputIndicator ?context
 WHERE {
     ?task a :Task .
     {
@@ -250,7 +271,19 @@ WHERE {
     }
     ?prompt a :Prompt .
     OPTIONAL { ?prompt :promptInstruction ?instruction }
+    OPTIONAL { ?prompt :promptInputData ?inputData }
     OPTIONAL { ?prompt :promptOutputIndicator ?outputIndicator }
+    OPTIONAL { ?prompt :promptContext ?context }
+}
+"""
+
+TASK_CONFIG_QUERY = PREFIXES + """
+SELECT ?task ?key ?value
+WHERE {
+    ?task a :Task ;
+          :hasAgentConfig ?cfg .
+    ?cfg :configKey ?key ;
+         :configValue ?value .
 }
 """
 
@@ -303,6 +336,67 @@ WHERE {
     OPTIONAL { ?step :stepOrder ?stepOrder }
 }
 ORDER BY ?stepOrder
+"""
+
+WORKFLOW_PATTERN_QUERY = PREFIXES + """
+SELECT ?wp ?label ?desc
+WHERE {
+    ?wp a :WorkflowPattern .
+    OPTIONAL { ?wp rdfs:label ?label }
+    OPTIONAL { ?wp dcterms:description ?desc }
+}
+"""
+
+WORKFLOW_STEPS_QUERY = PREFIXES + """
+SELECT ?wp ?step
+WHERE {
+    ?wp a :WorkflowPattern ;
+        :hasWorkflowStep ?step .
+}
+"""
+
+WORKFLOW_SUB_PATTERN_QUERY = PREFIXES + """
+SELECT ?wp ?sub
+WHERE {
+    ?wp :hasSubPattern ?sub .
+    ?sub a :WorkflowPattern .
+}
+"""
+
+STEP_EDGES_QUERY = PREFIXES + """
+SELECT ?source ?target
+WHERE {
+    ?source :nextStep ?target .
+}
+"""
+
+MEMORY_QUERY = PREFIXES + """
+SELECT DISTINCT ?mem ?label ?desc
+WHERE {
+    ?mem a :Memory .
+    OPTIONAL { ?mem rdfs:label ?label }
+    OPTIONAL { ?mem dcterms:description ?desc }
+}
+"""
+
+MEMORY_CONFIG_QUERY = PREFIXES + """
+SELECT ?mem ?key ?value
+WHERE {
+    ?mem a :Memory ;
+         :hasConfig ?cfg .
+    ?cfg :configKey ?key ;
+         :configValue ?value .
+}
+"""
+
+SYSTEM_CONFIG_QUERY = PREFIXES + """
+SELECT ?key ?value
+WHERE {
+    ?team a :Team ;
+          :hasSystemConfig ?cfg .
+    ?cfg :configKey ?key ;
+         :configValue ?value .
+}
 """
 
 # ── Input Variables (from prompt input data) ──
@@ -560,17 +654,39 @@ def _extract_agents(
             role=role,
             goal=_s(row.goalDesc),
             backstory=_s(row.backstory),
+            system_prompt=_s(row.backstory),
+            tool_iris=[],
             tool_var_names=[],
+            language_model=None,
             llm=None,
+            configs={},
+            knowledge_iris=[],
             allow_delegation=allow_delegation,
             verbose=verbose,
         )
+
+    # All agent configs are kept in the agnostic IR. Legacy convenience fields
+    # are still populated for existing CrewAI templates.
+    for row in g.query(AGENT_ALL_CONFIGS_QUERY):
+        iri = _s(row.agent)
+        if iri not in agents:
+            continue
+        key = _s(row.key)
+        value = _s(row.value)
+        agents[iri].configs[key] = value
+        lowered = key.lower()
+        if lowered == "allow_delegation" and agents[iri].allow_delegation is None:
+            agents[iri].allow_delegation = value.strip().lower() in ("true", "1", "yes")
+        elif lowered == "verbose" and agents[iri].verbose is None:
+            agents[iri].verbose = value.strip().lower() not in ("false", "0", "no", "none")
 
     # Agent → Tool links (multi-valued, separate query)
     for row in g.query(AGENT_TOOLS_QUERY):
         iri = _s(row.agent)
         tool_iri = _s(row.tool)
         if iri in agents and tool_iri in tools_map:
+            if tool_iri not in agents[iri].tool_iris:
+                agents[iri].tool_iris.append(tool_iri)
             tool_var = tools_map[tool_iri].var_name
             if tool_var not in agents[iri].tool_var_names:
                 agents[iri].tool_var_names.append(tool_var)
@@ -580,7 +696,14 @@ def _extract_agents(
         iri = _s(row.agent)
         lm_iri = _s(row.lm)
         if iri in agents and lm_iri in lm_map:
+            agents[iri].language_model = lm_map[lm_iri]
             agents[iri].llm = lm_map[lm_iri]
+
+    for row in g.query(AGENT_KNOWLEDGE_QUERY):
+        iri = _s(row.agent)
+        knowledge_iri = _s(row.knowledge)
+        if iri in agents and knowledge_iri not in agents[iri].knowledge_iris:
+            agents[iri].knowledge_iris.append(knowledge_iri)
 
     # Final defaults
     for agent in agents.values():
@@ -590,6 +713,8 @@ def _extract_agents(
             agent.goal = agent.role
         if not agent.backstory:
             agent.backstory = f"You are a {agent.role}."
+        if not agent.system_prompt:
+            agent.system_prompt = agent.backstory
 
     return agents
 
@@ -617,11 +742,21 @@ def _extract_tasks(g: Graph, agents_map: Dict[str, AgentModel]) -> Dict[str, Tas
         tasks[iri] = TaskModel(
             iri=iri,
             var_name=var_name,
+            label=label,
             description=desc,
             expected_output="",
+            agent_iri=agent_iri,
             agent_var_name=agent_iri_to_var.get(agent_iri, ""),
             context_task_var_names=[],
+            produced_resources=[],
+            required_resources=[],
+            configs={},
         )
+
+    for row in g.query(TASK_CONFIG_QUERY):
+        iri = _s(row.task)
+        if iri in tasks:
+            tasks[iri].configs[_s(row.key)] = _s(row.value)
 
     # Task description from Config (override if richer)
     for row in g.query(TASK_DESCRIPTION_CONFIG_QUERY):
@@ -638,7 +773,13 @@ def _extract_tasks(g: Graph, agents_map: Dict[str, AgentModel]) -> Dict[str, Tas
         if iri not in tasks:
             continue
         instr = _s(row.instruction)
+        input_data = _s(row.inputData)
         output = _s(row.outputIndicator)
+        context = _s(row.context)
+        tasks[iri].prompt_instruction = instr
+        tasks[iri].prompt_input_data = input_data
+        tasks[iri].prompt_output_indicator = output
+        tasks[iri].prompt_context = context
         if output and not tasks[iri].expected_output:
             tasks[iri].expected_output = output
         if instr and not tasks[iri].description:
@@ -674,15 +815,20 @@ def _resolve_task_context(g: Graph, tasks_map: Dict[str, TaskModel]) -> None:
         task_iri = _s(row.task)
         res_iri = _s(row.resource)
         if task_iri in tasks_map:
+            if res_iri not in tasks_map[task_iri].produced_resources:
+                tasks_map[task_iri].produced_resources.append(res_iri)
             resource_to_producer[res_iri] = tasks_map[task_iri].var_name
 
     # For each task's required resources, find the producing task
     for row in g.query(TASK_REQUIRES_QUERY):
         task_iri = _s(row.task)
         res_iri = _s(row.resource)
+        if task_iri in tasks_map:
+            task = tasks_map[task_iri]
+            if res_iri not in task.required_resources:
+                task.required_resources.append(res_iri)
         if task_iri in tasks_map and res_iri in resource_to_producer:
             producer_var = resource_to_producer[res_iri]
-            task = tasks_map[task_iri]
             if producer_var != task.var_name and producer_var not in task.context_task_var_names:
                 task.context_task_var_names.append(producer_var)
 
@@ -691,22 +837,131 @@ def _extract_workflow(g: Graph, tasks_map: Dict[str, TaskModel]) -> List[Workflo
     """Extract workflow steps in order."""
     steps: List[WorkflowStepModel] = []
     task_iri_to_var: Dict[str, str] = {t.iri: t.var_name for t in tasks_map.values()}
+    task_iri_to_agent: Dict[str, str] = {t.iri: t.agent_iri for t in tasks_map.values()}
+    edge_map: Dict[str, List[str]] = {}
+    for row in g.query(STEP_EDGES_QUERY):
+        source = _s(row.source)
+        target = _s(row.target)
+        edge_map.setdefault(source, [])
+        if target not in edge_map[source]:
+            edge_map[source].append(target)
 
     for row in g.query(WORKFLOW_QUERY):
+        step_iri = _s(row.step)
         task_iri = _s(row.task)
         task_var = task_iri_to_var.get(task_iri, _safe_var(task_iri))
         order = int(row.stepOrder) if row.stepOrder is not None else len(steps) + 1
         step_type = _s(row.stepType).split("#")[-1]
 
         steps.append(WorkflowStepModel(
+            iri=step_iri,
+            var_name=_safe_var(step_iri),
             step_order=order,
+            task_iri=task_iri,
             task_var_name=task_var,
             step_type=step_type,
+            next_step_iris=edge_map.get(step_iri, []),
+            agent_iri=task_iri_to_agent.get(task_iri, ""),
         ))
 
     # Sort by order
     steps.sort(key=lambda s: s.step_order)
     return steps
+
+
+def _infer_workflow_type(process: ProcessType, steps: List[WorkflowStepModel]) -> WorkflowType:
+    """Infer a framework-agnostic workflow topology from step edges."""
+    if process == ProcessType.HIERARCHICAL:
+        return WorkflowType.HIERARCHICAL
+    if not steps:
+        return WorkflowType.SEQUENTIAL
+
+    step_iris = {step.iri for step in steps if step.iri}
+    edges = [(step.iri, target) for step in steps for target in step.next_step_iris]
+    if any(source == target or target in step_iris for source, target in edges if source == target):
+        return WorkflowType.LOOP
+    if any(len(step.next_step_iris) > 1 for step in steps):
+        return WorkflowType.BRANCHING
+    if len(edges) == 0 and len(steps) > 1:
+        return WorkflowType.PARALLEL
+    return WorkflowType.SEQUENTIAL
+
+
+def _extract_memories(g: Graph) -> Dict[str, MemoryModel]:
+    """Extract agnostic Memory individuals and raw configs."""
+    memories: Dict[str, MemoryModel] = {}
+    for row in g.query(MEMORY_QUERY):
+        iri = _s(row.mem)
+        if iri not in memories:
+            memories[iri] = MemoryModel(
+                iri=iri,
+                var_name=_safe_var(iri),
+                label=_s(row.label),
+                description=_s(row.desc),
+                configs={},
+            )
+
+    for row in g.query(MEMORY_CONFIG_QUERY):
+        iri = _s(row.mem)
+        if iri in memories:
+            memories[iri].configs[_s(row.key)] = _s(row.value)
+    return memories
+
+
+def _extract_workflow_patterns(
+    g: Graph,
+    steps: List[WorkflowStepModel],
+    process: ProcessType,
+) -> List[WorkflowPatternModel]:
+    """Extract WorkflowPattern containers and attach WorkflowStep members."""
+    patterns: Dict[str, WorkflowPatternModel] = {}
+    step_by_iri = {step.iri: step for step in steps if step.iri}
+    inferred_type = _infer_workflow_type(process, steps)
+
+    for row in g.query(WORKFLOW_PATTERN_QUERY):
+        iri = _s(row.wp)
+        patterns[iri] = WorkflowPatternModel(
+            iri=iri,
+            var_name=_safe_var(iri),
+            label=_s(row.label),
+            description=_s(row.desc),
+            steps=[],
+            workflow_type=inferred_type,
+            sub_pattern_iris=[],
+        )
+
+    for row in g.query(WORKFLOW_STEPS_QUERY):
+        wp_iri = _s(row.wp)
+        step_iri = _s(row.step)
+        if wp_iri in patterns and step_iri in step_by_iri:
+            patterns[wp_iri].steps.append(step_by_iri[step_iri])
+
+    for row in g.query(WORKFLOW_SUB_PATTERN_QUERY):
+        wp_iri = _s(row.wp)
+        sub_iri = _s(row.sub)
+        if wp_iri in patterns and sub_iri not in patterns[wp_iri].sub_pattern_iris:
+            patterns[wp_iri].sub_pattern_iris.append(sub_iri)
+
+    if not patterns and steps:
+        patterns["default-workflow"] = WorkflowPatternModel(
+            iri="default-workflow",
+            var_name="default_workflow",
+            label="Default Workflow",
+            steps=steps,
+            workflow_type=inferred_type,
+        )
+
+    for pattern in patterns.values():
+        pattern.steps.sort(key=lambda step: step.step_order)
+    return list(patterns.values())
+
+
+def _extract_system_configs(g: Graph) -> Dict[str, str]:
+    """Extract Team-level system configs as raw key/value strings."""
+    configs: Dict[str, str] = {}
+    for row in g.query(SYSTEM_CONFIG_QUERY):
+        configs[_s(row.key)] = _s(row.value)
+    return configs
 
 
 def _extract_input_variables(
@@ -803,72 +1058,59 @@ def _extract_env_vars(g: Graph) -> List[ConfigModel]:
 
 # ─────────────────────── Public API ───────────────────────
 
-def extract_crew_project(file_path: str) -> CrewProject:
+def extract_project(file_path: str) -> AgenticProject:
     """
-    Full SPARQL extraction pipeline for a single KG file.
+    Single framework-agnostic extraction pipeline.
 
-    Returns a complete CrewProject Pydantic model ready for Layer 3.
+    KG (.ttl) → SPARQL → AgenticProject. Framework-specific generators should
+    consume this through their adapter layer.
     """
     g = load_graph(file_path)
 
-    # 1. Team metadata
-    crew_name, description, process = _extract_team(g)
-    crew_var_name = _safe_var(crew_name)
+    project_name, description, process = _extract_team(g)
+    project_var_name = _safe_var(project_name)
 
-    # 2. Language models
     lm_map = _extract_language_models(g)
-
-    # 3. Tools
     tools_map = _extract_tools(g)
-
-    # 4. Agents
+    memories_map = _extract_memories(g)
     agents_map = _extract_agents(g, tools_map, lm_map)
-
-    # 5. Tasks
     tasks_map = _extract_tasks(g, agents_map)
-
-    # 6. Task context resolution
     _resolve_task_context(g, tasks_map)
-
-    # 7. Workflow ordering
     workflow_steps = _extract_workflow(g, tasks_map)
+    workflows = _extract_workflow_patterns(g, workflow_steps, process)
 
-    # 8. Reorder tasks by workflow
     if workflow_steps:
-        step_order = {s.task_var_name: s.step_order for s in workflow_steps}
+        step_order = {s.task_iri: s.step_order for s in workflow_steps}
         task_list = sorted(
             tasks_map.values(),
-            key=lambda t: step_order.get(t.var_name, 999),
+            key=lambda t: step_order.get(t.iri, 999),
         )
     else:
         task_list = list(tasks_map.values())
 
-    # 9. Input variables
-    input_variables = _extract_input_variables(g, tasks_map, agents_map)
-
-    # 10. Env vars
-    env_vars = _extract_env_vars(g)
-
-    project = CrewProject(
-        crew_name=crew_name,
-        crew_var_name=crew_var_name,
+    project = AgenticProject(
+        name=project_name,
+        var_name=project_var_name,
         description=description,
-        process=process,
         agents=list(agents_map.values()),
         tasks=task_list,
         tools=list(tools_map.values()),
-        workflow_steps=workflow_steps,
-        input_variables=input_variables,
+        workflows=workflows,
+        memories=list(memories_map.values()),
         language_models=list(lm_map.values()),
-        env_vars=env_vars,
+        input_variables=_extract_input_variables(g, tasks_map, agents_map),
+        env_vars=_extract_env_vars(g),
+        system_configs=_extract_system_configs(g),
     )
 
     print(
-        f"  [Extracted] crew={crew_name}, "
+        f"  [Extracted] project={project.name}, "
         f"{len(project.agents)} agents, "
         f"{len(project.tasks)} tasks, "
         f"{len(project.tools)} tools, "
-        f"{len(project.workflow_steps)} workflow steps"
+        f"{len(project.workflows)} workflows"
     )
-
     return project
+
+
+

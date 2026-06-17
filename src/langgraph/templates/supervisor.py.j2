@@ -1,0 +1,115 @@
+{# ────────────────────────────────────────────────────────
+   Jinja2 Template: supervisor.py
+   Pattern  : Supervisor (multi-agent with router node)
+   Generated: AgentO KG → SPARQL → Pydantic → Jinja2
+   ──────────────────────────────────────────────────────── #}
+"""
+Auto-generated LangGraph App: {{ graph_name }}
+
+Pattern : Supervisor (multi-agent with supervisor router)
+Source  : AgentO Knowledge Graph → SPARQL → Pydantic → Jinja2
+Pipeline: 3-Layer Conversion Pipeline
+"""
+
+import os
+from typing import Annotated, Sequence, TypedDict, Literal
+from pathlib import Path
+from dotenv import load_dotenv
+
+_HERE = Path(__file__).parent
+load_dotenv(_HERE / ".env", override=True)
+
+from langgraph.graph import StateGraph, START, END
+from langgraph.graph.message import add_messages
+from langchain_openai import ChatOpenAI
+from langchain_core.messages import SystemMessage, HumanMessage
+
+LLM_MODEL = os.environ.get("LLM_MODEL", "gpt-4o-mini")
+
+
+# ===========================================================
+# State
+# ===========================================================
+
+class AgentState(TypedDict):
+    messages: Annotated[Sequence, add_messages]
+    next: str
+
+
+# ===========================================================
+# Worker Nodes
+# ===========================================================
+{% for agent in agents %}
+
+def {{ agent.var_name }}_node(state: AgentState) -> dict:
+    """{{ agent.role }}"""
+    llm = ChatOpenAI(model=os.environ.get("LLM_MODEL", "{{ agent.model_name or 'gpt-4o-mini' }}"))
+    sys_msg = SystemMessage(content="""{{ agent.prompt }}""")
+    messages = [sys_msg] + list(state["messages"])
+    response = llm.invoke(messages)
+    return {"messages": [response]}
+{% endfor %}
+
+
+# ===========================================================
+# Supervisor Node
+# ===========================================================
+
+_WORKER_NAMES = [{% for a in agents %}"{{ a.var_name }}"{% if not loop.last %}, {% endif %}{% endfor %}]
+
+
+def supervisor_node(state: AgentState) -> dict:
+    """Routes work to the appropriate worker agent or finishes."""
+    llm = ChatOpenAI(model=os.environ.get("LLM_MODEL", "gpt-4o"))
+    options = ", ".join(_WORKER_NAMES) + ", or FINISH"
+    prompt = (
+        f"You are a supervisor managing these workers: {options}. "
+        "Decide who should act next, or reply FINISH when done. "
+        "Reply with only the worker name or FINISH."
+    )
+    sys_msg = SystemMessage(content=prompt)
+    response = llm.invoke([sys_msg] + list(state["messages"]))
+
+    route = "FINISH"
+    for name in _WORKER_NAMES:
+        if name in response.content:
+            route = name
+            break
+
+    return {"next": route}
+
+
+# ===========================================================
+# Graph
+# ===========================================================
+
+def _route_step(state: AgentState) -> str:
+    """Route from supervisor to the chosen worker or END."""
+    if state["next"] == "FINISH":
+        return END
+    return state["next"]
+
+
+workflow = StateGraph(AgentState)
+workflow.add_node("supervisor", supervisor_node)
+{% for agent in agents %}
+workflow.add_node("{{ agent.var_name }}", {{ agent.var_name }}_node)
+{% endfor %}
+
+workflow.add_edge(START, "supervisor")
+{% for agent in agents %}
+workflow.add_edge("{{ agent.var_name }}", "supervisor")
+{% endfor %}
+
+workflow.add_conditional_edges(
+    "supervisor",
+    _route_step,
+    {
+        "FINISH": END,
+        {% for agent in agents %}
+        "{{ agent.var_name }}": "{{ agent.var_name }}",
+        {% endfor %}
+    },
+)
+
+app = workflow.compile()

@@ -1,0 +1,75 @@
+"""
+Auto-generated LangGraph Main: MyCrew
+
+Source  : AgentO Knowledge Graph → SPARQL → Pydantic → Jinja2
+Pipeline: 3-Layer Conversion Pipeline
+"""
+
+from pathlib import Path
+
+import yaml
+from dotenv import load_dotenv
+
+# Load .env from this directory BEFORE importing app (which triggers LangGraph init)
+_HERE = Path(__file__).parent
+load_dotenv(_HERE / ".env", override=True)
+
+from graph import app  # noqa: E402  (must come after load_dotenv)
+
+
+def _load_inputs() -> dict:
+    """Load runtime inputs from config/inputs.yaml.
+
+    When a key maps to a list, the **first** item is used as the
+    runtime value.  Reorder or edit the list in the YAML file to
+    choose a different example.  Every value is cast to ``str``
+    so that template interpolation works consistently.
+    """
+    inputs_path = _HERE / "config" / "inputs.yaml"
+    if not inputs_path.exists():
+        return {}
+    with open(inputs_path, encoding="utf-8") as fh:
+        data = yaml.safe_load(fh)
+    if not data:
+        return {}
+    result = {}
+    for k, v in data.items():
+        if isinstance(v, list) and v:
+            result[k] = str(v[0])
+        else:
+            result[k] = str(v) if v is not None else ""
+    return result
+
+
+def _build_user_message(inputs: dict) -> str:
+    """Build a user message string from the loaded input variables."""
+    filled = {k: v for k, v in inputs.items() if v}
+    if not filled:
+        return "Please use your tools to answer this."
+    parts = [f"{k}={v}" for k, v in filled.items()]
+    return "Process this request with the following parameters: " + ", ".join(parts)
+
+
+def run():
+    """Run the MyCrew LangGraph app."""
+    inputs = _load_inputs()
+    user_msg = _build_user_message(inputs)
+
+    print("\n" + "=" * 80)
+    print("INPUT")
+    print("=" * 80)
+    print(user_msg)
+
+    print("\n" + "=" * 80)
+    print("OUTPUT")
+    print("=" * 80)
+
+    result = app.invoke({"messages": [("user", user_msg)]})
+    final_msg = result["messages"][-1]
+    print(final_msg.content)
+
+    return result
+
+
+if __name__ == "__main__":
+    run()

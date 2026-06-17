@@ -1,7 +1,8 @@
 from pathlib import Path
 import json
 
-from src.core.extractor import extract_crew_project
+from src.core.extractor import extract_project
+from src.autogen.adapter import adapt
 from src.autogen.generator import generate_project
 
 
@@ -16,7 +17,7 @@ def process_kg(ttl_file: Path):
     print("=" * 80)
 
     try:
-        project = extract_crew_project(str(ttl_file))
+        project = adapt(extract_project(str(ttl_file)))
 
         output_dir = OUTPUT_ROOT / ttl_file.stem
 

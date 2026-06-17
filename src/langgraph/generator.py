@@ -1,283 +1,93 @@
-import os
-from jinja2 import Environment, DictLoader
-from .models import LangGraphProject
-
-JINJA_TEMPLATES = {
-    "linear": """
-import os
-from typing import Annotated, TypedDict
-from pathlib import Path
-from dotenv import load_dotenv
-import yaml
-
-_HERE = Path(__file__).parent
-load_dotenv(_HERE / ".env", override=True)
-
-from langgraph.graph import StateGraph, START, END
-from langgraph.graph.message import add_messages
-from langchain_openai import ChatOpenAI
-from langchain_core.messages import SystemMessage
-
-LLM_MODEL = os.environ.get("LLM_MODEL", "{{ agents[0].model_name or 'gpt-4o-mini' }}")
-
-
-def _load_inputs() -> dict:
-    inputs_path = _HERE / "config" / "inputs.yaml"
-    if not inputs_path.exists():
-        return {}
-    with open(inputs_path, encoding="utf-8") as fh:
-        data = yaml.safe_load(fh)
-    if not data:
-        return {}
-    result = {}
-    for k, v in data.items():
-        if isinstance(v, list) and v:
-            result[k] = str(v[0])
-        else:
-            result[k] = str(v) if v is not None else ""
-    return result
-
-
-def _build_user_message(inputs: dict) -> str:
-    if not inputs:
-        return "Please use your tool to answer this."
-    filled = {k: v for k, v in inputs.items() if v}
-    if not filled:
-        return "Please use your tool to answer this."
-    parts = [f"{k}={v}" for k, v in filled.items()]
-    return "Process this request with the following parameters: " + ", ".join(parts)
-
-
-class AgentState(TypedDict):
-    messages: Annotated[list, add_messages]
-
-llm = ChatOpenAI(model=LLM_MODEL)
-
-def {{ nodes[0].name }}_node(state: AgentState):
-    sys_msg = SystemMessage(content=\"\"\"{{ agents[0].prompt }}\"\"\")
-    messages = [sys_msg] + state['messages']
-    response = llm.invoke(messages)
-    return {"messages": [response]}
-
-workflow = StateGraph(AgentState)
-workflow.add_node("{{ nodes[0].name }}", {{ nodes[0].name }}_node)
-
-workflow.add_edge(START, "{{ nodes[0].name }}")
-workflow.add_edge("{{ nodes[0].name }}", END)
-
-app = workflow.compile()
-
-if __name__ == "__main__":
-    inputs = _load_inputs()
-    user_msg = _build_user_message(inputs)
-    msgs = app.invoke({"messages": [("user", user_msg)]})
-    print(msgs['messages'][-1].content)
-""",
-    "tool_calling": """
-import os
-from typing import Annotated, TypedDict
-from pathlib import Path
-from dotenv import load_dotenv
-import yaml
-
-_HERE = Path(__file__).parent
-load_dotenv(_HERE / ".env", override=True)
-
-from langgraph.graph import StateGraph, START, END
-from langgraph.graph.message import add_messages
-from langgraph.prebuilt import ToolNode, tools_condition
-from langchain_openai import ChatOpenAI
-from langchain_core.messages import SystemMessage
-from langchain_core.tools import tool
-
-LLM_MODEL = os.environ.get("LLM_MODEL", "{{ agents[0].model_name or 'gpt-4o-mini' }}")
-
-
-def _load_inputs() -> dict:
-    inputs_path = _HERE / "config" / "inputs.yaml"
-    if not inputs_path.exists():
-        return {}
-    with open(inputs_path, encoding="utf-8") as fh:
-        data = yaml.safe_load(fh)
-    if not data:
-        return {}
-    result = {}
-    for k, v in data.items():
-        if isinstance(v, list) and v:
-            result[k] = str(v[0])
-        else:
-            result[k] = str(v) if v is not None else ""
-    return result
-
-
-def _build_user_message(inputs: dict) -> str:
-    if not inputs:
-        return "Please use your tool to answer this."
-    filled = {k: v for k, v in inputs.items() if v}
-    if not filled:
-        return "Please use your tool to answer this."
-    parts = [f"{k}={v}" for k, v in filled.items()]
-    return "Process this request with the following parameters: " + ", ".join(parts)
-
-
-# 1. Define Tools
-{% for t in tools %}
-@tool
-def {{ t.var_name }}(query: str) -> str:
-    \"\"\"{{ t.description }}\"\"\"
-    return f"Execution of {{ t.var_name }} on {query}"
-{% endfor %}
-
-tools_list = [{% for t in tools %}{{ t.var_name }}{% if not loop.last %}, {% endif %}{% endfor %}]
-
-class AgentState(TypedDict):
-    messages: Annotated[list, add_messages]
-
-llm = ChatOpenAI(model=LLM_MODEL)
-llm_with_tools = llm.bind_tools(tools_list)
-
-def {{ agents[0].var_name }}_node(state: AgentState):
-    sys_msg = SystemMessage(content=\"\"\"{{ agents[0].prompt }}\"\"\")
-    messages = [sys_msg] + state['messages']
-    response = llm_with_tools.invoke(messages)
-    return {"messages": [response]}
-
-workflow = StateGraph(AgentState)
-workflow.add_node("agent", {{ agents[0].var_name }}_node)
-workflow.add_node("tools", ToolNode(tools_list))
-
-workflow.add_edge(START, "agent")
-workflow.add_conditional_edges("agent", tools_condition)
-workflow.add_edge("tools", "agent")
-
-app = workflow.compile()
-
-if __name__ == "__main__":
-    inputs = _load_inputs()
-    user_msg = _build_user_message(inputs)
-    msgs = app.invoke({"messages": [("user", user_msg)]})
-    for m in msgs['messages']:
-        print(f"{m.type}: {m.content}")
-""",
-    "supervisor": """
-import os
-from typing import Annotated, Sequence, TypedDict, Literal
-from pathlib import Path
-from dotenv import load_dotenv
-import yaml
-import operator
-
-_HERE = Path(__file__).parent
-load_dotenv(_HERE / ".env", override=True)
-
-from langgraph.graph import StateGraph, START, END
-from langgraph.graph.message import add_messages
-from langchain_openai import ChatOpenAI
-from langchain_core.messages import SystemMessage, HumanMessage
-
-LLM_MODEL = os.environ.get("LLM_MODEL", "gpt-4o-mini")
-
-
-def _load_inputs() -> dict:
-    inputs_path = _HERE / "config" / "inputs.yaml"
-    if not inputs_path.exists():
-        return {}
-    with open(inputs_path, encoding="utf-8") as fh:
-        data = yaml.safe_load(fh)
-    if not data:
-        return {}
-    result = {}
-    for k, v in data.items():
-        if isinstance(v, list) and v:
-            result[k] = str(v[0])
-        else:
-            result[k] = str(v) if v is not None else ""
-    return result
-
-
-def _build_user_message(inputs: dict) -> str:
-    if not inputs:
-        return "Start the task"
-    filled = {k: v for k, v in inputs.items() if v}
-    if not filled:
-        return "Start the task"
-    parts = [f"{k}={v}" for k, v in filled.items()]
-    return "Process this request with the following parameters: " + ", ".join(parts)
-
-
-class AgentState(TypedDict):
-    messages: Annotated[Sequence, add_messages]
-    next: str
-
-# 1. Worker Nodes
-{% for agent in agents %}
-def {{ agent.var_name }}_node(state: AgentState):
-    llm = ChatOpenAI(model=os.environ.get("LLM_MODEL", "{{ agent.model_name or 'gpt-4o-mini' }}"))
-    sys_msg = SystemMessage(content=\"\"\"{{ agent.prompt }}\"\"\")
-    messages = [sys_msg] + state['messages']
-    response = llm.invoke(messages)
-    return {"messages": [response]}
-{% endfor %}
-
-# 2. Supervisor Node
-def supervisor_node(state: AgentState) -> dict:
-    llm = ChatOpenAI(model=os.environ.get("LLM_MODEL", "gpt-4o"))
-    prompt = "You are a supervisor. Decide who goes next: " + ", ".join([{% for a in agents %}"{{ a.var_name }}"{% if not loop.last %}, {% endif %}{% endfor %}]) + " or FINISH"
-    sys_msg = SystemMessage(content=prompt)
-    response = llm.invoke([sys_msg] + state['messages'])
-    route = "FINISH"
-    {% for a in agents %}
-    if "{{ a.var_name }}" in response.content:
-        route = "{{ a.var_name }}"
-    {% endfor %}
-    return {"next": route}
-
-workflow = StateGraph(AgentState)
-workflow.add_node("supervisor", supervisor_node)
-{% for agent in agents %}
-workflow.add_node("{{ agent.var_name }}", {{ agent.var_name }}_node)
-{% endfor %}
-
-workflow.add_edge(START, "supervisor")
-
-{% for agent in agents %}
-workflow.add_edge("{{ agent.var_name }}", "supervisor")
-{% endfor %}
-
-def route_step(state: AgentState):
-    if state["next"] == "FINISH":
-        return END
-    return state["next"]
-
-workflow.add_conditional_edges(
-    "supervisor",
-    route_step,
-    {
-        "FINISH": END,
-        {% for agent in agents %}
-        "{{ agent.var_name }}": "{{ agent.var_name }}"{% if not loop.last %},{% endif %}
-        {% endfor %}
-    }
-)
-
-app = workflow.compile()
-
-if __name__ == "__main__":
-    inputs = _load_inputs()
-    user_msg = _build_user_message(inputs)
-    msgs = app.invoke({"messages": [("user", user_msg)]})
-    print(msgs['messages'][-1].content)
 """
-}
+Layer 3 – File Generation (LangGraph)
+
+Generates a complete LangGraph project directory from a LangGraphProject IR:
+  - graph.py            (via Jinja2 — pattern-specific template)
+  - main.py             (via Jinja2)
+  - config/inputs.yaml  (via manual YAML building)
+  - .env.example        (plain text)
+  - requirements.txt    (plain text)
+
+Design decisions:
+  - Python files use Jinja2 templates loaded from the templates/ directory.
+    Templates are NOT embedded in this file (use FileSystemLoader, not DictLoader).
+  - YAML files are built manually so we avoid adding PyYAML as a required
+    dependency for such a small output.
+  - The pattern (linear / tool_calling / supervisor) is detected automatically
+    from the LangGraphProject IR via the `pattern_type` property.
+  - graph.py is always named `graph.py` so that `main.py` can do a stable
+    `from graph import app` regardless of the pattern used.
+"""
+
+from __future__ import annotations
+
+import json
+import os
+from datetime import datetime, timezone
+from typing import Any, Dict, List
+
+from jinja2 import Environment, FileSystemLoader
+
+from ..core.models import LangGraphProject, LangGraphAgentModel
 
 
-def _append_yaml_scalar(lines: list, key: str, value: str) -> None:
+# ─────────────────────── Jinja2 setup ───────────────────────
+
+def _create_jinja_env() -> Environment:
+    """Create a Jinja2 environment that loads templates from the templates/ directory."""
+    template_dir = os.path.join(os.path.dirname(__file__), "templates")
+    return Environment(
+        loader=FileSystemLoader(template_dir),
+        trim_blocks=True,
+        lstrip_blocks=True,
+        keep_trailing_newline=True,
+    )
+
+
+# ─────────────────────── Context builders ───────────────────────
+
+def _build_graph_context(project: LangGraphProject) -> Dict[str, Any]:
+    """Build the complete Jinja2 template context for graph.py."""
+    agents = project.agents
+    if not agents:
+        agents = [LangGraphAgentModel(
+            iri="default-agent",
+            var_name="agent",
+            role="assistant",
+            prompt="You are a helpful assistant.",
+            model_name="gpt-4o-mini",
+        )]
+
+    # Filter out meta-nodes (e.g., nodes whose IRI ends with "Graph")
+    nodes = [n for n in project.nodes if not n.iri.endswith("Graph")] or project.nodes
+
+    return {
+        "graph_name": project.name,
+        "tools": project.tools,
+        "agents": agents,
+        "nodes": nodes,
+        "edges": project.edges,
+    }
+
+
+def _build_main_context(project: LangGraphProject) -> Dict[str, Any]:
+    """Build the complete Jinja2 template context for main.py."""
+    return {
+        "graph_name": project.name,
+        "input_variables": project.input_variables,
+    }
+
+
+# ─────────────────────── YAML helpers ───────────────────────
+
+def _append_yaml_scalar(lines: List[str], key: str, value: str) -> None:
+    """Append a YAML scalar entry (key: value) to *lines*."""
     if "\n" in value or len(value) > 100:
         lines.append(f"{key}: |")
         for vline in value.split("\n"):
             lines.append(f"  {vline}")
     else:
-        needs_quote = any(c in value for c in ":{},[]&*#?|-><!%@`")
+        needs_quote = any(c in value for c in ":{},[]*#?|-><!%@`&")
         if needs_quote:
             escaped = value.replace('"', '\\"')
             lines.append(f'{key}: "{escaped}"')
@@ -285,13 +95,14 @@ def _append_yaml_scalar(lines: list, key: str, value: str) -> None:
             lines.append(f"{key}: {value}")
 
 
-def _append_yaml_list_item(lines: list, value: str) -> None:
+def _append_yaml_list_item(lines: List[str], value: str) -> None:
+    """Append a YAML list item (- value) to *lines*."""
     if "\n" in value or len(value) > 100:
         lines.append("  - |")
         for vline in value.split("\n"):
             lines.append(f"    {vline}")
     else:
-        needs_quote = any(c in value for c in ":{},[]&*#?|-><!%@`")
+        needs_quote = any(c in value for c in ":{},[]*#?|-><!%@`&")
         if needs_quote:
             escaped = value.replace('"', '\\"')
             lines.append(f'  - "{escaped}"')
@@ -299,11 +110,21 @@ def _append_yaml_list_item(lines: list, value: str) -> None:
             lines.append(f"  - {value}")
 
 
+# ─────────────────────── Content builders ───────────────────────
+
 def build_inputs_yaml(project: LangGraphProject) -> str:
+    """
+    Build config/inputs.yaml content from the LangGraphProject IR.
+
+    Each input variable becomes a top-level key.  When there are multiple
+    example values from the KG (default + alternatives) the key maps to a
+    YAML *list* — the first item is used as the runtime default by main.py.
+    When only a single value exists the key maps to a scalar.
+    """
     if not project.input_variables:
         return "# No runtime inputs required for this graph.\n"
 
-    lines: list = [
+    lines: List[str] = [
         "# Runtime inputs for the LangGraph app.",
         "# Edit values below before running python main.py.",
         "#",
@@ -316,7 +137,7 @@ def build_inputs_yaml(project: LangGraphProject) -> str:
     ]
 
     for var in project.input_variables:
-        all_values: list = []
+        all_values: List[str] = []
         if var.has_default and var.default_value:
             all_values.append(var.default_value)
         all_values.extend(var.alternative_values)
@@ -337,70 +158,119 @@ def build_inputs_yaml(project: LangGraphProject) -> str:
 
 
 def build_env_example(project: LangGraphProject) -> str:
+    """
+    Generate .env.example content from a LangGraphProject IR.
+
+    OPENAI_API_KEY is always included.  Optional overrides for base URL
+    and model are shown as commented-out examples.
+    """
     lines = [
-        "# Environment configuration for the LangGraph app.",
-        "# Copy this file to .env and fill in your actual values.",
-        "# The .env file is loaded with override=True so it wins over",
-        "# any global environment variables (e.g. OPENAI_API_BASE).",
+        "# .env.example – copy to .env and fill in your actual keys",
+        "# Never commit the real .env file to version control.",
         "",
-        "# LLM API Key (required) - get from https://platform.openai.com/api-keys",
+        "# LLM API Key (required)",
         "OPENAI_API_KEY=your_openai_api_key_here",
         "",
-        "# Optional: override the OpenAI base URL (e.g. for DeepInfra, Azure, etc.)",
+        "# Optional: override the OpenAI base URL (e.g. for Azure, DeepInfra, etc.)",
         "# OPENAI_API_BASE=https://api.openai.com/v1",
         "",
-        "# Optional: override the default model (default: gpt-4o-mini)",
+        "# Optional: override the default model",
         "# LLM_MODEL=gpt-4o-mini",
         "",
     ]
     return "\n".join(lines)
 
 
-def generate_project(project: LangGraphProject, output_dir: str) -> str:
-    os.makedirs(output_dir, exist_ok=True)
-
-    env = Environment(loader=DictLoader(JINJA_TEMPLATES))
-
-    pattern = project.pattern_type
-    if pattern not in JINJA_TEMPLATES:
-        pattern = "linear"
-
-    template = env.get_template(pattern)
-
-    agents = project.agents
-    if not agents:
-        from .models import AgentModel
-        agents = [AgentModel(
-            id="default-agent",
-            var_name="agent",
-            role="assistant",
-            prompt="You are a helpful assistant.",
-            model_name="gpt-4o-mini"
-        )]
-
-    output_code = template.render(
-        tools=project.tools,
-        agents=agents,
-        nodes=[n for n in project.nodes if not n.id.endswith("Graph")] or project.nodes,
-        edges=project.edges
+def build_requirements_txt() -> str:
+    """Return the contents of requirements.txt for a LangGraph project."""
+    return (
+        "langgraph>=0.0.26\n"
+        "langchain-openai>=0.1.1\n"
+        "langchain-core\n"
+        "python-dotenv\n"
+        "pyyaml>=6.0\n"
     )
 
-    main_path = os.path.join(output_dir, "main.py")
-    with open(main_path, "w", encoding="utf-8") as f:
-        f.write(output_code.strip() + "\n")
 
+def build_manifest(output_dir: str, pattern: str) -> dict:
+    """Build a manifest dict describing the generated project."""
+    generated_files = []
+    for root, _, files in os.walk(output_dir):
+        for file in files:
+            if file == "manifest.json":
+                continue
+            abs_path = os.path.join(root, file)
+            rel_path = os.path.relpath(abs_path, output_dir)
+            generated_files.append(rel_path.replace("\\", "/"))
+
+    return {
+        "framework": "langgraph",
+        "pattern": pattern,
+        "generated_files": sorted(generated_files),
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+    }
+
+
+# ─────────────────────── Public API ───────────────────────
+
+def generate_project(project: LangGraphProject, output_dir: str) -> str:
+    """
+    Generate a complete LangGraph project directory from a LangGraphProject IR.
+
+    Output structure:
+        <output_dir>/
+        ├── .env.example
+        ├── requirements.txt
+        ├── config/
+        │   └── inputs.yaml     ← runtime inputs (from KickoffInputBundle)
+        ├── graph.py            ← the compiled StateGraph app
+        ├── main.py             ← entry point
+        └── manifest.json       ← generation metadata
+
+    Returns:
+        The output directory path.
+    """
+    # ── Create directory structure ──
     config_dir = os.path.join(output_dir, "config")
     os.makedirs(config_dir, exist_ok=True)
-    inputs_path = os.path.join(config_dir, "inputs.yaml")
-    with open(inputs_path, "w", encoding="utf-8") as f:
+
+    pattern = project.pattern_type
+
+    # ── Layer 3A: Python generation (Jinja2) ──
+    env = _create_jinja_env()
+
+    # graph.py — always named graph.py for a stable import in main.py
+    graph_template = env.get_template(f"{pattern}.py.j2")
+    graph_ctx = _build_graph_context(project)
+    graph_code = graph_template.render(**graph_ctx)
+    with open(os.path.join(output_dir, "graph.py"), "w", encoding="utf-8") as f:
+        f.write(graph_code.strip() + "\n")
+
+    # main.py
+    main_template = env.get_template("main.py.j2")
+    main_ctx = _build_main_context(project)
+    main_code = main_template.render(**main_ctx)
+    with open(os.path.join(output_dir, "main.py"), "w", encoding="utf-8") as f:
+        f.write(main_code.strip() + "\n")
+
+    # ── Layer 3B: YAML / plain-text generation ──
+    with open(os.path.join(config_dir, "inputs.yaml"), "w", encoding="utf-8") as f:
         f.write(build_inputs_yaml(project))
 
-    env_example_path = os.path.join(output_dir, ".env.example")
-    with open(env_example_path, "w", encoding="utf-8") as f:
+    with open(os.path.join(output_dir, ".env.example"), "w", encoding="utf-8") as f:
         f.write(build_env_example(project))
 
-    req_path = os.path.join(output_dir, "requirements.txt")
-    with open(req_path, "w", encoding="utf-8") as f:
-        f.write("langgraph>=0.0.26\nlangchain-openai>=0.1.1\nlangchain-core\npython-dotenv\npyyaml>=6.0\n")
+    with open(os.path.join(output_dir, "requirements.txt"), "w", encoding="utf-8") as f:
+        f.write(build_requirements_txt())
+
+    # ── Manifest ──
+    manifest = build_manifest(output_dir, pattern)
+    with open(os.path.join(output_dir, "manifest.json"), "w", encoding="utf-8") as f:
+        json.dump(manifest, f, indent=2)
+
+    print(
+        f"  [Generated] {output_dir}/ "
+        f"(graph.py [{pattern}], main.py, inputs.yaml, .env.example, requirements.txt)"
+    )
 
     return output_dir

@@ -1,0 +1,12 @@
+{
+  "framework": "langgraph",
+  "pattern": "tool_calling",
+  "generated_files": [
+    ".env.example",
+    "config/inputs.yaml",
+    "graph.py",
+    "main.py",
+    "requirements.txt"
+  ],
+  "timestamp": "2026-06-17T17:35:50.391196+00:00"
+}

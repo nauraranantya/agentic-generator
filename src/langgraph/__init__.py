@@ -1,8 +1,23 @@
 """
-CrewAI Pipeline: KG (.ttl) → SPARQL → Pydantic → YAML + Python (Jinja2)
+LangGraph Pipeline: KG (.ttl) → SPARQL → Pydantic → Python (Jinja2)
 
 Three-layer conversion pipeline:
-  Layer 1 – SPARQL extraction (rdflib)
-  Layer 2 – Pydantic intermediate representation
-  Layer 3 – File generation (PyYAML + Jinja2)
+  Layer 1 – SPARQL extraction  (rdflib)   → src/core/extractor.py
+  Layer 2 – Pydantic IR        (models)   → src/core/models.py
+  Layer 3 – File generation    (Jinja2)   → src/langgraph/generator.py
+
+Supported graph patterns:
+  linear       – single agent, no tools
+  tool_calling – single agent with bound tools
+  supervisor   – multi-agent with supervisor router
+
+Key models (defined in src/core/models.py):
+  LangGraphProject      – top-level IR passed between layers
+  LangGraphAgentModel   – agent → node function in graph.py
+  LangGraphToolModel    – tool  → @tool stub in graph.py
+  LangGraphNodeModel    – step  → StateGraph.add_node()
+  LangGraphEdgeModel    – link  → StateGraph.add_edge()
+
+Key functions (defined in src/core/extractor.py):
+  extract_project(file_path) + adapter.adapt(project) → LangGraphProject
 """

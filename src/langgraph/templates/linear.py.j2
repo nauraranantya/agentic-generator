@@ -1,0 +1,68 @@
+{# ────────────────────────────────────────────────────────
+   Jinja2 Template: linear.py
+   Pattern  : Linear (single LLM agent, no tools)
+   Generated: AgentO KG → SPARQL → Pydantic → Jinja2
+   ──────────────────────────────────────────────────────── #}
+"""
+Auto-generated LangGraph App: {{ graph_name }}
+
+Pattern : Linear (single agent, no tools)
+Source  : AgentO Knowledge Graph → SPARQL → Pydantic → Jinja2
+Pipeline: 3-Layer Conversion Pipeline
+"""
+
+import os
+from typing import Annotated, TypedDict
+from pathlib import Path
+from dotenv import load_dotenv
+import yaml
+
+_HERE = Path(__file__).parent
+load_dotenv(_HERE / ".env", override=True)
+
+from langgraph.graph import StateGraph, START, END
+from langgraph.graph.message import add_messages
+from langchain_openai import ChatOpenAI
+from langchain_core.messages import SystemMessage
+
+LLM_MODEL = os.environ.get("LLM_MODEL", "{{ agents[0].model_name or 'gpt-4o-mini' }}")
+
+
+# ===========================================================
+# State
+# ===========================================================
+
+class AgentState(TypedDict):
+    messages: Annotated[list, add_messages]
+
+
+# ===========================================================
+# LLM
+# ===========================================================
+
+llm = ChatOpenAI(model=LLM_MODEL)
+
+
+# ===========================================================
+# Agent Node
+# ===========================================================
+
+def {{ nodes[0].name }}_node(state: AgentState) -> dict:
+    """{{ agents[0].role }} — processes messages and returns a response."""
+    sys_msg = SystemMessage(content="""{{ agents[0].prompt }}""")
+    messages = [sys_msg] + state["messages"]
+    response = llm.invoke(messages)
+    return {"messages": [response]}
+
+
+# ===========================================================
+# Graph
+# ===========================================================
+
+workflow = StateGraph(AgentState)
+workflow.add_node("{{ nodes[0].name }}", {{ nodes[0].name }}_node)
+
+workflow.add_edge(START, "{{ nodes[0].name }}")
+workflow.add_edge("{{ nodes[0].name }}", END)
+
+app = workflow.compile()
