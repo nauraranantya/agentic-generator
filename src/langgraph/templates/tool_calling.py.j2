@@ -9,6 +9,48 @@ Auto-generated LangGraph App: {{ graph_name }}
 Pattern : Tool-Calling (single agent with tools)
 Source  : AgentO Knowledge Graph → SPARQL → Pydantic → Jinja2
 Pipeline: 3-Layer Conversion Pipeline
+{% if goals %}
+Goals:
+{% for g in goals %}
+  - {{ g.label }}: {{ g.description }}
+{% endfor %}
+{% endif %}
+{% if objectives %}
+Objectives:
+{% for o in objectives %}
+  - {{ o.label }}: {{ o.description }}
+{% endfor %}
+{% endif %}
+{% if human_agents %}
+Human Agents:
+{% for h in human_agents %}
+  - {{ h.var_name }} ({{ h.role }})
+{% endfor %}
+{% endif %}
+{% if environments %}
+Environments:
+{% for e in environments %}
+  - {{ e.label }} ({{ e.env_type }}): {{ e.description }}
+{% endfor %}
+{% endif %}
+{% if capabilities %}
+Capabilities:
+{% for c in capabilities %}
+  - {{ c.label }}: {{ c.description }}
+{% endfor %}
+{% endif %}
+{% if resources %}
+Resources:
+{% for r in resources %}
+  - {{ r.label }}: {{ r.description }}
+{% endfor %}
+{% endif %}
+{% if constraints %}
+Constraints:
+{% for c in constraints %}
+  - {{ c.label }}: {{ c.description }}
+{% endfor %}
+{% endif %}
 """
 
 import os
@@ -84,4 +126,10 @@ workflow.add_edge(START, "agent")
 workflow.add_conditional_edges("agent", tools_condition)
 workflow.add_edge("tools", "agent")
 
+{% if tasks and tasks | selectattr("human_input") | list %}
+app = workflow.compile(
+    interrupt_before=[{% for t in tasks if t.human_input %}"{{ t.agent_var_name }}"{% if not loop.last %}, {% endif %}{% endfor %}]
+)
+{% else %}
 app = workflow.compile()
+{% endif %}

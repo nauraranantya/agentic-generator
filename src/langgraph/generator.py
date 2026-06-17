@@ -28,7 +28,10 @@ from typing import Any, Dict, List
 
 from jinja2 import Environment, FileSystemLoader
 
-from ..core.models import LangGraphProject, LangGraphAgentModel
+from ..core.models import (
+    LangGraphAgentModel,
+    LangGraphProject,
+)
 
 
 # ─────────────────────── Jinja2 setup ───────────────────────
@@ -67,6 +70,14 @@ def _build_graph_context(project: LangGraphProject) -> Dict[str, Any]:
         "agents": agents,
         "nodes": nodes,
         "edges": project.edges,
+        "goals": project.goals,
+        "objectives": project.objectives,
+        "human_agents": project.human_agents,
+        "environments": project.environments,
+        "capabilities": project.capabilities,
+        "resources": project.resources,
+        "constraints": project.constraints,
+        "tasks": project.tasks,
     }
 
 

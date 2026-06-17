@@ -438,6 +438,85 @@ WHERE {
 }
 """
 
+# ── Goals ──
+
+GOALS_QUERY = PREFIXES + """
+SELECT ?goal ?label ?desc
+WHERE {
+    ?goal a :Goal .
+    OPTIONAL { ?goal rdfs:label ?label }
+    OPTIONAL { ?goal dcterms:description ?desc }
+}
+"""
+
+# ── Objectives ──
+
+OBJECTIVES_QUERY = PREFIXES + """
+SELECT ?obj ?label ?desc ?goal
+WHERE {
+    ?obj a :Objective .
+    OPTIONAL { ?obj rdfs:label ?label }
+    OPTIONAL { ?obj dcterms:description ?desc }
+    OPTIONAL { ?obj :contributesToGoal ?goal }
+}
+"""
+
+# ── Capabilities ──
+
+CAPABILITIES_QUERY = PREFIXES + """
+SELECT ?cap ?label ?desc
+WHERE {
+    ?cap a :Capability .
+    OPTIONAL { ?cap rdfs:label ?label }
+    OPTIONAL { ?cap rdfs:comment ?desc }
+}
+"""
+
+# ── Environments ──
+
+ENVIRONMENTS_QUERY = PREFIXES + """
+SELECT ?env ?label ?desc ?envType
+WHERE {
+    ?env a :Environment .
+    OPTIONAL { ?env rdfs:label ?label }
+    OPTIONAL { ?env dcterms:description ?desc }
+    OPTIONAL { ?env :envType ?envType }
+}
+"""
+
+# ── Human Agents ──
+
+HUMAN_AGENTS_QUERY = PREFIXES + """
+SELECT ?human ?role
+WHERE {
+    ?human a :HumanAgent .
+    OPTIONAL { ?human :agentRole ?role }
+}
+"""
+
+# ── Resources ──
+
+RESOURCES_QUERY = PREFIXES + """
+SELECT ?res ?label ?desc
+WHERE {
+    ?res a ?type .
+    FILTER(?type = beam:Resource || ?type = beam:Instance || ?type = beam:Model)
+    OPTIONAL { ?res rdfs:label ?label }
+    OPTIONAL { ?res dcterms:description ?desc }
+}
+"""
+
+# ── Constraints ──
+
+CONSTRAINTS_QUERY = PREFIXES + """
+SELECT ?con ?label ?desc
+WHERE {
+    ?con a :Constraint .
+    OPTIONAL { ?con rdfs:label ?label }
+    OPTIONAL { ?con dcterms:description ?desc }
+}
+"""
+
 # ── Environment Variables ──
 
 ENV_CONFIG_QUERY = PREFIXES + """
@@ -1653,6 +1732,87 @@ def _extract_workflows(
     return workflows
 
 
+# ─────────────────────── New Ontology Extractors ───────────────────────
+
+def _extract_goals(g: Graph) -> List[dict]:
+    results = []
+    for row in g.query(GOALS_QUERY):
+        results.append({
+            "iri": _s(row.goal),
+            "label": _s(row.label),
+            "description": _s(row.desc),
+        })
+    return results
+
+
+def _extract_objectives(g: Graph) -> List[dict]:
+    results = []
+    for row in g.query(OBJECTIVES_QUERY):
+        results.append({
+            "iri": _s(row.obj),
+            "label": _s(row.label),
+            "description": _s(row.desc),
+            "contributes_to_goal": _s(row.goal),
+        })
+    return results
+
+
+def _extract_capabilities(g: Graph) -> List[dict]:
+    results = []
+    for row in g.query(CAPABILITIES_QUERY):
+        results.append({
+            "iri": _s(row.cap),
+            "label": _s(row.label),
+            "description": _s(row.desc),
+        })
+    return results
+
+
+def _extract_environments(g: Graph) -> List[dict]:
+    results = []
+    for row in g.query(ENVIRONMENTS_QUERY):
+        results.append({
+            "iri": _s(row.env),
+            "label": _s(row.label),
+            "description": _s(row.desc),
+            "env_type": _s(row.envType),
+        })
+    return results
+
+
+def _extract_human_agents(g: Graph) -> List[dict]:
+    results = []
+    for row in g.query(HUMAN_AGENTS_QUERY):
+        results.append({
+            "iri": _s(row.human),
+            "var_name": _safe_var(_s(row.human), naming_style="camel"),
+            "role": _s(row.role),
+        })
+    return results
+
+
+def _extract_resources(g: Graph) -> List[dict]:
+    results = []
+    for row in g.query(RESOURCES_QUERY):
+        results.append({
+            "iri": _s(row.res),
+            "label": _s(row.label),
+            "description": _s(row.desc),
+        })
+    return results
+
+
+def _extract_constraints(g: Graph) -> List[dict]:
+    results = []
+    for row in g.query(CONSTRAINTS_QUERY):
+        results.append({
+            "iri": _s(row.con),
+            "label": _s(row.label),
+            "description": _s(row.desc),
+        })
+    return results
+
+
 # ─────────────────────── Main Extraction Function ───────────────────────
 
 def extract_mastra_project(ttl_path: str) -> MastraProject:
@@ -1709,6 +1869,15 @@ def extract_mastra_project(ttl_path: str) -> MastraProject:
     # Extract workflows (Milestone 2)
     workflows = _extract_workflows(g, agents_map, tools_map)
 
+    # Extract new ontology concepts
+    goals = _extract_goals(g)
+    objectives = _extract_objectives(g)
+    capabilities = _extract_capabilities(g)
+    environments = _extract_environments(g)
+    human_agents = _extract_human_agents(g)
+    resources = _extract_resources(g)
+    constraints = _extract_constraints(g)
+
     # Build project
     project = MastraProject(
         project_name=project_name,
@@ -1721,6 +1890,13 @@ def extract_mastra_project(ttl_path: str) -> MastraProject:
         memory_configs=list(memories_map.values()),
         env_vars=[],
         system_configs=[],
+        goals=goals,
+        objectives=objectives,
+        capabilities=capabilities,
+        environments=environments,
+        human_agents=human_agents,
+        resources=resources,
+        constraints=constraints,
     )
 
     return project

@@ -46,6 +46,68 @@ class ConfigModel(BaseModel):
     value: str = Field(..., description="Config value")
 
 
+class GoalModel(BaseModel):
+    """agentO :Goal individual — agent or team objective."""
+    iri: str = Field(..., description="Full IRI of the Goal individual")
+    var_name: str = Field("", description="Snake-case identifier")
+    label: str = Field("", description="rdfs:label")
+    description: str = Field("", description="dcterms:description")
+
+
+class CapabilityModel(BaseModel):
+    """agentO :Capability individual — a thing an agent/tool can do."""
+    iri: str = Field(..., description="Full IRI of the Capability individual")
+    var_name: str = Field("", description="Snake-case identifier")
+    label: str = Field("", description="rdfs:label")
+    description: str = Field("", description="rdfs:comment / description")
+
+
+class EnvironmentModel(BaseModel):
+    """agentO :Environment individual — operational context for agents."""
+    iri: str = Field(..., description="Full IRI of the Environment individual")
+    var_name: str = Field("", description="Snake-case identifier")
+    label: str = Field("", description="rdfs:label")
+    description: str = Field("", description="dcterms:description")
+    env_type: str = Field("", description=":envType literal (e.g. 'virtual', 'physical')")
+    configs: Dict[str, str] = Field(default_factory=dict, description=":hasEnvironmentConfig key/value pairs")
+    contained_resource_iris: List[str] = Field(default_factory=list, description=":containsResource targets")
+
+
+class ObjectiveModel(BaseModel):
+    """agentO :Objective individual — sub-goal contributing to a higher Goal."""
+    iri: str = Field(..., description="Full IRI of the Objective individual")
+    var_name: str = Field("", description="Snake-case identifier")
+    label: str = Field("", description="rdfs:label")
+    description: str = Field("", description="dcterms:description")
+    contributes_to_goal_iri: str = Field("", description=":contributesToGoal target IRI")
+
+
+class HumanAgentModel(BaseModel):
+    """agentO :HumanAgent individual — human-in-the-loop."""
+    iri: str = Field(..., description="Full IRI of the HumanAgent individual")
+    var_name: str = Field("", description="Snake-case identifier")
+    role: str = Field("", description="Human role / description")
+    participated_task_iris: List[str] = Field(default_factory=list, description=":humanParticipatedIn targets")
+
+
+class ResourceModel(BaseModel):
+    """beam:Resource individual (or subclass :Instance / :Model)."""
+    iri: str = Field(..., description="Full IRI of the Resource individual")
+    var_name: str = Field("", description="Snake-case identifier")
+    label: str = Field("", description="rdfs:label")
+    description: str = Field("", description="dcterms:description")
+    resource_type: str = Field("", description="Type fragment e.g. 'Resource', 'Instance', 'Model'")
+
+
+class ConstraintModel(BaseModel):
+    """agentO :Constraint individual — a rule/condition derived from KB."""
+    iri: str = Field(..., description="Full IRI of the Constraint individual")
+    var_name: str = Field("", description="Snake-case identifier")
+    label: str = Field("", description="rdfs:label")
+    description: str = Field("", description="dcterms:description")
+    configs: Dict[str, str] = Field(default_factory=dict)
+
+
 class LanguageModelModel(BaseModel):
     """Represents a KG :LanguageModel (LLM backing agents)."""
     iri: str = Field(..., description="Full IRI of the LanguageModel individual")
@@ -75,7 +137,10 @@ class ToolModel(BaseModel):
     class_name: str = Field("", description="Legacy inferred CrewAI tool class")
     description: str = Field("", description="Tool description")
     configs: List[ToolConfigModel] = Field(default_factory=list)
-    capabilities: List[str] = Field(default_factory=list)
+    capabilities: List[str] = Field(default_factory=list, description="Legacy stub — use capability_iris")
+    capability_iris: List[str] = Field(default_factory=list, description="IRI refs to :Capability individuals (via :hasCapability)")
+    resource_usage_iris: List[str] = Field(default_factory=list, description="IRI refs to beam:Resource (via :resourceUsage)")
+    tool_usage_iris: List[str] = Field(default_factory=list, description="IRI refs to :Tool children (via :toolUsage)")
 
 
 # ──────────────────────────────────────────────
@@ -95,13 +160,11 @@ class AgentModel(BaseModel):
 
     # agents.yaml fields
     role: str = Field(..., description="Agent role")
-    goal: str = Field(..., description="Agent goal")
+    goal: str = Field(..., description="Agent goal (text description)")
+    goal_iri: str = Field("", description="IRI of the :Goal individual linked via :hasAgentGoal")
     backstory: str = Field("", description="Legacy CrewAI backstory / system prompt")
     system_prompt: str = Field("", description="agentO Prompt context/instruction")
-    interacts_with: List[str] = Field(
-
-        default_factory=list
-    )
+    interacts_with: List[str] = Field(default_factory=list, description="IRI refs to other :LLMAgent individuals (via :interactsWith)")
 
     # crew.py fields
     tool_iris: List[str] = Field(default_factory=list, description="Tool IRI references")
@@ -112,6 +175,11 @@ class AgentModel(BaseModel):
     knowledge_iris: List[str] = Field(default_factory=list, description="Knowledge / memory IRI references")
     allow_delegation: Optional[bool] = Field(None, description="Allow delegation flag")
     verbose: Optional[bool] = Field(None, description="Verbose flag (None = not specified in KG → omit from output)")
+
+    # Ontology-linked fields
+    operates_in_iri: str = Field("", description=":operatesIn target Environment IRI")
+    capability_iris: List[str] = Field(default_factory=list, description=":hasAgentCapability target Capability IRIs")
+    objective_iris: List[str] = Field(default_factory=list, description=":hasObjective target Objective IRIs")
 
 
 # ──────────────────────────────────────────────
@@ -152,6 +220,12 @@ class TaskModel(BaseModel):
     required_resources: List[str] = Field(default_factory=list)
     configs: Dict[str, str] = Field(default_factory=dict)
 
+    # Ontology-linked fields
+    contributes_to_objective_iri: str = Field("", description=":contributesToObjective target IRI")
+    requires_capability_iris: List[str] = Field(default_factory=list, description=":requiresCapability target Capability IRIs")
+    performed_by_iri: str = Field("", description=":performedBy target Tool/Agent IRI (parent of :performedByAgent)")
+    human_input: bool = Field(False, description="True if a HumanAgent participates in this task via :humanParticipatedIn")
+
 
 # ──────────────────────────────────────────────
 # Workflow Step Model
@@ -178,7 +252,9 @@ class WorkflowPatternModel(BaseModel):
     description: str = ""
     steps: List[WorkflowStepModel] = Field(default_factory=list)
     workflow_type: WorkflowType = WorkflowType.SEQUENTIAL
-    sub_pattern_iris: List[str] = Field(default_factory=list)
+    sub_pattern_iris: List[str] = Field(default_factory=list, description=":hasSubPattern targets")
+    related_pattern_iris: List[str] = Field(default_factory=list, description=":hasRelatedPattern targets (non-sub)")
+    next_pattern_iri: str = Field("", description=":nextPattern target IRI")
 
 
 class MemoryModel(BaseModel):
@@ -246,12 +322,28 @@ class CrewProject(BaseModel):
         description="Environment variables needed (API keys etc.)"
     )
 
+    # New ontology collections (populated by adapter from AgenticProject)
+    human_agents: List["HumanAgentModel"] = Field(default_factory=list)
+    goals: List["GoalModel"] = Field(default_factory=list)
+    objectives: List["ObjectiveModel"] = Field(default_factory=list)
+    capabilities: List["CapabilityModel"] = Field(default_factory=list)
+    environments: List["EnvironmentModel"] = Field(default_factory=list)
+    resources: List["ResourceModel"] = Field(default_factory=list)
+    constraints: List["ConstraintModel"] = Field(default_factory=list)
+
 
 class AgenticProject(BaseModel):
     """Framework-agnostic extraction result from a single KG file."""
     name: str
     var_name: str = ""
     description: str = ""
+    team_iri: str = Field("", description="IRI of the :Team individual")
+    agent_member_iris: List[str] = Field(default_factory=list, description=":hasAgentMember targets")
+    workflow_pattern_iris: List[str] = Field(default_factory=list, description=":hasWorkflowPattern targets")
+    goal_iris: List[str] = Field(default_factory=list, description="Team-level :hasGoal / :hasTeamGoal targets")
+    objective_iris: List[str] = Field(default_factory=list, description="Team-level :hasObjective targets")
+
+    # Core components
     agents: List[AgentModel] = Field(default_factory=list)
     tasks: List[TaskModel] = Field(default_factory=list)
     tools: List[ToolModel] = Field(default_factory=list)
@@ -261,6 +353,15 @@ class AgenticProject(BaseModel):
     input_variables: List[InputVariableModel] = Field(default_factory=list)
     env_vars: List[ConfigModel] = Field(default_factory=list)
     system_configs: Dict[str, str] = Field(default_factory=dict)
+
+    # New ontology class collections
+    goals: List[GoalModel] = Field(default_factory=list)
+    capabilities: List[CapabilityModel] = Field(default_factory=list)
+    environments: List[EnvironmentModel] = Field(default_factory=list)
+    objectives: List[ObjectiveModel] = Field(default_factory=list)
+    human_agents: List[HumanAgentModel] = Field(default_factory=list)
+    resources: List[ResourceModel] = Field(default_factory=list)
+    constraints: List[ConstraintModel] = Field(default_factory=list)
 
 
 class AutoGenProject(BaseModel):
@@ -277,6 +378,13 @@ class AutoGenProject(BaseModel):
     ordered_tasks: List[TaskModel] = Field(default_factory=list)
     input_variables: List[InputVariableModel] = Field(default_factory=list)
     env_vars: List[ConfigModel] = Field(default_factory=list)
+    human_agents: List["HumanAgentModel"] = Field(default_factory=list)
+    goals: List["GoalModel"] = Field(default_factory=list)
+    objectives: List["ObjectiveModel"] = Field(default_factory=list)
+    capabilities: List["CapabilityModel"] = Field(default_factory=list)
+    environments: List["EnvironmentModel"] = Field(default_factory=list)
+    resources: List["ResourceModel"] = Field(default_factory=list)
+    constraints: List["ConstraintModel"] = Field(default_factory=list)
 
 
 # ══════════════════════════════════════════════════════════════
@@ -373,6 +481,14 @@ class LangGraphProject(BaseModel):
         default_factory=list,
         description="Runtime input variables (from agento-ext:KickoffInputBundle)",
     )
+    tasks: List["TaskModel"] = Field(default_factory=list, description="Original tasks for human_input detection in templates")
+    human_agents: List["HumanAgentModel"] = Field(default_factory=list)
+    goals: List["GoalModel"] = Field(default_factory=list)
+    objectives: List["ObjectiveModel"] = Field(default_factory=list)
+    capabilities: List["CapabilityModel"] = Field(default_factory=list)
+    environments: List["EnvironmentModel"] = Field(default_factory=list)
+    resources: List["ResourceModel"] = Field(default_factory=list)
+    constraints: List["ConstraintModel"] = Field(default_factory=list)
 
     @property
     def pattern_type(self) -> str:

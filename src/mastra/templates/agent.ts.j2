@@ -7,6 +7,18 @@
  * ID: {{ agent.agent_id }}
  * 
  * Auto-generated from AgentO Knowledge Graph
+{% if project.objectives %}
+ * Objectives:
+{% for o in project.objectives %}
+ *   - {{ o.label }}: {{ o.description }}
+{% endfor %}
+{% endif %}
+{% if project.capabilities %}
+ * Capabilities:
+{% for c in project.capabilities %}
+ *   - {{ c.label }}: {{ c.description }}
+{% endfor %}
+{% endif %}
  */
 
 import { Agent } from '@mastra/core/agent'

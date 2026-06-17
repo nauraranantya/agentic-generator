@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Dict, List
+from typing import Dict, List, Set
 
 from ..core.models import (
     AgenticProject,
@@ -91,6 +91,16 @@ def adapt(project: AgenticProject) -> LangGraphProject:
     agents = _map_agents(project)
     nodes, edges = _map_nodes_edges(project)
 
+    # Mark tasks that involve human agents
+    human_participated: Set[str] = set()
+    for ha in project.human_agents:
+        for task_iri in ha.participated_task_iris:
+            human_participated.add(task_iri)
+
+    for task in project.tasks:
+        if task.iri in human_participated:
+            task.human_input = True
+
     return LangGraphProject(
         name=project.name or "LangGraph Project",
         tools=tools,
@@ -98,4 +108,12 @@ def adapt(project: AgenticProject) -> LangGraphProject:
         nodes=nodes,
         edges=edges,
         input_variables=project.input_variables,
+        tasks=list(project.tasks),
+        human_agents=project.human_agents,
+        goals=project.goals,
+        objectives=project.objectives,
+        capabilities=project.capabilities,
+        environments=project.environments,
+        resources=project.resources,
+        constraints=project.constraints,
     )

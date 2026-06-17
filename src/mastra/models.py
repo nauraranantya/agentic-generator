@@ -441,3 +441,12 @@ class MastraProject(BaseModel):
         default_factory=list, 
         description="System-level configs (logger, etc.)"
     )
+
+    # New ontology fields
+    goals: List[dict] = Field(default_factory=list, description="Team Goals extracted from KG")
+    objectives: List[dict] = Field(default_factory=list, description="Objectives extracted from KG")
+    human_agents: List[dict] = Field(default_factory=list, description="HumanAgent individuals")
+    environments: List[dict] = Field(default_factory=list, description="Environment individuals")
+    capabilities: List[dict] = Field(default_factory=list, description="Capability individuals")
+    resources: List[dict] = Field(default_factory=list, description="Resource individuals")
+    constraints: List[dict] = Field(default_factory=list, description="Constraint individuals")

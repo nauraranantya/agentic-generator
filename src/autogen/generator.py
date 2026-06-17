@@ -5,7 +5,16 @@ from typing import Any, Dict
 
 from jinja2 import Environment, FileSystemLoader
 
-from ..core.models import AutoGenProject
+from ..core.models import (
+    AutoGenProject,
+    CapabilityModel,
+    ConstraintModel,
+    EnvironmentModel,
+    GoalModel,
+    HumanAgentModel,
+    ObjectiveModel,
+    ResourceModel,
+)
 
 
 def _create_jinja_env() -> Environment:
@@ -49,6 +58,13 @@ def _build_team_context(project: AutoGenProject) -> Dict[str, Any]:
         "ordered_tasks": ordered_tasks,
         "default_prompt": default_prompt,
         "tool_defs": tool_defs,
+        "goals": project.goals,
+        "objectives": project.objectives,
+        "human_agents": project.human_agents,
+        "environments": project.environments,
+        "capabilities": project.capabilities,
+        "resources": project.resources,
+        "constraints": project.constraints,
     }
 
 

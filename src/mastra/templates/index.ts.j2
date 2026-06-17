@@ -7,6 +7,30 @@
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
+{% if project.goals %}
+ * Goals:
+{% for g in project.goals %}
+ *   - {{ g.label }}: {{ g.description }}
+{% endfor %}
+{% endif %}
+{% if project.objectives %}
+ * Objectives:
+{% for o in project.objectives %}
+ *   - {{ o.label }}: {{ o.description }}
+{% endfor %}
+{% endif %}
+{% if project.human_agents %}
+ * Human Agents:
+{% for h in project.human_agents %}
+ *   - {{ h.var_name }} ({{ h.role }})
+{% endfor %}
+{% endif %}
+{% if project.environments %}
+ * Environments:
+{% for e in project.environments %}
+ *   - {{ e.label }} ({{ e.env_type }}): {{ e.description }}
+{% endfor %}
+{% endif %}
  */
 
 import { Mastra } from '@mastra/core'

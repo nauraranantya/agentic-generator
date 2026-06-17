@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Set
 
 from ..core.models import AgenticProject, AutoGenProject, TaskModel
 
@@ -34,6 +34,16 @@ def _build_ordered_tasks(project: AgenticProject) -> List[TaskModel]:
 
 def adapt(project: AgenticProject) -> AutoGenProject:
     """Map AgenticProject into AutoGenProject for the AutoGen generator."""
+    # Mark tasks that involve human agents
+    human_participated: Set[str] = set()
+    for ha in project.human_agents:
+        for task_iri in ha.participated_task_iris:
+            human_participated.add(task_iri)
+
+    for task in project.tasks:
+        if task.iri in human_participated:
+            task.human_input = True
+
     return AutoGenProject(
         name=project.name,
         model_name=_resolve_model_name(project),
@@ -43,4 +53,11 @@ def adapt(project: AgenticProject) -> AutoGenProject:
         ordered_tasks=_build_ordered_tasks(project),
         input_variables=project.input_variables,
         env_vars=project.env_vars,
+        human_agents=project.human_agents,
+        goals=project.goals,
+        objectives=project.objectives,
+        capabilities=project.capabilities,
+        environments=project.environments,
+        resources=project.resources,
+        constraints=project.constraints,
     )

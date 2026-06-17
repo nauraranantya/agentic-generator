@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Dict, List
+from typing import Dict, List, Set
 
 from ..core.models import AgenticProject, CrewProject, ProcessType, WorkflowStepModel
 
@@ -70,6 +70,16 @@ def adapt(project: AgenticProject) -> CrewProject:
         if not task.agent_var_name and task.agent_iri and task.agent_iri in agents_by_iri:
             task.agent_var_name = agents_by_iri[task.agent_iri].var_name
 
+    # Mark tasks that involve human agents
+    human_participated: Set[str] = set()
+    for ha in project.human_agents:
+        for task_iri in ha.participated_task_iris:
+            human_participated.add(task_iri)
+
+    for task in project.tasks:
+        if task.iri in human_participated:
+            task.human_input = True
+
     workflow_steps = _flatten_workflow_steps(project)
 
     return CrewProject(
@@ -84,4 +94,11 @@ def adapt(project: AgenticProject) -> CrewProject:
         input_variables=project.input_variables,
         language_models=project.language_models,
         env_vars=project.env_vars,
+        human_agents=project.human_agents,
+        goals=project.goals,
+        objectives=project.objectives,
+        capabilities=project.capabilities,
+        environments=project.environments,
+        resources=project.resources,
+        constraints=project.constraints,
     )
