@@ -1,5 +1,5 @@
 """
-CLI Runner: batch-process generated_kg/LangGraph/*.ttl → LangGraph project directories.
+CLI Runner: batch-process kgs_original/LangGraph/*.ttl → LangGraph project directories.
 
 Pipeline: KG (.ttl) → SPARQL (Layer 1) → Pydantic IR (Layer 2) → Python (Layer 3)
 
@@ -75,7 +75,7 @@ def main():
         return
 
     # ── Batch mode: process all TTL files ──
-    kg_dir = os.path.join(project_root, "generated_kg", "LangGraph")
+    kg_dir = os.path.join(project_root, "kgs_original", "LangGraph")
 
     if not os.path.isdir(kg_dir):
         print(f"[ERROR] KG directory not found: {kg_dir}")

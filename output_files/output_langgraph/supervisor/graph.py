@@ -4,6 +4,30 @@ Auto-generated LangGraph App: MyCrew
 Pattern : Tool-Calling (single agent with tools)
 Source  : AgentO Knowledge Graph → SPARQL → Pydantic → Jinja2
 Pipeline: 3-Layer Conversion Pipeline
+Goals:
+  - Provide assistance to user: 
+Objectives:
+  - Handle user query: 
+  - Route selection: 
+Capabilities:
+  - fetch ticker price: Fetch the price of a stock ticker.
+  - trade ticker: Purchase or sell a ticker (trade operation).
+  - get portfolio: Retrieve the user's portfolio.
+  - suggest restaurants: Suggest restaurants for a given location.
+  - suggest accommodations: Suggest places to stay for a trip.
+  - write React TODO app: Generate a React TODO application when requested.
+  - order pizza: Order a pizza on behalf of the user.
+  - write document: Produce a text document for the user.
+  - route selection: Analyze conversation and select appropriate tool route.
+  - general assistant: Generic assistant capabilities to answer queries, summarize tool results, and follow up.
+Resources:
+  - Router tool call result: Result of router tool indicating chosen route, e.g., { 'route': 'stockbroker' }.
+  - Stockbroker result: Resource representing the output(s) of stockbroker tasks such as price data, trade confirmations, or portfolio summaries.
+  - TripPlanner result: Trip planning suggestions (restaurants, accommodations, itinerary).
+  - OpenCode result: Generated code artifact: a React TODO app (source files, instructions).
+  - OrderPizza result: Confirmation and details of pizza order (order receipt, status).
+  - GeneralInput response: Text response from the general assistant (answers, summaries, follow-ups).
+  - WriterAgent document: Text document created by writerAgent (full content of the requested document).
 """
 
 import os

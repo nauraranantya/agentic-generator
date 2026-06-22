@@ -1,5 +1,5 @@
 """
-CLI Runner: batch-process generated_kg/CrewAI/*.ttl → CrewAI project directories.
+CLI Runner: batch-process kgs_original/CrewAI/*.ttl → CrewAI project directories.
 
 Pipeline: KG (.ttl) → SPARQL (Layer 1) → Pydantic IR (Layer 2) → YAML + Python (Layer 3)
 
@@ -70,7 +70,7 @@ def main():
         return
 
     # ── Batch mode: process all TTL files ──
-    kg_dir = os.path.join(project_root, "generated_kg", "CrewAI")
+    kg_dir = os.path.join(project_root, "kgs_original", "CrewAI")
 
     if not os.path.isdir(kg_dir):
         print(f"[ERROR] KG directory not found: {kg_dir}")

@@ -2,7 +2,8 @@ from __future__ import annotations
 
 from typing import Dict, List, Set
 
-from ..core.models import AgenticProject, CrewProject, ProcessType, WorkflowStepModel
+from ..core.models import AgenticProject, ProcessType, WorkflowStepModel
+from .models import CrewProject
 
 
 def _infer_process(project: AgenticProject) -> ProcessType:

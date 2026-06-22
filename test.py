@@ -6,7 +6,7 @@ from src.autogen.adapter import adapt
 from src.autogen.generator import generate_project
 
 
-KG_DIR = Path("generated_kg/AutoGen")
+KG_DIR = Path("kgs_original/AutoGen")
 OUTPUT_ROOT = Path("output_files/autogen")
 
 

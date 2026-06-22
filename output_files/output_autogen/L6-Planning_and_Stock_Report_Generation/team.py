@@ -1,4 +1,21 @@
+"""
+Auto-generated AutoGen Team: MyCrew
+Goals:
+  - : 
+Objectives:
+  - : 
+Human Agents:
+  - admin ()
+Resources:
+  - : Historic prices and metadata for Nvidia (NVDA) covering the past month. Intended to be retrieved via Python code. Source and retrieval instructions preserved in CodeArtifact description.
+  - : Artifact produced by Engineer: Python scripts to retrieve NVDA historic prices, compute monthly performance metrics, and produce serialized outputs (csv, json, plots). Implementation details intentionally captured as a high-level description (no SDK-specific code insertion in ontology).
+  - : Results produced by Executor after running CodeArtifact: computed performance metrics, figures, and any data files used by Writer to compose the blog.
+  - : Draft blog post in markdown format produced by Writer based on execution results. Contains title, textual analysis of stock performance, and optionally code-derived figures. Writer instructed to use pseudo ```md``` code block for content.
+  - : Blog draft refined by Writer after Admin (user_proxy) provides comments. Final deliverable of workflow.
+"""
+
 from autogen_agentchat.agents import AssistantAgent
+from autogen_agentchat.agents import UserProxyAgent
 
 from autogen_agentchat.teams import RoundRobinGroupChat
 
@@ -17,6 +34,7 @@ from autogen_ext.models.openai import (
 model_client = OpenAIChatCompletionClient(
     model="gpt-4-turbo"
 )
+
 
 # ==================================================
 # Generated Tool Stubs
@@ -118,12 +136,22 @@ Writer: write blogs based on the code execution results and take feedback from t
 )
 
 
+# ==================================================
+# Human Agents (UserProxy)
+# ==================================================
+
+admin = UserProxyAgent(
+    name="admin",
+    description="",
+)
+
 team = RoundRobinGroupChat(
     participants=[
         planner_agent,
         engineer_agent,
         executor_agent,
         writer_agent,
+        admin,
     ],
     termination_condition=MaxMessageTermination(
         max_messages=10

@@ -28,10 +28,7 @@ from typing import Any, Dict, List
 
 from jinja2 import Environment, FileSystemLoader
 
-from ..core.models import (
-    LangGraphAgentModel,
-    LangGraphProject,
-)
+from .models import LangGraphAgentModel, LangGraphProject
 
 
 # ─────────────────────── Jinja2 setup ───────────────────────

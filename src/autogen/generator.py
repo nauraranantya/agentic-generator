@@ -6,7 +6,6 @@ from typing import Any, Dict
 from jinja2 import Environment, FileSystemLoader
 
 from ..core.models import (
-    AutoGenProject,
     CapabilityModel,
     ConstraintModel,
     EnvironmentModel,
@@ -15,6 +14,7 @@ from ..core.models import (
     ObjectiveModel,
     ResourceModel,
 )
+from .models import AutoGenProject
 
 
 def _create_jinja_env() -> Environment:

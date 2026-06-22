@@ -1,24 +1,3 @@
-"""
-Layer 1 – SPARQL-based Data Extraction
-
-Loads a CrewAI KG (.ttl) file via rdflib, runs SPARQL queries aligned
-to the agentO ontology, and populates Pydantic IR models (Layer 2).
-
-Extraction strategy:
-  1. Team / Crew metadata + process type
-  2. LanguageModel individuals
-  3. Tool individuals (excluding LLMAgent)
-  4. Agent individuals — canonical pattern:
-       role      → :agentRole literal
-       goal      → :hasAgentGoal → Goal → dcterms:description
-       backstory → :agentPrompt → Prompt → :promptContext
-       allow_delegation / verbose → separate Config per key
-  5. Task individuals (with prompt/config fallback for description/expected_output)
-  6. Workflow ordering (WorkflowStep chain)
-  7. Resource dependency → task context resolution
-  8. Template variable extraction from prompt placeholders
-"""
-
 from __future__ import annotations
 
 import re

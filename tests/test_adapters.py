@@ -5,7 +5,6 @@ from typing import List
 from src.core.models import (
     AgenticProject,
     AgentModel,
-    AutoGenProject,
     ConfigModel,
     InputVariableModel,
     LanguageModelModel,

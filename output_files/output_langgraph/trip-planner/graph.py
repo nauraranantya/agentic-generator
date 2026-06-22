@@ -4,6 +4,37 @@ Auto-generated LangGraph App: MyCrew
 Pattern : Tool-Calling (single agent with tools)
 Source  : AgentO Knowledge Graph → SPARQL → Pydantic → Jinja2
 Pipeline: 3-Layer Conversion Pipeline
+Capabilities:
+  - : 
+  - : 
+  - : 
+  - : 
+Resources:
+  - : Represents the entire conversation history (state.messages) provided to tools and prompts. In the implementation this is a sequence of messages (system/human/assistant), formatted and passed as input to the LLM.
+  - : Result of the classify tool call: { isRelevant: boolean }.
+  - : Produced by the list-accommodations tool. Contains an array of accommodation objects:
+- id (runtime UUID)
+- name (string)
+- price (number)
+- rating (float)
+- city (string)
+- image (URL)
+Image URL pool (representative list preserved from implementation): [list of many image URLs; implementation shuffles and picks 6].
+Note: Implementation uses a generator (faker) to create sample entries, and randomly shuffles image URLs. This resource represents the output schema and sample content generation approach.
+  - : Produced by the list-restaurants tool. Contains restaurant entries relevant to tripDetails (implementation-specific, represented as a produced resource for UI consumption).
+  - : TripDetails structure produced by extraction:
+- location: string (required)
+- startDate: Date
+- endDate: Date
+- numberOfGuests: integer (defaults to 2 if not provided or invalid)
+
+Date defaulting logic (documented):
+- If both startDate and endDate undefined: start = now + 4 weeks; end = now + 5 weeks.
+- If startDate defined and endDate undefined: end = startDate + 1 week.
+- If endDate defined and startDate undefined: start = endDate - 1 week.
+- If both defined: use as-is.
+
+Note: runtime values such as computed Date objects are produced at execution time; this resource captures the logical fields and defaulting policy.
 """
 
 import os

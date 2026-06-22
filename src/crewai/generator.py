@@ -27,7 +27,6 @@ from ..core.models import (
     AgentModel,
     CapabilityModel,
     ConstraintModel,
-    CrewProject,
     EnvironmentModel,
     GoalModel,
     HumanAgentModel,
@@ -36,6 +35,7 @@ from ..core.models import (
     TaskModel,
     ToolModel,
 )
+from .models import CrewProject
 
 
 # ─────────────────────── YAML helpers ───────────────────────

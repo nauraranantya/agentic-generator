@@ -1,5 +1,5 @@
 """
-CLI Runner: batch-process generated_kg/AutoGen/*.ttl → AutoGen project directories.
+CLI Runner: batch-process kgs_original/AutoGen/*.ttl → AutoGen project directories.
 
 Pipeline: KG (.ttl) → agnostic extraction → AutoGen adapter → code generation.
 """
@@ -26,7 +26,7 @@ def process_single(kg_path: str, output_dir: str) -> str:
 
 def main() -> None:
     project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-    kg_dir = os.path.join(project_root, "generated_kg", "AutoGen")
+    kg_dir = os.path.join(project_root, "kgs_original", "AutoGen")
     output_base = os.path.join(project_root, "output_files", "output_autogen")
 
     if len(sys.argv) > 1 and sys.argv[1].endswith(".ttl"):

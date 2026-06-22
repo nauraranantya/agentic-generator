@@ -4,6 +4,23 @@ Auto-generated LangGraph App: MyCrew
 Pattern : Tool-Calling (single agent with tools)
 Source  : AgentO Knowledge Graph → SPARQL → Pydantic → Jinja2
 Pipeline: 3-Layer Conversion Pipeline
+Human Agents:
+  - user_human ()
+Capabilities:
+  - Compose Email: Generate a draft email (subject, body, to) from conversation history.
+  - Rewrite Email: Rewrite email content given user's response/instructions; should only change requested fields.
+  - Send Email: Finalize and send the composed email (in this implementation it yields a confirmation message indicating successful send).
+  - Handle Human Interrupt: Present the email to a human for review and accept/edit/ignore/response and handle the resulting input accordingly.
+Resources:
+  - Conversation History: Sequence of messages between user and agent used as input to generate the email. In implementation substituted into the prompt via {CONVERSATION}.
+  - Draft Email: Structured email artifact with fields:
+- subject: string
+- body: string
+- to: string
+
+This is the primary data produced by the writing and rewriting tasks. The implementation expects these exact fields.
+  - Sent Email Record: A record/artifact representing that the email was sent. In implementation returned as an AI message: 'Successfully sent email.' (represented as an artifact here).
+  - Human Response (interrupt result): Represents the human-interaction result from the interrupt UI. Possible response types recorded in implementation: 'ignore', 'response', 'accept', or 'edit' (with args carrying edited email fields). This ontology stores allowed values in the interrupt config and records that user participated in interrupt interactions.
 """
 
 import os
@@ -77,4 +94,6 @@ workflow.add_edge(START, "agent")
 workflow.add_conditional_edges("agent", tools_condition)
 workflow.add_edge("tools", "agent")
 
-app = workflow.compile()
+app = workflow.compile(
+    interrupt_before=[""]
+)

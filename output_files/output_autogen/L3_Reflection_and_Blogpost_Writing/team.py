@@ -1,3 +1,17 @@
+"""
+Auto-generated AutoGen Team: MyCrew
+Goals:
+  - : Goal: create a concise (within 100 words) blogpost about DeepLearning.AI and refine it via a reflection process with multiple reviewers.
+Objectives:
+  - : Objective: produce initial blogpost draft to be reviewed and refined.
+Resources:
+  - Blogpost Draft (resource): Expected output: concise engaging blogpost (with title) about DeepLearning.AI, within 100 words.
+  - SEO Review (resource): JSON object with reviewer role and review text (as requested by summary prompt).
+  - Legal Review (resource): JSON object with reviewer role and review text.
+  - Ethics Review (resource): JSON object with reviewer role and review text.
+  - Meta Reviewer Suggestion (resource): Aggregate review and final suggestion to improve the blogpost.
+"""
+
 from autogen_agentchat.agents import AssistantAgent
 
 from autogen_agentchat.teams import RoundRobinGroupChat
@@ -17,6 +31,7 @@ from autogen_ext.models.openai import (
 model_client = OpenAIChatCompletionClient(
     model="gpt-4o-mini"
 )
+
 
 # ==================================================
 # Generated Tool Stubs
@@ -122,6 +137,7 @@ Background:
 You are a Meta Reviewer.
 """,
 )
+
 
 
 team = RoundRobinGroupChat(

@@ -1,4 +1,13 @@
+"""
+Auto-generated AutoGen Team: MyCrew
+Human Agents:
+  - customer_proxy_agent (customer_proxy)
+Resources:
+  - : Structured output expected from summary: JSON object of the form {'name': '', 'location': ''}.
+"""
+
 from autogen_agentchat.agents import AssistantAgent
+from autogen_agentchat.agents import UserProxyAgent
 
 from autogen_agentchat.teams import RoundRobinGroupChat
 
@@ -17,6 +26,7 @@ from autogen_ext.models.openai import (
 model_client = OpenAIChatCompletionClient(
     model="gpt-3.5-turbo"
 )
+
 
 # ==================================================
 # Generated Tool Stubs
@@ -76,11 +86,21 @@ You are a engagement_generator.
 )
 
 
+# ==================================================
+# Human Agents (UserProxy)
+# ==================================================
+
+customer_proxy_agent = UserProxyAgent(
+    name="customer_proxy_agent",
+    description="customer_proxy",
+)
+
 team = RoundRobinGroupChat(
     participants=[
         onboarding_personal_information_agent,
         onboarding_topic_preference_agent,
         customer_engagement_agent,
+        customer_proxy_agent,
     ],
     termination_condition=MaxMessageTermination(
         max_messages=10

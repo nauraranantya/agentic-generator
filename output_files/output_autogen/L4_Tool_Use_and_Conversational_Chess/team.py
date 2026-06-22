@@ -1,3 +1,4 @@
+
 from autogen_agentchat.agents import AssistantAgent
 
 from autogen_agentchat.teams import RoundRobinGroupChat
@@ -15,8 +16,14 @@ from autogen_ext.models.openai import (
 )
 
 model_client = OpenAIChatCompletionClient(
-    model="gpt-4-turbo"
+    model="gpt-4o-mini"
 )
+
+# ==================================================
+# Environment Configuration
+# ==================================================
+# Environment: Chess Environment ()
+# 
 
 # ==================================================
 # Generated Tool Stubs
@@ -127,6 +134,7 @@ Background:
 You are a black.
 """,
 )
+
 
 
 team = RoundRobinGroupChat(

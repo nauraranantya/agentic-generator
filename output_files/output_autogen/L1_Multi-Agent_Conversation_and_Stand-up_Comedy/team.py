@@ -1,3 +1,4 @@
+
 from autogen_agentchat.agents import AssistantAgent
 
 from autogen_agentchat.teams import RoundRobinGroupChat
@@ -17,6 +18,7 @@ from autogen_ext.models.openai import (
 model_client = OpenAIChatCompletionClient(
     model="gpt-4o-mini"
 )
+
 
 # ==================================================
 # Generated Tool Stubs
@@ -58,6 +60,7 @@ Background:
 System message as provided at ConversableAgent creation in the notebook.
 """,
 )
+
 
 
 team = RoundRobinGroupChat(

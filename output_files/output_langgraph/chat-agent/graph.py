@@ -4,6 +4,8 @@ Auto-generated LangGraph App: MyCrew
 Pattern : Linear (single agent, no tools)
 Source  : AgentO Knowledge Graph → SPARQL → Pydantic → Jinja2
 Pipeline: 3-Layer Conversion Pipeline
+Resources:
+  - : The output messages (array/object) returned by the Language Model invocation for the chat task. In the source this is the 'response' object assigned to { messages: response } and returned by the node.
 """
 
 import os
