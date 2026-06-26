@@ -10,34 +10,33 @@ import { createWorkflow, createStep } from '@mastra/core/workflows'
 import { z } from 'zod'
 
 // Import tools used by workflow steps
-import { siteCrawlTool } from '../tools/siteCrawlTool'
-import { generateSpecTool } from '../tools/generateSpecTool'
+import { siteCrawlTool, generateSpecTool } from '../tools'
 
 // ── Workflow Steps ──
 
 const siteCrawlWorkflowStep = createStep({
-  id: 'site-crawl-sync-step',
-  description: `Step that executes a site crawl and returns crawlData and entityType.`,
+  id: 'site-crawl-sync-step:task',
+  description: `Task executed by the workflow step site-crawl-sync-step. It runs the SiteCrawlTool (Firecrawl client) to extract markdown pages.`,
   inputSchema: z.object({}),
   outputSchema: z.object({}),
   execute: async ({ inputData }) => {
     // Task executed by the workflow step site-crawl-sync-step. It runs the SiteCrawlTool (Firecrawl client) to extract markdown pages.
     // This step uses tool: siteCrawlTool
     // TODO: Implement step logic
-    throw new Error('site-crawl-sync-step not implemented yet')
+    throw new Error('site-crawl-sync-step:task not implemented yet')
   },
 })
 
 const generateSpecWorkflowStep = createStep({
-  id: 'generate-spec-step',
-  description: `Step that generates a merged OpenAPI spec from crawled data using an agent.`,
+  id: 'generate-spec:task',
+  description: `Task executed by the generate-spec step: this task iterates crawled pages, calls the agent to produce OpenAPI fragments, and then asks the agent to merge them.`,
   inputSchema: z.object({}),
   outputSchema: z.object({}),
   execute: async ({ inputData }) => {
     // I have generated the following Open API specs: \${openapiResponses} - merge them into a single spec,
     // This step uses tool: generateSpecTool
     // TODO: Implement step logic
-    throw new Error('generate-spec-step not implemented yet')
+    throw new Error('generate-spec:task not implemented yet')
   },
 })
 
@@ -54,6 +53,5 @@ export const openApiSpecGenWorkflowPattern = createWorkflow({
   outputSchema: z.object({}),
   steps: [siteCrawlWorkflowStep, generateSpecWorkflowStep],
 })
-  .then(siteCrawlWorkflowStep)
-  .then(generateSpecWorkflowStep)
+  .parallel([siteCrawlWorkflowStep, generateSpecWorkflowStep])
   .commit()

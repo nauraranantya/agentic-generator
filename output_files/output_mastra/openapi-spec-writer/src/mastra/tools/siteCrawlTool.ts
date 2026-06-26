@@ -17,8 +17,23 @@ import { z } from 'zod'
 export const siteCrawlTool = createTool({
   id: 'Site Crawl',
   description: `Crawl a website and extract the markdown content`,
-  inputSchema: z.object({}),  // TODO: Define input schema
-  outputSchema: z.object({}),  // TODO: Define output schema
+  inputSchema: z.object({
+  url: z.string(),
+  pathRegex: z.string(),
+  limit: z.number(),
+}),
+  outputSchema: z.object({
+  success: z.boolean(),
+  crawlData: z.array(
+    z.object({
+      markdown: z.string(),
+      metadata: z.object({
+        sourceURL: z.string(),
+      }),
+    })
+  ),
+  entityType: z.string(),
+}),
   execute: async ({ inputData }) => {
     // TODO: Implement tool logic
     // 

@@ -1,5 +1,5 @@
 /**
- * Agent: Example Agent
+ * Agent: assistant
  * ID: example-agent
  * 
  * Auto-generated from AgentO Knowledge Graph
@@ -8,18 +8,18 @@
 import { Agent } from '@mastra/core/agent'
 
 // Import memory
-import { exampleAgentMemory } from '../memory/exampleAgentMemory'
+import { exampleAgentMemory } from '../memory'
 
 /**
- * Example Agent
+ * assistant
  * 
  * Instructions:
- * You are a helpful and intelligent AI agent.
+ * System-level instruction (agent 'instructions' argument)
  */
 export const exampleAgent = new Agent({
   id: `example-agent`,
-  name: `Example Agent`,
-  instructions: `You are a helpful and intelligent AI agent.`,
-  model: 'accounts/fireworks/models/deepseek-r1',
+  name: `assistant`,
+  instructions: `System-level instruction (agent 'instructions' argument)`,
+  model: 'openai/gpt-4o-mini',
   memory: exampleAgentMemory,
 })

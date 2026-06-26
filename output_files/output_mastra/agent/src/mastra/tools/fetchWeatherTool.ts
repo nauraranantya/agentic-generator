@@ -12,7 +12,7 @@ import { z } from 'zod'
 /**
  * fetchWeather
  * 
- * Implementation: Tool ID: fetchWeather
+ * Implementation: Tool ID: fetchWeather     Description: Simulated forecast for a city. Uses a simple mapping from city to temperature string.     Input schema: { city: string }     Output: string describing weather (e.g., 'The weather in X is 20°C and sunny.').
  */
 export const fetchWeatherTool = createTool({
   id: 'fetchWeather',
@@ -20,12 +20,12 @@ export const fetchWeatherTool = createTool({
     Description: Simulated forecast for a city. Uses a simple mapping from city to temperature string.
     Input schema: { city: string }
     Output: string describing weather (e.g., 'The weather in X is 20°C and sunny.').`,
-  inputSchema: z.object({ city: z.string() }),
+  inputSchema: z.object({Tool_ID: z.string(), Description: z.string(), city: z.string(), Output: z.string()}),
   outputSchema: z.object({}),  // TODO: Define output schema
   execute: async ({ inputData }) => {
     // TODO: Implement tool logic
     // 
-    // Description: Tool ID: fetchWeather
+    // Description: Tool ID: fetchWeather     Description: Simulated forecast for a city. Uses a simple mapping from city to temperature string.     Input schema: { city: string }     Output: string describing weather (e.g., 'The weather in X is 20°C and sunny.').
     // 
     // Implementation should:
     // 1. Use inputData according to inputSchema

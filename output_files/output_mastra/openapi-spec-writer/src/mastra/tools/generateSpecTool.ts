@@ -17,8 +17,13 @@ import { z } from 'zod'
 export const generateSpecTool = createTool({
   id: 'Generate Spec',
   description: `Generate an OpenAPI spec from crawled website markdown; uses the OpenAPI agent to convert pages and merge them.`,
-  inputSchema: z.object({}),  // TODO: Define input schema
-  outputSchema: z.object({}),  // TODO: Define output schema
+  inputSchema: z.object({
+  mastra_entity_type: z.string(),
+}),
+  outputSchema: z.object({
+  success: z.boolean(),
+  mergedSpec: z.string(),
+}),
   execute: async ({ inputData }) => {
     // TODO: Implement tool logic
     // 

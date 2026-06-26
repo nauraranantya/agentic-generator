@@ -1,5 +1,5 @@
 /**
- * Mastra AI Instance - MastraProject
+ * Mastra AI Instance - UnnamedProject
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
@@ -8,10 +8,10 @@
 import { Mastra } from '@mastra/core'
 
 // Import agents
-import { recruiterAgent } from './agents/recruiterAgent'
+import { recruiterAgent } from './agents'
 
 // Import workflows
-import { candidateWorkflow } from './workflows/candidateWorkflow'
+import { candidateWorkflow } from './workflows'
 
 /**
  * Mastra instance with registered agents, workflows, and memory.

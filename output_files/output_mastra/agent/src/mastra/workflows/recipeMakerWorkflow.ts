@@ -10,35 +10,35 @@ import { createWorkflow, createStep } from '@mastra/core/workflows'
 import { z } from 'zod'
 
 // Import agents used by workflow steps
-import { chefAgent } from '../agents/chefAgent'
+import { chefAgent } from '../agents'
 
 // ── Workflow Steps ──
 
 const stepMyStep = createStep({
-  id: 'my-step',
-  description: `Step ID: my-step`,
-  inputSchema: z.object({ ingredient: z.string() }),
-  outputSchema: z.object({ result: z.string() }),
+  id: 'task:my-step',
+  description: `Task backing my-step. Performs the core recipe extraction (echo ingredient back) and returns result string.`,
+  inputSchema: z.object({}),
+  outputSchema: z.object({}),
   execute: async ({ inputData }) => {
     // Task backing my-step. Performs the core recipe extraction (echo ingredient back) and returns result string.
     // This step uses agent: chefAgent
     // const result = await chefAgent.generate('...')
     // TODO: Implement step logic
-    throw new Error('my-step not implemented yet')
+    throw new Error('task:my-step not implemented yet')
   },
 })
 
 const stepMyStep2 = createStep({
-  id: 'my-step-2',
-  description: `Step ID: my-step-2`,
-  inputSchema: z.object({ result: z.string() }),
-  outputSchema: z.object({ result: z.string() }),
+  id: 'task:my-step-2',
+  description: `Second step in recipe-maker that finalizes the output; returns static placeholder 'suh' in the source.`,
+  inputSchema: z.object({}),
+  outputSchema: z.object({}),
   execute: async ({ inputData }) => {
     // Second step in recipe-maker that finalizes the output; returns static placeholder 'suh' in the source.
     // This step uses agent: chefAgent
     // const result = await chefAgent.generate('...')
     // TODO: Implement step logic
-    throw new Error('my-step-2 not implemented yet')
+    throw new Error('task:my-step-2 not implemented yet')
   },
 })
 
@@ -51,12 +51,9 @@ const stepMyStep2 = createStep({
  */
 export const recipeMakerWorkflow = createWorkflow({
   id: 'recipe-maker',
-  inputSchema: z.object({}),
+  inputSchema: z.object({Workflow: z.string()}),
   outputSchema: z.object({}),
   steps: [stepMyStep, stepMyStep2],
 })
-  // NOTE: Branching workflow — simplified to sequential for type compatibility
-  // TODO: Implement conditional branching using .branch() API
-  .then(stepMyStep)
-  .then(stepMyStep2)
+  .parallel([stepMyStep, stepMyStep2])
   .commit()

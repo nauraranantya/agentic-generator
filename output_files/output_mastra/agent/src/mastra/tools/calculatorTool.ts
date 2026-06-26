@@ -12,7 +12,7 @@ import { z } from 'zod'
 /**
  * calculator
  * 
- * Implementation: Tool ID: calculator
+ * Implementation: Tool ID: calculator     Description: Performs basic arithmetic operations (add, subtract).     Input schema: { num1: number, num2: number, operation: 'add'|'subtract' }     Output: numeric result.
  */
 export const calculatorTool = createTool({
   id: 'calculator',
@@ -20,12 +20,12 @@ export const calculatorTool = createTool({
     Description: Performs basic arithmetic operations (add, subtract).
     Input schema: { num1: number, num2: number, operation: 'add'|'subtract' }
     Output: numeric result.`,
-  inputSchema: z.object({ num1: z.number(), num2: z.number(), operation: z.any() }),
+  inputSchema: z.object({Tool_ID: z.string(), Description: z.string(), num1: z.number(), Output: z.string()}),
   outputSchema: z.object({}),  // TODO: Define output schema
   execute: async ({ inputData }) => {
     // TODO: Implement tool logic
     // 
-    // Description: Tool ID: calculator
+    // Description: Tool ID: calculator     Description: Performs basic arithmetic operations (add, subtract).     Input schema: { num1: number, num2: number, operation: 'add'|'subtract' }     Output: numeric result.
     // 
     // Implementation should:
     // 1. Use inputData according to inputSchema

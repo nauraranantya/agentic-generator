@@ -1,4 +1,4 @@
-# Mastra
+# UnnamedProject
 
 Agent orchestration system instance containing agents, workflows and logger configuration as defined in the source repository.
 
@@ -34,7 +34,7 @@ npm run dev
 ## 📦 Project Structure
 
 ```
-Mastra/
+UnnamedProject/
 ├── src/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
@@ -54,19 +54,19 @@ Mastra/
 
 ## 🤖 Agents
 
-### Cat One
+### feline expert
 
 - **ID:** `cat-one`
 - **Model:** `openai/gpt-4o`
 
-You are a feline expert with comprehensive knowledge of all cat species, from domestic breeds to wild big cats. As a lifelong cat specialist, you understand their behavior, biology, social structures,...
+Default agent-level instructions to guide behavior when the agent is asked about cat species. This prompt is intended to be used by the agent as its core persona/instructions....
 
 
 ---
 
 ## 🔧 Tools
 
-### Console Logger (runtime)
+### consoleTool
 
 Represents the runtime logging facility used by the step (the source prints to console via console.log). Modeled as a Tool to indicate the step uses an execution tool....
 
@@ -77,14 +77,14 @@ Represents the runtime logging facility used by the step (the source prints to c
 
 ## 🔄 Workflows
 
-### log-cat-workflow
+### log_cat_workflow_pattern
 
 Workflow that accepts an input { name: string } and runs a step to log the cat name, returning rawText. This corresponds to createWorkflow with id 'log-cat-workflow' in the source.
 
 **Steps:** 1
-1. logCatName
+1. log_cat_name_step
 
-### legacy_catWorkflow (legacy mapping)
+### legacy_log_cat_workflow_pattern
 
 Legacy workflow mapping preserved from repository (legacy_workflows.legacy_catWorkflow). Semantic mapping preserved but implementation differences are not represented.
 

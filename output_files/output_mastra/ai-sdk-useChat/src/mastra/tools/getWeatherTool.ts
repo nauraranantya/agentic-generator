@@ -17,8 +17,18 @@ import { z } from 'zod'
 export const getWeatherTool = createTool({
   id: 'get-weather',
   description: `Get current weather for a location. Tool accepts an input { location: string } and returns an object containing temperature, feelsLike, humidity, windSpeed, windGust, conditions, and location.`,
-  inputSchema: z.object({}),  // TODO: Define input schema
-  outputSchema: z.object({}),  // TODO: Define output schema
+  inputSchema: z.object({
+  location: z.string().describe('City name'),
+}),
+  outputSchema: z.object({
+  temperature: z.number(),
+  feelsLike: z.number(),
+  humidity: z.number(),
+  windSpeed: z.number(),
+  windGust: z.number(),
+  conditions: z.string(),
+  location: z.string(),
+}),
   execute: async ({ inputData }) => {
     // TODO: Implement tool logic
     // 

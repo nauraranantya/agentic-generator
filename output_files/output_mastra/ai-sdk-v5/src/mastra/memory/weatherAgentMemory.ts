@@ -12,10 +12,10 @@ import { LibSQLStore } from '@mastra/libsql'
 export const weatherAgentMemory = new Memory({
   storage: new LibSQLStore({
     id: 'mastra-libsql-store',
-    url: 'file:./mastra.db',
-  }),
-  options: {
+    storage.id: 'ai-sdk-v5-storage',
+    storage.url: 'file:./mastra.db',
+    semanticRecall: 'false',
+    workingMemory.enabled: 'false',
     lastMessages: 5,
-    semanticRecall: false,
-  },
+  }),
 })

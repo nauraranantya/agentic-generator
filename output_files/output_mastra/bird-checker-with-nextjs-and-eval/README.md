@@ -1,4 +1,4 @@
-# MastraDeployment(birdChecker)
+# MastraDeploymentBirdChecker
 
 Deployment of the Bird Checker composed using Mastra: maps an agent id to a running LLM agent component.
 
@@ -34,7 +34,7 @@ npm run dev
 ## 📦 Project Structure
 
 ```
-MastraDeployment(birdChecker)/
+MastraDeploymentBirdChecker/
 ├── src/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
@@ -53,12 +53,12 @@ MastraDeployment(birdChecker)/
 
 ## 🤖 Agents
 
-### Bird Agent
+### analyze images to detect birds, identify species and location
 
 - **ID:** `bird-agent`
 - **Model:** `anthropic/claude-3-haiku-20240307`
 
-You can view an image and figure out if it is a bird or not. You can also figure out the species of the bird and where the picture was taken....
+agent instructions (default context for agent)...
 
 
 ---
@@ -67,11 +67,7 @@ You can view an image and figure out if it is a bird or not. You can also figure
 
 ### Get a random image from unsplash
 
-Tool configured to:
-- Accept named query: one of [wildlife, feathers, flying, birds]
-- Call Unsplash search/photos endpoint with that query
-- Randomize page (0..19) and order_by (relevant|latest)
-- Re...
+Gets a random image from Unsplash based on the selected option (query enum). Declared as a tool in src/mastra/tools....
 
 **Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/getRandomImageTool.ts`)
 
@@ -84,11 +80,9 @@ Tool configured to:
 
 High-level workflow: Start -> Get Image -> Analyze Image -> End. Describes how UI tags trigger image fetch and analysis by the agent.
 
-**Steps:** 4
-1. Start
-2. Get image
-3. Analyze image
-4. End
+**Steps:** 2
+1. Get Random Image Task
+2. Analyze Image Task
 
 
 ---

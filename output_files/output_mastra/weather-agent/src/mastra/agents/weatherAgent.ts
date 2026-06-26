@@ -1,37 +1,29 @@
 /**
- * Agent: Weather Agent
+ * Agent: weather assistant
  * ID: weather-agent
  * 
  * Auto-generated from AgentO Knowledge Graph
+ * Capabilities:
+ *   - Fetch current weather capability: Fetches geocoding for a city and retrieves current weather fields. Input: { location: string }. Output: { temperature, feelsLike, humidity, windSpeed, windGust, conditions, location }.
  */
 
 import { Agent } from '@mastra/core/agent'
 
 // Import tools
-import { weatherTool } from '../tools/weatherTool'
+import { weatherTool } from '../tools'
 
 /**
- * Weather Agent
+ * weather assistant
  * 
  * Instructions:
- * You are a helpful weather assistant that provides accurate weather information.  Your primary function is to help users get weather details for specific locations. When responding: - Always ask for a location if none is provided - If the location name isn't in English, please translate it - If giving a location with multiple parts (e.g. "New York, NY"), use the most relevant part (e.g. "New York") - Include relevant details like humidity, wind conditions, and precipitation - Keep responses concise but informative  Use the weatherTool to fetch current weather data.
+ * You are weather assistant.
  */
 export const weatherAgent = new Agent({
   id: `weather-agent`,
-  name: `Weather Agent`,
-  instructions: `You are a helpful weather assistant that provides accurate weather information.
-
-Your primary function is to help users get weather details for specific locations. When responding:
-- Always ask for a location if none is provided
-- If the location name isn't in English, please translate it
-- If giving a location with multiple parts (e.g. "New York, NY"), use the most relevant part (e.g. "New York")
-- Include relevant details like humidity, wind conditions, and precipitation
-- Keep responses concise but informative
-
-Use the weatherTool to fetch current weather data.`,
+  name: `weather assistant`,
+  instructions: `You are weather assistant.`,
   model: 'openai/gpt-4o-mini',
   tools: {
     weatherTool,
   },
-  maxRetries: 3,
 })

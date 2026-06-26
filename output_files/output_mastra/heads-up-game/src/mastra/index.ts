@@ -1,22 +1,24 @@
 /**
- * Mastra AI Instance - Mastra(agenticSystem)
+ * Mastra AI Instance - Mastraagenticsystem
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
+ * Goals:
+ *   - Play Heads-Up Game: Top-level goal for the workflow/system: enable a complete game session and determine if the player guesses the famous person correctly.
+ * Objectives:
+ *   - Heads-Up game objective: Objective: run an interactive Heads-Up guessing game to let the user identify a famous person via yes/no questions and guesses.
  */
 
 import { Mastra } from '@mastra/core'
 
 // Import agents
-import { famousPersonAgent } from './agents/famousPersonAgent'
-import { gameAgent } from './agents/gameAgent'
-import { guessVerifierAgent } from './agents/guessVerifierAgent'
+import { famousPersonGenerator, gameAgent, guessVerifierAgent } from './agents'
 
 // Import workflows
-import { headsUpWorkflow } from './workflows/headsUpWorkflow'
+import { headsUpWorkflow } from './workflows'
 
 // Import memory instances
-import { famousPersonMemory } from './memory/famousPersonMemory'
+import { famousPersonMemory } from './memory'
 
 /**
  * Mastra instance with registered agents, workflows, and memory.
@@ -25,7 +27,7 @@ import { famousPersonMemory } from './memory/famousPersonMemory'
  */
 export const mastra = new Mastra({
   agents: {
-    famousPersonAgent,
+    famousPersonGenerator,
     gameAgent,
     guessVerifierAgent,
   },

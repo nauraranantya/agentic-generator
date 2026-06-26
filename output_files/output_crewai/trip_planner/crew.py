@@ -1,5 +1,5 @@
 """
-Auto-generated CrewAI Crew: MyCrew
+Auto-generated CrewAI Crew: UnnamedProject
 
 Source  : AgentO Knowledge Graph → SPARQL → Pydantic → Jinja2
 Pipeline: 3-Layer Conversion Pipeline
@@ -25,29 +25,39 @@ Resources:
 
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
+from crewai.tools import tool
 
 
 # ===========================================================
 # Tool Instances
 # ===========================================================
-# TODO: search_tools — unknown tool class "searchtools"
-#   Description: Toolset providing search_internet(query) which posts to Serper API and returns t
+# TODO: search_tools — unknown tool class "SearchTools"
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-# search_tools = SomeCustomTool(SERPER_API_KEY="bc357b147050e86d66422d53e58d003af4188a18")
-# TODO: browser_tools — unknown tool class "browsertools"
-#   Description: Scrape website content using Browserless content API; partitions HTML and produc
+@tool("SearchTools")
+def search_tools(*args, **kwargs) -> str:
+    """Toolset providing search_internet(query) which posts to Serper API and returns top organic results. """
+    return "search_tools result"
+
+# TODO: browser_tools — unknown tool class "BrowserTools"
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-# browser_tools = SomeCustomTool(BROWSERLESS_API_KEY="2TVmWmGeQ9ziDXq4bcbbb03e8ff6ea65f0e6de71db1498ce5")
-# TODO: calculator_tools — unknown tool class "calculatortools"
-#   Description: Make a calculation(operation) evaluates basic arithmetic expressions safely usin
+@tool("BrowserTools")
+def browser_tools(*args, **kwargs) -> str:
+    """Scrape website content using Browserless content API; partitions HTML and produces chunk summaries b"""
+    return "browser_tools result"
+
+# TODO: calculator_tools — unknown tool class "CalculatorTools"
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-# calculator_tools = SomeCustomTool()
+@tool("CalculatorTools")
+def calculator_tools(*args, **kwargs) -> str:
+    """Make a calculation(operation) evaluates basic arithmetic expressions safely using AST validation and"""
+    return "calculator_tools result"
+
 
 
 
 @CrewBase
-class MyCrew:
-    """MyCrew crew"""
+class UnnamedProject:
+    """UnnamedProject crew"""
 
     agents_config = 'config/agents.yaml'
     tasks_config = 'config/tasks.yaml'
@@ -102,7 +112,7 @@ class MyCrew:
 
     @crew
     def crew(self) -> Crew:
-        """Creates the MyCrew"""
+        """Creates the UnnamedProject"""
         return Crew(
             agents=self.agents,
             tasks=self.tasks,

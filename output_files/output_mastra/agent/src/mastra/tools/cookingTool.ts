@@ -12,7 +12,7 @@ import { z } from 'zod'
 /**
  * cooking-tool
  * 
- * Implementation: Tool ID: cooking-tool
+ * Implementation: Tool ID: cooking-tool     Description: Used to cook given an ingredient     Input schema (zod): { ingredient: string }     Behavior: Simulated long-running operation (sleep ~5000ms). Logs the ingredient and returns 'My tool result'.     Note: When available, context.agent.toolCallId is logged by the tool for tracing.
  */
 export const cookingTool = createTool({
   id: 'cooking-tool',
@@ -21,12 +21,12 @@ export const cookingTool = createTool({
     Input schema (zod): { ingredient: string }
     Behavior: Simulated long-running operation (sleep ~5000ms). Logs the ingredient and returns 'My tool result'.
     Note: When available, context.agent.toolCallId is logged by the tool for tracing.`,
-  inputSchema: z.object({ ingredient: z.string() }),
+  inputSchema: z.object({Tool_ID: z.string(), Description: z.string(), ingredient: z.string(), Behavior: z.string(), Note: z.string()}),
   outputSchema: z.object({}),  // TODO: Define output schema
   execute: async ({ inputData }) => {
     // TODO: Implement tool logic
     // 
-    // Description: Tool ID: cooking-tool
+    // Description: Tool ID: cooking-tool     Description: Used to cook given an ingredient     Input schema (zod): { ingredient: string }     Behavior: Simulated long-running operation (sleep ~5000ms). Logs the ingredient and returns 'My tool result'.     Note: When available, context.agent.toolCallId is logged by the tool for tracing.
     // 
     // Implementation should:
     // 1. Use inputData according to inputSchema

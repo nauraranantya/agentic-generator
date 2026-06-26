@@ -1,5 +1,5 @@
 /**
- * Mastra AI Instance - MastraAgentBasedSystem
+ * Mastra AI Instance - MastraSystem
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
@@ -8,12 +8,10 @@
 import { Mastra } from '@mastra/core'
 
 // Import agents
-import { weatherAgent } from './agents/weatherAgent'
-import { weatherReporterAgent } from './agents/weatherReporterAgent'
+import { weatherAgent, weatherExplainerAgent } from './agents'
 
 // Import workflows
-import { wfWeatherWorkflow } from './workflows/wfWeatherWorkflow'
-import { wfWeatherWorkflowWithToolAndAgent } from './workflows/wfWeatherWorkflowWithToolAndAgent'
+import { wfWeatherWorkflow, wfWeatherWorkflowWithToolAndAgent } from './workflows'
 
 /**
  * Mastra instance with registered agents, workflows, and memory.
@@ -23,7 +21,7 @@ import { wfWeatherWorkflowWithToolAndAgent } from './workflows/wfWeatherWorkflow
 export const mastra = new Mastra({
   agents: {
     weatherAgent,
-    weatherReporterAgent,
+    weatherExplainerAgent,
   },
   workflows: {
     wfWeatherWorkflow,

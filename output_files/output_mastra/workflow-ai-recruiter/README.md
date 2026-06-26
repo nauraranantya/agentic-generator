@@ -1,4 +1,4 @@
-# MastraProject
+# UnnamedProject
 
 
 
@@ -34,7 +34,7 @@ npm run dev
 ## 📦 Project Structure
 
 ```
-MastraProject/
+UnnamedProject/
 ├── src/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
@@ -57,7 +57,7 @@ MastraProject/
 - **ID:** `recruiter-agent`
 - **Model:** `openai/gpt-4o-mini`
 
-You are a recruiter....
+Agent-level static instruction used as the recruiter's persona/instruction set for generation....
 
 
 ---
@@ -82,9 +82,9 @@ Behavior summary:
 The implementation example commits the workflow and demonstrates one run with triggerData: { resumeText: 'Simulated resume content...' }.
 
 **Steps:** 3
-1. gatherCandidateInfo step
-2. askAboutSpecialty step
-3. askAboutRole step
+1. gatherCandidateInfo
+2. askAboutSpecialty
+3. askAboutRole
 
 
 ---

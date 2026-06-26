@@ -1,0 +1,1 @@
+export { perResourceWorkingMemoryPattern } from './perResourceWorkingMemoryPattern'

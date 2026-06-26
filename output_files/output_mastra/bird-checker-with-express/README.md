@@ -1,4 +1,4 @@
-# MastraServer
+# UnnamedProject
 
 The deployed Mastra-based system hosting an agent and tools to fetch and analyze images (server runs on Node/Express).
 
@@ -34,12 +34,12 @@ npm run dev
 ## 📦 Project Structure
 
 ```
-MastraServer/
+UnnamedProject/
 ├── src/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
 │       ├── agents/            # Agent definitions
-│       │   └── birdCheckerAgent.ts
+│       │   └── birdChecker.ts
 │       ├── tools/             # Tool definitions
 │       │   └── getRandomImageTool.ts
 │       └── workflows/         # Workflow definitions
@@ -53,19 +53,19 @@ MastraServer/
 
 ## 🤖 Agents
 
-### Bird Checker
+### image-analyst
 
 - **ID:** `bird-checker`
-- **Model:** `anthropic/claude-3-haiku-20240307`
+- **Model:** `anthropic/claude-3-5-sonnet-latest`
 
-You can view an image and figure out if it is a bird or not. You can also figure out the species of the bird and where the picture was taken....
+You are image-analyst....
 
 
 ---
 
 ## 🔧 Tools
 
-### Get a random image from unsplash
+### getRandomImageTool
 
 Gets a random image from Unsplash based on selected query option. Random page selection and order_by ('relevant' or 'latest') logic is applied at runtime....
 
@@ -76,13 +76,13 @@ Gets a random image from Unsplash based on selected query option. Random page se
 
 ## 🔄 Workflows
 
-### Image Metadata Workflow
+### image_metadata_workflow
 
 A simple two-step workflow: fetch a random image and analyze it for bird metadata. This workflow represents the server endpoints' functional logic.
 
 **Steps:** 2
-1. Fetch Image Step
-2. Analyze Image Step
+1. step_fetch_image
+2. step_analyze_image
 
 
 ---

@@ -10,37 +10,37 @@ import { createWorkflow, createStep } from '@mastra/core/workflows'
 import { z } from 'zod'
 
 // Import agents used by workflow steps
-import { weatherAgent } from '../agents/weatherAgent'
+import { weatherAgent } from '../agents'
 
 // Import tools used by workflow steps
-import { weatherTool } from '../tools/weatherTool'
+import { weatherTool } from '../tools'
 
 // ── Workflow Steps ──
 
 const fetchWeatherStep = createStep({
-  id: 'fetch-weather step',
-  description: `Start step: resolves city -> coordinates, fetches weather and computes forecast object.`,
+  id: 'fetch-weather',
+  description: `Fetches weather forecast for a given city.`,
   inputSchema: z.object({}),
   outputSchema: z.object({}),
   execute: async ({ inputData }) => {
-    // Semantic description of the data flows and outputs. Exceptions (e.g., location not found) are part of runtime behavior.
+    // Fetches weather forecast for a given city.
     // This step uses tool: weatherTool
     // TODO: Implement step logic
-    throw new Error('fetch-weather step not implemented yet')
+    throw new Error('fetch-weather not implemented yet')
   },
 })
 
 const planActivitiesStep = createStep({
-  id: 'plan-activities step',
-  description: `End step: uses forecast to produce activity planning text following a strict format.`,
-  inputSchema: z.object({}),
-  outputSchema: z.object({}),
+  id: 'plan-activities',
+  description: `Suggests activities based on the normalized weather forecast.`,
+  inputSchema: z.object({fields: z.string()}),
+  outputSchema: z.object({A_single_string_containing_planned_activities_formatted_according_to_the_activity: z.string()}),
   execute: async ({ inputData }) => {
     // Based on the following weather forecast for {location}, suggest appropriate activities:
     // This step uses agent: weatherAgent
     // const result = await weatherAgent.generate('...')
     // TODO: Implement step logic
-    throw new Error('plan-activities step not implemented yet')
+    throw new Error('plan-activities not implemented yet')
   },
 })
 
@@ -53,12 +53,9 @@ const planActivitiesStep = createStep({
  */
 export const weatherWorkflow = createWorkflow({
   id: 'weather-workflow',
-  inputSchema: z.object({ city: z.any() }),
-  outputSchema: z.object({}),
+  inputSchema: z.object({}),
+  outputSchema: z.object({A_single_string_containing_planned_activities_formatted_according_to_the_activity: z.string()}),
   steps: [fetchWeatherStep, planActivitiesStep],
 })
-  // NOTE: Branching workflow — simplified to sequential for type compatibility
-  // TODO: Implement conditional branching using .branch() API
-  .then(fetchWeatherStep)
-  .then(planActivitiesStep)
+  .parallel([fetchWeatherStep, planActivitiesStep])
   .commit()

@@ -1,4 +1,4 @@
-# MastraRuntime(exampleConfiguration)
+# UnnamedProject
 
 Represents the Mastra runtime created by `new Mastra({ agents: { agent }, logger: new PinoLogger(...) })` in code. The system coordinates agents and contains system-level configuration for the logger.
 
@@ -34,7 +34,7 @@ npm run dev
 ## 📦 Project Structure
 
 ```
-MastraRuntime(exampleConfiguration)/
+UnnamedProject/
 ├── src/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
@@ -50,12 +50,12 @@ MastraRuntime(exampleConfiguration)/
 
 ## 🤖 Agents
 
-### Example Agent
+### assistant
 
 - **ID:** `example-agent`
-- **Model:** `accounts/fireworks/models/deepseek-r1`
+- **Model:** `openai/gpt-4o-mini`
 
-You are a helpful and intelligent AI agent....
+System-level instruction (agent 'instructions' argument)...
 
 
 ---

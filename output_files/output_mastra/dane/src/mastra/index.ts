@@ -1,5 +1,5 @@
 /**
- * Mastra AI Instance - MastraAgentSystem
+ * Mastra AI Instance - Mastraagentsystem
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
@@ -8,25 +8,13 @@
 import { Mastra } from '@mastra/core'
 
 // Import agents
-import { agentDane } from './agents/agentDane'
-import { agentDaneCommitMessage } from './agents/agentDaneCommitMessage'
-import { agentDaneIssueLabeler } from './agents/agentDaneIssueLabeler'
-import { agentDaneLinkChecker } from './agents/agentDaneLinkChecker'
-import { agentDanePackagePublisher } from './agents/agentDanePackagePublisher'
-import { agentDaneNewContributor } from './agents/agentDaneNewContributor'
+import { dane, daneCommitMessage, daneIssueLabeler, daneLinkChecker, danePackagePublisher, daneNewContributor } from './agents'
 
 // Import workflows
-import { workflowCommitMessage } from './workflows/workflowCommitMessage'
-import { workflowTelephoneGame } from './workflows/workflowTelephoneGame'
-import { workflowLinkChecker } from './workflows/workflowLinkChecker'
-import { workflowChangelog } from './workflows/workflowChangelog'
-import { workflowPackagePublisher } from './workflows/workflowPackagePublisher'
-import { workflowMessage } from './workflows/workflowMessage'
-import { workflowGithubIssueLabeler } from './workflows/workflowGithubIssueLabeler'
-import { workflowGithubFirstContributor } from './workflows/workflowGithubFirstContributor'
+import { workflowCommitMessage, workflowTelephoneGame, workflowLinkChecker, workflowChangelog, workflowPackagePublisher, workflowMessage, workflowGithubIssueLabeler, workflowGithubFirstContributor } from './workflows'
 
 // Import memory instances
-import { memoryUpstash } from './memory/memoryUpstash'
+import { memoryUpstash } from './memory'
 
 /**
  * Mastra instance with registered agents, workflows, and memory.
@@ -35,12 +23,12 @@ import { memoryUpstash } from './memory/memoryUpstash'
  */
 export const mastra = new Mastra({
   agents: {
-    agentDane,
-    agentDaneCommitMessage,
-    agentDaneIssueLabeler,
-    agentDaneLinkChecker,
-    agentDanePackagePublisher,
-    agentDaneNewContributor,
+    dane,
+    daneCommitMessage,
+    daneIssueLabeler,
+    daneLinkChecker,
+    danePackagePublisher,
+    daneNewContributor,
   },
   workflows: {
     workflowCommitMessage,

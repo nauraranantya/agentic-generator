@@ -1,4 +1,4 @@
-# MastraAgentBasedSystem
+# MastraSystem
 
 System coordinating weather agents, tools and workflows (Mastra instance configured with LibSQL storage and multiple workflows).
 
@@ -34,13 +34,13 @@ npm run dev
 ## 📦 Project Structure
 
 ```
-MastraAgentBasedSystem/
+MastraSystem/
 ├── src/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
 │       ├── agents/            # Agent definitions
 │       │   └── weatherAgent.ts
-│       │   └── weatherReporterAgent.ts
+│       │   └── weatherExplainerAgent.ts
 │       ├── tools/             # Tool definitions
 │       │   └── weatherTool.ts
 │       └── workflows/         # Workflow definitions
@@ -55,24 +55,20 @@ MastraAgentBasedSystem/
 
 ## 🤖 Agents
 
-### Weather Agent
+### weather assistant
 
 - **ID:** `weather-agent`
 - **Model:** `openai/gpt-4o-mini`
 - **Tools:** weatherTool
 
-You are a helpful weather assistant that provides accurate weather information.
+You are weather assistant....
 
-Your primary function is to help users get weather details for specific locations. When responding:
-- Always ask for a ...
-
-### Weather Explainer Agent
+### LLM Agent
 
 - **ID:** `weatherExplainerAgent`
 - **Model:** `openai/gpt-4o`
 
-You are a weather explainer. You have access to input that will help you get weather-specific activities for any city. 
-The tool uses agents to plan the activities, you just need to provide the city. ...
+You are LLM Agent....
 
 
 ---
@@ -94,18 +90,17 @@ Tool to get current weather for a location. Wraps geocoding and open-meteo APIs 
 
 Workflow that fetches weather for a city and plans activities. Input schema: { city: string }. Produces activities text.
 
-**Steps:** 2
-1. fetch-weather
-2. wf-step-plan-activities
+**Steps:** 1
+1. fetch-weather task
 
 ### weather-workflow-with-tool-and-agent
 
 Workflow that uses the weather tool to get forecast and then delegates planning to a reporting agent. Input schema: { location: string }
 
 **Steps:** 3
-1. weatherTool step
-2. map prompt
-3. weatherReporterAgent step
+1. weather tool call task
+2. map forecast to prompt task
+3. plan activities / explain weather task
 
 
 ---

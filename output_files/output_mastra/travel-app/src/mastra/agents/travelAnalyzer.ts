@@ -1,25 +1,33 @@
 /**
- * Agent: travel-analyzer
+ * Agent: LLM Agent
  * ID: travel-analyzer
  * 
  * Auto-generated from AgentO Knowledge Graph
+ * Objectives:
+ *   - Assemble trip components: 
+ * Capabilities:
+ *   - Find Flights: Capability to search and select flight options.
+ *   - Find Hotels: Capability to search and select hotels.
+ *   - Find Attractions: Capability to search and select attractions.
+ *   - Search Airbnb: Capability to search airbnb locations and listings.
+ *   - Analyze Travel Results: Capability to analyze raw agent search outputs and reformat into application schema.
  */
 
 import { Agent } from '@mastra/core/agent'
 
 // Import memory
-import { travelMemory } from '../memory/travelMemory'
+import { travelMemory } from '../memory'
 
 /**
- * travel-analyzer
+ * LLM Agent
  * 
  * Instructions:
- * You are an expert travel agent responsible for finding a flight, hotel, and three attractions for a user. You will be given a set of user preferences along with some data to find the best options for them.
+ * Analyzer agent base instructions.
  */
 export const travelAnalyzer = new Agent({
   id: `travel-analyzer`,
-  name: `travel-analyzer`,
-  instructions: `You are an expert travel agent responsible for finding a flight, hotel, and three attractions for a user. You will be given a set of user preferences along with some data to find the best options for them.`,
+  name: `LLM Agent`,
+  instructions: `Analyzer agent base instructions.`,
   model: 'openai/gpt-4.1',
   memory: travelMemory,
 })

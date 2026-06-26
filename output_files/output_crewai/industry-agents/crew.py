@@ -20,19 +20,26 @@ Resources:
 
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
+from crewai.tools import tool
 
 
 # ===========================================================
 # Tool Instances
 # ===========================================================
 # TODO: weaviate_vector_search_tool — unknown tool class "WeaviateVectorSearchTool"
-#   Description: Vector search tool configured to query a Weaviate collection (WeaviateBlogChunk)
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-# weaviate_vector_search_tool = SomeCustomTool(collection_name="WeaviateBlogChunk", limit="4", weaviate_cluster_url="WCD_CLUSTER_URL (placeholder from environment/config)", weaviate_api_key="WCD_CLUSTER_KEY (placeholder secret)")
+@tool("WeaviateVectorSearchTool")
+def weaviate_vector_search_tool(*args, **kwargs) -> str:
+    """Vector search tool configured to query a Weaviate collection (WeaviateBlogChunk)."""
+    return "weaviate_vector_search_tool result"
+
 # TODO: serper_dev_tool — unknown tool class "SerperDevWebSearchTool"
-#   Description: Web search tool (SerperDev) used to retrieve web search results for background r
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-# serper_dev_tool = SomeCustomTool(verbose="True (tool verbosity flag placeholder)")
+@tool("SerperDevWebSearchTool")
+def serper_dev_tool(*args, **kwargs) -> str:
+    """Web search tool (SerperDev) used to retrieve web search results for background research."""
+    return "serper_dev_tool result"
+
 
 
 

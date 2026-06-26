@@ -1,5 +1,5 @@
 [project]
-name = "my"
+name = "unnamed_project"
 version = "0.1.0"
 description = "Crew coordinating agents and tasks to answer Meta Quest questions using availabl"
 authors = [{name = "Your Name", email = "you@example.com"}]
@@ -13,7 +13,7 @@ dependencies = [
 ]
 
 [project.scripts]
-my = "main:run"
+unnamed_project = "main:run"
 train      = "main:train"
 
 [tool.uv]

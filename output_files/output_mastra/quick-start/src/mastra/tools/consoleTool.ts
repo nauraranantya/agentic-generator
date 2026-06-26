@@ -1,5 +1,5 @@
 /**
- * Tool: Console Logger (runtime)
+ * Tool: consoleTool
  * 
  * Auto-generated from AgentO Knowledge Graph
  * 
@@ -10,12 +10,12 @@ import { createTool } from '@mastra/core/tools'
 import { z } from 'zod'
 
 /**
- * Console Logger (runtime)
+ * consoleTool
  * 
  * Implementation: Represents the runtime logging facility used by the step (the source prints to console via console.log). Modeled as a Tool to indicate the step uses an execution tool.
  */
 export const consoleTool = createTool({
-  id: 'Console Logger (runtime)',
+  id: 'consoleTool',
   description: `Represents the runtime logging facility used by the step (the source prints to console via console.log). Modeled as a Tool to indicate the step uses an execution tool.`,
   inputSchema: z.object({}),  // TODO: Define input schema
   outputSchema: z.object({}),  // TODO: Define output schema
@@ -31,6 +31,6 @@ export const consoleTool = createTool({
     // 2. Perform the tool's logic
     // 3. Return result matching outputSchema
     
-    throw new Error('Tool Console Logger (runtime) not implemented yet')
+    throw new Error('Tool consoleTool not implemented yet')
   },
 })

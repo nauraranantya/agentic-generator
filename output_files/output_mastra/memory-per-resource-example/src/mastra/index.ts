@@ -1,20 +1,24 @@
 /**
- * Mastra AI Instance - PersonalAssistantSystem
+ * Mastra AI Instance - UnnamedProject
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
+ * Goals:
+ *   - : 
+ * Objectives:
+ *   - : 
  */
 
 import { Mastra } from '@mastra/core'
 
 // Import agents
-import { personalAssistant } from './agents/personalAssistant'
+import { personalAssistant } from './agents'
 
 // Import workflows
-import { perResourceWorkingMemoryPattern } from './workflows/perResourceWorkingMemoryPattern'
+import { perResourceWorkingMemoryPattern } from './workflows'
 
 // Import memory instances
-import { memoryDemo } from './memory/memoryDemo'
+import { memoryDemo } from './memory'
 
 /**
  * Mastra instance with registered agents, workflows, and memory.

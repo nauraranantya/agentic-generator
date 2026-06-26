@@ -1,0 +1,14 @@
+import { ChatOpenAI } from "@langchain/openai";
+import type { SupervisorState } from "../types";
+
+export async function generalInput(state: SupervisorState) {
+  const model = new ChatOpenAI({ model: "{{ (agents[0].model_name if agents else 'gpt-4o-mini') | ts_escape }}" });
+  const response = await model.invoke([
+    {
+      role: "system",
+      content: "General assistant route. {{ (agents[0].prompt if agents else 'You are a helpful assistant.') | ts_escape }}",
+    },
+    ...state.messages,
+  ]);
+  return { messages: [response] };
+}

@@ -1,5 +1,5 @@
 /**
- * Memory: Per-Resource Working Memory
+ * Memory: memoryDemo
  *
  * Auto-generated from AgentO Knowledge Graph
  * Storage backend: libsql
@@ -12,20 +12,16 @@ import { LibSQLStore } from '@mastra/libsql'
 export const memoryDemo = new Memory({
   storage: new LibSQLStore({
     id: 'mastra-libsql-store',
-    url: 'file:./memory-demo.db',
-  }),
-  options: {
     lastMessages: 5,
-    workingMemory: {
-      enabled: true,
-      scope: 'resource',
-      template: `# User Profile
+    workingMemory.enabled: 'true',
+    workingMemory.scope: 'resource',
+    workingMemory.template: '# User Profile
 - **Name**: 
 - **Location**: 
 - **Interests**: 
 - **Preferences**: 
 - **Goals**: 
-- **Important Notes**:`,
-    },
-  },
+- **Important Notes**:',
+    storage.url: 'file:./memory-demo.db',
+  }),
 })

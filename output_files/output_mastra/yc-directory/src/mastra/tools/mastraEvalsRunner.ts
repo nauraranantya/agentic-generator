@@ -1,5 +1,5 @@
 /**
- * Tool: Mastra Evals Runner
+ * Tool: mastraEvalsRunner
  * 
  * Auto-generated from AgentO Knowledge Graph
  * 
@@ -10,12 +10,12 @@ import { createTool } from '@mastra/core/tools'
 import { z } from 'zod'
 
 /**
- * Mastra Evals Runner
+ * mastraEvalsRunner
  * 
  * Implementation: Represents the runEvals invocation in src/mastra/tests/index.ts. Executes an evaluation run on a target agent using a set of scorer capabilities and data inputs.
  */
 export const mastraEvalsRunner = createTool({
-  id: 'Mastra Evals Runner',
+  id: 'mastraEvalsRunner',
   description: `Represents the runEvals invocation in src/mastra/tests/index.ts. Executes an evaluation run on a target agent using a set of scorer capabilities and data inputs.`,
   inputSchema: z.object({}),  // TODO: Define input schema
   outputSchema: z.object({}),  // TODO: Define output schema
@@ -31,6 +31,6 @@ export const mastraEvalsRunner = createTool({
     // 2. Perform the tool's logic
     // 3. Return result matching outputSchema
     
-    throw new Error('Tool Mastra Evals Runner not implemented yet')
+    throw new Error('Tool mastraEvalsRunner not implemented yet')
   },
 })

@@ -28,35 +28,44 @@ Resources:
   - main.py (semantic summary): Orchestrates two Crews (Copy Crew and Image Crew). Copy Crew runs tasks: product_analysis, competitor_analysis, campaign_development, instagram_ad_copy. Image Crew runs tasks: take_photograph_task, review_photo. Crew orchestration and kickoff semantics not directly modeled; outputs represented as produced Resources.
 """
 
-from crewai import Agent, Crew, Process, Task
+from crewai import Agent, Crew, Process, Task, LLM
 from crewai.project import CrewBase, agent, crew, task
+from crewai.tools import tool
 
-from langchain.llms import Ollama
 
 # ===========================================================
 # Tool Instances
 # ===========================================================
 # TODO: tool_browser_tools_scrape_and_summarize — unknown tool class "BrowserToolsscrapeandsummarizewebsite"
-#   Description: Semantic purpose: Scrape a website and produce a long summary of its content or 
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-# tool_browser_tools_scrape_and_summarize = SomeCustomTool(BROWSERLESS_API_KEY="REQUIRES_VALID_KEY")
+@tool("BrowserToolsscrapeandsummarizewebsite")
+def tool_browser_tools_scrape_and_summarize(*args, **kwargs) -> str:
+    """Semantic purpose: Scrape a website and produce a long summary of its content or content chunks. Inpu"""
+    return "tool_browser_tools_scrape_and_summarize result"
+
 # TODO: tool_search_tools_search_internet — unknown tool class "SearchToolssearchinternet"
-#   Description: Semantic purpose: Search the Internet (generic web search) and return top organi
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-# tool_search_tools_search_internet = SomeCustomTool(SERPER_API_KEY="REQUIRES_VALID_KEY")
+@tool("SearchToolssearchinternet")
+def tool_search_tools_search_internet(*args, **kwargs) -> str:
+    """Semantic purpose: Search the Internet (generic web search) and return top organic results, title, li"""
+    return "tool_search_tools_search_internet result"
+
 # TODO: tool_search_tools_search_instagram — unknown tool class "SearchToolssearchinstagram"
-#   Description: Semantic purpose: Search Instagram via site-limited search (site:instagram.com) 
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-# tool_search_tools_search_instagram = SomeCustomTool(SERPER_API_KEY="REQUIRES_VALID_KEY")
+@tool("SearchToolssearchinstagram")
+def tool_search_tools_search_instagram(*args, **kwargs) -> str:
+    """Semantic purpose: Search Instagram via site-limited search (site:instagram.com) to find relevant pos"""
+    return "tool_search_tools_search_instagram result"
+
 
 # ===========================================================
 # Custom LLM
 # ===========================================================
-product_competitor_agent_llm = Ollama(model="local")
-strategy_planner_agent_llm = Ollama(model="local")
-creative_content_creator_agent_llm = Ollama(model="local")
-senior_photographer_agent_llm = Ollama(model="local")
-chief_creative_director_agent_llm = Ollama(model="local")
+product_competitor_agent_llm = LLM(model="ollama/local")
+strategy_planner_agent_llm = LLM(model="ollama/local")
+creative_content_creator_agent_llm = LLM(model="ollama/local")
+senior_photographer_agent_llm = LLM(model="ollama/local")
+chief_creative_director_agent_llm = LLM(model="ollama/local")
 
 
 @CrewBase

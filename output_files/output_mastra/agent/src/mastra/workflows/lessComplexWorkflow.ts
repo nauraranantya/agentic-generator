@@ -10,14 +10,13 @@ import { createWorkflow, createStep } from '@mastra/core/workflows'
 import { z } from 'zod'
 
 // Import agents used by workflow steps
-import { chefModelV2Agent } from '../agents/chefModelV2Agent'
-import { chefAgent } from '../agents/chefAgent'
+import { chefModelV2Agent, chefAgent } from '../agents'
 
 // ── Workflow Steps ──
 
 const stepAddLetter = createStep({
-  id: 'add-letter',
-  description: `Appends 'A' to input text. Input: { text: string }`,
+  id: 'task:add-letter',
+  description: `Execution: returns { text: text + 'A' } after ~500ms.`,
   inputSchema: z.object({}),
   outputSchema: z.object({}),
   execute: async ({ inputData }) => {
@@ -25,13 +24,13 @@ const stepAddLetter = createStep({
     // This step uses agent: chefModelV2Agent
     // const result = await chefModelV2Agent.generate('...')
     // TODO: Implement step logic
-    throw new Error('add-letter not implemented yet')
+    throw new Error('task:add-letter not implemented yet')
   },
 })
 
 const stepAddLetterB = createStep({
-  id: 'add-letter-b',
-  description: `Appends 'B' to input text.`,
+  id: 'task:add-letter-b',
+  description: `Execution: returns { text: text + 'B' }.`,
   inputSchema: z.object({}),
   outputSchema: z.object({}),
   execute: async ({ inputData }) => {
@@ -39,13 +38,13 @@ const stepAddLetterB = createStep({
     // This step uses agent: chefModelV2Agent
     // const result = await chefModelV2Agent.generate('...')
     // TODO: Implement step logic
-    throw new Error('add-letter-b not implemented yet')
+    throw new Error('task:add-letter-b not implemented yet')
   },
 })
 
 const stepAddLetterC = createStep({
-  id: 'add-letter-c',
-  description: `Appends 'C' to input text.`,
+  id: 'task:add-letter-c',
+  description: `Execution: returns { text: text + 'C' }.`,
   inputSchema: z.object({}),
   outputSchema: z.object({}),
   execute: async ({ inputData }) => {
@@ -53,44 +52,41 @@ const stepAddLetterC = createStep({
     // This step uses agent: chefModelV2Agent
     // const result = await chefModelV2Agent.generate('...')
     // TODO: Implement step logic
-    throw new Error('add-letter-c not implemented yet')
+    throw new Error('task:add-letter-c not implemented yet')
   },
 })
 
 const stepAddLetterWithCount = createStep({
-  id: 'add-letter-with-count',
-  description: `Adds 'D' to text and increments iterationCount.`,
+  id: 'task:add-letter-with-count',
+  description: `Execution: returns text + 'D' and iterationCount+1.`,
   inputSchema: z.object({}),
-  outputSchema: z.object({ text: z.string(), iterationCount: z.number() }),
+  outputSchema: z.object({}),
   execute: async ({ inputData }) => {
     // Execution: returns text + 'D' and iterationCount+1.
     // This step uses agent: chefModelV2Agent
     // const result = await chefModelV2Agent.generate('...')
     // TODO: Implement step logic
-    throw new Error('add-letter-with-count not implemented yet')
+    throw new Error('task:add-letter-with-count not implemented yet')
   },
 })
 
 const stepSuspendResume = createStep({
-  id: 'suspend-resume',
-  description: `Suspend/resume step:`,
+  id: 'task:suspend-resume',
+  description: `Requires user input to resume. Modeled as a suspend/resume interactive step.`,
   inputSchema: z.object({}),
   outputSchema: z.object({}),
-  execute: async ({ inputData, suspend }) => {
-    // Suspend/resume step
-    // This step uses agent: chefAgent
+  execute: async ({ inputData }) => {
     // Requires user input to resume. Modeled as a suspend/resume interactive step.
-    // TODO: Check resume state and implement logic
-    await suspend({
-      message: 'Waiting for human input',
-    })
-    throw new Error('suspend-resume resume handler not implemented yet')
+    // This step uses agent: chefAgent
+    // const result = await chefAgent.generate('...')
+    // TODO: Implement step logic
+    throw new Error('task:suspend-resume not implemented yet')
   },
 })
 
 const stepShortText = createStep({
-  id: 'short-text',
-  description: `Appends 'S' to short texts (branch target).`,
+  id: 'task:short-text',
+  description: `Branch step executed when text length <= 10.`,
   inputSchema: z.object({}),
   outputSchema: z.object({}),
   execute: async ({ inputData }) => {
@@ -98,13 +94,13 @@ const stepShortText = createStep({
     // This step uses agent: chefModelV2Agent
     // const result = await chefModelV2Agent.generate('...')
     // TODO: Implement step logic
-    throw new Error('short-text not implemented yet')
+    throw new Error('task:short-text not implemented yet')
   },
 })
 
 const stepLongText = createStep({
-  id: 'long-text',
-  description: `Appends 'L' to long texts (branch target).`,
+  id: 'task:long-text',
+  description: `Branch step executed when text length > 10.`,
   inputSchema: z.object({}),
   outputSchema: z.object({}),
   execute: async ({ inputData }) => {
@@ -112,13 +108,13 @@ const stepLongText = createStep({
     // This step uses agent: chefModelV2Agent
     // const result = await chefModelV2Agent.generate('...')
     // TODO: Implement step logic
-    throw new Error('long-text not implemented yet')
+    throw new Error('task:long-text not implemented yet')
   },
 })
 
 const stepNestedTextProcessor = createStep({
-  id: 'nested-text-processor',
-  description: `Nested workflow that runs add-letter then add-letter-b (see nestedTextProcessor workflow pattern below).`,
+  id: 'task:nested-text-processor',
+  description: `Executes nested sub-workflow that appends letters A then B.`,
   inputSchema: z.object({}),
   outputSchema: z.object({}),
   execute: async ({ inputData }) => {
@@ -126,13 +122,13 @@ const stepNestedTextProcessor = createStep({
     // This step uses agent: chefModelV2Agent
     // const result = await chefModelV2Agent.generate('...')
     // TODO: Implement step logic
-    throw new Error('nested-text-processor not implemented yet')
+    throw new Error('task:nested-text-processor not implemented yet')
   },
 })
 
 const stepFinalStep = createStep({
-  id: 'final-step',
-  description: `Finalization step, appends '-ENDED' to the text.`,
+  id: 'task:final-step',
+  description: `Finalization operation adding '-ENDED'.`,
   inputSchema: z.object({}),
   outputSchema: z.object({}),
   execute: async ({ inputData }) => {
@@ -140,7 +136,7 @@ const stepFinalStep = createStep({
     // This step uses agent: chefAgent
     // const result = await chefAgent.generate('...')
     // TODO: Implement step logic
-    throw new Error('final-step not implemented yet')
+    throw new Error('task:final-step not implemented yet')
   },
 })
 
@@ -153,17 +149,9 @@ const stepFinalStep = createStep({
  */
 export const lessComplexWorkflow = createWorkflow({
   id: 'lessComplexWorkflow',
-  inputSchema: z.object({}),
+  inputSchema: z.object({Runs_add: z.string(), add_letter: z.string(), short_text_vs_long: z.string(), Loops_with_add_letter_with: z.string(), Presents_suspend: z.string(), Runs_final: z.string(), Output: z.string()}),
   outputSchema: z.object({}),
   steps: [stepAddLetter, stepAddLetterB, stepAddLetterC, stepAddLetterWithCount, stepSuspendResume, stepShortText, stepLongText, stepNestedTextProcessor, stepFinalStep],
 })
-  .then(stepAddLetter)
-  .then(stepAddLetterB)
-  .then(stepAddLetterC)
-  .then(stepAddLetterWithCount)
-  .then(stepSuspendResume)
-  .then(stepShortText)
-  .then(stepLongText)
-  .then(stepNestedTextProcessor)
-  .then(stepFinalStep)
+  .parallel([stepAddLetter, stepAddLetterB, stepAddLetterC, stepAddLetterWithCount, stepSuspendResume, stepShortText, stepLongText, stepNestedTextProcessor, stepFinalStep])
   .commit()

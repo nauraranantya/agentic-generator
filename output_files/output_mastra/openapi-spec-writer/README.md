@@ -39,7 +39,7 @@ MastraSystem/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
 │       ├── agents/            # Agent definitions
-│       │   └── openApiSpecAgent.ts
+│       │   └── openapiSpecGenAgent.ts
 │       ├── tools/             # Tool definitions
 │       │   └── siteCrawlTool.ts
 │       │   └── firecrawlIntegration.ts
@@ -58,12 +58,12 @@ MastraSystem/
 
 ## 🤖 Agents
 
-### OpenAPI Spec Generator Agent
+### OpenAPI spec writer agent
 
 - **ID:** `openapi-spec-gen-agent`
 - **Model:** `openai/gpt-3.5-turbo`
 
-You are an expert Open API spec writer. You can take markdown documentation and extract all the information you can to generate an amazing Open API spec. You are also able to merge multiple fragmented...
+Produce a merged OpenAPI specification from website documentation and optionally open a PR with the spec in a repository....
 
 
 ---
@@ -90,7 +90,7 @@ Generate an OpenAPI spec from crawled website markdown; uses the OpenAPI agent t
 
 ### Add to Git
 
-Calls GitHub client (gitGetRef, gitCreateRef, reposCreateOrUpdateFileContents, pullsCreate) via integration....
+Commit the spec to GitHub: formats YAML via the agent, creates branch, commits files and opens a pull request....
 
 **Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/addToGitHubTool.ts`)
 
@@ -110,15 +110,15 @@ GitHub integration client that performs git ref, file write and pull request ope
 Workflow that crawls a URL and generates an OpenAPI spec from crawled documentation.
 
 **Steps:** 2
-1. site-crawl-sync-step
-2. generate-spec-step
+1. site-crawl-sync-step:task
+2. generate-spec:task
 
 ### makePRToMastra
 
 Workflow that creates a PR to the mastra repository given a YAML OpenAPI spec.
 
 **Steps:** 1
-1. add-to-github-step
+1. add-to-github:task
 
 
 ---

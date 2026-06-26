@@ -3,19 +3,20 @@
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
+ * Goals:
+ *   - Generate OpenAPI spec from docs: Produce a merged OpenAPI specification from website documentation and optionally open a PR with the spec in a repository.
  */
 
 import { Mastra } from '@mastra/core'
 
 // Import agents
-import { openApiSpecAgent } from './agents/openApiSpecAgent'
+import { openapiSpecGenAgent } from './agents'
 
 // Import workflows
-import { openApiSpecGenWorkflowPattern } from './workflows/openApiSpecGenWorkflowPattern'
-import { makePrWorkflowPattern } from './workflows/makePrWorkflowPattern'
+import { openApiSpecGenWorkflowPattern, makePrWorkflowPattern } from './workflows'
 
 // Import memory instances
-import { openApiSpecAgentMemory } from './memory/openApiSpecAgentMemory'
+import { openApiSpecAgentMemory } from './memory'
 
 /**
  * Mastra instance with registered agents, workflows, and memory.
@@ -24,7 +25,7 @@ import { openApiSpecAgentMemory } from './memory/openApiSpecAgentMemory'
  */
 export const mastra = new Mastra({
   agents: {
-    openApiSpecAgent,
+    openapiSpecGenAgent,
   },
   workflows: {
     openApiSpecGenWorkflowPattern,

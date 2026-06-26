@@ -1,4 +1,4 @@
-# ClientApplication(vite+React)Team
+# ClientApplicationViteReactTeam
 
 Represents the client-side application that coordinates a human user, one or more agents, and client-side tools. It contains system-level configuration for the Mastra client (baseUrl) and references the workflow used for streaming interactions.
 
@@ -34,13 +34,13 @@ npm run dev
 ## 📦 Project Structure
 
 ```
-ClientApplication(vite+React)Team/
+ClientApplicationViteReactTeam/
 ├── src/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
 │       ├── agents/            # Agent definitions
-│       │   └── agentFrontend.ts
-│       │   └── agentBackend.ts
+│       │   └── agent.ts
+│       │   └── testAgent.ts
 │       ├── tools/             # Tool definitions
 │       │   └── toolChangeColor.ts
 │       │   └── toolChangeLogoSize.ts
@@ -56,21 +56,21 @@ ClientApplication(vite+React)Team/
 
 ## 🤖 Agents
 
-### Frontend Agent (runtime id: 'agent')
+### LLM Agent
 
 - **ID:** `agent`
 - **Model:** `openai/gpt-4o`
 - **Tools:** toolChangeColor, toolChangeLogoSize, toolAddPost
 
-You are a browser client agent. You execute tools in the browser....
+System/instruction prompt provided to the agent in mastra configuration (src/mastra/agents/index.ts)....
 
-### Test Agent (defined in mastra config: 'test-agent')
+### LLM Agent
 
 - **ID:** `test-agent`
 - **Model:** `openai/gpt-4o`
 - **Tools:** toolChangeColor, toolChangeLogoSize, toolAddPost
 
-You are a browser client agent. You execute tools in the browser....
+System/instruction prompt provided to the agent in mastra configuration (src/mastra/agents/index.ts)....
 
 
 ---
@@ -104,13 +104,12 @@ Client-side tool that adds a new post to the 'posts' state array. Declared in cl
 
 High-level workflow pattern capturing the user submission, agent streaming, tool call processing, UI updates, and text rendering as separate steps.
 
-**Steps:** 6
-1. Start: user submits message
+**Steps:** 5
+1. User submits message
 2. Stream message to agent
-3. Process streaming events
-4. Handle tool calls and execute tools
-5. Append text parts to UI
-6. End: streaming completed or cancelled
+3. Process streamed events (tool calls, tool results, deltas, text parts)
+4. Execute addPost tool
+5. Append text parts to the responseText state
 
 
 ---

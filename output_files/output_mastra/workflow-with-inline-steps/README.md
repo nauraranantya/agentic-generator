@@ -1,4 +1,4 @@
-# MastraSystem
+# UnnamedProject
 
 Represents the Mastra deployment that contains the defined workflows.
 
@@ -34,7 +34,7 @@ npm run dev
 ## 📦 Project Structure
 
 ```
-MastraSystem/
+UnnamedProject/
 ├── src/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
@@ -58,7 +58,7 @@ No agents defined in this project.
 
 ## 🔧 Tools
 
-### Mastra Engine
+### mastraEngineTool
 
 Represents the Mastra runtime/engine that executes workflow steps and tasks (mapped to :Tool for lack of a runtime class in ontology)....
 
@@ -69,14 +69,14 @@ Represents the Mastra runtime/engine that executes workflow steps and tasks (map
 
 ## 🔄 Workflows
 
-### my-workflow
+### my_workflow_pattern
 
 Workflow defined in src/mastra/workflows/index.ts with a numeric trigger schema { inputValue: number }. Steps: stepOne -> stepTwo -> stepThree. Committed (myWorkflow.commit()).
 
 **Steps:** 3
-1. stepOne
-2. stepTwo
-3. stepThree
+1. step_one_step
+2. step_two_step
+3. step_three_step
 
 
 ---

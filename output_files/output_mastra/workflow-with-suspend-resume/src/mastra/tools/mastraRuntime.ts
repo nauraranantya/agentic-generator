@@ -17,8 +17,8 @@ import { z } from 'zod'
 export const mastraRuntime = createTool({
   id: 'Mastra Runtime (core executor)',
   description: `Logical runtime tool that executes workflow steps and coordinates suspend/resume behavior.`,
-  inputSchema: z.object({}),  // TODO: Define input schema
-  outputSchema: z.object({}),  // TODO: Define output schema
+  inputSchema: z.object({inputSchema: z.object({}), exampleInput: z.object({})}),
+  outputSchema: z.object({outputSchema: z.object({})}),
   execute: async ({ inputData }) => {
     // TODO: Implement tool logic
     // 

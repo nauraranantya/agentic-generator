@@ -1,4 +1,4 @@
-# MastraServer/system
+# Mastraserversystem
 
 Represents the hosting Mastra system configuration for this agent/workflow deployment.
 
@@ -34,7 +34,7 @@ npm run dev
 ## 📦 Project Structure
 
 ```
-MastraServer/system/
+Mastraserversystem/
 ├── src/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
@@ -53,15 +53,13 @@ MastraServer/system/
 
 ## 🤖 Agents
 
-### Weather Agent
+### Weather Assistant
 
 - **ID:** `weather-agent`
 - **Model:** `openai/gpt-4o`
 - **Tools:** weatherTool
 
-You are a local activities and travel expert who excels at weather-based planning. Analyze the weather data and provide practical activity recommendations.
-
-For each day in the forecast, structure you...
+You are Weather Assistant....
 
 
 ---
@@ -90,8 +88,8 @@ Behavior summary:
 Workflow that (1) fetches weather for a city and (2) generates activity recommendations based on the forecast.
 
 **Steps:** 2
-1. fetch-weather step
-2. plan-activities step
+1. fetch-weather
+2. plan-activities
 
 
 ---

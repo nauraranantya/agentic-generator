@@ -10,20 +10,20 @@ import { createWorkflow, createStep } from '@mastra/core/workflows'
 import { z } from 'zod'
 
 // Import tools used by workflow steps
-import { addToGitHubTool } from '../tools/addToGitHubTool'
+import { addToGitHubTool } from '../tools'
 
 // ── Workflow Steps ──
 
 const addToGitHubWorkflowStep = createStep({
-  id: 'add-to-github-step',
-  description: `Step that calls a tool to commit spec files and open a PR on GitHub.`,
+  id: 'add-to-github:task',
+  description: `Task executed by makePRToMastra workflow: formats YAML via agent and writes files to GitHub then creates a PR.`,
   inputSchema: z.object({}),
   outputSchema: z.object({}),
   execute: async ({ inputData }) => {
     // Can you take this text blob and format it into proper YAML? \${content}
     // This step uses tool: addToGitHubTool
     // TODO: Implement step logic
-    throw new Error('add-to-github-step not implemented yet')
+    throw new Error('add-to-github:task not implemented yet')
   },
 })
 
@@ -40,5 +40,5 @@ export const makePrWorkflowPattern = createWorkflow({
   outputSchema: z.object({}),
   steps: [addToGitHubWorkflowStep],
 })
-  .then(addToGitHubWorkflowStep)
+  .parallel([addToGitHubWorkflowStep])
   .commit()

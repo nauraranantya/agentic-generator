@@ -1,4 +1,4 @@
-# Mastra(agentOrchestrationSystem)
+# UnnamedProject
 
 The runtime/host system that registers and exposes agents (in source: new Mastra({ agents: { stockAgent } })). This representation models the system logically as a Team that contains agent members and workflow patterns.
 
@@ -34,7 +34,7 @@ npm run dev
 ## 📦 Project Structure
 
 ```
-Mastra(agentOrchestrationSystem)/
+UnnamedProject/
 ├── src/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
@@ -53,20 +53,20 @@ Mastra(agentOrchestrationSystem)/
 
 ## 🤖 Agents
 
-### Stock Agent
+### price_provider
 
 - **ID:** `stock-agent`
 - **Model:** `openai/gpt-4o`
 - **Tools:** stockPricesTool
 
-You are a helpful assistant that provides current stock prices. When asked about a stock, use the stock price tool to fetch the stock price....
+Agent-level instruction used as the LLM system prompt / persona....
 
 
 ---
 
 ## 🔧 Tools
 
-### Get Stock Price
+### Get Stock Price (stockPrices)
 
 Fetches the last day's closing stock price for a given symbol. Source tool implementation uses an HTTP fetch to https://mastra-stock-data.vercel.app/api/stock-data?symbol={symbol} and returns { symbol...
 
@@ -81,10 +81,8 @@ Fetches the last day's closing stock price for a given symbol. Source tool imple
 
 A simple workflow pattern that accepts a stock-symbol query, has the agent generate and delegate to the stockPrices tool, and produces a numeric price as output.
 
-**Steps:** 3
-1. Start: Receive stock query
-2. Fetch step: agent uses tool
-3. End: Present price to user
+**Steps:** 1
+1. Fetch stock price for symbol (AAPL example)
 
 
 ---

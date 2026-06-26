@@ -1,5 +1,5 @@
 /**
- * Tool: Get a random image from unsplash
+ * Tool: getRandomImageTool
  * 
  * Auto-generated from AgentO Knowledge Graph
  * 
@@ -10,14 +10,14 @@ import { createTool } from '@mastra/core/tools'
 import { z } from 'zod'
 
 /**
- * Get a random image from unsplash
+ * getRandomImageTool
  * 
  * Implementation: Gets a random image from Unsplash based on selected query option. Random page selection and order_by ('relevant' or 'latest') logic is applied at runtime.
  */
 export const getRandomImageTool = createTool({
-  id: 'Get a random image from unsplash',
+  id: 'getRandomImageTool',
   description: `Gets a random image from Unsplash based on selected query option. Random page selection and order_by ('relevant' or 'latest') logic is applied at runtime.`,
-  inputSchema: z.object({}),  // TODO: Define input schema
+  inputSchema: z.object({type: z.string(), values: z.array(z.string())}),
   outputSchema: z.object({}),  // TODO: Define output schema
   execute: async ({ inputData }) => {
     // TODO: Implement tool logic
@@ -31,6 +31,6 @@ export const getRandomImageTool = createTool({
     // 2. Perform the tool's logic
     // 3. Return result matching outputSchema
     
-    throw new Error('Tool Get a random image from unsplash not implemented yet')
+    throw new Error('Tool getRandomImageTool not implemented yet')
   },
 })

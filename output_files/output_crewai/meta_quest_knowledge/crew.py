@@ -1,5 +1,5 @@
 """
-Auto-generated CrewAI Crew: MyCrew
+Auto-generated CrewAI Crew: UnnamedProject
 
 Source  : AgentO Knowledge Graph → SPARQL → Pydantic → Jinja2
 Pipeline: 3-Layer Conversion Pipeline
@@ -16,8 +16,8 @@ from crewai.project import CrewBase, agent, crew, task
 
 
 @CrewBase
-class MyCrew:
-    """MyCrew crew"""
+class UnnamedProject:
+    """UnnamedProject crew"""
 
     agents_config = 'config/agents.yaml'
     tasks_config = 'config/tasks.yaml'
@@ -43,7 +43,7 @@ class MyCrew:
 
     @crew
     def crew(self) -> Crew:
-        """Creates the MyCrew"""
+        """Creates the UnnamedProject"""
         return Crew(
             agents=self.agents,
             tasks=self.tasks,

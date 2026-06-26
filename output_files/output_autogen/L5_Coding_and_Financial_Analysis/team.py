@@ -1,5 +1,5 @@
 """
-Auto-generated AutoGen Team: MyCrew
+Auto-generated AutoGen Team: UnnamedProject
 Goals:
   - Lesson 5: Coding and Financial Analysis Goal: 
 Objectives:
@@ -26,7 +26,7 @@ from autogen_ext.models.openai import (
 )
 
 model_client = OpenAIChatCompletionClient(
-    model="gpt-4-turbo"
+    model="gpt-4o-mini"
 )
 
 
@@ -76,9 +76,6 @@ conversable code executor
 Background:
 You are a conversable code executor.
 """,
-    tools=[
-        local_cmd_executor_tool,
-    ],
 )
 
 

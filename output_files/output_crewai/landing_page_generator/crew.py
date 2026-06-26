@@ -32,43 +32,68 @@ Resources:
 
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
+from crewai.tools import tool
 
 
 # ===========================================================
 # Tool Instances
 # ===========================================================
 # TODO: search_internet_tool — unknown tool class "SearchtheinternetSearchToolssearchinternet"
-#   Description: Performs internet search using an external search API (serper.dev). Requires SER
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-# search_internet_tool = SomeCustomTool()
+@tool("SearchtheinternetSearchToolssearchinternet")
+def search_internet_tool(*args, **kwargs) -> str:
+    """Performs internet search using an external search API (serper.dev). Requires SERPER_API_KEY environm"""
+    return "search_internet_tool result"
+
 # TODO: scrape_website_tool — unknown tool class "ScrapewebsitecontentBrowserToolsscrapeandsummarizewebsite"
-#   Description: Scrapes website HTML via browserless API and summarizes content using an interna
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-# scrape_website_tool = SomeCustomTool()
+@tool("ScrapewebsitecontentBrowserToolsscrapeandsummarizewebsite")
+def scrape_website_tool(*args, **kwargs) -> str:
+    """Scrapes website HTML via browserless API and summarizes content using an internal summarization Task"""
+    return "scrape_website_tool result"
+
 # TODO: write_file_tool — unknown tool class "WritefiletoworkdirFileToolswritefile"
-#   Description: Writes files into ./workdir with path sanitization and allowed extensions.
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-# write_file_tool = SomeCustomTool()
+@tool("WritefiletoworkdirFileToolswritefile")
+def write_file_tool(*args, **kwargs) -> str:
+    """Writes files into ./workdir with path sanitization and allowed extensions."""
+    return "write_file_tool result"
+
 # TODO: learn_templates_tool — unknown tool class "LearnlandingpageoptionsTemplateToolslearnlandingpageoptions"
-#   Description: Reads config/templates.json to list available templates.
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-# learn_templates_tool = SomeCustomTool()
+@tool("LearnlandingpageoptionsTemplateToolslearnlandingpageoptions")
+def learn_templates_tool(*args, **kwargs) -> str:
+    """Reads config/templates.json to list available templates."""
+    return "learn_templates_tool result"
+
 # TODO: copy_template_tool — unknown tool class "CopylandingpagetemplatetoprojectfolderTemplateToolscopylandingpagetemplatetoprojectfolder"
-#   Description: Copies a template folder from ./templates to ./workdir with safety checks.
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-# copy_template_tool = SomeCustomTool()
+@tool("CopylandingpagetemplatetoprojectfolderTemplateToolscopylandingpagetemplatetoprojectfolder")
+def copy_template_tool(*args, **kwargs) -> str:
+    """Copies a template folder from ./templates to ./workdir with safety checks."""
+    return "copy_template_tool result"
+
 # TODO: read_file_tool — unknown tool class "Readfilefilemanagementtoolkitreadfile"
-#   Description: Read file contents from workdir (used by agent toolkits).
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-# read_file_tool = SomeCustomTool()
+@tool("Readfilefilemanagementtoolkitreadfile")
+def read_file_tool(*args, **kwargs) -> str:
+    """Read file contents from workdir (used by agent toolkits)."""
+    return "read_file_tool result"
+
 # TODO: list_directory_tool — unknown tool class "Listdirectoryfilemanagementtoolkitlistdirectory"
-#   Description: List directories in workdir (used by agent toolkits).
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-# list_directory_tool = SomeCustomTool()
+@tool("Listdirectoryfilemanagementtoolkitlistdirectory")
+def list_directory_tool(*args, **kwargs) -> str:
+    """List directories in workdir (used by agent toolkits)."""
+    return "list_directory_tool result"
+
 # TODO: file_management_toolkit — unknown tool class "Filemanagementtoolkitcontainerprovidesreadfilelistdirectorytools"
-#   Description: In the code this is an instantiation of FileManagementToolkit(root_dir='workdir'
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-# file_management_toolkit = SomeCustomTool()
+@tool("Filemanagementtoolkitcontainerprovidesreadfilelistdirectorytools")
+def file_management_toolkit(*args, **kwargs) -> str:
+    """In the code this is an instantiation of FileManagementToolkit(root_dir='workdir', selected_tools=['r"""
+    return "file_management_toolkit result"
+
 
 
 

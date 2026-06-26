@@ -9,31 +9,6 @@
 import { createWorkflow, createStep } from '@mastra/core/workflows'
 import { z } from 'zod'
 
-// ── Workflow Steps ──
-
-const stepMessageInput = createStep({
-  id: 'message-input',
-  description: `Prompts user for chat message (inquirer input) and ensures non-empty.`,
-  inputSchema: z.object({}),
-  outputSchema: z.object({}),
-  execute: async ({ inputData }) => {
-    // Prompts user for chat message (inquirer input) and ensures non-empty.
-    // TODO: Implement step logic
-    throw new Error('message-input not implemented yet')
-  },
-})
-
-const stepMessageOutput = createStep({
-  id: 'message-output',
-  description: `Send user message to dane agent (stream or batch). Agent responds and output is printed. When streaming, chunks are emitted to stdout. Non-stream fallback uses dane.generate.`,
-  inputSchema: z.object({}),
-  outputSchema: z.object({}),
-  execute: async ({ inputData }) => {
-    // Send user message to dane agent (stream or batch). Agent responds and output is printed. When streaming, chunks are emitted to stdout. Non-stream fallback uses dane.generate.
-    // TODO: Implement step logic
-    throw new Error('message-output not implemented yet')
-  },
-})
 
 // ── Workflow Definition ──
 
@@ -44,10 +19,8 @@ const stepMessageOutput = createStep({
  */
 export const workflowMessage = createWorkflow({
   id: 'message (entry) workflow',
-  inputSchema: z.object({}),
+  inputSchema: z.object({Interactive_chat_workflow: z.string()}),
   outputSchema: z.object({}),
-  steps: [stepMessageInput, stepMessageOutput],
+  steps: [],
 })
-  .then(stepMessageInput)
-  .then(stepMessageOutput)
   .commit()

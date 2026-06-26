@@ -1,21 +1,23 @@
 /**
- * Agent: My Agent
+ * Agent: LLM Agent
  * ID: my-agent
  * 
  * Auto-generated from AgentO Knowledge Graph
+ * Objectives:
+ *   - : Objective assigned to the team: gather research on agent networks and produce engaging content. Tasks ResearchTask and ContentTask contribute to this objective.
  */
 
 import { Agent } from '@mastra/core/agent'
 
 /**
- * My Agent
+ * LLM Agent
  * 
  * Instructions:
- * My Agent Instructions
+ * You are LLM Agent.
  */
 export const myAgent = new Agent({
   id: `my-agent`,
-  name: `My Agent`,
-  instructions: `My Agent Instructions`,
+  name: `LLM Agent`,
+  instructions: `You are LLM Agent.`,
   model: 'openai/gpt-4o',
 })

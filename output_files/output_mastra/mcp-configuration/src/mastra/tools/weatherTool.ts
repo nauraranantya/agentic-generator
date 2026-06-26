@@ -1,5 +1,5 @@
 /**
- * Tool: Weather Tool (getWeather) - SSE-backed
+ * Tool: weatherTool
  * 
  * Auto-generated from AgentO Knowledge Graph
  * 
@@ -10,14 +10,14 @@ import { createTool } from '@mastra/core/tools'
 import { z } from 'zod'
 
 /**
- * Weather Tool (getWeather) - SSE-backed
+ * weatherTool
  * 
  * Implementation: Tool exposing 'getWeather' capability. It resolves a location via a geocoding service, calls an external weather API (open-meteo) to get current conditions and returns a JSON structure containing temperature, feelsLike, humidity, windSpeed, windGust, conditions, and location. This tool is exposed over an SSE-backed server endpoint at http://localhost:8080/sse in the example environment. The tool expects a 'location' string (city name).
  */
 export const weatherTool = createTool({
-  id: 'Weather Tool (getWeather) - SSE-backed',
+  id: 'weatherTool',
   description: `Tool exposing 'getWeather' capability. It resolves a location via a geocoding service, calls an external weather API (open-meteo) to get current conditions and returns a JSON structure containing temperature, feelsLike, humidity, windSpeed, windGust, conditions, and location. This tool is exposed over an SSE-backed server endpoint at http://localhost:8080/sse in the example environment. The tool expects a 'location' string (city name).`,
-  inputSchema: z.object({}),  // TODO: Define input schema
+  inputSchema: z.object({location: z.string()}),
   outputSchema: z.object({}),  // TODO: Define output schema
   execute: async ({ inputData }) => {
     // TODO: Implement tool logic
@@ -46,6 +46,6 @@ export const weatherTool = createTool({
     // 2. Perform the tool's logic
     // 3. Return result matching outputSchema
     
-    throw new Error('Tool Weather Tool (getWeather) - SSE-backed not implemented yet')
+    throw new Error('Tool weatherTool not implemented yet')
   },
 })

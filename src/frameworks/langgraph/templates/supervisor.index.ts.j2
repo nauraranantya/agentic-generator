@@ -1,0 +1,51 @@
+import { StateGraph, START, END } from "@langchain/langgraph";
+import { SupervisorAnnotation, type SupervisorState } from "./types";
+import { router } from "./nodes/router";
+import { generalInput } from "./nodes/general-input";
+import { ChatOpenAI } from "@langchain/openai";
+
+{% for route in routes if not route.is_fallback %}
+async function {{ route.target_node }}(state: SupervisorState) {
+  const model = new ChatOpenAI({ model: "{{ (agents[0].model_name if agents else 'gpt-4o-mini') | ts_escape }}" });
+  const response = await model.invoke([
+    { role: "system", content: "Route: {{ route.route_key }}. {{ (agents[0].prompt if agents else 'You are a helpful assistant.') | ts_escape }}" },
+    ...state.messages,
+  ]);
+  return { messages: [response] };
+}
+{% endfor %}
+
+function handleRoute(state: SupervisorState):
+{% for route in routes %}
+  | "{{ route.route_key }}"
+{% endfor %}
+{
+  return state.next as
+{% for route in routes %}
+    | "{{ route.route_key }}"
+{% endfor %}
+  ;
+}
+
+const builder = new StateGraph(SupervisorAnnotation)
+  .addNode("{{ router_node_name if router_node_name else 'router' }}", router)
+{% for route in routes %}
+{% if route.is_fallback %}
+  .addNode("{{ route.target_node }}", generalInput)
+{% else %}
+  .addNode("{{ route.target_node }}", {{ route.target_node }})
+{% endif %}
+{% endfor %}
+  .addConditionalEdges("{{ router_node_name if router_node_name else 'router' }}", handleRoute, [
+{% for route in routes %}
+    "{{ route.route_key }}",
+{% endfor %}
+  ])
+  .addEdge(START, "{{ router_node_name if router_node_name else 'router' }}")
+{% for route in routes %}
+  .addEdge("{{ route.target_node }}", END)
+{% endfor %}
+;
+
+export const graph = builder.compile();
+graph.name = "{{ graph_name | ts_escape }}";

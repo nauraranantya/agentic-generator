@@ -1,17 +1,20 @@
 /**
- * Mastra AI Instance - MastraSystem
+ * Mastra AI Instance - UnnamedProject
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
+ * Objectives:
+ *   - : Objective representing the evaluation goal to measure the relevancy of ycAgent answers using an automatic scorer.
+ *   - : Objective requiring the agent to answer questions about companies in the YC 2024 directory using only the dataset fields: name, longDescription, tags, industries, batch.
  */
 
 import { Mastra } from '@mastra/core'
 
 // Import agents
-import { ycDirectoryAgent } from './agents/ycDirectoryAgent'
+import { ycDirectoryAgent } from './agents'
 
 // Import workflows
-import { ycQueryWorkflow } from './workflows/ycQueryWorkflow'
+import { ycQueryWorkflow } from './workflows'
 
 /**
  * Mastra instance with registered agents, workflows, and memory.

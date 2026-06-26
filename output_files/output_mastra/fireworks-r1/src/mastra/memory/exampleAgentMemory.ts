@@ -1,5 +1,5 @@
 /**
- * Memory: Agent in-memory memory
+ * Memory: exampleAgentMemory
  *
  * Memory instance created by new Memory() and assigned to the agent. Used to store short-term or session state. Implementation details omitted; represented as a KnowledgeBase/Memory individual.
  *

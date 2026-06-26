@@ -17,8 +17,8 @@ import { z } from 'zod'
 export const searchAirbnbLocationTool = createTool({
   id: 'Search Airbnb Location (searchAirbnbLocation)',
   description: `Searches for Airbnb places in a specified location. Place is a city name like New York, NY`,
-  inputSchema: z.object({}),  // TODO: Define input schema
-  outputSchema: z.object({}),  // TODO: Define output schema
+  inputSchema: z.object({place: z.string()}),
+  outputSchema: z.object({place: z.string()}),
   execute: async ({ inputData }) => {
     // TODO: Implement tool logic
     // 

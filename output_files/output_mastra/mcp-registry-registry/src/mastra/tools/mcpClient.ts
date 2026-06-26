@@ -1,5 +1,5 @@
 /**
- * Tool: MCP Client
+ * Tool: mcpClient
  * 
  * Auto-generated from AgentO Knowledge Graph
  * 
@@ -10,12 +10,12 @@ import { createTool } from '@mastra/core/tools'
 import { z } from 'zod'
 
 /**
- * MCP Client
+ * mcpClient
  * 
  * Implementation: Client used by the Mastra configuration to enumerate available MCP tool endpoints. In the source it is an MCPClient instance with server configuration; provides a listTools() capability.
  */
 export const mcpClient = createTool({
-  id: 'MCP Client',
+  id: 'mcpClient',
   description: `Client used by the Mastra configuration to enumerate available MCP tool endpoints. In the source it is an MCPClient instance with server configuration; provides a listTools() capability.`,
   inputSchema: z.object({}),  // TODO: Define input schema
   outputSchema: z.object({}),  // TODO: Define output schema
@@ -32,6 +32,6 @@ export const mcpClient = createTool({
     // 2. Perform the tool's logic
     // 3. Return result matching outputSchema
     
-    throw new Error('Tool MCP Client not implemented yet')
+    throw new Error('Tool mcpClient not implemented yet')
   },
 })

@@ -1,4 +1,4 @@
-# MastraSystem(agentRegistry)
+# UnnamedProject
 
 Represents the Mastra container in the source code that registers and exposes the 'memoryAgent' instance.
 
@@ -34,7 +34,7 @@ npm run dev
 ## 📦 Project Structure
 
 ```
-MastraSystem(agentRegistry)/
+UnnamedProject/
 ├── src/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
@@ -52,12 +52,12 @@ MastraSystem(agentRegistry)/
 
 ## 🤖 Agents
 
-### Memory Agent
+### assistant
 
 - **ID:** `memory-agent`
 - **Model:** `openai/gpt-4o-mini`
 
-You are a helpful AI agent, looking to assist however you can....
+This prompt is supplied as the 'instructions' argument when creating the Agent instance in source code....
 
 
 ---
@@ -70,15 +70,14 @@ No tools defined in this project.
 
 ## 🔄 Workflows
 
-### Chat interactive workflow pattern
+### workflow_chat_pattern
 
 A workflow pattern that models the interactive chat loop: Start -> Receive user input -> Agent generate streaming response -> Repeat -> End
 
-**Steps:** 4
-1. Start Chat
-2. Receive user input
-3. Agent generates streaming response
-4. End Chat
+**Steps:** 3
+1. ws_start_chat
+2. ws_receive_user_input
+3. ws_agent_generate_response
 
 
 ---

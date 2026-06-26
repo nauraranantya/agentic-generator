@@ -1,5 +1,5 @@
 """
-Auto-generated AutoGen Team: MyCrew
+Auto-generated AutoGen Team: UnnamedProject
 Goals:
   - : Goal: create a concise (within 100 words) blogpost about DeepLearning.AI and refine it via a reflection process with multiple reviewers.
 Objectives:

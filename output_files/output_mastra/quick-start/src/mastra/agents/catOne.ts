@@ -1,21 +1,23 @@
 /**
- * Agent: Cat One
+ * Agent: feline expert
  * ID: cat-one
  * 
  * Auto-generated from AgentO Knowledge Graph
+ * Capabilities:
+ *   - : Ability to answer questions about cat species, their behavior, biology and taxonomy.
  */
 
 import { Agent } from '@mastra/core/agent'
 
 /**
- * Cat One
+ * feline expert
  * 
  * Instructions:
- * You are a feline expert with comprehensive knowledge of all cat species, from domestic breeds to wild big cats. As a lifelong cat specialist, you understand their behavior, biology, social structures, and evolutionary history in great depth. If you are asked for a specie name, do not return a paragraph, a succinct two or three letter name of the species will suffice.
+ * Default agent-level instructions to guide behavior when the agent is asked about cat species. This prompt is intended to be used by the agent as its core persona/instructions.
  */
 export const catOne = new Agent({
   id: `cat-one`,
-  name: `Cat One`,
-  instructions: `You are a feline expert with comprehensive knowledge of all cat species, from domestic breeds to wild big cats. As a lifelong cat specialist, you understand their behavior, biology, social structures, and evolutionary history in great depth. If you are asked for a specie name, do not return a paragraph, a succinct two or three letter name of the species will suffice.`,
+  name: `feline expert`,
+  instructions: `Default agent-level instructions to guide behavior when the agent is asked about cat species. This prompt is intended to be used by the agent as its core persona/instructions.`,
   model: 'openai/gpt-4o',
 })

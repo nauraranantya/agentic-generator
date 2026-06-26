@@ -17,7 +17,7 @@ import { z } from 'zod'
 export const toolBrowserTool = createTool({
   id: 'browserTool',
   description: `Opens a headless chromium browser, retrieves page content and returns chunked textual document representation.`,
-  inputSchema: z.object({}),  // TODO: Define input schema
+  inputSchema: z.object({url: z.string()}),
   outputSchema: z.object({}),  // TODO: Define output schema
   execute: async ({ inputData }) => {
     // TODO: Implement tool logic

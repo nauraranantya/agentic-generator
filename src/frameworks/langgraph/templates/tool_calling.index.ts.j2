@@ -1,0 +1,52 @@
+import { Annotation, START, END, StateGraph } from "@langchain/langgraph";
+import { ChatOpenAI } from "@langchain/openai";
+
+const {{ graph_class_name }}Annotation = Annotation.Root({
+  messages: Annotation<any[]>({
+    reducer: (_, next) => next,
+    default: () => [],
+  }),
+});
+
+{% for node in nodes %}
+async function {{ node.ts_name }}(state: typeof {{ graph_class_name }}Annotation.State) {
+  const model = new ChatOpenAI({ model: "{{ (agents[0].model_name if agents else 'gpt-4o-mini') | ts_escape }}" });
+  const response = await model.invoke([
+    {
+      role: "system",
+      content:
+        "{{ (agents[0].prompt if agents else 'You are a helpful assistant.') | ts_escape }}" +
+        "\\nNode: {{ node.ts_name }}",
+    },
+    ...state.messages,
+  ]);
+  return { messages: [response] };
+}
+{% endfor %}
+
+const workflow = new StateGraph({{ graph_class_name }}Annotation)
+{% for node in nodes %}
+  .addNode("{{ node.ts_name }}", {{ node.ts_name }})
+{% endfor %}
+{% if nodes %}
+  .addEdge(START, "{{ nodes[0].ts_name }}")
+{% endif %}
+{% if edges %}
+{% for edge in edges %}
+  .addEdge("{{ edge.source }}", "{{ edge.target }}")
+{% endfor %}
+{% if nodes %}
+  .addEdge("{{ nodes[-1].ts_name }}", END)
+{% endif %}
+{% elif nodes|length > 1 %}
+{% for i in range(nodes|length - 1) %}
+  .addEdge("{{ nodes[i].ts_name }}", "{{ nodes[i+1].ts_name }}")
+{% endfor %}
+  .addEdge("{{ nodes[-1].ts_name }}", END)
+{% elif nodes %}
+  .addEdge("{{ nodes[0].ts_name }}", END)
+{% endif %}
+;
+
+export const graph = workflow.compile();
+graph.name = "{{ graph_name | ts_escape }}";

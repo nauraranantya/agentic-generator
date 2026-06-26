@@ -1,4 +1,4 @@
-# MastraExampleTeam/system
+# UnnamedProject
 
 Conceptual team/system that contains the agent and the workflow pattern illustrating the runtime orchestration between the agent and tool servers.
 
@@ -34,7 +34,7 @@ npm run dev
 ## 📦 Project Structure
 
 ```
-MastraExampleTeam/system/
+UnnamedProject/
 ├── src/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
@@ -54,26 +54,26 @@ MastraExampleTeam/system/
 
 ## 🤖 Agents
 
-### Stock + Weather Agent
+### LLM Agent
 
 - **ID:** `stock-weather-agent`
 - **Model:** `openai/gpt-4o`
 - **Tools:** stockPriceTool, weatherTool
 
-You are a helpful assistant that provides current stock prices. When asked about a stock, use the stock price tool to fetch the stock price. You also love to check the weather when your stock market b...
+Agent-level system instructions for independent operation (agent behavior and role)....
 
 
 ---
 
 ## 🔧 Tools
 
-### Stock Price Tool (getStockPrice)
+### stockPriceTool
 
 Tool exposing a single capability 'getStockPrice'. It fetches the last day's closing stock price for a given symbol from https://mastra-stock-data.vercel.app/api/stock-data?symbol=<SYMBOL>. Returns JS...
 
 **Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/stockPriceTool.ts`)
 
-### Weather Tool (getWeather) - SSE-backed
+### weatherTool
 
 Tool exposing 'getWeather' capability. It resolves a location via a geocoding service, calls an external weather API (open-meteo) to get current conditions and returns a JSON structure containing temp...
 
@@ -84,15 +84,14 @@ Tool exposing 'getWeather' capability. It resolves a location via a geocoding se
 
 ## 🔄 Workflows
 
-### Stock + Weather Workflow Pattern
+### stock_weather_workflow
 
 A simple sequential workflow pattern: start -> weather lookup -> stock lookup -> end. The agent orchestrates tool calls to satisfy the incoming user request.
 
-**Steps:** 4
-1. Start Step
-2. Weather Lookup Step
-3. Stock Lookup Step
-4. End Step
+**Steps:** 3
+1. start_stock_weather_step
+2. weather_lookup_step
+3. stock_lookup_step
 
 
 ---

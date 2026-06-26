@@ -1,18 +1,21 @@
 /**
- * Mastra AI Instance - MastraExampleTeam(a2aExample)
+ * Mastra AI Instance - UnnamedProject
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
+ * Goals:
+ *   - : Goal: exercise agent-to-agent communication via A2A protocol, fetch research, and create an engaging blog introduction from the research.
+ * Objectives:
+ *   - : Objective assigned to the team: gather research on agent networks and produce engaging content. Tasks ResearchTask and ContentTask contribute to this objective.
  */
 
 import { Mastra } from '@mastra/core'
 
 // Import agents
-import { myAgent } from './agents/myAgent'
-import { contentCreatorAgent } from './agents/contentCreatorAgent'
+import { myAgent, contentCreatorAgent } from './agents'
 
 // Import workflows
-import { a2AExamplePattern } from './workflows/a2AExamplePattern'
+import { a2AExamplePattern } from './workflows'
 
 /**
  * Mastra instance with registered agents, workflows, and memory.

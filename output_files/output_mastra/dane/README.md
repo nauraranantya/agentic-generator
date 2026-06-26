@@ -1,4 +1,4 @@
-# MastraAgentSystem
+# Mastraagentsystem
 
 Collection of agents and tools composing the CLI assistant 'Dane' and associated workflows.
 
@@ -34,17 +34,17 @@ npm run dev
 ## 📦 Project Structure
 
 ```
-MastraAgentSystem/
+Mastraagentsystem/
 ├── src/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
 │       ├── agents/            # Agent definitions
-│       │   └── agentDane.ts
-│       │   └── agentDaneCommitMessage.ts
-│       │   └── agentDaneIssueLabeler.ts
-│       │   └── agentDaneLinkChecker.ts
-│       │   └── agentDanePackagePublisher.ts
-│       │   └── agentDaneNewContributor.ts
+│       │   └── dane.ts
+│       │   └── daneCommitMessage.ts
+│       │   └── daneIssueLabeler.ts
+│       │   └── daneLinkChecker.ts
+│       │   └── danePackagePublisher.ts
+│       │   └── daneNewContributor.ts
 │       ├── tools/             # Tool definitions
 │       │   └── toolExecaTool.ts
 │       │   └── toolFsTool.ts
@@ -75,69 +75,51 @@ MastraAgentSystem/
 
 ## 🤖 Agents
 
-### dane
+### assistant
 
 - **ID:** `dane`
 - **Model:** `anthropic/claude-3-5-sonnet-20241022`
 - **Tools:** toolExecaTool, toolFsTool, toolListEvents, toolBrowserTool, toolGoogleSearch, toolReadPdf
 
-You are Dane, my assistant and one of my best friends. We are an ace team!
-You help me with my code, write tests, and even deploy my code to the cloud!
+You are assistant....
 
-DO NOT ATTEMPT TO USE GENERAL KNOWLEDGE! We are...
-
-### dane-commit-message
+### LLM Agent
 
 - **ID:** `dane-commit-message`
 - **Model:** `anthropic/claude-3-5-sonnet-20241022`
 - **Tools:** toolFsTool
 
-You are Dane, the ultimate GitHub operator.
-You help engineers generate commit messages.
+You are LLM Agent....
 
-GENERATE A SCOPE FOR THE COMMIT MESSAGE IF NECESSARY.
-FIGURE OUT THE BEST TOP LEVEL SEMANTIC MATCH TO USE AS T...
-
-### dane-issue-labeler
+### LLM Agent
 
 - **ID:** `dane-issue-labeler`
 - **Model:** `anthropic/claude-3-5-sonnet-20241022`
 
-You are Dane, the ultimate GitHub operator.
-You help engineers label their issues....
+You are LLM Agent....
 
-### dane-link-checker
+### LLM Agent
 
 - **ID:** `dane-link-checker`
 - **Model:** `anthropic/claude-3-5-sonnet-20241022`
 - **Tools:** toolSlackMcp
 
-You are Dane, the link checker for Mastra AI. You report on broken links whenever you see them.
-Make sure to include the url in the message.
+You are LLM Agent....
 
-## Style Guide
-- Use active voice
-- Keep descriptions conc...
-
-### dane-package-publisher
+### LLM Agent
 
 - **ID:** `dane-package-publisher`
 - **Model:** `anthropic/claude-3-5-sonnet-20241022`
 - **Tools:** toolPnpmBuild, toolPnpmChangesetStatus, toolPnpmChangesetPublish, toolActiveDistTag
 
-I am Dane, a specialized agent for managing pnpm package publications in monorepos. My core responsibilities are:
+You are LLM Agent....
 
-1. Package Analysis:
-   - Identify packages requiring publication across the monorepo...
-
-### dane-new-contributor
+### LLM Agent
 
 - **ID:** `dane-new-contributor`
 - **Model:** `anthropic/claude-3-5-sonnet-20241022`
 
-You're Dane, the best GitHub open-source maintainer in the world.
-Your tone is friendly and joyful.
-When a new contributor creates a pull request, they see your message first....
+You are LLM Agent....
 
 
 ---
@@ -219,74 +201,49 @@ Sets an npm dist tag on a package using npm dist-tag add <pkg>@<version> latest.
 
 Workflow to generate and optionally commit a sensible git commit message for staged changes.
 
-**Steps:** 5
-1. getDiff
-2. readConventionalCommitSpec
-3. generateMessage
-4. confirmation
-5. commit
+**Steps:** 0
 
 ### telephoneGame workflow
 
 Play a game of telephone: starts a message, passes it through participants with optional modification by an agent and supports suspension/resume awaiting user confirmation.
 
-**Steps:** 5
-1. stepA1
-2. stepA2
-3. stepB2
-4. stepC2
-5. stepD2
+**Steps:** 0
 
 ### link-checker workflow
 
 Checks a target URL for broken links using linkinator and posts results to Slack via MCP.
 
-**Steps:** 2
-1. get-broken-links
-2. report-broken-links
+**Steps:** 0
 
 ### changelog workflow
 
 Generates weekly changelogs by scanning a predefined list of module paths, computing diffs between two dates, and asking an agent to summarize per-module changes; posts combined changelog to Slack.
 
-**Steps:** 2
-1. stepA1
-2. stepA2
+**Steps:** 0
 
 ### pnpm-changset-publisher
 
 Builds all packages, publishes changesets and sets dist-tags for monorepo packages.
 
-**Steps:** 3
-1. buildPackages
-2. publishPackages
-3. setAllDistTags
+**Steps:** 0
 
 ### message (entry) workflow
 
 Interactive chat workflow: prompt user for message and then have dane agent respond (streaming or non-streaming).
 
-**Steps:** 2
-1. message-input
-2. message-output
+**Steps:** 0
 
 ### github-issue-labeler workflow
 
 Fetch GitHub issue contents, obtain available labels, ask agent to select labels and apply them via GitHub integration.
 
-**Steps:** 3
-1. getIssue
-2. labelIssue
-3. applyLabels
+**Steps:** 0
 
 ### github-first-contributor-message workflow
 
 On first contributor PR, generate welcoming message combining PR title, body, diff and Mastra docs; post as PR comment.
 
-**Steps:** 3
-1. getPullRequest
-2. message-generator
-3. create-message
+**Steps:** 0
 
 
 ---

@@ -1,5 +1,5 @@
 """
-Auto-generated AutoGen Team: MyCrew
+Auto-generated AutoGen Team: UnnamedProject
 Goals:
   - : 
 Objectives:
@@ -32,7 +32,7 @@ from autogen_ext.models.openai import (
 )
 
 model_client = OpenAIChatCompletionClient(
-    model="gpt-4-turbo"
+    model="gpt-4o-mini"
 )
 
 
@@ -46,7 +46,7 @@ def coding_environment_tool_impl(
 ) -> str:
     """
     AgentO Tool:
-    codingenvironmenttool
+    coding_environment_tool
 
     Description:
     Conceptual tool representing the environment used by Executor to run code. Config captured as key/value on Config individual.
@@ -130,9 +130,6 @@ Writer
 Background:
 Writer: write blogs based on the code execution results and take feedback from the admin to refine the blog.
 """,
-    tools=[
-        coding_environment_tool,
-    ],
 )
 
 

@@ -1,4 +1,4 @@
-# TravelaiSystem(mastraExampleApp)
+# TravelAiSystemMastraexampleapp
 
 
 
@@ -34,7 +34,7 @@ npm run dev
 ## 📦 Project Structure
 
 ```
-TravelaiSystem(mastraExampleApp)/
+TravelAiSystemMastraexampleapp/
 ├── src/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
@@ -60,20 +60,20 @@ TravelaiSystem(mastraExampleApp)/
 
 ## 🤖 Agents
 
-### travel-agent
+### LLM Agent
 
 - **ID:** `travel-agent`
 - **Model:** `openai/gpt-4.1`
 - **Tools:** searchFlightsTool, searchHotelsTool, searchAttractionsTool, searchAirbnbLocationTool, searchAirbnbTool
 
-You are an expert travel agent responsible for finding a flight, hotel, and three attractions for a user. You will be given a set of user preferences along with some tools and you will need to find th...
+Agent-level instruction used on agent initialization...
 
-### travel-analyzer
+### LLM Agent
 
 - **ID:** `travel-analyzer`
 - **Model:** `openai/gpt-4.1`
 
-You are an expert travel agent responsible for finding a flight, hotel, and three attractions for a user. You will be given a set of user preferences along with some data to find the best options for ...
+Analyzer agent base instructions....
 
 
 ---
@@ -120,26 +120,26 @@ Searches for Airbnb in a specified location. Place is a cityId like 20015732 for
 
 
 **Steps:** 5
-1. outboundFlight
-2. returnFlight
-3. accommodation
-4. airbnbLocation
-5. attraction
+1. Find Outbound Flight
+2. Find Return Flight
+3. Find Accommodation (Hotel or Airbnb)
+4. Find Accommodation (Hotel or Airbnb)
+5. Find Attractions
 
 ### airbnb-flow
 
 
 
 **Steps:** 2
-1. airbnbLocation
-2. accommodation
+1. Find Accommodation (Hotel or Airbnb)
+2. Find Accommodation (Hotel or Airbnb)
 
 ### syncCsvData
 
 
 
 **Steps:** 1
-1. sync-csv-data-step
+1. Sync CSV Data Task
 
 
 ---

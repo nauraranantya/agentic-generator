@@ -1,5 +1,5 @@
 /**
- * Mastra AI Instance - MastraServer
+ * Mastra AI Instance - UnnamedProject
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
@@ -8,10 +8,10 @@
 import { Mastra } from '@mastra/core'
 
 // Import agents
-import { birdCheckerAgent } from './agents/birdCheckerAgent'
+import { birdChecker } from './agents'
 
 // Import workflows
-import { imageMetadataWorkflow } from './workflows/imageMetadataWorkflow'
+import { imageMetadataWorkflow } from './workflows'
 
 /**
  * Mastra instance with registered agents, workflows, and memory.
@@ -20,7 +20,7 @@ import { imageMetadataWorkflow } from './workflows/imageMetadataWorkflow'
  */
 export const mastra = new Mastra({
   agents: {
-    birdCheckerAgent,
+    birdChecker,
   },
   workflows: {
     imageMetadataWorkflow,

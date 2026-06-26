@@ -27,18 +27,22 @@ Resources:
 
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
+from crewai.tools import tool
 
 from crewai_tools import SerperDevTool, ScrapeWebsiteTool
 
 # ===========================================================
 # Tool Instances
 # ===========================================================
-tool_serperdev = SerperDevTool(name="SerperDevTool", name="Search API tool, configuration may include API key and search parameters (not included here).", note="SerperDevTool", note="Search API tool, configuration may include API key and search parameters (not included here).")
-tool_scrapewebsite = ScrapeWebsiteTool(name="ScrapeWebsiteTool", name="Generic HTML scraping tool used to extract elements by CSS selectors.", note="ScrapeWebsiteTool", note="Generic HTML scraping tool used to extract elements by CSS selectors.")
+tool_serperdev = SerperDevTool(name="Search API tool, configuration may include API key and search parameters (not included here).", note="Search API tool, configuration may include API key and search parameters (not included here).")
+tool_scrapewebsite = ScrapeWebsiteTool(name="Generic HTML scraping tool used to extract elements by CSS selectors.", note="Generic HTML scraping tool used to extract elements by CSS selectors.")
 # TODO: tool_linkedin — unknown tool class "RetrieveLinkedInprofiles"
-#   Description: Retrieve LinkedIn profiles given a list of skills. Input is a comma-separated li
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-# tool_linkedin = SomeCustomTool(name="LinkedInTool", name="This tool requires a LinkedIn session cookie available via environment variable LINKEDIN_COOKIE. The client will navigate linkedin.com and extract profiles.", note="LinkedInTool", note="This tool requires a LinkedIn session cookie available via environment variable LINKEDIN_COOKIE. The client will navigate linkedin.com and extract profiles.")
+@tool("RetrieveLinkedInprofiles")
+def tool_linkedin(*args, **kwargs) -> str:
+    """Retrieve LinkedIn profiles given a list of skills. Input is a comma-separated list of skills. Return"""
+    return "tool_linkedin result"
+
 
 
 
@@ -56,7 +60,7 @@ class RecruitmentCrew:
         return Agent(
             config=self.agents_config['researcher'],
             tools=[tool_serperdev, tool_scrapewebsite, tool_linkedin],
-            allow_delegation=False,
+            allow_delegation=True,
             verbose=True,
         )
 
@@ -65,7 +69,7 @@ class RecruitmentCrew:
         return Agent(
             config=self.agents_config['matcher'],
             tools=[tool_serperdev, tool_scrapewebsite],
-            allow_delegation=False,
+            allow_delegation=True,
             verbose=True,
         )
 
@@ -74,7 +78,7 @@ class RecruitmentCrew:
         return Agent(
             config=self.agents_config['communicator'],
             tools=[tool_serperdev, tool_scrapewebsite],
-            allow_delegation=False,
+            allow_delegation=True,
             verbose=True,
         )
 
@@ -82,7 +86,7 @@ class RecruitmentCrew:
     def reporter(self) -> Agent:
         return Agent(
             config=self.agents_config['reporter'],
-            allow_delegation=False,
+            allow_delegation=True,
             verbose=True,
         )
 

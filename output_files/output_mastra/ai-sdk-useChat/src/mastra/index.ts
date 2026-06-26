@@ -3,16 +3,18 @@
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
+ * Human Agents:
+ *   - developer_fajar_ekaputra ()
+ *   - developer_kabul_kurniawan ()
  */
 
 import { Mastra } from '@mastra/core'
 
 // Import agents
-import { weatherAgent } from './agents/weatherAgent'
-import { planningAgent } from './agents/planningAgent'
+import { weatherAgent, planningAgent } from './agents'
 
 // Import workflows
-import { weatherWorkflow } from './workflows/weatherWorkflow'
+import { weatherWorkflow } from './workflows'
 
 /**
  * Mastra instance with registered agents, workflows, and memory.

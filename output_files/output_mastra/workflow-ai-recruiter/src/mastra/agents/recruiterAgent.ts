@@ -11,11 +11,11 @@ import { Agent } from '@mastra/core/agent'
  * Recruiter Agent
  * 
  * Instructions:
- * You are a recruiter.
+ * Agent-level static instruction used as the recruiter's persona/instruction set for generation.
  */
 export const recruiterAgent = new Agent({
   id: `recruiter-agent`,
   name: `Recruiter Agent`,
-  instructions: `You are a recruiter.`,
+  instructions: `Agent-level static instruction used as the recruiter's persona/instruction set for generation.`,
   model: 'openai/gpt-4o-mini',
 })

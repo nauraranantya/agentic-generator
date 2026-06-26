@@ -17,7 +17,7 @@ import { z } from 'zod'
 export const toolGoogleSearch = createTool({
   id: 'googleSearch',
   description: `Performs a Google search and returns a list of result URLs.`,
-  inputSchema: z.object({}),  // TODO: Define input schema
+  inputSchema: z.object({query: z.string()}),
   outputSchema: z.object({}),  // TODO: Define output schema
   execute: async ({ inputData }) => {
     // TODO: Implement tool logic

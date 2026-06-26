@@ -17,7 +17,7 @@ import { z } from 'zod'
 export const toolPnpmBuild = createTool({
   id: 'pnpmBuild',
   description: `Build a package using pnpm run build at provided packagePath. Input: {name, packagePath}.`,
-  inputSchema: z.object({}),  // TODO: Define input schema
+  inputSchema: z.object({name: z.string(), packagePath: z.string()}),
   outputSchema: z.object({}),  // TODO: Define output schema
   execute: async ({ inputData }) => {
     // TODO: Implement tool logic

@@ -1,36 +1,30 @@
 /**
- * Agent: Weather Agent
+ * Agent: Weather assistant
  * ID: weather-agent
  * 
  * Auto-generated from AgentO Knowledge Graph
+ * Capabilities:
+ *   - fetch-current-weather: Capability to obtain current weather information for a specified location by calling geocoding and weather APIs and mapping the response to a structured output.
  */
 
 import { Agent } from '@mastra/core/agent'
 
 // Import tools
-import { getWeatherTool } from '../tools/getWeatherTool'
+import { getWeatherTool } from '../tools'
 
 // Import memory
-import { weatherAgentMemory } from '../memory/weatherAgentMemory'
+import { weatherAgentMemory } from '../memory'
 
 /**
- * Weather Agent
+ * Weather assistant
  * 
  * Instructions:
- * You are a helpful weather assistant that provides accurate weather information.  Your primary function is to help users get weather details for specific locations. When responding: - Always ask for a location if none is provided - If giving a location with multiple parts (e.g. "New York, NY"), use the most relevant part (e.g. "New York") - Include relevant details like humidity, wind conditions, and precipitation - Keep responses concise but informative  Use the weatherTool to fetch current weather data.
+ * You are Weather assistant.
  */
 export const weatherAgent = new Agent({
   id: `weather-agent`,
-  name: `Weather Agent`,
-  instructions: `You are a helpful weather assistant that provides accurate weather information.
-
-Your primary function is to help users get weather details for specific locations. When responding:
-- Always ask for a location if none is provided
-- If giving a location with multiple parts (e.g. "New York, NY"), use the most relevant part (e.g. "New York")
-- Include relevant details like humidity, wind conditions, and precipitation
-- Keep responses concise but informative
-
-Use the weatherTool to fetch current weather data.`,
+  name: `Weather assistant`,
+  instructions: `You are Weather assistant.`,
   model: 'openai/gpt-4o',
   tools: {
     getWeatherTool,

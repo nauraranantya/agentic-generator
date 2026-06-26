@@ -82,17 +82,17 @@ Storage plugin used by Mastra for workflow snapshots....
 
 
 **Steps:** 1
-1. invoke data-processing (nested workflow) step
+1. Invoke nested data-processing workflow
 
 ### data-processing
 
 
 
 **Steps:** 4
-1. stepOne
-2. stepTwo
-3. stepThree
-4. stepFour
+1. stepOne task (double input)
+2. stepTwo task (suspend/resume increment)
+3. stepThree task (triple incrementedValue)
+4. stepFour task (isEven check)
 
 
 ---

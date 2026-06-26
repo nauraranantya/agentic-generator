@@ -10,12 +10,12 @@ import { z } from 'zod'
 // ── Workflow Steps ──
 
 const syncCsvStep = createStep({
-  id: 'sync-csv-data-step',
+  id: 'Sync CSV Data Task',
   inputSchema: z.object({}),
   outputSchema: z.object({}),
   execute: async ({ inputData }) => {
     // TODO: Implement step logic
-    throw new Error('sync-csv-data-step not implemented yet')
+    throw new Error('Sync CSV Data Task not implemented yet')
   },
 })
 

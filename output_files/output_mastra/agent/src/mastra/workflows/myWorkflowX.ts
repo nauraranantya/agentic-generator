@@ -22,7 +22,7 @@ import { nestedWorkflow } from './nestedWorkflow'
  */
 export const myWorkflowX = createWorkflow({
   id: 'my-workflow',
-  inputSchema: z.object({}),
+  inputSchema: z.object({Workflow_that_wraps_the_nested_data: z.string()}),
   outputSchema: z.object({}),
   steps: [],
 })

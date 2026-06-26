@@ -17,7 +17,7 @@ import { z } from 'zod'
 export const searchFlightsTool = createTool({
   id: 'Get Flight Info (searchFlights)',
   description: `Fetches flight information for a given date range, origin and destination. Origin and Destination are Airport codes like DFW.AIRPORT or SEA.AIRPORT`,
-  inputSchema: z.object({}),  // TODO: Define input schema
+  inputSchema: z.object({startDate: z.string(), endDate: z.string(), origin: z.string(), destination: z.string()}),
   outputSchema: z.object({}),  // TODO: Define output schema
   execute: async ({ inputData }) => {
     // TODO: Implement tool logic

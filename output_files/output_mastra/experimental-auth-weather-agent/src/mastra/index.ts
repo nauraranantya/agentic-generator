@@ -1,5 +1,5 @@
 /**
- * Mastra AI Instance - MastraServer/system
+ * Mastra AI Instance - Mastraserversystem
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
@@ -8,10 +8,10 @@
 import { Mastra } from '@mastra/core'
 
 // Import agents
-import { weatherAgent } from './agents/weatherAgent'
+import { weatherAgent } from './agents'
 
 // Import workflows
-import { weatherWorkflow } from './workflows/weatherWorkflow'
+import { weatherWorkflow } from './workflows'
 
 /**
  * Mastra instance with registered agents, workflows, and memory.

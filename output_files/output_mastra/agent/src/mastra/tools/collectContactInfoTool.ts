@@ -12,7 +12,7 @@ import { z } from 'zod'
 /**
  * collectContactInfo
  * 
- * Implementation: Tool ID: collectContactInfo
+ * Implementation: Tool ID: collectContactInfo     Description: Collects user contact information through elicitation (interactive).     Input schema: { reason?: string }     Behavior:       - Calls MCP elicitation session to send a request with JSON schema (name, email, phone).       - Waits for user response via an elicitation handler. Interprets actions: accept/reject/cancel.       - Returns a string summarizing collection outcome or an error.     Elicitation requestedSchema (JSON):       {         type: 'object',         properties: {           name: { type: 'string', title: 'Full Name', description: 'Your full name' },           email: { type: 'string', title: 'Email Address', description: 'Your email address', format: 'email' },           phone: { type: 'string', title: 'Phone Number', description: 'Your phone number (optional)' }         },         required: ['name','email']       }
  */
 export const collectContactInfoTool = createTool({
   id: 'collectContactInfo',
@@ -33,12 +33,12 @@ export const collectContactInfoTool = createTool({
         },
         required: ['name','email']
       }`,
-  inputSchema: z.object({ reason: z.string() }),
+  inputSchema: z.object({Tool_ID: z.string(), Description: z.string(), Interprets_actions: z.string()}),
   outputSchema: z.object({}),  // TODO: Define output schema
   execute: async ({ inputData }) => {
     // TODO: Implement tool logic
     // 
-    // Description: Tool ID: collectContactInfo
+    // Description: Tool ID: collectContactInfo     Description: Collects user contact information through elicitation (interactive).     Input schema: { reason?: string }     Behavior:       - Calls MCP elicitation session to send a request with JSON schema (name, email, phone).       - Waits for user response via an elicitation handler. Interprets actions: accept/reject/cancel.       - Returns a string summarizing collection outcome or an error.     Elicitation requestedSchema (JSON):       {         type: 'object',         properties: {           name: { type: 'string', title: 'Full Name', description: 'Your full name' },           email: { type: 'string', title: 'Email Address', description: 'Your email address', format: 'email' },           phone: { type: 'string', title: 'Phone Number', description: 'Your phone number (optional)' }         },         required: ['name','email']       }
     // 
     // Implementation should:
     // 1. Use inputData according to inputSchema

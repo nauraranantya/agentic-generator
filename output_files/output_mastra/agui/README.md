@@ -52,15 +52,12 @@ MastraSystem/
 
 ## 🤖 Agents
 
-### Weather Agent
+### weather assistant
 
 - **ID:** `weather-agent`
 - **Model:** `openai/gpt-4o`
 
-You are a helpful weather assistant that provides accurate weather information.
-
-      Your primary function is to help users get weather details for specific locations. When responding:
-      - Alway...
+You are weather assistant....
 
 
 ---
@@ -78,7 +75,7 @@ No tools defined in this project.
 
 
 **Steps:** 1
-1. myNetwork Step 1
+1. Network Supervisor Task
 
 
 ---

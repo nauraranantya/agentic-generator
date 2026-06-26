@@ -54,25 +54,20 @@ MastraApplicationSystem/
 
 ## 🤖 Agents
 
-### Weather Agent
+### weather assistant
 
 - **ID:** `weather-agent`
 - **Model:** `anthropic/claude-3-5-sonnet-20241022`
 - **Tools:** getWeatherTool
 
-You are a helpful weather assistant that provides accurate weather information.
+You are weather assistant....
 
-      Your primary function is to help users get weather details for specific locations. When responding:
-      - Alway...
-
-### Weather Planning Agent
+### LLM Agent
 
 - **ID:** `planning-agent`
 - **Model:** `anthropic/claude-3-5-sonnet-20241022`
 
-You are a local activities and travel expert who excels at weather-based planning. Analyze the weather data and provide practical activity recommendations.
-
-        For each day in the forecast, struc...
+You are LLM Agent....
 
 
 ---
@@ -95,8 +90,8 @@ Get current weather for a location. Tool accepts an input { location: string } a
 Workflow that fetches a weather forecast for a given city, then plans activities based on the forecast.
 
 **Steps:** 2
-1. fetch-weather
-2. plan-activities
+1. Fetch Weather
+2. Plan Activities
 
 
 ---

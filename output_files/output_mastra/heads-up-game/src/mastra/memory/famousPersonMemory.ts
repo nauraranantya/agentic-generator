@@ -19,6 +19,6 @@ import { LibSQLStore } from '@mastra/libsql'
 export const famousPersonMemory = new Memory({
   storage: new LibSQLStore({
     id: 'mastra-libsql-store',
-    url: process.env.DATABASE_URL ?? 'file:local.db',
+    memory.options: '{"lastMessages":5,"semanticRecall":{"topK":10,"messageRange":1},"resource":"heads-up-game","thread":"famous-person-generator"}',
   }),
 })

@@ -3,36 +3,29 @@
  * ID: personal-assistant
  * 
  * Auto-generated from AgentO Knowledge Graph
+ * Objectives:
+ *   - : 
+ * Capabilities:
+ *   - conversational: Capability to hold a multi-turn conversation and respond to user inputs.
+ *   - memory_update: Capability to update and persist working memory based on conversation content; expects <working_memory> tags to be used in outputs.
+ *   - greet_returning_user: Capability to detect returning users and greet them referencing remembered information.
  */
 
 import { Agent } from '@mastra/core/agent'
 
 // Import memory
-import { memoryDemo } from '../memory/memoryDemo'
+import { memoryDemo } from '../memory'
 
 /**
  * Personal Assistant
  * 
  * Instructions:
- * You are a helpful personal assistant with persistent memory across ALL conversations.  🆕 IMPORTANT: You have resource-scoped working memory! This means: - Everything you learn about this user persists across ALL conversation threads - Even if they start a completely new conversation, you'll remember them - You should build up a comprehensive profile of the user over time  Always use <working_memory> tags to update what you know about the user: - Their name and personal details - Their interests and preferences   - Their goals and what they're working on - Any important context from previous conversations  When you first meet someone, ask for their name and learn about them. In subsequent conversations (even new threads), greet them by name and reference what you remember!
+ * Agent instructions configured at creation time (Agent.instructions in source code).
  */
 export const personalAssistant = new Agent({
   id: `personal-assistant`,
   name: `Personal Assistant`,
-  instructions: `You are a helpful personal assistant with persistent memory across ALL conversations.
-
-🆕 IMPORTANT: You have resource-scoped working memory! This means:
-- Everything you learn about this user persists across ALL conversation threads
-- Even if they start a completely new conversation, you'll remember them
-- You should build up a comprehensive profile of the user over time
-
-Always use <working_memory> tags to update what you know about the user:
-- Their name and personal details
-- Their interests and preferences  
-- Their goals and what they're working on
-- Any important context from previous conversations
-
-When you first meet someone, ask for their name and learn about them. In subsequent conversations (even new threads), greet them by name and reference what you remember!`,
+  instructions: `Agent instructions configured at creation time (Agent.instructions in source code).`,
   model: 'openai/gpt-4o-mini',
   memory: memoryDemo,
 })

@@ -8,12 +8,13 @@ import { createWorkflow, createStep } from '@mastra/core/workflows'
 import { z } from 'zod'
 
 // Import agents used by workflow steps
-import { personalAssistant } from '../agents/personalAssistant'
+import { personalAssistant } from '../agents'
 
 // ── Workflow Steps ──
 
 const prwmStartStep = createStep({
-  id: 'Start Conversation Step',
+  id: 'prwm_start_step',
+  description: `Start a new conversation thread. System message template (in source):`,
   inputSchema: z.object({}),
   outputSchema: z.object({}),
   execute: async ({ inputData }) => {
@@ -21,12 +22,13 @@ const prwmStartStep = createStep({
     // This step uses agent: personalAssistant
     // const result = await personalAssistant.generate('...')
     // TODO: Implement step logic
-    throw new Error('Start Conversation Step not implemented yet')
+    throw new Error('prwm_start_step not implemented yet')
   },
 })
 
 const prwmUpdateMemoryStep = createStep({
-  id: 'Process Memory Updates Step',
+  id: 'prwm_update_memory_step',
+  description: `Inspect conversation content and persist updates to per-resource working memory. Source code expects the agent to output updates wrapped with <working_memory> tags; updates are masked in the stream and persisted to LibSQL. UI uses a spinner during persistence but streaming semantics are an implementation detail (not modeled).`,
   inputSchema: z.object({}),
   outputSchema: z.object({}),
   execute: async ({ inputData }) => {
@@ -34,12 +36,13 @@ const prwmUpdateMemoryStep = createStep({
     // This step uses agent: personalAssistant
     // const result = await personalAssistant.generate('...')
     // TODO: Implement step logic
-    throw new Error('Process Memory Updates Step not implemented yet')
+    throw new Error('prwm_update_memory_step not implemented yet')
   },
 })
 
 const prwmInteractiveChatStep = createStep({
-  id: 'Interactive Chat Loop Step',
+  id: 'prwm_interactive_chat_step',
+  description: `Receive user messages, call the agent with memory context (resource + thread), stream responses to the user. The loop terminates when the user types 'exit' or 'quit'. The code obtains user input via Readline; runtime specifics are not modeled. The agent should use stored working memory where relevant.`,
   inputSchema: z.object({}),
   outputSchema: z.object({}),
   execute: async ({ inputData }) => {
@@ -47,17 +50,7 @@ const prwmInteractiveChatStep = createStep({
     // This step uses agent: personalAssistant
     // const result = await personalAssistant.generate('...')
     // TODO: Implement step logic
-    throw new Error('Interactive Chat Loop Step not implemented yet')
-  },
-})
-
-const prwmEndStep = createStep({
-  id: 'End Step',
-  inputSchema: z.object({}),
-  outputSchema: z.object({}),
-  execute: async ({ inputData }) => {
-    // TODO: Implement step logic
-    throw new Error('End Step not implemented yet')
+    throw new Error('prwm_interactive_chat_step not implemented yet')
   },
 })
 
@@ -70,10 +63,9 @@ export const perResourceWorkingMemoryPattern = createWorkflow({
   id: 'Per-Resource Working Memory Pattern',
   inputSchema: z.object({}),
   outputSchema: z.object({}),
-  steps: [prwmStartStep, prwmUpdateMemoryStep, prwmInteractiveChatStep, prwmEndStep],
+  steps: [prwmStartStep, prwmUpdateMemoryStep, prwmInteractiveChatStep],
 })
   .then(prwmStartStep)
   .then(prwmUpdateMemoryStep)
   .then(prwmInteractiveChatStep)
-  .then(prwmEndStep)
   .commit()

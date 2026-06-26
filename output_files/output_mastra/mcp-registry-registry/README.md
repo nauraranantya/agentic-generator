@@ -1,4 +1,4 @@
-# MastraRuntime
+# UnnamedProject
 
 Mastra configured with a single MCP Registry Agent and a Pino logger. This Team represents the runtime composition (agents, system configuration).
 
@@ -34,7 +34,7 @@ npm run dev
 ## 📦 Project Structure
 
 ```
-MastraRuntime/
+UnnamedProject/
 ├── src/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
@@ -54,26 +54,26 @@ MastraRuntime/
 
 ## 🤖 Agents
 
-### MCP Registry Agent
+### registry
 
 - **ID:** `mcp-registry-agent`
 - **Model:** `openai/gpt-4o`
 - **Tools:** mcpClient, mcpRegistryTool
 
-You are a helpful assistant that provides information about MCP registries. You can search for registries by ID, tag, or name....
+Agent bootstrap prompt / instruction used to guide agent behavior independent of a specific task....
 
 
 ---
 
 ## 🔧 Tools
 
-### MCP Client
+### mcpClient
 
 Client used by the Mastra configuration to enumerate available MCP tool endpoints. In the source it is an MCPClient instance with server configuration; provides a listTools() capability....
 
 **Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/mcpClient.ts`)
 
-### MCP Registry Tool
+### mcpRegistryTool
 
 Tool instance representing the MCP registry server process launched via the configured command. In the source the agent's tools are populated by await mcp.listTools(); the registry server is configure...
 
@@ -84,14 +84,14 @@ Tool instance representing the MCP registry server process launched via the conf
 
 ## 🔄 Workflows
 
-### Mastra single-agent registry lookup workflow
+### mastra_simple_workflow
 
 A minimal workflow pattern capturing a single LLM agent (MCP Registry Agent) that uses a client to enumerate tools and perform registry lookup tasks.
 
 **Steps:** 3
-1. Initialize Agent
-2. Perform registry search
-3. Complete
+1. start_step_initialize_agent
+2. step_perform_search
+3. end_step_complete
 
 
 ---

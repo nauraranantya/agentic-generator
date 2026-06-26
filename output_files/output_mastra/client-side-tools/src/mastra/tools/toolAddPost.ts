@@ -17,7 +17,7 @@ import { z } from 'zod'
 export const toolAddPost = createTool({
   id: 'addPost',
   description: `Client-side tool that adds a new post to the 'posts' state array. Declared in clientSideToolCallsMap in src/App.tsx.`,
-  inputSchema: z.object({}),  // TODO: Define input schema
+  inputSchema: z.object({type: z.string(), properties: z.object({}), required: z.array(z.string())}),
   outputSchema: z.object({}),  // TODO: Define output schema
   execute: async ({ inputData }) => {
     // TODO: Implement tool logic

@@ -70,75 +70,75 @@ MastraSystem/
 
 ## 🤖 Agents
 
-### Chef Agent
+### LLM Agent
 
 - **ID:** `chef-agent`
 - **Model:** `openai/gpt-4o-mini`
 - **Tools:** cookingTool, weatherInfoTool
 
-...
+Return a useful recipe given an ingredient and available tools/equipment....
 
-### Chef Agent Responses
+### LLM Agent
 
 - **ID:** `chef-agent-responses`
 - **Model:** `openai/gpt-4o`
 - **Tools:** cookingTool, weatherInfoTool
 
-...
+You are LLM Agent....
 
-### Chef Agent V2 Model
+### LLM Agent
 
 - **ID:** `chef-model-v2-agent`
 - **Model:** `openai/gpt-4o-mini`
 - **Tools:** cookingTool, weatherInfoTool
 
-...
+You are LLM Agent....
 
-### Dynamic Agent
+### LLM Agent
 
 - **ID:** `dynamic-agent`
-- **Model:** `openai/gpt-4o`
+- **Model:** `openai/gpt-4o-mini`
 - **Tools:** cookingTool
 
-...
+You are LLM Agent....
 
-### Agent That Harasses You
+### LLM Agent
 
 - **ID:** `agent-that-harasses-you`
 - **Model:** `openai/gpt-4o`
 
-...
+You are LLM Agent....
 
-### Error Agent
+### LLM Agent
 
 - **ID:** `error-agent`
 - **Model:** `openai/gpt-4o-mini`
 
-...
+You are LLM Agent....
 
-### Chef Network
+### LLM Agent
 
 - **ID:** `network-agent`
 - **Model:** `openai/gpt-4o-mini`
 - **Tools:** cookingTool, weatherInfoTool
 
-...
+You are LLM Agent....
 
-### Weather Agent
+### LLM Agent
 
 - **ID:** `weather-agent`
 - **Model:** `openai/gpt-4o-mini`
 - **Tools:** weatherInfoTool
 
-...
+You are LLM Agent....
 
-### Eval Agent
+### LLM Agent
 
 - **ID:** `eval-agent`
 - **Model:** `openai/gpt-4o`
 - **Tools:** weatherInfoTool
 
-...
+You are LLM Agent....
 
 
 ---
@@ -220,8 +220,8 @@ Tool ID: collectContactInfo
 Workflow: Returns a recipe based on an ingredient. Input: { ingredient: string }. Output: { result: string }.
 
 **Steps:** 2
-1. my-step
-2. my-step-2
+1. task:my-step
+2. task:my-step-2
 
 ### lessComplexWorkflow
 
@@ -237,15 +237,15 @@ Complex workflow that:
     Input/Output: strings and counters as described by steps.
 
 **Steps:** 9
-1. add-letter
-2. add-letter-b
-3. add-letter-c
-4. add-letter-with-count
-5. suspend-resume
-6. short-text
-7. long-text
-8. nested-text-processor
-9. final-step
+1. task:add-letter
+2. task:add-letter-b
+3. task:add-letter-c
+4. task:add-letter-with-count
+5. task:suspend-resume
+6. task:short-text
+7. task:long-text
+8. task:nested-text-processor
+9. task:final-step
 
 ### data-processing
 
@@ -254,10 +254,10 @@ Nested workflow (id: data-processing). Steps: stepOne -> stepTwo -> stepThree ->
     Input: { inputValue: number }, Output: { isEven: boolean }.
 
 **Steps:** 4
-1. stepOne
-2. stepTwo
-3. stepThree
-4. stepFour
+1. task:stepOne
+2. task:stepTwo
+3. task:stepThree
+4. task:stepFour
 
 ### my-workflow
 

@@ -1,4 +1,4 @@
-# Mastra(agenticSystem)
+# Mastraagenticsystem
 
 Top-level system instance that composes agents, workflows, storage and logger used by the Heads-Up example.
 
@@ -34,12 +34,12 @@ npm run dev
 ## 📦 Project Structure
 
 ```
-Mastra(agenticSystem)/
+Mastraagenticsystem/
 ├── src/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
 │       ├── agents/            # Agent definitions
-│       │   └── famousPersonAgent.ts
+│       │   └── famousPersonGenerator.ts
 │       │   └── gameAgent.ts
 │       │   └── guessVerifierAgent.ts
 │       ├── tools/             # Tool definitions
@@ -56,35 +56,27 @@ Mastra(agenticSystem)/
 
 ## 🤖 Agents
 
-### Famous Person Generator (agent)
+### generator
 
 - **ID:** `famous-person-generator`
 - **Model:** `openai/gpt-4o`
 - **Tools:** libSqlVectorTool
 
-You are a famous person generator for a "Heads Up" guessing game.
+Agent instructions and constraints for generating a single famous person's name....
 
-Generate the name of a well-known famous person who:
-- Is recognizable to most people
-- Has distinctive characteristics that can be d...
-
-### Game Agent
+### game-assistant
 
 - **ID:** `game-agent`
 - **Model:** `openai/gpt-4o`
 
-You are a helpful game assistant for a "Heads Up" guessing game.
+Agent instructions and required structured JSON output (response, gameWon)....
 
-CRITICAL: You know the famous person's name but you must NEVER reveal it in any response.
-
-When a user asks a question about the famou...
-
-### Guess Verifier Agent (placeholder)
+### verifier
 
 - **ID:** `guess-verifier-agent`
-- **Model:** `openai/gpt-4o`
+- **Model:** `openai/gpt-4o-mini`
 
-...
+You are verifier....
 
 
 ---
@@ -113,9 +105,9 @@ Vector store adapter used by agent Memory to store/retrieve embeddings....
 Workflow that implements the Heads-Up guessing game. The workflow: start-step -> repeated game-step until gameWon -> win-step. The 'do until' loop must be interpreted by the runtime as: repeat game-step until the 'gameWon' output becomes true.
 
 **Steps:** 3
-1. start-step
-2. game-step
-3. win-step
+1. Start Task (generate famous person)
+2. Game Task (Q/A and guess handling)
+3. Win Task (finalization)
 
 
 ---

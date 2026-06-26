@@ -1,26 +1,30 @@
 /**
- * Agent: Stock + Weather Agent
+ * Agent: LLM Agent
  * ID: stock-weather-agent
  * 
  * Auto-generated from AgentO Knowledge Graph
+ * Objectives:
+ *   - : Objective grouping the sub-tasks needed to respond to the user (get weather, get stock price, compose reply).
+ * Capabilities:
+ *   - : Capability to fetch the most recent closing stock price for a provided stock symbol (getStockPrice).
+ *   - : Capability to get current weather for a specified location (getWeather). Performs geocoding, then queries a weather API, and returns a structured JSON response.
  */
 
 import { Agent } from '@mastra/core/agent'
 
 // Import tools
-import { stockPriceTool } from '../tools/stockPriceTool'
-import { weatherTool } from '../tools/weatherTool'
+import { stockPriceTool, weatherTool } from '../tools'
 
 /**
- * Stock + Weather Agent
+ * LLM Agent
  * 
  * Instructions:
- * You are a helpful assistant that provides current stock prices. When asked about a stock, use the stock price tool to fetch the stock price. You also love to check the weather when your stock market buddies ask you what the weather is.
+ * Agent-level system instructions for independent operation (agent behavior and role).
  */
 export const stockWeatherAgent = new Agent({
   id: `stock-weather-agent`,
-  name: `Stock + Weather Agent`,
-  instructions: `You are a helpful assistant that provides current stock prices. When asked about a stock, use the stock price tool to fetch the stock price. You also love to check the weather when your stock market buddies ask you what the weather is.`,
+  name: `LLM Agent`,
+  instructions: `Agent-level system instructions for independent operation (agent behavior and role).`,
   model: 'openai/gpt-4o',
   tools: {
     stockPriceTool,

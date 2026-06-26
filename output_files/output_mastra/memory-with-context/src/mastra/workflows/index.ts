@@ -1,0 +1,1 @@
+export { workflowChatPattern } from './workflowChatPattern'

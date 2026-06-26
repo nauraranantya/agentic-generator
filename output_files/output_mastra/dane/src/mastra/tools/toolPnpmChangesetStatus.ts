@@ -17,7 +17,7 @@ import { z } from 'zod'
 export const toolPnpmChangesetStatus = createTool({
   id: 'pnpmChangesetStatus',
   description: `Checks 'pnpm publish -r --dry-run --no-git-checks' to determine which packages need to be published. Returns array of package names.`,
-  inputSchema: z.object({}),  // TODO: Define input schema
+  inputSchema: z.object({message: z.string()}),
   outputSchema: z.object({}),  // TODO: Define output schema
   execute: async ({ inputData }) => {
     // TODO: Implement tool logic

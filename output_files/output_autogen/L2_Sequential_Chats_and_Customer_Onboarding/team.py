@@ -1,5 +1,5 @@
 """
-Auto-generated AutoGen Team: MyCrew
+Auto-generated AutoGen Team: UnnamedProject
 Human Agents:
   - customer_proxy_agent (customer_proxy)
 Resources:
@@ -24,7 +24,7 @@ from autogen_ext.models.openai import (
 )
 
 model_client = OpenAIChatCompletionClient(
-    model="gpt-3.5-turbo"
+    model="gpt-4o-mini"
 )
 
 

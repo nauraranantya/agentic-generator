@@ -10,13 +10,13 @@ import { createWorkflow, createStep } from '@mastra/core/workflows'
 import { z } from 'zod'
 
 // Import agents used by workflow steps
-import { dynamicAgent } from '../agents/dynamicAgent'
+import { dynamicAgent } from '../agents'
 
 // ── Workflow Steps ──
 
 const stepOneNumeric = createStep({
-  id: 'stepOne',
-  description: `Doubles inputValue after simulated delay (~10000ms).`,
+  id: 'task:stepOne',
+  description: `Takes { inputValue }, returns { doubledValue: inputValue*2 }.`,
   inputSchema: z.object({}),
   outputSchema: z.object({}),
   execute: async ({ inputData }) => {
@@ -24,30 +24,27 @@ const stepOneNumeric = createStep({
     // This step uses agent: dynamicAgent
     // const result = await dynamicAgent.generate('...')
     // TODO: Implement step logic
-    throw new Error('stepOne not implemented yet')
+    throw new Error('task:stepOne not implemented yet')
   },
 })
 
 const stepTwoNumeric = createStep({
-  id: 'stepTwo',
-  description: `Requires suspend/resume semantics (suspends when resumeData.extraNumber missing).`,
+  id: 'task:stepTwo',
+  description: `If resumeData.extraNumber absent => suspend({}) and return interim; else compute incrementedValue.`,
   inputSchema: z.object({}),
   outputSchema: z.object({}),
-  execute: async ({ inputData, suspend }) => {
-    // Suspend/resume step
-    // This step uses agent: dynamicAgent
+  execute: async ({ inputData }) => {
     // If resumeData.extraNumber absent => suspend({}) and return interim; else compute incrementedValue.
-    // TODO: Check resume state and implement logic
-    await suspend({
-      message: 'Waiting for human input',
-    })
-    throw new Error('stepTwo resume handler not implemented yet')
+    // This step uses agent: dynamicAgent
+    // const result = await dynamicAgent.generate('...')
+    // TODO: Implement step logic
+    throw new Error('task:stepTwo not implemented yet')
   },
 })
 
 const stepThreeNumeric = createStep({
-  id: 'stepThree',
-  description: `Triples the incoming incrementedValue.`,
+  id: 'task:stepThree',
+  description: `Returns { tripledValue: incrementedValue * 3 }.`,
   inputSchema: z.object({}),
   outputSchema: z.object({}),
   execute: async ({ inputData }) => {
@@ -55,13 +52,13 @@ const stepThreeNumeric = createStep({
     // This step uses agent: dynamicAgent
     // const result = await dynamicAgent.generate('...')
     // TODO: Implement step logic
-    throw new Error('stepThree not implemented yet')
+    throw new Error('task:stepThree not implemented yet')
   },
 })
 
 const stepFourNumeric = createStep({
-  id: 'stepFour',
-  description: `Determines whether tripledValue is even.`,
+  id: 'task:stepFour',
+  description: `Returns { isEven: tripledValue % 2 === 0 }.`,
   inputSchema: z.object({}),
   outputSchema: z.object({}),
   execute: async ({ inputData }) => {
@@ -69,7 +66,7 @@ const stepFourNumeric = createStep({
     // This step uses agent: dynamicAgent
     // const result = await dynamicAgent.generate('...')
     // TODO: Implement step logic
-    throw new Error('stepFour not implemented yet')
+    throw new Error('task:stepFour not implemented yet')
   },
 })
 
@@ -82,12 +79,9 @@ const stepFourNumeric = createStep({
  */
 export const nestedWorkflow = createWorkflow({
   id: 'data-processing',
-  inputSchema: z.object({}),
+  inputSchema: z.object({id: z.string(), Purpose: z.string(), inputValue: z.number()}),
   outputSchema: z.object({}),
   steps: [stepOneNumeric, stepTwoNumeric, stepThreeNumeric, stepFourNumeric],
 })
-  .then(stepOneNumeric)
-  .then(stepTwoNumeric)
-  .then(stepThreeNumeric)
-  .then(stepFourNumeric)
+  .parallel([stepOneNumeric, stepTwoNumeric, stepThreeNumeric, stepFourNumeric])
   .commit()

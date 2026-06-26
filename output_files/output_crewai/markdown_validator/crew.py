@@ -14,16 +14,19 @@ Resources:
 
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
+from crewai.tools import tool
 
 
 # ===========================================================
 # Tool Instances
 # ===========================================================
 # TODO: markdown_validation_tool — unknown tool class "markdownvalidationtool"
-#   Description: Tool definition (from src/markdown_validator/tools/markdownTools.py):
-- Tool nam
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-# markdown_validation_tool = SomeCustomTool(tool_registration_name="markdown_validation_tool")
+@tool("markdownvalidationtool")
+def markdown_validation_tool(*args, **kwargs) -> str:
+    """Tool definition (from src/markdown_validator/tools/markdownTools.py): - Tool name registered as 'mar"""
+    return "markdown_validation_tool result"
+
 
 
 

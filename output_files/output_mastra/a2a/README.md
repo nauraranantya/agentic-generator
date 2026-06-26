@@ -1,4 +1,4 @@
-# MastraExampleTeam(a2aExample)
+# UnnamedProject
 
 A small two-agent system instantiated in the example code demonstrating agent-to-agent (A2A) communication: one agent performs research and another transforms research into content. The Mastra client baseUrl default (http://localhost:4111) is recorded in the system config.
 
@@ -34,7 +34,7 @@ npm run dev
 ## 📦 Project Structure
 
 ```
-MastraExampleTeam(a2aExample)/
+UnnamedProject/
 ├── src/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
@@ -53,19 +53,19 @@ MastraExampleTeam(a2aExample)/
 
 ## 🤖 Agents
 
-### My Agent
+### LLM Agent
 
 - **ID:** `my-agent`
 - **Model:** `openai/gpt-4o`
 
-My Agent Instructions...
+You are LLM Agent....
 
-### Content Creator Agent
+### LLM Agent
 
 - **ID:** `content-creator-agent`
 - **Model:** `openai/gpt-4o`
 
-Create engaging content...
+You are LLM Agent....
 
 
 ---
@@ -78,14 +78,13 @@ No tools defined in this project.
 
 ## 🔄 Workflows
 
-### A2A communication example pattern
+### a2_a_example_pattern
 
 Two-step pattern: (1) research by a first agent; (2) transformation of research into content by a second agent. Matches the sequential steps in src/index.ts demonstrating A2A interactions.
 
-**Steps:** 3
-1. Research Step (Start)
-2. Content Transformation Step
-3. End Step
+**Steps:** 2
+1. a2_a_step1_research
+2. a2_a_step2_content_transform
 
 
 ---

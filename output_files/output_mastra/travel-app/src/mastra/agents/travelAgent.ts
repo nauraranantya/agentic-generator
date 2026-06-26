@@ -1,32 +1,36 @@
 /**
- * Agent: travel-agent
+ * Agent: LLM Agent
  * ID: travel-agent
  * 
  * Auto-generated from AgentO Knowledge Graph
+ * Objectives:
+ *   - Assemble trip components: 
+ * Capabilities:
+ *   - Find Flights: Capability to search and select flight options.
+ *   - Find Hotels: Capability to search and select hotels.
+ *   - Find Attractions: Capability to search and select attractions.
+ *   - Search Airbnb: Capability to search airbnb locations and listings.
+ *   - Analyze Travel Results: Capability to analyze raw agent search outputs and reformat into application schema.
  */
 
 import { Agent } from '@mastra/core/agent'
 
 // Import tools
-import { searchFlightsTool } from '../tools/searchFlightsTool'
-import { searchHotelsTool } from '../tools/searchHotelsTool'
-import { searchAttractionsTool } from '../tools/searchAttractionsTool'
-import { searchAirbnbLocationTool } from '../tools/searchAirbnbLocationTool'
-import { searchAirbnbTool } from '../tools/searchAirbnbTool'
+import { searchFlightsTool, searchHotelsTool, searchAttractionsTool, searchAirbnbLocationTool, searchAirbnbTool } from '../tools'
 
 // Import memory
-import { travelMemory } from '../memory/travelMemory'
+import { travelMemory } from '../memory'
 
 /**
- * travel-agent
+ * LLM Agent
  * 
  * Instructions:
- * You are an expert travel agent responsible for finding a flight, hotel, and three attractions for a user. You will be given a set of user preferences along with some tools and you will need to find the best options for them. Be as concise as possible with your response.
+ * Agent-level instruction used on agent initialization
  */
 export const travelAgent = new Agent({
   id: `travel-agent`,
-  name: `travel-agent`,
-  instructions: `You are an expert travel agent responsible for finding a flight, hotel, and three attractions for a user. You will be given a set of user preferences along with some tools and you will need to find the best options for them. Be as concise as possible with your response.`,
+  name: `LLM Agent`,
+  instructions: `Agent-level instruction used on agent initialization`,
   model: 'openai/gpt-4.1',
   tools: {
     searchFlightsTool,

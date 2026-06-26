@@ -17,8 +17,8 @@ import { z } from 'zod'
 export const toolExecaTool = createTool({
   id: 'execaTool',
   description: `Tool wrapping execa to run commands and stream output to console. Input: {command, args}. Output: {message}.`,
-  inputSchema: z.object({}),  // TODO: Define input schema
-  outputSchema: z.object({}),
+  inputSchema: z.object({command: z.string(), args: z.string()}),
+  outputSchema: z.object({message: z.string()}),
   execute: async ({ inputData }) => {
     // TODO: Implement tool logic
     // 

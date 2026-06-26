@@ -1,5 +1,5 @@
 /**
- * Tool: Get Stock Price
+ * Tool: Get Stock Price (stockPrices)
  * 
  * Auto-generated from AgentO Knowledge Graph
  * 
@@ -10,14 +10,14 @@ import { createTool } from '@mastra/core/tools'
 import { z } from 'zod'
 
 /**
- * Get Stock Price
+ * Get Stock Price (stockPrices)
  * 
  * Implementation: Fetches the last day's closing stock price for a given symbol. Source tool implementation uses an HTTP fetch to https://mastra-stock-data.vercel.app/api/stock-data?symbol={symbol} and returns { symbol, currentPrice } with currentPrice mapped from data.prices['4. close'].
  */
 export const stockPricesTool = createTool({
-  id: 'Get Stock Price',
+  id: 'Get Stock Price (stockPrices)',
   description: `Fetches the last day's closing stock price for a given symbol. Source tool implementation uses an HTTP fetch to https://mastra-stock-data.vercel.app/api/stock-data?symbol={symbol} and returns { symbol, currentPrice } with currentPrice mapped from data.prices['4. close'].`,
-  inputSchema: z.object({}),  // TODO: Define input schema
+  inputSchema: z.object({ symbol: z.string() }),
   outputSchema: z.object({}),  // TODO: Define output schema
   execute: async ({ inputData }) => {
     // TODO: Implement tool logic
@@ -55,6 +55,6 @@ export const stockPricesTool = createTool({
     // 2. Perform the tool's logic
     // 3. Return result matching outputSchema
     
-    throw new Error('Tool Get Stock Price not implemented yet')
+    throw new Error('Tool Get Stock Price (stockPrices) not implemented yet')
   },
 })

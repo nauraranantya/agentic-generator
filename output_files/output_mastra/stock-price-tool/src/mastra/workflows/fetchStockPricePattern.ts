@@ -10,28 +10,16 @@ import { createWorkflow, createStep } from '@mastra/core/workflows'
 import { z } from 'zod'
 
 // Import agents used by workflow steps
-import { stockAgent } from '../agents/stockAgent'
+import { stockAgent } from '../agents'
 
 // Import tools used by workflow steps
-import { stockPricesTool } from '../tools/stockPricesTool'
+import { stockPricesTool } from '../tools'
 
 // ── Workflow Steps ──
 
-const startStepFetchStockPrice = createStep({
-  id: 'Start: Receive stock query',
-  description: `Initial step: receive user query. In the example this corresponds to the call agent.generate('What is the current stock price of Apple (AAPL)?'). The code calls mastra.getAgent('stockAgent') then generate(...). Note: agent retrieval id in code ('stockAgent') differs from declared agent.id ('stock-agent') — see Issues/Assumptions.`,
-  inputSchema: z.object({}),
-  outputSchema: z.object({}),
-  execute: async ({ inputData }) => {
-    // Initial step: receive user query. In the example this corresponds to the call agent.generate('What is the current stock price of Apple (AAPL)?'). The code calls mastra.getAgent('stockAgent') then generate(...). Note: agent retrieval id in code ('stockAgent') differs from declared agent.id ('stock-agent') — see Issues/Assumptions.
-    // TODO: Implement step logic
-    throw new Error('Start: Receive stock query not implemented yet')
-  },
-})
-
 const stepFetchStockPrice = createStep({
-  id: 'Fetch step: agent uses tool',
-  description: `Workflow step where the LLMAgent (stock_agent) processes the query using its LanguageModel and invokes the stockPrices tool to fetch the numeric price.`,
+  id: 'Fetch stock price for symbol (AAPL example)',
+  description: `Task representing the user's invocation in src/index.ts where the agent is asked: 'What is the current stock price of Apple (AAPL)?'. The agent handles the query using its model and invokes the stockPrices tool to fetch the numeric price.`,
   inputSchema: z.object({}),
   outputSchema: z.object({}),
   execute: async ({ inputData }) => {
@@ -40,19 +28,7 @@ const stepFetchStockPrice = createStep({
     // const result = await stockAgent.generate('...')
     // This step uses tool: stockPricesTool
     // TODO: Implement step logic
-    throw new Error('Fetch step: agent uses tool not implemented yet')
-  },
-})
-
-const endStepFetchStockPrice = createStep({
-  id: 'End: Present price to user',
-  description: `Final step: format or present the fetched price. In src/index.ts this is represented by code that reads toolResults to find toolName === 'stockPrices' and then prints currentPrice to console.`,
-  inputSchema: z.object({}),
-  outputSchema: z.object({}),
-  execute: async ({ inputData }) => {
-    // Final step: format or present the fetched price. In src/index.ts this is represented by code that reads toolResults to find toolName === 'stockPrices' and then prints currentPrice to console.
-    // TODO: Implement step logic
-    throw new Error('End: Present price to user not implemented yet')
+    throw new Error('Fetch stock price for symbol (AAPL example) not implemented yet')
   },
 })
 
@@ -65,11 +41,9 @@ const endStepFetchStockPrice = createStep({
  */
 export const fetchStockPricePattern = createWorkflow({
   id: 'Fetch Stock Price Pattern',
-  inputSchema: z.object({}),
+  inputSchema: z.object({A_simple_workflow_pattern_that_accepts_a_stock: z.string()}),
   outputSchema: z.object({}),
-  steps: [startStepFetchStockPrice, stepFetchStockPrice, endStepFetchStockPrice],
+  steps: [stepFetchStockPrice],
 })
-  .then(startStepFetchStockPrice)
   .then(stepFetchStockPrice)
-  .then(endStepFetchStockPrice)
   .commit()

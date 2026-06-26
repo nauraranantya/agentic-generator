@@ -17,7 +17,7 @@ import { z } from 'zod'
 export const toolChangeLogoSize = createTool({
   id: 'changeLogoSize',
   description: `Client-side tool that changes the size of the logo. Declared in clientSideToolCallsMap in src/App.tsx.`,
-  inputSchema: z.object({}),  // TODO: Define input schema
+  inputSchema: z.object({type: z.string(), properties: z.object({}), required: z.array(z.string())}),
   outputSchema: z.object({}),  // TODO: Define output schema
   execute: async ({ inputData }) => {
     // TODO: Implement tool logic

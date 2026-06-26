@@ -1,17 +1,19 @@
 /**
- * Mastra AI Instance - MastraRuntime
+ * Mastra AI Instance - UnnamedProject
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
+ * Objectives:
+ *   - : Objective for the MCP Registry Agent and Team: enable searching and retrieving MCP registry information by ID, tag, or name.
  */
 
 import { Mastra } from '@mastra/core'
 
 // Import agents
-import { mcpRegistryAgent } from './agents/mcpRegistryAgent'
+import { mcpRegistryAgent } from './agents'
 
 // Import workflows
-import { mastraSimpleWorkflow } from './workflows/mastraSimpleWorkflow'
+import { mastraSimpleWorkflow } from './workflows'
 
 /**
  * Mastra instance with registered agents, workflows, and memory.

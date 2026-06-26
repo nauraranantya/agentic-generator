@@ -8,12 +8,13 @@ import { createWorkflow, createStep } from '@mastra/core/workflows'
 import { z } from 'zod'
 
 // Import agents used by workflow steps
-import { weatherAgent } from '../agents/weatherAgent'
+import { weatherAgent } from '../agents'
 
 // ── Workflow Steps ──
 
 const myNetworkStep = createStep({
-  id: 'myNetwork Step 1',
+  id: 'Network Supervisor Task',
+  description: `You are a helpful supervisor agent that can help users with a variety of tasks.`,
   inputSchema: z.object({}),
   outputSchema: z.object({}),
   execute: async ({ inputData }) => {
@@ -21,7 +22,7 @@ const myNetworkStep = createStep({
     // This step uses agent: weatherAgent
     // const result = await weatherAgent.generate('...')
     // TODO: Implement step logic
-    throw new Error('myNetwork Step 1 not implemented yet')
+    throw new Error('Network Supervisor Task not implemented yet')
   },
 })
 

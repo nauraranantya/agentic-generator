@@ -1,5 +1,5 @@
 /**
- * Tool: Stock Price Tool (getStockPrice)
+ * Tool: stockPriceTool
  * 
  * Auto-generated from AgentO Knowledge Graph
  * 
@@ -10,14 +10,14 @@ import { createTool } from '@mastra/core/tools'
 import { z } from 'zod'
 
 /**
- * Stock Price Tool (getStockPrice)
+ * stockPriceTool
  * 
  * Implementation: Tool exposing a single capability 'getStockPrice'. It fetches the last day's closing stock price for a given symbol from https://mastra-stock-data.vercel.app/api/stock-data?symbol=<SYMBOL>. Returns JSON text object: { "symbol": "<SYMBOL>", "currentPrice": <price> } as tool content. The tool is made available to the agent via a toolset listing (server process that exposes tools). The server process also includes an environment variable FAKE_CREDS used during server launch; captured in tool config.
  */
 export const stockPriceTool = createTool({
-  id: 'Stock Price Tool (getStockPrice)',
+  id: 'stockPriceTool',
   description: `Tool exposing a single capability 'getStockPrice'. It fetches the last day's closing stock price for a given symbol from https://mastra-stock-data.vercel.app/api/stock-data?symbol=<SYMBOL>. Returns JSON text object: { "symbol": "<SYMBOL>", "currentPrice": <price> } as tool content. The tool is made available to the agent via a toolset listing (server process that exposes tools). The server process also includes an environment variable FAKE_CREDS used during server launch; captured in tool config.`,
-  inputSchema: z.object({}),  // TODO: Define input schema
+  inputSchema: z.object({symbol: z.string()}),
   outputSchema: z.object({}),  // TODO: Define output schema
   execute: async ({ inputData }) => {
     // TODO: Implement tool logic
@@ -46,6 +46,6 @@ export const stockPriceTool = createTool({
     // 2. Perform the tool's logic
     // 3. Return result matching outputSchema
     
-    throw new Error('Tool Stock Price Tool (getStockPrice) not implemented yet')
+    throw new Error('Tool stockPriceTool not implemented yet')
   },
 })

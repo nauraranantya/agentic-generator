@@ -17,8 +17,8 @@ import { z } from 'zod'
 export const toolFsTool = createTool({
   id: 'fsTool',
   description: `File system tool to read/write/append files.`,
-  inputSchema: z.object({}),  // TODO: Define input schema
-  outputSchema: z.object({}),  // TODO: Define output schema
+  inputSchema: z.object({action: z.string(), file: z.string(), data: z.string()}),
+  outputSchema: z.object({message: z.string()}),
   execute: async ({ inputData }) => {
     // TODO: Implement tool logic
     // 

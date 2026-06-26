@@ -1,5 +1,5 @@
 /**
- * Memory: Weather Agent Memory
+ * Memory: weatherMemory
  *
  * Memory instance created for the weather agent. Configured with lastMessages=10, semanticRecall=false, threads.generateTitle=false. Uses a LibSQLStore storage (file:../mastra.db) as defined in agent setup.
  *
@@ -14,10 +14,9 @@ import { LibSQLStore } from '@mastra/libsql'
 export const weatherMemory = new Memory({
   storage: new LibSQLStore({
     id: 'mastra-libsql-store',
-    url: 'file:../mastra.db',
-  }),
-  options: {
     lastMessages: 10,
-    semanticRecall: false,
-  },
+    semanticRecall: 'false',
+    threads.generateTitle: 'false',
+    storage.url: 'file:../mastra.db',
+  }),
 })

@@ -12,7 +12,7 @@ import { z } from 'zod'
 /**
  * greetUser
  * 
- * Implementation: Tool ID: greetUser
+ * Implementation: Tool ID: greetUser     Description: Generates a personalized greeting.     Input schema: { name: string }     Output: greeting string 'Hello, {name}! Welcome to the MCP server.'
  */
 export const greetUserTool = createTool({
   id: 'greetUser',
@@ -20,12 +20,12 @@ export const greetUserTool = createTool({
     Description: Generates a personalized greeting.
     Input schema: { name: string }
     Output: greeting string 'Hello, {name}! Welcome to the MCP server.'`,
-  inputSchema: z.object({ name: z.string() }),
+  inputSchema: z.object({Tool_ID: z.string(), Description: z.string(), name: z.string(), Output: z.string()}),
   outputSchema: z.object({}),  // TODO: Define output schema
   execute: async ({ inputData }) => {
     // TODO: Implement tool logic
     // 
-    // Description: Tool ID: greetUser
+    // Description: Tool ID: greetUser     Description: Generates a personalized greeting.     Input schema: { name: string }     Output: greeting string 'Hello, {name}! Welcome to the MCP server.'
     // 
     // Implementation should:
     // 1. Use inputData according to inputSchema

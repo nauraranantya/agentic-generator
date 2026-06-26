@@ -17,7 +17,7 @@ import { z } from 'zod'
 export const toolReadPdf = createTool({
   id: 'readPDF',
   description: `Reads PDF file and extracts textual content; validates file path and type.`,
-  inputSchema: z.object({}),  // TODO: Define input schema
+  inputSchema: z.object({pdfPath: z.string()}),
   outputSchema: z.object({}),  // TODO: Define output schema
   execute: async ({ inputData }) => {
     // TODO: Implement tool logic

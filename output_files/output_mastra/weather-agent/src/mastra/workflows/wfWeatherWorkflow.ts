@@ -9,37 +9,21 @@
 import { createWorkflow, createStep } from '@mastra/core/workflows'
 import { z } from 'zod'
 
-// Import agents used by workflow steps
-import { weatherAgent } from '../agents/weatherAgent'
-
 // Import tools used by workflow steps
-import { weatherTool } from '../tools/weatherTool'
+import { weatherTool } from '../tools'
 
 // ── Workflow Steps ──
 
 const wfStepFetchWeather = createStep({
-  id: 'fetch-weather',
-  description: `Step that obtains a daily forecast for a city. Fetches daily temperature, precipitationChance, and weather codes and produces an array of forecast objects.`,
-  inputSchema: z.object({ city: z.string() }),
-  outputSchema: z.object({}),
-  execute: async ({ inputData }) => {
-    // The step expects a trigger containing city name. It will produce daily forecasts for that city.
-    // This step uses tool: weatherTool
-    // TODO: Implement step logic
-    throw new Error('fetch-weather not implemented yet')
-  },
-})
-
-const wfStepPlanActivities = createStep({
-  id: 'wf-step-plan-activities',
+  id: 'fetch-weather task',
+  description: `Fetches weather forecast for a given city and produces forecast array resource. Semantics: take city -> produce daily forecast array with fields date, maxTemp, minTemp, precipitationChance, condition, location.`,
   inputSchema: z.object({}),
   outputSchema: z.object({}),
   execute: async ({ inputData }) => {
-    // Based on the following weather forecast for {location}, suggest appropriate activities:
-    // This step uses agent: weatherAgent
-    // const result = await weatherAgent.generate('...')
+    // Fetches weather forecast for a given city and produces forecast array resource. Semantics: take city -> produce daily forecast array with fields date, maxTemp, minTemp, precipitationChance, condition, location.
+    // This step uses tool: weatherTool
     // TODO: Implement step logic
-    throw new Error('wf-step-plan-activities not implemented yet')
+    throw new Error('fetch-weather task not implemented yet')
   },
 })
 
@@ -52,10 +36,9 @@ const wfStepPlanActivities = createStep({
  */
 export const wfWeatherWorkflow = createWorkflow({
   id: 'weather-workflow',
-  inputSchema: z.object({ city: z.string() }),
+  inputSchema: z.object({city: z.string()}),
   outputSchema: z.object({}),
-  steps: [wfStepFetchWeather, wfStepPlanActivities],
+  steps: [wfStepFetchWeather],
 })
-  .then(wfStepFetchWeather)
-  .then(wfStepPlanActivities)
+  .parallel([wfStepFetchWeather])
   .commit()

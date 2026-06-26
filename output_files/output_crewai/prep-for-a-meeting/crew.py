@@ -18,16 +18,19 @@ validates input is a list of string ids; returns extracted contents (first ~1000
 
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
+from crewai.tools import tool
 
 
 # ===========================================================
 # Tool Instances
 # ===========================================================
 # TODO: exa_search_tool — unknown tool class "ExaSearchTool"
-#   Description: Tool wrapping Exa (exa_py) search capabilities used by agents.
-Provides three ma
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-# exa_search_tool = SomeCustomTool(EXA_API_KEY="Your Key (from .env.example)")
+@tool("ExaSearchTool")
+def exa_search_tool(*args, **kwargs) -> str:
+    """Tool wrapping Exa (exa_py) search capabilities used by agents. Provides three main operations: searc"""
+    return "exa_search_tool result"
+
 
 
 

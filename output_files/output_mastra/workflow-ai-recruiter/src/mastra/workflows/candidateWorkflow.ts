@@ -10,58 +10,49 @@ import { createWorkflow, createStep } from '@mastra/core/workflows'
 import { z } from 'zod'
 
 // Import agents used by workflow steps
-import { recruiterAgent } from '../agents/recruiterAgent'
+import { recruiterAgent } from '../agents'
 
 // ── Workflow Steps ──
 
 const wsGatherCandidateInfo = createStep({
-  id: 'gatherCandidateInfo step',
-  description: `Initial workflow step that extracts candidate information from the trigger resumeText.`,
-  inputSchema: z.object({ resumeText: z.string() }),
-  outputSchema: z.object({ candidateName: z.string(), isTechnical: z.boolean(), specialty: z.string(), resumeText: z.string() }),
-  execute: async ({ inputData, suspend }) => {
-    // Suspend/resume step
-    // This step uses agent: recruiterAgent
+  id: 'gatherCandidateInfo',
+  description: `Input schema (Zod): { resumeText: string }`,
+  inputSchema: z.object({}),
+  outputSchema: z.object({}),
+  execute: async ({ inputData }) => {
     // You are given this resume text:
-    // TODO: Check resume state and implement logic
-    await suspend({
-      message: 'Waiting for human input',
-    })
-    throw new Error('gatherCandidateInfo step resume handler not implemented yet')
+    // This step uses agent: recruiterAgent
+    // const result = await recruiterAgent.generate('...')
+    // TODO: Implement step logic
+    throw new Error('gatherCandidateInfo not implemented yet')
   },
 })
 
 const wsAskAboutSpecialty = createStep({
-  id: 'askAboutSpecialty step',
-  description: `Conditional step executed when gatherCandidateInfo.isTechnical == true. Condition encoded here because ontology lacks a dedicated condition construct.`,
+  id: 'askAboutSpecialty',
+  description: `Output schema (Zod): { question: string }`,
   inputSchema: z.object({}),
-  outputSchema: z.object({ question: z.string() }),
-  execute: async ({ inputData, suspend }) => {
-    // Suspend/resume step
-    // This step uses agent: recruiterAgent
+  outputSchema: z.object({}),
+  execute: async ({ inputData }) => {
     // You are a recruiter. Given the resume below, craft a short question for \${candidateName} about how they got into "\${specialty}". Resume: \${resumeText}
-    // TODO: Check resume state and implement logic
-    await suspend({
-      message: 'Waiting for human input',
-    })
-    throw new Error('askAboutSpecialty step resume handler not implemented yet')
+    // This step uses agent: recruiterAgent
+    // const result = await recruiterAgent.generate('...')
+    // TODO: Implement step logic
+    throw new Error('askAboutSpecialty not implemented yet')
   },
 })
 
 const wsAskAboutRole = createStep({
-  id: 'askAboutRole step',
-  description: `Conditional step executed when gatherCandidateInfo.isTechnical == false. Condition encoded here because ontology lacks a dedicated condition construct.`,
+  id: 'askAboutRole',
+  description: `Output schema (Zod): { question: string }`,
   inputSchema: z.object({}),
-  outputSchema: z.object({ question: z.string() }),
-  execute: async ({ inputData, suspend }) => {
-    // Suspend/resume step
-    // This step uses agent: recruiterAgent
+  outputSchema: z.object({}),
+  execute: async ({ inputData }) => {
     // You are a recruiter. Given the resume below, craft a short question for \${candidateName} asking what interests them most about this role. Resume: \${resumeText}
-    // TODO: Check resume state and implement logic
-    await suspend({
-      message: 'Waiting for human input',
-    })
-    throw new Error('askAboutRole step resume handler not implemented yet')
+    // This step uses agent: recruiterAgent
+    // const result = await recruiterAgent.generate('...')
+    // TODO: Implement step logic
+    throw new Error('askAboutRole not implemented yet')
   },
 })
 
@@ -74,13 +65,13 @@ const wsAskAboutRole = createStep({
  */
 export const candidateWorkflow = createWorkflow({
   id: 'candidate-workflow',
-  inputSchema: z.object({ resumeText: z.string() }),
+  inputSchema: z.object({resumeText: z.string()}),
   outputSchema: z.object({}),
   steps: [wsGatherCandidateInfo, wsAskAboutSpecialty, wsAskAboutRole],
 })
   // NOTE: Branching workflow — simplified to sequential for type compatibility
   // TODO: Implement conditional branching using .branch() API
   .then(wsGatherCandidateInfo)
-  .then(wsAskAboutSpecialty)  // condition: gatherCandidateInfo.isTechnical == true
-  .then(wsAskAboutRole)  // condition: gatherCandidateInfo.isTechnical == false
+  .then(wsAskAboutSpecialty)
+  .then(wsAskAboutRole)
   .commit()

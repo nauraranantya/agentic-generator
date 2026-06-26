@@ -1,4 +1,4 @@
-# MastraProject
+# UnnamedProject
 
 
 
@@ -34,12 +34,12 @@ npm run dev
 ## 📦 Project Structure
 
 ```
-MastraProject/
+UnnamedProject/
 ├── src/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
 │       ├── agents/            # Agent definitions
-│       │   └── birdAgent.ts
+│       │   └── birdChecker.ts
 │       ├── tools/             # Tool definitions
 │       │   └── getRandomImageTool.ts
 │       └── workflows/         # Workflow definitions
@@ -53,13 +53,13 @@ MastraProject/
 
 ## 🤖 Agents
 
-### Bird Checker agent
+### image analyst / bird identifier
 
 - **ID:** `bird-checker`
 - **Model:** `anthropic/claude-3-haiku-20240307`
 - **Tools:** getRandomImageTool
 
-You can view an image and figure out if it is a bird or not. You can also figure out the species of the bird and where the picture was taken....
+Agent instruction and purpose...
 
 
 ---
@@ -82,8 +82,8 @@ Tool that queries Unsplash and returns a single image object selected from searc
 
 
 **Steps:** 2
-1. Fetch image step
-2. Analyze image step
+1. Fetch random image task
+2. Analyze image and produce bird metadata
 
 
 ---

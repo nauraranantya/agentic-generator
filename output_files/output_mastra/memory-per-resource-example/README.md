@@ -1,4 +1,4 @@
-# PersonalAssistantSystem
+# UnnamedProject
 
 
 
@@ -34,7 +34,7 @@ npm run dev
 ## 📦 Project Structure
 
 ```
-PersonalAssistantSystem/
+UnnamedProject/
 ├── src/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
@@ -57,10 +57,7 @@ PersonalAssistantSystem/
 - **ID:** `personal-assistant`
 - **Model:** `openai/gpt-4o-mini`
 
-You are a helpful personal assistant with persistent memory across ALL conversations.
-
-🆕 IMPORTANT: You have resource-scoped working memory! This means:
-- Everything you learn about this user persists...
+Agent instructions configured at creation time (Agent.instructions in source code)....
 
 
 ---
@@ -77,11 +74,10 @@ No tools defined in this project.
 
 
 
-**Steps:** 4
-1. Start Conversation Step
-2. Process Memory Updates Step
-3. Interactive Chat Loop Step
-4. End Step
+**Steps:** 3
+1. prwm_start_step
+2. prwm_update_memory_step
+3. prwm_interactive_chat_step
 
 
 ---

@@ -1,0 +1,1 @@
+export { myNetworkPattern } from './myNetworkPattern'

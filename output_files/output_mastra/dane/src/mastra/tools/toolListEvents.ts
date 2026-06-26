@@ -17,7 +17,7 @@ import { z } from 'zod'
 export const toolListEvents = createTool({
   id: 'listEvents',
   description: `Tool that lists calendar events by reading Mac Calendar via AppleScript and parsing into event objects.`,
-  inputSchema: z.object({}),  // TODO: Define input schema
+  inputSchema: z.object({startDate: z.string()}),
   outputSchema: z.object({}),  // TODO: Define output schema
   execute: async ({ inputData }) => {
     // TODO: Implement tool logic

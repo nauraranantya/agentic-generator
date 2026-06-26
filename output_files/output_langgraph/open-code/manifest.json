@@ -1,12 +1,12 @@
 {
   "framework": "langgraph",
+  "language": "typescript",
   "pattern": "tool_calling",
   "generated_files": [
     ".env.example",
-    "config/inputs.yaml",
-    "graph.py",
-    "main.py",
-    "requirements.txt"
+    "index.ts",
+    "package.json",
+    "tsconfig.json"
   ],
-  "timestamp": "2026-06-18T12:43:07.249555+00:00"
+  "timestamp": "2026-06-26T10:33:39.875842+00:00"
 }

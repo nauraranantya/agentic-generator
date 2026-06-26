@@ -10,48 +10,47 @@ import { createWorkflow, createStep } from '@mastra/core/workflows'
 import { z } from 'zod'
 
 // Import agents used by workflow steps
-import { famousPersonAgent } from '../agents/famousPersonAgent'
-import { gameAgent } from '../agents/gameAgent'
+import { famousPersonGenerator, gameAgent } from '../agents'
 
 // ── Workflow Steps ──
 
 const startWorkflowStep = createStep({
-  id: 'start-step',
-  description: `Initial step that requests generation of a famous person's name and initializes guessCount to 0.`,
+  id: 'Start Task (generate famous person)',
+  description: `Task logic (semantic description, original source behavior preserved):`,
   inputSchema: z.object({}),
-  outputSchema: z.object({ famousPerson: z.string(), guessCount: z.any() }),
+  outputSchema: z.object({}),
   execute: async ({ inputData }) => {
     // Generate a famous person's name
-    // This step uses agent: famousPersonAgent
-    // const result = await famousPersonAgent.generate('...')
+    // This step uses agent: famousPersonGenerator
+    // const result = await famousPersonGenerator.generate('...')
     // TODO: Implement step logic
-    throw new Error('start-step not implemented yet')
+    throw new Error('Start Task (generate famous person) not implemented yet')
   },
 })
 
 const gameWorkflowStep = createStep({
-  id: 'game-step',
-  description: `Main interactive loop step. Behavior:`,
+  id: 'Game Task (Q/A and guess handling)',
+  description: `Task logic (semantic description, original source preserved):`,
   inputSchema: z.object({}),
-  outputSchema: z.object({ response: z.string(), gameWon: z.boolean() }),
+  outputSchema: z.object({response: z.string(), gameWon: z.boolean(), Note: z.object({})}),
   execute: async ({ inputData }) => {
     // The famous person is: \${famousPerson}
     // This step uses agent: gameAgent
     // const result = await gameAgent.generate('...')
     // TODO: Implement step logic
-    throw new Error('game-step not implemented yet')
+    throw new Error('Game Task (Q/A and guess handling) not implemented yet')
   },
 })
 
 const winWorkflowStep = createStep({
-  id: 'win-step',
-  description: `Final step that handles game-win logic (logging/returning final outputs).`,
+  id: 'Win Task (finalization)',
+  description: `Finalization task:`,
   inputSchema: z.object({}),
   outputSchema: z.object({}),
   execute: async ({ inputData }) => {
     // Finalization task:
     // TODO: Implement step logic
-    throw new Error('win-step not implemented yet')
+    throw new Error('Win Task (finalization) not implemented yet')
   },
 })
 
@@ -64,7 +63,7 @@ const winWorkflowStep = createStep({
  */
 export const headsUpWorkflow = createWorkflow({
   id: 'heads-up-workflow',
-  inputSchema: z.object({}),
+  inputSchema: z.object({Workflow_that_implements_the_Heads: z.string()}),
   outputSchema: z.object({}),
   steps: [startWorkflowStep, gameWorkflowStep, winWorkflowStep],
 })

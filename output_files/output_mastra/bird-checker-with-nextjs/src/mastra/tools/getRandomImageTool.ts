@@ -17,7 +17,7 @@ import { z } from 'zod'
 export const getRandomImageTool = createTool({
   id: 'Get a random image from Unsplash (tool)',
   description: `Tool that queries Unsplash and returns a single image object selected from search results. Implemented in the code using a GET to https://api.unsplash.com/search/photos with a query param and optional paging/randomization.`,
-  inputSchema: z.object({}),  // TODO: Define input schema
+  inputSchema: z.object({type: z.string(), properties: z.object({}), required: z.array(z.string())}),
   outputSchema: z.object({}),  // TODO: Define output schema
   execute: async ({ inputData }) => {
     // TODO: Implement tool logic

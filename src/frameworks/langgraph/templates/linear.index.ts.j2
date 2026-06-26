@@ -1,0 +1,24 @@
+import { Annotation, START, END, StateGraph } from "@langchain/langgraph";
+import { ChatOpenAI } from "@langchain/openai";
+
+const {{ graph_class_name }}Annotation = Annotation.Root({
+  messages: Annotation<any[]>({
+    reducer: (_, next) => next,
+    default: () => [],
+  }),
+});
+
+const graph = new StateGraph({{ graph_class_name }}Annotation)
+  .addNode("{{ nodes[0].ts_name if nodes else 'chat' }}", async (state) => {
+    const model = new ChatOpenAI({ model: "{{ agents[0].model_name if agents else 'gpt-4o-mini' }}" });
+    const response = await model.invoke([
+      { role: "system", content: "{{ (agents[0].prompt if agents else 'You are a helpful assistant.') | ts_escape }}" },
+      ...state.messages,
+    ]);
+    return { messages: [response] };
+  })
+  .addEdge(START, "{{ nodes[0].ts_name if nodes else 'chat' }}")
+  .addEdge("{{ nodes[0].ts_name if nodes else 'chat' }}", END);
+
+export const agent = graph.compile();
+agent.name = "{{ graph_name | ts_escape }}";

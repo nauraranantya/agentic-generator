@@ -3,30 +3,23 @@
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
+ * Goals:
+ *   - Chef Agent Goal (Recipe Retrieval): Return a useful recipe given an ingredient and available tools/equipment.
+ * Environments:
+ *   - My Utility MCP Server (myMcpServerTwo) (): MCP server providing tools, agents, workflows, and weather resources.
+ *   - My Calculation & Data MCP Server (myMcpServer) (): MCP server providing calculator and fetchWeather tools.
  */
 
 import { Mastra } from '@mastra/core'
 
 // Import agents
-import { chefAgent } from './agents/chefAgent'
-import { chefAgentResponses } from './agents/chefAgentResponses'
-import { chefModelV2Agent } from './agents/chefModelV2Agent'
-import { dynamicAgent } from './agents/dynamicAgent'
-import { agentThatHarassesYou } from './agents/agentThatHarassesYou'
-import { errorAgent } from './agents/errorAgent'
-import { networkAgent } from './agents/networkAgent'
-import { weatherAgent } from './agents/weatherAgent'
-import { evalAgent } from './agents/evalAgent'
+import { chefAgent, chefAgentResponses, chefModelV2Agent, dynamicAgent, agentThatHarassesYou, errorAgent, networkAgent, weatherAgent, evalAgent } from './agents'
 
 // Import workflows
-import { recipeMakerWorkflow } from './workflows/recipeMakerWorkflow'
-import { lessComplexWorkflow } from './workflows/lessComplexWorkflow'
-import { nestedWorkflow } from './workflows/nestedWorkflow'
-import { myWorkflowX } from './workflows/myWorkflowX'
+import { recipeMakerWorkflow, lessComplexWorkflow, nestedWorkflow, myWorkflowX } from './workflows'
 
 // Import memory instances
-import { globalMemory } from './memory/globalMemory'
-import { chefAgentMemory } from './memory/chefAgentMemory'
+import { globalMemory, chefAgentMemory } from './memory'
 
 /**
  * Mastra instance with registered agents, workflows, and memory.

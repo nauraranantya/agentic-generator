@@ -17,7 +17,7 @@ import { z } from 'zod'
 export const searchHotelsTool = createTool({
   id: 'Search Hotels (searchHotels)',
   description: `Searches for hotels in a specified location. Destination is a cityId like 20015732 for 20015733`,
-  inputSchema: z.object({}),  // TODO: Define input schema
+  inputSchema: z.object({startDate: z.string(), endDate: z.string(), destination: z.string()}),
   outputSchema: z.object({}),  // TODO: Define output schema
   execute: async ({ inputData }) => {
     // TODO: Implement tool logic

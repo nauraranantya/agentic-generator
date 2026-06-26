@@ -8,8 +8,7 @@
 import { Mastra } from '@mastra/core'
 
 // Import workflows
-import { myWorkflow } from './workflows/myWorkflow'
-import { dataProcessing } from './workflows/dataProcessing'
+import { myWorkflow, dataProcessing } from './workflows'
 
 /**
  * Mastra instance with registered agents, workflows, and memory.

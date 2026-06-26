@@ -3,7 +3,7 @@
  * 
  * Auto-generated from AgentO Knowledge Graph
  * 
- * Tool configured to: - Accept named query: one of [wildlife, feathers, flying, birds] - Call Unsplash search/photos endpoint with that query - Randomize page (0..19) and order_by (relevant|latest) - Return a single image object with alt_description, urls (regular/raw), and user attribution (Implementation details stored as literals in config; code-level details not modeled)
+ * Gets a random image from Unsplash based on the selected option (query enum). Declared as a tool in src/mastra/tools.
  */
 
 import { createTool } from '@mastra/core/tools'
@@ -12,22 +12,17 @@ import { z } from 'zod'
 /**
  * Get a random image from unsplash
  * 
- * Implementation: Tool configured to:
+ * Implementation: Gets a random image from Unsplash based on the selected option (query enum). Declared as a tool in src/mastra/tools.
  */
 export const getRandomImageTool = createTool({
   id: 'Get a random image from unsplash',
-  description: `Tool configured to:
-- Accept named query: one of [wildlife, feathers, flying, birds]
-- Call Unsplash search/photos endpoint with that query
-- Randomize page (0..19) and order_by (relevant|latest)
-- Return a single image object with alt_description, urls (regular/raw), and user attribution
-(Implementation details stored as literals in config; code-level details not modeled)`,
-  inputSchema: z.object({}),  // TODO: Define input schema
+  description: `Gets a random image from Unsplash based on the selected option (query enum). Declared as a tool in src/mastra/tools.`,
+  inputSchema: z.object({ query: z.enum(['wildlife','feathers','flying','birds']) }),
   outputSchema: z.object({}),  // TODO: Define output schema
   execute: async ({ inputData }) => {
     // TODO: Implement tool logic
     // 
-    // Description: Tool configured to:
+    // Description: Gets a random image from Unsplash based on the selected option (query enum). Declared as a tool in src/mastra/tools.
     // Configurations:
     //   - inputSchema: z.object({ query: z.enum(['wildlife','feathers','flying','birds']) })
     //   - inputSchema: Uses NEXT_PUBLIC_UNSPLASH_ACCESS_KEY at runtime; performs search/photos with query, random page and order_by relevant/latest

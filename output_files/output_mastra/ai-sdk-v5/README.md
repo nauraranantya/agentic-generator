@@ -1,4 +1,4 @@
-# MastraProject
+# UnnamedProject
 
 
 
@@ -34,7 +34,7 @@ npm run dev
 ## 📦 Project Structure
 
 ```
-MastraProject/
+UnnamedProject/
 ├── src/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
@@ -51,16 +51,13 @@ MastraProject/
 
 ## 🤖 Agents
 
-### Weather Agent
+### Weather assistant
 
 - **ID:** `weather-agent`
 - **Model:** `openai/gpt-4o`
 - **Tools:** getWeatherTool
 
-You are a helpful weather assistant that provides accurate weather information.
-
-Your primary function is to help users get weather details for specific locations. When responding:
-- Always ask for a ...
+You are Weather assistant....
 
 
 ---

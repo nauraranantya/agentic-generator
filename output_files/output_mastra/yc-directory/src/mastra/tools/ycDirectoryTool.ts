@@ -1,5 +1,5 @@
 /**
- * Tool: yc-directory
+ * Tool: ycDirectoryTool
  * 
  * Auto-generated from AgentO Knowledge Graph
  * 
@@ -10,15 +10,15 @@ import { createTool } from '@mastra/core/tools'
 import { z } from 'zod'
 
 /**
- * yc-directory
+ * ycDirectoryTool
  * 
  * Implementation: Tool that returns the Y Combinator 2024 directory data. Created in src/mastra/tools/index.ts. Exposes an execute action that returns the dataset.
  */
 export const ycDirectoryTool = createTool({
-  id: 'yc-directory',
+  id: 'ycDirectoryTool',
   description: `Tool that returns the Y Combinator 2024 directory data. Created in src/mastra/tools/index.ts. Exposes an execute action that returns the dataset.`,
   inputSchema: z.object({}),  // TODO: Define input schema
-  outputSchema: z.object({}),  // TODO: Define output schema
+  outputSchema: z.object({name: z.string()}),
   execute: async ({ inputData }) => {
     // TODO: Implement tool logic
     // 
@@ -32,6 +32,6 @@ export const ycDirectoryTool = createTool({
     // 2. Perform the tool's logic
     // 3. Return result matching outputSchema
     
-    throw new Error('Tool yc-directory not implemented yet')
+    throw new Error('Tool ycDirectoryTool not implemented yet')
   },
 })
