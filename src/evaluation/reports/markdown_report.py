@@ -14,12 +14,12 @@ def render_markdown(results: Dict[str, object]) -> str:
     lines.append("")
     lines.append("## Summary")
     lines.append("")
-    lines.append("| Framework | Projects | Errors | OEC All | OEC Important | WGI | Edge F1 |")
-    lines.append("| :--- | :---: | :---: | :---: | :---: | :---: | :---: |")
+    lines.append("| Framework | Projects | Errors | OEC All | OEC Important | WGI | Edge F1 | Syntax OK | Run OK | AST Sim |")
+    lines.append("| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |")
     for framework in results.get("frameworks", []):
         summary = framework.get("summary", {})
         lines.append(
-            "| {name} | {projects} | {errors} | {oec_all} | {oec_important} | {wgi} | {edge_f1} |".format(
+            "| {name} | {projects} | {errors} | {oec_all} | {oec_important} | {wgi} | {edge_f1} | {syntax} | {run} | {ast_sim} |".format(
                 name=framework.get("name", ""),
                 projects=summary.get("projects", 0),
                 errors=summary.get("errors", 0),
@@ -27,6 +27,9 @@ def render_markdown(results: Dict[str, object]) -> str:
                 oec_important=_pct(summary.get("avg_oec_important")),
                 wgi=_pct(summary.get("avg_wgi")),
                 edge_f1=_pct(summary.get("avg_edge_f1")),
+                syntax=_pct(summary.get("syntax_success_rate")),
+                run=_pct(summary.get("run_success_rate")),
+                ast_sim=_pct(summary.get("avg_ast_sim")),
             )
         )
 
@@ -36,18 +39,21 @@ def render_markdown(results: Dict[str, object]) -> str:
         lines.append("")
         lines.append(f"### {framework.get('name', '')}")
         lines.append("")
-        lines.append("| Project | Status | OEC All | OEC Important | Missing Important | WGI | Missing Edges | Extra Edges |")
-        lines.append("| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |")
+        lines.append("| Project | Status | OEC All | OEC Important | Missing Important | WGI | Missing Edges | Extra Edges | Syntax | Run Status | AST Sim |")
+        lines.append("| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |")
         for project in framework.get("projects", []):
             if project.get("status") != "ok":
                 lines.append(
-                    f"| `{project.get('project', '')}` | error | - | - | - | - | - | - |"
+                    f"| `{project.get('project', '')}` | error | - | - | - | - | - | - | - | - | - |"
                 )
                 continue
             oec = project["oec"]
             wgi = project["wgi"]
+            comp_str = "✅ OK" if project.get("syntax_ok") else "❌ FAIL"
+            run_status = project.get("run_status", "N/A")
+            run_str = "✅ SUCCESS_DUMMY" if run_status == "SUCCESS_DUMMY" else (f"❌ {run_status}" if run_status != "N/A" else "➖ N/A")
             lines.append(
-                "| `{project}` | ok | {oec_all} | {oec_important} | {missing_important} | {wgi} | {missing_edges} | {extra_edges} |".format(
+                "| `{project}` | ok | {oec_all} | {oec_important} | {missing_important} | {wgi} | {missing_edges} | {extra_edges} | {syntax} | {run} | {ast_sim} |".format(
                     project=project.get("project", ""),
                     oec_all=_pct(oec["all_extracted"]["score"]),
                     oec_important=_pct(oec["important_subset"]["score"]),
@@ -55,8 +61,23 @@ def render_markdown(results: Dict[str, object]) -> str:
                     wgi=_pct(wgi["score"]),
                     missing_edges=len(wgi.get("missing_edges", [])),
                     extra_edges=len(wgi.get("extra_edges", [])),
+                    syntax=comp_str,
+                    run=run_str,
+                    ast_sim=_pct(project.get("ast_sim")),
                 )
             )
+
+        failures = [p for p in framework.get("projects", []) if p.get("status") == "ok" and p.get("run_status") not in ("SUCCESS_DUMMY", "N/A")]
+        if failures:
+            lines.append("")
+            lines.append(f"#### Dry-Run Execution Failures ({framework.get('name', '')})")
+            lines.append("")
+            for p in failures:
+                lines.append(f"- **{p['project']}** (`{p['run_status']}`):")
+                lines.append("  ```")
+                for line in str(p.get("run_output", "")).splitlines():
+                    lines.append(f"  {line}")
+                lines.append("  ```")
 
         errors = [project for project in framework.get("projects", []) if project.get("status") != "ok"]
         if errors:

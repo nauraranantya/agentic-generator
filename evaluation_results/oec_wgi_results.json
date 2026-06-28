@@ -13,7 +13,10 @@
         "avg_oec_all": 0.5800957441405912,
         "avg_oec_important": 0.9377429770521875,
         "avg_wgi": 0.9038461538461539,
-        "avg_edge_f1": 0.825
+        "avg_edge_f1": 0.825,
+        "avg_ast_sim": 0.5988615705752981,
+        "syntax_success_rate": 1.0,
+        "run_success_rate": 0.8
       },
       "projects": [
         {
@@ -433,7 +436,12 @@
             "extra_nodes": [],
             "missing_edges": [],
             "extra_edges": []
-          }
+          },
+          "syntax_ok": true,
+          "run_status": "SUCCESS_DUMMY",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.6585365853658537
         },
         {
           "project": "industry-agents",
@@ -996,7 +1004,12 @@
             "extra_nodes": [],
             "missing_edges": [],
             "extra_edges": []
-          }
+          },
+          "syntax_ok": true,
+          "run_status": "SUCCESS_DUMMY",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.0
         },
         {
           "project": "instagram_post",
@@ -2192,7 +2205,12 @@
                 "target": "task_competitor_analysis"
               }
             ]
-          }
+          },
+          "syntax_ok": true,
+          "run_status": "OTHER_ERROR",
+          "run_output": "\nYour final answer MUST be 3 options for an ad copy for instagram that\nnot only informs but also excites and persuades the audience.\n', which is not allowed. [type=value_error, input_value={'agents': [Agent(role=Le...tial'>, 'verbose': True}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/value_error",
+          "gt_found": true,
+          "ast_sim": 0.6
         },
         {
           "project": "job-posting",
@@ -2588,7 +2606,12 @@
             "extra_nodes": [],
             "missing_edges": [],
             "extra_edges": []
-          }
+          },
+          "syntax_ok": true,
+          "run_status": "SUCCESS_DUMMY",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.6190476190476191
         },
         {
           "project": "landing_page_generator",
@@ -3392,8 +3415,8 @@
                   "important": false,
                   "aliases": [
                     "templates_folder",
-                    "templates_folder_of_tailwind_templates",
-                    "folder_of_tailwind_templates"
+                    "folder_of_tailwind_templates",
+                    "templates_folder_of_tailwind_templates"
                   ],
                   "details": {}
                 },
@@ -3791,7 +3814,12 @@
                 "target": "update_component_task"
               }
             ]
-          }
+          },
+          "syntax_ok": true,
+          "run_status": "OTHER_ERROR",
+          "run_output": "\nYOU MUST RETURN THE COMPLETE IDEA REPORT AND \nTHE DETAILS, You'll get a $100 tip if you do your best work!\n', which is not allowed. [type=value_error, input_value={'agents': [Agent(role=Se...tial'>, 'verbose': True}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/value_error",
+          "gt_found": true,
+          "ast_sim": 0.7254901960784313
         },
         {
           "project": "markdown_validator",
@@ -4117,7 +4145,12 @@
             "extra_nodes": [],
             "missing_edges": [],
             "extra_edges": []
-          }
+          },
+          "syntax_ok": true,
+          "run_status": "SUCCESS_DUMMY",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.7857142857142857
         },
         {
           "project": "marketing_strategy",
@@ -4357,7 +4390,12 @@
             "extra_nodes": [],
             "missing_edges": [],
             "extra_edges": []
-          }
+          },
+          "syntax_ok": true,
+          "run_status": "SUCCESS_DUMMY",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.6097560975609756
         },
         {
           "project": "prep-for-a-meeting",
@@ -4904,7 +4942,12 @@
             "extra_nodes": [],
             "missing_edges": [],
             "extra_edges": []
-          }
+          },
+          "syntax_ok": true,
+          "run_status": "SUCCESS_DUMMY",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.6444444444444445
         },
         {
           "project": "recruitment",
@@ -5445,7 +5488,12 @@
             "extra_nodes": [],
             "missing_edges": [],
             "extra_edges": []
-          }
+          },
+          "syntax_ok": true,
+          "run_status": "SUCCESS_DUMMY",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.6222222222222222
         },
         {
           "project": "screenplay_writer",
@@ -6375,7 +6423,12 @@
             "extra_nodes": [],
             "missing_edges": [],
             "extra_edges": []
-          }
+          },
+          "syntax_ok": true,
+          "run_status": "SUCCESS_DUMMY",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.723404255319149
         }
       ]
     },
@@ -6391,7 +6444,10 @@
         "avg_oec_all": 0.4962796660952939,
         "avg_oec_important": 0.9100602210856295,
         "avg_wgi": 0.8333333333333334,
-        "avg_edge_f1": 0.8333333333333334
+        "avg_edge_f1": 0.8333333333333334,
+        "avg_ast_sim": 0.46530447536639485,
+        "syntax_success_rate": 1.0,
+        "run_success_rate": 1.0
       },
       "projects": [
         {
@@ -6644,7 +6700,12 @@
                 "target": "joe"
               }
             ]
-          }
+          },
+          "syntax_ok": true,
+          "run_status": "SUCCESS_DUMMY",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.5
         },
         {
           "project": "L2_Sequential_Chats_and_Customer_Onboarding",
@@ -7025,7 +7086,12 @@
             "extra_nodes": [],
             "missing_edges": [],
             "extra_edges": []
-          }
+          },
+          "syntax_ok": true,
+          "run_status": "SUCCESS_DUMMY",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.42857142857142855
         },
         {
           "project": "L3_Reflection_and_Blogpost_Writing",
@@ -7586,7 +7652,12 @@
             "extra_nodes": [],
             "missing_edges": [],
             "extra_edges": []
-          }
+          },
+          "syntax_ok": true,
+          "run_status": "SUCCESS_DUMMY",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.47368421052631576
         },
         {
           "project": "L4_Tool_Use_and_Conversational_Chess",
@@ -8139,7 +8210,12 @@
             "extra_nodes": [],
             "missing_edges": [],
             "extra_edges": []
-          }
+          },
+          "syntax_ok": true,
+          "run_status": "SUCCESS_DUMMY",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.5238095238095238
         },
         {
           "project": "L5_Coding_and_Financial_Analysis",
@@ -8567,7 +8643,12 @@
             "extra_nodes": [],
             "missing_edges": [],
             "extra_edges": []
-          }
+          },
+          "syntax_ok": true,
+          "run_status": "SUCCESS_DUMMY",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.5128205128205128
         },
         {
           "project": "L6-Planning_and_Stock_Report_Generation",
@@ -9162,7 +9243,12 @@
             "extra_nodes": [],
             "missing_edges": [],
             "extra_edges": []
-          }
+          },
+          "syntax_ok": true,
+          "run_status": "SUCCESS_DUMMY",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.35294117647058826
         }
       ]
     },
@@ -9175,10 +9261,13 @@
         "projects": 9,
         "evaluated": 8,
         "errors": 1,
-        "avg_oec_all": 0.10324126459633791,
+        "avg_oec_all": 0.1032412645963379,
         "avg_oec_important": 0.12574870112935896,
         "avg_wgi": 0.875,
-        "avg_edge_f1": 0.25
+        "avg_edge_f1": 0.25,
+        "avg_ast_sim": 0.39732287487955475,
+        "syntax_success_rate": 1.0,
+        "run_success_rate": 1.0
       },
       "projects": [
         {
@@ -9528,7 +9617,12 @@
             ],
             "missing_edges": [],
             "extra_edges": []
-          }
+          },
+          "syntax_ok": true,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.90625
         },
         {
           "project": "email-agent",
@@ -10642,7 +10736,12 @@
                 "target": "interrupt"
               }
             ]
-          }
+          },
+          "syntax_ok": true,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.44776119402985076
         },
         {
           "project": "open-code",
@@ -11119,8 +11218,8 @@
                   "important": false,
                   "aliases": [
                     "capability_ui_interaction",
-                    "propose_changes",
                     "ui_interaction_propose_changes",
+                    "propose_changes",
                     "capability_uiinteraction"
                   ],
                   "details": {}
@@ -11600,7 +11699,12 @@
                 "target": "workflow_step_executor"
               }
             ]
-          }
+          },
+          "syntax_ok": true,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.0
         },
         {
           "project": "pizza-orderer",
@@ -12325,7 +12429,12 @@
                 "target": "step_order_pizza"
               }
             ]
-          }
+          },
+          "syntax_ok": true,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.6818181818181818
         },
         {
           "project": "stockbroker",
@@ -13335,7 +13444,12 @@
             ],
             "missing_edges": [],
             "extra_edges": []
-          }
+          },
+          "syntax_ok": true,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.0
         },
         {
           "project": "supervisor",
@@ -15044,7 +15158,12 @@
                 "target": "writer_agent"
               }
             ]
-          }
+          },
+          "syntax_ok": true,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.65
         },
         {
           "project": "trip-planner",
@@ -16320,7 +16439,12 @@
                 "target": "step_call_tools"
               }
             ]
-          }
+          },
+          "syntax_ok": true,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.0
         },
         {
           "project": "utils",
@@ -17287,7 +17411,12 @@
                 "target": "suggestions"
               }
             ]
-          }
+          },
+          "syntax_ok": true,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.4927536231884058
         }
       ]
     },
@@ -17302,8 +17431,11 @@
         "errors": 9,
         "avg_oec_all": 0.4067117212299672,
         "avg_oec_important": 0.5504029148553766,
-        "avg_wgi": 0.8647928994082841,
-        "avg_edge_f1": 0.23076923076923078
+        "avg_wgi": 0.8647928994082839,
+        "avg_edge_f1": 0.23076923076923078,
+        "avg_ast_sim": 0.45498232649909987,
+        "syntax_success_rate": 0.8076923076923077,
+        "run_success_rate": 0.8076923076923077
       },
       "projects": [
         {
@@ -17705,7 +17837,12 @@
                 "target": "a2_astep2_content_transform"
               }
             ]
-          }
+          },
+          "syntax_ok": true,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.3625
         },
         {
           "project": "agent",
@@ -18663,8 +18800,8 @@
                   "important": false,
                   "aliases": [
                     "resource_weather_historical",
-                    "weather_historical",
-                    "historical"
+                    "historical",
+                    "weather_historical"
                   ],
                   "details": {}
                 }
@@ -19573,7 +19710,12 @@
                 "target": "step_three_numeric"
               }
             ]
-          }
+          },
+          "syntax_ok": true,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.5306122448979592
         },
         {
           "project": "agui",
@@ -19939,7 +20081,12 @@
             ],
             "missing_edges": [],
             "extra_edges": []
-          }
+          },
+          "syntax_ok": false,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": false,
+          "ast_sim": null
         },
         {
           "project": "ai-sdk-useChat",
@@ -20412,7 +20559,12 @@
                 "target": "plan_activities_step"
               }
             ]
-          }
+          },
+          "syntax_ok": true,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": false,
+          "ast_sim": null
         },
         {
           "project": "ai-sdk-v5",
@@ -20725,7 +20877,12 @@
             "extra_nodes": [],
             "missing_edges": [],
             "extra_edges": []
-          }
+          },
+          "syntax_ok": false,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": false,
+          "ast_sim": null
         },
         {
           "project": "bird-checker-with-express",
@@ -21192,7 +21349,12 @@
                 "target": "step_analyze_image"
               }
             ]
-          }
+          },
+          "syntax_ok": true,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.3939393939393939
         },
         {
           "project": "bird-checker-with-nextjs-and-eval",
@@ -21958,7 +22120,12 @@
                 "target": "step_analyze_image"
               }
             ]
-          }
+          },
+          "syntax_ok": true,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.33766233766233766
         },
         {
           "project": "bird-checker-with-nextjs",
@@ -22556,7 +22723,12 @@
                 "target": "analyze_step"
               }
             ]
-          }
+          },
+          "syntax_ok": true,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.36619718309859156
         },
         {
           "project": "client-side-tools",
@@ -23704,7 +23876,12 @@
                 "target": "step05_append_text"
               }
             ]
-          }
+          },
+          "syntax_ok": true,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": false,
+          "ast_sim": null
         },
         {
           "project": "crypto-chatbot",
@@ -23733,8 +23910,8 @@
                   "aliases": [
                     "dane_anthropic_claude_3_5_sonnet_20241022",
                     "dane",
-                    "claude_3_5_sonnet_20241022",
-                    "anthropic_claude_3_5_sonnet_20241022"
+                    "anthropic_claude_3_5_sonnet_20241022",
+                    "claude_3_5_sonnet_20241022"
                   ],
                   "details": {
                     "source": "dane",
@@ -23832,8 +24009,8 @@
                   "aliases": [
                     "dane_commit_message_anthropic_claude_3_5_sonnet_20241022",
                     "dane_commit_message",
-                    "claude_3_5_sonnet_20241022",
-                    "anthropic_claude_3_5_sonnet_20241022"
+                    "anthropic_claude_3_5_sonnet_20241022",
+                    "claude_3_5_sonnet_20241022"
                   ],
                   "details": {
                     "source": "dane_commit_message",
@@ -23875,8 +24052,8 @@
                   "aliases": [
                     "dane_issue_labeler_anthropic_claude_3_5_sonnet_20241022",
                     "dane_issue_labeler",
-                    "claude_3_5_sonnet_20241022",
-                    "anthropic_claude_3_5_sonnet_20241022"
+                    "anthropic_claude_3_5_sonnet_20241022",
+                    "claude_3_5_sonnet_20241022"
                   ],
                   "details": {
                     "source": "dane_issue_labeler",
@@ -23904,8 +24081,8 @@
                   "aliases": [
                     "dane_link_checker_anthropic_claude_3_5_sonnet_20241022",
                     "dane_link_checker",
-                    "claude_3_5_sonnet_20241022",
-                    "anthropic_claude_3_5_sonnet_20241022"
+                    "anthropic_claude_3_5_sonnet_20241022",
+                    "claude_3_5_sonnet_20241022"
                   ],
                   "details": {
                     "source": "dane_link_checker",
@@ -23947,8 +24124,8 @@
                   "aliases": [
                     "dane_package_publisher_anthropic_claude_3_5_sonnet_20241022",
                     "dane_package_publisher",
-                    "claude_3_5_sonnet_20241022",
-                    "anthropic_claude_3_5_sonnet_20241022"
+                    "anthropic_claude_3_5_sonnet_20241022",
+                    "claude_3_5_sonnet_20241022"
                   ],
                   "details": {
                     "source": "dane_package_publisher",
@@ -23976,8 +24153,8 @@
                   "aliases": [
                     "dane_new_contributor_anthropic_claude_3_5_sonnet_20241022",
                     "dane_new_contributor",
-                    "claude_3_5_sonnet_20241022",
-                    "anthropic_claude_3_5_sonnet_20241022"
+                    "anthropic_claude_3_5_sonnet_20241022",
+                    "claude_3_5_sonnet_20241022"
                   ],
                   "details": {
                     "source": "dane_new_contributor",
@@ -25401,7 +25578,12 @@
             "extra_nodes": [],
             "missing_edges": [],
             "extra_edges": []
-          }
+          },
+          "syntax_ok": true,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.29411764705882354
         },
         {
           "project": "experimental-auth-weather-agent",
@@ -25823,7 +26005,12 @@
                 "target": "plan_activities_step"
               }
             ]
-          }
+          },
+          "syntax_ok": true,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": false,
+          "ast_sim": null
         },
         {
           "project": "fireworks-r1",
@@ -26131,7 +26318,12 @@
             "extra_nodes": [],
             "missing_edges": [],
             "extra_edges": []
-          }
+          },
+          "syntax_ok": true,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": false,
+          "ast_sim": null
         },
         {
           "project": "heads-up-game",
@@ -26780,7 +26972,12 @@
                 "target": "game_workflow_step"
               }
             ]
-          }
+          },
+          "syntax_ok": false,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": false,
+          "ast_sim": null
         },
         {
           "project": "mcp-configuration",
@@ -27418,7 +27615,12 @@
                 "target": "stock_lookup_step"
               }
             ]
-          }
+          },
+          "syntax_ok": true,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": false,
+          "ast_sim": null
         },
         {
           "project": "mcp-registry-registry",
@@ -27975,7 +28177,12 @@
                 "target": "end_step_complete"
               }
             ]
-          }
+          },
+          "syntax_ok": true,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.3118279569892473
         },
         {
           "project": "memory-per-resource-example",
@@ -28585,7 +28792,12 @@
                 "target": "prwm_interactive_chat_step"
               }
             ]
-          }
+          },
+          "syntax_ok": false,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": false,
+          "ast_sim": null
         },
         {
           "project": "memory-todo-agent",
@@ -29251,7 +29463,12 @@
                 "target": "ws_receive_user_input"
               }
             ]
-          }
+          },
+          "syntax_ok": false,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": false,
+          "ast_sim": null
         },
         {
           "project": "memory-with-libsql",
@@ -29928,7 +30145,12 @@
                 "target": "generate_spec_workflow_step"
               }
             ]
-          }
+          },
+          "syntax_ok": true,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.3783783783783784
         },
         {
           "project": "quick-start",
@@ -30363,7 +30585,12 @@
             ],
             "missing_edges": [],
             "extra_edges": []
-          }
+          },
+          "syntax_ok": true,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.5555555555555556
         },
         {
           "project": "stock-price-tool",
@@ -30766,7 +30993,12 @@
             ],
             "missing_edges": [],
             "extra_edges": []
-          }
+          },
+          "syntax_ok": true,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.574468085106383
         },
         {
           "project": "travel-app",
@@ -31304,8 +31536,8 @@
                   "name": "anthropic_claude_3_5_sonnet_20240620",
                   "important": false,
                   "aliases": [
-                    "claude_3_5_sonnet_20240620",
                     "anthropic_claude_3_5_sonnet_20240620",
+                    "claude_3_5_sonnet_20240620",
                     "anthropic_claude_example"
                   ],
                   "details": {}
@@ -31933,7 +32165,12 @@
                 "target": "outbound_flight_step"
               }
             ]
-          }
+          },
+          "syntax_ok": true,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.3118279569892473
         },
         {
           "project": "weather-agent",
@@ -32873,7 +33110,12 @@
                 "target": "wf2_step_map_prompt"
               }
             ]
-          }
+          },
+          "syntax_ok": true,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.5254237288135594
         },
         {
           "project": "workflow-ai-recruiter",
@@ -33231,7 +33473,12 @@
                 "target": "ws_ask_about_specialty"
               }
             ]
-          }
+          },
+          "syntax_ok": true,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.4716981132075472
         },
         {
           "project": "workflow-with-inline-steps",
@@ -33706,7 +33953,12 @@
                 "target": "step_three_step"
               }
             ]
-          }
+          },
+          "syntax_ok": true,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.7
         },
         {
           "project": "workflow-with-memory",
@@ -34047,8 +34299,8 @@
                   "important": false,
                   "aliases": [
                     "res_example_run_resumed",
-                    "completed",
-                    "example_run_result_resumed_completed"
+                    "example_run_result_resumed_completed",
+                    "completed"
                   ],
                   "details": {}
                 }
@@ -34391,7 +34643,12 @@
                 "target": "step_three_ws"
               }
             ]
-          }
+          },
+          "syntax_ok": true,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": false,
+          "ast_sim": null
         },
         {
           "project": "yc-directory",
@@ -34981,7 +35238,12 @@
                 "target": "step_generate_answer"
               }
             ]
-          }
+          },
+          "syntax_ok": true,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.7105263157894737
         }
       ]
     }
