@@ -95,38 +95,3 @@ customer_proxy_agent = UserProxyAgent(
     description="customer_proxy",
 )
 
-team = RoundRobinGroupChat(
-    participants=[
-        onboarding_personal_information_agent,
-        onboarding_topic_preference_agent,
-        customer_engagement_agent,
-        customer_proxy_agent,
-    ],
-    termination_condition=MaxMessageTermination(
-        max_messages=10
-    )
-)
-
-TASK_PROMPT = """
-
-Task:
-sender: onboarding_personal_information_agent; recipient: customer_proxy_agent; summary_method: reflection_with_llm; summary_args: { 'summary_prompt': "Return the customer information into as JSON object only: {'name': '', 'location': ''}" }; max_turns: 2; clear_history: True
-
-Expected Output:
-JSON object with keys 'name' and 'location'
-
-
-Task:
-sender: onboarding_topic_preference_agent; recipient: customer_proxy_agent; summary_method: reflection_with_llm; max_turns: 1; clear_history: False
-
-Expected Output:
-Completed: task_collect_topic_preferences
-
-
-Task:
-sender: customer_proxy_agent; recipient: customer_engagement_agent; message: "Let's find something fun to read."; summary_method: reflection_with_llm; max_turns: 1
-
-Expected Output:
-Completed: task_customer_proxy_to_engagement
-
-"""

@@ -64,6 +64,7 @@ def adapt(project: AgenticProject) -> AutoGenProject:
         model_name=_resolve_model_name(project),
         agents=project.agents,
         tasks=list(project.tasks),
+        workflows=project.workflows,
         tools=project.tools,
         ordered_tasks=_build_ordered_tasks(project),
         input_variables=project.input_variables,

@@ -149,12 +149,26 @@ def _extract_mastra_graph(text: str) -> GraphSpec:
 
 def _extract_autogen_graph(text: str) -> GraphSpec:
     graph = GraphSpec()
+    
+    # 1. Parse structured workflow comments if present
+    step_matches = re.findall(r"#\s*Workflow Step:\s*([a-zA-Z0-9_]+)", text)
+    edge_matches = re.findall(r"#\s*Workflow Edge:\s*([a-zA-Z0-9_]+)\s*->\s*([a-zA-Z0-9_]+)", text)
+    
+    if step_matches:
+        for step in step_matches:
+            graph.nodes.add(normalize_name(step))
+        for src, tgt in edge_matches:
+            graph.edges.add((normalize_name(src), normalize_name(tgt)))
+        return graph
+
+    # 2. Fallback to legacy sender/recipient parser
     for sender, recipient in re.findall(r"sender:\s*([a-zA-Z_][a-zA-Z0-9_]*);\s*recipient:\s*([a-zA-Z_][a-zA-Z0-9_]*)", text):
         source = normalize_name(sender)
         target = normalize_name(recipient)
         graph.nodes.update({source, target})
         graph.edges.add((source, target))
 
+    # 3. Fallback to participants list
     participants_match = re.search(r"participants\s*=\s*\[([^\]]+)\]", text, flags=re.S)
     if participants_match and not graph.edges:
         participants = [normalize_name(name) for name in re.findall(r"[a-zA-Z_][a-zA-Z0-9_]*", participants_match.group(1))]

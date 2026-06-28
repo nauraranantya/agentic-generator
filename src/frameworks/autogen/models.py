@@ -17,6 +17,8 @@ from ...core.models import (
     ResourceModel,
     TaskModel,
     ToolModel,
+    WorkflowPatternModel,
+    WorkflowType,
 )
 
 
@@ -28,6 +30,7 @@ class AutoGenProject(BaseModel):
     team_type: str = "RoundRobinGroupChat"
     agents: List[AgentModel] = Field(default_factory=list)
     tasks: List[TaskModel] = Field(default_factory=list)
+    workflows: List[WorkflowPatternModel] = Field(default_factory=list)
     tools: List[ToolModel] = Field(default_factory=list)
     ordered_tasks: List[TaskModel] = Field(default_factory=list)
     input_variables: List[InputVariableModel] = Field(default_factory=list)

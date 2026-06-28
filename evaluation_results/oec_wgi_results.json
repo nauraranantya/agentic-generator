@@ -3813,8 +3813,8 @@
                   "aliases": [
                     "system_mark_down_validator_crew_agents_config_path",
                     "agents_config_path",
-                    "config_agents_yaml_config_tasks_yaml",
                     "tasks_yaml",
+                    "config_agents_yaml_config_tasks_yaml",
                     "agents_config_path_config_agents_yaml_config_tasks_yaml"
                   ],
                   "details": {
@@ -4130,8 +4130,8 @@
           "project": "match_profile_to_positions",
           "kg_path": "/Users/ravie/dev/agento/kgs_original/CrewAI/match_profile_to_positions_instances.ttl",
           "output_dir": "/Users/ravie/dev/agento/output_files/output_crewai/match_profile_to_positions",
-          "status": "missing_output",
-          "error": "Generated output directory not found: /Users/ravie/dev/agento/output_files/output_crewai/match_profile_to_positions"
+          "status": "error",
+          "error": "at line 29 of <>:\nBad syntax (Prefix \"dcterms:\" not bound) at ^ in:\n\"...b'################\\n\\n:MatchToProposalCrew rdf:type :Team ;\\n    '^b'dcterms:title \"MatchToProposal Crew\" ;\\n    dcterms:descripti'...\""
         },
         {
           "project": "meta_quest_knowledge",
@@ -5451,29 +5451,29 @@
           "project": "screenplay_writer",
           "kg_path": "/Users/ravie/dev/agento/kgs_original/CrewAI/screenplay_writer_instances.ttl",
           "output_dir": "/Users/ravie/dev/agento/output_files/output_crewai/screenplay_writer",
-          "status": "missing_output",
-          "error": "Generated output directory not found: /Users/ravie/dev/agento/output_files/output_crewai/screenplay_writer"
+          "status": "error",
+          "error": "at line 178 of <>:\nBad syntax (expected '.' or '}' or ']' at end of statement) at ^ in:\n\"...b'cussion points.\" ;\\n    :promptInputData dcterms:description '^b'\"\"\"### DISCUSSION:\\n(see linked resource :discussion_newsgrou'...\""
         },
         {
           "project": "starter_template",
           "kg_path": "/Users/ravie/dev/agento/kgs_original/CrewAI/starter_template_instances.ttl",
           "output_dir": "/Users/ravie/dev/agento/output_files/output_crewai/starter_template",
-          "status": "missing_output",
-          "error": "Generated output directory not found: /Users/ravie/dev/agento/output_files/output_crewai/starter_template"
+          "status": "error",
+          "error": "at line 126 of <>:\nBad syntax (newline found in string literal) at ^ in:\n\"...b'mpt ;\\n    :promptInstruction \"Role: Define agent 1 role here'^b'\\nBackstory: Define agent 1 backstory here\\nGoal: Define agent'...\""
         },
         {
           "project": "stock_analysis",
           "kg_path": "/Users/ravie/dev/agento/kgs_original/CrewAI/stock_analysis_instances.ttl",
           "output_dir": "/Users/ravie/dev/agento/output_files/output_crewai/stock_analysis",
-          "status": "missing_output",
-          "error": "Generated output directory not found: /Users/ravie/dev/agento/output_files/output_crewai/stock_analysis"
+          "status": "error",
+          "error": "at line 24 of <>:\nBad syntax (Prefix \"rdf:\" not bound) at ^ in:\n\"...b'#######################################\\n\\n:StockAnalysisCrew '^b'rdf:type :Team ;\\n    rdfs:label \"Stock Analysis Crew\" ;\\n    '...\""
         },
         {
           "project": "surprise_trip",
           "kg_path": "/Users/ravie/dev/agento/kgs_original/CrewAI/surprise_trip_instances.ttl",
           "output_dir": "/Users/ravie/dev/agento/output_files/output_crewai/surprise_trip",
-          "status": "missing_output",
-          "error": "Generated output directory not found: /Users/ravie/dev/agento/output_files/output_crewai/surprise_trip"
+          "status": "error",
+          "error": "at line 97 of <>:\nBad syntax (expected directive or statement) at ^ in:\n\"...b'\" ;\\n    rdfs:label \"Goal: personalized activity planner\" .\\n\\n'^b'---\\n\\n:agent_restaurant_scout rdf:type :LLMAgent ;\\n    rdfs:l'...\""
         },
         {
           "project": "trip_planner",
@@ -6388,10 +6388,10 @@
         "projects": 6,
         "evaluated": 6,
         "errors": 0,
-        "avg_oec_all": 0.43346920857895394,
-        "avg_oec_important": 0.7700719765715228,
-        "avg_wgi": 0.3403679653679654,
-        "avg_edge_f1": 0.0
+        "avg_oec_all": 0.4962796660952939,
+        "avg_oec_important": 0.9100602210856295,
+        "avg_wgi": 0.8333333333333334,
+        "avg_edge_f1": 0.8333333333333334
       },
       "projects": [
         {
@@ -6655,8 +6655,8 @@
           "code_element_count": 4,
           "oec": {
             "all_extracted": {
-              "score": 0.5,
-              "matched": 17,
+              "score": 0.5882352941176471,
+              "matched": 20,
               "total": 34,
               "missing": [
                 {
@@ -6821,15 +6821,6 @@
                   }
                 },
                 {
-                  "category": "task",
-                  "name": "task_collect_personal_info",
-                  "important": true,
-                  "aliases": [
-                    "task_collect_personal_info"
-                  ],
-                  "details": {}
-                },
-                {
                   "category": "task_produces",
                   "name": "task_collect_personal_info_resource_customer_info_json",
                   "important": false,
@@ -6851,29 +6842,6 @@
                     "customer_onboarding_workflow"
                   ],
                   "details": {}
-                },
-                {
-                  "category": "workflow_step",
-                  "name": "task_collect_personal_info",
-                  "important": true,
-                  "aliases": [
-                    "task_collect_personal_info",
-                    "step1_collect_personal_info"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "step_task",
-                  "name": "task_collect_personal_info_task_collect_personal_info",
-                  "important": true,
-                  "aliases": [
-                    "task_collect_personal_info_task_collect_personal_info",
-                    "task_collect_personal_info"
-                  ],
-                  "details": {
-                    "source": "task_collect_personal_info",
-                    "target": "task_collect_personal_info"
-                  }
                 },
                 {
                   "category": "language_model",
@@ -6936,13 +6904,13 @@
                   "total": 1
                 },
                 "step_task": {
-                  "score": 0.6666666666666666,
-                  "matched": 2,
+                  "score": 1.0,
+                  "matched": 3,
                   "total": 3
                 },
                 "task": {
-                  "score": 0.6666666666666666,
-                  "matched": 2,
+                  "score": 1.0,
+                  "matched": 3,
                   "total": 3
                 },
                 "task_produces": {
@@ -6956,26 +6924,17 @@
                   "total": 1
                 },
                 "workflow_step": {
-                  "score": 0.6666666666666666,
-                  "matched": 2,
+                  "score": 1.0,
+                  "matched": 3,
                   "total": 3
                 }
               }
             },
             "important_subset": {
-              "score": 0.75,
-              "matched": 12,
+              "score": 0.9375,
+              "matched": 15,
               "total": 16,
               "missing": [
-                {
-                  "category": "task",
-                  "name": "task_collect_personal_info",
-                  "important": true,
-                  "aliases": [
-                    "task_collect_personal_info"
-                  ],
-                  "details": {}
-                },
                 {
                   "category": "workflow",
                   "name": "customer_onboarding_workflow",
@@ -6984,29 +6943,6 @@
                     "customer_onboarding_workflow"
                   ],
                   "details": {}
-                },
-                {
-                  "category": "workflow_step",
-                  "name": "task_collect_personal_info",
-                  "important": true,
-                  "aliases": [
-                    "task_collect_personal_info",
-                    "step1_collect_personal_info"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "step_task",
-                  "name": "task_collect_personal_info_task_collect_personal_info",
-                  "important": true,
-                  "aliases": [
-                    "task_collect_personal_info_task_collect_personal_info",
-                    "task_collect_personal_info"
-                  ],
-                  "details": {
-                    "source": "task_collect_personal_info",
-                    "target": "task_collect_personal_info"
-                  }
                 }
               ],
               "by_category": {
@@ -7021,13 +6957,13 @@
                   "total": 3
                 },
                 "step_task": {
-                  "score": 0.6666666666666666,
-                  "matched": 2,
+                  "score": 1.0,
+                  "matched": 3,
                   "total": 3
                 },
                 "task": {
-                  "score": 0.6666666666666666,
-                  "matched": 2,
+                  "score": 1.0,
+                  "matched": 3,
                   "total": 3
                 },
                 "workflow": {
@@ -7036,35 +6972,34 @@
                   "total": 1
                 },
                 "workflow_step": {
-                  "score": 0.6666666666666666,
-                  "matched": 2,
+                  "score": 1.0,
+                  "matched": 3,
                   "total": 3
                 }
               }
             }
           },
           "wgi": {
-            "score": 0.4285714285714286,
-            "normalized_graph_edit_distance": 0.5714285714285714,
-            "labeled_score": 0.0,
-            "topology_score": 0.4285714285714286,
-            "labeled_normalized_graph_edit_distance": 1.0,
-            "topology_normalized_graph_edit_distance": 0.5714285714285714,
-            "exact_isomorphic": false,
-            "topology_isomorphic": false,
-            "edge_precision": 0.0,
-            "edge_recall": 0.0,
-            "edge_f1": 0.0,
+            "score": 1.0,
+            "normalized_graph_edit_distance": 0.0,
+            "labeled_score": 1.0,
+            "topology_score": 1.0,
+            "labeled_normalized_graph_edit_distance": 0.0,
+            "topology_normalized_graph_edit_distance": 0.0,
+            "exact_isomorphic": true,
+            "topology_isomorphic": true,
+            "edge_precision": 1.0,
+            "edge_recall": 1.0,
+            "edge_f1": 1.0,
             "kg_nodes": [
               "task_collect_personal_info",
               "task_collect_topic_preferences",
               "task_customer_proxy_to_engagement"
             ],
             "code_nodes": [
-              "customer_engagement_agent",
-              "customer_proxy_agent",
-              "onboarding_personal_information_agent",
-              "onboarding_topic_preference_agent"
+              "task_collect_personal_info",
+              "task_collect_topic_preferences",
+              "task_customer_proxy_to_engagement"
             ],
             "kg_edges": [
               {
@@ -7078,31 +7013,6 @@
             ],
             "code_edges": [
               {
-                "source": "customer_proxy_agent",
-                "target": "customer_engagement_agent"
-              },
-              {
-                "source": "onboarding_personal_information_agent",
-                "target": "customer_proxy_agent"
-              },
-              {
-                "source": "onboarding_topic_preference_agent",
-                "target": "customer_proxy_agent"
-              }
-            ],
-            "missing_nodes": [
-              "task_collect_personal_info",
-              "task_collect_topic_preferences",
-              "task_customer_proxy_to_engagement"
-            ],
-            "extra_nodes": [
-              "customer_engagement_agent",
-              "customer_proxy_agent",
-              "onboarding_personal_information_agent",
-              "onboarding_topic_preference_agent"
-            ],
-            "missing_edges": [
-              {
                 "source": "task_collect_personal_info",
                 "target": "task_collect_topic_preferences"
               },
@@ -7111,20 +7021,10 @@
                 "target": "task_customer_proxy_to_engagement"
               }
             ],
-            "extra_edges": [
-              {
-                "source": "customer_proxy_agent",
-                "target": "customer_engagement_agent"
-              },
-              {
-                "source": "onboarding_personal_information_agent",
-                "target": "customer_proxy_agent"
-              },
-              {
-                "source": "onboarding_topic_preference_agent",
-                "target": "customer_proxy_agent"
-              }
-            ]
+            "missing_nodes": [],
+            "extra_nodes": [],
+            "missing_edges": [],
+            "extra_edges": []
           }
         },
         {
@@ -7136,8 +7036,8 @@
           "code_element_count": 6,
           "oec": {
             "all_extracted": {
-              "score": 0.2549019607843137,
-              "matched": 13,
+              "score": 0.49019607843137253,
+              "matched": 25,
               "total": 51,
               "missing": [
                 {
@@ -7318,30 +7218,6 @@
                   }
                 },
                 {
-                  "category": "task",
-                  "name": "ethics_review_task",
-                  "important": true,
-                  "aliases": [
-                    "ethics_review_task",
-                    "task_ethics_review"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "task_agent",
-                  "name": "ethics_review_task_ethics_reviewer_1",
-                  "important": true,
-                  "aliases": [
-                    "ethics_review_task_ethics_reviewer_1",
-                    "ethics_review_task",
-                    "ethics_reviewer_1"
-                  ],
-                  "details": {
-                    "source": "ethics_review_task",
-                    "target": "ethics_reviewer_1"
-                  }
-                },
-                {
                   "category": "task_produces",
                   "name": "ethics_review_task_resource_ethics_review",
                   "important": false,
@@ -7356,30 +7232,6 @@
                   }
                 },
                 {
-                  "category": "task",
-                  "name": "meta_aggregation_task",
-                  "important": true,
-                  "aliases": [
-                    "meta_aggregation_task",
-                    "task_meta_aggregation"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "task_agent",
-                  "name": "meta_aggregation_task_meta_reviewer_1",
-                  "important": true,
-                  "aliases": [
-                    "meta_aggregation_task_meta_reviewer_1",
-                    "meta_aggregation_task",
-                    "meta_reviewer_1"
-                  ],
-                  "details": {
-                    "source": "meta_aggregation_task",
-                    "target": "meta_reviewer_1"
-                  }
-                },
-                {
                   "category": "task_produces",
                   "name": "meta_aggregation_task_resource_meta_suggestion",
                   "important": false,
@@ -7391,30 +7243,6 @@
                   "details": {
                     "source": "meta_aggregation_task",
                     "target": "resource_meta_suggestion"
-                  }
-                },
-                {
-                  "category": "task",
-                  "name": "blogpost_generation_task",
-                  "important": true,
-                  "aliases": [
-                    "blogpost_generation_task",
-                    "task_blogpost"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "task_agent",
-                  "name": "blogpost_generation_task_writer_1",
-                  "important": true,
-                  "aliases": [
-                    "blogpost_generation_task_writer_1",
-                    "blogpost_generation_task",
-                    "writer_1"
-                  ],
-                  "details": {
-                    "source": "blogpost_generation_task",
-                    "target": "writer_1"
                   }
                 },
                 {
@@ -7440,75 +7268,6 @@
                     "reflection_and_blogpost_writing_workflow_pattern"
                   ],
                   "details": {}
-                },
-                {
-                  "category": "workflow_step",
-                  "name": "blogpost_generation_task",
-                  "important": true,
-                  "aliases": [
-                    "blogpost_generation_task",
-                    "step_generate_draft"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "step_task",
-                  "name": "blogpost_generation_task_blogpost_generation_task",
-                  "important": true,
-                  "aliases": [
-                    "blogpost_generation_task_blogpost_generation_task",
-                    "blogpost_generation_task"
-                  ],
-                  "details": {
-                    "source": "blogpost_generation_task",
-                    "target": "blogpost_generation_task"
-                  }
-                },
-                {
-                  "category": "workflow_step",
-                  "name": "ethics_review_task",
-                  "important": true,
-                  "aliases": [
-                    "ethics_review_task",
-                    "step_reflection_and_reviews"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "step_task",
-                  "name": "ethics_review_task_ethics_review_task",
-                  "important": true,
-                  "aliases": [
-                    "ethics_review_task_ethics_review_task",
-                    "ethics_review_task"
-                  ],
-                  "details": {
-                    "source": "ethics_review_task",
-                    "target": "ethics_review_task"
-                  }
-                },
-                {
-                  "category": "workflow_step",
-                  "name": "meta_aggregation_task",
-                  "important": true,
-                  "aliases": [
-                    "meta_aggregation_task",
-                    "step_meta_aggregation"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "step_task",
-                  "name": "meta_aggregation_task_meta_aggregation_task",
-                  "important": true,
-                  "aliases": [
-                    "meta_aggregation_task_meta_aggregation_task",
-                    "meta_aggregation_task"
-                  ],
-                  "details": {
-                    "source": "meta_aggregation_task",
-                    "target": "meta_aggregation_task"
-                  }
                 },
                 {
                   "category": "language_model",
@@ -7639,18 +7398,18 @@
                   "total": 5
                 },
                 "step_task": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 3,
                   "total": 3
                 },
                 "task": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 0.6,
+                  "matched": 3,
                   "total": 5
                 },
                 "task_agent": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 0.6,
+                  "matched": 3,
                   "total": 5
                 },
                 "task_produces": {
@@ -7664,15 +7423,15 @@
                   "total": 1
                 },
                 "workflow_step": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 3,
                   "total": 3
                 }
               }
             },
             "important_subset": {
-              "score": 0.41379310344827586,
-              "matched": 12,
+              "score": 0.8275862068965517,
+              "matched": 24,
               "total": 29,
               "missing": [
                 {
@@ -7724,78 +7483,6 @@
                   }
                 },
                 {
-                  "category": "task",
-                  "name": "ethics_review_task",
-                  "important": true,
-                  "aliases": [
-                    "ethics_review_task",
-                    "task_ethics_review"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "task_agent",
-                  "name": "ethics_review_task_ethics_reviewer_1",
-                  "important": true,
-                  "aliases": [
-                    "ethics_review_task_ethics_reviewer_1",
-                    "ethics_review_task",
-                    "ethics_reviewer_1"
-                  ],
-                  "details": {
-                    "source": "ethics_review_task",
-                    "target": "ethics_reviewer_1"
-                  }
-                },
-                {
-                  "category": "task",
-                  "name": "meta_aggregation_task",
-                  "important": true,
-                  "aliases": [
-                    "meta_aggregation_task",
-                    "task_meta_aggregation"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "task_agent",
-                  "name": "meta_aggregation_task_meta_reviewer_1",
-                  "important": true,
-                  "aliases": [
-                    "meta_aggregation_task_meta_reviewer_1",
-                    "meta_aggregation_task",
-                    "meta_reviewer_1"
-                  ],
-                  "details": {
-                    "source": "meta_aggregation_task",
-                    "target": "meta_reviewer_1"
-                  }
-                },
-                {
-                  "category": "task",
-                  "name": "blogpost_generation_task",
-                  "important": true,
-                  "aliases": [
-                    "blogpost_generation_task",
-                    "task_blogpost"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "task_agent",
-                  "name": "blogpost_generation_task_writer_1",
-                  "important": true,
-                  "aliases": [
-                    "blogpost_generation_task_writer_1",
-                    "blogpost_generation_task",
-                    "writer_1"
-                  ],
-                  "details": {
-                    "source": "blogpost_generation_task",
-                    "target": "writer_1"
-                  }
-                },
-                {
                   "category": "workflow",
                   "name": "workflow_reflection_blogpost",
                   "important": true,
@@ -7804,75 +7491,6 @@
                     "reflection_and_blogpost_writing_workflow_pattern"
                   ],
                   "details": {}
-                },
-                {
-                  "category": "workflow_step",
-                  "name": "blogpost_generation_task",
-                  "important": true,
-                  "aliases": [
-                    "blogpost_generation_task",
-                    "step_generate_draft"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "step_task",
-                  "name": "blogpost_generation_task_blogpost_generation_task",
-                  "important": true,
-                  "aliases": [
-                    "blogpost_generation_task_blogpost_generation_task",
-                    "blogpost_generation_task"
-                  ],
-                  "details": {
-                    "source": "blogpost_generation_task",
-                    "target": "blogpost_generation_task"
-                  }
-                },
-                {
-                  "category": "workflow_step",
-                  "name": "ethics_review_task",
-                  "important": true,
-                  "aliases": [
-                    "ethics_review_task",
-                    "step_reflection_and_reviews"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "step_task",
-                  "name": "ethics_review_task_ethics_review_task",
-                  "important": true,
-                  "aliases": [
-                    "ethics_review_task_ethics_review_task",
-                    "ethics_review_task"
-                  ],
-                  "details": {
-                    "source": "ethics_review_task",
-                    "target": "ethics_review_task"
-                  }
-                },
-                {
-                  "category": "workflow_step",
-                  "name": "meta_aggregation_task",
-                  "important": true,
-                  "aliases": [
-                    "meta_aggregation_task",
-                    "step_meta_aggregation"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "step_task",
-                  "name": "meta_aggregation_task_meta_aggregation_task",
-                  "important": true,
-                  "aliases": [
-                    "meta_aggregation_task_meta_aggregation_task",
-                    "meta_aggregation_task"
-                  ],
-                  "details": {
-                    "source": "meta_aggregation_task",
-                    "target": "meta_aggregation_task"
-                  }
                 }
               ],
               "by_category": {
@@ -7887,18 +7505,18 @@
                   "total": 6
                 },
                 "step_task": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 3,
                   "total": 3
                 },
                 "task": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 0.6,
+                  "matched": 3,
                   "total": 5
                 },
                 "task_agent": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 0.6,
+                  "matched": 3,
                   "total": 5
                 },
                 "workflow": {
@@ -7907,37 +7525,34 @@
                   "total": 1
                 },
                 "workflow_step": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 3,
                   "total": 3
                 }
               }
             }
           },
           "wgi": {
-            "score": 0.5454545454545454,
-            "normalized_graph_edit_distance": 0.45454545454545453,
-            "labeled_score": 0.0,
-            "topology_score": 0.5454545454545454,
-            "labeled_normalized_graph_edit_distance": 1.0,
-            "topology_normalized_graph_edit_distance": 0.45454545454545453,
-            "exact_isomorphic": false,
-            "topology_isomorphic": false,
-            "edge_precision": 0.0,
-            "edge_recall": 0.0,
-            "edge_f1": 0.0,
+            "score": 1.0,
+            "normalized_graph_edit_distance": 0.0,
+            "labeled_score": 1.0,
+            "topology_score": 1.0,
+            "labeled_normalized_graph_edit_distance": 0.0,
+            "topology_normalized_graph_edit_distance": 0.0,
+            "exact_isomorphic": true,
+            "topology_isomorphic": true,
+            "edge_precision": 1.0,
+            "edge_recall": 1.0,
+            "edge_f1": 1.0,
             "kg_nodes": [
               "blogpost_generation_task",
               "ethics_review_task",
               "meta_aggregation_task"
             ],
             "code_nodes": [
-              "critic_1",
-              "ethics_reviewer_1",
-              "legal_reviewer_1",
-              "meta_reviewer_1",
-              "seo_reviewer_1",
-              "writer_1"
+              "blogpost_generation_task",
+              "ethics_review_task",
+              "meta_aggregation_task"
             ],
             "kg_edges": [
               {
@@ -7955,41 +7570,6 @@
             ],
             "code_edges": [
               {
-                "source": "critic_1",
-                "target": "seo_reviewer_1"
-              },
-              {
-                "source": "ethics_reviewer_1",
-                "target": "meta_reviewer_1"
-              },
-              {
-                "source": "legal_reviewer_1",
-                "target": "ethics_reviewer_1"
-              },
-              {
-                "source": "seo_reviewer_1",
-                "target": "legal_reviewer_1"
-              },
-              {
-                "source": "writer_1",
-                "target": "critic_1"
-              }
-            ],
-            "missing_nodes": [
-              "blogpost_generation_task",
-              "ethics_review_task",
-              "meta_aggregation_task"
-            ],
-            "extra_nodes": [
-              "critic_1",
-              "ethics_reviewer_1",
-              "legal_reviewer_1",
-              "meta_reviewer_1",
-              "seo_reviewer_1",
-              "writer_1"
-            ],
-            "missing_edges": [
-              {
                 "source": "blogpost_generation_task",
                 "target": "ethics_review_task"
               },
@@ -8002,28 +7582,10 @@
                 "target": "blogpost_generation_task"
               }
             ],
-            "extra_edges": [
-              {
-                "source": "critic_1",
-                "target": "seo_reviewer_1"
-              },
-              {
-                "source": "ethics_reviewer_1",
-                "target": "meta_reviewer_1"
-              },
-              {
-                "source": "legal_reviewer_1",
-                "target": "ethics_reviewer_1"
-              },
-              {
-                "source": "seo_reviewer_1",
-                "target": "legal_reviewer_1"
-              },
-              {
-                "source": "writer_1",
-                "target": "critic_1"
-              }
-            ]
+            "missing_nodes": [],
+            "extra_nodes": [],
+            "missing_edges": [],
+            "extra_edges": []
           }
         },
         {
@@ -8035,8 +7597,8 @@
           "code_element_count": 5,
           "oec": {
             "all_extracted": {
-              "score": 0.6,
-              "matched": 30,
+              "score": 0.52,
+              "matched": 26,
               "total": 50,
               "missing": [
                 {
@@ -8192,6 +7754,57 @@
                   "details": {
                     "source": "player_black",
                     "target": "capability_make_move"
+                  }
+                },
+                {
+                  "category": "task",
+                  "name": "task_get_legal_moves",
+                  "important": true,
+                  "aliases": [
+                    "task_get_legal_moves"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_produces",
+                  "name": "task_get_legal_moves_legal_moves_list",
+                  "important": false,
+                  "aliases": [
+                    "task_get_legal_moves_legal_moves_list",
+                    "task_get_legal_moves",
+                    "legal_moves_list"
+                  ],
+                  "details": {
+                    "source": "task_get_legal_moves",
+                    "target": "legal_moves_list"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "task_get_legal_moves_chess_board",
+                  "important": false,
+                  "aliases": [
+                    "task_get_legal_moves_chess_board",
+                    "task_get_legal_moves",
+                    "chess_board"
+                  ],
+                  "details": {
+                    "source": "task_get_legal_moves",
+                    "target": "chess_board"
+                  }
+                },
+                {
+                  "category": "task_context",
+                  "name": "task_get_legal_moves_task_make_move",
+                  "important": true,
+                  "aliases": [
+                    "task_get_legal_moves_task_make_move",
+                    "task_get_legal_moves",
+                    "task_make_move"
+                  ],
+                  "details": {
+                    "source": "task_get_legal_moves",
+                    "target": "task_make_move"
                   }
                 },
                 {
@@ -8358,23 +7971,23 @@
                   "total": 2
                 },
                 "task": {
-                  "score": 1.0,
-                  "matched": 3,
+                  "score": 0.6666666666666666,
+                  "matched": 2,
                   "total": 3
                 },
                 "task_context": {
-                  "score": 1.0,
-                  "matched": 1,
+                  "score": 0.0,
+                  "matched": 0,
                   "total": 1
                 },
                 "task_produces": {
-                  "score": 1.0,
-                  "matched": 3,
+                  "score": 0.6666666666666666,
+                  "matched": 2,
                   "total": 3
                 },
                 "task_requires": {
-                  "score": 1.0,
-                  "matched": 2,
+                  "score": 0.5,
+                  "matched": 1,
                   "total": 2
                 },
                 "tool": {
@@ -8400,10 +8013,33 @@
               }
             },
             "important_subset": {
-              "score": 0.9375,
-              "matched": 15,
+              "score": 0.8125,
+              "matched": 13,
               "total": 16,
               "missing": [
+                {
+                  "category": "task",
+                  "name": "task_get_legal_moves",
+                  "important": true,
+                  "aliases": [
+                    "task_get_legal_moves"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_context",
+                  "name": "task_get_legal_moves_task_make_move",
+                  "important": true,
+                  "aliases": [
+                    "task_get_legal_moves_task_make_move",
+                    "task_get_legal_moves",
+                    "task_make_move"
+                  ],
+                  "details": {
+                    "source": "task_get_legal_moves",
+                    "target": "task_make_move"
+                  }
+                },
                 {
                   "category": "workflow",
                   "name": "workflow_pattern_conversational_chess",
@@ -8432,13 +8068,13 @@
                   "total": 2
                 },
                 "task": {
-                  "score": 1.0,
-                  "matched": 3,
+                  "score": 0.6666666666666666,
+                  "matched": 2,
                   "total": 3
                 },
                 "task_context": {
-                  "score": 1.0,
-                  "matched": 1,
+                  "score": 0.0,
+                  "matched": 0,
                   "total": 1
                 },
                 "tool": {
@@ -8460,24 +8096,24 @@
             }
           },
           "wgi": {
-            "score": 0.25,
-            "normalized_graph_edit_distance": 0.75,
-            "labeled_score": 0.0,
-            "topology_score": 0.25,
-            "labeled_normalized_graph_edit_distance": 1.0,
-            "topology_normalized_graph_edit_distance": 0.75,
-            "exact_isomorphic": false,
-            "topology_isomorphic": false,
-            "edge_precision": 0.0,
-            "edge_recall": 0.0,
-            "edge_f1": 0.0,
+            "score": 1.0,
+            "normalized_graph_edit_distance": 0.0,
+            "labeled_score": 1.0,
+            "topology_score": 1.0,
+            "labeled_normalized_graph_edit_distance": 0.0,
+            "topology_normalized_graph_edit_distance": 0.0,
+            "exact_isomorphic": true,
+            "topology_isomorphic": true,
+            "edge_precision": 1.0,
+            "edge_recall": 1.0,
+            "edge_f1": 1.0,
             "kg_nodes": [
               "task_initiate_chat_black_white",
               "task_make_move"
             ],
             "code_nodes": [
-              "player_black",
-              "player_white"
+              "task_initiate_chat_black_white",
+              "task_make_move"
             ],
             "kg_edges": [
               {
@@ -8491,20 +8127,6 @@
             ],
             "code_edges": [
               {
-                "source": "player_white",
-                "target": "player_black"
-              }
-            ],
-            "missing_nodes": [
-              "task_initiate_chat_black_white",
-              "task_make_move"
-            ],
-            "extra_nodes": [
-              "player_black",
-              "player_white"
-            ],
-            "missing_edges": [
-              {
                 "source": "task_initiate_chat_black_white",
                 "target": "task_make_move"
               },
@@ -8513,12 +8135,10 @@
                 "target": "task_make_move"
               }
             ],
-            "extra_edges": [
-              {
-                "source": "player_white",
-                "target": "player_black"
-              }
-            ]
+            "missing_nodes": [],
+            "extra_nodes": [],
+            "missing_edges": [],
+            "extra_edges": []
           }
         },
         {
@@ -8530,8 +8150,8 @@
           "code_element_count": 3,
           "oec": {
             "all_extracted": {
-              "score": 0.3333333333333333,
-              "matched": 10,
+              "score": 0.4666666666666667,
+              "matched": 14,
               "total": 30,
               "missing": [
                 {
@@ -8668,30 +8288,6 @@
                   }
                 },
                 {
-                  "category": "task",
-                  "name": "stock_analysis_ytd_stock_gain_plot",
-                  "important": true,
-                  "aliases": [
-                    "stock_analysis_ytd_stock_gain_plot",
-                    "stock_analysis_task"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "task_agent",
-                  "name": "stock_analysis_ytd_stock_gain_plot_code_writer_agent",
-                  "important": true,
-                  "aliases": [
-                    "stock_analysis_ytd_stock_gain_plot_code_writer_agent",
-                    "stock_analysis_ytd_stock_gain_plot",
-                    "code_writer_agent"
-                  ],
-                  "details": {
-                    "source": "stock_analysis_ytd_stock_gain_plot",
-                    "target": "code_writer_agent"
-                  }
-                },
-                {
                   "category": "task_produces",
                   "name": "stock_analysis_ytd_stock_gain_plot_ytd_stock_gains_png",
                   "important": false,
@@ -8728,29 +8324,6 @@
                     "l5_coding_and_financial_analysis_pattern"
                   ],
                   "details": {}
-                },
-                {
-                  "category": "workflow_step",
-                  "name": "stock_analysis_ytd_stock_gain_plot",
-                  "important": true,
-                  "aliases": [
-                    "stock_analysis_ytd_stock_gain_plot",
-                    "step1_write_code"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "step_task",
-                  "name": "stock_analysis_ytd_stock_gain_plot_stock_analysis_ytd_stock_gain_plot",
-                  "important": true,
-                  "aliases": [
-                    "stock_analysis_ytd_stock_gain_plot_stock_analysis_ytd_stock_gain_plot",
-                    "stock_analysis_ytd_stock_gain_plot"
-                  ],
-                  "details": {
-                    "source": "stock_analysis_ytd_stock_gain_plot",
-                    "target": "stock_analysis_ytd_stock_gain_plot"
-                  }
                 },
                 {
                   "category": "language_model",
@@ -8859,18 +8432,18 @@
                   "total": 2
                 },
                 "step_task": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "task": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "task_agent": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "task_produces": {
@@ -8889,41 +8462,17 @@
                   "total": 1
                 },
                 "workflow_step": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 }
               }
             },
             "important_subset": {
-              "score": 0.5454545454545454,
-              "matched": 6,
+              "score": 0.9090909090909091,
+              "matched": 10,
               "total": 11,
               "missing": [
-                {
-                  "category": "task",
-                  "name": "stock_analysis_ytd_stock_gain_plot",
-                  "important": true,
-                  "aliases": [
-                    "stock_analysis_ytd_stock_gain_plot",
-                    "stock_analysis_task"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "task_agent",
-                  "name": "stock_analysis_ytd_stock_gain_plot_code_writer_agent",
-                  "important": true,
-                  "aliases": [
-                    "stock_analysis_ytd_stock_gain_plot_code_writer_agent",
-                    "stock_analysis_ytd_stock_gain_plot",
-                    "code_writer_agent"
-                  ],
-                  "details": {
-                    "source": "stock_analysis_ytd_stock_gain_plot",
-                    "target": "code_writer_agent"
-                  }
-                },
                 {
                   "category": "workflow",
                   "name": "l5_coding_financial_analysis_pattern",
@@ -8933,29 +8482,6 @@
                     "l5_coding_and_financial_analysis_pattern"
                   ],
                   "details": {}
-                },
-                {
-                  "category": "workflow_step",
-                  "name": "stock_analysis_ytd_stock_gain_plot",
-                  "important": true,
-                  "aliases": [
-                    "stock_analysis_ytd_stock_gain_plot",
-                    "step1_write_code"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "step_task",
-                  "name": "stock_analysis_ytd_stock_gain_plot_stock_analysis_ytd_stock_gain_plot",
-                  "important": true,
-                  "aliases": [
-                    "stock_analysis_ytd_stock_gain_plot_stock_analysis_ytd_stock_gain_plot",
-                    "stock_analysis_ytd_stock_gain_plot"
-                  ],
-                  "details": {
-                    "source": "stock_analysis_ytd_stock_gain_plot",
-                    "target": "stock_analysis_ytd_stock_gain_plot"
-                  }
                 }
               ],
               "by_category": {
@@ -8975,18 +8501,18 @@
                   "total": 1
                 },
                 "step_task": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "task": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "task_agent": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "tool": {
@@ -9000,31 +8526,30 @@
                   "total": 1
                 },
                 "workflow_step": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 }
               }
             }
           },
           "wgi": {
-            "score": 0.0,
-            "normalized_graph_edit_distance": 1.0,
-            "labeled_score": 0.0,
-            "topology_score": 0.0,
-            "labeled_normalized_graph_edit_distance": 1.0,
-            "topology_normalized_graph_edit_distance": 1.0,
-            "exact_isomorphic": false,
-            "topology_isomorphic": false,
-            "edge_precision": 0.0,
-            "edge_recall": 0.0,
-            "edge_f1": 0.0,
+            "score": 1.0,
+            "normalized_graph_edit_distance": 0.0,
+            "labeled_score": 1.0,
+            "topology_score": 1.0,
+            "labeled_normalized_graph_edit_distance": 0.0,
+            "topology_normalized_graph_edit_distance": 0.0,
+            "exact_isomorphic": true,
+            "topology_isomorphic": true,
+            "edge_precision": 1.0,
+            "edge_recall": 1.0,
+            "edge_f1": 1.0,
             "kg_nodes": [
               "stock_analysis_ytd_stock_gain_plot"
             ],
             "code_nodes": [
-              "code_executor_agent",
-              "code_writer_agent"
+              "stock_analysis_ytd_stock_gain_plot"
             ],
             "kg_edges": [
               {
@@ -9034,29 +8559,14 @@
             ],
             "code_edges": [
               {
-                "source": "code_executor_agent",
-                "target": "code_writer_agent"
-              }
-            ],
-            "missing_nodes": [
-              "stock_analysis_ytd_stock_gain_plot"
-            ],
-            "extra_nodes": [
-              "code_executor_agent",
-              "code_writer_agent"
-            ],
-            "missing_edges": [
-              {
                 "source": "stock_analysis_ytd_stock_gain_plot",
                 "target": "stock_analysis_ytd_stock_gain_plot"
               }
             ],
-            "extra_edges": [
-              {
-                "source": "code_executor_agent",
-                "target": "code_writer_agent"
-              }
-            ]
+            "missing_nodes": [],
+            "extra_nodes": [],
+            "missing_edges": [],
+            "extra_edges": []
           }
         },
         {
@@ -9577,17 +9087,17 @@
             }
           },
           "wgi": {
-            "score": 0.8181818181818181,
-            "normalized_graph_edit_distance": 0.18181818181818182,
-            "labeled_score": 0.0,
-            "topology_score": 0.8181818181818181,
-            "labeled_normalized_graph_edit_distance": 1.0,
-            "topology_normalized_graph_edit_distance": 0.18181818181818182,
-            "exact_isomorphic": false,
-            "topology_isomorphic": false,
-            "edge_precision": 0.0,
-            "edge_recall": 0.0,
-            "edge_f1": 0.0,
+            "score": 1.0,
+            "normalized_graph_edit_distance": 0.0,
+            "labeled_score": 1.0,
+            "topology_score": 1.0,
+            "labeled_normalized_graph_edit_distance": 0.0,
+            "topology_normalized_graph_edit_distance": 0.0,
+            "exact_isomorphic": true,
+            "topology_isomorphic": true,
+            "edge_precision": 1.0,
+            "edge_recall": 1.0,
+            "edge_f1": 1.0,
             "kg_nodes": [
               "admin_feedback_task",
               "execute_code_task",
@@ -9597,11 +9107,12 @@
               "write_report_task"
             ],
             "code_nodes": [
-              "admin",
-              "engineer_agent",
-              "executor_agent",
-              "planner_agent",
-              "writer_agent"
+              "admin_feedback_task",
+              "execute_code_task",
+              "main_task",
+              "plan_information_task",
+              "write_code_task",
+              "write_report_task"
             ],
             "kg_edges": [
               {
@@ -9627,39 +9138,6 @@
             ],
             "code_edges": [
               {
-                "source": "engineer_agent",
-                "target": "executor_agent"
-              },
-              {
-                "source": "executor_agent",
-                "target": "writer_agent"
-              },
-              {
-                "source": "planner_agent",
-                "target": "engineer_agent"
-              },
-              {
-                "source": "writer_agent",
-                "target": "admin"
-              }
-            ],
-            "missing_nodes": [
-              "admin_feedback_task",
-              "execute_code_task",
-              "main_task",
-              "plan_information_task",
-              "write_code_task",
-              "write_report_task"
-            ],
-            "extra_nodes": [
-              "admin",
-              "engineer_agent",
-              "executor_agent",
-              "planner_agent",
-              "writer_agent"
-            ],
-            "missing_edges": [
-              {
                 "source": "execute_code_task",
                 "target": "write_report_task"
               },
@@ -9680,24 +9158,10 @@
                 "target": "admin_feedback_task"
               }
             ],
-            "extra_edges": [
-              {
-                "source": "engineer_agent",
-                "target": "executor_agent"
-              },
-              {
-                "source": "executor_agent",
-                "target": "writer_agent"
-              },
-              {
-                "source": "planner_agent",
-                "target": "engineer_agent"
-              },
-              {
-                "source": "writer_agent",
-                "target": "admin"
-              }
-            ]
+            "missing_nodes": [],
+            "extra_nodes": [],
+            "missing_edges": [],
+            "extra_edges": []
           }
         }
       ]
@@ -9711,7 +9175,7 @@
         "projects": 9,
         "evaluated": 8,
         "errors": 1,
-        "avg_oec_all": 0.1032412645963379,
+        "avg_oec_all": 0.10324126459633791,
         "avg_oec_important": 0.12574870112935896,
         "avg_wgi": 0.875,
         "avg_edge_f1": 0.25
@@ -11655,8 +11119,8 @@
                   "important": false,
                   "aliases": [
                     "capability_ui_interaction",
-                    "ui_interaction_propose_changes",
                     "propose_changes",
+                    "ui_interaction_propose_changes",
                     "capability_uiinteraction"
                   ],
                   "details": {}
@@ -14242,8 +13706,8 @@
                   "aliases": [
                     "tool_tool_stockbroker_description",
                     "description",
-                    "can_fetch_the_price_of_a_ticker_purchase_sell_a_ticker_or_get_the_user_s_portfolio",
                     "sell_a_ticker_or_get_the_user_s_portfolio",
+                    "can_fetch_the_price_of_a_ticker_purchase_sell_a_ticker_or_get_the_user_s_portfolio",
                     "description_can_fetch_the_price_of_a_ticker_purchase_sell_a_ticker_or_get_the_user_s_portfolio"
                   ],
                   "details": {
@@ -17838,7 +17302,7 @@
         "errors": 9,
         "avg_oec_all": 0.4067117212299672,
         "avg_oec_important": 0.5504029148553766,
-        "avg_wgi": 0.8647928994082839,
+        "avg_wgi": 0.8647928994082841,
         "avg_edge_f1": 0.23076923076923078
       },
       "projects": [
@@ -19199,8 +18663,8 @@
                   "important": false,
                   "aliases": [
                     "resource_weather_historical",
-                    "historical",
-                    "weather_historical"
+                    "weather_historical",
+                    "historical"
                   ],
                   "details": {}
                 }
@@ -21314,8 +20778,8 @@
                   "aliases": [
                     "agent_bird_checker_model_provider",
                     "model_provider",
-                    "ai_sdk_anthropic_claude_3_haiku_20240307",
                     "anthropic_claude_3_haiku_20240307",
+                    "ai_sdk_anthropic_claude_3_haiku_20240307",
                     "model_provider_ai_sdk_anthropic_claude_3_haiku_20240307"
                   ],
                   "details": {
@@ -21764,8 +21228,8 @@
                   "aliases": [
                     "bird_agent_anthropic_claude_3_haiku_20240307",
                     "bird_agent",
-                    "anthropic_claude_3_haiku_20240307",
-                    "claude_3_haiku_20240307"
+                    "claude_3_haiku_20240307",
+                    "anthropic_claude_3_haiku_20240307"
                   ],
                   "details": {
                     "source": "bird_agent",
@@ -22516,8 +21980,8 @@
                   "aliases": [
                     "bird_checker_anthropic_claude_3_haiku_20240307",
                     "bird_checker",
-                    "anthropic_claude_3_haiku_20240307",
-                    "claude_3_haiku_20240307"
+                    "claude_3_haiku_20240307",
+                    "anthropic_claude_3_haiku_20240307"
                   ],
                   "details": {
                     "source": "bird_checker",
@@ -22772,8 +22236,8 @@
                   "important": false,
                   "aliases": [
                     "objective_identify_and_describe",
-                    "species_and_summarize_location",
-                    "identify_bird_presence_species_and_summarize_location"
+                    "identify_bird_presence_species_and_summarize_location",
+                    "species_and_summarize_location"
                   ],
                   "details": {}
                 },
@@ -28091,8 +27555,8 @@
                   "aliases": [
                     "tool_mcp_client_servers_registry_args",
                     "servers_registry_args",
-                    "stdio_js",
                     "packages_mcp_registry_registry_dist_stdio_js",
+                    "stdio_js",
                     "servers_registry_args_packages_mcp_registry_registry_dist_stdio_js"
                   ],
                   "details": {
@@ -31341,8 +30805,8 @@
                   "aliases": [
                     "travel_agent_openai_gpt_4_1",
                     "travel_agent",
-                    "gpt_4_1",
-                    "openai_gpt_4_1"
+                    "openai_gpt_4_1",
+                    "gpt_4_1"
                   ],
                   "details": {
                     "source": "travel_agent",
@@ -31429,8 +30893,8 @@
                   "aliases": [
                     "travel_analyzer_openai_gpt_4_1",
                     "travel_analyzer",
-                    "gpt_4_1",
-                    "openai_gpt_4_1"
+                    "openai_gpt_4_1",
+                    "gpt_4_1"
                   ],
                   "details": {
                     "source": "travel_analyzer",
@@ -31829,8 +31293,8 @@
                   "name": "openai_gpt_4_1",
                   "important": false,
                   "aliases": [
-                    "gpt_4_1",
                     "openai_gpt_4_1",
+                    "gpt_4_1",
                     "open_ai_gpt_4_1"
                   ],
                   "details": {}
@@ -34583,8 +34047,8 @@
                   "important": false,
                   "aliases": [
                     "res_example_run_resumed",
-                    "example_run_result_resumed_completed",
-                    "completed"
+                    "completed",
+                    "example_run_result_resumed_completed"
                   ],
                   "details": {}
                 }

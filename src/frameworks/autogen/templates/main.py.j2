@@ -1,9 +1,20 @@
 import asyncio
 
+{% if resolved_steps %}
+from team import (
+{% for agent in project.agents %}
+    {{ agent.var_name }},
+{% endfor %}
+{% for h in human_agents %}
+    {{ h.var_name }},
+{% endfor %}
+)
+{% else %}
 from team import (
     team,
     TASK_PROMPT,
 )
+{% endif %}
 
 from autogen_agentchat.conditions import (
     MaxMessageTermination,
@@ -25,7 +36,43 @@ INPUTS = {
 
 
 async def main():
+{% if resolved_steps %}
+    try:
+        # Step-by-step sequential execution
+        {% for step in resolved_steps %}
+        # ==================================================
+        # Workflow Step: {{ step.task_var_name }}
+        {% for next_step in step.next_task_vars %}
+        # Workflow Edge: {{ step.task_var_name }} -> {{ next_step }}
+        {% endfor %}
+        # ==================================================
+        print("\n" + "=" * 80)
+        print("Executing step: {{ step.task_var_name }}")
+        print("=" * 80)
 
+        task_prompt = """{{ step.task_description }}"""
+        # Execute via the assigned agent: {{ step.agent_var }}
+        result = await {{ step.agent_var }}.run(task=task_prompt)
+
+        # Print step output
+        if hasattr(result, "messages") and result.messages:
+            print(result.messages[-1].content)
+        else:
+            print(result)
+
+        {% endfor %}
+        print("\n" + "=" * 80)
+        print("DONE")
+        print("=" * 80)
+
+    except Exception as e:
+        print("\n" + "=" * 80)
+        print("ERROR")
+        print("=" * 80)
+        print(type(e).__name__)
+        print(str(e))
+
+{% else %}
     {% if input_variables %}
 
     task = TASK_PROMPT.format(
@@ -82,6 +129,7 @@ async def main():
 
         print(type(e).__name__)
         print(str(e))
+{% endif %}
 
 
 if __name__ == "__main__":

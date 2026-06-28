@@ -96,22 +96,3 @@ The source obtains code_writer_agent.system_message and prints it; exact content
 
 
 
-team = RoundRobinGroupChat(
-    participants=[
-        code_executor_agent,
-        code_writer_agent,
-    ],
-    termination_condition=MaxMessageTermination(
-        max_messages=10
-    )
-)
-
-TASK_PROMPT = """
-
-Task:
-Today is {today}. Create a plot showing stock gain YTD for NVDA and TLSA. Make sure the code is in markdown code block and save the figure to a file ytd_stock_gains.png.
-
-Expected Output:
-A markdown code block containing runnable code and a saved image file ytd_stock_gains.png
-
-"""

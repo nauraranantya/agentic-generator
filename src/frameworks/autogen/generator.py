@@ -72,9 +72,52 @@ def _build_team_context(project: AutoGenProject) -> Dict[str, Any]:
 
 
 def _build_main_context(project: AutoGenProject) -> Dict[str, Any]:
+    resolved_steps = []
+    if project.workflows:
+        workflow = project.workflows[0]
+        tasks_by_iri = {t.iri: t for t in project.tasks}
+        agents_by_iri = {a.iri: a for a in project.agents}
+        human_agents_by_iri = {h.iri: h for h in project.human_agents}
+        step_iri_to_task_var = {s.iri: s.task_var_name for s in workflow.steps if s.iri}
+
+        steps_sorted = sorted(workflow.steps, key=lambda s: s.step_order)
+        for i, step in enumerate(steps_sorted):
+            task = tasks_by_iri.get(step.task_iri)
+            task_desc = task.description if (task and task.description) else (step.description or step.task_var_name)
+            import re
+            agent_var = None
+            if (not step.agent_iri or step.agent_iri == "") and task and task.description:
+                match = re.search(r"sender:\s*([a-zA-Z0-9_]+)", task.description)
+                if match:
+                    agent_var = match.group(1)
+            
+            if not agent_var:
+                agent = agents_by_iri.get(step.agent_iri) or human_agents_by_iri.get(step.agent_iri)
+                agent_var = agent.var_name if agent else (re.sub(r"[^a-zA-Z0-9_]", "", step.agent_iri.split("#")[-1]) if step.agent_iri else "agent")
+            
+            next_task_vars = []
+            for next_iri in step.next_step_iris:
+                nxt = step_iri_to_task_var.get(next_iri)
+                if nxt:
+                    next_task_vars.append(nxt)
+
+            if not next_task_vars and i < len(steps_sorted) - 1:
+                next_task_vars.append(steps_sorted[i+1].task_var_name)
+
+            resolved_steps.append({
+                "step_var_name": step.var_name or step.task_var_name,
+                "task_var_name": step.task_var_name,
+                "task_description": task_desc,
+                "agent_var": agent_var,
+                "next_task_vars": next_task_vars
+            })
+
     return {
+        "project": project,
         "name": project.name,
         "input_variables": project.input_variables,
+        "human_agents": project.human_agents,
+        "resolved_steps": resolved_steps,
     }
 
 

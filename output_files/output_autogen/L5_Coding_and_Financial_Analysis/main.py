@@ -1,8 +1,8 @@
 import asyncio
 
 from team import (
-    team,
-    TASK_PROMPT,
+    code_executor_agent,
+    code_writer_agent,
 )
 
 from autogen_agentchat.conditions import (
@@ -19,57 +19,54 @@ INPUTS = {
 
 
 async def main():
-
-
-    task = TASK_PROMPT.format(
-        **INPUTS
-    )
-
-
-    print("\n" + "=" * 80)
-    print("TASK")
-    print("=" * 80)
-    print(task)
-
-    print("\n" + "=" * 80)
-    print("STREAM")
-    print("=" * 80)
-
-    # Prevent infinite loops
-    team._termination_condition = MaxMessageTermination(
-        max_messages=20
-    )
-
     try:
+        # Step-by-step sequential execution
+        # ==================================================
+        # Workflow Step: stock_analysis_ytd_stock_gain_plot
+        # Workflow Edge: stock_analysis_ytd_stock_gain_plot -> stock_analysis_ytd_stock_gain_plot
+        # ==================================================
+        print("\n" + "=" * 80)
+        print("Executing step: stock_analysis_ytd_stock_gain_plot")
+        print("=" * 80)
 
-        async for msg in team.run_stream(
-            task=task
-        ):
+        task_prompt = """Today is {today}. Create a plot showing stock gain YTD for NVDA and TLSA. Make sure the code is in markdown code block and save the figure to a file ytd_stock_gains.png."""
+        # Execute via the assigned agent: code_writer_agent
+        result = await code_writer_agent.run(task=task_prompt)
 
-            print("\n" + "-" * 60)
-            print(type(msg).__name__)
+        # Print step output
+        if hasattr(result, "messages") and result.messages:
+            print(result.messages[-1].content)
+        else:
+            print(result)
 
-            if hasattr(msg, "source"):
-                print(f"SOURCE: {msg.source}")
+        # ==================================================
+        # Workflow Step: stock_analysis_ytd_stock_gain_plot
+        # ==================================================
+        print("\n" + "=" * 80)
+        print("Executing step: stock_analysis_ytd_stock_gain_plot")
+        print("=" * 80)
 
-            if hasattr(msg, "content"):
-                print(msg.content)
+        task_prompt = """Today is {today}. Create a plot showing stock gain YTD for NVDA and TLSA. Make sure the code is in markdown code block and save the figure to a file ytd_stock_gains.png."""
+        # Execute via the assigned agent: code_writer_agent
+        result = await code_writer_agent.run(task=task_prompt)
 
-            else:
-                print(msg)
+        # Print step output
+        if hasattr(result, "messages") and result.messages:
+            print(result.messages[-1].content)
+        else:
+            print(result)
 
         print("\n" + "=" * 80)
         print("DONE")
         print("=" * 80)
 
     except Exception as e:
-
         print("\n" + "=" * 80)
         print("ERROR")
         print("=" * 80)
-
         print(type(e).__name__)
         print(str(e))
+
 
 
 if __name__ == "__main__":

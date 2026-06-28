@@ -137,36 +137,3 @@ You are a black.
 
 
 
-team = RoundRobinGroupChat(
-    participants=[
-        player_white,
-        player_black,
-    ],
-    termination_condition=MaxMessageTermination(
-        max_messages=10
-    )
-)
-
-TASK_PROMPT = """
-
-Task:
-Let's play chess! Your move.
-
-Expected Output:
-Completed: task_initiate_chat_black_white
-
-
-Task:
-Call make_move(move) with a single move argument in UCI format when selecting a move to apply. Expect a textual confirmation describing the moved piece and board update.
-
-Expected Output:
-Completed: task_make_move
-
-
-Task:
-Call get_legal_moves() to obtain the legal moves in UCI format; parse or present the returned comma-separated list to decide on the next move.
-
-Expected Output:
-Completed: task_get_legal_moves
-
-"""
