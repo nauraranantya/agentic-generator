@@ -8,15 +8,15 @@
       "output_dir": "/Users/ravie/dev/agento/output_files/output_mastra",
       "summary": {
         "projects": 35,
-        "evaluated": 22,
-        "errors": 13,
-        "avg_oec_all": 0.4215461611840738,
-        "avg_oec_important": 0.5717342069962071,
-        "avg_wgi": 0.862937062937063,
-        "avg_edge_f1": 0.22727272727272727,
-        "avg_ast_sim": 0.47068981127368126,
-        "syntax_success_rate": 0.8636363636363636,
-        "run_success_rate": 0.8636363636363636
+        "evaluated": 26,
+        "errors": 9,
+        "avg_oec_all": 0.4067117212299672,
+        "avg_oec_important": 0.5504029148553766,
+        "avg_wgi": 0.8647928994082839,
+        "avg_edge_f1": 0.23076923076923078,
+        "avg_ast_sim": 0.45498232649909987,
+        "syntax_success_rate": 0.8076923076923077,
+        "run_success_rate": 0.8076923076923077
       },
       "projects": [
         {
@@ -2302,8 +2302,372 @@
           "project": "agui",
           "kg_path": "/Users/ravie/dev/agento/kgs_original/Mastra AI/agui_instances.ttl",
           "output_dir": "/Users/ravie/dev/agento/output_files/output_mastra/agui",
-          "status": "error",
-          "error": "at line 141 of <>:\nBad syntax (expected '.' or '}' or ']' at end of statement) at ^ in:\n\"...b\": 'file:../mastra.db' (relative to .mastra/output directory)\"^b'.\"\"\" ;\\n    dcterms:reference \"\"\"file:../mastra.db\"\"\" .\\n\\n# Li'...\""
+          "status": "ok",
+          "kg_element_count": 19,
+          "code_element_count": 6,
+          "oec": {
+            "all_extracted": {
+              "score": 0.3157894736842105,
+              "matched": 6,
+              "total": 19,
+              "missing": [
+                {
+                  "category": "config",
+                  "name": "system_mastra_system_storage_id",
+                  "important": false,
+                  "aliases": [
+                    "system_mastra_system_storage_id",
+                    "storage_id",
+                    "agui_storage",
+                    "storage_id_agui_storage"
+                  ],
+                  "details": {
+                    "key": "storage_id",
+                    "owner": "mastra_system",
+                    "owner_category": "system",
+                    "value": "agui-storage"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "system_mastra_system_server_cors_origin",
+                  "important": false,
+                  "aliases": [
+                    "system_mastra_system_server_cors_origin",
+                    "server_cors_origin"
+                  ],
+                  "details": {
+                    "key": "server_cors_origin",
+                    "owner": "mastra_system",
+                    "owner_category": "system",
+                    "value": "*"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "system_mastra_system_server_cors_allow_methods",
+                  "important": false,
+                  "aliases": [
+                    "system_mastra_system_server_cors_allow_methods",
+                    "server_cors_allow_methods"
+                  ],
+                  "details": {
+                    "key": "server_cors_allow_methods",
+                    "owner": "mastra_system",
+                    "owner_category": "system",
+                    "value": "[\"*\"]"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "system_mastra_system_server_cors_allow_headers",
+                  "important": false,
+                  "aliases": [
+                    "system_mastra_system_server_cors_allow_headers",
+                    "server_cors_allow_headers"
+                  ],
+                  "details": {
+                    "key": "server_cors_allow_headers",
+                    "owner": "mastra_system",
+                    "owner_category": "system",
+                    "value": "[\"*\"]"
+                  }
+                },
+                {
+                  "category": "agent_llm",
+                  "name": "weather_agent_gpt4o_model",
+                  "important": false,
+                  "aliases": [
+                    "weather_agent_gpt4o_model",
+                    "weather_agent",
+                    "gpt4o_model"
+                  ],
+                  "details": {
+                    "source": "weather_agent",
+                    "target": "gpt4o_model"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_weather_agent_memory_storage_id",
+                  "important": false,
+                  "aliases": [
+                    "agent_weather_agent_memory_storage_id",
+                    "memory_storage_id",
+                    "agui_storage_agent",
+                    "memory_storage_id_agui_storage_agent"
+                  ],
+                  "details": {
+                    "key": "memory_storage_id",
+                    "owner": "weather_agent",
+                    "owner_category": "agent",
+                    "value": "agui-storage (agent)"
+                  }
+                },
+                {
+                  "category": "task",
+                  "name": "network_supervisor_task",
+                  "important": true,
+                  "aliases": [
+                    "network_supervisor_task"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_agent",
+                  "name": "network_supervisor_task_weather_agent",
+                  "important": true,
+                  "aliases": [
+                    "network_supervisor_task_weather_agent",
+                    "network_supervisor_task",
+                    "weather_agent"
+                  ],
+                  "details": {
+                    "source": "network_supervisor_task",
+                    "target": "weather_agent"
+                  }
+                },
+                {
+                  "category": "task",
+                  "name": "copilotkit",
+                  "important": true,
+                  "aliases": [
+                    "copilotkit",
+                    "copilot_kit_copilotkit",
+                    "copilotkit_registration_task"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "step_task",
+                  "name": "network_supervisor_task_network_supervisor_task",
+                  "important": true,
+                  "aliases": [
+                    "network_supervisor_task_network_supervisor_task",
+                    "network_supervisor_task"
+                  ],
+                  "details": {
+                    "source": "network_supervisor_task",
+                    "target": "network_supervisor_task"
+                  }
+                },
+                {
+                  "category": "language_model",
+                  "name": "gpt4o_model",
+                  "important": false,
+                  "aliases": [
+                    "gpt4o_model"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "mastra_storage",
+                  "important": false,
+                  "aliases": [
+                    "mastra_storage"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "agent_storage",
+                  "important": false,
+                  "aliases": [
+                    "agent_storage"
+                  ],
+                  "details": {}
+                }
+              ],
+              "by_category": {
+                "agent": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "agent_llm": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "config": {
+                  "score": 0.16666666666666666,
+                  "matched": 1,
+                  "total": 6
+                },
+                "language_model": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "memory": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "project": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "resource": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 2
+                },
+                "step_task": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "task": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 2
+                },
+                "task_agent": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "workflow": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "workflow_step": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                }
+              }
+            },
+            "important_subset": {
+              "score": 0.5,
+              "matched": 4,
+              "total": 8,
+              "missing": [
+                {
+                  "category": "task",
+                  "name": "network_supervisor_task",
+                  "important": true,
+                  "aliases": [
+                    "network_supervisor_task"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_agent",
+                  "name": "network_supervisor_task_weather_agent",
+                  "important": true,
+                  "aliases": [
+                    "network_supervisor_task_weather_agent",
+                    "network_supervisor_task",
+                    "weather_agent"
+                  ],
+                  "details": {
+                    "source": "network_supervisor_task",
+                    "target": "weather_agent"
+                  }
+                },
+                {
+                  "category": "task",
+                  "name": "copilotkit",
+                  "important": true,
+                  "aliases": [
+                    "copilotkit",
+                    "copilot_kit_copilotkit",
+                    "copilotkit_registration_task"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "step_task",
+                  "name": "network_supervisor_task_network_supervisor_task",
+                  "important": true,
+                  "aliases": [
+                    "network_supervisor_task_network_supervisor_task",
+                    "network_supervisor_task"
+                  ],
+                  "details": {
+                    "source": "network_supervisor_task",
+                    "target": "network_supervisor_task"
+                  }
+                }
+              ],
+              "by_category": {
+                "agent": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "config": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "step_task": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "task": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 2
+                },
+                "task_agent": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "workflow": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "workflow_step": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                }
+              }
+            }
+          },
+          "wgi": {
+            "score": 1.0,
+            "normalized_graph_edit_distance": 0.0,
+            "labeled_score": 0.0,
+            "topology_score": 1.0,
+            "labeled_normalized_graph_edit_distance": 1.0,
+            "topology_normalized_graph_edit_distance": 0.0,
+            "exact_isomorphic": false,
+            "topology_isomorphic": true,
+            "edge_precision": 1.0,
+            "edge_recall": 1.0,
+            "edge_f1": 1.0,
+            "kg_nodes": [
+              "network_supervisor_task"
+            ],
+            "code_nodes": [
+              "my_network_step"
+            ],
+            "kg_edges": [],
+            "code_edges": [],
+            "missing_nodes": [
+              "network_supervisor_task"
+            ],
+            "extra_nodes": [
+              "my_network_step"
+            ],
+            "missing_edges": [],
+            "extra_edges": []
+          },
+          "syntax_ok": false,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": false,
+          "ast_sim": null
         },
         {
           "project": "ai-sdk-useChat",
@@ -2824,7 +3188,7 @@
                     "key": "agent_instantiation",
                     "owner": "weather_agent",
                     "owner_category": "agent",
-                    "value": "Constructed via Mastra Agent with id '''weather-agent', name 'Weather Agent', model openai('gpt-4o'''), tools: { get-weather }, memory: LibSQL-backed Memory"
+                    "value": "Constructed via Mastra Agent with id 'weather-agent', name 'Weather Agent', model openai('gpt-4o'), tools: { get-weather }, memory: LibSQL-backed Memory"
                   }
                 },
                 {
@@ -3105,8 +3469,473 @@
           "project": "bird-checker-with-express",
           "kg_path": "/Users/ravie/dev/agento/kgs_original/Mastra AI/bird-checker-with-express_instances.ttl",
           "output_dir": "/Users/ravie/dev/agento/output_files/output_mastra/bird-checker-with-express",
-          "status": "error",
-          "error": "at line 130 of <>:\nBad syntax (expected '.' or '}' or ']' at end of statement) at ^ in:\n\"...b'two short sentences understandable by a high school student\"'^b'\"\" ;\\n    :promptOutputIndicator \"\"\"{\\\\\"bird\\\\\":\\\\\"boolean\\\\\",\\\\\"s'...\""
+          "status": "ok",
+          "kg_element_count": 23,
+          "code_element_count": 9,
+          "oec": {
+            "all_extracted": {
+              "score": 0.30434782608695654,
+              "matched": 7,
+              "total": 23,
+              "missing": [
+                {
+                  "category": "config",
+                  "name": "system_unnamed_project_port",
+                  "important": false,
+                  "aliases": [
+                    "system_unnamed_project_port",
+                    "port",
+                    "process_env_port_3001_default_3001",
+                    "port_process_env_port_3001_default_3001"
+                  ],
+                  "details": {
+                    "key": "port",
+                    "owner": "unnamed_project",
+                    "owner_category": "system",
+                    "value": "process.env.PORT || 3001 (default 3001)"
+                  }
+                },
+                {
+                  "category": "agent_llm",
+                  "name": "bird_checker_claude_model",
+                  "important": false,
+                  "aliases": [
+                    "bird_checker_claude_model",
+                    "bird_checker",
+                    "claude_model"
+                  ],
+                  "details": {
+                    "source": "bird_checker",
+                    "target": "claude_model"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_bird_checker_model_provider",
+                  "important": false,
+                  "aliases": [
+                    "agent_bird_checker_model_provider",
+                    "model_provider",
+                    "anthropic_claude_3_haiku_20240307",
+                    "ai_sdk_anthropic_claude_3_haiku_20240307",
+                    "model_provider_ai_sdk_anthropic_claude_3_haiku_20240307"
+                  ],
+                  "details": {
+                    "key": "model_provider",
+                    "owner": "bird_checker",
+                    "owner_category": "agent",
+                    "value": "@ai-sdk/anthropic (claude-3-haiku-20240307)"
+                  }
+                },
+                {
+                  "category": "task",
+                  "name": "task_fetch_random_image",
+                  "important": true,
+                  "aliases": [
+                    "task_fetch_random_image"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_produces",
+                  "name": "task_fetch_random_image_random_image_resource",
+                  "important": false,
+                  "aliases": [
+                    "task_fetch_random_image_random_image_resource",
+                    "task_fetch_random_image",
+                    "random_image_resource"
+                  ],
+                  "details": {
+                    "source": "task_fetch_random_image",
+                    "target": "random_image_resource"
+                  }
+                },
+                {
+                  "category": "task",
+                  "name": "task_analyze_image",
+                  "important": true,
+                  "aliases": [
+                    "task_analyze_image"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_agent",
+                  "name": "task_analyze_image_bird_checker",
+                  "important": true,
+                  "aliases": [
+                    "task_analyze_image_bird_checker",
+                    "task_analyze_image",
+                    "bird_checker"
+                  ],
+                  "details": {
+                    "source": "task_analyze_image",
+                    "target": "bird_checker"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "task_analyze_image_image_metadata_resource",
+                  "important": false,
+                  "aliases": [
+                    "task_analyze_image_image_metadata_resource",
+                    "task_analyze_image",
+                    "image_metadata_resource"
+                  ],
+                  "details": {
+                    "source": "task_analyze_image",
+                    "target": "image_metadata_resource"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "task_analyze_image_random_image_resource",
+                  "important": false,
+                  "aliases": [
+                    "task_analyze_image_random_image_resource",
+                    "task_analyze_image",
+                    "random_image_resource"
+                  ],
+                  "details": {
+                    "source": "task_analyze_image",
+                    "target": "random_image_resource"
+                  }
+                },
+                {
+                  "category": "task_context",
+                  "name": "task_analyze_image_task_fetch_random_image",
+                  "important": true,
+                  "aliases": [
+                    "task_analyze_image_task_fetch_random_image",
+                    "task_analyze_image",
+                    "task_fetch_random_image"
+                  ],
+                  "details": {
+                    "source": "task_analyze_image",
+                    "target": "task_fetch_random_image"
+                  }
+                },
+                {
+                  "category": "step_task",
+                  "name": "task_fetch_random_image_task_fetch_random_image",
+                  "important": true,
+                  "aliases": [
+                    "task_fetch_random_image_task_fetch_random_image",
+                    "task_fetch_random_image"
+                  ],
+                  "details": {
+                    "source": "task_fetch_random_image",
+                    "target": "task_fetch_random_image"
+                  }
+                },
+                {
+                  "category": "step_task",
+                  "name": "task_analyze_image_task_analyze_image",
+                  "important": true,
+                  "aliases": [
+                    "task_analyze_image_task_analyze_image",
+                    "task_analyze_image"
+                  ],
+                  "details": {
+                    "source": "task_analyze_image",
+                    "target": "task_analyze_image"
+                  }
+                },
+                {
+                  "category": "language_model",
+                  "name": "claude_model",
+                  "important": false,
+                  "aliases": [
+                    "claude_model"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "unsplash_api",
+                  "important": false,
+                  "aliases": [
+                    "unsplash_api"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "random_image_resource",
+                  "important": false,
+                  "aliases": [
+                    "random_image_resource"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "image_metadata_resource",
+                  "important": false,
+                  "aliases": [
+                    "image_metadata_resource"
+                  ],
+                  "details": {}
+                }
+              ],
+              "by_category": {
+                "agent": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "agent_llm": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "config": {
+                  "score": 0.3333333333333333,
+                  "matched": 1,
+                  "total": 3
+                },
+                "language_model": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "project": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "resource": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 3
+                },
+                "step_task": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 2
+                },
+                "task": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 2
+                },
+                "task_agent": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "task_context": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "task_produces": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 2
+                },
+                "task_requires": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "tool": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "workflow": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "workflow_step": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                }
+              }
+            },
+            "important_subset": {
+              "score": 0.45454545454545453,
+              "matched": 5,
+              "total": 11,
+              "missing": [
+                {
+                  "category": "task",
+                  "name": "task_fetch_random_image",
+                  "important": true,
+                  "aliases": [
+                    "task_fetch_random_image"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task",
+                  "name": "task_analyze_image",
+                  "important": true,
+                  "aliases": [
+                    "task_analyze_image"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_agent",
+                  "name": "task_analyze_image_bird_checker",
+                  "important": true,
+                  "aliases": [
+                    "task_analyze_image_bird_checker",
+                    "task_analyze_image",
+                    "bird_checker"
+                  ],
+                  "details": {
+                    "source": "task_analyze_image",
+                    "target": "bird_checker"
+                  }
+                },
+                {
+                  "category": "task_context",
+                  "name": "task_analyze_image_task_fetch_random_image",
+                  "important": true,
+                  "aliases": [
+                    "task_analyze_image_task_fetch_random_image",
+                    "task_analyze_image",
+                    "task_fetch_random_image"
+                  ],
+                  "details": {
+                    "source": "task_analyze_image",
+                    "target": "task_fetch_random_image"
+                  }
+                },
+                {
+                  "category": "step_task",
+                  "name": "task_fetch_random_image_task_fetch_random_image",
+                  "important": true,
+                  "aliases": [
+                    "task_fetch_random_image_task_fetch_random_image",
+                    "task_fetch_random_image"
+                  ],
+                  "details": {
+                    "source": "task_fetch_random_image",
+                    "target": "task_fetch_random_image"
+                  }
+                },
+                {
+                  "category": "step_task",
+                  "name": "task_analyze_image_task_analyze_image",
+                  "important": true,
+                  "aliases": [
+                    "task_analyze_image_task_analyze_image",
+                    "task_analyze_image"
+                  ],
+                  "details": {
+                    "source": "task_analyze_image",
+                    "target": "task_analyze_image"
+                  }
+                }
+              ],
+              "by_category": {
+                "agent": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "step_task": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 2
+                },
+                "task": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 2
+                },
+                "task_agent": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "task_context": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "tool": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "workflow": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "workflow_step": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                }
+              }
+            }
+          },
+          "wgi": {
+            "score": 1.0,
+            "normalized_graph_edit_distance": 0.0,
+            "labeled_score": 0.0,
+            "topology_score": 1.0,
+            "labeled_normalized_graph_edit_distance": 1.0,
+            "topology_normalized_graph_edit_distance": 0.0,
+            "exact_isomorphic": false,
+            "topology_isomorphic": true,
+            "edge_precision": 0.0,
+            "edge_recall": 0.0,
+            "edge_f1": 0.0,
+            "kg_nodes": [
+              "task_analyze_image",
+              "task_fetch_random_image"
+            ],
+            "code_nodes": [
+              "step_analyze_image",
+              "step_fetch_image"
+            ],
+            "kg_edges": [
+              {
+                "source": "task_fetch_random_image",
+                "target": "task_analyze_image"
+              }
+            ],
+            "code_edges": [
+              {
+                "source": "step_fetch_image",
+                "target": "step_analyze_image"
+              }
+            ],
+            "missing_nodes": [
+              "task_analyze_image",
+              "task_fetch_random_image"
+            ],
+            "extra_nodes": [
+              "step_analyze_image",
+              "step_fetch_image"
+            ],
+            "missing_edges": [
+              {
+                "source": "task_fetch_random_image",
+                "target": "task_analyze_image"
+              }
+            ],
+            "extra_edges": [
+              {
+                "source": "step_fetch_image",
+                "target": "step_analyze_image"
+              }
+            ]
+          },
+          "syntax_ok": true,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.3939393939393939
         },
         {
           "project": "bird-checker-with-nextjs-and-eval",
@@ -3142,8 +3971,8 @@
                   "aliases": [
                     "bird_agent_anthropic_claude_3_haiku_20240307",
                     "bird_agent",
-                    "claude_3_haiku_20240307",
-                    "anthropic_claude_3_haiku_20240307"
+                    "anthropic_claude_3_haiku_20240307",
+                    "claude_3_haiku_20240307"
                   ],
                   "details": {
                     "source": "bird_agent",
@@ -3899,8 +4728,8 @@
                   "aliases": [
                     "bird_checker_anthropic_claude_3_haiku_20240307",
                     "bird_checker",
-                    "claude_3_haiku_20240307",
-                    "anthropic_claude_3_haiku_20240307"
+                    "anthropic_claude_3_haiku_20240307",
+                    "claude_3_haiku_20240307"
                   ],
                   "details": {
                     "source": "bird_checker",
@@ -5662,8 +6491,8 @@
                   "aliases": [
                     "dane_anthropic_claude_3_5_sonnet_20241022",
                     "dane",
-                    "anthropic_claude_3_5_sonnet_20241022",
-                    "claude_3_5_sonnet_20241022"
+                    "claude_3_5_sonnet_20241022",
+                    "anthropic_claude_3_5_sonnet_20241022"
                   ],
                   "details": {
                     "source": "dane",
@@ -5761,8 +6590,8 @@
                   "aliases": [
                     "dane_commit_message_anthropic_claude_3_5_sonnet_20241022",
                     "dane_commit_message",
-                    "anthropic_claude_3_5_sonnet_20241022",
-                    "claude_3_5_sonnet_20241022"
+                    "claude_3_5_sonnet_20241022",
+                    "anthropic_claude_3_5_sonnet_20241022"
                   ],
                   "details": {
                     "source": "dane_commit_message",
@@ -5804,8 +6633,8 @@
                   "aliases": [
                     "dane_issue_labeler_anthropic_claude_3_5_sonnet_20241022",
                     "dane_issue_labeler",
-                    "anthropic_claude_3_5_sonnet_20241022",
-                    "claude_3_5_sonnet_20241022"
+                    "claude_3_5_sonnet_20241022",
+                    "anthropic_claude_3_5_sonnet_20241022"
                   ],
                   "details": {
                     "source": "dane_issue_labeler",
@@ -5833,8 +6662,8 @@
                   "aliases": [
                     "dane_link_checker_anthropic_claude_3_5_sonnet_20241022",
                     "dane_link_checker",
-                    "anthropic_claude_3_5_sonnet_20241022",
-                    "claude_3_5_sonnet_20241022"
+                    "claude_3_5_sonnet_20241022",
+                    "anthropic_claude_3_5_sonnet_20241022"
                   ],
                   "details": {
                     "source": "dane_link_checker",
@@ -5876,8 +6705,8 @@
                   "aliases": [
                     "dane_package_publisher_anthropic_claude_3_5_sonnet_20241022",
                     "dane_package_publisher",
-                    "anthropic_claude_3_5_sonnet_20241022",
-                    "claude_3_5_sonnet_20241022"
+                    "claude_3_5_sonnet_20241022",
+                    "anthropic_claude_3_5_sonnet_20241022"
                   ],
                   "details": {
                     "source": "dane_package_publisher",
@@ -5905,8 +6734,8 @@
                   "aliases": [
                     "dane_new_contributor_anthropic_claude_3_5_sonnet_20241022",
                     "dane_new_contributor",
-                    "anthropic_claude_3_5_sonnet_20241022",
-                    "claude_3_5_sonnet_20241022"
+                    "claude_3_5_sonnet_20241022",
+                    "anthropic_claude_3_5_sonnet_20241022"
                   ],
                   "details": {
                     "source": "dane_new_contributor",
@@ -9378,8 +10207,563 @@
           "project": "mcp-registry-registry",
           "kg_path": "/Users/ravie/dev/agento/kgs_original/Mastra AI/mcp-registry-registry_instances.ttl",
           "output_dir": "/Users/ravie/dev/agento/output_files/output_mastra/mcp-registry-registry",
-          "status": "error",
-          "error": "at line 135 of <>:\nBad syntax (expected '.' or '}' or ']' at end of statement) at ^ in:\n\"...b'tructions; derived from the agent\\'\\'\\'s general instructions.\"'^b'\"\" .\\n\\n:provideRegistryDiscoveryObjective a :Objective ;\\n    '...\""
+          "status": "ok",
+          "kg_element_count": 33,
+          "code_element_count": 12,
+          "oec": {
+            "all_extracted": {
+              "score": 0.45454545454545453,
+              "matched": 15,
+              "total": 33,
+              "missing": [
+                {
+                  "category": "config",
+                  "name": "system_unnamed_project_logger_level",
+                  "important": false,
+                  "aliases": [
+                    "system_unnamed_project_logger_level",
+                    "logger_level",
+                    "info",
+                    "logger_level_info"
+                  ],
+                  "details": {
+                    "key": "logger_level",
+                    "owner": "unnamed_project",
+                    "owner_category": "system",
+                    "value": "info"
+                  }
+                },
+                {
+                  "category": "agent_llm",
+                  "name": "mcp_registry_agent_gpt4o_model",
+                  "important": false,
+                  "aliases": [
+                    "mcp_registry_agent_gpt4o_model",
+                    "mcp_registry_agent",
+                    "gpt4o_model"
+                  ],
+                  "details": {
+                    "source": "mcp_registry_agent",
+                    "target": "gpt4o_model"
+                  }
+                },
+                {
+                  "category": "task",
+                  "name": "initialize_agent_task",
+                  "important": true,
+                  "aliases": [
+                    "initialize_agent_task"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_agent",
+                  "name": "initialize_agent_task_mcp_registry_agent",
+                  "important": true,
+                  "aliases": [
+                    "initialize_agent_task_mcp_registry_agent",
+                    "initialize_agent_task",
+                    "mcp_registry_agent"
+                  ],
+                  "details": {
+                    "source": "initialize_agent_task",
+                    "target": "mcp_registry_agent"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "initialize_agent_task_mcp_registry_tool",
+                  "important": false,
+                  "aliases": [
+                    "initialize_agent_task_mcp_registry_tool",
+                    "initialize_agent_task",
+                    "mcp_registry_tool"
+                  ],
+                  "details": {
+                    "source": "initialize_agent_task",
+                    "target": "mcp_registry_tool"
+                  }
+                },
+                {
+                  "category": "task",
+                  "name": "search_mcp_registries_task",
+                  "important": true,
+                  "aliases": [
+                    "search_mcp_registries_task",
+                    "search_mcpregistries_task"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_agent",
+                  "name": "search_mcp_registries_task_mcp_registry_agent",
+                  "important": true,
+                  "aliases": [
+                    "search_mcp_registries_task_mcp_registry_agent",
+                    "search_mcp_registries_task",
+                    "mcp_registry_agent"
+                  ],
+                  "details": {
+                    "source": "search_mcp_registries_task",
+                    "target": "mcp_registry_agent"
+                  }
+                },
+                {
+                  "category": "task",
+                  "name": "finalize_task",
+                  "important": true,
+                  "aliases": [
+                    "finalize_task"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_agent",
+                  "name": "finalize_task_mcp_registry_agent",
+                  "important": true,
+                  "aliases": [
+                    "finalize_task_mcp_registry_agent",
+                    "finalize_task",
+                    "mcp_registry_agent"
+                  ],
+                  "details": {
+                    "source": "finalize_task",
+                    "target": "mcp_registry_agent"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "tool_mcp_client_servers_registry_args",
+                  "important": false,
+                  "aliases": [
+                    "tool_mcp_client_servers_registry_args",
+                    "servers_registry_args",
+                    "stdio_js",
+                    "packages_mcp_registry_registry_dist_stdio_js",
+                    "servers_registry_args_packages_mcp_registry_registry_dist_stdio_js"
+                  ],
+                  "details": {
+                    "key": "servers_registry_args",
+                    "owner": "mcp_client",
+                    "owner_category": "tool",
+                    "value": "../../packages/mcp-registry-registry/dist/stdio.js"
+                  }
+                },
+                {
+                  "category": "tool_capability",
+                  "name": "mcp_client_mcp_client_list_tools_capability",
+                  "important": false,
+                  "aliases": [
+                    "mcp_client_mcp_client_list_tools_capability",
+                    "mcp_client",
+                    "mcp_client_list_tools_capability"
+                  ],
+                  "details": {
+                    "source": "mcp_client",
+                    "target": "mcp_client_list_tools_capability"
+                  }
+                },
+                {
+                  "category": "tool_capability",
+                  "name": "mcp_registry_tool_mcp_client_list_tools_capability",
+                  "important": false,
+                  "aliases": [
+                    "mcp_registry_tool_mcp_client_list_tools_capability",
+                    "mcp_registry_tool",
+                    "mcp_client_list_tools_capability"
+                  ],
+                  "details": {
+                    "source": "mcp_registry_tool",
+                    "target": "mcp_client_list_tools_capability"
+                  }
+                },
+                {
+                  "category": "step_task",
+                  "name": "initialize_agent_task_initialize_agent_task",
+                  "important": true,
+                  "aliases": [
+                    "initialize_agent_task_initialize_agent_task",
+                    "initialize_agent_task"
+                  ],
+                  "details": {
+                    "source": "initialize_agent_task",
+                    "target": "initialize_agent_task"
+                  }
+                },
+                {
+                  "category": "step_task",
+                  "name": "search_mcp_registries_task_search_mcp_registries_task",
+                  "important": true,
+                  "aliases": [
+                    "search_mcp_registries_task_search_mcp_registries_task",
+                    "search_mcp_registries_task"
+                  ],
+                  "details": {
+                    "source": "search_mcp_registries_task",
+                    "target": "search_mcp_registries_task"
+                  }
+                },
+                {
+                  "category": "step_task",
+                  "name": "finalize_task_finalize_task",
+                  "important": true,
+                  "aliases": [
+                    "finalize_task_finalize_task",
+                    "finalize_task"
+                  ],
+                  "details": {
+                    "source": "finalize_task",
+                    "target": "finalize_task"
+                  }
+                },
+                {
+                  "category": "language_model",
+                  "name": "gpt4o_model",
+                  "important": false,
+                  "aliases": [
+                    "gpt4o_model"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "capability",
+                  "name": "mcp_client_list_tools_capability",
+                  "important": false,
+                  "aliases": [
+                    "mcp_client_list_tools_capability"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "objective",
+                  "name": "provide_registry_discovery_objective",
+                  "important": false,
+                  "aliases": [
+                    "provide_registry_discovery_objective"
+                  ],
+                  "details": {}
+                }
+              ],
+              "by_category": {
+                "agent": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "agent_llm": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "agent_tool": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "capability": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "config": {
+                  "score": 0.7142857142857143,
+                  "matched": 5,
+                  "total": 7
+                },
+                "language_model": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "objective": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "project": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "step_task": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 3
+                },
+                "task": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 3
+                },
+                "task_agent": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 3
+                },
+                "task_produces": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "tool": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "tool_capability": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 2
+                },
+                "workflow": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "workflow_step": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                }
+              }
+            },
+            "important_subset": {
+              "score": 0.5,
+              "matched": 9,
+              "total": 18,
+              "missing": [
+                {
+                  "category": "task",
+                  "name": "initialize_agent_task",
+                  "important": true,
+                  "aliases": [
+                    "initialize_agent_task"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_agent",
+                  "name": "initialize_agent_task_mcp_registry_agent",
+                  "important": true,
+                  "aliases": [
+                    "initialize_agent_task_mcp_registry_agent",
+                    "initialize_agent_task",
+                    "mcp_registry_agent"
+                  ],
+                  "details": {
+                    "source": "initialize_agent_task",
+                    "target": "mcp_registry_agent"
+                  }
+                },
+                {
+                  "category": "task",
+                  "name": "search_mcp_registries_task",
+                  "important": true,
+                  "aliases": [
+                    "search_mcp_registries_task",
+                    "search_mcpregistries_task"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_agent",
+                  "name": "search_mcp_registries_task_mcp_registry_agent",
+                  "important": true,
+                  "aliases": [
+                    "search_mcp_registries_task_mcp_registry_agent",
+                    "search_mcp_registries_task",
+                    "mcp_registry_agent"
+                  ],
+                  "details": {
+                    "source": "search_mcp_registries_task",
+                    "target": "mcp_registry_agent"
+                  }
+                },
+                {
+                  "category": "task",
+                  "name": "finalize_task",
+                  "important": true,
+                  "aliases": [
+                    "finalize_task"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_agent",
+                  "name": "finalize_task_mcp_registry_agent",
+                  "important": true,
+                  "aliases": [
+                    "finalize_task_mcp_registry_agent",
+                    "finalize_task",
+                    "mcp_registry_agent"
+                  ],
+                  "details": {
+                    "source": "finalize_task",
+                    "target": "mcp_registry_agent"
+                  }
+                },
+                {
+                  "category": "step_task",
+                  "name": "initialize_agent_task_initialize_agent_task",
+                  "important": true,
+                  "aliases": [
+                    "initialize_agent_task_initialize_agent_task",
+                    "initialize_agent_task"
+                  ],
+                  "details": {
+                    "source": "initialize_agent_task",
+                    "target": "initialize_agent_task"
+                  }
+                },
+                {
+                  "category": "step_task",
+                  "name": "search_mcp_registries_task_search_mcp_registries_task",
+                  "important": true,
+                  "aliases": [
+                    "search_mcp_registries_task_search_mcp_registries_task",
+                    "search_mcp_registries_task"
+                  ],
+                  "details": {
+                    "source": "search_mcp_registries_task",
+                    "target": "search_mcp_registries_task"
+                  }
+                },
+                {
+                  "category": "step_task",
+                  "name": "finalize_task_finalize_task",
+                  "important": true,
+                  "aliases": [
+                    "finalize_task_finalize_task",
+                    "finalize_task"
+                  ],
+                  "details": {
+                    "source": "finalize_task",
+                    "target": "finalize_task"
+                  }
+                }
+              ],
+              "by_category": {
+                "agent": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "agent_tool": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "step_task": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 3
+                },
+                "task": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 3
+                },
+                "task_agent": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 3
+                },
+                "tool": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "workflow": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "workflow_step": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                }
+              }
+            }
+          },
+          "wgi": {
+            "score": 1.0,
+            "normalized_graph_edit_distance": 0.0,
+            "labeled_score": 0.0,
+            "topology_score": 1.0,
+            "labeled_normalized_graph_edit_distance": 1.0,
+            "topology_normalized_graph_edit_distance": 0.0,
+            "exact_isomorphic": false,
+            "topology_isomorphic": true,
+            "edge_precision": 0.0,
+            "edge_recall": 0.0,
+            "edge_f1": 0.0,
+            "kg_nodes": [
+              "finalize_task",
+              "initialize_agent_task",
+              "search_mcp_registries_task"
+            ],
+            "code_nodes": [
+              "end_step_complete",
+              "start_step_initialize_agent",
+              "step_perform_search"
+            ],
+            "kg_edges": [
+              {
+                "source": "initialize_agent_task",
+                "target": "search_mcp_registries_task"
+              },
+              {
+                "source": "search_mcp_registries_task",
+                "target": "finalize_task"
+              }
+            ],
+            "code_edges": [
+              {
+                "source": "start_step_initialize_agent",
+                "target": "step_perform_search"
+              },
+              {
+                "source": "step_perform_search",
+                "target": "end_step_complete"
+              }
+            ],
+            "missing_nodes": [
+              "finalize_task",
+              "initialize_agent_task",
+              "search_mcp_registries_task"
+            ],
+            "extra_nodes": [
+              "end_step_complete",
+              "start_step_initialize_agent",
+              "step_perform_search"
+            ],
+            "missing_edges": [
+              {
+                "source": "initialize_agent_task",
+                "target": "search_mcp_registries_task"
+              },
+              {
+                "source": "search_mcp_registries_task",
+                "target": "finalize_task"
+              }
+            ],
+            "extra_edges": [
+              {
+                "source": "start_step_initialize_agent",
+                "target": "step_perform_search"
+              },
+              {
+                "source": "step_perform_search",
+                "target": "end_step_complete"
+              }
+            ]
+          },
+          "syntax_ok": true,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.3118279569892473
         },
         {
           "project": "memory-per-resource-example",
@@ -10007,8 +11391,665 @@
           "project": "memory-with-context",
           "kg_path": "/Users/ravie/dev/agento/kgs_original/Mastra AI/memory-with-context_instances.ttl",
           "output_dir": "/Users/ravie/dev/agento/output_files/output_mastra/memory-with-context",
-          "status": "error",
-          "error": "at line 107 of <>:\nBad syntax (expected '.' or '}' or ']' at end of statement) at ^ in:\n\"...b'ck again. Say something to start the conversation up again.\"'^b'\"\" ;\\n    :promptContext \"\"\"Used as the system message when i'...\""
+          "status": "ok",
+          "kg_element_count": 31,
+          "code_element_count": 9,
+          "oec": {
+            "all_extracted": {
+              "score": 0.22580645161290322,
+              "matched": 7,
+              "total": 31,
+              "missing": [
+                {
+                  "category": "agent_llm",
+                  "name": "memory_agent_lm_gpt4o_mini",
+                  "important": false,
+                  "aliases": [
+                    "memory_agent_lm_gpt4o_mini",
+                    "memory_agent",
+                    "lm_gpt4o_mini"
+                  ],
+                  "details": {
+                    "source": "memory_agent",
+                    "target": "lm_gpt4o_mini"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_memory_agent_memory_component",
+                  "important": false,
+                  "aliases": [
+                    "agent_memory_agent_memory_component",
+                    "memory_component",
+                    "memory_kb_memory_instance_attached_to_agent",
+                    "memory_component_memory_kb_memory_instance_attached_to_agent"
+                  ],
+                  "details": {
+                    "key": "memory_component",
+                    "owner": "memory_agent",
+                    "owner_category": "agent",
+                    "value": "memory_kb (Memory instance attached to agent)"
+                  }
+                },
+                {
+                  "category": "task",
+                  "name": "task_initial_system_message",
+                  "important": true,
+                  "aliases": [
+                    "task_initial_system_message"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_agent",
+                  "name": "task_initial_system_message_memory_agent",
+                  "important": true,
+                  "aliases": [
+                    "task_initial_system_message_memory_agent",
+                    "task_initial_system_message",
+                    "memory_agent"
+                  ],
+                  "details": {
+                    "source": "task_initial_system_message",
+                    "target": "memory_agent"
+                  }
+                },
+                {
+                  "category": "task",
+                  "name": "task_receive_user_input",
+                  "important": true,
+                  "aliases": [
+                    "task_receive_user_input"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_agent",
+                  "name": "task_receive_user_input_memory_agent",
+                  "important": true,
+                  "aliases": [
+                    "task_receive_user_input_memory_agent",
+                    "task_receive_user_input",
+                    "memory_agent"
+                  ],
+                  "details": {
+                    "source": "task_receive_user_input",
+                    "target": "memory_agent"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "task_receive_user_input_resource_user_instance",
+                  "important": false,
+                  "aliases": [
+                    "task_receive_user_input_resource_user_instance",
+                    "task_receive_user_input",
+                    "resource_user_instance"
+                  ],
+                  "details": {
+                    "source": "task_receive_user_input",
+                    "target": "resource_user_instance"
+                  }
+                },
+                {
+                  "category": "task",
+                  "name": "task_agent_stream_response",
+                  "important": true,
+                  "aliases": [
+                    "task_agent_stream_response"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_agent",
+                  "name": "task_agent_stream_response_memory_agent",
+                  "important": true,
+                  "aliases": [
+                    "task_agent_stream_response_memory_agent",
+                    "task_agent_stream_response",
+                    "memory_agent"
+                  ],
+                  "details": {
+                    "source": "task_agent_stream_response",
+                    "target": "memory_agent"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "task_agent_stream_response_resource_chat_stream_output",
+                  "important": false,
+                  "aliases": [
+                    "task_agent_stream_response_resource_chat_stream_output",
+                    "task_agent_stream_response",
+                    "resource_chat_stream_output"
+                  ],
+                  "details": {
+                    "source": "task_agent_stream_response",
+                    "target": "resource_chat_stream_output"
+                  }
+                },
+                {
+                  "category": "task",
+                  "name": "task_interactive_chat",
+                  "important": true,
+                  "aliases": [
+                    "task_interactive_chat"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_agent",
+                  "name": "task_interactive_chat_memory_agent",
+                  "important": true,
+                  "aliases": [
+                    "task_interactive_chat_memory_agent",
+                    "task_interactive_chat",
+                    "memory_agent"
+                  ],
+                  "details": {
+                    "source": "task_interactive_chat",
+                    "target": "memory_agent"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "task_interactive_chat_resource_chat_stream_output",
+                  "important": false,
+                  "aliases": [
+                    "task_interactive_chat_resource_chat_stream_output",
+                    "task_interactive_chat",
+                    "resource_chat_stream_output"
+                  ],
+                  "details": {
+                    "source": "task_interactive_chat",
+                    "target": "resource_chat_stream_output"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "task_interactive_chat_resource_user_instance",
+                  "important": false,
+                  "aliases": [
+                    "task_interactive_chat_resource_user_instance",
+                    "task_interactive_chat",
+                    "resource_user_instance"
+                  ],
+                  "details": {
+                    "source": "task_interactive_chat",
+                    "target": "resource_user_instance"
+                  }
+                },
+                {
+                  "category": "task",
+                  "name": "task_agent_instantiation",
+                  "important": true,
+                  "aliases": [
+                    "task_agent_instantiation"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_agent",
+                  "name": "task_agent_instantiation_memory_agent",
+                  "important": true,
+                  "aliases": [
+                    "task_agent_instantiation_memory_agent",
+                    "task_agent_instantiation",
+                    "memory_agent"
+                  ],
+                  "details": {
+                    "source": "task_agent_instantiation",
+                    "target": "memory_agent"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "task_agent_instantiation_memory_kb",
+                  "important": false,
+                  "aliases": [
+                    "task_agent_instantiation_memory_kb",
+                    "task_agent_instantiation",
+                    "memory_kb"
+                  ],
+                  "details": {
+                    "source": "task_agent_instantiation",
+                    "target": "memory_kb"
+                  }
+                },
+                {
+                  "category": "step_task",
+                  "name": "task_initial_system_message_task_initial_system_message",
+                  "important": true,
+                  "aliases": [
+                    "task_initial_system_message_task_initial_system_message",
+                    "task_initial_system_message"
+                  ],
+                  "details": {
+                    "source": "task_initial_system_message",
+                    "target": "task_initial_system_message"
+                  }
+                },
+                {
+                  "category": "step_task",
+                  "name": "task_receive_user_input_task_receive_user_input",
+                  "important": true,
+                  "aliases": [
+                    "task_receive_user_input_task_receive_user_input",
+                    "task_receive_user_input"
+                  ],
+                  "details": {
+                    "source": "task_receive_user_input",
+                    "target": "task_receive_user_input"
+                  }
+                },
+                {
+                  "category": "step_task",
+                  "name": "task_agent_stream_response_task_agent_stream_response",
+                  "important": true,
+                  "aliases": [
+                    "task_agent_stream_response_task_agent_stream_response",
+                    "task_agent_stream_response"
+                  ],
+                  "details": {
+                    "source": "task_agent_stream_response",
+                    "target": "task_agent_stream_response"
+                  }
+                },
+                {
+                  "category": "language_model",
+                  "name": "lm_gpt4o_mini",
+                  "important": false,
+                  "aliases": [
+                    "lm_gpt4o_mini"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "resource_user_instance",
+                  "important": false,
+                  "aliases": [
+                    "resource_user_instance"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "resource_chat_stream_output",
+                  "important": false,
+                  "aliases": [
+                    "resource_chat_stream_output"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "constraint",
+                  "name": "constraint_is_first_chat_check",
+                  "important": false,
+                  "aliases": [
+                    "constraint_is_first_chat_check"
+                  ],
+                  "details": {}
+                }
+              ],
+              "by_category": {
+                "agent": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "agent_llm": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "config": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "constraint": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "language_model": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "memory": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "project": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "resource": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 2
+                },
+                "step_task": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 3
+                },
+                "task": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 5
+                },
+                "task_agent": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 5
+                },
+                "task_produces": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 2
+                },
+                "task_requires": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 3
+                },
+                "workflow": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "workflow_step": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                }
+              }
+            },
+            "important_subset": {
+              "score": 0.2777777777777778,
+              "matched": 5,
+              "total": 18,
+              "missing": [
+                {
+                  "category": "task",
+                  "name": "task_initial_system_message",
+                  "important": true,
+                  "aliases": [
+                    "task_initial_system_message"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_agent",
+                  "name": "task_initial_system_message_memory_agent",
+                  "important": true,
+                  "aliases": [
+                    "task_initial_system_message_memory_agent",
+                    "task_initial_system_message",
+                    "memory_agent"
+                  ],
+                  "details": {
+                    "source": "task_initial_system_message",
+                    "target": "memory_agent"
+                  }
+                },
+                {
+                  "category": "task",
+                  "name": "task_receive_user_input",
+                  "important": true,
+                  "aliases": [
+                    "task_receive_user_input"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_agent",
+                  "name": "task_receive_user_input_memory_agent",
+                  "important": true,
+                  "aliases": [
+                    "task_receive_user_input_memory_agent",
+                    "task_receive_user_input",
+                    "memory_agent"
+                  ],
+                  "details": {
+                    "source": "task_receive_user_input",
+                    "target": "memory_agent"
+                  }
+                },
+                {
+                  "category": "task",
+                  "name": "task_agent_stream_response",
+                  "important": true,
+                  "aliases": [
+                    "task_agent_stream_response"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_agent",
+                  "name": "task_agent_stream_response_memory_agent",
+                  "important": true,
+                  "aliases": [
+                    "task_agent_stream_response_memory_agent",
+                    "task_agent_stream_response",
+                    "memory_agent"
+                  ],
+                  "details": {
+                    "source": "task_agent_stream_response",
+                    "target": "memory_agent"
+                  }
+                },
+                {
+                  "category": "task",
+                  "name": "task_interactive_chat",
+                  "important": true,
+                  "aliases": [
+                    "task_interactive_chat"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_agent",
+                  "name": "task_interactive_chat_memory_agent",
+                  "important": true,
+                  "aliases": [
+                    "task_interactive_chat_memory_agent",
+                    "task_interactive_chat",
+                    "memory_agent"
+                  ],
+                  "details": {
+                    "source": "task_interactive_chat",
+                    "target": "memory_agent"
+                  }
+                },
+                {
+                  "category": "task",
+                  "name": "task_agent_instantiation",
+                  "important": true,
+                  "aliases": [
+                    "task_agent_instantiation"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_agent",
+                  "name": "task_agent_instantiation_memory_agent",
+                  "important": true,
+                  "aliases": [
+                    "task_agent_instantiation_memory_agent",
+                    "task_agent_instantiation",
+                    "memory_agent"
+                  ],
+                  "details": {
+                    "source": "task_agent_instantiation",
+                    "target": "memory_agent"
+                  }
+                },
+                {
+                  "category": "step_task",
+                  "name": "task_initial_system_message_task_initial_system_message",
+                  "important": true,
+                  "aliases": [
+                    "task_initial_system_message_task_initial_system_message",
+                    "task_initial_system_message"
+                  ],
+                  "details": {
+                    "source": "task_initial_system_message",
+                    "target": "task_initial_system_message"
+                  }
+                },
+                {
+                  "category": "step_task",
+                  "name": "task_receive_user_input_task_receive_user_input",
+                  "important": true,
+                  "aliases": [
+                    "task_receive_user_input_task_receive_user_input",
+                    "task_receive_user_input"
+                  ],
+                  "details": {
+                    "source": "task_receive_user_input",
+                    "target": "task_receive_user_input"
+                  }
+                },
+                {
+                  "category": "step_task",
+                  "name": "task_agent_stream_response_task_agent_stream_response",
+                  "important": true,
+                  "aliases": [
+                    "task_agent_stream_response_task_agent_stream_response",
+                    "task_agent_stream_response"
+                  ],
+                  "details": {
+                    "source": "task_agent_stream_response",
+                    "target": "task_agent_stream_response"
+                  }
+                }
+              ],
+              "by_category": {
+                "agent": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "step_task": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 3
+                },
+                "task": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 5
+                },
+                "task_agent": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 5
+                },
+                "workflow": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "workflow_step": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                }
+              }
+            }
+          },
+          "wgi": {
+            "score": 0.5,
+            "normalized_graph_edit_distance": 0.5,
+            "labeled_score": 0.0,
+            "topology_score": 0.5,
+            "labeled_normalized_graph_edit_distance": 1.0,
+            "topology_normalized_graph_edit_distance": 0.5,
+            "exact_isomorphic": false,
+            "topology_isomorphic": false,
+            "edge_precision": 0.0,
+            "edge_recall": 0.0,
+            "edge_f1": 0.0,
+            "kg_nodes": [
+              "task_agent_stream_response",
+              "task_initial_system_message",
+              "task_receive_user_input"
+            ],
+            "code_nodes": [
+              "ws_agent_generate_response",
+              "ws_receive_user_input",
+              "ws_start_chat"
+            ],
+            "kg_edges": [
+              {
+                "source": "task_agent_stream_response",
+                "target": "task_receive_user_input"
+              },
+              {
+                "source": "task_initial_system_message",
+                "target": "task_receive_user_input"
+              },
+              {
+                "source": "task_receive_user_input",
+                "target": "task_agent_stream_response"
+              }
+            ],
+            "code_edges": [
+              {
+                "source": "ws_receive_user_input",
+                "target": "ws_agent_generate_response"
+              },
+              {
+                "source": "ws_start_chat",
+                "target": "ws_receive_user_input"
+              }
+            ],
+            "missing_nodes": [
+              "task_agent_stream_response",
+              "task_initial_system_message",
+              "task_receive_user_input"
+            ],
+            "extra_nodes": [
+              "ws_agent_generate_response",
+              "ws_receive_user_input",
+              "ws_start_chat"
+            ],
+            "missing_edges": [
+              {
+                "source": "task_agent_stream_response",
+                "target": "task_receive_user_input"
+              },
+              {
+                "source": "task_initial_system_message",
+                "target": "task_receive_user_input"
+              },
+              {
+                "source": "task_receive_user_input",
+                "target": "task_agent_stream_response"
+              }
+            ],
+            "extra_edges": [
+              {
+                "source": "ws_receive_user_input",
+                "target": "ws_agent_generate_response"
+              },
+              {
+                "source": "ws_start_chat",
+                "target": "ws_receive_user_input"
+              }
+            ]
+          },
+          "syntax_ok": false,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": false,
+          "ast_sim": null
         },
         {
           "project": "memory-with-libsql",
@@ -11577,8 +13618,8 @@
                   "aliases": [
                     "travel_agent_openai_gpt_4_1",
                     "travel_agent",
-                    "gpt_4_1",
-                    "openai_gpt_4_1"
+                    "openai_gpt_4_1",
+                    "gpt_4_1"
                   ],
                   "details": {
                     "source": "travel_agent",
@@ -11665,8 +13706,8 @@
                   "aliases": [
                     "travel_analyzer_openai_gpt_4_1",
                     "travel_analyzer",
-                    "gpt_4_1",
-                    "openai_gpt_4_1"
+                    "openai_gpt_4_1",
+                    "gpt_4_1"
                   ],
                   "details": {
                     "source": "travel_analyzer",
@@ -12065,8 +14106,8 @@
                   "name": "openai_gpt_4_1",
                   "important": false,
                   "aliases": [
-                    "gpt_4_1",
                     "openai_gpt_4_1",
+                    "gpt_4_1",
                     "open_ai_gpt_4_1"
                   ],
                   "details": {}

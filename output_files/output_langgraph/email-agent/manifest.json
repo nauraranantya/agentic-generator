@@ -1,12 +1,12 @@
 {
   "framework": "langgraph",
   "language": "typescript",
-  "pattern": "tool_calling",
+  "pattern": "branching",
   "generated_files": [
     ".env.example",
     "index.ts",
     "package.json",
     "tsconfig.json"
   ],
-  "timestamp": "2026-06-26T10:33:39.733166+00:00"
+  "timestamp": "2026-06-29T12:12:50.165412+00:00"
 }

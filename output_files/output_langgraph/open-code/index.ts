@@ -1,5 +1,6 @@
-import { Annotation, START, END, StateGraph } from "@langchain/langgraph";
 import { ChatOpenAI } from "@langchain/openai";
+import { Annotation, START, END, StateGraph } from "@langchain/langgraph";
+
 
 const UnnamedProjectAnnotation = Annotation.Root({
   messages: Annotation<any[]>({
@@ -15,7 +16,7 @@ async function workflowStepPlanner(state: typeof UnnamedProjectAnnotation.State)
       role: "system",
       content:
         "You are a planner-executor LLM agent (coordinates planning and performs file updates via tools and UI prompts)." +
-        "\\nNode: workflowStepPlanner",
+        "\nNode: workflowStepPlanner",
     },
     ...state.messages,
   ]);
@@ -28,20 +29,19 @@ async function workflowStepExecutor(state: typeof UnnamedProjectAnnotation.State
       role: "system",
       content:
         "You are a planner-executor LLM agent (coordinates planning and performs file updates via tools and UI prompts)." +
-        "\\nNode: workflowStepExecutor",
+        "\nNode: workflowStepExecutor",
     },
     ...state.messages,
   ]);
   return { messages: [response] };
 }
 
+
 const workflow = new StateGraph(UnnamedProjectAnnotation)
   .addNode("workflowStepPlanner", workflowStepPlanner)
   .addNode("workflowStepExecutor", workflowStepExecutor)
-  .addEdge(START, "workflowStepPlanner")
   .addEdge("workflowStepPlanner", "workflowStepExecutor")
   .addEdge("workflowStepExecutor", "workflowStepPlanner")
-  .addEdge("workflowStepExecutor", END)
 ;
 
 export const graph = workflow.compile();

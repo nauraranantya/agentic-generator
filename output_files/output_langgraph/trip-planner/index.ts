@@ -1,35 +1,63 @@
-import { StateGraph, START, END } from "@langchain/langgraph";
-import { SupervisorAnnotation, type SupervisorState } from "./types";
-import { router } from "./nodes/router";
-import { generalInput } from "./nodes/general-input";
 import { ChatOpenAI } from "@langchain/openai";
+import { Annotation, START, END, StateGraph } from "@langchain/langgraph";
 
-async function stepCallTools(state: SupervisorState) {
+
+const UnnamedProjectAnnotation = Annotation.Root({
+  messages: Annotation<any[]>({
+    reducer: (_, next) => next,
+    default: () => [],
+  }),
+});
+
+async function stepExtraction(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o" });
   const response = await model.invoke([
-    { role: "system", content: "Route: stepCallTools. You are a assistant / trip-planner." },
+    {
+      role: "system",
+      content:
+        "You are a assistant / trip-planner." +
+        "\nNode: stepExtraction",
+    },
+    ...state.messages,
+  ]);
+  return { messages: [response] };
+}
+async function stepClassify(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o" });
+  const response = await model.invoke([
+    {
+      role: "system",
+      content:
+        "You are a assistant / trip-planner." +
+        "\nNode: stepClassify",
+    },
+    ...state.messages,
+  ]);
+  return { messages: [response] };
+}
+async function stepCallTools(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o" });
+  const response = await model.invoke([
+    {
+      role: "system",
+      content:
+        "You are a assistant / trip-planner." +
+        "\nNode: stepCallTools",
+    },
     ...state.messages,
   ]);
   return { messages: [response] };
 }
 
-function handleRoute(state: SupervisorState):
-  | "stepCallTools"
-{
-  return state.next as
-    | "stepCallTools"
-  ;
-}
 
-const builder = new StateGraph(SupervisorAnnotation)
-  .addNode("stepExtraction", router)
+const workflow = new StateGraph(UnnamedProjectAnnotation)
+  .addNode("stepExtraction", stepExtraction)
+  .addNode("stepClassify", stepClassify)
   .addNode("stepCallTools", stepCallTools)
-  .addConditionalEdges("stepExtraction", handleRoute, [
-    "stepCallTools",
-  ])
-  .addEdge(START, "stepExtraction")
-  .addEdge("stepCallTools", END)
+  .addEdge("stepExtraction", "stepCallTools")
+  .addEdge("stepClassify", "stepExtraction")
+  .addEdge("stepClassify", "stepCallTools")
 ;
 
-export const graph = builder.compile();
+export const graph = workflow.compile();
 graph.name = "UnnamedProject";

@@ -2,11 +2,16 @@ import { StateGraph, START, END } from "@langchain/langgraph";
 import { SupervisorAnnotation, type SupervisorState } from "./types";
 import { router } from "./nodes/router";
 import { generalInput } from "./nodes/general-input";
+{% if agents and agents[0].provider == "anthropic" %}
+import { ChatAnthropic } from "@langchain/anthropic";
+{% else %}
 import { ChatOpenAI } from "@langchain/openai";
+{% endif %}
+{% set model_class = "ChatAnthropic" if (agents and agents[0].provider == "anthropic") else "ChatOpenAI" %}
 
 {% for route in routes if not route.is_fallback %}
 async function {{ route.target_node }}(state: SupervisorState) {
-  const model = new ChatOpenAI({ model: "{{ (agents[0].model_name if agents else 'gpt-4o-mini') | ts_escape }}" });
+  const model = new {{ model_class }}({ model: "{{ (agents[0].model_name if agents else 'gpt-4o-mini') | ts_escape }}" });
   const response = await model.invoke([
     { role: "system", content: "Route: {{ route.route_key }}. {{ (agents[0].prompt if agents else 'You are a helpful assistant.') | ts_escape }}" },
     ...state.messages,

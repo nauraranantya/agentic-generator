@@ -150,7 +150,13 @@ def generate_project(project: LangGraphProject, output_dir: str) -> str:
         content = template.render(**ctx)
         with open(os.path.join(output_dir, "index.ts"), "w", encoding="utf-8") as f:
             f.write(content.strip() + "\n")
+    elif pattern == "branching":
+        template = env.get_template("branching.index.ts.j2")
+        content = template.render(**ctx)
+        with open(os.path.join(output_dir, "index.ts"), "w", encoding="utf-8") as f:
+            f.write(content.strip() + "\n")
     else:
+        # supervisor: full hub-and-spoke with explicit router node
         index_template = env.get_template("supervisor.index.ts.j2")
         types_template = env.get_template("supervisor.types.ts.j2")
         router_template = env.get_template("supervisor.router.ts.j2")
@@ -167,6 +173,7 @@ def generate_project(project: LangGraphProject, output_dir: str) -> str:
 
         with open(os.path.join(nodes_dir, "general-input.ts"), "w", encoding="utf-8") as f:
             f.write(general_template.render(**ctx).strip() + "\n")
+
 
     _write_base_files(output_dir)
 

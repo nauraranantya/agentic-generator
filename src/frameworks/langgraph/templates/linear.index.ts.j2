@@ -1,5 +1,11 @@
-import { Annotation, START, END, StateGraph } from "@langchain/langgraph";
+{% if agents and agents[0].provider == "anthropic" %}
+import { ChatAnthropic } from "@langchain/anthropic";
+{% else %}
 import { ChatOpenAI } from "@langchain/openai";
+{% endif %}
+import { Annotation, START, END, StateGraph } from "@langchain/langgraph";
+
+{% set model_class = "ChatAnthropic" if (agents and agents[0].provider == "anthropic") else "ChatOpenAI" %}
 
 const {{ graph_class_name }}Annotation = Annotation.Root({
   messages: Annotation<any[]>({
@@ -10,7 +16,7 @@ const {{ graph_class_name }}Annotation = Annotation.Root({
 
 const graph = new StateGraph({{ graph_class_name }}Annotation)
   .addNode("{{ nodes[0].ts_name if nodes else 'chat' }}", async (state) => {
-    const model = new ChatOpenAI({ model: "{{ agents[0].model_name if agents else 'gpt-4o-mini' }}" });
+    const model = new {{ model_class }}({ model: "{{ agents[0].model_name if agents else 'gpt-4o-mini' }}" });
     const response = await model.invoke([
       { role: "system", content: "{{ (agents[0].prompt if agents else 'You are a helpful assistant.') | ts_escape }}" },
       ...state.messages,

@@ -1,5 +1,6 @@
-import { Annotation, START, END, StateGraph } from "@langchain/langgraph";
 import { ChatOpenAI } from "@langchain/openai";
+import { Annotation, START, END, StateGraph } from "@langchain/langgraph";
+
 
 const UnnamedProjectAnnotation = Annotation.Root({
   messages: Annotation<any[]>({
@@ -8,19 +9,6 @@ const UnnamedProjectAnnotation = Annotation.Root({
   }),
 });
 
-async function writeEmail(state: typeof UnnamedProjectAnnotation.State) {
-  const model = new ChatOpenAI({ model: "gpt-4o" });
-  const response = await model.invoke([
-    {
-      role: "system",
-      content:
-        "You are a email_assistant." +
-        "\\nNode: writeEmail",
-    },
-    ...state.messages,
-  ]);
-  return { messages: [response] };
-}
 async function interrupt(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o" });
   const response = await model.invoke([
@@ -28,7 +16,7 @@ async function interrupt(state: typeof UnnamedProjectAnnotation.State) {
       role: "system",
       content:
         "You are a email_assistant." +
-        "\\nNode: interrupt",
+        "\nNode: interrupt",
     },
     ...state.messages,
   ]);
@@ -41,35 +29,21 @@ async function rewriteEmail(state: typeof UnnamedProjectAnnotation.State) {
       role: "system",
       content:
         "You are a email_assistant." +
-        "\\nNode: rewriteEmail",
-    },
-    ...state.messages,
-  ]);
-  return { messages: [response] };
-}
-async function sendEmail(state: typeof UnnamedProjectAnnotation.State) {
-  const model = new ChatOpenAI({ model: "gpt-4o" });
-  const response = await model.invoke([
-    {
-      role: "system",
-      content:
-        "You are a email_assistant." +
-        "\\nNode: sendEmail",
+        "\nNode: rewriteEmail",
     },
     ...state.messages,
   ]);
   return { messages: [response] };
 }
 
+
 const workflow = new StateGraph(UnnamedProjectAnnotation)
-  .addNode("writeEmail", writeEmail)
   .addNode("interrupt", interrupt)
   .addNode("rewriteEmail", rewriteEmail)
-  .addNode("sendEmail", sendEmail)
-  .addEdge(START, "writeEmail")
   .addEdge("writeEmail", "interrupt")
+  .addEdge("interrupt", "sendEmail")
+  .addEdge("interrupt", "rewriteEmail")
   .addEdge("rewriteEmail", "interrupt")
-  .addEdge("sendEmail", END)
 ;
 
 export const graph = workflow.compile();

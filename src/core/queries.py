@@ -223,9 +223,11 @@ WHERE {
 """
 
 STEP_EDGES_QUERY = PREFIXES + """
-SELECT ?source ?target
+SELECT DISTINCT ?source ?target
 WHERE {
-    ?source :nextStep ?target .
+    { ?source :nextStep ?target . }
+    UNION
+    { ?source :relatedStep ?target . }
 }
 """
 

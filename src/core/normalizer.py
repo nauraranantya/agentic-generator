@@ -2,6 +2,12 @@ import re
 
 def normalize_ttl(content: str) -> str:
     """Normalize and repair common syntactic/formatting issues in Turtle (.ttl) content."""
+    # Repair specific syntax typos from original files
+    content = content.replace('description">', 'description>')
+    content = content.replace('(see producedResource)." ;', '(see producedResource).""" ;')
+    # Repair missing colons on subjects (like chefAgent :agentResourceUsage -> :chefAgent :agentResourceUsage)
+    content = re.sub(r'^\s*(?!\ba\b)([a-zA-Z_][a-zA-Z0-9_-]*)\s+(\:\w+)', r':\1 \2', content, flags=re.MULTILINE)
+
     # 1. Clean markdown code fences (often hallucinated by LLMs)
     content = _strip_markdown_fences(content)
     
@@ -80,8 +86,22 @@ def _fix_invalid_property_objects(content: str) -> str:
     """Fix syntax errors where 'dcterms:description' is incorrectly placed in the object position preceding a literal.
     Example: :promptInputData dcterms:description "literal" -> :promptInputData "literal"
     """
-    pattern = r'(\:\w+)\s+dcterms:description\s+("""[\s\S]*?"""|"[^"\\]*(?:\\.[^"\\]*)*"|\'[^\'\\]*(?:\\.[^\'\\]*)*\')'
-    return re.sub(pattern, r'\1 \2', content)
+    pattern = r'^([ \t]+:\w+)\s+dcterms:description\s+("""[\s\S]*?"""|"[^"\\]*(?:\\.[^"\\]*)*"|\'[^\'\\]*(?:\\.[^\'\\]*)*\')'
+    return re.sub(pattern, r'\1 \2', content, flags=re.MULTILINE)
+
+
+def _replace_last_char(line: str, target: str, replacement: str) -> str:
+    # Find the target char before any comment
+    parts = line.split('#', 1)
+    code_part = parts[0]
+    comment_part = f"#{parts[1]}" if len(parts) > 1 else ""
+    
+    # Strip trailing whitespace from code part and check ending
+    stripped_code = code_part.rstrip()
+    if stripped_code.endswith(target):
+        new_code = stripped_code[:-len(target)] + replacement
+        return new_code + code_part[len(stripped_code):] + comment_part
+    return line
 
 
 def _fix_missing_statement_periods(content: str) -> str:
@@ -90,7 +110,7 @@ def _fix_missing_statement_periods(content: str) -> str:
     cleaned_lines = []
     
     last_rdf_line_idx = -1
-    new_subject_pattern = re.compile(r'^\s*(:\w+|<\S+>|@prefix|@base)\b')
+    new_subject_pattern = re.compile(r'^(\:\w+|<\S+>|@prefix|@base)\b')
     
     in_string = False
     string_char = None
@@ -99,7 +119,7 @@ def _fix_missing_statement_periods(content: str) -> str:
         stripped = line.strip()
         
         starts_new_subject = False
-        if not in_string and new_subject_pattern.match(stripped):
+        if not in_string and new_subject_pattern.match(line):
             starts_new_subject = True
             
         # Update in_string state by scanning the line
@@ -138,8 +158,11 @@ def _fix_missing_statement_periods(content: str) -> str:
             if last_rdf_line_idx != -1:
                 prev_line = cleaned_lines[last_rdf_line_idx]
                 prev_stripped = prev_line.strip()
-                if prev_stripped and not prev_stripped.endswith(('.', ';', '[', ']', ',')):
-                    cleaned_lines[last_rdf_line_idx] = prev_line + " ."
+                if prev_stripped and not prev_stripped.endswith('.'):
+                    if prev_stripped.endswith(';'):
+                        cleaned_lines[last_rdf_line_idx] = _replace_last_char(prev_line, ';', '.')
+                    elif not prev_stripped.endswith((',', '[', ']', '.')):
+                        cleaned_lines[last_rdf_line_idx] = prev_line + " ."
                     
         cleaned_lines.append(line)
         if not in_string:
@@ -154,6 +177,7 @@ def _inject_missing_prefixes(content: str) -> str:
         "rdf": "@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .",
         "rdfs": "@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .",
         "dcterms": "@prefix dcterms: <http://purl.org/dc/terms/> .",
+        "dc": "@prefix dc: <http://purl.org/dc/elements/1.1/> .",
         "xsd": "@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .",
         "beam": "@prefix beam: <http://w3id.org/beam/core#> .",
         "pp": "@prefix pp: <http://purl.org/net/p-plan#> .",
@@ -183,6 +207,7 @@ def _fix_multiline_literals(content: str) -> str:
     length = len(chars)
     i = 0
     in_string = False
+    in_uri = False
     string_char = None  # " or '
     is_triple = False
     upgraded = False
@@ -192,22 +217,37 @@ def _fix_multiline_literals(content: str) -> str:
     
     while i < length:
         if not in_string:
+            # Handle URIs
+            if chars[i] == '<':
+                in_uri = True
+            elif chars[i] == '>':
+                in_uri = False
+                
+            # Handle comments
+            if chars[i] == '#' and not in_uri:
+                while i < length and chars[i] != '\n':
+                    result.append(chars[i])
+                    i += 1
+                continue
+                
             # Check for triple quotes
-            if i + 2 < length and chars[i] == '"' and chars[i+1] == '"' and chars[i+2] == '"':
+            if not in_uri and i + 2 < length and chars[i] == '"' and chars[i+1] == '"' and chars[i+2] == '"':
                 in_string = True
                 is_triple = True
                 upgraded = False
                 string_char = '"'
+                string_start_idx = len(result)
                 result.extend(['"', '"', '"'])
                 i += 3
-            elif i + 2 < length and chars[i] == "'" and chars[i+1] == "'" and chars[i+2] == "'":
+            elif not in_uri and i + 2 < length and chars[i] == "'" and chars[i+1] == "'" and chars[i+2] == "'":
                 in_string = True
                 is_triple = True
                 upgraded = False
                 string_char = "'"
+                string_start_idx = len(result)
                 result.extend(["'", "'", "'"])
                 i += 3
-            elif chars[i] in ('"', "'"):
+            elif not in_uri and chars[i] in ('"', "'"):
                 in_string = True
                 is_triple = False
                 upgraded = False

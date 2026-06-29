@@ -12,8 +12,8 @@
         "errors": 0,
         "avg_oec_all": 0.6034320884069264,
         "avg_oec_important": 0.9468861978911923,
-        "avg_wgi": 0.9296085858585859,
-        "avg_edge_f1": 0.9010416666666666,
+        "avg_wgi": 0.8824630230880232,
+        "avg_edge_f1": 0.7188131313131313,
         "avg_ast_sim": 0.6021303805642652,
         "syntax_success_rate": 1.0,
         "run_success_rate": 1.0
@@ -2112,17 +2112,17 @@
             }
           },
           "wgi": {
-            "score": 0.8181818181818181,
-            "normalized_graph_edit_distance": 0.18181818181818182,
-            "labeled_score": 0.8181818181818181,
-            "topology_score": 0.4545454545454546,
-            "labeled_normalized_graph_edit_distance": 0.18181818181818182,
-            "topology_normalized_graph_edit_distance": 0.5454545454545454,
+            "score": 0.9090909090909091,
+            "normalized_graph_edit_distance": 0.09090909090909091,
+            "labeled_score": 0.9090909090909091,
+            "topology_score": 0.5454545454545454,
+            "labeled_normalized_graph_edit_distance": 0.09090909090909091,
+            "topology_normalized_graph_edit_distance": 0.45454545454545453,
             "exact_isomorphic": false,
             "topology_isomorphic": false,
-            "edge_precision": 0.6,
+            "edge_precision": 0.8,
             "edge_recall": 1.0,
-            "edge_f1": 0.7499999999999999,
+            "edge_f1": 0.888888888888889,
             "kg_nodes": [
               "task_campaign_development",
               "task_competitor_analysis",
@@ -2151,6 +2151,10 @@
               {
                 "source": "task_product_analysis",
                 "target": "task_competitor_analysis"
+              },
+              {
+                "source": "task_take_photograph",
+                "target": "task_review_photo"
               }
             ],
             "code_edges": [
@@ -2182,10 +2186,6 @@
               {
                 "source": "task_instagram_ad_copy",
                 "target": "task_take_photograph"
-              },
-              {
-                "source": "task_take_photograph",
-                "target": "task_review_photo"
               }
             ]
           },
@@ -4755,15 +4755,15 @@
           "wgi": {
             "score": 1.0,
             "normalized_graph_edit_distance": 0.0,
-            "labeled_score": 1.0,
+            "labeled_score": 0.3846153846153846,
             "topology_score": 1.0,
-            "labeled_normalized_graph_edit_distance": 0.0,
+            "labeled_normalized_graph_edit_distance": 0.6153846153846154,
             "topology_normalized_graph_edit_distance": 0.0,
-            "exact_isomorphic": true,
+            "exact_isomorphic": false,
             "topology_isomorphic": true,
-            "edge_precision": 1.0,
-            "edge_recall": 1.0,
-            "edge_f1": 1.0,
+            "edge_precision": 0.0,
+            "edge_recall": 0.0,
+            "edge_f1": 0.0,
             "kg_nodes": [
               "campaign_idea_task",
               "copy_creation_task",
@@ -4781,19 +4781,19 @@
             "kg_edges": [
               {
                 "source": "campaign_idea_task",
-                "target": "copy_creation_task"
-              },
-              {
-                "source": "marketing_strategy_task",
-                "target": "campaign_idea_task"
-              },
-              {
-                "source": "project_understanding_task",
                 "target": "marketing_strategy_task"
               },
               {
-                "source": "research_task",
+                "source": "copy_creation_task",
+                "target": "campaign_idea_task"
+              },
+              {
+                "source": "marketing_strategy_task",
                 "target": "project_understanding_task"
+              },
+              {
+                "source": "project_understanding_task",
+                "target": "research_task"
               }
             ],
             "code_edges": [
@@ -4816,8 +4816,42 @@
             ],
             "missing_nodes": [],
             "extra_nodes": [],
-            "missing_edges": [],
-            "extra_edges": []
+            "missing_edges": [
+              {
+                "source": "campaign_idea_task",
+                "target": "marketing_strategy_task"
+              },
+              {
+                "source": "copy_creation_task",
+                "target": "campaign_idea_task"
+              },
+              {
+                "source": "marketing_strategy_task",
+                "target": "project_understanding_task"
+              },
+              {
+                "source": "project_understanding_task",
+                "target": "research_task"
+              }
+            ],
+            "extra_edges": [
+              {
+                "source": "campaign_idea_task",
+                "target": "copy_creation_task"
+              },
+              {
+                "source": "marketing_strategy_task",
+                "target": "campaign_idea_task"
+              },
+              {
+                "source": "project_understanding_task",
+                "target": "marketing_strategy_task"
+              },
+              {
+                "source": "research_task",
+                "target": "project_understanding_task"
+              }
+            ]
           },
           "syntax_ok": true,
           "run_status": "SUCCESS_DUMMY",
@@ -6003,17 +6037,17 @@
             }
           },
           "wgi": {
-            "score": 1.0,
-            "normalized_graph_edit_distance": 0.0,
-            "labeled_score": 1.0,
-            "topology_score": 1.0,
-            "labeled_normalized_graph_edit_distance": 0.0,
-            "topology_normalized_graph_edit_distance": 0.0,
-            "exact_isomorphic": true,
-            "topology_isomorphic": true,
+            "score": 0.5833333333333333,
+            "normalized_graph_edit_distance": 0.4166666666666667,
+            "labeled_score": 0.5833333333333333,
+            "topology_score": 0.0,
+            "labeled_normalized_graph_edit_distance": 0.4166666666666667,
+            "topology_normalized_graph_edit_distance": 1.0833333333333333,
+            "exact_isomorphic": false,
+            "topology_isomorphic": false,
             "edge_precision": 1.0,
-            "edge_recall": 1.0,
-            "edge_f1": 1.0,
+            "edge_recall": 0.375,
+            "edge_f1": 0.5454545454545454,
             "kg_nodes": [
               "industry_analysis_task",
               "meeting_strategy_task",
@@ -6033,11 +6067,31 @@
               },
               {
                 "source": "meeting_strategy_task",
+                "target": "industry_analysis_task"
+              },
+              {
+                "source": "meeting_strategy_task",
+                "target": "research_task"
+              },
+              {
+                "source": "meeting_strategy_task",
                 "target": "summary_and_briefing_task"
               },
               {
                 "source": "research_task",
                 "target": "industry_analysis_task"
+              },
+              {
+                "source": "summary_and_briefing_task",
+                "target": "industry_analysis_task"
+              },
+              {
+                "source": "summary_and_briefing_task",
+                "target": "meeting_strategy_task"
+              },
+              {
+                "source": "summary_and_briefing_task",
+                "target": "research_task"
               }
             ],
             "code_edges": [
@@ -6056,7 +6110,28 @@
             ],
             "missing_nodes": [],
             "extra_nodes": [],
-            "missing_edges": [],
+            "missing_edges": [
+              {
+                "source": "meeting_strategy_task",
+                "target": "industry_analysis_task"
+              },
+              {
+                "source": "meeting_strategy_task",
+                "target": "research_task"
+              },
+              {
+                "source": "summary_and_briefing_task",
+                "target": "industry_analysis_task"
+              },
+              {
+                "source": "summary_and_briefing_task",
+                "target": "meeting_strategy_task"
+              },
+              {
+                "source": "summary_and_briefing_task",
+                "target": "research_task"
+              }
+            ],
             "extra_edges": []
           },
           "syntax_ok": true,
@@ -6551,15 +6626,15 @@
           "wgi": {
             "score": 1.0,
             "normalized_graph_edit_distance": 0.0,
-            "labeled_score": 1.0,
+            "labeled_score": 0.4,
             "topology_score": 1.0,
-            "labeled_normalized_graph_edit_distance": 0.0,
+            "labeled_normalized_graph_edit_distance": 0.6,
             "topology_normalized_graph_edit_distance": 0.0,
-            "exact_isomorphic": true,
+            "exact_isomorphic": false,
             "topology_isomorphic": true,
-            "edge_precision": 1.0,
-            "edge_recall": 1.0,
-            "edge_f1": 1.0,
+            "edge_precision": 0.0,
+            "edge_recall": 0.0,
+            "edge_f1": 0.0,
             "kg_nodes": [
               "match_and_score_candidates_task",
               "outreach_strategy_task",
@@ -6575,15 +6650,15 @@
             "kg_edges": [
               {
                 "source": "match_and_score_candidates_task",
-                "target": "outreach_strategy_task"
+                "target": "research_candidates_task"
               },
               {
                 "source": "outreach_strategy_task",
-                "target": "report_candidates_task"
+                "target": "match_and_score_candidates_task"
               },
               {
-                "source": "research_candidates_task",
-                "target": "match_and_score_candidates_task"
+                "source": "report_candidates_task",
+                "target": "outreach_strategy_task"
               }
             ],
             "code_edges": [
@@ -6602,8 +6677,34 @@
             ],
             "missing_nodes": [],
             "extra_nodes": [],
-            "missing_edges": [],
-            "extra_edges": []
+            "missing_edges": [
+              {
+                "source": "match_and_score_candidates_task",
+                "target": "research_candidates_task"
+              },
+              {
+                "source": "outreach_strategy_task",
+                "target": "match_and_score_candidates_task"
+              },
+              {
+                "source": "report_candidates_task",
+                "target": "outreach_strategy_task"
+              }
+            ],
+            "extra_edges": [
+              {
+                "source": "match_and_score_candidates_task",
+                "target": "outreach_strategy_task"
+              },
+              {
+                "source": "outreach_strategy_task",
+                "target": "report_candidates_task"
+              },
+              {
+                "source": "research_candidates_task",
+                "target": "match_and_score_candidates_task"
+              }
+            ]
           },
           "syntax_ok": true,
           "run_status": "SUCCESS_DUMMY",
@@ -8618,8 +8719,8 @@
                   "aliases": [
                     "system_surprise_travel_crew_agents_config_path",
                     "agents_config_path",
-                    "agents_yaml",
                     "config_agents_yaml",
+                    "agents_yaml",
                     "agents_config_path_config_agents_yaml"
                   ],
                   "details": {
@@ -9810,17 +9911,17 @@
             }
           },
           "wgi": {
-            "score": 1.0,
-            "normalized_graph_edit_distance": 0.0,
-            "labeled_score": 1.0,
-            "topology_score": 1.0,
-            "labeled_normalized_graph_edit_distance": 0.0,
-            "topology_normalized_graph_edit_distance": 0.0,
-            "exact_isomorphic": true,
-            "topology_isomorphic": true,
-            "edge_precision": 1.0,
-            "edge_recall": 1.0,
-            "edge_f1": 1.0,
+            "score": 0.5714285714285714,
+            "normalized_graph_edit_distance": 0.42857142857142855,
+            "labeled_score": 0.5714285714285714,
+            "topology_score": 0.5,
+            "labeled_normalized_graph_edit_distance": 0.42857142857142855,
+            "topology_normalized_graph_edit_distance": 0.5,
+            "exact_isomorphic": false,
+            "topology_isomorphic": false,
+            "edge_precision": 0.5,
+            "edge_recall": 0.3333333333333333,
+            "edge_f1": 0.4,
             "kg_nodes": [
               "gather_task",
               "identify_task",
@@ -9834,10 +9935,14 @@
             "kg_edges": [
               {
                 "source": "gather_task",
+                "target": "identify_task"
+              },
+              {
+                "source": "gather_task",
                 "target": "plan_task"
               },
               {
-                "source": "identify_task",
+                "source": "plan_task",
                 "target": "gather_task"
               }
             ],
@@ -9853,8 +9958,22 @@
             ],
             "missing_nodes": [],
             "extra_nodes": [],
-            "missing_edges": [],
-            "extra_edges": []
+            "missing_edges": [
+              {
+                "source": "gather_task",
+                "target": "identify_task"
+              },
+              {
+                "source": "plan_task",
+                "target": "gather_task"
+              }
+            ],
+            "extra_edges": [
+              {
+                "source": "identify_task",
+                "target": "gather_task"
+              }
+            ]
           },
           "syntax_ok": true,
           "run_status": "SUCCESS_DUMMY",

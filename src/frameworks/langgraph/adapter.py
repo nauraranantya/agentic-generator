@@ -61,6 +61,14 @@ def _infer_model_name(lm_name: str, lm_desc: str) -> str:
     return "gpt-4o-mini"
 
 
+def _infer_provider(model_name: str) -> str:
+    """Map a model identifier to its LangChain provider package."""
+    name = model_name.lower()
+    if "claude" in name:
+        return "anthropic"
+    return "openai"
+
+
 def _map_agents(project: AgenticProject) -> List[LangGraphAgentModel]:
     mapped: List[LangGraphAgentModel] = []
     for agent in project.agents:
@@ -78,6 +86,7 @@ def _map_agents(project: AgenticProject) -> List[LangGraphAgentModel]:
                 role=agent.role or "agent",
                 prompt=prompt,
                 model_name=model_name,
+                provider=_infer_provider(model_name),
                 tools_refs=agent.tool_iris,
             )
         )
@@ -130,35 +139,45 @@ def _map_nodes_edges(project: AgenticProject) -> tuple[List[LangGraphNodeModel],
     return list(step_by_iri.values()), edges
 
 
+def _is_supervisor_topology(
+    nodes: List[LangGraphNodeModel], edges: List[LangGraphEdgeModel]
+) -> bool:
+    """Return True only when the graph has an explicit hub-and-spoke supervisor topology.
+
+    Criterion: there is a node explicitly named 'router' that has outgoing edges to
+    more than one other node. Branching DAGs where a non-router node happens to have
+    out-degree > 1 (like trip-planner's extraction step) are NOT supervisors.
+    """
+    return any(
+        ("router" in n.name.lower() or "router" in n.ts_name.lower())
+        and sum(1 for e in edges if e.source == n.iri) > 1
+        for n in nodes
+    )
+
+
 def _resolve_router_and_routes(
     nodes: List[LangGraphNodeModel], edges: List[LangGraphEdgeModel]
 ) -> tuple[str, List[LangGraphRouteModel]]:
-    """Infer supervisor router node and route table from graph topology."""
+    """Infer supervisor router node and route table from graph topology.
+
+    Only classifies the graph as supervisor when a node explicitly named 'router'
+    has multiple outgoing edges. This avoids misclassifying branching DAGs.
+    """
     by_iri = {n.iri: n for n in nodes}
-    out_degree: Dict[str, int] = {}
-    for edge in edges:
-        out_degree[edge.source] = out_degree.get(edge.source, 0) + 1
-
-    router_iri = ""
-    candidate_nodes = sorted(
-        [n for n in nodes if out_degree.get(n.iri, 0) > 1],
-        key=lambda n: out_degree.get(n.iri, 0),
-        reverse=True,
-    )
-    if candidate_nodes:
-        router_iri = candidate_nodes[0].iri
-    else:
-        named_router = next(
-            (n for n in nodes if "router" in n.name.lower() or "router" in n.ts_name.lower()),
-            None,
-        )
-        if named_router:
-            router_iri = named_router.iri
-
     routes: List[LangGraphRouteModel] = []
-    if not router_iri or router_iri not in by_iri:
+
+    if not _is_supervisor_topology(nodes, edges):
         return "", routes
 
+    # Locate the explicit router node
+    named_router = next(
+        (n for n in nodes if "router" in n.name.lower() or "router" in n.ts_name.lower()),
+        None,
+    )
+    if not named_router:
+        return "", routes
+
+    router_iri = named_router.iri
     router_node = by_iri[router_iri]
     router_node.node_kind = "router"
 

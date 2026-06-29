@@ -1,5 +1,6 @@
+import { ChatAnthropic } from "@langchain/anthropic";
 import { Annotation, START, END, StateGraph } from "@langchain/langgraph";
-import { ChatOpenAI } from "@langchain/openai";
+
 
 const UnnamedProjectAnnotation = Annotation.Root({
   messages: Annotation<any[]>({
@@ -9,7 +10,7 @@ const UnnamedProjectAnnotation = Annotation.Root({
 });
 
 async function prepare(state: typeof UnnamedProjectAnnotation.State) {
-  const model = new ChatOpenAI({ model: "claude-3-5-sonnet-latest" });
+  const model = new ChatAnthropic({ model: "claude-3-5-sonnet-latest" });
   const response = await model.invoke([
     {
       role: "system",
@@ -22,7 +23,7 @@ async function prepare(state: typeof UnnamedProjectAnnotation.State) {
   return { messages: [response] };
 }
 async function writer(state: typeof UnnamedProjectAnnotation.State) {
-  const model = new ChatOpenAI({ model: "claude-3-5-sonnet-latest" });
+  const model = new ChatAnthropic({ model: "claude-3-5-sonnet-latest" });
   const response = await model.invoke([
     {
       role: "system",
@@ -35,7 +36,7 @@ async function writer(state: typeof UnnamedProjectAnnotation.State) {
   return { messages: [response] };
 }
 async function suggestions(state: typeof UnnamedProjectAnnotation.State) {
-  const model = new ChatOpenAI({ model: "claude-3-5-sonnet-latest" });
+  const model = new ChatAnthropic({ model: "claude-3-5-sonnet-latest" });
   const response = await model.invoke([
     {
       role: "system",

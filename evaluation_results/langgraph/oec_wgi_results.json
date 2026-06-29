@@ -8,13 +8,13 @@
       "output_dir": "/Users/ravie/dev/agento/output_files/output_langgraph",
       "summary": {
         "projects": 9,
-        "evaluated": 6,
-        "errors": 3,
-        "avg_oec_all": 0.1088598535966957,
-        "avg_oec_important": 0.12753115557493125,
-        "avg_wgi": 0.8333333333333334,
-        "avg_edge_f1": 0.3333333333333333,
-        "avg_ast_sim": 0.4551369675010979,
+        "evaluated": 9,
+        "errors": 0,
+        "avg_oec_all": 0.08994113695209818,
+        "avg_oec_important": 0.10951417978718282,
+        "avg_wgi": 1.0,
+        "avg_edge_f1": 0.2222222222222222,
+        "avg_ast_sim": 0.3992490868875449,
         "syntax_success_rate": 1.0,
         "run_success_rate": 1.0
       },
@@ -25,7 +25,7 @@
           "output_dir": "/Users/ravie/dev/agento/output_files/output_langgraph/chat-agent",
           "status": "ok",
           "kg_element_count": 13,
-          "code_element_count": 1,
+          "code_element_count": 4,
           "oec": {
             "all_extracted": {
               "score": 0.15384615384615385,
@@ -377,15 +377,2115 @@
           "project": "email-agent",
           "kg_path": "/Users/ravie/dev/agento/kgs_original/LangGraph/email-agent_instances.ttl",
           "output_dir": "/Users/ravie/dev/agento/output_files/output_langgraph/email-agent",
-          "status": "error",
-          "error": "at line 297 of <>:\nBad syntax (objectList expected) at ^ in:\n\"...b'.\\n- After rewriteEmail -> interrupt.\\n- sendEmail -> END.\\n\"\"\"'^b'.\\n\\n#########################################################'...\""
+          "status": "ok",
+          "kg_element_count": 53,
+          "code_element_count": 8,
+          "oec": {
+            "all_extracted": {
+              "score": 0.09433962264150944,
+              "matched": 5,
+              "total": 53,
+              "missing": [
+                {
+                  "category": "agent_llm",
+                  "name": "email_assistant_agent_gpt_4o_chat_open_ai",
+                  "important": false,
+                  "aliases": [
+                    "email_assistant_agent_gpt_4o_chat_open_ai",
+                    "email_assistant_agent",
+                    "gpt_4o_chat_open_ai"
+                  ],
+                  "details": {
+                    "source": "email_assistant_agent",
+                    "target": "gpt_4o_chat_open_ai"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_email_assistant_agent_temperature",
+                  "important": true,
+                  "aliases": [
+                    "agent_email_assistant_agent_temperature",
+                    "temperature",
+                    "0",
+                    "temperature_0"
+                  ],
+                  "details": {
+                    "key": "temperature",
+                    "owner": "email_assistant_agent",
+                    "owner_category": "agent",
+                    "value": "0"
+                  }
+                },
+                {
+                  "category": "agent_tool",
+                  "name": "email_assistant_agent_write_email_tool",
+                  "important": true,
+                  "aliases": [
+                    "email_assistant_agent_write_email_tool",
+                    "email_assistant_agent",
+                    "write_email_tool"
+                  ],
+                  "details": {
+                    "source": "email_assistant_agent",
+                    "target": "write_email_tool"
+                  }
+                },
+                {
+                  "category": "agent_capability",
+                  "name": "email_assistant_agent_capability_compose_email",
+                  "important": false,
+                  "aliases": [
+                    "email_assistant_agent_capability_compose_email",
+                    "email_assistant_agent",
+                    "capability_compose_email"
+                  ],
+                  "details": {
+                    "source": "email_assistant_agent",
+                    "target": "capability_compose_email"
+                  }
+                },
+                {
+                  "category": "agent_capability",
+                  "name": "email_assistant_agent_capability_rewrite_email",
+                  "important": false,
+                  "aliases": [
+                    "email_assistant_agent_capability_rewrite_email",
+                    "email_assistant_agent",
+                    "capability_rewrite_email"
+                  ],
+                  "details": {
+                    "source": "email_assistant_agent",
+                    "target": "capability_rewrite_email"
+                  }
+                },
+                {
+                  "category": "agent_capability",
+                  "name": "email_assistant_agent_capability_send_email",
+                  "important": false,
+                  "aliases": [
+                    "email_assistant_agent_capability_send_email",
+                    "email_assistant_agent",
+                    "capability_send_email"
+                  ],
+                  "details": {
+                    "source": "email_assistant_agent",
+                    "target": "capability_send_email"
+                  }
+                },
+                {
+                  "category": "agent_capability",
+                  "name": "email_assistant_agent_capability_handle_human_interrupt",
+                  "important": false,
+                  "aliases": [
+                    "email_assistant_agent_capability_handle_human_interrupt",
+                    "email_assistant_agent",
+                    "capability_handle_human_interrupt"
+                  ],
+                  "details": {
+                    "source": "email_assistant_agent",
+                    "target": "capability_handle_human_interrupt"
+                  }
+                },
+                {
+                  "category": "task",
+                  "name": "write_email_generate_draft",
+                  "important": true,
+                  "aliases": [
+                    "write_email_generate_draft",
+                    "write_email_task"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_agent",
+                  "name": "write_email_generate_draft_email_assistant_agent",
+                  "important": true,
+                  "aliases": [
+                    "write_email_generate_draft_email_assistant_agent",
+                    "write_email_generate_draft",
+                    "email_assistant_agent"
+                  ],
+                  "details": {
+                    "source": "write_email_generate_draft",
+                    "target": "email_assistant_agent"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "write_email_generate_draft_draft_email_resource",
+                  "important": false,
+                  "aliases": [
+                    "write_email_generate_draft_draft_email_resource",
+                    "write_email_generate_draft",
+                    "draft_email_resource"
+                  ],
+                  "details": {
+                    "source": "write_email_generate_draft",
+                    "target": "draft_email_resource"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "write_email_generate_draft_conversation_history",
+                  "important": false,
+                  "aliases": [
+                    "write_email_generate_draft_conversation_history",
+                    "write_email_generate_draft",
+                    "conversation_history"
+                  ],
+                  "details": {
+                    "source": "write_email_generate_draft",
+                    "target": "conversation_history"
+                  }
+                },
+                {
+                  "category": "task_capability",
+                  "name": "write_email_generate_draft_capability_compose_email",
+                  "important": false,
+                  "aliases": [
+                    "write_email_generate_draft_capability_compose_email",
+                    "write_email_generate_draft",
+                    "capability_compose_email"
+                  ],
+                  "details": {
+                    "source": "write_email_generate_draft",
+                    "target": "capability_compose_email"
+                  }
+                },
+                {
+                  "category": "task",
+                  "name": "ignore",
+                  "important": true,
+                  "aliases": [
+                    "ignore",
+                    "interrupt_human_review_edit_accept_ignore",
+                    "interrupt_task"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_produces",
+                  "name": "ignore_human_response_resource",
+                  "important": false,
+                  "aliases": [
+                    "ignore_human_response_resource",
+                    "ignore",
+                    "human_response_resource"
+                  ],
+                  "details": {
+                    "source": "ignore",
+                    "target": "human_response_resource"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "ignore_draft_email_resource",
+                  "important": false,
+                  "aliases": [
+                    "ignore_draft_email_resource",
+                    "ignore",
+                    "draft_email_resource"
+                  ],
+                  "details": {
+                    "source": "ignore",
+                    "target": "draft_email_resource"
+                  }
+                },
+                {
+                  "category": "task_capability",
+                  "name": "ignore_capability_handle_human_interrupt",
+                  "important": false,
+                  "aliases": [
+                    "ignore_capability_handle_human_interrupt",
+                    "ignore",
+                    "capability_handle_human_interrupt"
+                  ],
+                  "details": {
+                    "source": "ignore",
+                    "target": "capability_handle_human_interrupt"
+                  }
+                },
+                {
+                  "category": "task_context",
+                  "name": "ignore_rewrite_email_apply_user_s_requested_changes",
+                  "important": true,
+                  "aliases": [
+                    "ignore_rewrite_email_apply_user_s_requested_changes",
+                    "ignore",
+                    "rewrite_email_apply_user_s_requested_changes"
+                  ],
+                  "details": {
+                    "source": "ignore",
+                    "target": "rewrite_email_apply_user_s_requested_changes"
+                  }
+                },
+                {
+                  "category": "task",
+                  "name": "rewrite_email_apply_user_s_requested_changes",
+                  "important": true,
+                  "aliases": [
+                    "rewrite_email_apply_user_s_requested_changes",
+                    "rewrite_email_task"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_agent",
+                  "name": "rewrite_email_apply_user_s_requested_changes_email_assistant_agent",
+                  "important": true,
+                  "aliases": [
+                    "rewrite_email_apply_user_s_requested_changes_email_assistant_agent",
+                    "rewrite_email_apply_user_s_requested_changes",
+                    "email_assistant_agent"
+                  ],
+                  "details": {
+                    "source": "rewrite_email_apply_user_s_requested_changes",
+                    "target": "email_assistant_agent"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "rewrite_email_apply_user_s_requested_changes_draft_email_resource",
+                  "important": false,
+                  "aliases": [
+                    "rewrite_email_apply_user_s_requested_changes_draft_email_resource",
+                    "rewrite_email_apply_user_s_requested_changes",
+                    "draft_email_resource"
+                  ],
+                  "details": {
+                    "source": "rewrite_email_apply_user_s_requested_changes",
+                    "target": "draft_email_resource"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "rewrite_email_apply_user_s_requested_changes_draft_email_resource",
+                  "important": false,
+                  "aliases": [
+                    "rewrite_email_apply_user_s_requested_changes_draft_email_resource",
+                    "rewrite_email_apply_user_s_requested_changes",
+                    "draft_email_resource"
+                  ],
+                  "details": {
+                    "source": "rewrite_email_apply_user_s_requested_changes",
+                    "target": "draft_email_resource"
+                  }
+                },
+                {
+                  "category": "task_capability",
+                  "name": "rewrite_email_apply_user_s_requested_changes_capability_rewrite_email",
+                  "important": false,
+                  "aliases": [
+                    "rewrite_email_apply_user_s_requested_changes_capability_rewrite_email",
+                    "rewrite_email_apply_user_s_requested_changes",
+                    "capability_rewrite_email"
+                  ],
+                  "details": {
+                    "source": "rewrite_email_apply_user_s_requested_changes",
+                    "target": "capability_rewrite_email"
+                  }
+                },
+                {
+                  "category": "task",
+                  "name": "send_email_finalize_send",
+                  "important": true,
+                  "aliases": [
+                    "send_email_finalize_send",
+                    "send_email_task"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_agent",
+                  "name": "send_email_finalize_send_email_assistant_agent",
+                  "important": true,
+                  "aliases": [
+                    "send_email_finalize_send_email_assistant_agent",
+                    "send_email_finalize_send",
+                    "email_assistant_agent"
+                  ],
+                  "details": {
+                    "source": "send_email_finalize_send",
+                    "target": "email_assistant_agent"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "send_email_finalize_send_sent_email_record",
+                  "important": false,
+                  "aliases": [
+                    "send_email_finalize_send_sent_email_record",
+                    "send_email_finalize_send",
+                    "sent_email_record"
+                  ],
+                  "details": {
+                    "source": "send_email_finalize_send",
+                    "target": "sent_email_record"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "send_email_finalize_send_draft_email_resource",
+                  "important": false,
+                  "aliases": [
+                    "send_email_finalize_send_draft_email_resource",
+                    "send_email_finalize_send",
+                    "draft_email_resource"
+                  ],
+                  "details": {
+                    "source": "send_email_finalize_send",
+                    "target": "draft_email_resource"
+                  }
+                },
+                {
+                  "category": "task_capability",
+                  "name": "send_email_finalize_send_capability_send_email",
+                  "important": false,
+                  "aliases": [
+                    "send_email_finalize_send_capability_send_email",
+                    "send_email_finalize_send",
+                    "capability_send_email"
+                  ],
+                  "details": {
+                    "source": "send_email_finalize_send",
+                    "target": "capability_send_email"
+                  }
+                },
+                {
+                  "category": "task_context",
+                  "name": "send_email_finalize_send_rewrite_email_apply_user_s_requested_changes",
+                  "important": true,
+                  "aliases": [
+                    "send_email_finalize_send_rewrite_email_apply_user_s_requested_changes",
+                    "send_email_finalize_send",
+                    "rewrite_email_apply_user_s_requested_changes"
+                  ],
+                  "details": {
+                    "source": "send_email_finalize_send",
+                    "target": "rewrite_email_apply_user_s_requested_changes"
+                  }
+                },
+                {
+                  "category": "tool",
+                  "name": "write_email_tool",
+                  "important": true,
+                  "aliases": [
+                    "write_email_tool",
+                    "write_email_tool_schema_bound"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "config",
+                  "name": "tool_write_email_tool_schema",
+                  "important": false,
+                  "aliases": [
+                    "tool_write_email_tool_schema",
+                    "schema",
+                    "z_object_subject_z_string_describe_the_subject_of_the_email_body_z_string_describe_the_body_of_the_email_to_z_string_describe_the_recipient_of_the_email",
+                    "schema_z_object_subject_z_string_describe_the_subject_of_the_email_body_z_string_describe_the_body_of_the_email_to_z_string_describe_the_recipient_of_the_email"
+                  ],
+                  "details": {
+                    "key": "schema",
+                    "owner": "write_email_tool",
+                    "owner_category": "tool",
+                    "value": "z.object({\n  subject: z.string().describe(\"The subject of the email\"),\n  body: z.string().describe(\"The body of the email\"),\n  to: z.string().describe(\"The recipient of the email\"),\n})"
+                  }
+                },
+                {
+                  "category": "tool_capability",
+                  "name": "write_email_tool_capability_compose_email",
+                  "important": false,
+                  "aliases": [
+                    "write_email_tool_capability_compose_email",
+                    "write_email_tool",
+                    "capability_compose_email"
+                  ],
+                  "details": {
+                    "source": "write_email_tool",
+                    "target": "capability_compose_email"
+                  }
+                },
+                {
+                  "category": "workflow",
+                  "name": "email_assistant_workflow",
+                  "important": true,
+                  "aliases": [
+                    "email_assistant_workflow",
+                    "email_assistant_workflow_pattern"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "workflow_step",
+                  "name": "write_email_generate_draft",
+                  "important": true,
+                  "aliases": [
+                    "write_email_generate_draft",
+                    "write_email_step"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "step_task",
+                  "name": "write_email_generate_draft_write_email_generate_draft",
+                  "important": true,
+                  "aliases": [
+                    "write_email_generate_draft_write_email_generate_draft",
+                    "write_email_generate_draft"
+                  ],
+                  "details": {
+                    "source": "write_email_generate_draft",
+                    "target": "write_email_generate_draft"
+                  }
+                },
+                {
+                  "category": "workflow_step",
+                  "name": "ignore",
+                  "important": true,
+                  "aliases": [
+                    "ignore",
+                    "interrupt_step"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "step_task",
+                  "name": "ignore_ignore",
+                  "important": true,
+                  "aliases": [
+                    "ignore_ignore",
+                    "ignore"
+                  ],
+                  "details": {
+                    "source": "ignore",
+                    "target": "ignore"
+                  }
+                },
+                {
+                  "category": "workflow_step",
+                  "name": "rewrite_email_apply_user_s_requested_changes",
+                  "important": true,
+                  "aliases": [
+                    "rewrite_email_apply_user_s_requested_changes",
+                    "rewrite_email_step"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "step_task",
+                  "name": "rewrite_email_apply_user_s_requested_changes_rewrite_email_apply_user_s_requested_changes",
+                  "important": true,
+                  "aliases": [
+                    "rewrite_email_apply_user_s_requested_changes_rewrite_email_apply_user_s_requested_changes",
+                    "rewrite_email_apply_user_s_requested_changes"
+                  ],
+                  "details": {
+                    "source": "rewrite_email_apply_user_s_requested_changes",
+                    "target": "rewrite_email_apply_user_s_requested_changes"
+                  }
+                },
+                {
+                  "category": "workflow_step",
+                  "name": "send_email_finalize_send",
+                  "important": true,
+                  "aliases": [
+                    "send_email_finalize_send",
+                    "send_email_step"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "step_task",
+                  "name": "send_email_finalize_send_send_email_finalize_send",
+                  "important": true,
+                  "aliases": [
+                    "send_email_finalize_send_send_email_finalize_send",
+                    "send_email_finalize_send"
+                  ],
+                  "details": {
+                    "source": "send_email_finalize_send",
+                    "target": "send_email_finalize_send"
+                  }
+                },
+                {
+                  "category": "language_model",
+                  "name": "gpt_4o_chat_open_ai",
+                  "important": false,
+                  "aliases": [
+                    "gpt_4o_chat_open_ai",
+                    "gpt4o_model"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "capability",
+                  "name": "capability_compose_email",
+                  "important": false,
+                  "aliases": [
+                    "capability_compose_email",
+                    "compose_email"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "capability",
+                  "name": "capability_handle_human_interrupt",
+                  "important": false,
+                  "aliases": [
+                    "capability_handle_human_interrupt",
+                    "handle_human_interrupt"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "human_agent",
+                  "name": "user_human",
+                  "important": false,
+                  "aliases": [
+                    "user_human"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "conversation_history",
+                  "important": false,
+                  "aliases": [
+                    "conversation_history"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "draft_email_resource",
+                  "important": false,
+                  "aliases": [
+                    "draft_email_resource",
+                    "draft_email"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "sent_email_record",
+                  "important": false,
+                  "aliases": [
+                    "sent_email_record"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "human_response_resource",
+                  "important": false,
+                  "aliases": [
+                    "human_response_resource",
+                    "human_response_interrupt_result"
+                  ],
+                  "details": {}
+                }
+              ],
+              "by_category": {
+                "agent": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "agent_capability": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 4
+                },
+                "agent_llm": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "agent_tool": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "capability": {
+                  "score": 0.5,
+                  "matched": 2,
+                  "total": 4
+                },
+                "config": {
+                  "score": 0.3333333333333333,
+                  "matched": 1,
+                  "total": 3
+                },
+                "human_agent": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "language_model": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "project": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "resource": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 4
+                },
+                "step_task": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 4
+                },
+                "task": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 4
+                },
+                "task_agent": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 3
+                },
+                "task_capability": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 4
+                },
+                "task_context": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 2
+                },
+                "task_produces": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 4
+                },
+                "task_requires": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 4
+                },
+                "tool": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "tool_capability": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "workflow": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "workflow_step": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 4
+                }
+              }
+            },
+            "important_subset": {
+              "score": 0.08695652173913043,
+              "matched": 2,
+              "total": 23,
+              "missing": [
+                {
+                  "category": "config",
+                  "name": "agent_email_assistant_agent_temperature",
+                  "important": true,
+                  "aliases": [
+                    "agent_email_assistant_agent_temperature",
+                    "temperature",
+                    "0",
+                    "temperature_0"
+                  ],
+                  "details": {
+                    "key": "temperature",
+                    "owner": "email_assistant_agent",
+                    "owner_category": "agent",
+                    "value": "0"
+                  }
+                },
+                {
+                  "category": "agent_tool",
+                  "name": "email_assistant_agent_write_email_tool",
+                  "important": true,
+                  "aliases": [
+                    "email_assistant_agent_write_email_tool",
+                    "email_assistant_agent",
+                    "write_email_tool"
+                  ],
+                  "details": {
+                    "source": "email_assistant_agent",
+                    "target": "write_email_tool"
+                  }
+                },
+                {
+                  "category": "task",
+                  "name": "write_email_generate_draft",
+                  "important": true,
+                  "aliases": [
+                    "write_email_generate_draft",
+                    "write_email_task"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_agent",
+                  "name": "write_email_generate_draft_email_assistant_agent",
+                  "important": true,
+                  "aliases": [
+                    "write_email_generate_draft_email_assistant_agent",
+                    "write_email_generate_draft",
+                    "email_assistant_agent"
+                  ],
+                  "details": {
+                    "source": "write_email_generate_draft",
+                    "target": "email_assistant_agent"
+                  }
+                },
+                {
+                  "category": "task",
+                  "name": "ignore",
+                  "important": true,
+                  "aliases": [
+                    "ignore",
+                    "interrupt_human_review_edit_accept_ignore",
+                    "interrupt_task"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_context",
+                  "name": "ignore_rewrite_email_apply_user_s_requested_changes",
+                  "important": true,
+                  "aliases": [
+                    "ignore_rewrite_email_apply_user_s_requested_changes",
+                    "ignore",
+                    "rewrite_email_apply_user_s_requested_changes"
+                  ],
+                  "details": {
+                    "source": "ignore",
+                    "target": "rewrite_email_apply_user_s_requested_changes"
+                  }
+                },
+                {
+                  "category": "task",
+                  "name": "rewrite_email_apply_user_s_requested_changes",
+                  "important": true,
+                  "aliases": [
+                    "rewrite_email_apply_user_s_requested_changes",
+                    "rewrite_email_task"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_agent",
+                  "name": "rewrite_email_apply_user_s_requested_changes_email_assistant_agent",
+                  "important": true,
+                  "aliases": [
+                    "rewrite_email_apply_user_s_requested_changes_email_assistant_agent",
+                    "rewrite_email_apply_user_s_requested_changes",
+                    "email_assistant_agent"
+                  ],
+                  "details": {
+                    "source": "rewrite_email_apply_user_s_requested_changes",
+                    "target": "email_assistant_agent"
+                  }
+                },
+                {
+                  "category": "task",
+                  "name": "send_email_finalize_send",
+                  "important": true,
+                  "aliases": [
+                    "send_email_finalize_send",
+                    "send_email_task"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_agent",
+                  "name": "send_email_finalize_send_email_assistant_agent",
+                  "important": true,
+                  "aliases": [
+                    "send_email_finalize_send_email_assistant_agent",
+                    "send_email_finalize_send",
+                    "email_assistant_agent"
+                  ],
+                  "details": {
+                    "source": "send_email_finalize_send",
+                    "target": "email_assistant_agent"
+                  }
+                },
+                {
+                  "category": "task_context",
+                  "name": "send_email_finalize_send_rewrite_email_apply_user_s_requested_changes",
+                  "important": true,
+                  "aliases": [
+                    "send_email_finalize_send_rewrite_email_apply_user_s_requested_changes",
+                    "send_email_finalize_send",
+                    "rewrite_email_apply_user_s_requested_changes"
+                  ],
+                  "details": {
+                    "source": "send_email_finalize_send",
+                    "target": "rewrite_email_apply_user_s_requested_changes"
+                  }
+                },
+                {
+                  "category": "tool",
+                  "name": "write_email_tool",
+                  "important": true,
+                  "aliases": [
+                    "write_email_tool",
+                    "write_email_tool_schema_bound"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "workflow",
+                  "name": "email_assistant_workflow",
+                  "important": true,
+                  "aliases": [
+                    "email_assistant_workflow",
+                    "email_assistant_workflow_pattern"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "workflow_step",
+                  "name": "write_email_generate_draft",
+                  "important": true,
+                  "aliases": [
+                    "write_email_generate_draft",
+                    "write_email_step"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "step_task",
+                  "name": "write_email_generate_draft_write_email_generate_draft",
+                  "important": true,
+                  "aliases": [
+                    "write_email_generate_draft_write_email_generate_draft",
+                    "write_email_generate_draft"
+                  ],
+                  "details": {
+                    "source": "write_email_generate_draft",
+                    "target": "write_email_generate_draft"
+                  }
+                },
+                {
+                  "category": "workflow_step",
+                  "name": "ignore",
+                  "important": true,
+                  "aliases": [
+                    "ignore",
+                    "interrupt_step"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "step_task",
+                  "name": "ignore_ignore",
+                  "important": true,
+                  "aliases": [
+                    "ignore_ignore",
+                    "ignore"
+                  ],
+                  "details": {
+                    "source": "ignore",
+                    "target": "ignore"
+                  }
+                },
+                {
+                  "category": "workflow_step",
+                  "name": "rewrite_email_apply_user_s_requested_changes",
+                  "important": true,
+                  "aliases": [
+                    "rewrite_email_apply_user_s_requested_changes",
+                    "rewrite_email_step"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "step_task",
+                  "name": "rewrite_email_apply_user_s_requested_changes_rewrite_email_apply_user_s_requested_changes",
+                  "important": true,
+                  "aliases": [
+                    "rewrite_email_apply_user_s_requested_changes_rewrite_email_apply_user_s_requested_changes",
+                    "rewrite_email_apply_user_s_requested_changes"
+                  ],
+                  "details": {
+                    "source": "rewrite_email_apply_user_s_requested_changes",
+                    "target": "rewrite_email_apply_user_s_requested_changes"
+                  }
+                },
+                {
+                  "category": "workflow_step",
+                  "name": "send_email_finalize_send",
+                  "important": true,
+                  "aliases": [
+                    "send_email_finalize_send",
+                    "send_email_step"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "step_task",
+                  "name": "send_email_finalize_send_send_email_finalize_send",
+                  "important": true,
+                  "aliases": [
+                    "send_email_finalize_send_send_email_finalize_send",
+                    "send_email_finalize_send"
+                  ],
+                  "details": {
+                    "source": "send_email_finalize_send",
+                    "target": "send_email_finalize_send"
+                  }
+                }
+              ],
+              "by_category": {
+                "agent": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "agent_tool": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "config": {
+                  "score": 0.5,
+                  "matched": 1,
+                  "total": 2
+                },
+                "step_task": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 4
+                },
+                "task": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 4
+                },
+                "task_agent": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 3
+                },
+                "task_context": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 2
+                },
+                "tool": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "workflow": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "workflow_step": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 4
+                }
+              }
+            }
+          },
+          "wgi": {
+            "score": 1.0,
+            "normalized_graph_edit_distance": 0.0,
+            "labeled_score": 0.0,
+            "topology_score": 1.0,
+            "labeled_normalized_graph_edit_distance": 1.0,
+            "topology_normalized_graph_edit_distance": 0.0,
+            "exact_isomorphic": false,
+            "topology_isomorphic": true,
+            "edge_precision": 0.0,
+            "edge_recall": 0.0,
+            "edge_f1": 0.0,
+            "kg_nodes": [
+              "ignore",
+              "rewrite_email_apply_user_s_requested_changes",
+              "send_email_finalize_send",
+              "write_email_generate_draft"
+            ],
+            "code_nodes": [
+              "interrupt",
+              "rewrite_email",
+              "send_email",
+              "write_email"
+            ],
+            "kg_edges": [
+              {
+                "source": "ignore",
+                "target": "rewrite_email_apply_user_s_requested_changes"
+              },
+              {
+                "source": "ignore",
+                "target": "send_email_finalize_send"
+              },
+              {
+                "source": "rewrite_email_apply_user_s_requested_changes",
+                "target": "ignore"
+              },
+              {
+                "source": "write_email_generate_draft",
+                "target": "ignore"
+              }
+            ],
+            "code_edges": [
+              {
+                "source": "interrupt",
+                "target": "rewrite_email"
+              },
+              {
+                "source": "interrupt",
+                "target": "send_email"
+              },
+              {
+                "source": "rewrite_email",
+                "target": "interrupt"
+              },
+              {
+                "source": "write_email",
+                "target": "interrupt"
+              }
+            ],
+            "missing_nodes": [
+              "ignore",
+              "rewrite_email_apply_user_s_requested_changes",
+              "send_email_finalize_send",
+              "write_email_generate_draft"
+            ],
+            "extra_nodes": [
+              "interrupt",
+              "rewrite_email",
+              "send_email",
+              "write_email"
+            ],
+            "missing_edges": [
+              {
+                "source": "ignore",
+                "target": "rewrite_email_apply_user_s_requested_changes"
+              },
+              {
+                "source": "ignore",
+                "target": "send_email_finalize_send"
+              },
+              {
+                "source": "rewrite_email_apply_user_s_requested_changes",
+                "target": "ignore"
+              },
+              {
+                "source": "write_email_generate_draft",
+                "target": "ignore"
+              }
+            ],
+            "extra_edges": [
+              {
+                "source": "interrupt",
+                "target": "rewrite_email"
+              },
+              {
+                "source": "interrupt",
+                "target": "send_email"
+              },
+              {
+                "source": "rewrite_email",
+                "target": "interrupt"
+              },
+              {
+                "source": "write_email",
+                "target": "interrupt"
+              }
+            ]
+          },
+          "syntax_ok": true,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.44776119402985076
         },
         {
           "project": "open-code",
           "kg_path": "/Users/ravie/dev/agento/kgs_original/LangGraph/open-code_instances.ttl",
           "output_dir": "/Users/ravie/dev/agento/output_files/output_langgraph/open-code",
-          "status": "error",
-          "error": "at line 153 of <>:\nBad syntax (expected '.' or '}' or ']' at end of statement) at ^ in:\n\"...b'ns a tool message used to indicate acceptance or rejection.\"'^b'\"\" .\\n\\n######################################################'...\""
+          "status": "ok",
+          "kg_element_count": 51,
+          "code_element_count": 9,
+          "oec": {
+            "all_extracted": {
+              "score": 0.0784313725490196,
+              "matched": 4,
+              "total": 51,
+              "missing": [
+                {
+                  "category": "agent",
+                  "name": "open_code_agent_001",
+                  "important": true,
+                  "aliases": [
+                    "open_code_agent_001",
+                    "planner_executor_llm_agent_coordinates_planning_and_performs_file_updates_via_tools_and_ui_prompts",
+                    "open_code_agent"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "agent_llm",
+                  "name": "open_code_agent_001_open_code_language_model",
+                  "important": false,
+                  "aliases": [
+                    "open_code_agent_001_open_code_language_model",
+                    "open_code_agent_001",
+                    "open_code_language_model"
+                  ],
+                  "details": {
+                    "source": "open_code_agent_001",
+                    "target": "open_code_language_model"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_open_code_agent_001_permissions_full_write_access",
+                  "important": false,
+                  "aliases": [
+                    "agent_open_code_agent_001_permissions_full_write_access",
+                    "permissions_full_write_access",
+                    "runtime_boolean_when_true_the_executor_will_loop_back_to_the_planner_after_proposing_a_change_allowing_continued_automated_edits_when_false_the_workflow_ends_after_the_first_success_or_when_the_success_message_is_generated",
+                    "permissions_full_write_access_runtime_boolean_when_true_the_executor_will_loop_back_to_the_planner_after_proposing_a_change_allowing_continued_automated_edits_when_false_the_workflow_ends_after_the_first_success_or_when_the_success_message_is_generated"
+                  ],
+                  "details": {
+                    "key": "permissions_full_write_access",
+                    "owner": "open_code_agent_001",
+                    "owner_category": "agent",
+                    "value": "runtime boolean; when true the executor will loop back to the planner after proposing a change (allowing continued automated edits). When false, the workflow ends after the first success or when the success message is generated."
+                  }
+                },
+                {
+                  "category": "agent_interaction",
+                  "name": "open_code_agent_001_human_user",
+                  "important": true,
+                  "aliases": [
+                    "open_code_agent_001_human_user",
+                    "open_code_agent_001",
+                    "human_user"
+                  ],
+                  "details": {
+                    "source": "open_code_agent_001",
+                    "target": "human_user"
+                  }
+                },
+                {
+                  "category": "agent_capability",
+                  "name": "open_code_agent_001_capability_planning",
+                  "important": false,
+                  "aliases": [
+                    "open_code_agent_001_capability_planning",
+                    "open_code_agent_001",
+                    "capability_planning"
+                  ],
+                  "details": {
+                    "source": "open_code_agent_001",
+                    "target": "capability_planning"
+                  }
+                },
+                {
+                  "category": "agent_capability",
+                  "name": "open_code_agent_001_capability_update_file",
+                  "important": false,
+                  "aliases": [
+                    "open_code_agent_001_capability_update_file",
+                    "open_code_agent_001",
+                    "capability_update_file"
+                  ],
+                  "details": {
+                    "source": "open_code_agent_001",
+                    "target": "capability_update_file"
+                  }
+                },
+                {
+                  "category": "agent_capability",
+                  "name": "open_code_agent_001_capability_uiinteraction",
+                  "important": false,
+                  "aliases": [
+                    "open_code_agent_001_capability_uiinteraction",
+                    "open_code_agent_001",
+                    "capability_uiinteraction"
+                  ],
+                  "details": {
+                    "source": "open_code_agent_001",
+                    "target": "capability_uiinteraction"
+                  }
+                },
+                {
+                  "category": "task",
+                  "name": "planner_task_produce_plan_tool_call",
+                  "important": true,
+                  "aliases": [
+                    "planner_task_produce_plan_tool_call",
+                    "task_planner"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_agent",
+                  "name": "planner_task_produce_plan_tool_call_open_code_agent_001",
+                  "important": true,
+                  "aliases": [
+                    "planner_task_produce_plan_tool_call_open_code_agent_001",
+                    "planner_task_produce_plan_tool_call",
+                    "open_code_agent_001"
+                  ],
+                  "details": {
+                    "source": "planner_task_produce_plan_tool_call",
+                    "target": "open_code_agent_001"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "planner_task_produce_plan_tool_call_plan_artifact",
+                  "important": false,
+                  "aliases": [
+                    "planner_task_produce_plan_tool_call_plan_artifact",
+                    "planner_task_produce_plan_tool_call",
+                    "plan_artifact"
+                  ],
+                  "details": {
+                    "source": "planner_task_produce_plan_tool_call",
+                    "target": "plan_artifact"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "planner_task_produce_plan_tool_call_resource_plan_input",
+                  "important": false,
+                  "aliases": [
+                    "planner_task_produce_plan_tool_call_resource_plan_input",
+                    "planner_task_produce_plan_tool_call",
+                    "resource_plan_input"
+                  ],
+                  "details": {
+                    "source": "planner_task_produce_plan_tool_call",
+                    "target": "resource_plan_input"
+                  }
+                },
+                {
+                  "category": "task_capability",
+                  "name": "planner_task_produce_plan_tool_call_capability_planning",
+                  "important": false,
+                  "aliases": [
+                    "planner_task_produce_plan_tool_call_capability_planning",
+                    "planner_task_produce_plan_tool_call",
+                    "capability_planning"
+                  ],
+                  "details": {
+                    "source": "planner_task_produce_plan_tool_call",
+                    "target": "capability_planning"
+                  }
+                },
+                {
+                  "category": "task",
+                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                  "important": true,
+                  "aliases": [
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                    "task_executor"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_agent",
+                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_open_code_agent_001",
+                  "important": true,
+                  "aliases": [
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_open_code_agent_001",
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                    "open_code_agent_001"
+                  ],
+                  "details": {
+                    "source": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                    "target": "open_code_agent_001"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step1_file",
+                  "important": false,
+                  "aliases": [
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step1_file",
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                    "resource_step1_file"
+                  ],
+                  "details": {
+                    "source": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                    "target": "resource_step1_file"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step2_file",
+                  "important": false,
+                  "aliases": [
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step2_file",
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                    "resource_step2_file"
+                  ],
+                  "details": {
+                    "source": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                    "target": "resource_step2_file"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step3_file",
+                  "important": false,
+                  "aliases": [
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step3_file",
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                    "resource_step3_file"
+                  ],
+                  "details": {
+                    "source": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                    "target": "resource_step3_file"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step4_file",
+                  "important": false,
+                  "aliases": [
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step4_file",
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                    "resource_step4_file"
+                  ],
+                  "details": {
+                    "source": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                    "target": "resource_step4_file"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step5_file",
+                  "important": false,
+                  "aliases": [
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step5_file",
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                    "resource_step5_file"
+                  ],
+                  "details": {
+                    "source": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                    "target": "resource_step5_file"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step6_file",
+                  "important": false,
+                  "aliases": [
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step6_file",
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                    "resource_step6_file"
+                  ],
+                  "details": {
+                    "source": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                    "target": "resource_step6_file"
+                  }
+                },
+                {
+                  "category": "task_capability",
+                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_capability_update_file",
+                  "important": false,
+                  "aliases": [
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_capability_update_file",
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                    "capability_update_file"
+                  ],
+                  "details": {
+                    "source": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                    "target": "capability_update_file"
+                  }
+                },
+                {
+                  "category": "task_capability",
+                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_capability_uiinteraction",
+                  "important": false,
+                  "aliases": [
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_capability_uiinteraction",
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                    "capability_uiinteraction"
+                  ],
+                  "details": {
+                    "source": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                    "target": "capability_uiinteraction"
+                  }
+                },
+                {
+                  "category": "tool",
+                  "name": "tool_plan",
+                  "important": true,
+                  "aliases": [
+                    "tool_plan",
+                    "plan_tool"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "config",
+                  "name": "tool_tool_plan_plan_args_format",
+                  "important": false,
+                  "aliases": [
+                    "tool_tool_plan_plan_args_format",
+                    "plan_args_format",
+                    "json_object_with_executed_plans_rejected_plans_remaining_plans_initial_remaining_plans_uses_plan_canonical_array_stored_in_plan_prompt_prompt_input_data",
+                    "plan_args_format_json_object_with_executed_plans_rejected_plans_remaining_plans_initial_remaining_plans_uses_plan_canonical_array_stored_in_plan_prompt_prompt_input_data"
+                  ],
+                  "details": {
+                    "key": "plan_args_format",
+                    "owner": "tool_plan",
+                    "owner_category": "tool",
+                    "value": "JSON object with executedPlans[], rejectedPlans[], remainingPlans[]; initial remainingPlans uses PLAN canonical array stored in PlanPrompt.promptInputData"
+                  }
+                },
+                {
+                  "category": "tool_capability",
+                  "name": "tool_plan_capability_planning",
+                  "important": false,
+                  "aliases": [
+                    "tool_plan_capability_planning",
+                    "tool_plan",
+                    "capability_planning"
+                  ],
+                  "details": {
+                    "source": "tool_plan",
+                    "target": "capability_planning"
+                  }
+                },
+                {
+                  "category": "tool",
+                  "name": "tool_update_file",
+                  "important": true,
+                  "aliases": [
+                    "tool_update_file",
+                    "update_file_tool"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "config",
+                  "name": "tool_tool_update_file_update_file_behaviour",
+                  "important": false,
+                  "aliases": [
+                    "tool_tool_update_file_update_file_behaviour",
+                    "update_file_behaviour",
+                    "takes_args_new_file_content_executed_plan_item_returns_a_tool_message_whose_content_includes_rejected_if_the_proposed_change_was_rejected_by_the_user_the_planner_inspects_tool_responses_for_rejected_to_move_items_into_rejected_plans",
+                    "update_file_behaviour_takes_args_new_file_content_executed_plan_item_returns_a_tool_message_whose_content_includes_rejected_if_the_proposed_change_was_rejected_by_the_user_the_planner_inspects_tool_responses_for_rejected_to_move_items_into_rejected_plans"
+                  ],
+                  "details": {
+                    "key": "update_file_behaviour",
+                    "owner": "tool_update_file",
+                    "owner_category": "tool",
+                    "value": "Takes args { new_file_content, executed_plan_item }; returns a tool message whose content includes 'rejected' if the proposed change was rejected by the user. The planner inspects tool responses for 'rejected' to move items into rejectedPlans."
+                  }
+                },
+                {
+                  "category": "tool_capability",
+                  "name": "tool_update_file_capability_update_file",
+                  "important": false,
+                  "aliases": [
+                    "tool_update_file_capability_update_file",
+                    "tool_update_file",
+                    "capability_update_file"
+                  ],
+                  "details": {
+                    "source": "tool_update_file",
+                    "target": "capability_update_file"
+                  }
+                },
+                {
+                  "category": "workflow",
+                  "name": "open_code_graph_pattern",
+                  "important": true,
+                  "aliases": [
+                    "open_code_graph_pattern",
+                    "open_code_graph"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "step_task",
+                  "name": "planner_task_produce_plan_tool_call_planner_task_produce_plan_tool_call",
+                  "important": true,
+                  "aliases": [
+                    "planner_task_produce_plan_tool_call_planner_task_produce_plan_tool_call",
+                    "planner_task_produce_plan_tool_call"
+                  ],
+                  "details": {
+                    "source": "planner_task_produce_plan_tool_call",
+                    "target": "planner_task_produce_plan_tool_call"
+                  }
+                },
+                {
+                  "category": "step_task",
+                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                  "important": true,
+                  "aliases": [
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push"
+                  ],
+                  "details": {
+                    "source": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                    "target": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push"
+                  }
+                },
+                {
+                  "category": "memory",
+                  "name": "open_code_memory",
+                  "important": false,
+                  "aliases": [
+                    "open_code_memory"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "language_model",
+                  "name": "open_code_language_model",
+                  "important": false,
+                  "aliases": [
+                    "open_code_language_model"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "goal",
+                  "name": "goal_build_todo_app",
+                  "important": false,
+                  "aliases": [
+                    "goal_build_todo_app",
+                    "build_a_todo_app"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "capability",
+                  "name": "capability_update_file",
+                  "important": false,
+                  "aliases": [
+                    "capability_update_file",
+                    "file_update"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "capability",
+                  "name": "capability_ui_interaction",
+                  "important": false,
+                  "aliases": [
+                    "capability_ui_interaction",
+                    "propose_changes",
+                    "ui_interaction_propose_changes",
+                    "capability_uiinteraction"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "environment",
+                  "name": "dev_environment",
+                  "important": false,
+                  "aliases": [
+                    "dev_environment",
+                    "development_environment"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "human_agent",
+                  "name": "human_user",
+                  "important": false,
+                  "aliases": [
+                    "human_user"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "resource_step1_file",
+                  "important": false,
+                  "aliases": [
+                    "resource_step1_file",
+                    "step_1_scaffold_commands"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "resource_step2_file",
+                  "important": false,
+                  "aliases": [
+                    "resource_step2_file",
+                    "step_2_todo_item_component"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "resource_step3_file",
+                  "important": false,
+                  "aliases": [
+                    "resource_step3_file",
+                    "step_3_todo_context_state_management"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "resource_step4_file",
+                  "important": false,
+                  "aliases": [
+                    "resource_step4_file",
+                    "step_4_add_todo_component_form_and_validation"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "resource_step5_file",
+                  "important": false,
+                  "aliases": [
+                    "resource_step5_file",
+                    "step_5_filters_and_sorting"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "resource_step6_file",
+                  "important": false,
+                  "aliases": [
+                    "resource_step6_file",
+                    "step_6_local_storage_utils"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "plan_artifact",
+                  "important": false,
+                  "aliases": [
+                    "plan_artifact",
+                    "plan_artifact_structured_plan_tool_call_args_snapshot"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "resource_plan_input",
+                  "important": false,
+                  "aliases": [
+                    "resource_plan_input",
+                    "plan_input_resource"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "tool_message_user_approved",
+                  "important": false,
+                  "aliases": [
+                    "tool_message_user_approved",
+                    "simulated_tool_message_user_approved_plan"
+                  ],
+                  "details": {}
+                }
+              ],
+              "by_category": {
+                "agent": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "agent_capability": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 3
+                },
+                "agent_interaction": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "agent_llm": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "capability": {
+                  "score": 0.3333333333333333,
+                  "matched": 1,
+                  "total": 3
+                },
+                "config": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 3
+                },
+                "environment": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "goal": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "human_agent": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "language_model": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "memory": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "project": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "resource": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 9
+                },
+                "step_task": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 2
+                },
+                "task": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 2
+                },
+                "task_agent": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 2
+                },
+                "task_capability": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 3
+                },
+                "task_produces": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 7
+                },
+                "task_requires": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "tool": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 2
+                },
+                "tool_capability": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 2
+                },
+                "workflow": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "workflow_step": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                }
+              }
+            },
+            "important_subset": {
+              "score": 0.15384615384615385,
+              "matched": 2,
+              "total": 13,
+              "missing": [
+                {
+                  "category": "agent",
+                  "name": "open_code_agent_001",
+                  "important": true,
+                  "aliases": [
+                    "open_code_agent_001",
+                    "planner_executor_llm_agent_coordinates_planning_and_performs_file_updates_via_tools_and_ui_prompts",
+                    "open_code_agent"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "agent_interaction",
+                  "name": "open_code_agent_001_human_user",
+                  "important": true,
+                  "aliases": [
+                    "open_code_agent_001_human_user",
+                    "open_code_agent_001",
+                    "human_user"
+                  ],
+                  "details": {
+                    "source": "open_code_agent_001",
+                    "target": "human_user"
+                  }
+                },
+                {
+                  "category": "task",
+                  "name": "planner_task_produce_plan_tool_call",
+                  "important": true,
+                  "aliases": [
+                    "planner_task_produce_plan_tool_call",
+                    "task_planner"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_agent",
+                  "name": "planner_task_produce_plan_tool_call_open_code_agent_001",
+                  "important": true,
+                  "aliases": [
+                    "planner_task_produce_plan_tool_call_open_code_agent_001",
+                    "planner_task_produce_plan_tool_call",
+                    "open_code_agent_001"
+                  ],
+                  "details": {
+                    "source": "planner_task_produce_plan_tool_call",
+                    "target": "open_code_agent_001"
+                  }
+                },
+                {
+                  "category": "task",
+                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                  "important": true,
+                  "aliases": [
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                    "task_executor"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_agent",
+                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_open_code_agent_001",
+                  "important": true,
+                  "aliases": [
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_open_code_agent_001",
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                    "open_code_agent_001"
+                  ],
+                  "details": {
+                    "source": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                    "target": "open_code_agent_001"
+                  }
+                },
+                {
+                  "category": "tool",
+                  "name": "tool_plan",
+                  "important": true,
+                  "aliases": [
+                    "tool_plan",
+                    "plan_tool"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "tool",
+                  "name": "tool_update_file",
+                  "important": true,
+                  "aliases": [
+                    "tool_update_file",
+                    "update_file_tool"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "workflow",
+                  "name": "open_code_graph_pattern",
+                  "important": true,
+                  "aliases": [
+                    "open_code_graph_pattern",
+                    "open_code_graph"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "step_task",
+                  "name": "planner_task_produce_plan_tool_call_planner_task_produce_plan_tool_call",
+                  "important": true,
+                  "aliases": [
+                    "planner_task_produce_plan_tool_call_planner_task_produce_plan_tool_call",
+                    "planner_task_produce_plan_tool_call"
+                  ],
+                  "details": {
+                    "source": "planner_task_produce_plan_tool_call",
+                    "target": "planner_task_produce_plan_tool_call"
+                  }
+                },
+                {
+                  "category": "step_task",
+                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                  "important": true,
+                  "aliases": [
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push"
+                  ],
+                  "details": {
+                    "source": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                    "target": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push"
+                  }
+                }
+              ],
+              "by_category": {
+                "agent": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "agent_interaction": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "step_task": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 2
+                },
+                "task": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 2
+                },
+                "task_agent": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 2
+                },
+                "tool": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 2
+                },
+                "workflow": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "workflow_step": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                }
+              }
+            }
+          },
+          "wgi": {
+            "score": 1.0,
+            "normalized_graph_edit_distance": 0.0,
+            "labeled_score": 0.0,
+            "topology_score": 1.0,
+            "labeled_normalized_graph_edit_distance": 1.0,
+            "topology_normalized_graph_edit_distance": 0.0,
+            "exact_isomorphic": false,
+            "topology_isomorphic": true,
+            "edge_precision": 0.0,
+            "edge_recall": 0.0,
+            "edge_f1": 0.0,
+            "kg_nodes": [
+              "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+              "planner_task_produce_plan_tool_call"
+            ],
+            "code_nodes": [
+              "workflow_step_executor",
+              "workflow_step_planner"
+            ],
+            "kg_edges": [
+              {
+                "source": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                "target": "planner_task_produce_plan_tool_call"
+              },
+              {
+                "source": "planner_task_produce_plan_tool_call",
+                "target": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push"
+              }
+            ],
+            "code_edges": [
+              {
+                "source": "workflow_step_executor",
+                "target": "workflow_step_planner"
+              },
+              {
+                "source": "workflow_step_planner",
+                "target": "workflow_step_executor"
+              }
+            ],
+            "missing_nodes": [
+              "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+              "planner_task_produce_plan_tool_call"
+            ],
+            "extra_nodes": [
+              "workflow_step_executor",
+              "workflow_step_planner"
+            ],
+            "missing_edges": [
+              {
+                "source": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                "target": "planner_task_produce_plan_tool_call"
+              },
+              {
+                "source": "planner_task_produce_plan_tool_call",
+                "target": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push"
+              }
+            ],
+            "extra_edges": [
+              {
+                "source": "workflow_step_executor",
+                "target": "workflow_step_planner"
+              },
+              {
+                "source": "workflow_step_planner",
+                "target": "workflow_step_executor"
+              }
+            ]
+          },
+          "syntax_ok": true,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.0
         },
         {
           "project": "pizza-orderer",
@@ -393,11 +2493,11 @@
           "output_dir": "/Users/ravie/dev/agento/output_files/output_langgraph/pizza-orderer",
           "status": "ok",
           "kg_element_count": 39,
-          "code_element_count": 2,
+          "code_element_count": 1,
           "oec": {
             "all_extracted": {
-              "score": 0.20512820512820512,
-              "matched": 8,
+              "score": 0.1794871794871795,
+              "matched": 7,
               "total": 39,
               "missing": [
                 {
@@ -703,6 +2803,16 @@
                   }
                 },
                 {
+                  "category": "language_model",
+                  "name": "claude_3_5_sonnet_latest",
+                  "important": false,
+                  "aliases": [
+                    "claude_3_5_sonnet_latest",
+                    "lm_claude3"
+                  ],
+                  "details": {}
+                },
+                {
                   "category": "goal",
                   "name": "order_pizza_goal",
                   "important": false,
@@ -814,8 +2924,8 @@
                   "total": 1
                 },
                 "language_model": {
-                  "score": 1.0,
-                  "matched": 1,
+                  "score": 0.0,
+                  "matched": 0,
                   "total": 1
                 },
                 "project": {
@@ -1115,7 +3225,7 @@
           "run_status": "N/A",
           "run_output": "",
           "gt_found": true,
-          "ast_sim": 0.6818181818181818
+          "ast_sim": 0.5853658536585366
         },
         {
           "project": "stockbroker",
@@ -1126,8 +3236,8 @@
           "code_element_count": 1,
           "oec": {
             "all_extracted": {
-              "score": 0.057692307692307696,
-              "matched": 3,
+              "score": 0.019230769230769232,
+              "matched": 1,
               "total": 52,
               "missing": [
                 {
@@ -1184,6 +3294,23 @@
                     "owner": "stockbroker_01",
                     "owner_category": "agent",
                     "value": "0"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_stockbroker_01_model",
+                  "important": true,
+                  "aliases": [
+                    "agent_stockbroker_01_model",
+                    "model",
+                    "gpt_4o_mini",
+                    "model_gpt_4o_mini"
+                  ],
+                  "details": {
+                    "key": "model",
+                    "owner": "stockbroker_01",
+                    "owner_category": "agent",
+                    "value": "gpt-4o-mini"
                   }
                 },
                 {
@@ -1624,6 +3751,16 @@
                   }
                 },
                 {
+                  "category": "language_model",
+                  "name": "gpt_4o_mini",
+                  "important": false,
+                  "aliases": [
+                    "gpt_4o_mini",
+                    "gpt4o_mini"
+                  ],
+                  "details": {}
+                },
+                {
                   "category": "goal",
                   "name": "get_stock_info_goal",
                   "important": false,
@@ -1774,8 +3911,8 @@
                   "total": 3
                 },
                 "config": {
-                  "score": 0.16666666666666666,
-                  "matched": 1,
+                  "score": 0.0,
+                  "matched": 0,
                   "total": 6
                 },
                 "environment": {
@@ -1789,8 +3926,8 @@
                   "total": 1
                 },
                 "language_model": {
-                  "score": 1.0,
-                  "matched": 1,
+                  "score": 0.0,
+                  "matched": 0,
                   "total": 1
                 },
                 "project": {
@@ -1856,8 +3993,8 @@
               }
             },
             "important_subset": {
-              "score": 0.058823529411764705,
-              "matched": 1,
+              "score": 0.0,
+              "matched": 0,
               "total": 17,
               "missing": [
                 {
@@ -1886,6 +4023,23 @@
                     "owner": "stockbroker_01",
                     "owner_category": "agent",
                     "value": "0"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_stockbroker_01_model",
+                  "important": true,
+                  "aliases": [
+                    "agent_stockbroker_01_model",
+                    "model",
+                    "gpt_4o_mini",
+                    "model_gpt_4o_mini"
+                  ],
+                  "details": {
+                    "key": "model",
+                    "owner": "stockbroker_01",
+                    "owner_category": "agent",
+                    "value": "gpt-4o-mini"
                   }
                 },
                 {
@@ -2060,8 +4214,8 @@
                   "total": 3
                 },
                 "config": {
-                  "score": 0.5,
-                  "matched": 1,
+                  "score": 0.0,
+                  "matched": 0,
                   "total": 2
                 },
                 "step_task": {
@@ -2112,17 +4266,13 @@
             "kg_nodes": [
               "call_tools"
             ],
-            "code_nodes": [
-              "start_agent"
-            ],
+            "code_nodes": [],
             "kg_edges": [],
             "code_edges": [],
             "missing_nodes": [
               "call_tools"
             ],
-            "extra_nodes": [
-              "start_agent"
-            ],
+            "extra_nodes": [],
             "missing_edges": [],
             "extra_edges": []
           },
@@ -2138,7 +4288,7 @@
           "output_dir": "/Users/ravie/dev/agento/output_files/output_langgraph/supervisor",
           "status": "ok",
           "kg_element_count": 95,
-          "code_element_count": 7,
+          "code_element_count": 27,
           "oec": {
             "all_extracted": {
               "score": 0.1368421052631579,
@@ -2501,8 +4651,8 @@
                   "aliases": [
                     "tool_tool_stockbroker_description",
                     "description",
-                    "sell_a_ticker_or_get_the_user_s_portfolio",
                     "can_fetch_the_price_of_a_ticker_purchase_sell_a_ticker_or_get_the_user_s_portfolio",
+                    "sell_a_ticker_or_get_the_user_s_portfolio",
                     "description_can_fetch_the_price_of_a_ticker_purchase_sell_a_ticker_or_get_the_user_s_portfolio"
                   ],
                   "details": {
@@ -3852,11 +6002,11 @@
           "output_dir": "/Users/ravie/dev/agento/output_files/output_langgraph/trip-planner",
           "status": "ok",
           "kg_element_count": 65,
-          "code_element_count": 2,
+          "code_element_count": 13,
           "oec": {
             "all_extracted": {
-              "score": 0.07692307692307693,
-              "matched": 5,
+              "score": 0.09230769230769231,
+              "matched": 6,
               "total": 65,
               "missing": [
                 {
@@ -4497,16 +6647,6 @@
                   }
                 },
                 {
-                  "category": "workflow_step",
-                  "name": "task_classify",
-                  "important": true,
-                  "aliases": [
-                    "task_classify",
-                    "step_classify"
-                  ],
-                  "details": {}
-                },
-                {
                   "category": "step_task",
                   "name": "task_classify_task_classify",
                   "important": true,
@@ -4720,15 +6860,15 @@
                   "total": 1
                 },
                 "workflow_step": {
-                  "score": 0.6666666666666666,
-                  "matched": 2,
+                  "score": 1.0,
+                  "matched": 3,
                   "total": 3
                 }
               }
             },
             "important_subset": {
-              "score": 0.15384615384615385,
-              "matched": 4,
+              "score": 0.19230769230769232,
+              "matched": 5,
               "total": 26,
               "missing": [
                 {
@@ -4960,16 +7100,6 @@
                   }
                 },
                 {
-                  "category": "workflow_step",
-                  "name": "task_classify",
-                  "important": true,
-                  "aliases": [
-                    "task_classify",
-                    "step_classify"
-                  ],
-                  "details": {}
-                },
-                {
                   "category": "step_task",
                   "name": "task_classify_task_classify",
                   "important": true,
@@ -5043,22 +7173,22 @@
                   "total": 1
                 },
                 "workflow_step": {
-                  "score": 0.6666666666666666,
-                  "matched": 2,
+                  "score": 1.0,
+                  "matched": 3,
                   "total": 3
                 }
               }
             }
           },
           "wgi": {
-            "score": 0.0,
-            "normalized_graph_edit_distance": 1.0,
+            "score": 1.0,
+            "normalized_graph_edit_distance": 0.0,
             "labeled_score": 0.0,
-            "topology_score": 0.0,
+            "topology_score": 1.0,
             "labeled_normalized_graph_edit_distance": 1.0,
-            "topology_normalized_graph_edit_distance": 1.1666666666666667,
+            "topology_normalized_graph_edit_distance": 0.0,
             "exact_isomorphic": false,
-            "topology_isomorphic": false,
+            "topology_isomorphic": true,
             "edge_precision": 0.0,
             "edge_recall": 0.0,
             "edge_f1": 0.0,
@@ -5069,6 +7199,7 @@
             ],
             "code_nodes": [
               "step_call_tools",
+              "step_classify",
               "step_extraction"
             ],
             "kg_edges": [
@@ -5087,6 +7218,14 @@
             ],
             "code_edges": [
               {
+                "source": "step_classify",
+                "target": "step_call_tools"
+              },
+              {
+                "source": "step_classify",
+                "target": "step_extraction"
+              },
+              {
                 "source": "step_extraction",
                 "target": "step_call_tools"
               }
@@ -5098,6 +7237,7 @@
             ],
             "extra_nodes": [
               "step_call_tools",
+              "step_classify",
               "step_extraction"
             ],
             "missing_edges": [
@@ -5116,6 +7256,14 @@
             ],
             "extra_edges": [
               {
+                "source": "step_classify",
+                "target": "step_call_tools"
+              },
+              {
+                "source": "step_classify",
+                "target": "step_extraction"
+              },
+              {
                 "source": "step_extraction",
                 "target": "step_call_tools"
               }
@@ -5131,8 +7279,658 @@
           "project": "utils",
           "kg_path": "/Users/ravie/dev/agento/kgs_original/LangGraph/utils_instances.ttl",
           "output_dir": "/Users/ravie/dev/agento/output_files/output_langgraph/utils",
-          "status": "missing_output",
-          "error": "Generated output directory not found: /Users/ravie/dev/agento/output_files/output_langgraph/utils"
+          "status": "ok",
+          "kg_element_count": 31,
+          "code_element_count": 4,
+          "oec": {
+            "all_extracted": {
+              "score": 0.03225806451612903,
+              "matched": 1,
+              "total": 31,
+              "missing": [
+                {
+                  "category": "task",
+                  "name": "capitalize_sentence_task",
+                  "important": true,
+                  "aliases": [
+                    "capitalize_sentence_task"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_produces",
+                  "name": "capitalize_sentence_task_string_output_resource",
+                  "important": false,
+                  "aliases": [
+                    "capitalize_sentence_task_string_output_resource",
+                    "capitalize_sentence_task",
+                    "string_output_resource"
+                  ],
+                  "details": {
+                    "source": "capitalize_sentence_task",
+                    "target": "string_output_resource"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "capitalize_sentence_task_string_input_resource",
+                  "important": false,
+                  "aliases": [
+                    "capitalize_sentence_task_string_input_resource",
+                    "capitalize_sentence_task",
+                    "string_input_resource"
+                  ],
+                  "details": {
+                    "source": "capitalize_sentence_task",
+                    "target": "string_input_resource"
+                  }
+                },
+                {
+                  "category": "task",
+                  "name": "capitalize_task",
+                  "important": true,
+                  "aliases": [
+                    "capitalize_task"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_produces",
+                  "name": "capitalize_task_string_output_resource",
+                  "important": false,
+                  "aliases": [
+                    "capitalize_task_string_output_resource",
+                    "capitalize_task",
+                    "string_output_resource"
+                  ],
+                  "details": {
+                    "source": "capitalize_task",
+                    "target": "string_output_resource"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "capitalize_task_string_input_resource",
+                  "important": false,
+                  "aliases": [
+                    "capitalize_task_string_input_resource",
+                    "capitalize_task",
+                    "string_input_resource"
+                  ],
+                  "details": {
+                    "source": "capitalize_task",
+                    "target": "string_input_resource"
+                  }
+                },
+                {
+                  "category": "task",
+                  "name": "format_messages_task",
+                  "important": true,
+                  "aliases": [
+                    "format_messages_task"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_produces",
+                  "name": "format_messages_task_formatted_messages_resource",
+                  "important": false,
+                  "aliases": [
+                    "format_messages_task_formatted_messages_resource",
+                    "format_messages_task",
+                    "formatted_messages_resource"
+                  ],
+                  "details": {
+                    "source": "format_messages_task",
+                    "target": "formatted_messages_resource"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "format_messages_task_message_array_resource",
+                  "important": false,
+                  "aliases": [
+                    "format_messages_task_message_array_resource",
+                    "format_messages_task",
+                    "message_array_resource"
+                  ],
+                  "details": {
+                    "source": "format_messages_task",
+                    "target": "message_array_resource"
+                  }
+                },
+                {
+                  "category": "tool",
+                  "name": "capitalize_tool",
+                  "important": true,
+                  "aliases": [
+                    "capitalize_tool"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "config",
+                  "name": "tool_capitalize_tool_delimiter",
+                  "important": false,
+                  "aliases": [
+                    "tool_capitalize_tool_delimiter",
+                    "delimiter"
+                  ],
+                  "details": {
+                    "key": "delimiter",
+                    "owner": "capitalize_tool",
+                    "owner_category": "tool"
+                  }
+                },
+                {
+                  "category": "tool_capability",
+                  "name": "capitalize_tool_capitalize_sentence_capability",
+                  "important": false,
+                  "aliases": [
+                    "capitalize_tool_capitalize_sentence_capability",
+                    "capitalize_tool",
+                    "capitalize_sentence_capability"
+                  ],
+                  "details": {
+                    "source": "capitalize_tool",
+                    "target": "capitalize_sentence_capability"
+                  }
+                },
+                {
+                  "category": "tool_capability",
+                  "name": "capitalize_tool_capitalize_capability",
+                  "important": false,
+                  "aliases": [
+                    "capitalize_tool_capitalize_capability",
+                    "capitalize_tool",
+                    "capitalize_capability"
+                  ],
+                  "details": {
+                    "source": "capitalize_tool",
+                    "target": "capitalize_capability"
+                  }
+                },
+                {
+                  "category": "tool",
+                  "name": "format_messages_tool",
+                  "important": true,
+                  "aliases": [
+                    "format_messages_tool"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "config",
+                  "name": "tool_format_messages_tool_non_string_content_serialization",
+                  "important": false,
+                  "aliases": [
+                    "tool_format_messages_tool_non_string_content_serialization",
+                    "non_string_content_serialization",
+                    "json_stringify",
+                    "non_string_content_serialization_json_stringify"
+                  ],
+                  "details": {
+                    "key": "non_string_content_serialization",
+                    "owner": "format_messages_tool",
+                    "owner_category": "tool",
+                    "value": "JSON.stringify"
+                  }
+                },
+                {
+                  "category": "tool_capability",
+                  "name": "format_messages_tool_format_messages_capability",
+                  "important": false,
+                  "aliases": [
+                    "format_messages_tool_format_messages_capability",
+                    "format_messages_tool",
+                    "format_messages_capability"
+                  ],
+                  "details": {
+                    "source": "format_messages_tool",
+                    "target": "format_messages_capability"
+                  }
+                },
+                {
+                  "category": "workflow",
+                  "name": "text_utilities_workflow_pattern",
+                  "important": true,
+                  "aliases": [
+                    "text_utilities_workflow_pattern"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "workflow_step",
+                  "name": "capitalize_sentence_task",
+                  "important": true,
+                  "aliases": [
+                    "capitalize_sentence_task",
+                    "capitalize_sentence_step"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "step_task",
+                  "name": "capitalize_sentence_task_capitalize_sentence_task",
+                  "important": true,
+                  "aliases": [
+                    "capitalize_sentence_task_capitalize_sentence_task",
+                    "capitalize_sentence_task"
+                  ],
+                  "details": {
+                    "source": "capitalize_sentence_task",
+                    "target": "capitalize_sentence_task"
+                  }
+                },
+                {
+                  "category": "workflow_step",
+                  "name": "capitalize_task",
+                  "important": true,
+                  "aliases": [
+                    "capitalize_task",
+                    "capitalize_step"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "step_task",
+                  "name": "capitalize_task_capitalize_task",
+                  "important": true,
+                  "aliases": [
+                    "capitalize_task_capitalize_task",
+                    "capitalize_task"
+                  ],
+                  "details": {
+                    "source": "capitalize_task",
+                    "target": "capitalize_task"
+                  }
+                },
+                {
+                  "category": "workflow_step",
+                  "name": "format_messages_task",
+                  "important": true,
+                  "aliases": [
+                    "format_messages_task",
+                    "format_messages_step"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "step_task",
+                  "name": "format_messages_task_format_messages_task",
+                  "important": true,
+                  "aliases": [
+                    "format_messages_task_format_messages_task",
+                    "format_messages_task"
+                  ],
+                  "details": {
+                    "source": "format_messages_task",
+                    "target": "format_messages_task"
+                  }
+                },
+                {
+                  "category": "capability",
+                  "name": "capitalize_sentence_capability",
+                  "important": false,
+                  "aliases": [
+                    "capitalize_sentence_capability"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "capability",
+                  "name": "capitalize_capability",
+                  "important": false,
+                  "aliases": [
+                    "capitalize_capability"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "capability",
+                  "name": "format_messages_capability",
+                  "important": false,
+                  "aliases": [
+                    "format_messages_capability"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "string_input_resource",
+                  "important": false,
+                  "aliases": [
+                    "string_input_resource"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "string_output_resource",
+                  "important": false,
+                  "aliases": [
+                    "string_output_resource"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "message_array_resource",
+                  "important": false,
+                  "aliases": [
+                    "message_array_resource"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "formatted_messages_resource",
+                  "important": false,
+                  "aliases": [
+                    "formatted_messages_resource"
+                  ],
+                  "details": {}
+                }
+              ],
+              "by_category": {
+                "capability": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 3
+                },
+                "config": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 2
+                },
+                "project": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "resource": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 4
+                },
+                "step_task": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 3
+                },
+                "task": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 3
+                },
+                "task_produces": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 3
+                },
+                "task_requires": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 3
+                },
+                "tool": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 2
+                },
+                "tool_capability": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 3
+                },
+                "workflow": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "workflow_step": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 3
+                }
+              }
+            },
+            "important_subset": {
+              "score": 0.0,
+              "matched": 0,
+              "total": 12,
+              "missing": [
+                {
+                  "category": "task",
+                  "name": "capitalize_sentence_task",
+                  "important": true,
+                  "aliases": [
+                    "capitalize_sentence_task"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task",
+                  "name": "capitalize_task",
+                  "important": true,
+                  "aliases": [
+                    "capitalize_task"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task",
+                  "name": "format_messages_task",
+                  "important": true,
+                  "aliases": [
+                    "format_messages_task"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "tool",
+                  "name": "capitalize_tool",
+                  "important": true,
+                  "aliases": [
+                    "capitalize_tool"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "tool",
+                  "name": "format_messages_tool",
+                  "important": true,
+                  "aliases": [
+                    "format_messages_tool"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "workflow",
+                  "name": "text_utilities_workflow_pattern",
+                  "important": true,
+                  "aliases": [
+                    "text_utilities_workflow_pattern"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "workflow_step",
+                  "name": "capitalize_sentence_task",
+                  "important": true,
+                  "aliases": [
+                    "capitalize_sentence_task",
+                    "capitalize_sentence_step"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "step_task",
+                  "name": "capitalize_sentence_task_capitalize_sentence_task",
+                  "important": true,
+                  "aliases": [
+                    "capitalize_sentence_task_capitalize_sentence_task",
+                    "capitalize_sentence_task"
+                  ],
+                  "details": {
+                    "source": "capitalize_sentence_task",
+                    "target": "capitalize_sentence_task"
+                  }
+                },
+                {
+                  "category": "workflow_step",
+                  "name": "capitalize_task",
+                  "important": true,
+                  "aliases": [
+                    "capitalize_task",
+                    "capitalize_step"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "step_task",
+                  "name": "capitalize_task_capitalize_task",
+                  "important": true,
+                  "aliases": [
+                    "capitalize_task_capitalize_task",
+                    "capitalize_task"
+                  ],
+                  "details": {
+                    "source": "capitalize_task",
+                    "target": "capitalize_task"
+                  }
+                },
+                {
+                  "category": "workflow_step",
+                  "name": "format_messages_task",
+                  "important": true,
+                  "aliases": [
+                    "format_messages_task",
+                    "format_messages_step"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "step_task",
+                  "name": "format_messages_task_format_messages_task",
+                  "important": true,
+                  "aliases": [
+                    "format_messages_task_format_messages_task",
+                    "format_messages_task"
+                  ],
+                  "details": {
+                    "source": "format_messages_task",
+                    "target": "format_messages_task"
+                  }
+                }
+              ],
+              "by_category": {
+                "step_task": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 3
+                },
+                "task": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 3
+                },
+                "tool": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 2
+                },
+                "workflow": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "workflow_step": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 3
+                }
+              }
+            }
+          },
+          "wgi": {
+            "score": 1.0,
+            "normalized_graph_edit_distance": 0.0,
+            "labeled_score": 0.0,
+            "topology_score": 1.0,
+            "labeled_normalized_graph_edit_distance": 1.0,
+            "topology_normalized_graph_edit_distance": 0.0,
+            "exact_isomorphic": false,
+            "topology_isomorphic": true,
+            "edge_precision": 0.0,
+            "edge_recall": 0.0,
+            "edge_f1": 0.0,
+            "kg_nodes": [
+              "capitalize_sentence_task",
+              "capitalize_task",
+              "format_messages_task"
+            ],
+            "code_nodes": [
+              "capitalize",
+              "capitalize_sentence",
+              "format_messages"
+            ],
+            "kg_edges": [
+              {
+                "source": "capitalize_sentence_task",
+                "target": "capitalize_task"
+              },
+              {
+                "source": "capitalize_task",
+                "target": "format_messages_task"
+              }
+            ],
+            "code_edges": [
+              {
+                "source": "capitalize",
+                "target": "format_messages"
+              },
+              {
+                "source": "capitalize_sentence",
+                "target": "capitalize"
+              }
+            ],
+            "missing_nodes": [
+              "capitalize_sentence_task",
+              "capitalize_task",
+              "format_messages_task"
+            ],
+            "extra_nodes": [
+              "capitalize",
+              "capitalize_sentence",
+              "format_messages"
+            ],
+            "missing_edges": [
+              {
+                "source": "capitalize_sentence_task",
+                "target": "capitalize_task"
+              },
+              {
+                "source": "capitalize_task",
+                "target": "format_messages_task"
+              }
+            ],
+            "extra_edges": [
+              {
+                "source": "capitalize",
+                "target": "format_messages"
+              },
+              {
+                "source": "capitalize_sentence",
+                "target": "capitalize"
+              }
+            ]
+          },
+          "syntax_ok": true,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.5111111111111111
         },
         {
           "project": "writer-agent",
@@ -5140,7 +7938,7 @@
           "output_dir": "/Users/ravie/dev/agento/output_files/output_langgraph/writer-agent",
           "status": "ok",
           "kg_element_count": 44,
-          "code_element_count": 3,
+          "code_element_count": 10,
           "oec": {
             "all_extracted": {
               "score": 0.022727272727272728,

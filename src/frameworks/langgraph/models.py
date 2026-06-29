@@ -34,6 +34,7 @@ class LangGraphAgentModel(BaseModel):
     role: str = Field("agent", description="Agent role (used as node description)")
     prompt: str = Field("You are a helpful assistant.", description="System prompt injected as SystemMessage")
     model_name: str = Field("gpt-4o-mini", description="LLM model identifier")
+    provider: str = Field("openai", description="LLM provider: 'openai' or 'anthropic'")
     tools_refs: List[str] = Field(default_factory=list, description="Tool IRI references assigned to this agent")
 
 
@@ -94,8 +95,14 @@ class LangGraphProject(BaseModel):
 
     @property
     def pattern_type(self) -> str:
-        if self.router_node_name or self.routes or len(self.agents) > 1:
+        # Supervisor requires an explicit named router node AND computed routes.
+        # Graphs that simply have branching edges (out-degree > 1 on a non-router node)
+        # are NOT supervisors — they are general branching DAGs.
+        if self.router_node_name and self.routes:
             return "supervisor"
+        # If there are explicit topology edges defined, emit the full DAG faithfully.
+        if self.edges:
+            return "branching"
         if self.tools:
             return "tool_calling"
         return "linear"

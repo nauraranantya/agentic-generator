@@ -82,19 +82,61 @@ def _extract_python_elements(path: Path) -> List[EvaluationElement]:
 
 def _extract_typescript_elements(text: str, framework: str) -> List[EvaluationElement]:
     elements: List[EvaluationElement] = []
-    for match in re.finditer(r"(?:export\s+)?const\s+([A-Za-z_][A-Za-z0-9_]*)\s*=\s*new\s+Agent\s*\(", text):
-        elements.append(_element("agent", match.group(1), important=True))
-    for match in re.finditer(r"(?:export\s+)?const\s+([A-Za-z_][A-Za-z0-9_]*)\s*=\s*createStep\s*\(", text):
-        elements.append(_element("task", match.group(1), important=True))
-        elements.append(_element("workflow_step", match.group(1), important=True))
-    for match in re.finditer(r"id\s*:\s*[\"']([^\"']+)[\"']", text):
-        category = "workflow" if "workflow" in normalize_name(match.group(1)) else "workflow_step"
-        elements.append(_element(category, match.group(1), important=True))
-    for match in re.finditer(r"(?:export\s+)?const\s+([A-Za-z_][A-Za-z0-9_]*)\s*=\s*createTool\s*\(", text):
-        elements.append(_element("tool", match.group(1), important=True))
-    for match in re.finditer(r"\.addNode\s*\(\s*[\"']([^\"']+)[\"']", text):
-        elements.append(_element("workflow_step", match.group(1), important=True))
+
+    if framework == "mastra":
+        # Mastra-specific API patterns
+        for match in re.finditer(r"(?:export\s+)?const\s+([A-Za-z_][A-Za-z0-9_]*)\s*=\s*new\s+Agent\s*\(", text):
+            elements.append(_element("agent", match.group(1), important=True))
+        for match in re.finditer(r"(?:export\s+)?const\s+([A-Za-z_][A-Za-z0-9_]*)\s*=\s*createStep\s*\(", text):
+            elements.append(_element("task", match.group(1), important=True))
+            elements.append(_element("workflow_step", match.group(1), important=True))
+        for match in re.finditer(r"id\s*:\s*[\"']([^\"']+)[\"']", text):
+            category = "workflow" if "workflow" in normalize_name(match.group(1)) else "workflow_step"
+            elements.append(_element(category, match.group(1), important=True))
+        for match in re.finditer(r"(?:export\s+)?const\s+([A-Za-z_][A-Za-z0-9_]*)\s*=\s*createTool\s*\(", text):
+            elements.append(_element("tool", match.group(1), important=True))
+        for match in re.finditer(r"\.addNode\s*\(\s*[\"']([^\"']+)[\"']", text):
+            elements.append(_element("workflow_step", match.group(1), important=True))
+
+    elif framework == "langgraph":
+        # Detect LLM-backed agents: new ChatOpenAI(...) or new ChatAnthropic(...)
+        llm_instantiations = re.findall(
+            r"new\s+(?:ChatOpenAI|ChatAnthropic)\s*\(", text
+        )
+        if llm_instantiations:
+            # One agent per unique LLM instantiation scope — simplify to one agent element
+            # per distinct async function that contains a model call.
+            for match in re.finditer(
+                r"async\s+function\s+([A-Za-z_][A-Za-z0-9_]*)\s*\([^)]*\)[^{]*\{[^}]*new\s+(?:ChatOpenAI|ChatAnthropic)",
+                text,
+                flags=re.S,
+            ):
+                elements.append(_element("agent", match.group(1), important=True))
+            # If no named function bodies found (e.g., inline addNode), add a generic agent
+            if not any(e.category == "agent" for e in elements):
+                elements.append(_element("agent", "agent", important=True))
+
+        # Detect workflow steps from .addNode("name", ...) calls — these are the
+        # authoritative task/step identifiers in LangGraph code.
+        for match in re.finditer(r"\.addNode\s*\(\s*[\"']([^\"']+)[\"']", text):
+            node_name = match.group(1)
+            elements.append(_element("task", node_name, important=True))
+            elements.append(_element("workflow_step", node_name, important=True))
+
+        # Detect tools from tool function definitions (named functions bound to agents)
+        for match in re.finditer(r"(?:export\s+)?(?:async\s+)?function\s+([A-Za-z_][A-Za-z0-9_]*)\s*\(", text):
+            fn_name = match.group(1)
+            # Skip known node names (already captured above) and generic helpers
+            if not any(fn_name == e.name for e in elements if e.category == "workflow_step"):
+                elements.append(_element("tool", fn_name, important=True))
+
+        # Detect the workflow itself from new StateGraph(...) instantiation
+        for _ in re.finditer(r"new\s+StateGraph\s*\(", text):
+            elements.append(_element("workflow", "workflow", important=True))
+            break  # Only one workflow per file expected
+
     return elements
+
 
 
 def _extract_graph(text: str, project_dir: Path, framework: str) -> GraphSpec:
