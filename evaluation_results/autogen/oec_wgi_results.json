@@ -1,0 +1,868 @@
+{
+  "root": "/Users/ravie/dev/agento",
+  "frameworks": [
+    {
+      "key": "autogen",
+      "name": "AutoGen",
+      "kg_dir": "/Users/ravie/dev/agento/kgs_original/AutoGen",
+      "output_dir": "/Users/ravie/dev/agento/output_files/output_autogen",
+      "summary": {
+        "projects": 6,
+        "evaluated": 2,
+        "errors": 4,
+        "avg_oec_all": 0.40285714285714286,
+        "avg_oec_important": 0.90625,
+        "avg_wgi": 0.5,
+        "avg_edge_f1": 0.5,
+        "avg_ast_sim": 0.5119047619047619,
+        "syntax_success_rate": 1.0,
+        "run_success_rate": 1.0
+      },
+      "projects": [
+        {
+          "project": "L1_Multi-Agent_Conversation_and_Stand-up_Comedy",
+          "kg_path": "/Users/ravie/dev/agento/kgs_original/AutoGen/L1_Multi-Agent_Conversation_and_Stand-up_Comedy_instances.ttl",
+          "output_dir": "/Users/ravie/dev/agento/output_files/output_autogen/L1_Multi-Agent_Conversation_and_Stand-up_Comedy",
+          "status": "ok",
+          "kg_element_count": 14,
+          "code_element_count": 2,
+          "oec": {
+            "all_extracted": {
+              "score": 0.2857142857142857,
+              "matched": 4,
+              "total": 14,
+              "missing": [
+                {
+                  "category": "project",
+                  "name": "unnamed_project",
+                  "important": false,
+                  "aliases": [
+                    "unnamed_project"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "agent_llm",
+                  "name": "cathy_llm_default",
+                  "important": false,
+                  "aliases": [
+                    "cathy_llm_default",
+                    "cathy",
+                    "llm_default"
+                  ],
+                  "details": {
+                    "source": "cathy",
+                    "target": "llm_default"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_cathy_human_input_mode",
+                  "important": false,
+                  "aliases": [
+                    "agent_cathy_human_input_mode",
+                    "human_input_mode",
+                    "never",
+                    "human_input_mode_never"
+                  ],
+                  "details": {
+                    "key": "human_input_mode",
+                    "owner": "cathy",
+                    "owner_category": "agent",
+                    "value": "NEVER"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_cathy_is_termination_msg",
+                  "important": false,
+                  "aliases": [
+                    "agent_cathy_is_termination_msg",
+                    "is_termination_msg",
+                    "lambda_msg_i_gotta_go_in_msg_content",
+                    "is_termination_msg_lambda_msg_i_gotta_go_in_msg_content"
+                  ],
+                  "details": {
+                    "key": "is_termination_msg",
+                    "owner": "cathy",
+                    "owner_category": "agent",
+                    "value": "lambda msg: \"I gotta go\" in msg[\"content\"]"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_cathy_llm_config",
+                  "important": false,
+                  "aliases": [
+                    "agent_cathy_llm_config",
+                    "llm_config",
+                    "llm_config_external_variable_referenced_in_the_notebook_details_not_provided_in_excerpt",
+                    "llm_config_llm_config_external_variable_referenced_in_the_notebook_details_not_provided_in_excerpt"
+                  ],
+                  "details": {
+                    "key": "llm_config",
+                    "owner": "cathy",
+                    "owner_category": "agent",
+                    "value": "llm_config (external variable referenced in the notebook; details not provided in excerpt)"
+                  }
+                },
+                {
+                  "category": "agent_llm",
+                  "name": "joe_llm_default",
+                  "important": false,
+                  "aliases": [
+                    "joe_llm_default",
+                    "joe",
+                    "llm_default"
+                  ],
+                  "details": {
+                    "source": "joe",
+                    "target": "llm_default"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_joe_human_input_mode",
+                  "important": false,
+                  "aliases": [
+                    "agent_joe_human_input_mode",
+                    "human_input_mode",
+                    "never",
+                    "human_input_mode_never"
+                  ],
+                  "details": {
+                    "key": "human_input_mode",
+                    "owner": "joe",
+                    "owner_category": "agent",
+                    "value": "NEVER"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_joe_is_termination_msg",
+                  "important": false,
+                  "aliases": [
+                    "agent_joe_is_termination_msg",
+                    "is_termination_msg",
+                    "lambda_msg_i_gotta_go_in_msg_content_or_goodbye_in_msg_content",
+                    "is_termination_msg_lambda_msg_i_gotta_go_in_msg_content_or_goodbye_in_msg_content"
+                  ],
+                  "details": {
+                    "key": "is_termination_msg",
+                    "owner": "joe",
+                    "owner_category": "agent",
+                    "value": "lambda msg: \"I gotta go\" in msg[\"content\"] or \"Goodbye\" in msg[\"content\"]"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_joe_llm_config",
+                  "important": false,
+                  "aliases": [
+                    "agent_joe_llm_config",
+                    "llm_config",
+                    "llm_config_external_variable_referenced_in_the_notebook_details_not_provided_in_excerpt",
+                    "llm_config_llm_config_external_variable_referenced_in_the_notebook_details_not_provided_in_excerpt"
+                  ],
+                  "details": {
+                    "key": "llm_config",
+                    "owner": "joe",
+                    "owner_category": "agent",
+                    "value": "llm_config (external variable referenced in the notebook; details not provided in excerpt)"
+                  }
+                },
+                {
+                  "category": "language_model",
+                  "name": "llm_default",
+                  "important": false,
+                  "aliases": [
+                    "llm_default"
+                  ],
+                  "details": {}
+                }
+              ],
+              "by_category": {
+                "agent": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "agent_interaction": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "agent_llm": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 2
+                },
+                "config": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 6
+                },
+                "language_model": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "project": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                }
+              }
+            },
+            "important_subset": {
+              "score": 1.0,
+              "matched": 4,
+              "total": 4,
+              "missing": [],
+              "by_category": {
+                "agent": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "agent_interaction": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                }
+              }
+            }
+          },
+          "wgi": {
+            "score": 0.0,
+            "normalized_graph_edit_distance": 1.0,
+            "labeled_score": 0.0,
+            "topology_score": 0.0,
+            "labeled_normalized_graph_edit_distance": 1.0,
+            "topology_normalized_graph_edit_distance": 1.0,
+            "exact_isomorphic": false,
+            "topology_isomorphic": false,
+            "edge_precision": 0.0,
+            "edge_recall": 0.0,
+            "edge_f1": 0.0,
+            "kg_nodes": [],
+            "code_nodes": [
+              "cathy",
+              "joe"
+            ],
+            "kg_edges": [],
+            "code_edges": [
+              {
+                "source": "cathy",
+                "target": "joe"
+              }
+            ],
+            "missing_nodes": [],
+            "extra_nodes": [
+              "cathy",
+              "joe"
+            ],
+            "missing_edges": [],
+            "extra_edges": [
+              {
+                "source": "cathy",
+                "target": "joe"
+              }
+            ]
+          },
+          "syntax_ok": true,
+          "run_status": "SUCCESS_DUMMY",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.5
+        },
+        {
+          "project": "L2_Sequential_Chats_and_Customer_Onboarding",
+          "kg_path": "/Users/ravie/dev/agento/kgs_original/AutoGen/L2_Sequential_Chats_and_Customer_Onboarding_instances.ttl",
+          "output_dir": "/Users/ravie/dev/agento/output_files/output_autogen/L2_Sequential_Chats_and_Customer_Onboarding",
+          "status": "error",
+          "error": "at line 37 of <>:\nBad syntax (expected '.' or '}' or ']' at end of statement) at ^ in:\n\"...b'n \\'TERMINATE\\' \\\\nwhen you have gathered all the information.\"'^b'\"\" ;\\n    :promptOutputIndicator \"\"\"TERMINATE\"\"\" ;\\n    dcterm'...\""
+        },
+        {
+          "project": "L3_Reflection_and_Blogpost_Writing",
+          "kg_path": "/Users/ravie/dev/agento/kgs_original/AutoGen/L3_Reflection_and_Blogpost_Writing_instances.ttl",
+          "output_dir": "/Users/ravie/dev/agento/output_files/output_autogen/L3_Reflection_and_Blogpost_Writing",
+          "status": "error",
+          "error": "at line 157 of <>:\nBad syntax (expected '.' or '}' or ']' at end of statement) at ^ in:\n\"...b'ut (captured as a literal description of runtime behavior).\"'^b'\"\" .\\n\\n######################################################'...\""
+        },
+        {
+          "project": "L4_Tool_Use_and_Conversational_Chess",
+          "kg_path": "/Users/ravie/dev/agento/kgs_original/AutoGen/L4_Tool_Use_and_Conversational_Chess_instances.ttl",
+          "output_dir": "/Users/ravie/dev/agento/output_files/output_autogen/L4_Tool_Use_and_Conversational_Chess",
+          "status": "ok",
+          "kg_element_count": 50,
+          "code_element_count": 5,
+          "oec": {
+            "all_extracted": {
+              "score": 0.52,
+              "matched": 26,
+              "total": 50,
+              "missing": [
+                {
+                  "category": "project",
+                  "name": "chessplayersteam",
+                  "important": false,
+                  "aliases": [
+                    "chessplayersteam"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "agent_llm",
+                  "name": "player_white_gpt_4o_mini_language_model",
+                  "important": false,
+                  "aliases": [
+                    "player_white_gpt_4o_mini_language_model",
+                    "player_white",
+                    "gpt_4o_mini_language_model"
+                  ],
+                  "details": {
+                    "source": "player_white",
+                    "target": "gpt_4o_mini_language_model"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_player_white_nested_chats",
+                  "important": false,
+                  "aliases": [
+                    "agent_player_white_nested_chats",
+                    "nested_chats",
+                    "trigger_player_black_chat_queue_sender_board_proxy_recipient_player_white_summary_method_last_msg",
+                    "nested_chats_trigger_player_black_chat_queue_sender_board_proxy_recipient_player_white_summary_method_last_msg"
+                  ],
+                  "details": {
+                    "key": "nested_chats",
+                    "owner": "player_white",
+                    "owner_category": "agent",
+                    "value": "trigger=player_black; chat_queue=[{sender=BoardProxy, recipient=Player_White, summary_method=last_msg}]"
+                  }
+                },
+                {
+                  "category": "agent_capability",
+                  "name": "player_white_capability_play_chess",
+                  "important": false,
+                  "aliases": [
+                    "player_white_capability_play_chess",
+                    "player_white",
+                    "capability_play_chess"
+                  ],
+                  "details": {
+                    "source": "player_white",
+                    "target": "capability_play_chess"
+                  }
+                },
+                {
+                  "category": "agent_capability",
+                  "name": "player_white_capability_request_legal_moves",
+                  "important": false,
+                  "aliases": [
+                    "player_white_capability_request_legal_moves",
+                    "player_white",
+                    "capability_request_legal_moves"
+                  ],
+                  "details": {
+                    "source": "player_white",
+                    "target": "capability_request_legal_moves"
+                  }
+                },
+                {
+                  "category": "agent_capability",
+                  "name": "player_white_capability_make_move",
+                  "important": false,
+                  "aliases": [
+                    "player_white_capability_make_move",
+                    "player_white",
+                    "capability_make_move"
+                  ],
+                  "details": {
+                    "source": "player_white",
+                    "target": "capability_make_move"
+                  }
+                },
+                {
+                  "category": "agent_llm",
+                  "name": "player_black_gpt_4o_mini_language_model",
+                  "important": false,
+                  "aliases": [
+                    "player_black_gpt_4o_mini_language_model",
+                    "player_black",
+                    "gpt_4o_mini_language_model"
+                  ],
+                  "details": {
+                    "source": "player_black",
+                    "target": "gpt_4o_mini_language_model"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_player_black_nested_chats",
+                  "important": false,
+                  "aliases": [
+                    "agent_player_black_nested_chats",
+                    "nested_chats",
+                    "trigger_player_white_chat_queue_sender_board_proxy_recipient_player_black_summary_method_last_msg",
+                    "nested_chats_trigger_player_white_chat_queue_sender_board_proxy_recipient_player_black_summary_method_last_msg"
+                  ],
+                  "details": {
+                    "key": "nested_chats",
+                    "owner": "player_black",
+                    "owner_category": "agent",
+                    "value": "trigger=player_white; chat_queue=[{sender=BoardProxy, recipient=Player_Black, summary_method=last_msg}]"
+                  }
+                },
+                {
+                  "category": "agent_capability",
+                  "name": "player_black_capability_play_chess",
+                  "important": false,
+                  "aliases": [
+                    "player_black_capability_play_chess",
+                    "player_black",
+                    "capability_play_chess"
+                  ],
+                  "details": {
+                    "source": "player_black",
+                    "target": "capability_play_chess"
+                  }
+                },
+                {
+                  "category": "agent_capability",
+                  "name": "player_black_capability_request_legal_moves",
+                  "important": false,
+                  "aliases": [
+                    "player_black_capability_request_legal_moves",
+                    "player_black",
+                    "capability_request_legal_moves"
+                  ],
+                  "details": {
+                    "source": "player_black",
+                    "target": "capability_request_legal_moves"
+                  }
+                },
+                {
+                  "category": "agent_capability",
+                  "name": "player_black_capability_make_move",
+                  "important": false,
+                  "aliases": [
+                    "player_black_capability_make_move",
+                    "player_black",
+                    "capability_make_move"
+                  ],
+                  "details": {
+                    "source": "player_black",
+                    "target": "capability_make_move"
+                  }
+                },
+                {
+                  "category": "task",
+                  "name": "task_get_legal_moves",
+                  "important": true,
+                  "aliases": [
+                    "task_get_legal_moves"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_produces",
+                  "name": "task_get_legal_moves_legal_moves_list",
+                  "important": false,
+                  "aliases": [
+                    "task_get_legal_moves_legal_moves_list",
+                    "task_get_legal_moves",
+                    "legal_moves_list"
+                  ],
+                  "details": {
+                    "source": "task_get_legal_moves",
+                    "target": "legal_moves_list"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "task_get_legal_moves_chess_board",
+                  "important": false,
+                  "aliases": [
+                    "task_get_legal_moves_chess_board",
+                    "task_get_legal_moves",
+                    "chess_board"
+                  ],
+                  "details": {
+                    "source": "task_get_legal_moves",
+                    "target": "chess_board"
+                  }
+                },
+                {
+                  "category": "task_context",
+                  "name": "task_get_legal_moves_task_make_move",
+                  "important": true,
+                  "aliases": [
+                    "task_get_legal_moves_task_make_move",
+                    "task_get_legal_moves",
+                    "task_make_move"
+                  ],
+                  "details": {
+                    "source": "task_get_legal_moves",
+                    "target": "task_make_move"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "tool_board_proxy_default_auto_reply",
+                  "important": false,
+                  "aliases": [
+                    "tool_board_proxy_default_auto_reply",
+                    "default_auto_reply",
+                    "please_make_a_move",
+                    "default_auto_reply_please_make_a_move"
+                  ],
+                  "details": {
+                    "key": "default_auto_reply",
+                    "owner": "board_proxy",
+                    "owner_category": "tool",
+                    "value": "Please make a move."
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "tool_board_proxy_human_input_mode",
+                  "important": false,
+                  "aliases": [
+                    "tool_board_proxy_human_input_mode",
+                    "human_input_mode",
+                    "never",
+                    "human_input_mode_never"
+                  ],
+                  "details": {
+                    "key": "human_input_mode",
+                    "owner": "board_proxy",
+                    "owner_category": "tool",
+                    "value": "NEVER"
+                  }
+                },
+                {
+                  "category": "tool_capability",
+                  "name": "tool_get_legal_moves_capability_request_legal_moves",
+                  "important": false,
+                  "aliases": [
+                    "tool_get_legal_moves_capability_request_legal_moves",
+                    "tool_get_legal_moves",
+                    "capability_request_legal_moves"
+                  ],
+                  "details": {
+                    "source": "tool_get_legal_moves",
+                    "target": "capability_request_legal_moves"
+                  }
+                },
+                {
+                  "category": "tool_capability",
+                  "name": "tool_make_move_capability_make_move",
+                  "important": false,
+                  "aliases": [
+                    "tool_make_move_capability_make_move",
+                    "tool_make_move",
+                    "capability_make_move"
+                  ],
+                  "details": {
+                    "source": "tool_make_move",
+                    "target": "capability_make_move"
+                  }
+                },
+                {
+                  "category": "workflow",
+                  "name": "workflow_pattern_conversational_chess",
+                  "important": true,
+                  "aliases": [
+                    "workflow_pattern_conversational_chess",
+                    "conversational_chess_workflow_pattern"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "language_model",
+                  "name": "gpt_4o_mini_language_model",
+                  "important": false,
+                  "aliases": [
+                    "gpt_4o_mini_language_model",
+                    "lm_gpt_4_turbo"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "capability",
+                  "name": "capability_play_chess",
+                  "important": false,
+                  "aliases": [
+                    "capability_play_chess",
+                    "play_chess"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "capability",
+                  "name": "capability_request_legal_moves",
+                  "important": false,
+                  "aliases": [
+                    "capability_request_legal_moves",
+                    "request_legal_moves"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "environment",
+                  "name": "chess_environment",
+                  "important": false,
+                  "aliases": [
+                    "chess_environment"
+                  ],
+                  "details": {}
+                }
+              ],
+              "by_category": {
+                "agent": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "agent_capability": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 6
+                },
+                "agent_llm": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 2
+                },
+                "capability": {
+                  "score": 0.3333333333333333,
+                  "matched": 1,
+                  "total": 3
+                },
+                "config": {
+                  "score": 0.6923076923076923,
+                  "matched": 9,
+                  "total": 13
+                },
+                "environment": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "language_model": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "project": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "resource": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "step_task": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "task": {
+                  "score": 0.6666666666666666,
+                  "matched": 2,
+                  "total": 3
+                },
+                "task_context": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "task_produces": {
+                  "score": 0.6666666666666666,
+                  "matched": 2,
+                  "total": 3
+                },
+                "task_requires": {
+                  "score": 0.5,
+                  "matched": 1,
+                  "total": 2
+                },
+                "tool": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                },
+                "tool_capability": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 2
+                },
+                "workflow": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "workflow_step": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                }
+              }
+            },
+            "important_subset": {
+              "score": 0.8125,
+              "matched": 13,
+              "total": 16,
+              "missing": [
+                {
+                  "category": "task",
+                  "name": "task_get_legal_moves",
+                  "important": true,
+                  "aliases": [
+                    "task_get_legal_moves"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_context",
+                  "name": "task_get_legal_moves_task_make_move",
+                  "important": true,
+                  "aliases": [
+                    "task_get_legal_moves_task_make_move",
+                    "task_get_legal_moves",
+                    "task_make_move"
+                  ],
+                  "details": {
+                    "source": "task_get_legal_moves",
+                    "target": "task_make_move"
+                  }
+                },
+                {
+                  "category": "workflow",
+                  "name": "workflow_pattern_conversational_chess",
+                  "important": true,
+                  "aliases": [
+                    "workflow_pattern_conversational_chess",
+                    "conversational_chess_workflow_pattern"
+                  ],
+                  "details": {}
+                }
+              ],
+              "by_category": {
+                "agent": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "config": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "step_task": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "task": {
+                  "score": 0.6666666666666666,
+                  "matched": 2,
+                  "total": 3
+                },
+                "task_context": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "tool": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                },
+                "workflow": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "workflow_step": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                }
+              }
+            }
+          },
+          "wgi": {
+            "score": 1.0,
+            "normalized_graph_edit_distance": 0.0,
+            "labeled_score": 1.0,
+            "topology_score": 1.0,
+            "labeled_normalized_graph_edit_distance": 0.0,
+            "topology_normalized_graph_edit_distance": 0.0,
+            "exact_isomorphic": true,
+            "topology_isomorphic": true,
+            "edge_precision": 1.0,
+            "edge_recall": 1.0,
+            "edge_f1": 1.0,
+            "kg_nodes": [
+              "task_initiate_chat_black_white",
+              "task_make_move"
+            ],
+            "code_nodes": [
+              "task_initiate_chat_black_white",
+              "task_make_move"
+            ],
+            "kg_edges": [
+              {
+                "source": "task_initiate_chat_black_white",
+                "target": "task_make_move"
+              },
+              {
+                "source": "task_make_move",
+                "target": "task_make_move"
+              }
+            ],
+            "code_edges": [
+              {
+                "source": "task_initiate_chat_black_white",
+                "target": "task_make_move"
+              },
+              {
+                "source": "task_make_move",
+                "target": "task_make_move"
+              }
+            ],
+            "missing_nodes": [],
+            "extra_nodes": [],
+            "missing_edges": [],
+            "extra_edges": []
+          },
+          "syntax_ok": true,
+          "run_status": "SUCCESS_DUMMY",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.5238095238095238
+        },
+        {
+          "project": "L5_Coding_and_Financial_Analysis",
+          "kg_path": "/Users/ravie/dev/agento/kgs_original/AutoGen/L5_Coding_and_Financial_Analysis_instances.ttl",
+          "output_dir": "/Users/ravie/dev/agento/output_files/output_autogen/L5_Coding_and_Financial_Analysis",
+          "status": "error",
+          "error": "at line 105 of <>:\nBad syntax (expected '.' or '}' or ']' at end of statement) at ^ in:\n\"...b'e inserted at runtime (placeholder {today} preserved here).\"'^b'\"\" ;\\n    rdfs:label \"\"\"Stock analysis task prompt\"\"\" .\\n\\n:cod'...\""
+        },
+        {
+          "project": "L6-Planning_and_Stock_Report_Generation",
+          "kg_path": "/Users/ravie/dev/agento/kgs_original/AutoGen/L6-Planning_and_Stock_Report_Generation_instances.ttl",
+          "output_dir": "/Users/ravie/dev/agento/output_files/output_autogen/L6-Planning_and_Stock_Report_Generation",
+          "status": "error",
+          "error": "at line 369 of <>:\nBad syntax (objectList expected) at ^ in:\n\"...b'iter), their responsibilities, and the artifacts exchanged.\"'^b' .\\n\\n:GroupChatTeam \"Team modeled for the notebook group chat'...\""
+        }
+      ]
+    }
+  ]
+}

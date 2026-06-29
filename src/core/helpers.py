@@ -49,8 +49,17 @@ def extract_placeholders(text: str) -> List[str]:
     return list(dict.fromkeys(re.findall(r"\{(\w+)\}", text)))
 
 
+from .normalizer import normalize_ttl
+
+
 def load_graph(file_path: str) -> Graph:
-    """Parse a Turtle (.ttl) file into an rdflib Graph."""
+    """Parse a Turtle (.ttl) file into an rdflib Graph after normalizing its content."""
+    with open(file_path, "r", encoding="utf-8") as f:
+        content = f.read()
+        
+    normalized_content = normalize_ttl(content)
+    
     g = Graph()
-    g.parse(file_path, format="turtle")
+    g.parse(data=normalized_content, format="turtle")
     return g
+

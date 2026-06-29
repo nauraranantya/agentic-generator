@@ -9,7 +9,7 @@ from __future__ import annotations
 import re
 from typing import Dict, List, Optional
 
-from ...core.models import AgenticProject, WorkflowStepModel
+from ...core.models import AgenticProject, TaskModel, WorkflowStepModel
 from .models import CrewProject, ProcessType
 
 
@@ -23,6 +23,35 @@ def _infer_process(project: AgenticProject) -> ProcessType:
         if workflow.workflow_type.value == "hierarchical":
             return ProcessType.HIERARCHICAL
     return ProcessType.SEQUENTIAL
+
+
+def _topological_sort_tasks(tasks: List[TaskModel]) -> List[TaskModel]:
+    """Sort tasks topologically so that dependencies appear before the tasks that require them."""
+    tasks_by_var = {t.var_name: t for t in tasks}
+    visited = {}
+    sorted_tasks = []
+
+    def visit(task_var: str):
+        if visited.get(task_var) == "visiting":
+            # Cycle detected; break recursion to avoid infinite loop
+            return
+        if visited.get(task_var) == "visited":
+            return
+
+        visited[task_var] = "visiting"
+        task = tasks_by_var.get(task_var)
+        if task:
+            for dep_var in task.context_task_var_names:
+                visit(dep_var)
+
+        visited[task_var] = "visited"
+        if task and task not in sorted_tasks:
+            sorted_tasks.append(task)
+
+    for task in tasks:
+        visit(task.var_name)
+
+    return sorted_tasks
 
 
 def _flatten_workflow_steps(project: AgenticProject) -> List[WorkflowStepModel]:
@@ -173,6 +202,7 @@ def adapt(project: AgenticProject) -> CrewProject:
     }
 
     workflow_steps = _flatten_workflow_steps(project)
+    sorted_tasks = _topological_sort_tasks(project.tasks)
 
     return CrewProject(
         crew_name=project.name,
@@ -180,7 +210,7 @@ def adapt(project: AgenticProject) -> CrewProject:
         description=project.description,
         process=_infer_process(project),
         agents=project.agents,
-        tasks=project.tasks,
+        tasks=sorted_tasks,
         tools=project.tools,
         workflow_steps=workflow_steps,
         agent_allow_delegation=agent_allow_delegation,

@@ -3,7 +3,7 @@ code_task:
     You will create a game using python, these are the instructions:
 
     Instructions
-    ------------
+    # ------------
     {game}
   expected_output: Your Final answer must be the full python code, only the python
     code and nothing else.
@@ -12,7 +12,7 @@ review_task:
     You will create a game using python, these are the instructions:
 
     Instructions
-    ------------
+    # ------------
     {game}
 
     Using the code you got, check for errors. Check for logic errors,
@@ -25,7 +25,7 @@ evaluate_task:
     You are helping create a game using python, these are the instructions:
 
     Instructions
-    ------------
+    # ------------
     {game}
 
     You will look over the code to insure that it is complete and

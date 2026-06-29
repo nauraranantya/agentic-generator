@@ -122,26 +122,10 @@ class CopyCrew:
         )
 
     @task
-    def task_take_photograph(self) -> Task:
-        return Task(
-            config=self.tasks_config['task_take_photograph'],
-            agent=self.senior_photographer_agent(),
-            context=[self.task_instagram_ad_copy(), self.task_product_analysis()],
-        )
-
-    @task
     def task_competitor_analysis(self) -> Task:
         return Task(
             config=self.tasks_config['task_competitor_analysis'],
             agent=self.product_competitor_agent(),
-        )
-
-    @task
-    def task_review_photo(self) -> Task:
-        return Task(
-            config=self.tasks_config['task_review_photo'],
-            agent=self.chief_creative_director_agent(),
-            context=[self.task_take_photograph(), self.task_product_analysis()],
         )
 
     @task
@@ -158,6 +142,22 @@ class CopyCrew:
             config=self.tasks_config['task_instagram_ad_copy'],
             agent=self.creative_content_creator_agent(),
             context=[self.task_campaign_development()],
+        )
+
+    @task
+    def task_take_photograph(self) -> Task:
+        return Task(
+            config=self.tasks_config['task_take_photograph'],
+            agent=self.senior_photographer_agent(),
+            context=[self.task_instagram_ad_copy(), self.task_product_analysis()],
+        )
+
+    @task
+    def task_review_photo(self) -> Task:
+        return Task(
+            config=self.tasks_config['task_review_photo'],
+            agent=self.chief_creative_director_agent(),
+            context=[self.task_take_photograph(), self.task_product_analysis()],
         )
 
     # ── Crew ────────────────────────────────────────────

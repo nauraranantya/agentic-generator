@@ -7,7 +7,7 @@ Goals:
   - Markdown validation crew goal: Provide a detailed list of the markdown linting results. Give a summary with actionable tasks to address the validation results. Write your response as if you were handing it to a developer to fix the issues. DO NOT provide examples of how to fix the issues or recommend other tools to use.
   - Requirements Manager goal: Provide a detailed list of the markdown linting results. Give a summary with actionable tasks to address the validation results. Write your response as if you were handing it to a developer to fix the issues. DO NOT provide examples of how to fix the issues or recommend other tools to use.
 Resources:
-  - Markdown validation report (tool output): Formatted string of validation results returned by markdown_validation_tool. Example output forms: 'No markdown validation issues found.' or a newline-separated list of detected rule violations with file, line, rule id, rule name and description.
+  - Markdown validation report (tool output): Formatted string of validation results returned by markdown_validation_tool. Example output forms: '''No markdown validation issues found.''' or a newline-separated list of detected rule violations with file, line, rule id, rule name and description.
   - PyMarkdownApi: The PyMarkdownApi library instance invoked by the tool implementation. The tool calls PyMarkdownApi().scan_path(file_path) to perform the scan and returns a formatted summary.
   - Input markdown file (CLI filename): The file path provided via command-line to the CLI (sys.argv[1] when running). The task expects only the file path string (filename) to be passed to the markdown_validation_tool.
 """
@@ -24,7 +24,7 @@ from crewai.tools import tool
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
 @tool("markdownvalidationtool")
 def markdown_validation_tool(*args, **kwargs) -> str:
-    """Tool definition (from src/markdown_validator/tools/markdownTools.py): - Tool name registered as 'mar"""
+    """Tool definition (from src/markdown_validator/tools/markdownTools.py): - Tool name registered as '''m"""
     return "markdown_validation_tool result"
 
 

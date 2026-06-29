@@ -144,22 +144,6 @@ class ExpandIdeaCrewteam:
         )
 
     @task
-    def choose_template_task(self) -> Task:
-        return Task(
-            config=self.tasks_config['choose_template_task'],
-            agent=self.senior_react_engineer(),
-            context=[self.refine_idea_task()],
-        )
-
-    @task
-    def component_content_task(self) -> Task:
-        return Task(
-            config=self.tasks_config['component_content_task'],
-            agent=self.senior_content_editor(),
-            context=[self.refine_idea_task(), self.update_page_task()],
-        )
-
-    @task
     def refine_idea_task(self) -> Task:
         return Task(
             config=self.tasks_config['refine_idea_task'],
@@ -168,11 +152,27 @@ class ExpandIdeaCrewteam:
         )
 
     @task
+    def choose_template_task(self) -> Task:
+        return Task(
+            config=self.tasks_config['choose_template_task'],
+            agent=self.senior_react_engineer(),
+            context=[self.refine_idea_task()],
+        )
+
+    @task
     def update_page_task(self) -> Task:
         return Task(
             config=self.tasks_config['update_page_task'],
             agent=self.senior_react_engineer(),
             context=[self.choose_template_task()],
+        )
+
+    @task
+    def component_content_task(self) -> Task:
+        return Task(
+            config=self.tasks_config['component_content_task'],
+            agent=self.senior_content_editor(),
+            context=[self.refine_idea_task(), self.update_page_task()],
         )
 
     @task

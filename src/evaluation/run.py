@@ -25,22 +25,39 @@ def main() -> None:
     configs = framework_configs(root)
 
     selected = [args.framework] if args.framework != "all" else list(configs.keys())
-    results = {"root": str(root), "frameworks": []}
+    base_output_dir = args.output_dir.resolve()
+    
+    all_framework_results = []
 
     for key in selected:
         config = configs[key]
         framework_result = _evaluate_framework(key, config)
-        results["frameworks"].append(framework_result)
+        all_framework_results.append(framework_result)
+        
+        framework_output_dir = base_output_dir / key
+        framework_output_dir.mkdir(parents=True, exist_ok=True)
+        
+        json_path = framework_output_dir / "oec_wgi_results.json"
+        md_path = framework_output_dir / "oec_wgi_results.md"
+        
+        results = {"root": str(root), "frameworks": [framework_result]}
+        json_path.write_text(json.dumps(results, indent=2), encoding="utf-8")
+        md_path.write_text(render_markdown(results), encoding="utf-8")
 
-    output_dir = args.output_dir.resolve()
-    output_dir.mkdir(parents=True, exist_ok=True)
-    json_path = output_dir / "oec_wgi_results.json"
-    md_path = output_dir / "oec_wgi_results.md"
-    json_path.write_text(json.dumps(results, indent=2), encoding="utf-8")
-    md_path.write_text(render_markdown(results), encoding="utf-8")
+        print(f"Evaluation for {config.name} written to {json_path}")
+        print(f"Report for {config.name} written to {md_path}")
 
-    print(f"Evaluation written to {json_path}")
-    print(f"Report written to {md_path}")
+    if args.framework == "all":
+        base_output_dir.mkdir(parents=True, exist_ok=True)
+        json_path = base_output_dir / "oec_wgi_results.json"
+        md_path = base_output_dir / "oec_wgi_results.md"
+        
+        combined_results = {"root": str(root), "frameworks": all_framework_results}
+        json_path.write_text(json.dumps(combined_results, indent=2), encoding="utf-8")
+        md_path.write_text(render_markdown(combined_results), encoding="utf-8")
+
+        print(f"Combined evaluation written to {json_path}")
+        print(f"Combined report written to {md_path}")
 
 
 def _evaluate_framework(key: str, config) -> Dict[str, object]:

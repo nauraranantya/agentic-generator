@@ -10,14 +10,14 @@ Objectives:
 Resources:
   - DefaultInputs for JobPostingCrew: Example input values used for kickoff/train:
 - company_domain: careers.wbd.com
-- company_description: Warner Bros. Discovery is a premier global media and entertainment company, offering audiences the world’s most differentiated and complete portfolio of content, brands and franchises across television, film, sports, news, streaming and gaming. We're home to the world’s best storytellers, creating world-class products for consumers
+- company_description: Warner Bros. Discovery is a premier global media and entertainment company, offering audiences the world’s most differentiated and complete portfolio of content, brands and franchises across television, film, sports, news, streaming and gaming. We'''re home to the world’s best storytellers, creating world-class products for consumers
 - hiring_needs: Production Assistant, for a TV production set in Los Angeles in June 2025
 - specific_benefits: Weekly Pay, Employee Meals, healthcare
 These are preserved as the default input bundle used to initiate the crew."
   - job_description_example.md: # Amazing Job Description Example
 
 ## Company Overview
-At InnovateTech, we're at the forefront of digital transformation, leveraging cutting-edge technologies to create impactful solutions. Our culture thrives on innovation, collaboration, and a commitment to excellence. Join us to be a part of a dynamic team shaping the future of tech.
+At InnovateTech, we'''re at the forefront of digital transformation, leveraging cutting-edge technologies to create impactful solutions. Our culture thrives on innovation, collaboration, and a commitment to excellence. Join us to be a part of a dynamic team shaping the future of tech.
 
 ## Job Title: Senior Software Engineer
 
@@ -25,7 +25,7 @@ At InnovateTech, we're at the forefront of digital transformation, leveraging cu
 Remote - Global Team
 
 ### Job Summary
-As a Senior Software Engineer at InnovateTech, you'll lead the development of scalable software solutions that revolutionize how businesses interact with technology. You'll collaborate with cross-functional teams to drive projects from conception to deployment, ensuring high-quality and innovative outcomes.
+As a Senior Software Engineer at InnovateTech, you'''ll lead the development of scalable software solutions that revolutionize how businesses interact with technology. You'''ll collaborate with cross-functional teams to drive projects from conception to deployment, ensuring high-quality and innovative outcomes.
 
 ### Responsibilities
 - Design, develop, and implement high-quality software solutions that align with our strategic direction.
@@ -35,7 +35,7 @@ As a Senior Software Engineer at InnovateTech, you'll lead the development of sc
 - Stay abreast of industry trends and emerging technologies to incorporate best practices into our workflows.
 
 ### Requirements
-- Bachelor's degree in Computer Science, Engineering, or related field.
+- Bachelor'''s degree in Computer Science, Engineering, or related field.
 - 5+ years of experience in software development, with a strong background in [Specific Technology/Programming Language].
 - Proven track record of leading successful projects from inception to completion.
 - Excellent problem-solving skills and a passion for technology.
@@ -51,9 +51,9 @@ As a Senior Software Engineer at InnovateTech, you'll lead the development of sc
 - Inclusive and dynamic work culture.
 
 ### How to Apply
-Please submit your resume, cover letter, and any relevant portfolio links to careers@innovatetech.com with the subject "Senior Software Engineer Application". We're excited to hear from you!
+Please submit your resume, cover letter, and any relevant portfolio links to careers@innovatetech.com with the subject "Senior Software Engineer Application". We'''re excited to hear from you!
 
----
+# ---
 
 InnovateTech is an equal opportunity employer. We celebrate diversity and are committed to creating an inclusive environment for all employees.
   - draft_job_posting.md: Draft job posting produced by DraftJobPostingTask; initial markdown draft.
