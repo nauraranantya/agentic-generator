@@ -130,10 +130,16 @@ def _extract_typescript_elements(text: str, framework: str) -> List[EvaluationEl
             if not any(fn_name == e.name for e in elements if e.category == "workflow_step"):
                 elements.append(_element("tool", fn_name, important=True))
 
-        # Detect the workflow itself from new StateGraph(...) instantiation
-        for _ in re.finditer(r"new\s+StateGraph\s*\(", text):
-            elements.append(_element("workflow", "workflow", important=True))
-            break  # Only one workflow per file expected
+        # Detect the workflow itself from compilation or new StateGraph(...) instantiation
+        matched_wf = False
+        for match in re.finditer(r"(?:export\s+)?(?:const|let|var)\s+([a-zA-Z0-9_]+)\s*=\s*(?:[a-zA-Z0-9_]+)\.compile\s*\(", text):
+            elements.append(_element("workflow", match.group(1), important=True))
+            matched_wf = True
+            break
+        if not matched_wf:
+            for _ in re.finditer(r"new\s+StateGraph\s*\(", text):
+                elements.append(_element("workflow", "workflow", important=True))
+                break
 
     return elements
 

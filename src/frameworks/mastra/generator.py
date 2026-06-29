@@ -320,6 +320,7 @@ def generate_project(project: MastraProject, output_dir: str) -> str:
     _generate_agent_files(project, mastra_dir / "agents")
     _generate_tool_files(project, mastra_dir / "tools")
     _generate_workflow_files(project, mastra_dir / "workflows")
+    _generate_ad_hoc_tasks(project, mastra_dir / "workflows")
     _generate_agents_index(project, mastra_dir / "agents")
     _generate_tools_index(project, mastra_dir / "tools")
     _generate_workflows_index(project, mastra_dir / "workflows")
@@ -601,3 +602,23 @@ def _generate_readme(project: MastraProject, project_dir: Path) -> None:
     )
     
     (project_dir / "README.md").write_text(content, encoding="utf-8")
+
+
+def _generate_ad_hoc_tasks(project: MastraProject, workflows_dir: Path) -> None:
+    """Generate standalone ad-hoc tasks as createStep steps."""
+    workflow_task_iris = set()
+    for wf in project.workflows:
+        for step in wf.steps:
+            if step.task_iri:
+                workflow_task_iris.add(step.task_iri)
+
+    ad_hoc_tasks = [
+        task for task in project.tasks
+        if task.iri not in workflow_task_iris
+    ]
+
+    # Always write the file (it will be empty of steps if there are no ad-hoc tasks)
+    env = _create_jinja_env()
+    template = env.get_template("ad_hoc_tasks.ts.j2")
+    content = template.render(tasks=ad_hoc_tasks)
+    (workflows_dir / "ad_hoc_tasks.ts").write_text(content, encoding="utf-8")

@@ -25,12 +25,17 @@ RELATION_CATEGORIES = {
 }
 
 
+import re
+
 def calculate_oec(kg: ExtractionResult, code: ExtractionResult) -> Dict[str, object]:
     all_elements = kg.elements
     important_elements = [element for element in kg.elements if element.important]
 
-    all_result = _score_elements(all_elements, code)
-    important_result = _score_elements(important_elements, code)
+    raw_words = re.findall(r"[a-zA-Z0-9]+", code.source_text or "")
+    source_words = [w.lower() for w in raw_words if w]
+
+    all_result = _score_elements(all_elements, code, source_words)
+    important_result = _score_elements(important_elements, code, source_words)
 
     return {
         "all_extracted": all_result,
@@ -38,7 +43,7 @@ def calculate_oec(kg: ExtractionResult, code: ExtractionResult) -> Dict[str, obj
     }
 
 
-def _score_elements(expected: List[EvaluationElement], code: ExtractionResult) -> Dict[str, object]:
+def _score_elements(expected: List[EvaluationElement], code: ExtractionResult, source_words: List[str]) -> Dict[str, object]:
     matched = []
     missing = []
     category_totals: Counter[str] = Counter()
@@ -50,7 +55,7 @@ def _score_elements(expected: List[EvaluationElement], code: ExtractionResult) -
 
     for element in expected:
         category_totals[element.category] += 1
-        if _is_matched(element, code_index, source_tokens):
+        if _is_matched(element, code_index, source_tokens, source_words):
             matched.append(_element_payload(element))
             category_matched[element.category] += 1
         else:
@@ -75,7 +80,17 @@ def _code_index(code: ExtractionResult) -> Dict[str, Set[str]]:
     return index
 
 
-def _is_matched(element: EvaluationElement, code_index: Dict[str, Set[str]], source_tokens: Set[str]) -> bool:
+def _is_subsegment(sub: List[str], parent: List[str]) -> bool:
+    if not sub:
+        return False
+    n = len(sub)
+    for i in range(len(parent) - n + 1):
+        if parent[i:i+n] == sub:
+            return True
+    return False
+
+
+def _is_matched(element: EvaluationElement, code_index: Dict[str, Set[str]], source_tokens: Set[str], source_words: List[str]) -> bool:
     aliases = {element.name, *element.aliases}
     aliases = {normalize_name(alias) for alias in aliases if normalize_name(alias)}
 
@@ -86,8 +101,18 @@ def _is_matched(element: EvaluationElement, code_index: Dict[str, Set[str]], sou
     if aliases & category_names:
         return True
 
-    # Fallback: generated scripts often preserve ontology labels in comments/YAML/docstrings.
-    return any(alias in source_tokens for alias in aliases)
+    # Fallback 1: exact token matching
+    if any(alias in source_tokens for alias in aliases):
+        return True
+
+    # Fallback 2: space/underscore-insensitive contiguous phrase matching
+    for alias in aliases:
+        # Split alias into alphanumeric parts
+        alias_words = [w.lower() for w in re.split(r"[^a-zA-Z0-9]+", alias) if w]
+        if alias_words and _is_subsegment(alias_words, source_words):
+            return True
+
+    return False
 
 
 def _relation_is_matched(element: EvaluationElement, source_tokens: Set[str]) -> bool:

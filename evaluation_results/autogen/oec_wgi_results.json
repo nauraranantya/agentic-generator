@@ -10,13 +10,13 @@
         "projects": 6,
         "evaluated": 6,
         "errors": 0,
-        "avg_oec_all": 0.4962796660952939,
+        "avg_oec_all": 0.5464835486433379,
         "avg_oec_important": 0.9100602210856295,
         "avg_wgi": 0.8333333333333334,
         "avg_edge_f1": 0.8333333333333334,
         "avg_ast_sim": 0.46530447536639485,
         "syntax_success_rate": 1.0,
-        "run_success_rate": 1.0
+        "run_success_rate": 0.0
       },
       "projects": [
         {
@@ -271,8 +271,8 @@
             ]
           },
           "syntax_ok": true,
-          "run_status": "SUCCESS_DUMMY",
-          "run_output": "",
+          "run_status": "IMPORT_ERROR",
+          "run_output": "    ...<2 lines>...\n    )\n  File \"/Users/ravie/dev/agento/output_files/output_autogen/L1_Multi-Agent_Conversation_and_Stand-up_Comedy/team.py\", line 2, in <module>\n    from autogen_agentchat.agents import AssistantAgent\nModuleNotFoundError: No module named 'autogen_agentchat'",
           "gt_found": true,
           "ast_sim": 0.5
         },
@@ -657,8 +657,8 @@
             "extra_edges": []
           },
           "syntax_ok": true,
-          "run_status": "SUCCESS_DUMMY",
-          "run_output": "",
+          "run_status": "IMPORT_ERROR",
+          "run_output": "    ...<4 lines>...\n    )\n  File \"/Users/ravie/dev/agento/output_files/output_autogen/L2_Sequential_Chats_and_Customer_Onboarding/team.py\", line 9, in <module>\n    from autogen_agentchat.agents import AssistantAgent\nModuleNotFoundError: No module named 'autogen_agentchat'",
           "gt_found": true,
           "ast_sim": 0.42857142857142855
         },
@@ -671,8 +671,8 @@
           "code_element_count": 6,
           "oec": {
             "all_extracted": {
-              "score": 0.49019607843137253,
-              "matched": 25,
+              "score": 0.5882352941176471,
+              "matched": 30,
               "total": 51,
               "missing": [
                 {
@@ -939,56 +939,6 @@
                     "objective_blogpost"
                   ],
                   "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "resource_blogpost_draft",
-                  "important": false,
-                  "aliases": [
-                    "resource_blogpost_draft",
-                    "blogpost_draft_resource"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "resource_seo_review",
-                  "important": false,
-                  "aliases": [
-                    "resource_seo_review",
-                    "seo_review_resource"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "resource_legal_review",
-                  "important": false,
-                  "aliases": [
-                    "resource_legal_review",
-                    "legal_review_resource"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "resource_ethics_review",
-                  "important": false,
-                  "aliases": [
-                    "resource_ethics_review",
-                    "ethics_review_resource"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "resource_meta_suggestion",
-                  "important": false,
-                  "aliases": [
-                    "resource_meta_suggestion",
-                    "meta_reviewer_suggestion_resource"
-                  ],
-                  "details": {}
                 }
               ],
               "by_category": {
@@ -1028,8 +978,8 @@
                   "total": 1
                 },
                 "resource": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 5,
                   "total": 5
                 },
                 "step_task": {
@@ -1223,8 +1173,8 @@
             "extra_edges": []
           },
           "syntax_ok": true,
-          "run_status": "SUCCESS_DUMMY",
-          "run_output": "",
+          "run_status": "IMPORT_ERROR",
+          "run_output": "    ...<6 lines>...\n    )\n  File \"/Users/ravie/dev/agento/output_files/output_autogen/L3_Reflection_and_Blogpost_Writing/team.py\", line 15, in <module>\n    from autogen_agentchat.agents import AssistantAgent\nModuleNotFoundError: No module named 'autogen_agentchat'",
           "gt_found": true,
           "ast_sim": 0.47368421052631576
         },
@@ -1237,8 +1187,8 @@
           "code_element_count": 5,
           "oec": {
             "all_extracted": {
-              "score": 0.52,
-              "matched": 26,
+              "score": 0.56,
+              "matched": 28,
               "total": 50,
               "missing": [
                 {
@@ -1531,30 +1481,11 @@
                 },
                 {
                   "category": "capability",
-                  "name": "capability_play_chess",
-                  "important": false,
-                  "aliases": [
-                    "capability_play_chess",
-                    "play_chess"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "capability",
                   "name": "capability_request_legal_moves",
                   "important": false,
                   "aliases": [
                     "capability_request_legal_moves",
                     "request_legal_moves"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "environment",
-                  "name": "chess_environment",
-                  "important": false,
-                  "aliases": [
-                    "chess_environment"
                   ],
                   "details": {}
                 }
@@ -1576,8 +1507,8 @@
                   "total": 2
                 },
                 "capability": {
-                  "score": 0.3333333333333333,
-                  "matched": 1,
+                  "score": 0.6666666666666666,
+                  "matched": 2,
                   "total": 3
                 },
                 "config": {
@@ -1586,8 +1517,8 @@
                   "total": 13
                 },
                 "environment": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "language_model": {
@@ -1781,8 +1712,8 @@
             "extra_edges": []
           },
           "syntax_ok": true,
-          "run_status": "SUCCESS_DUMMY",
-          "run_output": "",
+          "run_status": "IMPORT_ERROR",
+          "run_output": "    ...<2 lines>...\n    )\n  File \"/Users/ravie/dev/agento/output_files/output_autogen/L4_Tool_Use_and_Conversational_Chess/team.py\", line 2, in <module>\n    from autogen_agentchat.agents import AssistantAgent\nModuleNotFoundError: No module named 'autogen_agentchat'",
           "gt_found": true,
           "ast_sim": 0.5238095238095238
         },
@@ -1795,8 +1726,8 @@
           "code_element_count": 3,
           "oec": {
             "all_extracted": {
-              "score": 0.4666666666666667,
-              "matched": 14,
+              "score": 0.6,
+              "matched": 18,
               "total": 30,
               "missing": [
                 {
@@ -1979,45 +1910,6 @@
                     "gpt4_turbo_model"
                   ],
                   "details": {}
-                },
-                {
-                  "category": "goal",
-                  "name": "lesson_goal",
-                  "important": false,
-                  "aliases": [
-                    "lesson_goal",
-                    "lesson_5_coding_and_financial_analysis_goal"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "objective",
-                  "name": "produce_stock_plot_objective",
-                  "important": false,
-                  "aliases": [
-                    "produce_stock_plot_objective",
-                    "produce_stock_gain_ytd_plot_objective"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "ytd_stock_gains_png",
-                  "important": false,
-                  "aliases": [
-                    "ytd_stock_gains_png"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "chat_session_1",
-                  "important": false,
-                  "aliases": [
-                    "chat_session_1",
-                    "chat_result_chat_session_artifact"
-                  ],
-                  "details": {}
                 }
               ],
               "by_category": {
@@ -2047,8 +1939,8 @@
                   "total": 9
                 },
                 "goal": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "input_variable": {
@@ -2062,8 +1954,8 @@
                   "total": 1
                 },
                 "objective": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "project": {
@@ -2072,8 +1964,8 @@
                   "total": 1
                 },
                 "resource": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 2,
                   "total": 2
                 },
                 "step_task": {
@@ -2214,8 +2106,8 @@
             "extra_edges": []
           },
           "syntax_ok": true,
-          "run_status": "SUCCESS_DUMMY",
-          "run_output": "",
+          "run_status": "IMPORT_ERROR",
+          "run_output": "    ...<2 lines>...\n    )\n  File \"/Users/ravie/dev/agento/output_files/output_autogen/L5_Coding_and_Financial_Analysis/team.py\", line 12, in <module>\n    from autogen_agentchat.agents import AssistantAgent\nModuleNotFoundError: No module named 'autogen_agentchat'",
           "gt_found": true,
           "ast_sim": 0.5128205128205128
         },
@@ -2228,8 +2120,8 @@
           "code_element_count": 6,
           "oec": {
             "all_extracted": {
-              "score": 0.6268656716417911,
-              "matched": 42,
+              "score": 0.6567164179104478,
+              "matched": 44,
               "total": 67,
               "missing": [
                 {
@@ -2544,24 +2436,6 @@
                     "execution_result"
                   ],
                   "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "blog_draft",
-                  "important": false,
-                  "aliases": [
-                    "blog_draft"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "blog_draft_refined",
-                  "important": false,
-                  "aliases": [
-                    "blog_draft_refined"
-                  ],
-                  "details": {}
                 }
               ],
               "by_category": {
@@ -2616,8 +2490,8 @@
                   "total": 1
                 },
                 "resource": {
-                  "score": 0.2,
-                  "matched": 1,
+                  "score": 0.6,
+                  "matched": 3,
                   "total": 5
                 },
                 "step_task": {
@@ -2814,8 +2688,8 @@
             "extra_edges": []
           },
           "syntax_ok": true,
-          "run_status": "SUCCESS_DUMMY",
-          "run_output": "",
+          "run_status": "IMPORT_ERROR",
+          "run_output": "    ...<5 lines>...\n    )\n  File \"/Users/ravie/dev/agento/output_files/output_autogen/L6-Planning_and_Stock_Report_Generation/team.py\", line 17, in <module>\n    from autogen_agentchat.agents import AssistantAgent\nModuleNotFoundError: No module named 'autogen_agentchat'",
           "gt_found": true,
           "ast_sim": 0.35294117647058826
         }

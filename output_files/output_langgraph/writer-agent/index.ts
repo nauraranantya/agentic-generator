@@ -1,6 +1,7 @@
 import { ChatAnthropic } from "@langchain/anthropic";
 import { Annotation, START, END, StateGraph } from "@langchain/langgraph";
-
+import { tool } from "@langchain/core/tools";
+import { z } from "zod";
 
 const UnnamedProjectAnnotation = Annotation.Root({
   messages: Annotation<any[]>({
@@ -9,40 +10,68 @@ const UnnamedProjectAnnotation = Annotation.Root({
   }),
 });
 
-async function prepare(state: typeof UnnamedProjectAnnotation.State) {
+// Tool: draft_text_document_tool
+const draft_text_document_tool = tool(
+  async () => {
+    return "Result of draft_text_document_tool";
+  },
+  {
+    name: "draft_text_document_tool",
+    description: "Prepare a text document for the user with a short title and short description for browsing purposes. Can be also used when creating a new version of the document.",
+    schema: z.object({}),
+  }
+);
+
+
+
+/**
+ * Node: prepareTask
+ * Agent: writer_annotation_agent_uuid_1
+ */
+async function prepareTask(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatAnthropic({ model: "claude-3-5-sonnet-latest" });
   const response = await model.invoke([
     {
       role: "system",
       content:
         "You are a annotation-driven writer." +
-        "\\nNode: prepare",
+        "\\nNode: prepareTask",
     },
     ...state.messages,
   ]);
   return { messages: [response] };
 }
-async function writer(state: typeof UnnamedProjectAnnotation.State) {
+
+/**
+ * Node: writeTask
+ * Agent: writer_annotation_agent_uuid_1
+ */
+async function writeTask(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatAnthropic({ model: "claude-3-5-sonnet-latest" });
   const response = await model.invoke([
     {
       role: "system",
       content:
         "You are a annotation-driven writer." +
-        "\\nNode: writer",
+        "\\nNode: writeTask",
     },
     ...state.messages,
   ]);
   return { messages: [response] };
 }
-async function suggestions(state: typeof UnnamedProjectAnnotation.State) {
+
+/**
+ * Node: suggestionsTask
+ * Agent: writer_annotation_agent_uuid_1
+ */
+async function suggestionsTask(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatAnthropic({ model: "claude-3-5-sonnet-latest" });
   const response = await model.invoke([
     {
       role: "system",
       content:
         "You are a annotation-driven writer." +
-        "\\nNode: suggestions",
+        "\\nNode: suggestionsTask",
     },
     ...state.messages,
   ]);
@@ -50,13 +79,13 @@ async function suggestions(state: typeof UnnamedProjectAnnotation.State) {
 }
 
 const workflow = new StateGraph(UnnamedProjectAnnotation)
-  .addNode("prepare", prepare)
-  .addNode("writer", writer)
-  .addNode("suggestions", suggestions)
-  .addEdge(START, "prepare")
-  .addEdge("prepare", "writer")
-  .addEdge("writer", "suggestions")
-  .addEdge("suggestions", END)
+  .addNode("prepareTask", prepareTask)
+  .addNode("writeTask", writeTask)
+  .addNode("suggestionsTask", suggestionsTask)
+  .addEdge(START, "prepareTask")
+  .addEdge("prepareTask", "writeTask")
+  .addEdge("writeTask", "suggestionsTask")
+  .addEdge("suggestionsTask", END)
 ;
 
 export const graph = workflow.compile();

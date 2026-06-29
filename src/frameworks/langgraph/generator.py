@@ -47,10 +47,13 @@ def _build_common_context(project: LangGraphProject) -> Dict[str, Any]:
         if src and tgt:
             edges_named.append({"source": src.ts_name, "target": tgt.ts_name})
 
+    agent_by_iri = {a.iri: a for a in project.agents}
+
     return {
         "graph_name": project.name,
         "graph_class_name": _to_pascal(project.name),
         "agents": project.agents,
+        "agent_by_iri": agent_by_iri,
         "tools": project.tools,
         "nodes": project.nodes,
         "edges": edges_named,

@@ -1,13 +1,25 @@
-{% if agents and agents[0].provider == "anthropic" %}
-import { ChatAnthropic } from "@langchain/anthropic";
-{% else %}
+{% set ns = namespace(has_openai=false, has_anthropic=false) %}
+{% for agent in agents %}
+  {% if agent.provider == "anthropic" %}
+    {% set ns.has_anthropic = true %}
+  {% else %}
+    {% set ns.has_openai = true %}
+  {% endif %}
+{% endfor %}
+{% if not agents %}
+  {% set ns.has_openai = true %}
+{% endif %}
+{% if ns.has_openai %}
 import { ChatOpenAI } from "@langchain/openai";
 {% endif %}
+{% if ns.has_anthropic %}
+import { ChatAnthropic } from "@langchain/anthropic";
+{% endif %}
 import { Annotation, START, END, StateGraph } from "@langchain/langgraph";
-
-{% set model_class = "ChatAnthropic" if (agents and agents[0].provider == "anthropic") else "ChatOpenAI" %}
-{% set model_name = agents[0].model_name if agents else "gpt-4o-mini" %}
-{% set agent_prompt = agents[0].prompt if agents else "You are a helpful assistant." %}
+{% if tools %}
+import { tool } from "@langchain/core/tools";
+import { z } from "zod";
+{% endif %}
 
 const {{ graph_class_name }}Annotation = Annotation.Root({
   messages: Annotation<any[]>({
@@ -16,14 +28,40 @@ const {{ graph_class_name }}Annotation = Annotation.Root({
   }),
 });
 
-{% for node in nodes if not node.is_start and not node.is_end %}
+{% for tool in tools %}
+// Tool: {{ tool.var_name }}
+const {{ tool.var_name }} = tool(
+  async () => {
+    return "Result of {{ tool.var_name }}";
+  },
+  {
+    name: "{{ tool.var_name }}",
+    description: "{{ tool.description | ts_escape }}",
+    schema: z.object({}),
+  }
+);
+{% endfor %}
+
+
+{% for node in nodes %}
+{% set node_agent = agent_by_iri[node.agent_ref] if (node.agent_ref and agent_by_iri and node.agent_ref in agent_by_iri) else (agents[0] if agents else none) %}
+{% set node_provider = node_agent.provider if node_agent else "openai" %}
+{% set node_model_class = "ChatAnthropic" if node_provider == "anthropic" else "ChatOpenAI" %}
+{% set node_model_name = node_agent.model_name if node_agent else "gpt-4o-mini" %}
+{% set node_agent_prompt = node_agent.prompt if node_agent else "You are a helpful assistant." %}
+{% set node_agent_var = node_agent.var_name if node_agent else "defaultAgent" %}
+
+/**
+ * Node: {{ node.ts_name }}
+ * Agent: {{ node_agent_var }}
+ */
 async function {{ node.ts_name }}(state: typeof {{ graph_class_name }}Annotation.State) {
-  const model = new {{ model_class }}({ model: "{{ model_name | ts_escape }}" });
+  const model = new {{ node_model_class }}({ model: "{{ node_model_name | ts_escape }}" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "{{ agent_prompt | ts_escape }}" +
+        "{{ node_agent_prompt | ts_escape }}" +
         "\nNode: {{ node.ts_name }}",
     },
     ...state.messages,
@@ -32,14 +70,16 @@ async function {{ node.ts_name }}(state: typeof {{ graph_class_name }}Annotation
 }
 {% endfor %}
 
-{% set worker_nodes = nodes | rejectattr("is_start", "equalto", true) | rejectattr("is_end", "equalto", true) | list %}
-
 const workflow = new StateGraph({{ graph_class_name }}Annotation)
-{% for node in worker_nodes %}
+{% for node in nodes %}
   .addNode("{{ node.ts_name }}", {{ node.ts_name }})
 {% endfor %}
+  .addEdge(START, "{{ start_node_name }}")
 {% for edge in edges %}
   .addEdge("{{ edge.source }}", "{{ edge.target }}")
+{% endfor %}
+{% for node in nodes if node.is_end %}
+  .addEdge("{{ node.ts_name }}", END)
 {% endfor %}
 ;
 

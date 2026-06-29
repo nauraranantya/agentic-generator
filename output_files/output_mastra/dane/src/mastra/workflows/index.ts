@@ -6,3 +6,5 @@ export { workflowPackagePublisher } from './workflowPackagePublisher'
 export { workflowMessage } from './workflowMessage'
 export { workflowGithubIssueLabeler } from './workflowGithubIssueLabeler'
 export { workflowGithubFirstContributor } from './workflowGithubFirstContributor'
+export * from './ad_hoc_tasks'
+

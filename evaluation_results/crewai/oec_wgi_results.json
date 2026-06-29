@@ -10,13 +10,13 @@
         "projects": 16,
         "evaluated": 16,
         "errors": 0,
-        "avg_oec_all": 0.6034320884069264,
+        "avg_oec_all": 0.689410510301569,
         "avg_oec_important": 0.9468861978911923,
         "avg_wgi": 0.8958558802308803,
         "avg_edge_f1": 0.7563131313131313,
         "avg_ast_sim": 0.6021303805642652,
         "syntax_success_rate": 1.0,
-        "run_success_rate": 1.0
+        "run_success_rate": 0.0
       },
       "projects": [
         {
@@ -28,8 +28,8 @@
           "code_element_count": 6,
           "oec": {
             "all_extracted": {
-              "score": 0.6530612244897959,
-              "matched": 32,
+              "score": 0.7346938775510204,
+              "matched": 36,
               "total": 49,
               "missing": [
                 {
@@ -205,46 +205,6 @@
                     "gpt_model_1"
                   ],
                   "details": {}
-                },
-                {
-                  "category": "goal",
-                  "name": "goal_create_game",
-                  "important": false,
-                  "aliases": [
-                    "goal_create_game",
-                    "create_game_team_goal"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "goal",
-                  "name": "goal_create_software",
-                  "important": false,
-                  "aliases": [
-                    "goal_create_software",
-                    "create_software_as_needed"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "goal",
-                  "name": "goal_create_perfect_code",
-                  "important": false,
-                  "aliases": [
-                    "goal_create_perfect_code",
-                    "create_perfect_code"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "goal",
-                  "name": "goal_ensure_code_does_job",
-                  "important": false,
-                  "aliases": [
-                    "goal_ensure_code_does_job",
-                    "ensure_the_code_does_the_job_that_it_is_supposed_to_do"
-                  ],
-                  "details": {}
                 }
               ],
               "by_category": {
@@ -269,8 +229,8 @@
                   "total": 10
                 },
                 "goal": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 4,
                   "total": 4
                 },
                 "input_variable": {
@@ -438,8 +398,8 @@
             "extra_edges": []
           },
           "syntax_ok": true,
-          "run_status": "SUCCESS_DUMMY",
-          "run_output": "",
+          "run_status": "IMPORT_ERROR",
+          "run_output": "  File \"/Users/ravie/dev/agento/output_files/output_crewai/game-builder-crew/main.py\", line 18, in <module>\n    from crew import GameBuilderCrew\n  File \"/Users/ravie/dev/agento/output_files/output_crewai/game-builder-crew/crew.py\", line 17, in <module>\n    from crewai import Agent, Crew, Process, Task\nModuleNotFoundError: No module named 'crewai'",
           "gt_found": true,
           "ast_sim": 0.6585365853658537
         },
@@ -452,8 +412,8 @@
           "code_element_count": 8,
           "oec": {
             "all_extracted": {
-              "score": 0.5344827586206896,
-              "matched": 31,
+              "score": 0.6379310344827587,
+              "matched": 37,
               "total": 58,
               "missing": [
                 {
@@ -732,45 +692,6 @@
                   "details": {}
                 },
                 {
-                  "category": "capability",
-                  "name": "vector_search_capability",
-                  "important": false,
-                  "aliases": [
-                    "vector_search_capability",
-                    "vector_search"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "capability",
-                  "name": "web_search_capability",
-                  "important": false,
-                  "aliases": [
-                    "web_search_capability",
-                    "web_search"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "weaviate_feature_placeholder",
-                  "important": false,
-                  "aliases": [
-                    "weaviate_feature_placeholder"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "feature_hybrid_search",
-                  "important": false,
-                  "aliases": [
-                    "feature_hybrid_search",
-                    "hybrid_search"
-                  ],
-                  "details": {}
-                },
-                {
                   "category": "resource",
                   "name": "weaviate_blog_chunk_resource",
                   "important": false,
@@ -789,26 +710,6 @@
                     "bio_med_industry_analysis_expected_output"
                   ],
                   "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "healthcare_analysis_resource",
-                  "important": false,
-                  "aliases": [
-                    "healthcare_analysis_resource",
-                    "healthcare_industry_analysis_expected_output"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "financial_analysis_resource",
-                  "important": false,
-                  "aliases": [
-                    "financial_analysis_resource",
-                    "financial_industry_analysis_expected_output"
-                  ],
-                  "details": {}
                 }
               ],
               "by_category": {
@@ -823,8 +724,8 @@
                   "total": 3
                 },
                 "capability": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 2,
                   "total": 2
                 },
                 "config": {
@@ -848,8 +749,8 @@
                   "total": 1
                 },
                 "resource": {
-                  "score": 0.3333333333333333,
-                  "matched": 3,
+                  "score": 0.7777777777777778,
+                  "matched": 7,
                   "total": 9
                 },
                 "step_task": {
@@ -1006,8 +907,8 @@
             "extra_edges": []
           },
           "syntax_ok": true,
-          "run_status": "SUCCESS_DUMMY",
-          "run_output": "",
+          "run_status": "IMPORT_ERROR",
+          "run_output": "  File \"/Users/ravie/dev/agento/output_files/output_crewai/industry-agents/main.py\", line 18, in <module>\n    from crew import BlogCrewIndustryspecializedagentsexample\n  File \"/Users/ravie/dev/agento/output_files/output_crewai/industry-agents/crew.py\", line 21, in <module>\n    from crewai import Agent, Crew, Process, Task\nModuleNotFoundError: No module named 'crewai'",
           "gt_found": true,
           "ast_sim": 0.0
         },
@@ -1020,8 +921,8 @@
           "code_element_count": 14,
           "oec": {
             "all_extracted": {
-              "score": 0.39473684210526316,
-              "matched": 45,
+              "score": 0.5526315789473685,
+              "matched": 63,
               "total": 114,
               "missing": [
                 {
@@ -1746,186 +1647,6 @@
                     "lm_ollama"
                   ],
                   "details": {}
-                },
-                {
-                  "category": "goal",
-                  "name": "goal_marketing_campaign",
-                  "important": false,
-                  "aliases": [
-                    "goal_marketing_campaign",
-                    "marketing_campaign_objective"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "capability",
-                  "name": "cap_web_scraping",
-                  "important": false,
-                  "aliases": [
-                    "cap_web_scraping",
-                    "web_scraping"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "capability",
-                  "name": "cap_internet_search",
-                  "important": false,
-                  "aliases": [
-                    "cap_internet_search",
-                    "internet_search"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "capability",
-                  "name": "cap_instagram_search",
-                  "important": false,
-                  "aliases": [
-                    "cap_instagram_search",
-                    "instagram_search"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "capability",
-                  "name": "cap_strategy_planning",
-                  "important": false,
-                  "aliases": [
-                    "cap_strategy_planning",
-                    "strategy_planning"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "capability",
-                  "name": "cap_photography_review",
-                  "important": false,
-                  "aliases": [
-                    "cap_photography_review",
-                    "photography_review"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "capability",
-                  "name": "cap_review_and_approval",
-                  "important": false,
-                  "aliases": [
-                    "cap_review_and_approval",
-                    "review_approval"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "objective",
-                  "name": "objective_copy_crew",
-                  "important": false,
-                  "aliases": [
-                    "objective_copy_crew",
-                    "copy_crew_objective"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "objective",
-                  "name": "objective_image_crew",
-                  "important": false,
-                  "aliases": [
-                    "objective_image_crew",
-                    "image_crew_objective"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "resource_product_analysis_report",
-                  "important": false,
-                  "aliases": [
-                    "resource_product_analysis_report",
-                    "product_analysis_report"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "resource_competitor_analysis_report",
-                  "important": false,
-                  "aliases": [
-                    "resource_competitor_analysis_report",
-                    "competitor_analysis_report"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "resource_campaign_strategy",
-                  "important": false,
-                  "aliases": [
-                    "resource_campaign_strategy",
-                    "campaign_strategy_ideas"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "resource_ad_copy_options",
-                  "important": false,
-                  "aliases": [
-                    "resource_ad_copy_options",
-                    "ad_copy_options_3_variations"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "resource_image_descriptions",
-                  "important": false,
-                  "aliases": [
-                    "resource_image_descriptions",
-                    "photograph_descriptions_3_options"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "resource_approved_image_descriptions",
-                  "important": false,
-                  "aliases": [
-                    "resource_approved_image_descriptions",
-                    "approved_photograph_descriptions"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "artifact_tasks_py",
-                  "important": false,
-                  "aliases": [
-                    "artifact_tasks_py",
-                    "tasks_py_semantic_summary"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "artifact_agents_py",
-                  "important": false,
-                  "aliases": [
-                    "artifact_agents_py",
-                    "agents_py_semantic_summary"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "artifact_main_py",
-                  "important": false,
-                  "aliases": [
-                    "artifact_main_py",
-                    "main_py_semantic_summary"
-                  ],
-                  "details": {}
                 }
               ],
               "by_category": {
@@ -1945,8 +1666,8 @@
                   "total": 5
                 },
                 "capability": {
-                  "score": 0.14285714285714285,
-                  "matched": 1,
+                  "score": 1.0,
+                  "matched": 7,
                   "total": 7
                 },
                 "config": {
@@ -1955,8 +1676,8 @@
                   "total": 8
                 },
                 "goal": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "input_variable": {
@@ -1970,8 +1691,8 @@
                   "total": 1
                 },
                 "objective": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 2,
                   "total": 2
                 },
                 "project": {
@@ -1980,8 +1701,8 @@
                   "total": 1
                 },
                 "resource": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 9,
                   "total": 9
                 },
                 "step_task": {
@@ -2190,8 +1911,8 @@
             ]
           },
           "syntax_ok": true,
-          "run_status": "SUCCESS_DUMMY",
-          "run_output": "",
+          "run_status": "IMPORT_ERROR",
+          "run_output": "  File \"/Users/ravie/dev/agento/output_files/output_crewai/instagram_post/main.py\", line 18, in <module>\n    from crew import CopyCrew\n  File \"/Users/ravie/dev/agento/output_files/output_crewai/instagram_post/crew.py\", line 31, in <module>\n    from crewai import Agent, Crew, Process, Task, LLM\nModuleNotFoundError: No module named 'crewai'",
           "gt_found": true,
           "ast_sim": 0.6
         },
@@ -2204,8 +1925,8 @@
           "code_element_count": 8,
           "oec": {
             "all_extracted": {
-              "score": 0.8452380952380952,
-              "matched": 71,
+              "score": 0.9047619047619048,
+              "matched": 76,
               "total": 84,
               "missing": [
                 {
@@ -2315,54 +2036,6 @@
                     "job_posting_workflow_pattern"
                   ],
                   "details": {}
-                },
-                {
-                  "category": "goal",
-                  "name": "hiring_goal",
-                  "important": false,
-                  "aliases": [
-                    "hiring_goal"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "objective",
-                  "name": "create_job_posting_objective",
-                  "important": false,
-                  "aliases": [
-                    "create_job_posting_objective"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "job_description_file",
-                  "important": false,
-                  "aliases": [
-                    "job_description_file",
-                    "job_description_example_md"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "draft_job_posting_resource",
-                  "important": false,
-                  "aliases": [
-                    "draft_job_posting_resource",
-                    "draft_job_posting_md"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "final_job_posting_resource",
-                  "important": false,
-                  "aliases": [
-                    "final_job_posting_resource",
-                    "final_job_posting_md"
-                  ],
-                  "details": {}
                 }
               ],
               "by_category": {
@@ -2382,8 +2055,8 @@
                   "total": 24
                 },
                 "goal": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "input_variable": {
@@ -2392,8 +2065,8 @@
                   "total": 4
                 },
                 "objective": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "project": {
@@ -2402,8 +2075,8 @@
                   "total": 1
                 },
                 "resource": {
-                  "score": 0.25,
-                  "matched": 1,
+                  "score": 1.0,
+                  "matched": 4,
                   "total": 4
                 },
                 "step_task": {
@@ -2591,8 +2264,8 @@
             "extra_edges": []
           },
           "syntax_ok": true,
-          "run_status": "SUCCESS_DUMMY",
-          "run_output": "",
+          "run_status": "IMPORT_ERROR",
+          "run_output": "  File \"/Users/ravie/dev/agento/output_files/output_crewai/job-posting/main.py\", line 18, in <module>\n    from crew import JobPostingCrewTeam\n  File \"/Users/ravie/dev/agento/output_files/output_crewai/job-posting/crew.py\", line 63, in <module>\n    from crewai import Agent, Crew, Process, Task\nModuleNotFoundError: No module named 'crewai'",
           "gt_found": true,
           "ast_sim": 0.6190476190476191
         },
@@ -2605,8 +2278,8 @@
           "code_element_count": 19,
           "oec": {
             "all_extracted": {
-              "score": 0.5298013245033113,
-              "matched": 80,
+              "score": 0.6423841059602649,
+              "matched": 97,
               "total": 151,
               "missing": [
                 {
@@ -3321,179 +2994,6 @@
                     "goal_senior_content_editor"
                   ],
                   "details": {}
-                },
-                {
-                  "category": "capability",
-                  "name": "cap_search",
-                  "important": false,
-                  "aliases": [
-                    "cap_search",
-                    "web_search"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "capability",
-                  "name": "cap_scrape",
-                  "important": false,
-                  "aliases": [
-                    "cap_scrape",
-                    "web_scraping_and_summarization"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "capability",
-                  "name": "cap_write_file",
-                  "important": false,
-                  "aliases": [
-                    "cap_write_file",
-                    "file_write"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "capability",
-                  "name": "cap_learn_templates",
-                  "important": false,
-                  "aliases": [
-                    "cap_learn_templates",
-                    "learn_templates_listing"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "capability",
-                  "name": "cap_copy_template",
-                  "important": false,
-                  "aliases": [
-                    "cap_copy_template",
-                    "copy_template_folder"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "capability",
-                  "name": "cap_read_file",
-                  "important": false,
-                  "aliases": [
-                    "cap_read_file",
-                    "read_file"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "capability",
-                  "name": "cap_list_directory",
-                  "important": false,
-                  "aliases": [
-                    "cap_list_directory",
-                    "list_directory"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "templates_folder",
-                  "important": false,
-                  "aliases": [
-                    "templates_folder",
-                    "templates_folder_of_tailwind_templates",
-                    "folder_of_tailwind_templates"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "generated_project_zip",
-                  "important": false,
-                  "aliases": [
-                    "generated_project_zip",
-                    "workdir_zip_final_packaged_project_archive"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "expanded_idea_report_resource",
-                  "important": false,
-                  "aliases": [
-                    "expanded_idea_report_resource",
-                    "expanded_idea_report_text"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "refined_idea_report_resource",
-                  "important": false,
-                  "aliases": [
-                    "refined_idea_report_resource",
-                    "refined_idea_report_text"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "copied_template_resource",
-                  "important": false,
-                  "aliases": [
-                    "copied_template_resource",
-                    "copied_template_folder_in_workdir"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "updated_page_component_list_resource",
-                  "important": false,
-                  "aliases": [
-                    "updated_page_component_list_resource",
-                    "list_of_component_paths_used_in_main_page_jsx"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "component_text_suggestions_resource",
-                  "important": false,
-                  "aliases": [
-                    "component_text_suggestions_resource",
-                    "component_text_suggestions_structured_text"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "updated_component_files_resource",
-                  "important": false,
-                  "aliases": [
-                    "updated_component_files_resource",
-                    "updated_react_component_files_on_disk"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "qa_confirmation_resource",
-                  "important": false,
-                  "aliases": [
-                    "qa_confirmation_resource",
-                    "corrections_applied",
-                    "qa_confirmation_corrections_applied",
-                    "qaconfirmation_resource"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "components_path_list_resource",
-                  "important": false,
-                  "aliases": [
-                    "components_path_list_resource",
-                    "components_full_path_list_json_array"
-                  ],
-                  "details": {}
                 }
               ],
               "by_category": {
@@ -3523,8 +3023,8 @@
                   "total": 14
                 },
                 "capability": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 7,
                   "total": 7
                 },
                 "config": {
@@ -3553,8 +3053,8 @@
                   "total": 1
                 },
                 "resource": {
-                  "score": 0.09090909090909091,
-                  "matched": 1,
+                  "score": 1.0,
+                  "matched": 11,
                   "total": 11
                 },
                 "step_task": {
@@ -3799,8 +3299,8 @@
             ]
           },
           "syntax_ok": true,
-          "run_status": "SUCCESS_DUMMY",
-          "run_output": "",
+          "run_status": "IMPORT_ERROR",
+          "run_output": "  File \"/Users/ravie/dev/agento/output_files/output_crewai/landing_page_generator/main.py\", line 18, in <module>\n    from crew import ExpandIdeaCrewteam\n  File \"/Users/ravie/dev/agento/output_files/output_crewai/landing_page_generator/crew.py\", line 33, in <module>\n    from crewai import Agent, Crew, Process, Task\nModuleNotFoundError: No module named 'crewai'",
           "gt_found": true,
           "ast_sim": 0.7254901960784313
         },
@@ -3813,28 +3313,10 @@
           "code_element_count": 3,
           "oec": {
             "all_extracted": {
-              "score": 0.5217391304347826,
-              "matched": 12,
+              "score": 0.7391304347826086,
+              "matched": 17,
               "total": 23,
               "missing": [
-                {
-                  "category": "config",
-                  "name": "system_mark_down_validator_crew_agents_config_path",
-                  "important": false,
-                  "aliases": [
-                    "system_mark_down_validator_crew_agents_config_path",
-                    "agents_config_path",
-                    "config_agents_yaml_config_tasks_yaml",
-                    "tasks_yaml",
-                    "agents_config_path_config_agents_yaml_config_tasks_yaml"
-                  ],
-                  "details": {
-                    "key": "agents_config_path",
-                    "owner": "mark_down_validator_crew",
-                    "owner_category": "system",
-                    "value": "config/agents.yaml; config/tasks.yaml"
-                  }
-                },
                 {
                   "category": "agent_goal",
                   "name": "requirements_manager_requirements_manager_goal",
@@ -3910,45 +3392,6 @@
                     "default_language_model"
                   ],
                   "details": {}
-                },
-                {
-                  "category": "goal",
-                  "name": "mark_down_validator_crew_goal",
-                  "important": false,
-                  "aliases": [
-                    "mark_down_validator_crew_goal",
-                    "markdown_validation_crew_goal"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "goal",
-                  "name": "requirements_manager_goal",
-                  "important": false,
-                  "aliases": [
-                    "requirements_manager_goal"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "validation_report_resource",
-                  "important": false,
-                  "aliases": [
-                    "validation_report_resource",
-                    "markdown_validation_report_tool_output"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "input_markdown_file",
-                  "important": false,
-                  "aliases": [
-                    "input_markdown_file",
-                    "input_markdown_file_cli_filename"
-                  ],
-                  "details": {}
                 }
               ],
               "by_category": {
@@ -3973,13 +3416,13 @@
                   "total": 1
                 },
                 "config": {
-                  "score": 0.6666666666666666,
-                  "matched": 2,
+                  "score": 1.0,
+                  "matched": 3,
                   "total": 3
                 },
                 "goal": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 2,
                   "total": 2
                 },
                 "input_variable": {
@@ -3998,8 +3441,8 @@
                   "total": 1
                 },
                 "resource": {
-                  "score": 0.3333333333333333,
-                  "matched": 1,
+                  "score": 1.0,
+                  "matched": 3,
                   "total": 3
                 },
                 "step_task": {
@@ -4130,8 +3573,8 @@
             "extra_edges": []
           },
           "syntax_ok": true,
-          "run_status": "SUCCESS_DUMMY",
-          "run_output": "",
+          "run_status": "IMPORT_ERROR",
+          "run_output": "  File \"/Users/ravie/dev/agento/output_files/output_crewai/markdown_validator/main.py\", line 18, in <module>\n    from crew import MarkDownValidatorCrew\n  File \"/Users/ravie/dev/agento/output_files/output_crewai/markdown_validator/crew.py\", line 15, in <module>\n    from crewai import Agent, Crew, Process, Task\nModuleNotFoundError: No module named 'crewai'",
           "gt_found": true,
           "ast_sim": 0.7857142857142857
         },
@@ -4144,8 +3587,8 @@
           "code_element_count": 8,
           "oec": {
             "all_extracted": {
-              "score": 0.5714285714285714,
-              "matched": 48,
+              "score": 0.7619047619047619,
+              "matched": 64,
               "total": 84,
               "missing": [
                 {
@@ -4397,123 +3840,6 @@
                   "details": {}
                 },
                 {
-                  "category": "goal",
-                  "name": "marketing_project_goal",
-                  "important": false,
-                  "aliases": [
-                    "marketing_project_goal"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "goal",
-                  "name": "lead_market_analyst_goal",
-                  "important": false,
-                  "aliases": [
-                    "lead_market_analyst_goal",
-                    "lead_market_analyst_personal_goal"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "goal",
-                  "name": "chief_marketing_strategist_goal",
-                  "important": false,
-                  "aliases": [
-                    "chief_marketing_strategist_goal",
-                    "chief_marketing_strategist_personal_goal"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "goal",
-                  "name": "creative_content_creator_goal",
-                  "important": false,
-                  "aliases": [
-                    "creative_content_creator_goal",
-                    "creative_content_creator_personal_goal"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "capability",
-                  "name": "serper_dev_tool_web_search_capability",
-                  "important": false,
-                  "aliases": [
-                    "serper_dev_tool_web_search_capability",
-                    "web_search_capability"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "capability",
-                  "name": "scrape_website_tool_web_scrape_capability",
-                  "important": false,
-                  "aliases": [
-                    "scrape_website_tool_web_scrape_capability",
-                    "web_scraping_capability"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "capability",
-                  "name": "analyze_market_capability",
-                  "important": false,
-                  "aliases": [
-                    "analyze_market_capability",
-                    "analyze_market"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "capability",
-                  "name": "formulate_strategy_capability",
-                  "important": false,
-                  "aliases": [
-                    "formulate_strategy_capability",
-                    "formulate_strategy"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "capability",
-                  "name": "create_content_capability",
-                  "important": false,
-                  "aliases": [
-                    "create_content_capability",
-                    "create_content"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "objective",
-                  "name": "marketing_campaign_ideas_objective",
-                  "important": false,
-                  "aliases": [
-                    "marketing_campaign_ideas_objective",
-                    "produce_campaign_ideas"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "research_report_resource",
-                  "important": false,
-                  "aliases": [
-                    "research_report_resource"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "project_summary_resource",
-                  "important": false,
-                  "aliases": [
-                    "project_summary_resource"
-                  ],
-                  "details": {}
-                },
-                {
                   "category": "resource",
                   "name": "marketing_strategy_resource",
                   "important": false,
@@ -4530,46 +3856,6 @@
                   "aliases": [
                     "campaign_ideas_resource",
                     "campaign_idea_resource"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "marketing_copies_resource",
-                  "important": false,
-                  "aliases": [
-                    "marketing_copies_resource",
-                    "copy_resource"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "source_code_repo",
-                  "important": false,
-                  "aliases": [
-                    "source_code_repo",
-                    "marketing_posts_source"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "lead_participation",
-                  "important": false,
-                  "aliases": [
-                    "lead_participation",
-                    "participation_example"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "chief_participation",
-                  "important": false,
-                  "aliases": [
-                    "chief_participation",
-                    "participation_example"
                   ],
                   "details": {}
                 }
@@ -4596,8 +3882,8 @@
                   "total": 4
                 },
                 "capability": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 5,
                   "total": 5
                 },
                 "config": {
@@ -4606,8 +3892,8 @@
                   "total": 12
                 },
                 "goal": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 4,
                   "total": 4
                 },
                 "input_variable": {
@@ -4616,8 +3902,8 @@
                   "total": 2
                 },
                 "objective": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "project": {
@@ -4626,8 +3912,8 @@
                   "total": 1
                 },
                 "resource": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 0.75,
+                  "matched": 6,
                   "total": 8
                 },
                 "step_task": {
@@ -4854,8 +4140,8 @@
             ]
           },
           "syntax_ok": true,
-          "run_status": "SUCCESS_DUMMY",
-          "run_output": "",
+          "run_status": "IMPORT_ERROR",
+          "run_output": "  File \"/Users/ravie/dev/agento/output_files/output_crewai/marketing_strategy/main.py\", line 18, in <module>\n    from crew import MarketingPostsCrewTeam\n  File \"/Users/ravie/dev/agento/output_files/output_crewai/marketing_strategy/crew.py\", line 46, in <module>\n    from crewai import Agent, Crew, Process, Task\nModuleNotFoundError: No module named 'crewai'",
           "gt_found": true,
           "ast_sim": 0.6190476190476191
         },
@@ -4868,46 +4154,10 @@
           "code_element_count": 5,
           "oec": {
             "all_extracted": {
-              "score": 0.6666666666666666,
-              "matched": 38,
+              "score": 0.7017543859649122,
+              "matched": 40,
               "total": 57,
               "missing": [
-                {
-                  "category": "config",
-                  "name": "system_unnamed_project_agents_config_path",
-                  "important": false,
-                  "aliases": [
-                    "system_unnamed_project_agents_config_path",
-                    "agents_config_path",
-                    "config_tasks_yaml",
-                    "tasks_yaml",
-                    "agents_config_path_config_tasks_yaml"
-                  ],
-                  "details": {
-                    "key": "agents_config_path",
-                    "owner": "unnamed_project",
-                    "owner_category": "system",
-                    "value": "config/tasks.yaml"
-                  }
-                },
-                {
-                  "category": "config",
-                  "name": "system_unnamed_project_tasks_config_path",
-                  "important": false,
-                  "aliases": [
-                    "system_unnamed_project_tasks_config_path",
-                    "tasks_config_path",
-                    "config_tasks_yaml",
-                    "tasks_yaml",
-                    "tasks_config_path_config_tasks_yaml"
-                  ],
-                  "details": {
-                    "key": "tasks_config_path",
-                    "owner": "unnamed_project",
-                    "owner_category": "system",
-                    "value": "config/tasks.yaml"
-                  }
-                },
                 {
                   "category": "agent_llm",
                   "name": "cv_reader_default_language_model",
@@ -5114,8 +4364,8 @@
                   "total": 3
                 },
                 "config": {
-                  "score": 0.9,
-                  "matched": 18,
+                  "score": 1.0,
+                  "matched": 20,
                   "total": 20
                 },
                 "goal": {
@@ -5311,8 +4561,8 @@
             "extra_edges": []
           },
           "syntax_ok": true,
-          "run_status": "SUCCESS_DUMMY",
-          "run_output": "",
+          "run_status": "IMPORT_ERROR",
+          "run_output": "  File \"/Users/ravie/dev/agento/output_files/output_crewai/match_profile_to_positions/main.py\", line 18, in <module>\n    from crew import UnnamedProject\n  File \"/Users/ravie/dev/agento/output_files/output_crewai/match_profile_to_positions/crew.py\", line 18, in <module>\n    from crewai import Agent, Crew, Process, Task\nModuleNotFoundError: No module named 'crewai'",
           "gt_found": true,
           "ast_sim": 0.5
         },
@@ -5542,8 +4792,8 @@
             "extra_edges": []
           },
           "syntax_ok": true,
-          "run_status": "SUCCESS_DUMMY",
-          "run_output": "",
+          "run_status": "IMPORT_ERROR",
+          "run_output": "  File \"/Users/ravie/dev/agento/output_files/output_crewai/meta_quest_knowledge/main.py\", line 18, in <module>\n    from crew import UnnamedProject\n  File \"/Users/ravie/dev/agento/output_files/output_crewai/meta_quest_knowledge/crew.py\", line 12, in <module>\n    from crewai import Agent, Crew, Process, Task\nModuleNotFoundError: No module named 'crewai'",
           "gt_found": true,
           "ast_sim": 0.6097560975609756
         },
@@ -5556,8 +4806,8 @@
           "code_element_count": 9,
           "oec": {
             "all_extracted": {
-              "score": 0.5370370370370371,
-              "matched": 29,
+              "score": 0.6111111111111112,
+              "matched": 33,
               "total": 54,
               "missing": [
                 {
@@ -5823,16 +5073,6 @@
                 },
                 {
                   "category": "goal",
-                  "name": "goal_meeting_prep_objective",
-                  "important": false,
-                  "aliases": [
-                    "goal_meeting_prep_objective",
-                    "prepare_meeting_briefing_and_strategy"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "goal",
                   "name": "goal_researcher",
                   "important": false,
                   "aliases": [
@@ -5866,36 +5106,6 @@
                     "goal_briefing_coordinator"
                   ],
                   "details": {}
-                },
-                {
-                  "category": "capability",
-                  "name": "capability_exa_search",
-                  "important": false,
-                  "aliases": [
-                    "capability_exa_search",
-                    "exa_search"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "capability",
-                  "name": "capability_exa_find_similar",
-                  "important": false,
-                  "aliases": [
-                    "capability_exa_find_similar",
-                    "exa_find_similar"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "capability",
-                  "name": "capability_exa_get_contents",
-                  "important": false,
-                  "aliases": [
-                    "capability_exa_get_contents",
-                    "exa_get_contents"
-                  ],
-                  "details": {}
                 }
               ],
               "by_category": {
@@ -5915,8 +5125,8 @@
                   "total": 4
                 },
                 "capability": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 3,
                   "total": 3
                 },
                 "config": {
@@ -5925,8 +5135,8 @@
                   "total": 9
                 },
                 "goal": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 0.2,
+                  "matched": 1,
                   "total": 5
                 },
                 "input_variable": {
@@ -6135,8 +5345,8 @@
             "extra_edges": []
           },
           "syntax_ok": true,
-          "run_status": "SUCCESS_DUMMY",
-          "run_output": "",
+          "run_status": "IMPORT_ERROR",
+          "run_output": "  File \"/Users/ravie/dev/agento/output_files/output_crewai/prep-for-a-meeting/main.py\", line 18, in <module>\n    from crew import MeetingPreparationCrew\n  File \"/Users/ravie/dev/agento/output_files/output_crewai/prep-for-a-meeting/crew.py\", line 19, in <module>\n    from crewai import Agent, Crew, Process, Task\nModuleNotFoundError: No module named 'crewai'",
           "gt_found": true,
           "ast_sim": 0.6444444444444445
         },
@@ -6149,8 +5359,8 @@
           "code_element_count": 9,
           "oec": {
             "all_extracted": {
-              "score": 0.7578947368421053,
-              "matched": 72,
+              "score": 0.8105263157894737,
+              "matched": 77,
               "total": 95,
               "missing": [
                 {
@@ -6408,56 +5618,6 @@
                     "recruitment_workflow_pattern"
                   ],
                   "details": {}
-                },
-                {
-                  "category": "goal",
-                  "name": "goal_research_candidates",
-                  "important": false,
-                  "aliases": [
-                    "goal_research_candidates",
-                    "find_potential_candidates_for_the_job"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "goal",
-                  "name": "goal_match_and_score",
-                  "important": false,
-                  "aliases": [
-                    "goal_match_and_score",
-                    "match_the_candidates_to_the_best_jobs_and_score_them"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "goal",
-                  "name": "goal_outreach_strategy",
-                  "important": false,
-                  "aliases": [
-                    "goal_outreach_strategy",
-                    "develop_outreach_strategies_for_the_selected_candidates"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "goal",
-                  "name": "goal_report_candidates",
-                  "important": false,
-                  "aliases": [
-                    "goal_report_candidates",
-                    "report_the_best_candidates_to_the_recruiters"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "objective",
-                  "name": "objective_hire_candidates",
-                  "important": false,
-                  "aliases": [
-                    "objective_hire_candidates",
-                    "find_and_report_best_candidates_for_a_job_opening"
-                  ],
-                  "details": {}
                 }
               ],
               "by_category": {
@@ -6492,8 +5652,8 @@
                   "total": 31
                 },
                 "goal": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 4,
                   "total": 4
                 },
                 "input_variable": {
@@ -6502,8 +5662,8 @@
                   "total": 1
                 },
                 "objective": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "project": {
@@ -6707,8 +5867,8 @@
             ]
           },
           "syntax_ok": true,
-          "run_status": "SUCCESS_DUMMY",
-          "run_output": "",
+          "run_status": "IMPORT_ERROR",
+          "run_output": "  File \"/Users/ravie/dev/agento/output_files/output_crewai/recruitment/main.py\", line 18, in <module>\n    from crew import RecruitmentCrew\n  File \"/Users/ravie/dev/agento/output_files/output_crewai/recruitment/crew.py\", line 28, in <module>\n    from crewai import Agent, Crew, Process, Task\nModuleNotFoundError: No module named 'crewai'",
           "gt_found": true,
           "ast_sim": 0.6222222222222222
         },
@@ -6721,8 +5881,8 @@
           "code_element_count": 10,
           "oec": {
             "all_extracted": {
-              "score": 0.5957446808510638,
-              "matched": 56,
+              "score": 0.6382978723404256,
+              "matched": 60,
               "total": 94,
               "missing": [
                 {
@@ -7103,47 +6263,6 @@
                   "details": {}
                 },
                 {
-                  "category": "capability",
-                  "name": "capability_spam_detection",
-                  "important": false,
-                  "aliases": [
-                    "capability_spam_detection",
-                    "vulgar_content_detection",
-                    "spam_detection_vulgar_content_detection"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "capability",
-                  "name": "capability_analysis",
-                  "important": false,
-                  "aliases": [
-                    "capability_analysis",
-                    "discussion_analysis_and_summarization"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "capability",
-                  "name": "capability_scriptwriting",
-                  "important": false,
-                  "aliases": [
-                    "capability_scriptwriting",
-                    "create_dialogue_heavy_screenplay_from_discussion"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "capability",
-                  "name": "capability_scoring",
-                  "important": false,
-                  "aliases": [
-                    "capability_scoring",
-                    "score_a_dialogue_on_a_1_10_scale"
-                  ],
-                  "details": {}
-                },
-                {
                   "category": "resource",
                   "name": "resource_task0_decision",
                   "important": false,
@@ -7211,8 +6330,8 @@
                   "total": 5
                 },
                 "capability": {
-                  "score": 0.2,
-                  "matched": 1,
+                  "score": 1.0,
+                  "matched": 5,
                   "total": 5
                 },
                 "config": {
@@ -7412,8 +6531,8 @@
             ]
           },
           "syntax_ok": true,
-          "run_status": "SUCCESS_DUMMY",
-          "run_output": "",
+          "run_status": "IMPORT_ERROR",
+          "run_output": "  File \"/Users/ravie/dev/agento/output_files/output_crewai/screenplay_writer/main.py\", line 18, in <module>\n    from crew import AICrewforscreenwriting\n  File \"/Users/ravie/dev/agento/output_files/output_crewai/screenplay_writer/crew.py\", line 79, in <module>\n    from crewai import Agent, Crew, Process, Task\nModuleNotFoundError: No module named 'crewai'",
           "gt_found": true,
           "ast_sim": 0.5476190476190477
         },
@@ -7426,8 +6545,8 @@
           "code_element_count": 5,
           "oec": {
             "all_extracted": {
-              "score": 0.6382978723404256,
-              "matched": 30,
+              "score": 0.6808510638297872,
+              "matched": 32,
               "total": 47,
               "missing": [
                 {
@@ -7532,23 +6651,6 @@
                   }
                 },
                 {
-                  "category": "config",
-                  "name": "tool_duck_duck_go_tool_tool_class",
-                  "important": false,
-                  "aliases": [
-                    "tool_duck_duck_go_tool_tool_class",
-                    "tool_class",
-                    "duck_duck_go_search_run_langchain_tools",
-                    "tool_class_duck_duck_go_search_run_langchain_tools"
-                  ],
-                  "details": {
-                    "key": "tool_class",
-                    "owner": "duck_duck_go_tool",
-                    "owner_category": "tool",
-                    "value": "DuckDuckGoSearchRun (langchain.tools)"
-                  }
-                },
-                {
                   "category": "tool_capability",
                   "name": "duck_duck_go_tool_capability_web_search",
                   "important": false,
@@ -7617,16 +6719,6 @@
                   "details": {}
                 },
                 {
-                  "category": "capability",
-                  "name": "capability_web_search",
-                  "important": false,
-                  "aliases": [
-                    "capability_web_search",
-                    "web_search"
-                  ],
-                  "details": {}
-                },
-                {
                   "category": "resource",
                   "name": "task1_output_resource",
                   "important": false,
@@ -7658,13 +6750,13 @@
                   "total": 2
                 },
                 "capability": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "config": {
-                  "score": 0.8666666666666667,
-                  "matched": 13,
+                  "score": 0.9333333333333333,
+                  "matched": 14,
                   "total": 15
                 },
                 "goal": {
@@ -7851,8 +6943,8 @@
             "extra_edges": []
           },
           "syntax_ok": true,
-          "run_status": "SUCCESS_DUMMY",
-          "run_output": "",
+          "run_status": "IMPORT_ERROR",
+          "run_output": "  File \"/Users/ravie/dev/agento/output_files/output_crewai/starter_template/main.py\", line 18, in <module>\n    from crew import UnnamedProject\n  File \"/Users/ravie/dev/agento/output_files/output_crewai/starter_template/crew.py\", line 15, in <module>\n    from crewai import Agent, Crew, Process, Task\nModuleNotFoundError: No module named 'crewai'",
           "gt_found": true,
           "ast_sim": 0.6097560975609756
         },
@@ -7865,8 +6957,8 @@
           "code_element_count": 13,
           "oec": {
             "all_extracted": {
-              "score": 0.5818181818181818,
-              "matched": 64,
+              "score": 0.6818181818181818,
+              "matched": 75,
               "total": 110,
               "missing": [
                 {
@@ -8354,113 +7446,6 @@
                     "stock_analysis_sequential_workflow"
                   ],
                   "details": {}
-                },
-                {
-                  "category": "language_model",
-                  "name": "ollama_llama3_1",
-                  "important": false,
-                  "aliases": [
-                    "ollama_llama3_1",
-                    "lm_ollama_llama3_1"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "goal",
-                  "name": "goal_stock_analysis",
-                  "important": false,
-                  "aliases": [
-                    "goal_stock_analysis",
-                    "stock_analysis_overall_goal"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "capability",
-                  "name": "capability_scrape_website",
-                  "important": false,
-                  "aliases": [
-                    "capability_scrape_website",
-                    "web_scraping"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "capability",
-                  "name": "capability_website_search",
-                  "important": false,
-                  "aliases": [
-                    "capability_website_search",
-                    "website_search"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "capability",
-                  "name": "capability_calculation",
-                  "important": false,
-                  "aliases": [
-                    "capability_calculation",
-                    "mathematical_calculation"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "capability",
-                  "name": "capability_sec10_k_search",
-                  "important": false,
-                  "aliases": [
-                    "capability_sec10_k_search",
-                    "sec_10_k_semantic_search"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "capability",
-                  "name": "capability_sec10_q_search",
-                  "important": false,
-                  "aliases": [
-                    "capability_sec10_q_search",
-                    "sec_10_q_semantic_search"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "news_summary_resource",
-                  "important": false,
-                  "aliases": [
-                    "news_summary_resource"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "financial_analysis_report_resource",
-                  "important": false,
-                  "aliases": [
-                    "financial_analysis_report_resource"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "filings_analysis_report_resource",
-                  "important": false,
-                  "aliases": [
-                    "filings_analysis_report_resource"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "investment_recommendation_report_resource",
-                  "important": false,
-                  "aliases": [
-                    "investment_recommendation_report_resource",
-                    "investment_recommendation_report"
-                  ],
-                  "details": {}
                 }
               ],
               "by_category": {
@@ -8485,8 +7470,8 @@
                   "total": 16
                 },
                 "capability": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 5,
                   "total": 5
                 },
                 "config": {
@@ -8495,8 +7480,8 @@
                   "total": 15
                 },
                 "goal": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "input_variable": {
@@ -8505,8 +7490,8 @@
                   "total": 1
                 },
                 "language_model": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "project": {
@@ -8515,8 +7500,8 @@
                   "total": 1
                 },
                 "resource": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 4,
                   "total": 4
                 },
                 "step_task": {
@@ -8694,8 +7679,8 @@
             "extra_edges": []
           },
           "syntax_ok": true,
-          "run_status": "SUCCESS_DUMMY",
-          "run_output": "",
+          "run_status": "IMPORT_ERROR",
+          "run_output": "  File \"/Users/ravie/dev/agento/output_files/output_crewai/stock_analysis/main.py\", line 18, in <module>\n    from crew import StockAnalysisCrew\n  File \"/Users/ravie/dev/agento/output_files/output_crewai/stock_analysis/crew.py\", line 21, in <module>\n    from crewai import Agent, Crew, Process, Task, LLM\nModuleNotFoundError: No module named 'crewai'",
           "gt_found": true,
           "ast_sim": 0.75
         },
@@ -8708,46 +7693,10 @@
           "code_element_count": 7,
           "oec": {
             "all_extracted": {
-              "score": 0.8,
-              "matched": 48,
+              "score": 0.8833333333333333,
+              "matched": 53,
               "total": 60,
               "missing": [
-                {
-                  "category": "config",
-                  "name": "system_surprise_travel_crew_agents_config_path",
-                  "important": false,
-                  "aliases": [
-                    "system_surprise_travel_crew_agents_config_path",
-                    "agents_config_path",
-                    "config_agents_yaml",
-                    "agents_yaml",
-                    "agents_config_path_config_agents_yaml"
-                  ],
-                  "details": {
-                    "key": "agents_config_path",
-                    "owner": "surprise_travel_crew",
-                    "owner_category": "system",
-                    "value": "config/agents.yaml"
-                  }
-                },
-                {
-                  "category": "config",
-                  "name": "system_surprise_travel_crew_tasks_config_path",
-                  "important": false,
-                  "aliases": [
-                    "system_surprise_travel_crew_tasks_config_path",
-                    "tasks_config_path",
-                    "config_tasks_yaml",
-                    "tasks_yaml",
-                    "tasks_config_path_config_tasks_yaml"
-                  ],
-                  "details": {
-                    "key": "tasks_config_path",
-                    "owner": "surprise_travel_crew",
-                    "owner_category": "system",
-                    "value": "config/tasks.yaml"
-                  }
-                },
                 {
                   "category": "agent_goal",
                   "name": "personalized_activity_planner_goal_personalized_activity_planner",
@@ -8801,33 +7750,6 @@
                   "details": {}
                 },
                 {
-                  "category": "goal",
-                  "name": "goal_personalized_activity_planner",
-                  "important": false,
-                  "aliases": [
-                    "goal_personalized_activity_planner"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "goal",
-                  "name": "goal_restaurant_scout",
-                  "important": false,
-                  "aliases": [
-                    "goal_restaurant_scout"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "goal",
-                  "name": "goal_itinerary_compiler",
-                  "important": false,
-                  "aliases": [
-                    "goal_itinerary_compiler"
-                  ],
-                  "details": {}
-                },
-                {
                   "category": "objective",
                   "name": "obj_personalized_activity_planning",
                   "important": false,
@@ -8872,13 +7794,13 @@
                   "total": 5
                 },
                 "config": {
-                  "score": 0.8823529411764706,
-                  "matched": 15,
+                  "score": 1.0,
+                  "matched": 17,
                   "total": 17
                 },
                 "goal": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 3,
                   "total": 3
                 },
                 "input_variable": {
@@ -9051,8 +7973,8 @@
             "extra_edges": []
           },
           "syntax_ok": true,
-          "run_status": "SUCCESS_DUMMY",
-          "run_output": "",
+          "run_status": "IMPORT_ERROR",
+          "run_output": "  File \"/Users/ravie/dev/agento/output_files/output_crewai/surprise_trip/main.py\", line 18, in <module>\n    from crew import SurpriseTravelCrew\n  File \"/Users/ravie/dev/agento/output_files/output_crewai/surprise_trip/crew.py\", line 44, in <module>\n    from crewai import Agent, Crew, Process, Task\nModuleNotFoundError: No module named 'crewai'",
           "gt_found": true,
           "ast_sim": 0.6190476190476191
         },
@@ -9065,8 +7987,8 @@
           "code_element_count": 9,
           "oec": {
             "all_extracted": {
-              "score": 0.42696629213483145,
-              "matched": 38,
+              "score": 0.449438202247191,
+              "matched": 40,
               "total": 89,
               "missing": [
                 {
@@ -9610,15 +8532,6 @@
                   "details": {}
                 },
                 {
-                  "category": "goal",
-                  "name": "travel_concierge_goal",
-                  "important": false,
-                  "aliases": [
-                    "travel_concierge_goal"
-                  ],
-                  "details": {}
-                },
-                {
                   "category": "capability",
                   "name": "city_selection_capability",
                   "important": false,
@@ -9669,15 +8582,6 @@
                   "important": false,
                   "aliases": [
                     "calculate_capability"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "resource",
-                  "name": "serper_api",
-                  "important": false,
-                  "aliases": [
-                    "serper_api"
                   ],
                   "details": {}
                 },
@@ -9770,8 +8674,8 @@
                   "total": 13
                 },
                 "goal": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 0.3333333333333333,
+                  "matched": 1,
                   "total": 3
                 },
                 "input_variable": {
@@ -9795,8 +8699,8 @@
                   "total": 1
                 },
                 "resource": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 0.16666666666666666,
+                  "matched": 1,
                   "total": 6
                 },
                 "step_task": {
@@ -9976,8 +8880,8 @@
             ]
           },
           "syntax_ok": true,
-          "run_status": "SUCCESS_DUMMY",
-          "run_output": "",
+          "run_status": "IMPORT_ERROR",
+          "run_output": "  File \"/Users/ravie/dev/agento/output_files/output_crewai/trip_planner/main.py\", line 18, in <module>\n    from crew import UnnamedProject\n  File \"/Users/ravie/dev/agento/output_files/output_crewai/trip_planner/crew.py\", line 26, in <module>\n    from crewai import Agent, Crew, Process, Task\nModuleNotFoundError: No module named 'crewai'",
           "gt_found": true,
           "ast_sim": 0.723404255319149
         }

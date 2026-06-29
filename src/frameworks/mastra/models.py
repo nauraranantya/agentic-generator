@@ -23,6 +23,8 @@ from typing import Dict, List, Optional
 
 from pydantic import BaseModel, Field
 
+from src.core.models import TaskModel
+
 
 # ──────────────────────────────────────────────
 # Enums
@@ -211,6 +213,10 @@ class StepModel(BaseModel):
     )
     
     # References to other entities
+    task_iri: Optional[str] = Field(
+        None,
+        description="IRI of the associated task"
+    )
     agent_var_name: Optional[str] = Field(
         None, 
         description="Agent var_name if step uses an agent"
@@ -429,6 +435,7 @@ class MastraProject(BaseModel):
     agents: List[MastraAgentModel] = Field(default_factory=list)
     tools: List[MastraToolModel] = Field(default_factory=list)
     workflows: List[WorkflowModel] = Field(default_factory=list)
+    tasks: List[TaskModel] = Field(default_factory=list)
     memory_configs: List[MemoryModel] = Field(default_factory=list)
     
     # Language models (for dependency detection)
@@ -454,3 +461,6 @@ class MastraProject(BaseModel):
     capabilities: List[dict] = Field(default_factory=list, description="Capability individuals")
     resources: List[dict] = Field(default_factory=list, description="Resource individuals")
     constraints: List[dict] = Field(default_factory=list, description="Constraint individuals")
+
+
+MastraProject.model_rebuild()

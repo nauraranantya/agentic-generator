@@ -549,6 +549,7 @@ def _map_workflows(
                     execute_description=(task.prompt_instruction if task else "")
                     or (task.description if task else "")
                     or step.description,
+                    task_iri=step.task_iri,
                     agent_var_name=agent_var_by_iri.get(agent_ref, None),
                     tool_var_name=tool_var_name,
                 )
@@ -611,10 +612,10 @@ def adapt(project: AgenticProject) -> MastraProject:
         project_name=project_name,
         project_var_name=project_var_name,
         description=project.description,
-        output_profile="mastra_core",
         agents=list(agents_by_iri.values()),
         tools=list(tools_by_iri.values()),
         workflows=workflows,
+        tasks=list(project.tasks),
         memory_configs=list(memory_by_iri.values()),
         language_models=list(language_models_by_iri.values()),
         env_vars=[ConfigModel(key=c.key, value=c.value) for c in project.env_vars],

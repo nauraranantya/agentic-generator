@@ -22,7 +22,6 @@ def _to_lower_camel(name: str) -> str:
     """Convert snake/kebab/space names to lowerCamelCase for TS identifiers."""
     if not name:
         return "node"
-    name = re.sub(r"([_-]?step)$", "", name, flags=re.IGNORECASE)
     parts = re.split(r"[^a-zA-Z0-9]+", name)
     parts = [p for p in parts if p]
     if not parts:
@@ -31,6 +30,7 @@ def _to_lower_camel(name: str) -> str:
     if out[0].isdigit():
         out = f"n{out}"
     return out
+
 
 
 def _map_tools(project: AgenticProject) -> List[LangGraphToolModel]:
@@ -103,8 +103,8 @@ def _map_nodes_edges(project: AgenticProject) -> tuple[List[LangGraphNodeModel],
                 continue
             step_by_iri[step.iri] = LangGraphNodeModel(
                 iri=step.iri,
-                name=step.var_name or step.task_var_name or "step",
-                ts_name=_to_lower_camel(step.var_name or step.task_var_name or "step"),
+                name=step.task_var_name or step.var_name or "step",
+                ts_name=_to_lower_camel(step.task_var_name or step.var_name or "step"),
                 agent_ref=step.agent_iri or None,
                 node_kind="worker",
                 group="nodes",
@@ -224,7 +224,7 @@ def adapt(project: AgenticProject) -> LangGraphProject:
     agents = _map_agents(project)
     nodes, edges = _map_nodes_edges(project)
     router_node_name, routes = _resolve_router_and_routes(nodes, edges)
-    start_node_name = next((n.ts_name for n in nodes if n.is_start), "")
+    start_node_name = next((n.ts_name for n in nodes if n.is_start), "") or (nodes[0].ts_name if nodes else "")
 
     return LangGraphProject(
         name=project.name or "LangGraph Project",

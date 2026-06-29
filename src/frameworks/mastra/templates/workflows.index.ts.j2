@@ -1,3 +1,5 @@
 {% for workflow in workflows %}
 export { {{ workflow.var_name }} } from './{{ workflow.var_name }}'
 {% endfor %}
+export * from './ad_hoc_tasks'
+
