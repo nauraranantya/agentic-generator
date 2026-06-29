@@ -14,8 +14,8 @@ import { memoryAgent } from '../agents'
 
 // ── Workflow Steps ──
 
-const wsStartChat = createStep({
-  id: 'ws_start_chat',
+const taskInitialSystemMessage = createStep({
+  id: 'task_initial_system_message',
   description: `On session start the program sends a system-role message; uses prompt_system_firstChat if isFirstChat, otherwise prompt_system_returningChat. The timestamp is inserted at runtime.`,
   inputSchema: z.object({}),
   outputSchema: z.object({}),
@@ -24,12 +24,12 @@ const wsStartChat = createStep({
     // This step uses agent: memoryAgent
     // const result = await memoryAgent.generate('...')
     // TODO: Implement step logic
-    throw new Error('ws_start_chat not implemented yet')
+    throw new Error('task_initial_system_message not implemented yet')
   },
 })
 
-const wsReceiveUserInput = createStep({
-  id: 'ws_receive_user_input',
+const taskReceiveUserInput = createStep({
+  id: 'task_receive_user_input',
   description: `A blocking read from a human input channel; in code this is achieved by Readline and awaiting user's input, then the input is forwarded to the agent.stream call.`,
   inputSchema: z.object({}),
   outputSchema: z.object({}),
@@ -38,12 +38,12 @@ const wsReceiveUserInput = createStep({
     // This step uses agent: memoryAgent
     // const result = await memoryAgent.generate('...')
     // TODO: Implement step logic
-    throw new Error('ws_receive_user_input not implemented yet')
+    throw new Error('task_receive_user_input not implemented yet')
   },
 })
 
-const wsAgentGenerateResponse = createStep({
-  id: 'ws_agent_generate_response',
+const taskAgentStreamResponse = createStep({
+  id: 'task_agent_stream_response',
   description: `Agent processes the user's message, streams text output. During streaming the implementation masks two tag sections: 'think' (internal chain-of-thought-like output) and 'working_memory' (memory saving operations). Spinners (status indicators) are displayed while sections stream; upon end spinners succeed and input reading resumes. The stream also interacts with the Memory component for saving/retrieving conversation context.`,
   inputSchema: z.object({}),
   outputSchema: z.object({}),
@@ -52,7 +52,7 @@ const wsAgentGenerateResponse = createStep({
     // This step uses agent: memoryAgent
     // const result = await memoryAgent.generate('...')
     // TODO: Implement step logic
-    throw new Error('ws_agent_generate_response not implemented yet')
+    throw new Error('task_agent_stream_response not implemented yet')
   },
 })
 
@@ -67,9 +67,9 @@ export const workflowChatPattern = createWorkflow({
   id: 'workflow_chat_pattern',
   inputSchema: z.object({A_workflow_pattern_that_models_the_interactive_chat_loop: z.string()}),
   outputSchema: z.object({}),
-  steps: [wsStartChat, wsReceiveUserInput, wsAgentGenerateResponse],
+  steps: [taskInitialSystemMessage, taskReceiveUserInput, taskAgentStreamResponse],
 })
-  .then(wsStartChat)
-  .then(wsReceiveUserInput)
-  .then(wsAgentGenerateResponse)
+  .then(taskInitialSystemMessage)
+  .then(taskReceiveUserInput)
+  .then(taskAgentStreamResponse)
   .commit()

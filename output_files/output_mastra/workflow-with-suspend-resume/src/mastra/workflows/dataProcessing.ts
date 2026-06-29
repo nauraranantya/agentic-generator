@@ -12,7 +12,7 @@ import { mastraRuntime } from '../tools'
 
 // ── Workflow Steps ──
 
-const stepOneWs = createStep({
+const stepOneTaskDoubleInput = createStep({
   id: 'stepOne task (double input)',
   description: `Execution logic: await delay(10000); doubledValue = inputData.inputValue * 2; return { doubledValue }.`,
   inputSchema: z.object({inputSchema: z.object({}), example: z.object({})}),
@@ -25,7 +25,7 @@ const stepOneWs = createStep({
   },
 })
 
-const stepTwoWs = createStep({
+const resumeIncrement = createStep({
   id: 'stepTwo task (suspend/resume increment)',
   description: `Execution logic: if (!resumeData?.extraNumber) { await suspend({}); return { incrementedValue: 0 }; } else { incrementedValue = inputData.doubledValue + 1 + resumeData.extraNumber; return { incrementedValue }; }`,
   inputSchema: z.object({inputSchema: z.object({}), example: z.object({})}),
@@ -38,7 +38,7 @@ const stepTwoWs = createStep({
   },
 })
 
-const stepThreeWs = createStep({
+const stepThreeTaskTripleIncrementedValue = createStep({
   id: 'stepThree task (triple incrementedValue)',
   description: `Execution logic: tripledValue = inputData.incrementedValue * 3; return { tripledValue }.`,
   inputSchema: z.object({inputSchema: z.object({}), example: z.object({})}),
@@ -51,7 +51,7 @@ const stepThreeWs = createStep({
   },
 })
 
-const stepFourWs = createStep({
+const stepFourTaskIsEvenCheck = createStep({
   id: 'stepFour task (isEven check)',
   description: `Execution logic: isEven = (inputData.tripledValue % 2 === 0); return { isEven }.`,
   inputSchema: z.object({inputSchema: z.object({}), example: z.object({})}),
@@ -73,7 +73,7 @@ export const dataProcessing = createWorkflow({
   id: 'data-processing',
   inputSchema: z.object({inputSchema: z.object({}), example: z.object({})}),
   outputSchema: z.object({outputSchema: z.object({}), example: z.object({})}),
-  steps: [stepOneWs, stepTwoWs, stepThreeWs, stepFourWs],
+  steps: [stepOneTaskDoubleInput, resumeIncrement, stepThreeTaskTripleIncrementedValue, stepFourTaskIsEvenCheck],
 })
-  .parallel([stepOneWs, stepTwoWs, stepThreeWs, stepFourWs])
+  .parallel([stepOneTaskDoubleInput, resumeIncrement, stepThreeTaskTripleIncrementedValue, stepFourTaskIsEvenCheck])
   .commit()

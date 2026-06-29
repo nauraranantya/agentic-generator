@@ -14,8 +14,8 @@ import { mastraEngineTool } from '../tools'
 
 // ── Workflow Steps ──
 
-const stepOneStep = createStep({
-  id: 'step_one_step',
+const taskStepOne = createStep({
+  id: 'task_step_one',
   description: `Execution logic (preserved from source):`,
   inputSchema: z.object({}),
   outputSchema: z.object({}),
@@ -23,12 +23,12 @@ const stepOneStep = createStep({
     // Execution logic (preserved from source):
     // This step uses tool: mastraEngineTool
     // TODO: Implement step logic
-    throw new Error('step_one_step not implemented yet')
+    throw new Error('task_step_one not implemented yet')
   },
 })
 
-const stepTwoStep = createStep({
-  id: 'step_two_step',
+const taskStepTwo = createStep({
+  id: 'task_step_two',
   description: `Execution logic (preserved from source):`,
   inputSchema: z.object({}),
   outputSchema: z.object({}),
@@ -36,12 +36,12 @@ const stepTwoStep = createStep({
     // Execution logic (preserved from source):
     // This step uses tool: mastraEngineTool
     // TODO: Implement step logic
-    throw new Error('step_two_step not implemented yet')
+    throw new Error('task_step_two not implemented yet')
   },
 })
 
-const stepThreeStep = createStep({
-  id: 'step_three_step',
+const taskStepThree = createStep({
+  id: 'task_step_three',
   description: `Execution logic (preserved from source):`,
   inputSchema: z.object({}),
   outputSchema: z.object({}),
@@ -49,7 +49,7 @@ const stepThreeStep = createStep({
     // Execution logic (preserved from source):
     // This step uses tool: mastraEngineTool
     // TODO: Implement step logic
-    throw new Error('step_three_step not implemented yet')
+    throw new Error('task_step_three not implemented yet')
   },
 })
 
@@ -64,7 +64,7 @@ export const myWorkflowPattern = createWorkflow({
   id: 'my_workflow_pattern',
   inputSchema: z.object({inputValue: z.number()}),
   outputSchema: z.object({}),
-  steps: [stepOneStep, stepTwoStep, stepThreeStep],
+  steps: [taskStepOne, taskStepTwo, taskStepThree],
 })
-  .parallel([stepOneStep, stepTwoStep, stepThreeStep])
+  .parallel([taskStepOne, taskStepTwo, taskStepThree])
   .commit()

@@ -1,0 +1,1 @@
+export { myWorkflowPattern } from './myWorkflowPattern'

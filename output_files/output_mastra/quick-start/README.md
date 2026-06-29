@@ -82,7 +82,7 @@ Represents the runtime logging facility used by the step (the source prints to c
 Workflow that accepts an input { name: string } and runs a step to log the cat name, returning rawText. This corresponds to createWorkflow with id 'log-cat-workflow' in the source.
 
 **Steps:** 1
-1. log_cat_name_step
+1. task_log_cat_name
 
 ### legacy_log_cat_workflow_pattern
 

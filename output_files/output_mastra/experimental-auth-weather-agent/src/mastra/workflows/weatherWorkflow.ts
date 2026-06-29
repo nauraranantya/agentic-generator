@@ -17,7 +17,7 @@ import { weatherTool } from '../tools'
 
 // ── Workflow Steps ──
 
-const fetchWeatherStep = createStep({
+const fetchWeather = createStep({
   id: 'fetch-weather',
   description: `Fetches weather forecast for a given city.`,
   inputSchema: z.object({}),
@@ -30,7 +30,7 @@ const fetchWeatherStep = createStep({
   },
 })
 
-const planActivitiesStep = createStep({
+const planActivities = createStep({
   id: 'plan-activities',
   description: `Suggests activities based on the normalized weather forecast.`,
   inputSchema: z.object({fields: z.string()}),
@@ -55,7 +55,7 @@ export const weatherWorkflow = createWorkflow({
   id: 'weather-workflow',
   inputSchema: z.object({}),
   outputSchema: z.object({A_single_string_containing_planned_activities_formatted_according_to_the_activity: z.string()}),
-  steps: [fetchWeatherStep, planActivitiesStep],
+  steps: [fetchWeather, planActivities],
 })
-  .parallel([fetchWeatherStep, planActivitiesStep])
+  .parallel([fetchWeather, planActivities])
   .commit()

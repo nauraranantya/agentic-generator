@@ -4651,8 +4651,8 @@
                   "aliases": [
                     "tool_tool_stockbroker_description",
                     "description",
-                    "can_fetch_the_price_of_a_ticker_purchase_sell_a_ticker_or_get_the_user_s_portfolio",
                     "sell_a_ticker_or_get_the_user_s_portfolio",
+                    "can_fetch_the_price_of_a_ticker_purchase_sell_a_ticker_or_get_the_user_s_portfolio",
                     "description_can_fetch_the_price_of_a_ticker_purchase_sell_a_ticker_or_get_the_user_s_portfolio"
                   ],
                   "details": {

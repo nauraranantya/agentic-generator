@@ -17,7 +17,7 @@ import { getRandomImageTool } from '../tools'
 
 // ── Workflow Steps ──
 
-const stepGetImage = createStep({
+const getRandomImageTask = createStep({
   id: 'Get Random Image Task',
   description: `Task to fetch a random image from Unsplash using a user-selected query option (wildlife, feathers, flying, birds).`,
   inputSchema: z.object({}),
@@ -30,7 +30,7 @@ const stepGetImage = createStep({
   },
 })
 
-const stepAnalyzeImage = createStep({
+const analyzeImageTask = createStep({
   id: 'Analyze Image Task',
   description: `Task to analyze an image and determine whether it is a bird, the species scientific name, and a short location summary. Implemented via the birdAgent (agent.generate with an image and a text instruction).`,
   inputSchema: z.object({}),
@@ -55,8 +55,8 @@ export const birdCheckerWorkflow = createWorkflow({
   id: 'Bird Checker Workflow Pattern',
   inputSchema: z.object({High_level_workflow: z.string()}),
   outputSchema: z.object({ bird: z.boolean(), species: z.string(), location: z.string() }),
-  steps: [stepGetImage, stepAnalyzeImage],
+  steps: [getRandomImageTask, analyzeImageTask],
 })
-  .then(stepGetImage)
-  .then(stepAnalyzeImage)
+  .then(getRandomImageTask)
+  .then(analyzeImageTask)
   .commit()

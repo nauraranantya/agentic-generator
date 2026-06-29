@@ -17,8 +17,8 @@ import { getRandomImageTool } from '../tools'
 
 // ── Workflow Steps ──
 
-const stepFetchImage = createStep({
-  id: 'step_fetch_image',
+const taskFetchRandomImage = createStep({
+  id: 'task_fetch_random_image',
   description: `Task that selects a random image from Unsplash using the getRandomImage tool with a query parameter drawn from an enum of options.`,
   inputSchema: z.object({}),
   outputSchema: z.object({}),
@@ -26,12 +26,12 @@ const stepFetchImage = createStep({
     // Task that selects a random image from Unsplash using the getRandomImage tool with a query parameter drawn from an enum of options.
     // This step uses tool: getRandomImageTool
     // TODO: Implement step logic
-    throw new Error('step_fetch_image not implemented yet')
+    throw new Error('task_fetch_random_image not implemented yet')
   },
 })
 
-const stepAnalyzeImage = createStep({
-  id: 'step_analyze_image',
+const taskAnalyzeImage = createStep({
+  id: 'task_analyze_image',
   description: `Task that sends an image and an instruction prompt to the LLM agent to determine whether the image is a bird, the species (scientific name) and a short summary of the picture location.`,
   inputSchema: z.object({type: z.string(), placeholder: z.string()}),
   outputSchema: z.object({bird: z.string(), species: z.string(), location: z.string()}),
@@ -40,7 +40,7 @@ const stepAnalyzeImage = createStep({
     // This step uses agent: birdChecker
     // const result = await birdChecker.generate('...')
     // TODO: Implement step logic
-    throw new Error('step_analyze_image not implemented yet')
+    throw new Error('task_analyze_image not implemented yet')
   },
 })
 
@@ -55,8 +55,8 @@ export const imageMetadataWorkflow = createWorkflow({
   id: 'image_metadata_workflow',
   inputSchema: z.object({A_simple_two_step_workflow: z.string()}),
   outputSchema: z.object({bird: z.string(), species: z.string(), location: z.string()}),
-  steps: [stepFetchImage, stepAnalyzeImage],
+  steps: [taskFetchRandomImage, taskAnalyzeImage],
 })
-  .then(stepFetchImage)
-  .then(stepAnalyzeImage)
+  .then(taskFetchRandomImage)
+  .then(taskAnalyzeImage)
   .commit()

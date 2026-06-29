@@ -12,8 +12,8 @@
         "errors": 0,
         "avg_oec_all": 0.6034320884069264,
         "avg_oec_important": 0.9468861978911923,
-        "avg_wgi": 0.8824630230880232,
-        "avg_edge_f1": 0.7188131313131313,
+        "avg_wgi": 0.8958558802308803,
+        "avg_edge_f1": 0.7563131313131313,
         "avg_ast_sim": 0.6021303805642652,
         "syntax_success_rate": 1.0,
         "run_success_rate": 1.0
@@ -3398,8 +3398,8 @@
                   "important": false,
                   "aliases": [
                     "templates_folder",
-                    "folder_of_tailwind_templates",
-                    "templates_folder_of_tailwind_templates"
+                    "templates_folder_of_tailwind_templates",
+                    "folder_of_tailwind_templates"
                   ],
                   "details": {}
                 },
@@ -3702,17 +3702,17 @@
             }
           },
           "wgi": {
-            "score": 0.5,
-            "normalized_graph_edit_distance": 0.5,
-            "labeled_score": 0.5,
-            "topology_score": 0.0,
-            "labeled_normalized_graph_edit_distance": 0.5,
-            "topology_normalized_graph_edit_distance": 1.3076923076923077,
+            "score": 0.7142857142857143,
+            "normalized_graph_edit_distance": 0.2857142857142857,
+            "labeled_score": 0.7142857142857143,
+            "topology_score": 0.3846153846153846,
+            "labeled_normalized_graph_edit_distance": 0.2857142857142857,
+            "topology_normalized_graph_edit_distance": 0.6153846153846154,
             "exact_isomorphic": false,
             "topology_isomorphic": false,
-            "edge_precision": 0.0,
-            "edge_recall": 0.0,
-            "edge_f1": 0.0,
+            "edge_precision": 0.5,
+            "edge_recall": 0.75,
+            "edge_f1": 0.6,
             "kg_nodes": [
               "choose_template_task",
               "component_content_task",
@@ -3733,8 +3733,20 @@
             ],
             "kg_edges": [
               {
+                "source": "choose_template_task",
+                "target": "update_page_task"
+              },
+              {
+                "source": "component_content_task",
+                "target": "update_component_task"
+              },
+              {
                 "source": "refine_idea_task",
                 "target": "refine_idea_task"
+              },
+              {
+                "source": "update_component_task",
+                "target": "qa_component_task"
               }
             ],
             "code_edges": [
@@ -3773,24 +3785,12 @@
             ],
             "extra_edges": [
               {
-                "source": "choose_template_task",
-                "target": "update_page_task"
-              },
-              {
-                "source": "component_content_task",
-                "target": "update_component_task"
-              },
-              {
                 "source": "expand_idea_task",
                 "target": "refine_idea_task"
               },
               {
                 "source": "refine_idea_task",
                 "target": "choose_template_task"
-              },
-              {
-                "source": "update_component_task",
-                "target": "qa_component_task"
               },
               {
                 "source": "update_page_task",
@@ -3824,8 +3824,8 @@
                   "aliases": [
                     "system_mark_down_validator_crew_agents_config_path",
                     "agents_config_path",
-                    "tasks_yaml",
                     "config_agents_yaml_config_tasks_yaml",
+                    "tasks_yaml",
                     "agents_config_path_config_agents_yaml_config_tasks_yaml"
                   ],
                   "details": {
@@ -4879,8 +4879,8 @@
                   "aliases": [
                     "system_unnamed_project_agents_config_path",
                     "agents_config_path",
-                    "tasks_yaml",
                     "config_tasks_yaml",
+                    "tasks_yaml",
                     "agents_config_path_config_tasks_yaml"
                   ],
                   "details": {
@@ -4897,8 +4897,8 @@
                   "aliases": [
                     "system_unnamed_project_tasks_config_path",
                     "tasks_config_path",
-                    "tasks_yaml",
                     "config_tasks_yaml",
+                    "tasks_yaml",
                     "tasks_config_path_config_tasks_yaml"
                   ],
                   "details": {
@@ -6160,8 +6160,8 @@
                   "aliases": [
                     "system_recruitment_crew_train_entry_point",
                     "train_entry_point",
-                    "runtime_details_modeled_here_as_metadata",
                     "training_iterations_and_behavior_are_implementation_runtime_details_modeled_here_as_metadata",
+                    "runtime_details_modeled_here_as_metadata",
                     "train_entry_point_training_iterations_and_behavior_are_implementation_runtime_details_modeled_here_as_metadata"
                   ],
                   "details": {
@@ -6178,8 +6178,8 @@
                   "aliases": [
                     "system_recruitment_crew_train_iterations_arg",
                     "train_iterations_arg",
-                    "runtime_details_modeled_here_as_metadata",
                     "training_iterations_and_behavior_are_implementation_runtime_details_modeled_here_as_metadata",
+                    "runtime_details_modeled_here_as_metadata",
                     "train_iterations_arg_training_iterations_and_behavior_are_implementation_runtime_details_modeled_here_as_metadata"
                   ],
                   "details": {
@@ -8737,8 +8737,8 @@
                   "aliases": [
                     "system_surprise_travel_crew_tasks_config_path",
                     "tasks_config_path",
-                    "tasks_yaml",
                     "config_tasks_yaml",
+                    "tasks_yaml",
                     "tasks_config_path_config_tasks_yaml"
                   ],
                   "details": {

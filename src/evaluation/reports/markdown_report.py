@@ -10,7 +10,12 @@ def render_markdown(results: Dict[str, object]) -> str:
     lines: List[str] = []
     lines.append("# OEC/WGI Evaluation Report")
     lines.append("")
-    lines.append(f"Generated at: {datetime.now().isoformat(timespec='seconds')}")
+    
+    now = datetime.now()
+    lines.append(f"- **Date:** {now.strftime('%Y-%m-%d')}")
+    lines.append(f"- **Time:** {now.strftime('%H:%M:%S')} (Local Time)")
+    if "root" in results:
+        lines.append(f"- **Workspace Root:** `{results['root']}`")
     lines.append("")
     lines.append("## Summary")
     lines.append("")

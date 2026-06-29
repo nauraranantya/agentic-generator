@@ -14,7 +14,7 @@ import { recruiterAgent } from '../agents'
 
 // ── Workflow Steps ──
 
-const wsGatherCandidateInfo = createStep({
+const gatherCandidateInfo = createStep({
   id: 'gatherCandidateInfo',
   description: `Input schema (Zod): { resumeText: string }`,
   inputSchema: z.object({}),
@@ -28,7 +28,7 @@ const wsGatherCandidateInfo = createStep({
   },
 })
 
-const wsAskAboutSpecialty = createStep({
+const askAboutSpecialty = createStep({
   id: 'askAboutSpecialty',
   description: `Output schema (Zod): { question: string }`,
   inputSchema: z.object({}),
@@ -42,7 +42,7 @@ const wsAskAboutSpecialty = createStep({
   },
 })
 
-const wsAskAboutRole = createStep({
+const askAboutRole = createStep({
   id: 'askAboutRole',
   description: `Output schema (Zod): { question: string }`,
   inputSchema: z.object({}),
@@ -67,11 +67,11 @@ export const candidateWorkflow = createWorkflow({
   id: 'candidate-workflow',
   inputSchema: z.object({resumeText: z.string()}),
   outputSchema: z.object({}),
-  steps: [wsGatherCandidateInfo, wsAskAboutSpecialty, wsAskAboutRole],
+  steps: [gatherCandidateInfo, askAboutSpecialty, askAboutRole],
 })
   // NOTE: Branching workflow — simplified to sequential for type compatibility
   // TODO: Implement conditional branching using .branch() API
-  .then(wsGatherCandidateInfo)
-  .then(wsAskAboutSpecialty)
-  .then(wsAskAboutRole)
+  .then(gatherCandidateInfo)
+  .then(askAboutSpecialty)
+  .then(askAboutRole)
   .commit()

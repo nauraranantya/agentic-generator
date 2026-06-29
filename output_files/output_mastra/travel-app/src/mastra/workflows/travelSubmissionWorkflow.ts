@@ -18,7 +18,7 @@ import { airbnbFlowPattern } from './airbnbFlowPattern'
 
 // ── Workflow Steps ──
 
-const outboundFlightStep = createStep({
+const findOutboundFlight = createStep({
   id: 'Find Outbound Flight',
   description: `Select 1 outbound flight for the given departureLocation -> arrivalLocation and date range. Return entire flight object including legs and timestamps. Consider flightPriority to trade off price vs convenience.`,
   inputSchema: z.object({}),
@@ -33,7 +33,7 @@ const outboundFlightStep = createStep({
   },
 })
 
-const returnFlightStep = createStep({
+const findReturnFlight = createStep({
   id: 'Find Return Flight',
   description: `Select 1 return flight for the given arrivalLocation -> departureLocation and date range. Return entire flight object including legs and timestamps.`,
   inputSchema: z.object({}),
@@ -46,7 +46,7 @@ const returnFlightStep = createStep({
   },
 })
 
-const accommodationStep = createStep({
+const findAccommodationHotelOrAirbnb = createStep({
   id: 'Find Accommodation (Hotel or Airbnb)',
   description: `If accommodationType is 'hotel' call Search Hotels tool using arrivalCityId. If accommodationType is 'airbnb', first call Search Airbnb Location tool to get place id and then call Search Airbnb tool using that id, typeOfPlace, startDate, endDate. Do NOT call Airbnb tools if accommodationType is hotel. Do NOT call searchHotels if accommodationType is airbnb.`,
   inputSchema: z.object({}),
@@ -58,19 +58,7 @@ const accommodationStep = createStep({
   },
 })
 
-const airbnbLocationStep = createStep({
-  id: 'Find Accommodation (Hotel or Airbnb)',
-  description: `If accommodationType is 'hotel' call Search Hotels tool using arrivalCityId. If accommodationType is 'airbnb', first call Search Airbnb Location tool to get place id and then call Search Airbnb tool using that id, typeOfPlace, startDate, endDate. Do NOT call Airbnb tools if accommodationType is hotel. Do NOT call searchHotels if accommodationType is airbnb.`,
-  inputSchema: z.object({}),
-  outputSchema: z.object({}),
-  execute: async ({ inputData }) => {
-    // If accommodationType is 'hotel' call Search Hotels tool using arrivalCityId. If accommodationType is 'airbnb', first call Search Airbnb Location tool to get place id and then call Search Airbnb tool using that id, typeOfPlace, startDate, endDate. Do NOT call Airbnb tools if accommodationType is hotel. Do NOT call searchHotels if accommodationType is airbnb.
-    // TODO: Implement step logic
-    throw new Error('Find Accommodation (Hotel or Airbnb) not implemented yet')
-  },
-})
-
-const arrangeAttractionsStep = createStep({
+const findAttractions = createStep({
   id: 'Find Attractions',
   description: `Find three activities and attractions for the customer based on interests and arrivalAttractionId; return id, name, description, rating, price, imageUrl, location.`,
   inputSchema: z.object({}),
@@ -92,11 +80,10 @@ export const travelSubmissionWorkflow = createWorkflow({
   id: 'travel-submission',
   inputSchema: z.object({}),
   outputSchema: z.object({}),
-  steps: [outboundFlightStep, returnFlightStep, accommodationStep, airbnbLocationStep, arrangeAttractionsStep],
+  steps: [findOutboundFlight, findReturnFlight, findAccommodationHotelOrAirbnb, findAttractions],
 })
-  .then(outboundFlightStep)
-  .then(returnFlightStep)
-  .then(accommodationStep)
-  .then(airbnbLocationStep)
-  .then(arrangeAttractionsStep)
+  .then(findOutboundFlight)
+  .then(findReturnFlight)
+  .then(findAccommodationHotelOrAirbnb)
+  .then(findAttractions)
   .commit()

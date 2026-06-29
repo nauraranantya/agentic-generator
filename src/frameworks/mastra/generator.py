@@ -201,7 +201,22 @@ def _storage_config_entries(mem: MemoryModel) -> List[Dict[str, str]]:
     Prefers explicit values from the KG; falls back to env-var placeholders.
     Values that are JavaScript expressions (process.env.*, numeric) are kept
     as-is; everything else is quoted as a TypeScript string literal.
+
+    Keys that contain dots or other characters invalid in bare JS identifiers
+    are wrapped in double-quotes so they render as valid object literal keys.
     """
+    def _safe_key(k: str) -> str:
+        """Return k as a valid TypeScript object-literal key.
+
+        Bare identifier: letters, digits, $ and _ only, not starting with digit.
+        Anything else (e.g. contains '.') must be quoted.
+        """
+        if re.match(r'^[A-Za-z_$][A-Za-z0-9_$]*$', k):
+            return k
+        # Escape any double-quotes inside the key itself
+        escaped = k.replace('\\', '\\\\').replace('"', '\\"')
+        return f'"{escaped}"'
+
     def _quote(val: str) -> str:
         """Return val as a TS expression: unquoted if JS expr, single-quoted otherwise."""
         stripped = val.strip()
@@ -210,11 +225,12 @@ def _storage_config_entries(mem: MemoryModel) -> List[Dict[str, str]]:
             or stripped.lstrip("-").isdigit()
         ):
             return stripped
-        # String literal
-        return f"'{stripped}'"
+        # String literal — escape any single quotes inside the value
+        inner = stripped.replace("'", "\\'")
+        return f"'{inner}'"
 
     if mem.storage_config:
-        entries = [{"key": cfg.key, "value": _quote(cfg.value)} for cfg in mem.storage_config]
+        entries = [{"key": _safe_key(cfg.key), "value": _quote(cfg.value)} for cfg in mem.storage_config]
         # Always ensure 'id' is present for all storage types (required by modern Mastra stores)
         if not any(e["key"] == "id" for e in entries):
             store_id = f"mastra-{mem.storage_type}-store"

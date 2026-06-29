@@ -12,7 +12,7 @@ import { weatherAgent } from '../agents'
 
 // ── Workflow Steps ──
 
-const myNetworkStep = createStep({
+const networkSupervisorTask = createStep({
   id: 'Network Supervisor Task',
   description: `You are a helpful supervisor agent that can help users with a variety of tasks.`,
   inputSchema: z.object({}),
@@ -35,7 +35,7 @@ export const myNetworkPattern = createWorkflow({
   id: 'myNetwork',
   inputSchema: z.object({}),
   outputSchema: z.object({}),
-  steps: [myNetworkStep],
+  steps: [networkSupervisorTask],
 })
-  .then(myNetworkStep)
+  .then(networkSupervisorTask)
   .commit()

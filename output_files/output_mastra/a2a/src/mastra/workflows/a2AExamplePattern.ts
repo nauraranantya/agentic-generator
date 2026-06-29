@@ -14,8 +14,8 @@ import { myAgent, contentCreatorAgent } from '../agents'
 
 // ── Workflow Steps ──
 
-const a2AStep1Research = createStep({
-  id: 'a2_a_step1_research',
+const researchTask = createStep({
+  id: 'research_task',
   description: `Task where the first agent gathers information. In code: researchTaskId = \`research-\${Date.now()}\` and a message with the researchQuery is sent via a2aClient.sendMessage. The task returns a message/status object and the resulting textual research output is stored in the ResearchResult resource.`,
   inputSchema: z.object({}),
   outputSchema: z.object({}),
@@ -24,12 +24,12 @@ const a2AStep1Research = createStep({
     // This step uses agent: myAgent
     // const result = await myAgent.generate('...')
     // TODO: Implement step logic
-    throw new Error('a2_a_step1_research not implemented yet')
+    throw new Error('research_task not implemented yet')
   },
 })
 
-const a2AStep2ContentTransform = createStep({
-  id: 'a2_a_step2_content_transform',
+const contentTask = createStep({
+  id: 'content_task',
   description: `Task where the content-creator agent receives research output and transforms it into an engaging blog post introduction. In the code the prompt is constructed by embedding researchResult into a template and sending via secondA2aClient.sendMessage.`,
   inputSchema: z.object({researchResult: z.string()}),
   outputSchema: z.object({}),
@@ -38,7 +38,7 @@ const a2AStep2ContentTransform = createStep({
     // This step uses agent: contentCreatorAgent
     // const result = await contentCreatorAgent.generate('...')
     // TODO: Implement step logic
-    throw new Error('a2_a_step2_content_transform not implemented yet')
+    throw new Error('content_task not implemented yet')
   },
 })
 
@@ -53,8 +53,8 @@ export const a2AExamplePattern = createWorkflow({
   id: 'a2_a_example_pattern',
   inputSchema: z.object({Two: z.string()}),
   outputSchema: z.object({}),
-  steps: [a2AStep1Research, a2AStep2ContentTransform],
+  steps: [researchTask, contentTask],
 })
-  .then(a2AStep1Research)
-  .then(a2AStep2ContentTransform)
+  .then(researchTask)
+  .then(contentTask)
   .commit()

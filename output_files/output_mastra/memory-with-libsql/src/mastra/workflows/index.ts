@@ -1,0 +1,1 @@
+export { chefConversationPattern } from './chefConversationPattern'

@@ -83,8 +83,8 @@ No tools defined in this project.
 Two-step pattern: (1) research by a first agent; (2) transformation of research into content by a second agent. Matches the sequential steps in src/index.ts demonstrating A2A interactions.
 
 **Steps:** 2
-1. a2_a_step1_research
-2. a2_a_step2_content_transform
+1. research_task
+2. content_task
 
 
 ---

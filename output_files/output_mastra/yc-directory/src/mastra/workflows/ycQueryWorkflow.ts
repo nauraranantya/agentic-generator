@@ -17,8 +17,8 @@ import { mastraEvalsRunner, ycDirectoryTool } from '../tools'
 
 // ── Workflow Steps ──
 
-const stepAcceptQuery = createStep({
-  id: 'step_accept_query',
+const runEvalsTask = createStep({
+  id: 'run_evals_task',
   description: `Task representing the tests/runEvals invocation that evaluates ycAgent using the AnswerRelevancyScorer with a small input dataset.`,
   inputSchema: z.object({}),
   outputSchema: z.object({}),
@@ -26,12 +26,12 @@ const stepAcceptQuery = createStep({
     // Task representing the tests/runEvals invocation that evaluates ycAgent using the AnswerRelevancyScorer with a small input dataset.
     // This step uses tool: mastraEvalsRunner
     // TODO: Implement step logic
-    throw new Error('step_accept_query not implemented yet')
+    throw new Error('run_evals_task not implemented yet')
   },
 })
 
-const stepCallTool = createStep({
-  id: 'step_call_tool',
+const fetchYcDataTask = createStep({
+  id: 'fetch_yc_data_task',
   description: `Task that represents the operation of the yc-directory tool's execute function returning YC data.`,
   inputSchema: z.object({}),
   outputSchema: z.object({}),
@@ -39,12 +39,12 @@ const stepCallTool = createStep({
     // Task that represents the operation of the yc-directory tool's execute function returning YC data.
     // This step uses tool: ycDirectoryTool
     // TODO: Implement step logic
-    throw new Error('step_call_tool not implemented yet')
+    throw new Error('fetch_yc_data_task not implemented yet')
   },
 })
 
-const stepGenerateAnswer = createStep({
-  id: 'step_generate_answer',
+const answerYcDirectoryQuery = createStep({
+  id: 'answer_yc_directory_query',
   description: `Primary task the ycDirectoryAgent performs: accept a natural language query about the YC 2024 directory and produce an answer exclusively using the yc-directory tool's dataset. Must include batch numbers when referencing companies and must not hallucinate beyond the available fields.`,
   inputSchema: z.object({}),
   outputSchema: z.object({}),
@@ -53,7 +53,7 @@ const stepGenerateAnswer = createStep({
     // This step uses agent: ycDirectoryAgent
     // const result = await ycDirectoryAgent.generate('...')
     // TODO: Implement step logic
-    throw new Error('step_generate_answer not implemented yet')
+    throw new Error('answer_yc_directory_query not implemented yet')
   },
 })
 
@@ -68,7 +68,7 @@ export const ycQueryWorkflow = createWorkflow({
   id: 'yc_query_workflow',
   inputSchema: z.object({Agent_decides_to_call_yc: z.string()}),
   outputSchema: z.object({}),
-  steps: [stepAcceptQuery, stepCallTool, stepGenerateAnswer],
+  steps: [runEvalsTask, fetchYcDataTask, answerYcDirectoryQuery],
 })
-  .parallel([stepAcceptQuery, stepCallTool, stepGenerateAnswer])
+  .parallel([runEvalsTask, fetchYcDataTask, answerYcDirectoryQuery])
   .commit()

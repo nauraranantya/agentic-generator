@@ -14,7 +14,7 @@ import { famousPersonGenerator, gameAgent } from '../agents'
 
 // ── Workflow Steps ──
 
-const startWorkflowStep = createStep({
+const startTaskGenerateFamousPerson = createStep({
   id: 'Start Task (generate famous person)',
   description: `Task logic (semantic description, original source behavior preserved):`,
   inputSchema: z.object({}),
@@ -28,7 +28,7 @@ const startWorkflowStep = createStep({
   },
 })
 
-const gameWorkflowStep = createStep({
+const aAndGuessHandling = createStep({
   id: 'Game Task (Q/A and guess handling)',
   description: `Task logic (semantic description, original source preserved):`,
   inputSchema: z.object({}),
@@ -42,7 +42,7 @@ const gameWorkflowStep = createStep({
   },
 })
 
-const winWorkflowStep = createStep({
+const winTaskFinalization = createStep({
   id: 'Win Task (finalization)',
   description: `Finalization task:`,
   inputSchema: z.object({}),
@@ -65,9 +65,9 @@ export const headsUpWorkflow = createWorkflow({
   id: 'heads-up-workflow',
   inputSchema: z.object({Workflow_that_implements_the_Heads: z.string()}),
   outputSchema: z.object({}),
-  steps: [startWorkflowStep, gameWorkflowStep, winWorkflowStep],
+  steps: [startTaskGenerateFamousPerson, aAndGuessHandling, winTaskFinalization],
 })
-  .then(startWorkflowStep)
-  .then(gameWorkflowStep)
-  .then(winWorkflowStep)
+  .then(startTaskGenerateFamousPerson)
+  .then(aAndGuessHandling)
+  .then(winTaskFinalization)
   .commit()

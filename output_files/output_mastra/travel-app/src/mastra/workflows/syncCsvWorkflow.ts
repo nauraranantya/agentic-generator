@@ -9,7 +9,7 @@ import { z } from 'zod'
 
 // ── Workflow Steps ──
 
-const syncCsvStep = createStep({
+const syncCsvDataTask = createStep({
   id: 'Sync CSV Data Task',
   inputSchema: z.object({}),
   outputSchema: z.object({}),
@@ -28,7 +28,7 @@ export const syncCsvWorkflow = createWorkflow({
   id: 'syncCsvData',
   inputSchema: z.object({}),
   outputSchema: z.object({}),
-  steps: [syncCsvStep],
+  steps: [syncCsvDataTask],
 })
-  .then(syncCsvStep)
+  .then(syncCsvDataTask)
   .commit()

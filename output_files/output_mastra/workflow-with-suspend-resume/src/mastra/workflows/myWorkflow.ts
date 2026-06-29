@@ -15,7 +15,7 @@ import { dataProcessing } from './dataProcessing'
 
 // ── Workflow Steps ──
 
-const invokeDataProcessingStep = createStep({
+const invokeNestedDataProcessingWorkflow = createStep({
   id: 'Invoke nested data-processing workflow',
   description: `Invokes nested workflow 'data-processing' with input schema { inputValue: number } and expects output { isEven: boolean }.`,
   inputSchema: z.object({inputSchema: z.object({}), exampleInput: z.object({})}),
@@ -37,7 +37,7 @@ export const myWorkflow = createWorkflow({
   id: 'my-workflow',
   inputSchema: z.object({inputSchema: z.object({}), exampleInput: z.object({})}),
   outputSchema: z.object({outputSchema: z.object({})}),
-  steps: [invokeDataProcessingStep],
+  steps: [invokeNestedDataProcessingWorkflow],
 })
-  .parallel([invokeDataProcessingStep])
+  .parallel([invokeNestedDataProcessingWorkflow])
   .commit()

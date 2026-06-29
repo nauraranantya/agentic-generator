@@ -119,20 +119,18 @@ Searches for Airbnb in a specified location. Place is a cityId like 20015732 for
 
 
 
-**Steps:** 5
+**Steps:** 4
 1. Find Outbound Flight
 2. Find Return Flight
 3. Find Accommodation (Hotel or Airbnb)
-4. Find Accommodation (Hotel or Airbnb)
-5. Find Attractions
+4. Find Attractions
 
 ### airbnb-flow
 
 
 
-**Steps:** 2
+**Steps:** 1
 1. Find Accommodation (Hotel or Airbnb)
-2. Find Accommodation (Hotel or Airbnb)
 
 ### syncCsvData
 

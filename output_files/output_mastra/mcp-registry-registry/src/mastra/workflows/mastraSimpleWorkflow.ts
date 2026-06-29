@@ -14,8 +14,8 @@ import { mcpRegistryAgent } from '../agents'
 
 // ── Workflow Steps ──
 
-const startStepInitializeAgent = createStep({
-  id: 'start_step_initialize_agent',
+const initializeAgentTask = createStep({
+  id: 'initialize_agent_task',
   description: `Initialization task where the MCP client is queried (listTools()) and the agent's tools collection is populated.`,
   inputSchema: z.object({}),
   outputSchema: z.object({}),
@@ -24,12 +24,12 @@ const startStepInitializeAgent = createStep({
     // This step uses agent: mcpRegistryAgent
     // const result = await mcpRegistryAgent.generate('...')
     // TODO: Implement step logic
-    throw new Error('start_step_initialize_agent not implemented yet')
+    throw new Error('initialize_agent_task not implemented yet')
   },
 })
 
-const stepPerformSearch = createStep({
-  id: 'step_perform_search',
+const searchMcpRegistriesTask = createStep({
+  id: 'search_mcp_registries_task',
   description: `Task performed by the MCP Registry Agent: search for registries by ID, tag, or name. This task uses the agent prompt (instructions) and the MCP Registry Tool / MCP Client to obtain information about registries.`,
   inputSchema: z.object({}),
   outputSchema: z.object({}),
@@ -38,12 +38,12 @@ const stepPerformSearch = createStep({
     // This step uses agent: mcpRegistryAgent
     // const result = await mcpRegistryAgent.generate('...')
     // TODO: Implement step logic
-    throw new Error('step_perform_search not implemented yet')
+    throw new Error('search_mcp_registries_task not implemented yet')
   },
 })
 
-const endStepComplete = createStep({
-  id: 'end_step_complete',
+const finalizeTask = createStep({
+  id: 'finalize_task',
   description: `Task to finalize the search operation and present results (formatting, references).`,
   inputSchema: z.object({}),
   outputSchema: z.object({}),
@@ -52,7 +52,7 @@ const endStepComplete = createStep({
     // This step uses agent: mcpRegistryAgent
     // const result = await mcpRegistryAgent.generate('...')
     // TODO: Implement step logic
-    throw new Error('end_step_complete not implemented yet')
+    throw new Error('finalize_task not implemented yet')
   },
 })
 
@@ -67,7 +67,7 @@ export const mastraSimpleWorkflow = createWorkflow({
   id: 'mastra_simple_workflow',
   inputSchema: z.object({}),
   outputSchema: z.object({}),
-  steps: [startStepInitializeAgent, stepPerformSearch, endStepComplete],
+  steps: [initializeAgentTask, searchMcpRegistriesTask, finalizeTask],
 })
-  .parallel([startStepInitializeAgent, stepPerformSearch, endStepComplete])
+  .parallel([initializeAgentTask, searchMcpRegistriesTask, finalizeTask])
   .commit()

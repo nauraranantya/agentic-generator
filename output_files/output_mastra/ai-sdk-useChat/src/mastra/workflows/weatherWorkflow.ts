@@ -14,7 +14,7 @@ import { planningAgent } from '../agents'
 
 // ── Workflow Steps ──
 
-const fetchWeatherStep = createStep({
+const fetchWeather = createStep({
   id: 'Fetch Weather',
   description: `Fetches weather forecast for a given city by resolving the city name to coordinates and retrieving daily forecast data. Produces an array of forecast objects { date, maxTemp, minTemp, precipitationChance, condition, location }.`,
   inputSchema: z.object({city: z.string()}),
@@ -26,7 +26,7 @@ const fetchWeatherStep = createStep({
   },
 })
 
-const planActivitiesStep = createStep({
+const planActivities = createStep({
   id: 'Plan Activities',
   description: `Suggests activities based on the weather forecast. Calls an LLM agent (planningAgent) with the forecast data; receives a streaming text response which is concatenated into the final activities output.`,
   inputSchema: z.object({date: z.string()}),
@@ -51,7 +51,7 @@ export const weatherWorkflow = createWorkflow({
   id: 'weather-workflow',
   inputSchema: z.object({city: z.string()}),
   outputSchema: z.object({}),
-  steps: [fetchWeatherStep, planActivitiesStep],
+  steps: [fetchWeather, planActivities],
 })
-  .parallel([fetchWeatherStep, planActivitiesStep])
+  .parallel([fetchWeather, planActivities])
   .commit()

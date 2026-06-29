@@ -17,7 +17,7 @@ import { stockPricesTool } from '../tools'
 
 // ── Workflow Steps ──
 
-const stepFetchStockPrice = createStep({
+const fetchStockPriceForSymbolAaplExample = createStep({
   id: 'Fetch stock price for symbol (AAPL example)',
   description: `Task representing the user's invocation in src/index.ts where the agent is asked: 'What is the current stock price of Apple (AAPL)?'. The agent handles the query using its model and invokes the stockPrices tool to fetch the numeric price.`,
   inputSchema: z.object({}),
@@ -43,7 +43,7 @@ export const fetchStockPricePattern = createWorkflow({
   id: 'Fetch Stock Price Pattern',
   inputSchema: z.object({A_simple_workflow_pattern_that_accepts_a_stock: z.string()}),
   outputSchema: z.object({}),
-  steps: [stepFetchStockPrice],
+  steps: [fetchStockPriceForSymbolAaplExample],
 })
-  .then(stepFetchStockPrice)
+  .then(fetchStockPriceForSymbolAaplExample)
   .commit()

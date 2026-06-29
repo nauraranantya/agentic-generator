@@ -14,7 +14,7 @@ import { chefAgent } from '../agents'
 
 // ── Workflow Steps ──
 
-const stepMyStep = createStep({
+const taskMyStep = createStep({
   id: 'task:my-step',
   description: `Task backing my-step. Performs the core recipe extraction (echo ingredient back) and returns result string.`,
   inputSchema: z.object({}),
@@ -28,7 +28,7 @@ const stepMyStep = createStep({
   },
 })
 
-const stepMyStep2 = createStep({
+const taskMyStep2 = createStep({
   id: 'task:my-step-2',
   description: `Second step in recipe-maker that finalizes the output; returns static placeholder 'suh' in the source.`,
   inputSchema: z.object({}),
@@ -53,7 +53,7 @@ export const recipeMakerWorkflow = createWorkflow({
   id: 'recipe-maker',
   inputSchema: z.object({Workflow: z.string()}),
   outputSchema: z.object({}),
-  steps: [stepMyStep, stepMyStep2],
+  steps: [taskMyStep, taskMyStep2],
 })
-  .parallel([stepMyStep, stepMyStep2])
+  .parallel([taskMyStep, taskMyStep2])
   .commit()

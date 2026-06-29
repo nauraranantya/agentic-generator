@@ -75,9 +75,9 @@ No tools defined in this project.
 
 
 **Steps:** 3
-1. prwm_start_step
-2. prwm_update_memory_step
-3. prwm_interactive_chat_step
+1. task_start_conversation
+2. task_update_memory
+3. task_interactive_chat
 
 
 ---

@@ -257,13 +257,160 @@ def _detect_storage_type(configs: Dict[str, str]) -> str:
     return "libsql"
 
 
+# ---------------------------------------------------------------------------
+# Memory option key aliases — all map to typed MemoryModel fields
+# ---------------------------------------------------------------------------
+_MEMORY_OPTION_KEYS: Dict[str, str] = {
+    # lastMessages
+    "lastmessages": "last_messages",
+    "last_messages": "last_messages",
+    # semanticRecall simple boolean disable
+    "semanticrecall": "semanticRecall_flag",
+    "semantic_recall": "semanticRecall_flag",
+    # semanticRecall.topK
+    "semanticrecall.topk": "semantic_recall_top_k",
+    "semanticrecall_topk": "semantic_recall_top_k",
+    # semanticRecall.messageRange
+    "semanticrecall.messagerange": "semantic_recall_message_range",
+    "semanticrecall_messagerange": "semantic_recall_message_range",
+    # workingMemory.enabled
+    "workingmemory.enabled": "working_memory_enabled",
+    "workingmemory_enabled": "working_memory_enabled",
+    # workingMemory.scope
+    "workingmemory.scope": "working_memory_scope",
+    "workingmemory_scope": "working_memory_scope",
+    # workingMemory.template
+    "workingmemory.template": "working_memory_template",
+    "workingmemory_template": "working_memory_template",
+    # embedder / memory.embedder.model
+    "embedder": "embedder_model",
+    "memory.embedder.model": "embedder_model",
+    "memory.embedder": "embedder_model",
+    # TokenLimiter
+    "tokenlimiter": "token_limit",
+    "token_limiter": "token_limit",
+}
+
+# Keys that must be silently discarded — they are not typed memory option fields
+# AND are not valid storage constructor keys. Including them in storage_config
+# would cause TypeScript TS2353 "does not exist in type" errors.
+_MEMORY_DISCARD_KEYS: set = {
+    # Mastra Memory-level toggles that don't belong in LibSQLStore / PgStore etc.
+    "threads.generatetitle",
+    "threads_generatetitle",
+    # Inline JSON blob encoding of all memory options — never a storage key
+    "memory.options",
+    "memory_options",
+    # Resource / thread identifiers passed at runtime, not at construction time
+    "memory.resource",
+    "memory_resource",
+    "memory.thread",
+    "memory_thread",
+    "resource",
+    "thread",
+}
+
+# Prefixes that identify storage-backend keys; strip prefix to get clean key.
+_STORAGE_KEY_PREFIXES = (
+    "storage.",
+    "memory.storage.",
+)
+
+# Prefixes that belong to storage and should not become typed option fields.
+_STORAGE_RAW_PREFIXES = (
+    "storage.",
+    "memory.storage.",
+    "storage_",
+)
+
+
 def _map_memories(project: AgenticProject) -> Dict[str, MemoryModel]:
+    """Map each core MemoryModel into Mastra-specific MemoryModel.
+
+    Parses raw KG config keys into typed fields:
+    - Memory option keys (lastMessages, semanticRecall.*, workingMemory.*)
+      are mapped to typed fields and excluded from storage_config.
+    - Storage-prefixed keys (storage.url, memory.storage.id …) have their
+      prefix stripped and are passed into storage_config as clean keys.
+    - Any remaining unknown keys that aren't option keys go into storage_config
+      verbatim so no information is lost.
+    """
     mapped: Dict[str, MemoryModel] = {}
     for mem in project.memories:
         storage_type = _detect_storage_type(mem.configs)
-        storage_config: List[ConfigModel] = [
-            ConfigModel(key=k, value=v) for k, v in mem.configs.items()
-        ]
+        storage_config: List[ConfigModel] = []
+
+        # Typed option accumulators
+        last_messages: Optional[int] = None
+        semantic_recall_enabled: bool = True
+        semantic_recall_top_k: Optional[int] = None
+        semantic_recall_message_range: Optional[int] = None
+        working_memory_enabled: bool = False
+        working_memory_scope: Optional[str] = None
+        working_memory_template: Optional[str] = None
+        embedder_model: Optional[str] = None
+        token_limit: Optional[int] = None
+
+        for raw_key, raw_val in mem.configs.items():
+            normalised = raw_key.lower().replace("-", "_")
+
+            # ── 1. Check well-known memory option keys ──
+            mapped_field = _MEMORY_OPTION_KEYS.get(normalised)
+
+            # ── 0. Discard keys that are invalid in any storage constructor ──
+            if normalised in _MEMORY_DISCARD_KEYS:
+                continue
+            if mapped_field == "last_messages":
+                try:
+                    last_messages = int(raw_val)
+                except (ValueError, TypeError):
+                    pass
+                continue
+            if mapped_field == "semanticRecall_flag":
+                if raw_val.strip().lower() in ("false", "0", "no"):
+                    semantic_recall_enabled = False
+                continue
+            if mapped_field == "semantic_recall_top_k":
+                try:
+                    semantic_recall_top_k = int(raw_val)
+                except (ValueError, TypeError):
+                    pass
+                continue
+            if mapped_field == "semantic_recall_message_range":
+                try:
+                    semantic_recall_message_range = int(raw_val)
+                except (ValueError, TypeError):
+                    pass
+                continue
+            if mapped_field == "working_memory_enabled":
+                working_memory_enabled = raw_val.strip().lower() not in ("false", "0", "no")
+                continue
+            if mapped_field == "working_memory_scope":
+                working_memory_scope = raw_val.strip()
+                continue
+            if mapped_field == "working_memory_template":
+                working_memory_template = raw_val
+                continue
+            if mapped_field == "embedder_model":
+                embedder_model = raw_val.strip()
+                continue
+            if mapped_field == "token_limit":
+                try:
+                    token_limit = int(raw_val)
+                except (ValueError, TypeError):
+                    pass
+                continue
+
+            # ── 2. Strip storage./ memory.storage. prefix ──
+            clean_key = raw_key
+            for prefix in _STORAGE_KEY_PREFIXES:
+                if raw_key.lower().startswith(prefix):
+                    clean_key = raw_key[len(prefix):]
+                    break
+
+            # ── 3. Add as storage config entry ──
+            storage_config.append(ConfigModel(key=clean_key, value=raw_val))
+
         mapped[mem.iri] = MemoryModel(
             iri=mem.iri,
             var_name=_to_camel(mem.var_name),
@@ -271,6 +418,15 @@ def _map_memories(project: AgenticProject) -> Dict[str, MemoryModel]:
             description=mem.description,
             storage_type=storage_type,
             storage_config=storage_config,
+            last_messages=last_messages,
+            semantic_recall_enabled=semantic_recall_enabled,
+            semantic_recall_top_k=semantic_recall_top_k,
+            semantic_recall_message_range=semantic_recall_message_range,
+            working_memory_enabled=working_memory_enabled,
+            working_memory_scope=working_memory_scope,
+            working_memory_template=working_memory_template,
+            embedder_model=embedder_model if embedder_model else None,
+            token_limit=token_limit,
         )
     return mapped
 
@@ -368,7 +524,10 @@ def _map_workflows(
         for step in sorted(wf.steps, key=lambda s: s.step_order):
             task = tasks_by_iri.get(step.task_iri)
             task_label = task.label if task else ""
-            step_name = step.var_name or step.task_var_name or task_label or "step"
+            # Prefer task_var_name so generated step variable names match KG
+            # node names used by the WGI evaluator. Fall back to step.var_name
+            # (the raw IRI local-name) only when no task is linked.
+            step_name = step.task_var_name or task_label or step.var_name or "step"
 
             agent_ref = step.agent_iri
             if not agent_ref and task and task.agent_iri:
@@ -394,6 +553,16 @@ def _map_workflows(
                     tool_var_name=tool_var_name,
                 )
             )
+
+        # Deduplicate steps by var_name (same task can be listed under multiple
+        # step IRIs in the KG, which would cause TS2451 redeclaration errors).
+        seen_var_names: set = set()
+        deduped_steps: List[StepModel] = []
+        for s in steps:
+            if s.var_name not in seen_var_names:
+                seen_var_names.add(s.var_name)
+                deduped_steps.append(s)
+        steps = deduped_steps
 
         workflows.append(
             WorkflowModel(

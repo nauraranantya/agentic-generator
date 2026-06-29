@@ -161,17 +161,27 @@ def _workflow_graph(workflows: Iterable[object], task_by_iri: Dict[str, object])
     for workflow in workflows:
         step_by_iri = {step.iri: step for step in workflow.steps if step.iri}
         ordered_steps = sorted(workflow.steps, key=lambda item: (item.step_order, _step_name(item, task_by_iri)))
+
+        # Collect explicit :nextStep edges for THIS workflow only.
+        wf_edges: set = set()
         for step in ordered_steps:
-            graph.nodes.add(normalize_name(_step_name(step, task_by_iri)))
+            node = normalize_name(_step_name(step, task_by_iri))
+            graph.nodes.add(node)
             for next_iri in step.next_step_iris:
                 next_step = step_by_iri.get(next_iri)
                 if next_step:
-                    graph.edges.add((normalize_name(_step_name(step, task_by_iri)), normalize_name(_step_name(next_step, task_by_iri))))
+                    target = normalize_name(_step_name(next_step, task_by_iri))
+                    wf_edges.add((node, target))
 
-        if not graph.edges and len(ordered_steps) > 1:
+        # Apply sequential fallback only when THIS workflow has no explicit edges.
+        if not wf_edges and len(ordered_steps) > 1:
             for source, target in zip(ordered_steps, ordered_steps[1:]):
-                graph.edges.add((normalize_name(_step_name(source, task_by_iri)), normalize_name(_step_name(target, task_by_iri))))
+                wf_edges.add((normalize_name(_step_name(source, task_by_iri)), normalize_name(_step_name(target, task_by_iri))))
+
+        graph.edges.update(wf_edges)
+
     return graph
+
 
 
 def _dedupe_elements(elements: List[EvaluationElement]) -> List[EvaluationElement]:

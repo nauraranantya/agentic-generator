@@ -14,9 +14,16 @@ import { LibSQLStore } from '@mastra/libsql'
 export const memoryKb = new Memory({
   storage: new LibSQLStore({
     id: 'mastra-libsql-store',
-    lastMessages: 4,
-    semanticRecall.topK: 1,
-    semanticRecall.messageRange: 0,
-    workingMemory.enabled: 'true',
+    url: process.env.DATABASE_URL ?? 'file:local.db',
   }),
+  options: {
+    lastMessages: 4,
+    semanticRecall: {
+      topK: 1,
+      messageRange: 0,
+    },
+    workingMemory: {
+      enabled: true,
+    },
+  },
 })

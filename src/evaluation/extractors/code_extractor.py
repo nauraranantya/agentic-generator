@@ -144,7 +144,7 @@ def _extract_graph(text: str, project_dir: Path, framework: str) -> GraphSpec:
     if framework == "langgraph":
         return _extract_langgraph_graph(text)
     if framework == "mastra":
-        return _extract_mastra_graph(text)
+        return _extract_mastra_graph(text, project_dir)
     if framework == "autogen":
         return _extract_autogen_graph(text)
     if framework == "crewai":
@@ -174,18 +174,59 @@ def _extract_langgraph_graph(text: str) -> GraphSpec:
     return graph
 
 
-def _extract_mastra_graph(text: str) -> GraphSpec:
+def _extract_mastra_graph(text: str, project_dir: Optional[Path] = None) -> GraphSpec:
+    """Extract Mastra workflow graph.
+
+    Processes each workflow TypeScript file individually so that `.then()` chains
+    from different workflows are never connected to each other (which would create
+    false cross-workflow edges and tank WGI scores).
+
+    Search order for workflow files:
+      1. <project_dir>/src/mastra/workflows/*.ts
+      2. <project_dir>/src/workflows/*.ts
+      3. Fall back to searching the full concatenated project text.
+    """
     graph = GraphSpec()
-    steps = [normalize_name(step) for step in re.findall(r"\.then\s*\(\s*([A-Za-z_][A-Za-z0-9_]*)\s*\)", text)]
-    graph.nodes.update(steps)
-    for source, target in zip(steps, steps[1:]):
-        graph.edges.add((source, target))
-    if not steps:
-        for body in re.findall(r"steps\s*:\s*\[([^\]]+)\]", text, flags=re.S):
-            step_names = [normalize_name(step) for step in re.findall(r"[A-Za-z_][A-Za-z0-9_]*", body)]
-            graph.nodes.update(step_names)
-            for source, target in zip(step_names, step_names[1:]):
-                graph.edges.add((source, target))
+
+    # Try to find individual workflow files.
+    workflow_files: List[Path] = []
+    if project_dir and project_dir.is_dir():
+        for candidate_dir in (
+            project_dir / "src" / "mastra" / "workflows",
+            project_dir / "src" / "workflows",
+            project_dir / "workflows",
+        ):
+            if candidate_dir.is_dir():
+                workflow_files = sorted(candidate_dir.glob("*.ts"))
+                break
+
+    def _parse_workflow_text(wf_text: str) -> None:
+        """Parse a single workflow file and merge results into graph."""
+        steps = [normalize_name(s) for s in re.findall(r"\.then\s*\(\s*([A-Za-z_][A-Za-z0-9_]*)\s*\)", wf_text)]
+        if steps:
+            graph.nodes.update(steps)
+            for src, tgt in zip(steps, steps[1:]):
+                graph.edges.add((src, tgt))
+            return
+        # No .then() chains — fall back to `steps: [...]` array
+        for body in re.findall(r"steps\s*:\s*\[([^\]]+)\]", wf_text, flags=re.S):
+            step_names = [normalize_name(s) for s in re.findall(r"[A-Za-z_][A-Za-z0-9_]*", body)]
+            if step_names:
+                graph.nodes.update(step_names)
+                for src, tgt in zip(step_names, step_names[1:]):
+                    graph.edges.add((src, tgt))
+
+    if workflow_files:
+        for wf_file in workflow_files:
+            try:
+                wf_text = wf_file.read_text(encoding="utf-8", errors="replace")
+                _parse_workflow_text(wf_text)
+            except OSError:
+                continue
+    else:
+        # No per-file isolation possible — process full text as before.
+        _parse_workflow_text(text)
+
     return graph
 
 

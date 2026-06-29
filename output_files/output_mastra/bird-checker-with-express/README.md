@@ -81,8 +81,8 @@ Gets a random image from Unsplash based on selected query option. Random page se
 A simple two-step workflow: fetch a random image and analyze it for bird metadata. This workflow represents the server endpoints' functional logic.
 
 **Steps:** 2
-1. step_fetch_image
-2. step_analyze_image
+1. task_fetch_random_image
+2. task_analyze_image
 
 
 ---

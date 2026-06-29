@@ -89,9 +89,9 @@ Tool instance representing the MCP registry server process launched via the conf
 A minimal workflow pattern capturing a single LLM agent (MCP Registry Agent) that uses a client to enumerate tools and perform registry lookup tasks.
 
 **Steps:** 3
-1. start_step_initialize_agent
-2. step_perform_search
-3. end_step_complete
+1. initialize_agent_task
+2. search_mcp_registries_task
+3. finalize_task
 
 
 ---

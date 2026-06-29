@@ -75,9 +75,9 @@ No tools defined in this project.
 A workflow pattern that models the interactive chat loop: Start -> Receive user input -> Agent generate streaming response -> Repeat -> End
 
 **Steps:** 3
-1. ws_start_chat
-2. ws_receive_user_input
-3. ws_agent_generate_response
+1. task_initial_system_message
+2. task_receive_user_input
+3. task_agent_stream_response
 
 
 ---

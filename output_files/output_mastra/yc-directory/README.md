@@ -89,9 +89,9 @@ Represents the runEvals invocation in src/mastra/tests/index.ts. Executes an eva
 Semantic workflow: (1) Accept query input (natural language). (2) Agent decides to call yc-directory tool (if needed) to fetch or filter data. (3) Agent composes answer constrained to dataset fields and batch numbers only. (4) Optionally, evaluation runner can send agent responses to the relevancy scorer.
 
 **Steps:** 3
-1. step_accept_query
-2. step_call_tool
-3. step_generate_answer
+1. run_evals_task
+2. fetch_yc_data_task
+3. answer_yc_directory_query
 
 
 ---

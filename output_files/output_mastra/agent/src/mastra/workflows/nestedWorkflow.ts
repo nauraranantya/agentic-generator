@@ -14,7 +14,7 @@ import { dynamicAgent } from '../agents'
 
 // ── Workflow Steps ──
 
-const stepOneNumeric = createStep({
+const taskStepOne = createStep({
   id: 'task:stepOne',
   description: `Takes { inputValue }, returns { doubledValue: inputValue*2 }.`,
   inputSchema: z.object({}),
@@ -28,7 +28,7 @@ const stepOneNumeric = createStep({
   },
 })
 
-const stepTwoNumeric = createStep({
+const taskStepTwo = createStep({
   id: 'task:stepTwo',
   description: `If resumeData.extraNumber absent => suspend({}) and return interim; else compute incrementedValue.`,
   inputSchema: z.object({}),
@@ -42,7 +42,7 @@ const stepTwoNumeric = createStep({
   },
 })
 
-const stepThreeNumeric = createStep({
+const taskStepThree = createStep({
   id: 'task:stepThree',
   description: `Returns { tripledValue: incrementedValue * 3 }.`,
   inputSchema: z.object({}),
@@ -56,7 +56,7 @@ const stepThreeNumeric = createStep({
   },
 })
 
-const stepFourNumeric = createStep({
+const taskStepFour = createStep({
   id: 'task:stepFour',
   description: `Returns { isEven: tripledValue % 2 === 0 }.`,
   inputSchema: z.object({}),
@@ -81,7 +81,7 @@ export const nestedWorkflow = createWorkflow({
   id: 'data-processing',
   inputSchema: z.object({id: z.string(), Purpose: z.string(), inputValue: z.number()}),
   outputSchema: z.object({}),
-  steps: [stepOneNumeric, stepTwoNumeric, stepThreeNumeric, stepFourNumeric],
+  steps: [taskStepOne, taskStepTwo, taskStepThree, taskStepFour],
 })
-  .parallel([stepOneNumeric, stepTwoNumeric, stepThreeNumeric, stepFourNumeric])
+  .parallel([taskStepOne, taskStepTwo, taskStepThree, taskStepFour])
   .commit()

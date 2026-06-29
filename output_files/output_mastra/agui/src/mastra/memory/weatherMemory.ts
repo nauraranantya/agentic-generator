@@ -14,9 +14,10 @@ import { LibSQLStore } from '@mastra/libsql'
 export const weatherMemory = new Memory({
   storage: new LibSQLStore({
     id: 'mastra-libsql-store',
-    lastMessages: 10,
-    semanticRecall: 'false',
-    threads.generateTitle: 'false',
-    storage.url: 'file:../mastra.db',
+    url: 'file:../mastra.db',
   }),
+  options: {
+    lastMessages: 10,
+    semanticRecall: false,
+  },
 })

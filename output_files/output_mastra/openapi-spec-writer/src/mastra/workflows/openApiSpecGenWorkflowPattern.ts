@@ -14,7 +14,7 @@ import { siteCrawlTool, generateSpecTool } from '../tools'
 
 // ── Workflow Steps ──
 
-const siteCrawlWorkflowStep = createStep({
+const siteCrawlSyncStepTask = createStep({
   id: 'site-crawl-sync-step:task',
   description: `Task executed by the workflow step site-crawl-sync-step. It runs the SiteCrawlTool (Firecrawl client) to extract markdown pages.`,
   inputSchema: z.object({}),
@@ -27,7 +27,7 @@ const siteCrawlWorkflowStep = createStep({
   },
 })
 
-const generateSpecWorkflowStep = createStep({
+const generateSpecTask = createStep({
   id: 'generate-spec:task',
   description: `Task executed by the generate-spec step: this task iterates crawled pages, calls the agent to produce OpenAPI fragments, and then asks the agent to merge them.`,
   inputSchema: z.object({}),
@@ -51,7 +51,7 @@ export const openApiSpecGenWorkflowPattern = createWorkflow({
   id: 'openApiSpecGenWorkflow',
   inputSchema: z.object({}),
   outputSchema: z.object({}),
-  steps: [siteCrawlWorkflowStep, generateSpecWorkflowStep],
+  steps: [siteCrawlSyncStepTask, generateSpecTask],
 })
-  .parallel([siteCrawlWorkflowStep, generateSpecWorkflowStep])
+  .parallel([siteCrawlSyncStepTask, generateSpecTask])
   .commit()

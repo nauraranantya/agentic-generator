@@ -12,8 +12,8 @@ import { personalAssistant } from '../agents'
 
 // ── Workflow Steps ──
 
-const prwmStartStep = createStep({
-  id: 'prwm_start_step',
+const taskStartConversation = createStep({
+  id: 'task_start_conversation',
   description: `Start a new conversation thread. System message template (in source):`,
   inputSchema: z.object({}),
   outputSchema: z.object({}),
@@ -22,12 +22,12 @@ const prwmStartStep = createStep({
     // This step uses agent: personalAssistant
     // const result = await personalAssistant.generate('...')
     // TODO: Implement step logic
-    throw new Error('prwm_start_step not implemented yet')
+    throw new Error('task_start_conversation not implemented yet')
   },
 })
 
-const prwmUpdateMemoryStep = createStep({
-  id: 'prwm_update_memory_step',
+const taskUpdateMemory = createStep({
+  id: 'task_update_memory',
   description: `Inspect conversation content and persist updates to per-resource working memory. Source code expects the agent to output updates wrapped with <working_memory> tags; updates are masked in the stream and persisted to LibSQL. UI uses a spinner during persistence but streaming semantics are an implementation detail (not modeled).`,
   inputSchema: z.object({}),
   outputSchema: z.object({}),
@@ -36,12 +36,12 @@ const prwmUpdateMemoryStep = createStep({
     // This step uses agent: personalAssistant
     // const result = await personalAssistant.generate('...')
     // TODO: Implement step logic
-    throw new Error('prwm_update_memory_step not implemented yet')
+    throw new Error('task_update_memory not implemented yet')
   },
 })
 
-const prwmInteractiveChatStep = createStep({
-  id: 'prwm_interactive_chat_step',
+const taskInteractiveChat = createStep({
+  id: 'task_interactive_chat',
   description: `Receive user messages, call the agent with memory context (resource + thread), stream responses to the user. The loop terminates when the user types 'exit' or 'quit'. The code obtains user input via Readline; runtime specifics are not modeled. The agent should use stored working memory where relevant.`,
   inputSchema: z.object({}),
   outputSchema: z.object({}),
@@ -50,7 +50,7 @@ const prwmInteractiveChatStep = createStep({
     // This step uses agent: personalAssistant
     // const result = await personalAssistant.generate('...')
     // TODO: Implement step logic
-    throw new Error('prwm_interactive_chat_step not implemented yet')
+    throw new Error('task_interactive_chat not implemented yet')
   },
 })
 
@@ -63,9 +63,9 @@ export const perResourceWorkingMemoryPattern = createWorkflow({
   id: 'Per-Resource Working Memory Pattern',
   inputSchema: z.object({}),
   outputSchema: z.object({}),
-  steps: [prwmStartStep, prwmUpdateMemoryStep, prwmInteractiveChatStep],
+  steps: [taskStartConversation, taskUpdateMemory, taskInteractiveChat],
 })
-  .then(prwmStartStep)
-  .then(prwmUpdateMemoryStep)
-  .then(prwmInteractiveChatStep)
+  .then(taskStartConversation)
+  .then(taskUpdateMemory)
+  .then(taskInteractiveChat)
   .commit()

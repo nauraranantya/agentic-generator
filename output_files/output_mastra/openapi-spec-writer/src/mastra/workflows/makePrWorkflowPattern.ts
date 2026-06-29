@@ -14,7 +14,7 @@ import { addToGitHubTool } from '../tools'
 
 // ── Workflow Steps ──
 
-const addToGitHubWorkflowStep = createStep({
+const addToGithubTask = createStep({
   id: 'add-to-github:task',
   description: `Task executed by makePRToMastra workflow: formats YAML via agent and writes files to GitHub then creates a PR.`,
   inputSchema: z.object({}),
@@ -38,7 +38,7 @@ export const makePrWorkflowPattern = createWorkflow({
   id: 'makePRToMastra',
   inputSchema: z.object({}),
   outputSchema: z.object({}),
-  steps: [addToGitHubWorkflowStep],
+  steps: [addToGithubTask],
 })
-  .parallel([addToGitHubWorkflowStep])
+  .parallel([addToGithubTask])
   .commit()

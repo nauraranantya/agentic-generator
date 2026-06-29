@@ -14,8 +14,8 @@ import { consoleTool } from '../tools'
 
 // ── Workflow Steps ──
 
-const logCatNameStep = createStep({
-  id: 'log_cat_name_step',
+const taskLogCatName = createStep({
+  id: 'task_log_cat_name',
   description: `Task that takes { name: string } as input, performs logging 'Hello, <name> 🐈' and returns { rawText: string } containing the greeting. Implemented in source as createStep with id 'logCatName' and executed by the workflow runtime/console.`,
   inputSchema: z.object({}),
   outputSchema: z.object({}),
@@ -23,7 +23,7 @@ const logCatNameStep = createStep({
     // Task that takes { name: string } as input, performs logging 'Hello, <name> 🐈' and returns { rawText: string } containing the greeting. Implemented in source as createStep with id 'logCatName' and executed by the workflow runtime/console.
     // This step uses tool: consoleTool
     // TODO: Implement step logic
-    throw new Error('log_cat_name_step not implemented yet')
+    throw new Error('task_log_cat_name not implemented yet')
   },
 })
 
@@ -38,7 +38,7 @@ export const logCatWorkflowPattern = createWorkflow({
   id: 'log_cat_workflow_pattern',
   inputSchema: z.object({name: z.string()}),
   outputSchema: z.object({}),
-  steps: [logCatNameStep],
+  steps: [taskLogCatName],
 })
-  .then(logCatNameStep)
+  .then(taskLogCatName)
   .commit()

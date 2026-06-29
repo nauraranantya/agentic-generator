@@ -14,7 +14,7 @@ import { chefModelV2Agent, chefAgent } from '../agents'
 
 // ── Workflow Steps ──
 
-const stepAddLetter = createStep({
+const taskAddLetter = createStep({
   id: 'task:add-letter',
   description: `Execution: returns { text: text + 'A' } after ~500ms.`,
   inputSchema: z.object({}),
@@ -28,7 +28,7 @@ const stepAddLetter = createStep({
   },
 })
 
-const stepAddLetterB = createStep({
+const taskAddLetterB = createStep({
   id: 'task:add-letter-b',
   description: `Execution: returns { text: text + 'B' }.`,
   inputSchema: z.object({}),
@@ -42,7 +42,7 @@ const stepAddLetterB = createStep({
   },
 })
 
-const stepAddLetterC = createStep({
+const taskAddLetterC = createStep({
   id: 'task:add-letter-c',
   description: `Execution: returns { text: text + 'C' }.`,
   inputSchema: z.object({}),
@@ -56,7 +56,7 @@ const stepAddLetterC = createStep({
   },
 })
 
-const stepAddLetterWithCount = createStep({
+const taskAddLetterWithCount = createStep({
   id: 'task:add-letter-with-count',
   description: `Execution: returns text + 'D' and iterationCount+1.`,
   inputSchema: z.object({}),
@@ -70,7 +70,7 @@ const stepAddLetterWithCount = createStep({
   },
 })
 
-const stepSuspendResume = createStep({
+const taskSuspendResume = createStep({
   id: 'task:suspend-resume',
   description: `Requires user input to resume. Modeled as a suspend/resume interactive step.`,
   inputSchema: z.object({}),
@@ -84,7 +84,7 @@ const stepSuspendResume = createStep({
   },
 })
 
-const stepShortText = createStep({
+const taskShortText = createStep({
   id: 'task:short-text',
   description: `Branch step executed when text length <= 10.`,
   inputSchema: z.object({}),
@@ -98,7 +98,7 @@ const stepShortText = createStep({
   },
 })
 
-const stepLongText = createStep({
+const taskLongText = createStep({
   id: 'task:long-text',
   description: `Branch step executed when text length > 10.`,
   inputSchema: z.object({}),
@@ -112,7 +112,7 @@ const stepLongText = createStep({
   },
 })
 
-const stepNestedTextProcessor = createStep({
+const taskNestedTextProcessor = createStep({
   id: 'task:nested-text-processor',
   description: `Executes nested sub-workflow that appends letters A then B.`,
   inputSchema: z.object({}),
@@ -126,7 +126,7 @@ const stepNestedTextProcessor = createStep({
   },
 })
 
-const stepFinalStep = createStep({
+const taskFinalStep = createStep({
   id: 'task:final-step',
   description: `Finalization operation adding '-ENDED'.`,
   inputSchema: z.object({}),
@@ -151,7 +151,7 @@ export const lessComplexWorkflow = createWorkflow({
   id: 'lessComplexWorkflow',
   inputSchema: z.object({Runs_add: z.string(), add_letter: z.string(), short_text_vs_long: z.string(), Loops_with_add_letter_with: z.string(), Presents_suspend: z.string(), Runs_final: z.string(), Output: z.string()}),
   outputSchema: z.object({}),
-  steps: [stepAddLetter, stepAddLetterB, stepAddLetterC, stepAddLetterWithCount, stepSuspendResume, stepShortText, stepLongText, stepNestedTextProcessor, stepFinalStep],
+  steps: [taskAddLetter, taskAddLetterB, taskAddLetterC, taskAddLetterWithCount, taskSuspendResume, taskShortText, taskLongText, taskNestedTextProcessor, taskFinalStep],
 })
-  .parallel([stepAddLetter, stepAddLetterB, stepAddLetterC, stepAddLetterWithCount, stepSuspendResume, stepShortText, stepLongText, stepNestedTextProcessor, stepFinalStep])
+  .parallel([taskAddLetter, taskAddLetterB, taskAddLetterC, taskAddLetterWithCount, taskSuspendResume, taskShortText, taskLongText, taskNestedTextProcessor, taskFinalStep])
   .commit()

@@ -89,9 +89,9 @@ Tool exposing 'getWeather' capability. It resolves a location via a geocoding se
 A simple sequential workflow pattern: start -> weather lookup -> stock lookup -> end. The agent orchestrates tool calls to satisfy the incoming user request.
 
 **Steps:** 3
-1. start_stock_weather_step
-2. weather_lookup_step
-3. stock_lookup_step
+1. user_request_task
+2. get_weather_task
+3. get_stock_price_task
 
 
 ---

@@ -14,7 +14,7 @@ import { weatherTool } from '../tools'
 
 // ── Workflow Steps ──
 
-const wf2StepToolGetWeather = createStep({
+const weatherToolCallTask = createStep({
   id: 'weather tool call task',
   description: `Task that calls the get-weather tool. Input: { location: string }. Output: simplified current weather object (temperature, feelsLike, humidity, windSpeed, windGust, conditions, location).`,
   inputSchema: z.object({}),
@@ -27,7 +27,7 @@ const wf2StepToolGetWeather = createStep({
   },
 })
 
-const wf2StepMapPrompt = createStep({
+const mapForecastToPromptTask = createStep({
   id: 'map forecast to prompt task',
   description: `Takes the tool output and formats a short prompt string for the agent. Produces a single string resource.`,
   inputSchema: z.object({}),
@@ -39,7 +39,7 @@ const wf2StepMapPrompt = createStep({
   },
 })
 
-const wf2StepAgentReport = createStep({
+const explainWeatherTask = createStep({
   id: 'plan activities / explain weather task',
   description: `Agent task that receives a prompt string and produces an explanatory text and activity suggestions. Uses the agent instruction template that enforces a specific output formatting (emoji sections, weather summary, activities, indoor alternatives, special considerations).`,
   inputSchema: z.object({}),
@@ -62,7 +62,7 @@ export const wfWeatherWorkflowWithToolAndAgent = createWorkflow({
   id: 'weather-workflow-with-tool-and-agent',
   inputSchema: z.object({location: z.string()}),
   outputSchema: z.object({}),
-  steps: [wf2StepToolGetWeather, wf2StepMapPrompt, wf2StepAgentReport],
+  steps: [weatherToolCallTask, mapForecastToPromptTask, explainWeatherTask],
 })
-  .parallel([wf2StepToolGetWeather, wf2StepMapPrompt, wf2StepAgentReport])
+  .parallel([weatherToolCallTask, mapForecastToPromptTask, explainWeatherTask])
   .commit()

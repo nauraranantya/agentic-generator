@@ -74,9 +74,9 @@ Represents the Mastra runtime/engine that executes workflow steps and tasks (map
 Workflow defined in src/mastra/workflows/index.ts with a numeric trigger schema { inputValue: number }. Steps: stepOne -> stepTwo -> stepThree. Committed (myWorkflow.commit()).
 
 **Steps:** 3
-1. step_one_step
-2. step_two_step
-3. step_three_step
+1. task_step_one
+2. task_step_two
+3. task_step_three
 
 
 ---
