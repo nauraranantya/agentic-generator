@@ -1,0 +1,4 @@
+trip_planner_agent:
+  role: assistant / trip-planner
+  goal: assistant / trip-planner
+  backstory: You are a assistant / trip-planner.

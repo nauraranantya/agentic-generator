@@ -10,10 +10,10 @@
         "projects": 16,
         "evaluated": 16,
         "errors": 0,
-        "avg_oec_all": 0.689410510301569,
+        "avg_oec_all": 0.6888423284833871,
         "avg_oec_important": 0.9468861978911923,
-        "avg_wgi": 0.8958558802308803,
-        "avg_edge_f1": 0.7563131313131313,
+        "avg_wgi": 0.9486832611832612,
+        "avg_edge_f1": 0.9472222222222222,
         "avg_ast_sim": 0.6021303805642652,
         "syntax_success_rate": 1.0,
         "run_success_rate": 0.0
@@ -25,7 +25,7 @@
           "output_dir": "/Users/ravie/dev/agento/output_files/output_crewai/game-builder-crew",
           "status": "ok",
           "kg_element_count": 49,
-          "code_element_count": 6,
+          "code_element_count": 11,
           "oec": {
             "all_extracted": {
               "score": 0.7346938775510204,
@@ -409,7 +409,7 @@
           "output_dir": "/Users/ravie/dev/agento/output_files/output_crewai/industry-agents",
           "status": "ok",
           "kg_element_count": 58,
-          "code_element_count": 8,
+          "code_element_count": 13,
           "oec": {
             "all_extracted": {
               "score": 0.6379310344827587,
@@ -435,16 +435,16 @@
                 },
                 {
                   "category": "agent_llm",
-                  "name": "biomed_agent_1_gpt_4o_mini",
+                  "name": "biomed_agent_1_gpt_4_o_mini",
                   "important": false,
                   "aliases": [
-                    "biomed_agent_1_gpt_4o_mini",
+                    "biomed_agent_1_gpt_4_o_mini",
                     "biomed_agent_1",
-                    "gpt_4o_mini"
+                    "gpt_4_o_mini"
                   ],
                   "details": {
                     "source": "biomed_agent_1",
-                    "target": "gpt_4o_mini"
+                    "target": "gpt_4_o_mini"
                   }
                 },
                 {
@@ -454,8 +454,8 @@
                   "aliases": [
                     "agent_biomed_agent_1_llm",
                     "llm",
-                    "gpt_4o_mini",
-                    "llm_gpt_4o_mini"
+                    "gpt_4_o_mini",
+                    "llm_gpt_4_o_mini"
                   ],
                   "details": {
                     "key": "llm",
@@ -466,16 +466,16 @@
                 },
                 {
                   "category": "agent_llm",
-                  "name": "healthcare_agent_1_gpt_4o_mini",
+                  "name": "healthcare_agent_1_gpt_4_o_mini",
                   "important": false,
                   "aliases": [
-                    "healthcare_agent_1_gpt_4o_mini",
+                    "healthcare_agent_1_gpt_4_o_mini",
                     "healthcare_agent_1",
-                    "gpt_4o_mini"
+                    "gpt_4_o_mini"
                   ],
                   "details": {
                     "source": "healthcare_agent_1",
-                    "target": "gpt_4o_mini"
+                    "target": "gpt_4_o_mini"
                   }
                 },
                 {
@@ -485,8 +485,8 @@
                   "aliases": [
                     "agent_healthcare_agent_1_llm",
                     "llm",
-                    "gpt_4o_mini",
-                    "llm_gpt_4o_mini"
+                    "gpt_4_o_mini",
+                    "llm_gpt_4_o_mini"
                   ],
                   "details": {
                     "key": "llm",
@@ -497,16 +497,16 @@
                 },
                 {
                   "category": "agent_llm",
-                  "name": "financial_agent_1_gpt_4o_mini",
+                  "name": "financial_agent_1_gpt_4_o_mini",
                   "important": false,
                   "aliases": [
-                    "financial_agent_1_gpt_4o_mini",
+                    "financial_agent_1_gpt_4_o_mini",
                     "financial_agent_1",
-                    "gpt_4o_mini"
+                    "gpt_4_o_mini"
                   ],
                   "details": {
                     "source": "financial_agent_1",
-                    "target": "gpt_4o_mini"
+                    "target": "gpt_4_o_mini"
                   }
                 },
                 {
@@ -516,8 +516,8 @@
                   "aliases": [
                     "agent_financial_agent_1_llm",
                     "llm",
-                    "gpt_4o_mini",
-                    "llm_gpt_4o_mini"
+                    "gpt_4_o_mini",
+                    "llm_gpt_4_o_mini"
                   ],
                   "details": {
                     "key": "llm",
@@ -683,11 +683,11 @@
                 },
                 {
                   "category": "language_model",
-                  "name": "gpt_4o_mini",
+                  "name": "gpt_4_o_mini",
                   "important": false,
                   "aliases": [
-                    "gpt_4o_mini",
-                    "gpt4_omini"
+                    "gpt_4_o_mini",
+                    "gpt_4_omini"
                   ],
                   "details": {}
                 },
@@ -918,7 +918,7 @@
           "output_dir": "/Users/ravie/dev/agento/output_files/output_crewai/instagram_post",
           "status": "ok",
           "kg_element_count": 114,
-          "code_element_count": 14,
+          "code_element_count": 22,
           "oec": {
             "all_extracted": {
               "score": 0.5526315789473685,
@@ -1922,7 +1922,7 @@
           "output_dir": "/Users/ravie/dev/agento/output_files/output_crewai/job-posting",
           "status": "ok",
           "kg_element_count": 84,
-          "code_element_count": 8,
+          "code_element_count": 15,
           "oec": {
             "all_extracted": {
               "score": 0.9047619047619048,
@@ -2275,7 +2275,7 @@
           "output_dir": "/Users/ravie/dev/agento/output_files/output_crewai/landing_page_generator",
           "status": "ok",
           "kg_element_count": 151,
-          "code_element_count": 19,
+          "code_element_count": 28,
           "oec": {
             "all_extracted": {
               "score": 0.6423841059602649,
@@ -2955,7 +2955,7 @@
                   "important": false,
                   "aliases": [
                     "gpt_4_default_in_project_runtime",
-                    "gpt4"
+                    "gpt_4"
                   ],
                   "details": {}
                 },
@@ -3310,7 +3310,7 @@
           "output_dir": "/Users/ravie/dev/agento/output_files/output_crewai/markdown_validator",
           "status": "ok",
           "kg_element_count": 23,
-          "code_element_count": 3,
+          "code_element_count": 6,
           "oec": {
             "all_extracted": {
               "score": 0.7391304347826086,
@@ -3584,7 +3584,7 @@
           "output_dir": "/Users/ravie/dev/agento/output_files/output_crewai/marketing_strategy",
           "status": "ok",
           "kg_element_count": 84,
-          "code_element_count": 8,
+          "code_element_count": 15,
           "oec": {
             "all_extracted": {
               "score": 0.7619047619047619,
@@ -4041,15 +4041,15 @@
           "wgi": {
             "score": 1.0,
             "normalized_graph_edit_distance": 0.0,
-            "labeled_score": 0.3846153846153846,
+            "labeled_score": 1.0,
             "topology_score": 1.0,
-            "labeled_normalized_graph_edit_distance": 0.6153846153846154,
+            "labeled_normalized_graph_edit_distance": 0.0,
             "topology_normalized_graph_edit_distance": 0.0,
-            "exact_isomorphic": false,
+            "exact_isomorphic": true,
             "topology_isomorphic": true,
-            "edge_precision": 0.0,
-            "edge_recall": 0.0,
-            "edge_f1": 0.0,
+            "edge_precision": 1.0,
+            "edge_recall": 1.0,
+            "edge_f1": 1.0,
             "kg_nodes": [
               "campaign_idea_task",
               "copy_creation_task",
@@ -4067,19 +4067,19 @@
             "kg_edges": [
               {
                 "source": "campaign_idea_task",
-                "target": "marketing_strategy_task"
-              },
-              {
-                "source": "copy_creation_task",
-                "target": "campaign_idea_task"
+                "target": "copy_creation_task"
               },
               {
                 "source": "marketing_strategy_task",
-                "target": "project_understanding_task"
+                "target": "campaign_idea_task"
               },
               {
                 "source": "project_understanding_task",
-                "target": "research_task"
+                "target": "marketing_strategy_task"
+              },
+              {
+                "source": "research_task",
+                "target": "project_understanding_task"
               }
             ],
             "code_edges": [
@@ -4102,42 +4102,8 @@
             ],
             "missing_nodes": [],
             "extra_nodes": [],
-            "missing_edges": [
-              {
-                "source": "campaign_idea_task",
-                "target": "marketing_strategy_task"
-              },
-              {
-                "source": "copy_creation_task",
-                "target": "campaign_idea_task"
-              },
-              {
-                "source": "marketing_strategy_task",
-                "target": "project_understanding_task"
-              },
-              {
-                "source": "project_understanding_task",
-                "target": "research_task"
-              }
-            ],
-            "extra_edges": [
-              {
-                "source": "campaign_idea_task",
-                "target": "copy_creation_task"
-              },
-              {
-                "source": "marketing_strategy_task",
-                "target": "campaign_idea_task"
-              },
-              {
-                "source": "project_understanding_task",
-                "target": "marketing_strategy_task"
-              },
-              {
-                "source": "research_task",
-                "target": "project_understanding_task"
-              }
-            ]
+            "missing_edges": [],
+            "extra_edges": []
           },
           "syntax_ok": true,
           "run_status": "IMPORT_ERROR",
@@ -4151,7 +4117,7 @@
           "output_dir": "/Users/ravie/dev/agento/output_files/output_crewai/match_profile_to_positions",
           "status": "ok",
           "kg_element_count": 57,
-          "code_element_count": 5,
+          "code_element_count": 9,
           "oec": {
             "all_extracted": {
               "score": 0.7017543859649122,
@@ -4572,7 +4538,7 @@
           "output_dir": "/Users/ravie/dev/agento/output_files/output_crewai/meta_quest_knowledge",
           "status": "ok",
           "kg_element_count": 15,
-          "code_element_count": 2,
+          "code_element_count": 5,
           "oec": {
             "all_extracted": {
               "score": 0.6,
@@ -4803,7 +4769,7 @@
           "output_dir": "/Users/ravie/dev/agento/output_files/output_crewai/prep-for-a-meeting",
           "status": "ok",
           "kg_element_count": 54,
-          "code_element_count": 9,
+          "code_element_count": 15,
           "oec": {
             "all_extracted": {
               "score": 0.6111111111111112,
@@ -5247,17 +5213,17 @@
             }
           },
           "wgi": {
-            "score": 0.5833333333333333,
-            "normalized_graph_edit_distance": 0.4166666666666667,
-            "labeled_score": 0.5833333333333333,
-            "topology_score": 0.0,
-            "labeled_normalized_graph_edit_distance": 0.4166666666666667,
-            "topology_normalized_graph_edit_distance": 1.0833333333333333,
-            "exact_isomorphic": false,
-            "topology_isomorphic": false,
+            "score": 1.0,
+            "normalized_graph_edit_distance": 0.0,
+            "labeled_score": 1.0,
+            "topology_score": 1.0,
+            "labeled_normalized_graph_edit_distance": 0.0,
+            "topology_normalized_graph_edit_distance": 0.0,
+            "exact_isomorphic": true,
+            "topology_isomorphic": true,
             "edge_precision": 1.0,
-            "edge_recall": 0.375,
-            "edge_f1": 0.5454545454545454,
+            "edge_recall": 1.0,
+            "edge_f1": 1.0,
             "kg_nodes": [
               "industry_analysis_task",
               "meeting_strategy_task",
@@ -5277,31 +5243,11 @@
               },
               {
                 "source": "meeting_strategy_task",
-                "target": "industry_analysis_task"
-              },
-              {
-                "source": "meeting_strategy_task",
-                "target": "research_task"
-              },
-              {
-                "source": "meeting_strategy_task",
                 "target": "summary_and_briefing_task"
               },
               {
                 "source": "research_task",
                 "target": "industry_analysis_task"
-              },
-              {
-                "source": "summary_and_briefing_task",
-                "target": "industry_analysis_task"
-              },
-              {
-                "source": "summary_and_briefing_task",
-                "target": "meeting_strategy_task"
-              },
-              {
-                "source": "summary_and_briefing_task",
-                "target": "research_task"
               }
             ],
             "code_edges": [
@@ -5320,28 +5266,7 @@
             ],
             "missing_nodes": [],
             "extra_nodes": [],
-            "missing_edges": [
-              {
-                "source": "meeting_strategy_task",
-                "target": "industry_analysis_task"
-              },
-              {
-                "source": "meeting_strategy_task",
-                "target": "research_task"
-              },
-              {
-                "source": "summary_and_briefing_task",
-                "target": "industry_analysis_task"
-              },
-              {
-                "source": "summary_and_briefing_task",
-                "target": "meeting_strategy_task"
-              },
-              {
-                "source": "summary_and_briefing_task",
-                "target": "research_task"
-              }
-            ],
+            "missing_edges": [],
             "extra_edges": []
           },
           "syntax_ok": true,
@@ -5356,7 +5281,7 @@
           "output_dir": "/Users/ravie/dev/agento/output_files/output_crewai/recruitment",
           "status": "ok",
           "kg_element_count": 95,
-          "code_element_count": 9,
+          "code_element_count": 15,
           "oec": {
             "all_extracted": {
               "score": 0.8105263157894737,
@@ -5786,15 +5711,15 @@
           "wgi": {
             "score": 1.0,
             "normalized_graph_edit_distance": 0.0,
-            "labeled_score": 0.4,
+            "labeled_score": 1.0,
             "topology_score": 1.0,
-            "labeled_normalized_graph_edit_distance": 0.6,
+            "labeled_normalized_graph_edit_distance": 0.0,
             "topology_normalized_graph_edit_distance": 0.0,
-            "exact_isomorphic": false,
+            "exact_isomorphic": true,
             "topology_isomorphic": true,
-            "edge_precision": 0.0,
-            "edge_recall": 0.0,
-            "edge_f1": 0.0,
+            "edge_precision": 1.0,
+            "edge_recall": 1.0,
+            "edge_f1": 1.0,
             "kg_nodes": [
               "match_and_score_candidates_task",
               "outreach_strategy_task",
@@ -5810,15 +5735,15 @@
             "kg_edges": [
               {
                 "source": "match_and_score_candidates_task",
-                "target": "research_candidates_task"
+                "target": "outreach_strategy_task"
               },
               {
                 "source": "outreach_strategy_task",
-                "target": "match_and_score_candidates_task"
+                "target": "report_candidates_task"
               },
               {
-                "source": "report_candidates_task",
-                "target": "outreach_strategy_task"
+                "source": "research_candidates_task",
+                "target": "match_and_score_candidates_task"
               }
             ],
             "code_edges": [
@@ -5837,34 +5762,8 @@
             ],
             "missing_nodes": [],
             "extra_nodes": [],
-            "missing_edges": [
-              {
-                "source": "match_and_score_candidates_task",
-                "target": "research_candidates_task"
-              },
-              {
-                "source": "outreach_strategy_task",
-                "target": "match_and_score_candidates_task"
-              },
-              {
-                "source": "report_candidates_task",
-                "target": "outreach_strategy_task"
-              }
-            ],
-            "extra_edges": [
-              {
-                "source": "match_and_score_candidates_task",
-                "target": "outreach_strategy_task"
-              },
-              {
-                "source": "outreach_strategy_task",
-                "target": "report_candidates_task"
-              },
-              {
-                "source": "research_candidates_task",
-                "target": "match_and_score_candidates_task"
-              }
-            ]
+            "missing_edges": [],
+            "extra_edges": []
           },
           "syntax_ok": true,
           "run_status": "IMPORT_ERROR",
@@ -5878,7 +5777,7 @@
           "output_dir": "/Users/ravie/dev/agento/output_files/output_crewai/screenplay_writer",
           "status": "ok",
           "kg_element_count": 94,
-          "code_element_count": 10,
+          "code_element_count": 17,
           "oec": {
             "all_extracted": {
               "score": 0.6382978723404256,
@@ -6097,114 +5996,114 @@
                 },
                 {
                   "category": "task_produces",
-                  "name": "task1_analysis_resource_task1_analysis",
+                  "name": "task_1_analysis_resource_task_1_analysis",
                   "important": false,
                   "aliases": [
-                    "task1_analysis_resource_task1_analysis",
-                    "task1_analysis",
-                    "resource_task1_analysis"
+                    "task_1_analysis_resource_task_1_analysis",
+                    "task_1_analysis",
+                    "resource_task_1_analysis"
                   ],
                   "details": {
-                    "source": "task1_analysis",
-                    "target": "resource_task1_analysis"
+                    "source": "task_1_analysis",
+                    "target": "resource_task_1_analysis"
                   }
                 },
                 {
                   "category": "task_produces",
-                  "name": "task2_scriptwriting_resource_task2_script_draft",
+                  "name": "task_2_scriptwriting_resource_task_2_script_draft",
                   "important": false,
                   "aliases": [
-                    "task2_scriptwriting_resource_task2_script_draft",
-                    "task2_scriptwriting",
-                    "resource_task2_script_draft"
+                    "task_2_scriptwriting_resource_task_2_script_draft",
+                    "task_2_scriptwriting",
+                    "resource_task_2_script_draft"
                   ],
                   "details": {
-                    "source": "task2_scriptwriting",
-                    "target": "resource_task2_script_draft"
+                    "source": "task_2_scriptwriting",
+                    "target": "resource_task_2_script_draft"
                   }
                 },
                 {
                   "category": "task_requires",
-                  "name": "task2_scriptwriting_resource_task1_analysis",
+                  "name": "task_2_scriptwriting_resource_task_1_analysis",
                   "important": false,
                   "aliases": [
-                    "task2_scriptwriting_resource_task1_analysis",
-                    "task2_scriptwriting",
-                    "resource_task1_analysis"
+                    "task_2_scriptwriting_resource_task_1_analysis",
+                    "task_2_scriptwriting",
+                    "resource_task_1_analysis"
                   ],
                   "details": {
-                    "source": "task2_scriptwriting",
-                    "target": "resource_task1_analysis"
+                    "source": "task_2_scriptwriting",
+                    "target": "resource_task_1_analysis"
                   }
                 },
                 {
                   "category": "task_produces",
-                  "name": "task3_formatting_resource_task3_formatted_script",
+                  "name": "task_3_formatting_resource_task_3_formatted_script",
                   "important": false,
                   "aliases": [
-                    "task3_formatting_resource_task3_formatted_script",
-                    "task3_formatting",
-                    "resource_task3_formatted_script"
+                    "task_3_formatting_resource_task_3_formatted_script",
+                    "task_3_formatting",
+                    "resource_task_3_formatted_script"
                   ],
                   "details": {
-                    "source": "task3_formatting",
-                    "target": "resource_task3_formatted_script"
+                    "source": "task_3_formatting",
+                    "target": "resource_task_3_formatted_script"
                   }
                 },
                 {
                   "category": "task_requires",
-                  "name": "task3_formatting_resource_task2_script_draft",
+                  "name": "task_3_formatting_resource_task_2_script_draft",
                   "important": false,
                   "aliases": [
-                    "task3_formatting_resource_task2_script_draft",
-                    "task3_formatting",
-                    "resource_task2_script_draft"
+                    "task_3_formatting_resource_task_2_script_draft",
+                    "task_3_formatting",
+                    "resource_task_2_script_draft"
                   ],
                   "details": {
-                    "source": "task3_formatting",
-                    "target": "resource_task2_script_draft"
+                    "source": "task_3_formatting",
+                    "target": "resource_task_2_script_draft"
                   }
                 },
                 {
                   "category": "task_produces",
-                  "name": "task0_spam_check_resource_task0_decision",
+                  "name": "task_0_spam_check_resource_task_0_decision",
                   "important": false,
                   "aliases": [
-                    "task0_spam_check_resource_task0_decision",
-                    "task0_spam_check",
-                    "resource_task0_decision"
+                    "task_0_spam_check_resource_task_0_decision",
+                    "task_0_spam_check",
+                    "resource_task_0_decision"
                   ],
                   "details": {
-                    "source": "task0_spam_check",
-                    "target": "resource_task0_decision"
+                    "source": "task_0_spam_check",
+                    "target": "resource_task_0_decision"
                   }
                 },
                 {
                   "category": "task_produces",
-                  "name": "task4_scoring_resource_task4_score",
+                  "name": "task_4_scoring_resource_task_4_score",
                   "important": false,
                   "aliases": [
-                    "task4_scoring_resource_task4_score",
-                    "task4_scoring",
-                    "resource_task4_score"
+                    "task_4_scoring_resource_task_4_score",
+                    "task_4_scoring",
+                    "resource_task_4_score"
                   ],
                   "details": {
-                    "source": "task4_scoring",
-                    "target": "resource_task4_score"
+                    "source": "task_4_scoring",
+                    "target": "resource_task_4_score"
                   }
                 },
                 {
                   "category": "task_requires",
-                  "name": "task4_scoring_resource_task3_formatted_script",
+                  "name": "task_4_scoring_resource_task_3_formatted_script",
                   "important": false,
                   "aliases": [
-                    "task4_scoring_resource_task3_formatted_script",
-                    "task4_scoring",
-                    "resource_task3_formatted_script"
+                    "task_4_scoring_resource_task_3_formatted_script",
+                    "task_4_scoring",
+                    "resource_task_3_formatted_script"
                   ],
                   "details": {
-                    "source": "task4_scoring",
-                    "target": "resource_task3_formatted_script"
+                    "source": "task_4_scoring",
+                    "target": "resource_task_3_formatted_script"
                   }
                 },
                 {
@@ -6264,46 +6163,46 @@
                 },
                 {
                   "category": "resource",
-                  "name": "resource_task0_decision",
+                  "name": "resource_task_0_decision",
                   "important": false,
                   "aliases": [
-                    "resource_task0_decision"
+                    "resource_task_0_decision"
                   ],
                   "details": {}
                 },
                 {
                   "category": "resource",
-                  "name": "resource_task1_analysis",
+                  "name": "resource_task_1_analysis",
                   "important": false,
                   "aliases": [
-                    "resource_task1_analysis"
+                    "resource_task_1_analysis"
                   ],
                   "details": {}
                 },
                 {
                   "category": "resource",
-                  "name": "resource_task2_script_draft",
+                  "name": "resource_task_2_script_draft",
                   "important": false,
                   "aliases": [
-                    "resource_task2_script_draft"
+                    "resource_task_2_script_draft"
                   ],
                   "details": {}
                 },
                 {
                   "category": "resource",
-                  "name": "resource_task3_formatted_script",
+                  "name": "resource_task_3_formatted_script",
                   "important": false,
                   "aliases": [
-                    "resource_task3_formatted_script"
+                    "resource_task_3_formatted_script"
                   ],
                   "details": {}
                 },
                 {
                   "category": "resource",
-                  "name": "resource_task4_score",
+                  "name": "resource_task_4_score",
                   "important": false,
                   "aliases": [
-                    "resource_task4_score"
+                    "resource_task_4_score"
                   ],
                   "details": {}
                 }
@@ -6474,59 +6373,59 @@
             "edge_recall": 1.0,
             "edge_f1": 0.6666666666666666,
             "kg_nodes": [
-              "task1_analysis",
-              "task2_scriptwriting",
-              "task3_formatting"
+              "task_1_analysis",
+              "task_2_scriptwriting",
+              "task_3_formatting"
             ],
             "code_nodes": [
-              "task0_spam_check",
-              "task1_analysis",
-              "task2_scriptwriting",
-              "task3_formatting",
-              "task4_scoring"
+              "task_0_spam_check",
+              "task_1_analysis",
+              "task_2_scriptwriting",
+              "task_3_formatting",
+              "task_4_scoring"
             ],
             "kg_edges": [
               {
-                "source": "task1_analysis",
-                "target": "task2_scriptwriting"
+                "source": "task_1_analysis",
+                "target": "task_2_scriptwriting"
               },
               {
-                "source": "task2_scriptwriting",
-                "target": "task3_formatting"
+                "source": "task_2_scriptwriting",
+                "target": "task_3_formatting"
               }
             ],
             "code_edges": [
               {
-                "source": "task0_spam_check",
-                "target": "task4_scoring"
+                "source": "task_0_spam_check",
+                "target": "task_4_scoring"
               },
               {
-                "source": "task1_analysis",
-                "target": "task2_scriptwriting"
+                "source": "task_1_analysis",
+                "target": "task_2_scriptwriting"
               },
               {
-                "source": "task2_scriptwriting",
-                "target": "task3_formatting"
+                "source": "task_2_scriptwriting",
+                "target": "task_3_formatting"
               },
               {
-                "source": "task3_formatting",
-                "target": "task0_spam_check"
+                "source": "task_3_formatting",
+                "target": "task_0_spam_check"
               }
             ],
             "missing_nodes": [],
             "extra_nodes": [
-              "task0_spam_check",
-              "task4_scoring"
+              "task_0_spam_check",
+              "task_4_scoring"
             ],
             "missing_edges": [],
             "extra_edges": [
               {
-                "source": "task0_spam_check",
-                "target": "task4_scoring"
+                "source": "task_0_spam_check",
+                "target": "task_4_scoring"
               },
               {
-                "source": "task3_formatting",
-                "target": "task0_spam_check"
+                "source": "task_3_formatting",
+                "target": "task_0_spam_check"
               }
             ]
           },
@@ -6542,7 +6441,7 @@
           "output_dir": "/Users/ravie/dev/agento/output_files/output_crewai/starter_template",
           "status": "ok",
           "kg_element_count": 47,
-          "code_element_count": 5,
+          "code_element_count": 9,
           "oec": {
             "all_extracted": {
               "score": 0.6808510638297872,
@@ -6568,86 +6467,86 @@
                 },
                 {
                   "category": "agent_goal",
-                  "name": "agent_1_name_custom_agent1_goal",
+                  "name": "agent_1_name_custom_agent_1_goal",
                   "important": false,
                   "aliases": [
-                    "agent_1_name_custom_agent1_goal",
+                    "agent_1_name_custom_agent_1_goal",
                     "agent_1_name",
-                    "custom_agent1_goal"
+                    "custom_agent_1_goal"
                   ],
                   "details": {
                     "source": "agent_1_name",
-                    "target": "custom_agent1_goal"
+                    "target": "custom_agent_1_goal"
                   }
                 },
                 {
                   "category": "agent_llm",
-                  "name": "agent_1_name_lm_gpt35",
+                  "name": "agent_1_name_lm_gpt_35",
                   "important": false,
                   "aliases": [
-                    "agent_1_name_lm_gpt35",
+                    "agent_1_name_lm_gpt_35",
                     "agent_1_name",
-                    "lm_gpt35"
+                    "lm_gpt_35"
                   ],
                   "details": {
                     "source": "agent_1_name",
-                    "target": "lm_gpt35"
+                    "target": "lm_gpt_35"
                   }
                 },
                 {
                   "category": "agent_goal",
-                  "name": "agent_2_name_custom_agent2_goal",
+                  "name": "agent_2_name_custom_agent_2_goal",
                   "important": false,
                   "aliases": [
-                    "agent_2_name_custom_agent2_goal",
+                    "agent_2_name_custom_agent_2_goal",
                     "agent_2_name",
-                    "custom_agent2_goal"
+                    "custom_agent_2_goal"
                   ],
                   "details": {
                     "source": "agent_2_name",
-                    "target": "custom_agent2_goal"
+                    "target": "custom_agent_2_goal"
                   }
                 },
                 {
                   "category": "agent_llm",
-                  "name": "agent_2_name_lm_gpt35",
+                  "name": "agent_2_name_lm_gpt_35",
                   "important": false,
                   "aliases": [
-                    "agent_2_name_lm_gpt35",
+                    "agent_2_name_lm_gpt_35",
                     "agent_2_name",
-                    "lm_gpt35"
+                    "lm_gpt_35"
                   ],
                   "details": {
                     "source": "agent_2_name",
-                    "target": "lm_gpt35"
+                    "target": "lm_gpt_35"
                   }
                 },
                 {
                   "category": "task_produces",
-                  "name": "task_1_task1_output_resource",
+                  "name": "task_1_task_1_output_resource",
                   "important": false,
                   "aliases": [
-                    "task_1_task1_output_resource",
+                    "task_1_task_1_output_resource",
                     "task_1",
-                    "task1_output_resource"
+                    "task_1_output_resource"
                   ],
                   "details": {
                     "source": "task_1",
-                    "target": "task1_output_resource"
+                    "target": "task_1_output_resource"
                   }
                 },
                 {
                   "category": "task_requires",
-                  "name": "task_2_task1_output_resource",
+                  "name": "task_2_task_1_output_resource",
                   "important": false,
                   "aliases": [
-                    "task_2_task1_output_resource",
+                    "task_2_task_1_output_resource",
                     "task_2",
-                    "task1_output_resource"
+                    "task_1_output_resource"
                   ],
                   "details": {
                     "source": "task_2",
-                    "target": "task1_output_resource"
+                    "target": "task_1_output_resource"
                   }
                 },
                 {
@@ -6675,19 +6574,19 @@
                 },
                 {
                   "category": "language_model",
-                  "name": "lm_gpt35",
+                  "name": "lm_gpt_35",
                   "important": false,
                   "aliases": [
-                    "lm_gpt35"
+                    "lm_gpt_35"
                   ],
                   "details": {}
                 },
                 {
                   "category": "language_model",
-                  "name": "lm_gpt4",
+                  "name": "lm_gpt_4",
                   "important": false,
                   "aliases": [
-                    "lm_gpt4"
+                    "lm_gpt_4"
                   ],
                   "details": {}
                 },
@@ -6702,28 +6601,28 @@
                 },
                 {
                   "category": "goal",
-                  "name": "custom_agent1_goal",
+                  "name": "custom_agent_1_goal",
                   "important": false,
                   "aliases": [
-                    "custom_agent1_goal"
+                    "custom_agent_1_goal"
                   ],
                   "details": {}
                 },
                 {
                   "category": "goal",
-                  "name": "custom_agent2_goal",
+                  "name": "custom_agent_2_goal",
                   "important": false,
                   "aliases": [
-                    "custom_agent2_goal"
+                    "custom_agent_2_goal"
                   ],
                   "details": {}
                 },
                 {
                   "category": "resource",
-                  "name": "task1_output_resource",
+                  "name": "task_1_output_resource",
                   "important": false,
                   "aliases": [
-                    "task1_output_resource"
+                    "task_1_output_resource"
                   ],
                   "details": {}
                 }
@@ -6954,25 +6853,25 @@
           "output_dir": "/Users/ravie/dev/agento/output_files/output_crewai/stock_analysis",
           "status": "ok",
           "kg_element_count": 110,
-          "code_element_count": 13,
+          "code_element_count": 19,
           "oec": {
             "all_extracted": {
-              "score": 0.6818181818181818,
-              "matched": 75,
+              "score": 0.6727272727272727,
+              "matched": 74,
               "total": 110,
               "missing": [
                 {
                   "category": "agent_llm",
-                  "name": "financial_agent_ollama_llama3_1",
+                  "name": "financial_agent_ollama_llama_3_1",
                   "important": false,
                   "aliases": [
-                    "financial_agent_ollama_llama3_1",
+                    "financial_agent_ollama_llama_3_1",
                     "financial_agent",
-                    "ollama_llama3_1"
+                    "ollama_llama_3_1"
                   ],
                   "details": {
                     "source": "financial_agent",
-                    "target": "ollama_llama3_1"
+                    "target": "ollama_llama_3_1"
                   }
                 },
                 {
@@ -7019,44 +6918,44 @@
                 },
                 {
                   "category": "agent_capability",
-                  "name": "financial_agent_capability_sec10_q_search",
+                  "name": "financial_agent_capability_sec_10_q_search",
                   "important": false,
                   "aliases": [
-                    "financial_agent_capability_sec10_q_search",
+                    "financial_agent_capability_sec_10_q_search",
                     "financial_agent",
-                    "capability_sec10_q_search"
+                    "capability_sec_10_q_search"
                   ],
                   "details": {
                     "source": "financial_agent",
-                    "target": "capability_sec10_q_search"
+                    "target": "capability_sec_10_q_search"
                   }
                 },
                 {
                   "category": "agent_capability",
-                  "name": "financial_agent_capability_sec10_k_search",
+                  "name": "financial_agent_capability_sec_10_k_search",
                   "important": false,
                   "aliases": [
-                    "financial_agent_capability_sec10_k_search",
+                    "financial_agent_capability_sec_10_k_search",
                     "financial_agent",
-                    "capability_sec10_k_search"
+                    "capability_sec_10_k_search"
                   ],
                   "details": {
                     "source": "financial_agent",
-                    "target": "capability_sec10_k_search"
+                    "target": "capability_sec_10_k_search"
                   }
                 },
                 {
                   "category": "agent_llm",
-                  "name": "financial_analyst_agent_ollama_llama3_1",
+                  "name": "financial_analyst_agent_ollama_llama_3_1",
                   "important": false,
                   "aliases": [
-                    "financial_analyst_agent_ollama_llama3_1",
+                    "financial_analyst_agent_ollama_llama_3_1",
                     "financial_analyst_agent",
-                    "ollama_llama3_1"
+                    "ollama_llama_3_1"
                   ],
                   "details": {
                     "source": "financial_analyst_agent",
-                    "target": "ollama_llama3_1"
+                    "target": "ollama_llama_3_1"
                   }
                 },
                 {
@@ -7103,44 +7002,44 @@
                 },
                 {
                   "category": "agent_capability",
-                  "name": "financial_analyst_agent_capability_sec10_q_search",
+                  "name": "financial_analyst_agent_capability_sec_10_q_search",
                   "important": false,
                   "aliases": [
-                    "financial_analyst_agent_capability_sec10_q_search",
+                    "financial_analyst_agent_capability_sec_10_q_search",
                     "financial_analyst_agent",
-                    "capability_sec10_q_search"
+                    "capability_sec_10_q_search"
                   ],
                   "details": {
                     "source": "financial_analyst_agent",
-                    "target": "capability_sec10_q_search"
+                    "target": "capability_sec_10_q_search"
                   }
                 },
                 {
                   "category": "agent_capability",
-                  "name": "financial_analyst_agent_capability_sec10_k_search",
+                  "name": "financial_analyst_agent_capability_sec_10_k_search",
                   "important": false,
                   "aliases": [
-                    "financial_analyst_agent_capability_sec10_k_search",
+                    "financial_analyst_agent_capability_sec_10_k_search",
                     "financial_analyst_agent",
-                    "capability_sec10_k_search"
+                    "capability_sec_10_k_search"
                   ],
                   "details": {
                     "source": "financial_analyst_agent",
-                    "target": "capability_sec10_k_search"
+                    "target": "capability_sec_10_k_search"
                   }
                 },
                 {
                   "category": "agent_llm",
-                  "name": "research_analyst_agent_ollama_llama3_1",
+                  "name": "research_analyst_agent_ollama_llama_3_1",
                   "important": false,
                   "aliases": [
-                    "research_analyst_agent_ollama_llama3_1",
+                    "research_analyst_agent_ollama_llama_3_1",
                     "research_analyst_agent",
-                    "ollama_llama3_1"
+                    "ollama_llama_3_1"
                   ],
                   "details": {
                     "source": "research_analyst_agent",
-                    "target": "ollama_llama3_1"
+                    "target": "ollama_llama_3_1"
                   }
                 },
                 {
@@ -7159,44 +7058,44 @@
                 },
                 {
                   "category": "agent_capability",
-                  "name": "research_analyst_agent_capability_sec10_q_search",
+                  "name": "research_analyst_agent_capability_sec_10_q_search",
                   "important": false,
                   "aliases": [
-                    "research_analyst_agent_capability_sec10_q_search",
+                    "research_analyst_agent_capability_sec_10_q_search",
                     "research_analyst_agent",
-                    "capability_sec10_q_search"
+                    "capability_sec_10_q_search"
                   ],
                   "details": {
                     "source": "research_analyst_agent",
-                    "target": "capability_sec10_q_search"
+                    "target": "capability_sec_10_q_search"
                   }
                 },
                 {
                   "category": "agent_capability",
-                  "name": "research_analyst_agent_capability_sec10_k_search",
+                  "name": "research_analyst_agent_capability_sec_10_k_search",
                   "important": false,
                   "aliases": [
-                    "research_analyst_agent_capability_sec10_k_search",
+                    "research_analyst_agent_capability_sec_10_k_search",
                     "research_analyst_agent",
-                    "capability_sec10_k_search"
+                    "capability_sec_10_k_search"
                   ],
                   "details": {
                     "source": "research_analyst_agent",
-                    "target": "capability_sec10_k_search"
+                    "target": "capability_sec_10_k_search"
                   }
                 },
                 {
                   "category": "agent_llm",
-                  "name": "investment_advisor_agent_ollama_llama3_1",
+                  "name": "investment_advisor_agent_ollama_llama_3_1",
                   "important": false,
                   "aliases": [
-                    "investment_advisor_agent_ollama_llama3_1",
+                    "investment_advisor_agent_ollama_llama_3_1",
                     "investment_advisor_agent",
-                    "ollama_llama3_1"
+                    "ollama_llama_3_1"
                   ],
                   "details": {
                     "source": "investment_advisor_agent",
-                    "target": "ollama_llama3_1"
+                    "target": "ollama_llama_3_1"
                   }
                 },
                 {
@@ -7411,30 +7310,30 @@
                 },
                 {
                   "category": "tool_capability",
-                  "name": "sec10_k_tool_amzn_capability_sec10_k_search",
+                  "name": "sec_10_k_tool_amzn_capability_sec_10_k_search",
                   "important": false,
                   "aliases": [
-                    "sec10_k_tool_amzn_capability_sec10_k_search",
-                    "sec10_k_tool_amzn",
-                    "capability_sec10_k_search"
+                    "sec_10_k_tool_amzn_capability_sec_10_k_search",
+                    "sec_10_k_tool_amzn",
+                    "capability_sec_10_k_search"
                   ],
                   "details": {
-                    "source": "sec10_k_tool_amzn",
-                    "target": "capability_sec10_k_search"
+                    "source": "sec_10_k_tool_amzn",
+                    "target": "capability_sec_10_k_search"
                   }
                 },
                 {
                   "category": "tool_capability",
-                  "name": "sec10_q_tool_amzn_capability_sec10_q_search",
+                  "name": "sec_10_q_tool_amzn_capability_sec_10_q_search",
                   "important": false,
                   "aliases": [
-                    "sec10_q_tool_amzn_capability_sec10_q_search",
-                    "sec10_q_tool_amzn",
-                    "capability_sec10_q_search"
+                    "sec_10_q_tool_amzn_capability_sec_10_q_search",
+                    "sec_10_q_tool_amzn",
+                    "capability_sec_10_q_search"
                   ],
                   "details": {
-                    "source": "sec10_q_tool_amzn",
-                    "target": "capability_sec10_q_search"
+                    "source": "sec_10_q_tool_amzn",
+                    "target": "capability_sec_10_q_search"
                   }
                 },
                 {
@@ -7444,6 +7343,16 @@
                   "aliases": [
                     "stock_analysis_workflow",
                     "stock_analysis_sequential_workflow"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "language_model",
+                  "name": "ollama_llama_3_1",
+                  "important": false,
+                  "aliases": [
+                    "ollama_llama_3_1",
+                    "lm_ollama_llama_3_1"
                   ],
                   "details": {}
                 }
@@ -7490,8 +7399,8 @@
                   "total": 1
                 },
                 "language_model": {
-                  "score": 1.0,
-                  "matched": 1,
+                  "score": 0.0,
+                  "matched": 0,
                   "total": 1
                 },
                 "project": {
@@ -7690,7 +7599,7 @@
           "output_dir": "/Users/ravie/dev/agento/output_files/output_crewai/surprise_trip",
           "status": "ok",
           "kg_element_count": 60,
-          "code_element_count": 7,
+          "code_element_count": 12,
           "oec": {
             "all_extracted": {
               "score": 0.8833333333333333,
@@ -7984,7 +7893,7 @@
           "output_dir": "/Users/ravie/dev/agento/output_files/output_crewai/trip_planner",
           "status": "ok",
           "kg_element_count": 89,
-          "code_element_count": 9,
+          "code_element_count": 14,
           "oec": {
             "all_extracted": {
               "score": 0.449438202247191,
@@ -7998,8 +7907,8 @@
                   "aliases": [
                     "system_unnamed_project_serper_api_key",
                     "serper_api_key",
-                    "sk_proj_twc_c4_iix_usdmjh_ak_ozyy8sa_h01_scrr_bqmz1_n3oxe_qs_sk_ppzlyxubu_v_gz_m8_i9_vs_dc_jc_r5i4_t3_blbk_fj0_hgeji_oz_yfm_g_rd1_zkl2v_rak2o58_oq58d_d0_lazl0tj_no_untt_cz_y2_hhq_jxgpkx_ngo_ul_npnby_uqa",
-                    "serper_api_key_sk_proj_twc_c4_iix_usdmjh_ak_ozyy8sa_h01_scrr_bqmz1_n3oxe_qs_sk_ppzlyxubu_v_gz_m8_i9_vs_dc_jc_r5i4_t3_blbk_fj0_hgeji_oz_yfm_g_rd1_zkl2v_rak2o58_oq58d_d0_lazl0tj_no_untt_cz_y2_hhq_jxgpkx_ngo_ul_npnby_uqa"
+                    "sk_proj_twc_c_4_iix_usdmjh_ak_ozyy_8_sa_h_01_scrr_bqmz_1_n_3_oxe_qs_sk_ppzlyxubu_v_gz_m_8_i_9_vs_dc_jc_r_5_i_4_t_3_blbk_fj_0_hgeji_oz_yfm_g_rd_1_zkl_2_v_rak_2_o_58_oq_58_d_d_0_lazl_0_tj_no_untt_cz_y_2_hhq_jxgpkx_ngo_ul_npnby_uqa",
+                    "serper_api_key_sk_proj_twc_c_4_iix_usdmjh_ak_ozyy_8_sa_h_01_scrr_bqmz_1_n_3_oxe_qs_sk_ppzlyxubu_v_gz_m_8_i_9_vs_dc_jc_r_5_i_4_t_3_blbk_fj_0_hgeji_oz_yfm_g_rd_1_zkl_2_v_rak_2_o_58_oq_58_d_d_0_lazl_0_tj_no_untt_cz_y_2_hhq_jxgpkx_ngo_ul_npnby_uqa"
                   ],
                   "details": {
                     "key": "serper_api_key",
@@ -8015,8 +7924,8 @@
                   "aliases": [
                     "system_unnamed_project_browserless_api_key",
                     "browserless_api_key",
-                    "sk_proj_twc_c4_iix_usdmjh_ak_ozyy8sa_h01_scrr_bqmz1_n3oxe_qs_sk_ppzlyxubu_v_gz_m8_i9_vs_dc_jc_r5i4_t3_blbk_fj0_hgeji_oz_yfm_g_rd1_zkl2v_rak2o58_oq58d_d0_lazl0tj_no_untt_cz_y2_hhq_jxgpkx_ngo_ul_npnby_uqa",
-                    "browserless_api_key_sk_proj_twc_c4_iix_usdmjh_ak_ozyy8sa_h01_scrr_bqmz1_n3oxe_qs_sk_ppzlyxubu_v_gz_m8_i9_vs_dc_jc_r5i4_t3_blbk_fj0_hgeji_oz_yfm_g_rd1_zkl2v_rak2o58_oq58d_d0_lazl0tj_no_untt_cz_y2_hhq_jxgpkx_ngo_ul_npnby_uqa"
+                    "sk_proj_twc_c_4_iix_usdmjh_ak_ozyy_8_sa_h_01_scrr_bqmz_1_n_3_oxe_qs_sk_ppzlyxubu_v_gz_m_8_i_9_vs_dc_jc_r_5_i_4_t_3_blbk_fj_0_hgeji_oz_yfm_g_rd_1_zkl_2_v_rak_2_o_58_oq_58_d_d_0_lazl_0_tj_no_untt_cz_y_2_hhq_jxgpkx_ngo_ul_npnby_uqa",
+                    "browserless_api_key_sk_proj_twc_c_4_iix_usdmjh_ak_ozyy_8_sa_h_01_scrr_bqmz_1_n_3_oxe_qs_sk_ppzlyxubu_v_gz_m_8_i_9_vs_dc_jc_r_5_i_4_t_3_blbk_fj_0_hgeji_oz_yfm_g_rd_1_zkl_2_v_rak_2_o_58_oq_58_d_d_0_lazl_0_tj_no_untt_cz_y_2_hhq_jxgpkx_ngo_ul_npnby_uqa"
                   ],
                   "details": {
                     "key": "browserless_api_key",
@@ -8032,8 +7941,8 @@
                   "aliases": [
                     "system_unnamed_project_openai_api_key",
                     "openai_api_key",
-                    "sk_proj_twc_c4_iix_usdmjh_ak_ozyy8sa_h01_scrr_bqmz1_n3oxe_qs_sk_ppzlyxubu_v_gz_m8_i9_vs_dc_jc_r5i4_t3_blbk_fj0_hgeji_oz_yfm_g_rd1_zkl2v_rak2o58_oq58d_d0_lazl0tj_no_untt_cz_y2_hhq_jxgpkx_ngo_ul_npnby_uqa",
-                    "openai_api_key_sk_proj_twc_c4_iix_usdmjh_ak_ozyy8sa_h01_scrr_bqmz1_n3oxe_qs_sk_ppzlyxubu_v_gz_m8_i9_vs_dc_jc_r5i4_t3_blbk_fj0_hgeji_oz_yfm_g_rd1_zkl2v_rak2o58_oq58d_d0_lazl0tj_no_untt_cz_y2_hhq_jxgpkx_ngo_ul_npnby_uqa"
+                    "sk_proj_twc_c_4_iix_usdmjh_ak_ozyy_8_sa_h_01_scrr_bqmz_1_n_3_oxe_qs_sk_ppzlyxubu_v_gz_m_8_i_9_vs_dc_jc_r_5_i_4_t_3_blbk_fj_0_hgeji_oz_yfm_g_rd_1_zkl_2_v_rak_2_o_58_oq_58_d_d_0_lazl_0_tj_no_untt_cz_y_2_hhq_jxgpkx_ngo_ul_npnby_uqa",
+                    "openai_api_key_sk_proj_twc_c_4_iix_usdmjh_ak_ozyy_8_sa_h_01_scrr_bqmz_1_n_3_oxe_qs_sk_ppzlyxubu_v_gz_m_8_i_9_vs_dc_jc_r_5_i_4_t_3_blbk_fj_0_hgeji_oz_yfm_g_rd_1_zkl_2_v_rak_2_o_58_oq_58_d_d_0_lazl_0_tj_no_untt_cz_y_2_hhq_jxgpkx_ngo_ul_npnby_uqa"
                   ],
                   "details": {
                     "key": "openai_api_key",
@@ -8049,8 +7958,8 @@
                   "aliases": [
                     "env_unnamed_project_serper_api_key",
                     "serper_api_key",
-                    "bc357b147050e86d66422d53e58d003af4188a18",
-                    "serper_api_key_bc357b147050e86d66422d53e58d003af4188a18"
+                    "bc_357_b_147050_e_86_d_66422_d_53_e_58_d_003_af_4188_a_18",
+                    "serper_api_key_bc_357_b_147050_e_86_d_66422_d_53_e_58_d_003_af_4188_a_18"
                   ],
                   "details": {
                     "key": "serper_api_key",
@@ -8066,8 +7975,8 @@
                   "aliases": [
                     "env_unnamed_project_browserless_api_key",
                     "browserless_api_key",
-                    "2_tvm_wm_ge_q9zi_dxq4bcbbb03e8ff6ea65f0e6de71db1498ce5",
-                    "browserless_api_key_2_tvm_wm_ge_q9zi_dxq4bcbbb03e8ff6ea65f0e6de71db1498ce5"
+                    "2_tvm_wm_ge_q_9_zi_dxq_4_bcbbb_03_e_8_ff_6_ea_65_f_0_e_6_de_71_db_1498_ce_5",
+                    "browserless_api_key_2_tvm_wm_ge_q_9_zi_dxq_4_bcbbb_03_e_8_ff_6_ea_65_f_0_e_6_de_71_db_1498_ce_5"
                   ],
                   "details": {
                     "key": "browserless_api_key",
@@ -8083,8 +7992,8 @@
                   "aliases": [
                     "env_unnamed_project_openai_api_key",
                     "openai_api_key",
-                    "sk_proj_twc_c4_iix_usdmjh_ak_ozyy8sa_h01_scrr_bqmz1_n3oxe_qs_sk_ppzlyxubu_v_gz_m8_i9_vs_dc_jc_r5i4_t3_blbk_fj0_hgeji_oz_yfm_g_rd1_zkl2v_rak2o58_oq58d_d0_lazl0tj_no_untt_cz_y2_hhq_jxgpkx_ngo_ul_npnby_uqa",
-                    "openai_api_key_sk_proj_twc_c4_iix_usdmjh_ak_ozyy8sa_h01_scrr_bqmz1_n3oxe_qs_sk_ppzlyxubu_v_gz_m8_i9_vs_dc_jc_r5i4_t3_blbk_fj0_hgeji_oz_yfm_g_rd1_zkl2v_rak2o58_oq58d_d0_lazl0tj_no_untt_cz_y2_hhq_jxgpkx_ngo_ul_npnby_uqa"
+                    "sk_proj_twc_c_4_iix_usdmjh_ak_ozyy_8_sa_h_01_scrr_bqmz_1_n_3_oxe_qs_sk_ppzlyxubu_v_gz_m_8_i_9_vs_dc_jc_r_5_i_4_t_3_blbk_fj_0_hgeji_oz_yfm_g_rd_1_zkl_2_v_rak_2_o_58_oq_58_d_d_0_lazl_0_tj_no_untt_cz_y_2_hhq_jxgpkx_ngo_ul_npnby_uqa",
+                    "openai_api_key_sk_proj_twc_c_4_iix_usdmjh_ak_ozyy_8_sa_h_01_scrr_bqmz_1_n_3_oxe_qs_sk_ppzlyxubu_v_gz_m_8_i_9_vs_dc_jc_r_5_i_4_t_3_blbk_fj_0_hgeji_oz_yfm_g_rd_1_zkl_2_v_rak_2_o_58_oq_58_d_d_0_lazl_0_tj_no_untt_cz_y_2_hhq_jxgpkx_ngo_ul_npnby_uqa"
                   ],
                   "details": {
                     "key": "openai_api_key",
@@ -8128,8 +8037,8 @@
                   "aliases": [
                     "agent_city_selection_agent_openai_api_key",
                     "openai_api_key",
-                    "sk_proj_twc_c4_iix_usdmjh_ak_ozyy8sa_h01_scrr_bqmz1_n3oxe_qs_sk_ppzlyxubu_v_gz_m8_i9_vs_dc_jc_r5i4_t3_blbk_fj0_hgeji_oz_yfm_g_rd1_zkl2v_rak2o58_oq58d_d0_lazl0tj_no_untt_cz_y2_hhq_jxgpkx_ngo_ul_npnby_uqa",
-                    "openai_api_key_sk_proj_twc_c4_iix_usdmjh_ak_ozyy8sa_h01_scrr_bqmz1_n3oxe_qs_sk_ppzlyxubu_v_gz_m8_i9_vs_dc_jc_r5i4_t3_blbk_fj0_hgeji_oz_yfm_g_rd1_zkl2v_rak2o58_oq58d_d0_lazl0tj_no_untt_cz_y2_hhq_jxgpkx_ngo_ul_npnby_uqa"
+                    "sk_proj_twc_c_4_iix_usdmjh_ak_ozyy_8_sa_h_01_scrr_bqmz_1_n_3_oxe_qs_sk_ppzlyxubu_v_gz_m_8_i_9_vs_dc_jc_r_5_i_4_t_3_blbk_fj_0_hgeji_oz_yfm_g_rd_1_zkl_2_v_rak_2_o_58_oq_58_d_d_0_lazl_0_tj_no_untt_cz_y_2_hhq_jxgpkx_ngo_ul_npnby_uqa",
+                    "openai_api_key_sk_proj_twc_c_4_iix_usdmjh_ak_ozyy_8_sa_h_01_scrr_bqmz_1_n_3_oxe_qs_sk_ppzlyxubu_v_gz_m_8_i_9_vs_dc_jc_r_5_i_4_t_3_blbk_fj_0_hgeji_oz_yfm_g_rd_1_zkl_2_v_rak_2_o_58_oq_58_d_d_0_lazl_0_tj_no_untt_cz_y_2_hhq_jxgpkx_ngo_ul_npnby_uqa"
                   ],
                   "details": {
                     "key": "openai_api_key",
@@ -8187,8 +8096,8 @@
                   "aliases": [
                     "agent_local_expert_agent_openai_api_key",
                     "openai_api_key",
-                    "sk_proj_twc_c4_iix_usdmjh_ak_ozyy8sa_h01_scrr_bqmz1_n3oxe_qs_sk_ppzlyxubu_v_gz_m8_i9_vs_dc_jc_r5i4_t3_blbk_fj0_hgeji_oz_yfm_g_rd1_zkl2v_rak2o58_oq58d_d0_lazl0tj_no_untt_cz_y2_hhq_jxgpkx_ngo_ul_npnby_uqa",
-                    "openai_api_key_sk_proj_twc_c4_iix_usdmjh_ak_ozyy8sa_h01_scrr_bqmz1_n3oxe_qs_sk_ppzlyxubu_v_gz_m8_i9_vs_dc_jc_r5i4_t3_blbk_fj0_hgeji_oz_yfm_g_rd1_zkl2v_rak2o58_oq58d_d0_lazl0tj_no_untt_cz_y2_hhq_jxgpkx_ngo_ul_npnby_uqa"
+                    "sk_proj_twc_c_4_iix_usdmjh_ak_ozyy_8_sa_h_01_scrr_bqmz_1_n_3_oxe_qs_sk_ppzlyxubu_v_gz_m_8_i_9_vs_dc_jc_r_5_i_4_t_3_blbk_fj_0_hgeji_oz_yfm_g_rd_1_zkl_2_v_rak_2_o_58_oq_58_d_d_0_lazl_0_tj_no_untt_cz_y_2_hhq_jxgpkx_ngo_ul_npnby_uqa",
+                    "openai_api_key_sk_proj_twc_c_4_iix_usdmjh_ak_ozyy_8_sa_h_01_scrr_bqmz_1_n_3_oxe_qs_sk_ppzlyxubu_v_gz_m_8_i_9_vs_dc_jc_r_5_i_4_t_3_blbk_fj_0_hgeji_oz_yfm_g_rd_1_zkl_2_v_rak_2_o_58_oq_58_d_d_0_lazl_0_tj_no_untt_cz_y_2_hhq_jxgpkx_ngo_ul_npnby_uqa"
                   ],
                   "details": {
                     "key": "openai_api_key",
@@ -8246,8 +8155,8 @@
                   "aliases": [
                     "agent_travel_concierge_agent_openai_api_key",
                     "openai_api_key",
-                    "sk_proj_twc_c4_iix_usdmjh_ak_ozyy8sa_h01_scrr_bqmz1_n3oxe_qs_sk_ppzlyxubu_v_gz_m8_i9_vs_dc_jc_r5i4_t3_blbk_fj0_hgeji_oz_yfm_g_rd1_zkl2v_rak2o58_oq58d_d0_lazl0tj_no_untt_cz_y2_hhq_jxgpkx_ngo_ul_npnby_uqa",
-                    "openai_api_key_sk_proj_twc_c4_iix_usdmjh_ak_ozyy8sa_h01_scrr_bqmz1_n3oxe_qs_sk_ppzlyxubu_v_gz_m8_i9_vs_dc_jc_r5i4_t3_blbk_fj0_hgeji_oz_yfm_g_rd1_zkl2v_rak2o58_oq58d_d0_lazl0tj_no_untt_cz_y2_hhq_jxgpkx_ngo_ul_npnby_uqa"
+                    "sk_proj_twc_c_4_iix_usdmjh_ak_ozyy_8_sa_h_01_scrr_bqmz_1_n_3_oxe_qs_sk_ppzlyxubu_v_gz_m_8_i_9_vs_dc_jc_r_5_i_4_t_3_blbk_fj_0_hgeji_oz_yfm_g_rd_1_zkl_2_v_rak_2_o_58_oq_58_d_d_0_lazl_0_tj_no_untt_cz_y_2_hhq_jxgpkx_ngo_ul_npnby_uqa",
+                    "openai_api_key_sk_proj_twc_c_4_iix_usdmjh_ak_ozyy_8_sa_h_01_scrr_bqmz_1_n_3_oxe_qs_sk_ppzlyxubu_v_gz_m_8_i_9_vs_dc_jc_r_5_i_4_t_3_blbk_fj_0_hgeji_oz_yfm_g_rd_1_zkl_2_v_rak_2_o_58_oq_58_d_d_0_lazl_0_tj_no_untt_cz_y_2_hhq_jxgpkx_ngo_ul_npnby_uqa"
                   ],
                   "details": {
                     "key": "openai_api_key",
@@ -8417,8 +8326,8 @@
                   "aliases": [
                     "tool_search_tools_serper_api_key",
                     "serper_api_key",
-                    "bc357b147050e86d66422d53e58d003af4188a18",
-                    "serper_api_key_bc357b147050e86d66422d53e58d003af4188a18"
+                    "bc_357_b_147050_e_86_d_66422_d_53_e_58_d_003_af_4188_a_18",
+                    "serper_api_key_bc_357_b_147050_e_86_d_66422_d_53_e_58_d_003_af_4188_a_18"
                   ],
                   "details": {
                     "key": "serper_api_key",
@@ -8448,8 +8357,8 @@
                   "aliases": [
                     "tool_browser_tools_browserless_api_key",
                     "browserless_api_key",
-                    "2_tvm_wm_ge_q9zi_dxq4bcbbb03e8ff6ea65f0e6de71db1498ce5",
-                    "browserless_api_key_2_tvm_wm_ge_q9zi_dxq4bcbbb03e8ff6ea65f0e6de71db1498ce5"
+                    "2_tvm_wm_ge_q_9_zi_dxq_4_bcbbb_03_e_8_ff_6_ea_65_f_0_e_6_de_71_db_1498_ce_5",
+                    "browserless_api_key_2_tvm_wm_ge_q_9_zi_dxq_4_bcbbb_03_e_8_ff_6_ea_65_f_0_e_6_de_71_db_1498_ce_5"
                   ],
                   "details": {
                     "key": "browserless_api_key",
@@ -8815,17 +8724,17 @@
             }
           },
           "wgi": {
-            "score": 0.5714285714285714,
-            "normalized_graph_edit_distance": 0.42857142857142855,
-            "labeled_score": 0.5714285714285714,
-            "topology_score": 0.5,
-            "labeled_normalized_graph_edit_distance": 0.42857142857142855,
-            "topology_normalized_graph_edit_distance": 0.5,
-            "exact_isomorphic": false,
-            "topology_isomorphic": false,
-            "edge_precision": 0.5,
-            "edge_recall": 0.3333333333333333,
-            "edge_f1": 0.4,
+            "score": 1.0,
+            "normalized_graph_edit_distance": 0.0,
+            "labeled_score": 1.0,
+            "topology_score": 1.0,
+            "labeled_normalized_graph_edit_distance": 0.0,
+            "topology_normalized_graph_edit_distance": 0.0,
+            "exact_isomorphic": true,
+            "topology_isomorphic": true,
+            "edge_precision": 1.0,
+            "edge_recall": 1.0,
+            "edge_f1": 1.0,
             "kg_nodes": [
               "gather_task",
               "identify_task",
@@ -8839,14 +8748,10 @@
             "kg_edges": [
               {
                 "source": "gather_task",
-                "target": "identify_task"
-              },
-              {
-                "source": "gather_task",
                 "target": "plan_task"
               },
               {
-                "source": "plan_task",
+                "source": "identify_task",
                 "target": "gather_task"
               }
             ],
@@ -8862,22 +8767,8 @@
             ],
             "missing_nodes": [],
             "extra_nodes": [],
-            "missing_edges": [
-              {
-                "source": "gather_task",
-                "target": "identify_task"
-              },
-              {
-                "source": "plan_task",
-                "target": "gather_task"
-              }
-            ],
-            "extra_edges": [
-              {
-                "source": "identify_task",
-                "target": "gather_task"
-              }
-            ]
+            "missing_edges": [],
+            "extra_edges": []
           },
           "syntax_ok": true,
           "run_status": "IMPORT_ERROR",
@@ -8911,7 +8802,7 @@
           "output_dir": "/Users/ravie/dev/agento/output_files/output_autogen/L1_Multi-Agent_Conversation_and_Stand-up_Comedy",
           "status": "ok",
           "kg_element_count": 14,
-          "code_element_count": 2,
+          "code_element_count": 3,
           "oec": {
             "all_extracted": {
               "score": 0.2857142857142857,
@@ -9168,7 +9059,7 @@
           "output_dir": "/Users/ravie/dev/agento/output_files/output_autogen/L2_Sequential_Chats_and_Customer_Onboarding",
           "status": "ok",
           "kg_element_count": 34,
-          "code_element_count": 4,
+          "code_element_count": 10,
           "oec": {
             "all_extracted": {
               "score": 0.5882352941176471,
@@ -9177,16 +9068,16 @@
               "missing": [
                 {
                   "category": "agent_llm",
-                  "name": "onboarding_personal_information_agent_lm_gpt3_5_turbo",
+                  "name": "onboarding_personal_information_agent_lm_gpt_3_5_turbo",
                   "important": false,
                   "aliases": [
-                    "onboarding_personal_information_agent_lm_gpt3_5_turbo",
+                    "onboarding_personal_information_agent_lm_gpt_3_5_turbo",
                     "onboarding_personal_information_agent",
-                    "lm_gpt3_5_turbo"
+                    "lm_gpt_3_5_turbo"
                   ],
                   "details": {
                     "source": "onboarding_personal_information_agent",
-                    "target": "lm_gpt3_5_turbo"
+                    "target": "lm_gpt_3_5_turbo"
                   }
                 },
                 {
@@ -9225,16 +9116,16 @@
                 },
                 {
                   "category": "agent_llm",
-                  "name": "onboarding_topic_preference_agent_lm_gpt3_5_turbo",
+                  "name": "onboarding_topic_preference_agent_lm_gpt_3_5_turbo",
                   "important": false,
                   "aliases": [
-                    "onboarding_topic_preference_agent_lm_gpt3_5_turbo",
+                    "onboarding_topic_preference_agent_lm_gpt_3_5_turbo",
                     "onboarding_topic_preference_agent",
-                    "lm_gpt3_5_turbo"
+                    "lm_gpt_3_5_turbo"
                   ],
                   "details": {
                     "source": "onboarding_topic_preference_agent",
-                    "target": "lm_gpt3_5_turbo"
+                    "target": "lm_gpt_3_5_turbo"
                   }
                 },
                 {
@@ -9273,16 +9164,16 @@
                 },
                 {
                   "category": "agent_llm",
-                  "name": "customer_engagement_agent_lm_gpt3_5_turbo",
+                  "name": "customer_engagement_agent_lm_gpt_3_5_turbo",
                   "important": false,
                   "aliases": [
-                    "customer_engagement_agent_lm_gpt3_5_turbo",
+                    "customer_engagement_agent_lm_gpt_3_5_turbo",
                     "customer_engagement_agent",
-                    "lm_gpt3_5_turbo"
+                    "lm_gpt_3_5_turbo"
                   ],
                   "details": {
                     "source": "customer_engagement_agent",
-                    "target": "lm_gpt3_5_turbo"
+                    "target": "lm_gpt_3_5_turbo"
                   }
                 },
                 {
@@ -9361,10 +9252,10 @@
                 },
                 {
                   "category": "language_model",
-                  "name": "lm_gpt3_5_turbo",
+                  "name": "lm_gpt_3_5_turbo",
                   "important": false,
                   "aliases": [
-                    "lm_gpt3_5_turbo"
+                    "lm_gpt_3_5_turbo"
                   ],
                   "details": {}
                 },
@@ -9554,7 +9445,7 @@
           "output_dir": "/Users/ravie/dev/agento/output_files/output_autogen/L3_Reflection_and_Blogpost_Writing",
           "status": "ok",
           "kg_element_count": 51,
-          "code_element_count": 6,
+          "code_element_count": 12,
           "oec": {
             "all_extracted": {
               "score": 0.5882352941176471,
@@ -9563,30 +9454,30 @@
               "missing": [
                 {
                   "category": "agent_llm",
-                  "name": "writer_1_lm_gpt4o_mini",
+                  "name": "writer_1_lm_gpt_4_o_mini",
                   "important": false,
                   "aliases": [
-                    "writer_1_lm_gpt4o_mini",
+                    "writer_1_lm_gpt_4_o_mini",
                     "writer_1",
-                    "lm_gpt4o_mini"
+                    "lm_gpt_4_o_mini"
                   ],
                   "details": {
                     "source": "writer_1",
-                    "target": "lm_gpt4o_mini"
+                    "target": "lm_gpt_4_o_mini"
                   }
                 },
                 {
                   "category": "agent_llm",
-                  "name": "critic_1_lm_gpt4o_mini",
+                  "name": "critic_1_lm_gpt_4_o_mini",
                   "important": false,
                   "aliases": [
-                    "critic_1_lm_gpt4o_mini",
+                    "critic_1_lm_gpt_4_o_mini",
                     "critic_1",
-                    "lm_gpt4o_mini"
+                    "lm_gpt_4_o_mini"
                   ],
                   "details": {
                     "source": "critic_1",
-                    "target": "lm_gpt4o_mini"
+                    "target": "lm_gpt_4_o_mini"
                   }
                 },
                 {
@@ -9608,58 +9499,58 @@
                 },
                 {
                   "category": "agent_llm",
-                  "name": "seo_reviewer_1_lm_gpt3_5_turbo",
+                  "name": "seo_reviewer_1_lm_gpt_3_5_turbo",
                   "important": false,
                   "aliases": [
-                    "seo_reviewer_1_lm_gpt3_5_turbo",
+                    "seo_reviewer_1_lm_gpt_3_5_turbo",
                     "seo_reviewer_1",
-                    "lm_gpt3_5_turbo"
+                    "lm_gpt_3_5_turbo"
                   ],
                   "details": {
                     "source": "seo_reviewer_1",
-                    "target": "lm_gpt3_5_turbo"
+                    "target": "lm_gpt_3_5_turbo"
                   }
                 },
                 {
                   "category": "agent_llm",
-                  "name": "legal_reviewer_1_lm_gpt3_5_turbo",
+                  "name": "legal_reviewer_1_lm_gpt_3_5_turbo",
                   "important": false,
                   "aliases": [
-                    "legal_reviewer_1_lm_gpt3_5_turbo",
+                    "legal_reviewer_1_lm_gpt_3_5_turbo",
                     "legal_reviewer_1",
-                    "lm_gpt3_5_turbo"
+                    "lm_gpt_3_5_turbo"
                   ],
                   "details": {
                     "source": "legal_reviewer_1",
-                    "target": "lm_gpt3_5_turbo"
+                    "target": "lm_gpt_3_5_turbo"
                   }
                 },
                 {
                   "category": "agent_llm",
-                  "name": "ethics_reviewer_1_lm_gpt3_5_turbo",
+                  "name": "ethics_reviewer_1_lm_gpt_3_5_turbo",
                   "important": false,
                   "aliases": [
-                    "ethics_reviewer_1_lm_gpt3_5_turbo",
+                    "ethics_reviewer_1_lm_gpt_3_5_turbo",
                     "ethics_reviewer_1",
-                    "lm_gpt3_5_turbo"
+                    "lm_gpt_3_5_turbo"
                   ],
                   "details": {
                     "source": "ethics_reviewer_1",
-                    "target": "lm_gpt3_5_turbo"
+                    "target": "lm_gpt_3_5_turbo"
                   }
                 },
                 {
                   "category": "agent_llm",
-                  "name": "meta_reviewer_1_lm_gpt3_5_turbo",
+                  "name": "meta_reviewer_1_lm_gpt_3_5_turbo",
                   "important": false,
                   "aliases": [
-                    "meta_reviewer_1_lm_gpt3_5_turbo",
+                    "meta_reviewer_1_lm_gpt_3_5_turbo",
                     "meta_reviewer_1",
-                    "lm_gpt3_5_turbo"
+                    "lm_gpt_3_5_turbo"
                   ],
                   "details": {
                     "source": "meta_reviewer_1",
-                    "target": "lm_gpt3_5_turbo"
+                    "target": "lm_gpt_3_5_turbo"
                   }
                 },
                 {
@@ -9792,19 +9683,19 @@
                 },
                 {
                   "category": "language_model",
-                  "name": "lm_gpt4o_mini",
+                  "name": "lm_gpt_4_o_mini",
                   "important": false,
                   "aliases": [
-                    "lm_gpt4o_mini"
+                    "lm_gpt_4_o_mini"
                   ],
                   "details": {}
                 },
                 {
                   "category": "language_model",
-                  "name": "lm_gpt3_5_turbo",
+                  "name": "lm_gpt_3_5_turbo",
                   "important": false,
                   "aliases": [
-                    "lm_gpt3_5_turbo"
+                    "lm_gpt_3_5_turbo"
                   ],
                   "details": {}
                 },
@@ -10070,7 +9961,7 @@
           "output_dir": "/Users/ravie/dev/agento/output_files/output_autogen/L4_Tool_Use_and_Conversational_Chess",
           "status": "ok",
           "kg_element_count": 50,
-          "code_element_count": 5,
+          "code_element_count": 9,
           "oec": {
             "all_extracted": {
               "score": 0.56,
@@ -10088,16 +9979,16 @@
                 },
                 {
                   "category": "agent_llm",
-                  "name": "player_white_gpt_4o_mini_language_model",
+                  "name": "player_white_gpt_4_o_mini_language_model",
                   "important": false,
                   "aliases": [
-                    "player_white_gpt_4o_mini_language_model",
+                    "player_white_gpt_4_o_mini_language_model",
                     "player_white",
-                    "gpt_4o_mini_language_model"
+                    "gpt_4_o_mini_language_model"
                   ],
                   "details": {
                     "source": "player_white",
-                    "target": "gpt_4o_mini_language_model"
+                    "target": "gpt_4_o_mini_language_model"
                   }
                 },
                 {
@@ -10161,16 +10052,16 @@
                 },
                 {
                   "category": "agent_llm",
-                  "name": "player_black_gpt_4o_mini_language_model",
+                  "name": "player_black_gpt_4_o_mini_language_model",
                   "important": false,
                   "aliases": [
-                    "player_black_gpt_4o_mini_language_model",
+                    "player_black_gpt_4_o_mini_language_model",
                     "player_black",
-                    "gpt_4o_mini_language_model"
+                    "gpt_4_o_mini_language_model"
                   ],
                   "details": {
                     "source": "player_black",
-                    "target": "gpt_4o_mini_language_model"
+                    "target": "gpt_4_o_mini_language_model"
                   }
                 },
                 {
@@ -10357,10 +10248,10 @@
                 },
                 {
                   "category": "language_model",
-                  "name": "gpt_4o_mini_language_model",
+                  "name": "gpt_4_o_mini_language_model",
                   "important": false,
                   "aliases": [
-                    "gpt_4o_mini_language_model",
+                    "gpt_4_o_mini_language_model",
                     "lm_gpt_4_turbo"
                   ],
                   "details": {}
@@ -10609,7 +10500,7 @@
           "output_dir": "/Users/ravie/dev/agento/output_files/output_autogen/L5_Coding_and_Financial_Analysis",
           "status": "ok",
           "kg_element_count": 30,
-          "code_element_count": 3,
+          "code_element_count": 5,
           "oec": {
             "all_extracted": {
               "score": 0.6,
@@ -10779,11 +10670,11 @@
                 },
                 {
                   "category": "workflow",
-                  "name": "l5_coding_financial_analysis_pattern",
+                  "name": "l_5_coding_financial_analysis_pattern",
                   "important": true,
                   "aliases": [
-                    "l5_coding_financial_analysis_pattern",
-                    "l5_coding_and_financial_analysis_pattern"
+                    "l_5_coding_financial_analysis_pattern",
+                    "l_5_coding_and_financial_analysis_pattern"
                   ],
                   "details": {}
                 },
@@ -10793,7 +10684,7 @@
                   "important": false,
                   "aliases": [
                     "gpt_4_turbo",
-                    "gpt4_turbo_model"
+                    "gpt_4_turbo_model"
                   ],
                   "details": {}
                 }
@@ -10898,11 +10789,11 @@
               "missing": [
                 {
                   "category": "workflow",
-                  "name": "l5_coding_financial_analysis_pattern",
+                  "name": "l_5_coding_financial_analysis_pattern",
                   "important": true,
                   "aliases": [
-                    "l5_coding_financial_analysis_pattern",
-                    "l5_coding_and_financial_analysis_pattern"
+                    "l_5_coding_financial_analysis_pattern",
+                    "l_5_coding_and_financial_analysis_pattern"
                   ],
                   "details": {}
                 }
@@ -11003,7 +10894,7 @@
           "output_dir": "/Users/ravie/dev/agento/output_files/output_autogen/L6-Planning_and_Stock_Report_Generation",
           "status": "ok",
           "kg_element_count": 67,
-          "code_element_count": 6,
+          "code_element_count": 18,
           "oec": {
             "all_extracted": {
               "score": 0.6567164179104478,
@@ -11029,16 +10920,16 @@
                 },
                 {
                   "category": "agent_llm",
-                  "name": "planner_agent_gpt4_turbo",
+                  "name": "planner_agent_gpt_4_turbo",
                   "important": false,
                   "aliases": [
-                    "planner_agent_gpt4_turbo",
+                    "planner_agent_gpt_4_turbo",
                     "planner_agent",
-                    "gpt4_turbo"
+                    "gpt_4_turbo"
                   ],
                   "details": {
                     "source": "planner_agent",
-                    "target": "gpt4_turbo"
+                    "target": "gpt_4_turbo"
                   }
                 },
                 {
@@ -11060,16 +10951,16 @@
                 },
                 {
                   "category": "agent_llm",
-                  "name": "engineer_agent_gpt4_turbo",
+                  "name": "engineer_agent_gpt_4_turbo",
                   "important": false,
                   "aliases": [
-                    "engineer_agent_gpt4_turbo",
+                    "engineer_agent_gpt_4_turbo",
                     "engineer_agent",
-                    "gpt4_turbo"
+                    "gpt_4_turbo"
                   ],
                   "details": {
                     "source": "engineer_agent",
-                    "target": "gpt4_turbo"
+                    "target": "gpt_4_turbo"
                   }
                 },
                 {
@@ -11091,16 +10982,16 @@
                 },
                 {
                   "category": "agent_llm",
-                  "name": "executor_agent_gpt4_turbo",
+                  "name": "executor_agent_gpt_4_turbo",
                   "important": false,
                   "aliases": [
-                    "executor_agent_gpt4_turbo",
+                    "executor_agent_gpt_4_turbo",
                     "executor_agent",
-                    "gpt4_turbo"
+                    "gpt_4_turbo"
                   ],
                   "details": {
                     "source": "executor_agent",
-                    "target": "gpt4_turbo"
+                    "target": "gpt_4_turbo"
                   }
                 },
                 {
@@ -11139,16 +11030,16 @@
                 },
                 {
                   "category": "agent_llm",
-                  "name": "writer_agent_gpt4_turbo",
+                  "name": "writer_agent_gpt_4_turbo",
                   "important": false,
                   "aliases": [
-                    "writer_agent_gpt4_turbo",
+                    "writer_agent_gpt_4_turbo",
                     "writer_agent",
-                    "gpt4_turbo"
+                    "gpt_4_turbo"
                   ],
                   "details": {
                     "source": "writer_agent",
-                    "target": "gpt4_turbo"
+                    "target": "gpt_4_turbo"
                   }
                 },
                 {
@@ -11280,10 +11171,10 @@
                 },
                 {
                   "category": "language_model",
-                  "name": "gpt4_turbo",
+                  "name": "gpt_4_turbo",
                   "important": false,
                   "aliases": [
-                    "gpt4_turbo"
+                    "gpt_4_turbo"
                   ],
                   "details": {}
                 },
@@ -11590,10 +11481,10 @@
         "projects": 9,
         "evaluated": 9,
         "errors": 0,
-        "avg_oec_all": 0.45376841704304677,
-        "avg_oec_important": 0.8863609680388363,
-        "avg_wgi": 1.0,
-        "avg_edge_f1": 0.9444444444444444,
+        "avg_oec_all": 0.49804725762311086,
+        "avg_oec_important": 0.9468116094536126,
+        "avg_wgi": 0.9333333333333333,
+        "avg_edge_f1": 0.925925925925926,
         "avg_ast_sim": 0.4057011844169407,
         "syntax_success_rate": 1.0,
         "run_success_rate": 1.0
@@ -11608,24 +11499,10 @@
           "code_element_count": 4,
           "oec": {
             "all_extracted": {
-              "score": 0.5384615384615384,
-              "matched": 7,
+              "score": 0.7692307692307693,
+              "matched": 10,
               "total": 13,
               "missing": [
-                {
-                  "category": "agent_llm",
-                  "name": "chat_agent_1_gpt4o_mini",
-                  "important": false,
-                  "aliases": [
-                    "chat_agent_1_gpt4o_mini",
-                    "chat_agent_1",
-                    "gpt4o_mini"
-                  ],
-                  "details": {
-                    "source": "chat_agent_1",
-                    "target": "gpt4o_mini"
-                  }
-                },
                 {
                   "category": "task_produces",
                   "name": "chat_task_chat_response_resource",
@@ -11655,24 +11532,6 @@
                   }
                 },
                 {
-                  "category": "workflow",
-                  "name": "chat_agent_state_graph",
-                  "important": true,
-                  "aliases": [
-                    "chat_agent_state_graph"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "language_model",
-                  "name": "gpt4o_mini",
-                  "important": false,
-                  "aliases": [
-                    "gpt4o_mini"
-                  ],
-                  "details": {}
-                },
-                {
                   "category": "resource",
                   "name": "chat_response_resource",
                   "important": false,
@@ -11689,8 +11548,8 @@
                   "total": 1
                 },
                 "agent_llm": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "config": {
@@ -11699,8 +11558,8 @@
                   "total": 1
                 },
                 "language_model": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "project": {
@@ -11739,8 +11598,8 @@
                   "total": 1
                 },
                 "workflow": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "workflow_step": {
@@ -11751,20 +11610,10 @@
               }
             },
             "important_subset": {
-              "score": 0.8571428571428571,
-              "matched": 6,
+              "score": 1.0,
+              "matched": 7,
               "total": 7,
-              "missing": [
-                {
-                  "category": "workflow",
-                  "name": "chat_agent_state_graph",
-                  "important": true,
-                  "aliases": [
-                    "chat_agent_state_graph"
-                  ],
-                  "details": {}
-                }
-              ],
+              "missing": [],
               "by_category": {
                 "agent": {
                   "score": 1.0,
@@ -11792,8 +11641,8 @@
                   "total": 1
                 },
                 "workflow": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "workflow_step": {
@@ -11844,22 +11693,22 @@
           "code_element_count": 16,
           "oec": {
             "all_extracted": {
-              "score": 0.3584905660377358,
-              "matched": 19,
+              "score": 0.37735849056603776,
+              "matched": 20,
               "total": 53,
               "missing": [
                 {
                   "category": "agent_llm",
-                  "name": "email_assistant_agent_gpt_4o_chat_open_ai",
+                  "name": "email_assistant_agent_gpt_4_o_chat_open_ai",
                   "important": false,
                   "aliases": [
-                    "email_assistant_agent_gpt_4o_chat_open_ai",
+                    "email_assistant_agent_gpt_4_o_chat_open_ai",
                     "email_assistant_agent",
-                    "gpt_4o_chat_open_ai"
+                    "gpt_4_o_chat_open_ai"
                   ],
                   "details": {
                     "source": "email_assistant_agent",
-                    "target": "gpt_4o_chat_open_ai"
+                    "target": "gpt_4_o_chat_open_ai"
                   }
                 },
                 {
@@ -12153,16 +12002,6 @@
                   }
                 },
                 {
-                  "category": "workflow",
-                  "name": "email_assistant_workflow",
-                  "important": true,
-                  "aliases": [
-                    "email_assistant_workflow",
-                    "email_assistant_workflow_pattern"
-                  ],
-                  "details": {}
-                },
-                {
                   "category": "workflow_step",
                   "name": "rewrite_email_apply_user_s_requested_changes",
                   "important": true,
@@ -12187,11 +12026,11 @@
                 },
                 {
                   "category": "language_model",
-                  "name": "gpt_4o_chat_open_ai",
+                  "name": "gpt_4_o_chat_open_ai",
                   "important": false,
                   "aliases": [
-                    "gpt_4o_chat_open_ai",
-                    "gpt4o_model"
+                    "gpt_4_o_chat_open_ai",
+                    "gpt_4_o_model"
                   ],
                   "details": {}
                 },
@@ -12371,8 +12210,8 @@
                   "total": 1
                 },
                 "workflow": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "workflow_step": {
@@ -12383,8 +12222,8 @@
               }
             },
             "important_subset": {
-              "score": 0.6956521739130435,
-              "matched": 16,
+              "score": 0.7391304347826086,
+              "matched": 17,
               "total": 23,
               "missing": [
                 {
@@ -12438,16 +12277,6 @@
                     "source": "send_email_finalize_send",
                     "target": "rewrite_email_apply_user_s_requested_changes"
                   }
-                },
-                {
-                  "category": "workflow",
-                  "name": "email_assistant_workflow",
-                  "important": true,
-                  "aliases": [
-                    "email_assistant_workflow",
-                    "email_assistant_workflow_pattern"
-                  ],
-                  "details": {}
                 },
                 {
                   "category": "workflow_step",
@@ -12515,8 +12344,8 @@
                   "total": 1
                 },
                 "workflow": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "workflow_step": {
@@ -12528,17 +12357,17 @@
             }
           },
           "wgi": {
-            "score": 1.0,
-            "normalized_graph_edit_distance": 0.0,
-            "labeled_score": 0.4545454545454546,
-            "topology_score": 1.0,
-            "labeled_normalized_graph_edit_distance": 0.5454545454545454,
-            "topology_normalized_graph_edit_distance": 0.0,
+            "score": 0.4,
+            "normalized_graph_edit_distance": 0.6,
+            "labeled_score": 0.4,
+            "topology_score": 0.0,
+            "labeled_normalized_graph_edit_distance": 0.6,
+            "topology_normalized_graph_edit_distance": 1.0,
             "exact_isomorphic": false,
-            "topology_isomorphic": true,
-            "edge_precision": 0.5,
+            "topology_isomorphic": false,
+            "edge_precision": 0.25,
             "edge_recall": 0.5,
-            "edge_f1": 0.5,
+            "edge_f1": 0.3333333333333333,
             "kg_nodes": [
               "ignore",
               "rewrite_email_apply_user_s_requested_changes",
@@ -12552,14 +12381,6 @@
               "write_email_generate_draft"
             ],
             "kg_edges": [
-              {
-                "source": "ignore",
-                "target": "rewrite_email_apply_user_s_requested_changes"
-              },
-              {
-                "source": "ignore",
-                "target": "send_email_finalize_send"
-              },
               {
                 "source": "rewrite_email_apply_user_s_requested_changes",
                 "target": "ignore"
@@ -12595,10 +12416,6 @@
             ],
             "missing_edges": [
               {
-                "source": "ignore",
-                "target": "rewrite_email_apply_user_s_requested_changes"
-              },
-              {
                 "source": "rewrite_email_apply_user_s_requested_changes",
                 "target": "ignore"
               }
@@ -12607,6 +12424,10 @@
               {
                 "source": "ignore",
                 "target": "rewrite_email_apply_user_srequested_changes"
+              },
+              {
+                "source": "ignore",
+                "target": "send_email_finalize_send"
               },
               {
                 "source": "rewrite_email_apply_user_srequested_changes",
@@ -12629,8 +12450,8 @@
           "code_element_count": 9,
           "oec": {
             "all_extracted": {
-              "score": 0.27450980392156865,
-              "matched": 14,
+              "score": 0.29411764705882354,
+              "matched": 15,
               "total": 51,
               "missing": [
                 {
@@ -12764,86 +12585,86 @@
                 },
                 {
                   "category": "task_produces",
-                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step1_file",
+                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step_1_file",
                   "important": false,
                   "aliases": [
-                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step1_file",
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step_1_file",
                     "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
-                    "resource_step1_file"
+                    "resource_step_1_file"
                   ],
                   "details": {
                     "source": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
-                    "target": "resource_step1_file"
+                    "target": "resource_step_1_file"
                   }
                 },
                 {
                   "category": "task_produces",
-                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step2_file",
+                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step_2_file",
                   "important": false,
                   "aliases": [
-                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step2_file",
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step_2_file",
                     "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
-                    "resource_step2_file"
+                    "resource_step_2_file"
                   ],
                   "details": {
                     "source": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
-                    "target": "resource_step2_file"
+                    "target": "resource_step_2_file"
                   }
                 },
                 {
                   "category": "task_produces",
-                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step3_file",
+                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step_3_file",
                   "important": false,
                   "aliases": [
-                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step3_file",
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step_3_file",
                     "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
-                    "resource_step3_file"
+                    "resource_step_3_file"
                   ],
                   "details": {
                     "source": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
-                    "target": "resource_step3_file"
+                    "target": "resource_step_3_file"
                   }
                 },
                 {
                   "category": "task_produces",
-                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step4_file",
+                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step_4_file",
                   "important": false,
                   "aliases": [
-                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step4_file",
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step_4_file",
                     "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
-                    "resource_step4_file"
+                    "resource_step_4_file"
                   ],
                   "details": {
                     "source": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
-                    "target": "resource_step4_file"
+                    "target": "resource_step_4_file"
                   }
                 },
                 {
                   "category": "task_produces",
-                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step5_file",
+                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step_5_file",
                   "important": false,
                   "aliases": [
-                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step5_file",
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step_5_file",
                     "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
-                    "resource_step5_file"
+                    "resource_step_5_file"
                   ],
                   "details": {
                     "source": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
-                    "target": "resource_step5_file"
+                    "target": "resource_step_5_file"
                   }
                 },
                 {
                   "category": "task_produces",
-                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step6_file",
+                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step_6_file",
                   "important": false,
                   "aliases": [
-                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step6_file",
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step_6_file",
                     "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
-                    "resource_step6_file"
+                    "resource_step_6_file"
                   ],
                   "details": {
                     "source": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
-                    "target": "resource_step6_file"
+                    "target": "resource_step_6_file"
                   }
                 },
                 {
@@ -12937,16 +12758,6 @@
                   }
                 },
                 {
-                  "category": "workflow",
-                  "name": "open_code_graph_pattern",
-                  "important": true,
-                  "aliases": [
-                    "open_code_graph_pattern",
-                    "open_code_graph"
-                  ],
-                  "details": {}
-                },
-                {
                   "category": "memory",
                   "name": "open_code_memory",
                   "important": false,
@@ -13007,60 +12818,60 @@
                 },
                 {
                   "category": "resource",
-                  "name": "resource_step1_file",
+                  "name": "resource_step_1_file",
                   "important": false,
                   "aliases": [
-                    "resource_step1_file",
+                    "resource_step_1_file",
                     "step_1_scaffold_commands"
                   ],
                   "details": {}
                 },
                 {
                   "category": "resource",
-                  "name": "resource_step2_file",
+                  "name": "resource_step_2_file",
                   "important": false,
                   "aliases": [
-                    "resource_step2_file",
+                    "resource_step_2_file",
                     "step_2_todo_item_component"
                   ],
                   "details": {}
                 },
                 {
                   "category": "resource",
-                  "name": "resource_step3_file",
+                  "name": "resource_step_3_file",
                   "important": false,
                   "aliases": [
-                    "resource_step3_file",
+                    "resource_step_3_file",
                     "step_3_todo_context_state_management"
                   ],
                   "details": {}
                 },
                 {
                   "category": "resource",
-                  "name": "resource_step4_file",
+                  "name": "resource_step_4_file",
                   "important": false,
                   "aliases": [
-                    "resource_step4_file",
+                    "resource_step_4_file",
                     "step_4_add_todo_component_form_and_validation"
                   ],
                   "details": {}
                 },
                 {
                   "category": "resource",
-                  "name": "resource_step5_file",
+                  "name": "resource_step_5_file",
                   "important": false,
                   "aliases": [
-                    "resource_step5_file",
+                    "resource_step_5_file",
                     "step_5_filters_and_sorting"
                   ],
                   "details": {}
                 },
                 {
                   "category": "resource",
-                  "name": "resource_step6_file",
+                  "name": "resource_step_6_file",
                   "important": false,
                   "aliases": [
-                    "resource_step6_file",
+                    "resource_step_6_file",
                     "step_6_local_storage_utils"
                   ],
                   "details": {}
@@ -13203,8 +13014,8 @@
                   "total": 2
                 },
                 "workflow": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "workflow_step": {
@@ -13215,8 +13026,8 @@
               }
             },
             "important_subset": {
-              "score": 0.8461538461538461,
-              "matched": 11,
+              "score": 0.9230769230769231,
+              "matched": 12,
               "total": 13,
               "missing": [
                 {
@@ -13232,16 +13043,6 @@
                     "source": "open_code_agent_001",
                     "target": "human_user"
                   }
-                },
-                {
-                  "category": "workflow",
-                  "name": "open_code_graph_pattern",
-                  "important": true,
-                  "aliases": [
-                    "open_code_graph_pattern",
-                    "open_code_graph"
-                  ],
-                  "details": {}
                 }
               ],
               "by_category": {
@@ -13276,8 +13077,8 @@
                   "total": 2
                 },
                 "workflow": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "workflow_step": {
@@ -13348,21 +13149,21 @@
           "code_element_count": 9,
           "oec": {
             "all_extracted": {
-              "score": 0.5384615384615384,
-              "matched": 21,
+              "score": 0.5641025641025641,
+              "matched": 22,
               "total": 39,
               "missing": [
                 {
                   "category": "agent_goal",
-                  "name": "pizza_orderer_v1_order_pizza_goal",
+                  "name": "pizza_orderer_v_1_order_pizza_goal",
                   "important": false,
                   "aliases": [
-                    "pizza_orderer_v1_order_pizza_goal",
-                    "pizza_orderer_v1",
+                    "pizza_orderer_v_1_order_pizza_goal",
+                    "pizza_orderer_v_1",
                     "order_pizza_goal"
                   ],
                   "details": {
-                    "source": "pizza_orderer_v1",
+                    "source": "pizza_orderer_v_1",
                     "target": "order_pizza_goal"
                   }
                 },
@@ -13477,15 +13278,6 @@
                     "source": "tool_pizza_ordering_system",
                     "target": "cap_place_order"
                   }
-                },
-                {
-                  "category": "workflow",
-                  "name": "order_pizza_graph",
-                  "important": true,
-                  "aliases": [
-                    "order_pizza_graph"
-                  ],
-                  "details": {}
                 },
                 {
                   "category": "goal",
@@ -13654,8 +13446,8 @@
                   "total": 2
                 },
                 "workflow": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "workflow_step": {
@@ -13666,20 +13458,10 @@
               }
             },
             "important_subset": {
-              "score": 0.9230769230769231,
-              "matched": 12,
+              "score": 1.0,
+              "matched": 13,
               "total": 13,
-              "missing": [
-                {
-                  "category": "workflow",
-                  "name": "order_pizza_graph",
-                  "important": true,
-                  "aliases": [
-                    "order_pizza_graph"
-                  ],
-                  "details": {}
-                }
-              ],
+              "missing": [],
               "by_category": {
                 "agent": {
                   "score": 1.0,
@@ -13712,8 +13494,8 @@
                   "total": 2
                 },
                 "workflow": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "workflow_step": {
@@ -14341,22 +14123,22 @@
           "code_element_count": 29,
           "oec": {
             "all_extracted": {
-              "score": 0.5263157894736842,
-              "matched": 50,
+              "score": 0.5368421052631579,
+              "matched": 51,
               "total": 95,
               "missing": [
                 {
                   "category": "agent_llm",
-                  "name": "generative_ui_supervisor_lm_gpt_4o_mini",
+                  "name": "generative_ui_supervisor_lm_gpt_4_o_mini",
                   "important": false,
                   "aliases": [
-                    "generative_ui_supervisor_lm_gpt_4o_mini",
+                    "generative_ui_supervisor_lm_gpt_4_o_mini",
                     "generative_ui_supervisor",
-                    "lm_gpt_4o_mini"
+                    "lm_gpt_4_o_mini"
                   ],
                   "details": {
                     "source": "generative_ui_supervisor",
-                    "target": "lm_gpt_4o_mini"
+                    "target": "lm_gpt_4_o_mini"
                   }
                 },
                 {
@@ -14691,22 +14473,11 @@
                   }
                 },
                 {
-                  "category": "workflow",
-                  "name": "generative_ui_workflow",
-                  "important": true,
-                  "aliases": [
-                    "generative_ui_workflow",
-                    "generative_ui_agent_workflow",
-                    "generative_uiworkflow"
-                  ],
-                  "details": {}
-                },
-                {
                   "category": "language_model",
-                  "name": "lm_anthropic_claude3_7",
+                  "name": "lm_anthropic_claude_3_7",
                   "important": false,
                   "aliases": [
-                    "lm_anthropic_claude3_7"
+                    "lm_anthropic_claude_3_7"
                   ],
                   "details": {}
                 },
@@ -14721,10 +14492,10 @@
                 },
                 {
                   "category": "language_model",
-                  "name": "lm_gpt_4o_mini",
+                  "name": "lm_gpt_4_o_mini",
                   "important": false,
                   "aliases": [
-                    "lm_gpt_4o_mini"
+                    "lm_gpt_4_o_mini"
                   ],
                   "details": {}
                 },
@@ -14980,8 +14751,8 @@
                   "total": 10
                 },
                 "workflow": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "workflow_step": {
@@ -14992,8 +14763,8 @@
               }
             },
             "important_subset": {
-              "score": 0.9534883720930233,
-              "matched": 41,
+              "score": 0.9767441860465116,
+              "matched": 42,
               "total": 43,
               "missing": [
                 {
@@ -15012,17 +14783,6 @@
                     "owner_category": "agent",
                     "value": "0.7"
                   }
-                },
-                {
-                  "category": "workflow",
-                  "name": "generative_ui_workflow",
-                  "important": true,
-                  "aliases": [
-                    "generative_ui_workflow",
-                    "generative_ui_agent_workflow",
-                    "generative_uiworkflow"
-                  ],
-                  "details": {}
                 }
               ],
               "by_category": {
@@ -15057,8 +14817,8 @@
                   "total": 7
                 },
                 "workflow": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "workflow_step": {
@@ -15171,22 +14931,22 @@
           "code_element_count": 13,
           "oec": {
             "all_extracted": {
-              "score": 0.5384615384615384,
-              "matched": 35,
+              "score": 0.5538461538461539,
+              "matched": 36,
               "total": 65,
               "missing": [
                 {
                   "category": "agent_llm",
-                  "name": "trip_planner_agent_language_model_gpt4o",
+                  "name": "trip_planner_agent_language_model_gpt_4_o",
                   "important": false,
                   "aliases": [
-                    "trip_planner_agent_language_model_gpt4o",
+                    "trip_planner_agent_language_model_gpt_4_o",
                     "trip_planner_agent",
-                    "language_model_gpt4o"
+                    "language_model_gpt_4_o"
                   ],
                   "details": {
                     "source": "trip_planner_agent",
-                    "target": "language_model_gpt4o"
+                    "target": "language_model_gpt_4_o"
                   }
                 },
                 {
@@ -15487,20 +15247,11 @@
                   }
                 },
                 {
-                  "category": "workflow",
-                  "name": "trip_planner_workflow",
-                  "important": true,
-                  "aliases": [
-                    "trip_planner_workflow"
-                  ],
-                  "details": {}
-                },
-                {
                   "category": "language_model",
-                  "name": "language_model_gpt4o",
+                  "name": "language_model_gpt_4_o",
                   "important": false,
                   "aliases": [
-                    "language_model_gpt4o"
+                    "language_model_gpt_4_o"
                   ],
                   "details": {}
                 },
@@ -15651,8 +15402,8 @@
                   "total": 4
                 },
                 "workflow": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "workflow_step": {
@@ -15663,20 +15414,10 @@
               }
             },
             "important_subset": {
-              "score": 0.9615384615384616,
-              "matched": 25,
+              "score": 1.0,
+              "matched": 26,
               "total": 26,
-              "missing": [
-                {
-                  "category": "workflow",
-                  "name": "trip_planner_workflow",
-                  "important": true,
-                  "aliases": [
-                    "trip_planner_workflow"
-                  ],
-                  "details": {}
-                }
-              ],
+              "missing": [],
               "by_category": {
                 "agent": {
                   "score": 1.0,
@@ -15719,8 +15460,8 @@
                   "total": 4
                 },
                 "workflow": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "workflow_step": {
@@ -15801,8 +15542,8 @@
           "code_element_count": 13,
           "oec": {
             "all_extracted": {
-              "score": 0.41935483870967744,
-              "matched": 13,
+              "score": 0.45161290322580644,
+              "matched": 14,
               "total": 31,
               "missing": [
                 {
@@ -15949,15 +15690,6 @@
                   }
                 },
                 {
-                  "category": "workflow",
-                  "name": "text_utilities_workflow_pattern",
-                  "important": true,
-                  "aliases": [
-                    "text_utilities_workflow_pattern"
-                  ],
-                  "details": {}
-                },
-                {
                   "category": "capability",
                   "name": "capitalize_sentence_capability",
                   "important": false,
@@ -16073,8 +15805,8 @@
                   "total": 3
                 },
                 "workflow": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "workflow_step": {
@@ -16085,20 +15817,10 @@
               }
             },
             "important_subset": {
-              "score": 0.9166666666666666,
-              "matched": 11,
+              "score": 1.0,
+              "matched": 12,
               "total": 12,
-              "missing": [
-                {
-                  "category": "workflow",
-                  "name": "text_utilities_workflow_pattern",
-                  "important": true,
-                  "aliases": [
-                    "text_utilities_workflow_pattern"
-                  ],
-                  "details": {}
-                }
-              ],
+              "missing": [],
               "by_category": {
                 "step_task": {
                   "score": 1.0,
@@ -16116,8 +15838,8 @@
                   "total": 2
                 },
                 "workflow": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "workflow_step": {
@@ -16190,22 +15912,22 @@
           "code_element_count": 13,
           "oec": {
             "all_extracted": {
-              "score": 0.4090909090909091,
-              "matched": 18,
+              "score": 0.45454545454545453,
+              "matched": 20,
               "total": 44,
               "missing": [
                 {
                   "category": "agent_llm",
-                  "name": "writer_annotation_agent_uuid_1_claude3_5_sonnet",
+                  "name": "writer_annotation_agent_uuid_1_claude_3_5_sonnet",
                   "important": false,
                   "aliases": [
-                    "writer_annotation_agent_uuid_1_claude3_5_sonnet",
+                    "writer_annotation_agent_uuid_1_claude_3_5_sonnet",
                     "writer_annotation_agent_uuid_1",
-                    "claude3_5_sonnet"
+                    "claude_3_5_sonnet"
                   ],
                   "details": {
                     "source": "writer_annotation_agent_uuid_1",
-                    "target": "claude3_5_sonnet"
+                    "target": "claude_3_5_sonnet"
                   }
                 },
                 {
@@ -16408,24 +16130,6 @@
                   }
                 },
                 {
-                  "category": "workflow",
-                  "name": "writer_workflow",
-                  "important": true,
-                  "aliases": [
-                    "writer_workflow"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "language_model",
-                  "name": "claude3_5_sonnet",
-                  "important": false,
-                  "aliases": [
-                    "claude3_5_sonnet"
-                  ],
-                  "details": {}
-                },
-                {
                   "category": "capability",
                   "name": "capability_create_draft",
                   "important": false,
@@ -16546,8 +16250,8 @@
                   "total": 2
                 },
                 "language_model": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "project": {
@@ -16601,8 +16305,8 @@
                   "total": 1
                 },
                 "workflow": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "workflow_step": {
@@ -16613,20 +16317,10 @@
               }
             },
             "important_subset": {
-              "score": 0.9411764705882353,
-              "matched": 16,
+              "score": 1.0,
+              "matched": 17,
               "total": 17,
-              "missing": [
-                {
-                  "category": "workflow",
-                  "name": "writer_workflow",
-                  "important": true,
-                  "aliases": [
-                    "writer_workflow"
-                  ],
-                  "details": {}
-                }
-              ],
+              "missing": [],
               "by_category": {
                 "agent": {
                   "score": 1.0,
@@ -16664,8 +16358,8 @@
                   "total": 1
                 },
                 "workflow": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "workflow_step": {
@@ -16740,11 +16434,11 @@
         "projects": 35,
         "evaluated": 35,
         "errors": 0,
-        "avg_oec_all": 0.641667567497033,
-        "avg_oec_important": 0.9932144526814933,
-        "avg_wgi": 0.9421825396825397,
-        "avg_edge_f1": 0.8735374149659864,
-        "avg_ast_sim": 0.4696610975083988,
+        "avg_oec_all": 0.6475936877858731,
+        "avg_oec_important": 0.9938288920056101,
+        "avg_wgi": 0.9634920634920635,
+        "avg_edge_f1": 0.9082312925170068,
+        "avg_ast_sim": 0.4687194779227115,
         "syntax_success_rate": 1.0,
         "run_success_rate": 1.0
       },
@@ -16764,30 +16458,30 @@
               "missing": [
                 {
                   "category": "agent_llm",
-                  "name": "my_agent_gpt4o_model",
+                  "name": "my_agent_gpt_4_o_model",
                   "important": false,
                   "aliases": [
-                    "my_agent_gpt4o_model",
+                    "my_agent_gpt_4_o_model",
                     "my_agent",
-                    "gpt4o_model"
+                    "gpt_4_o_model"
                   ],
                   "details": {
                     "source": "my_agent",
-                    "target": "gpt4o_model"
+                    "target": "gpt_4_o_model"
                   }
                 },
                 {
                   "category": "agent_llm",
-                  "name": "content_creator_agent_gpt4o_model",
+                  "name": "content_creator_agent_gpt_4_o_model",
                   "important": false,
                   "aliases": [
-                    "content_creator_agent_gpt4o_model",
+                    "content_creator_agent_gpt_4_o_model",
                     "content_creator_agent",
-                    "gpt4o_model"
+                    "gpt_4_o_model"
                   ],
                   "details": {
                     "source": "content_creator_agent",
-                    "target": "gpt4o_model"
+                    "target": "gpt_4_o_model"
                   }
                 },
                 {
@@ -16848,20 +16542,20 @@
                 },
                 {
                   "category": "language_model",
-                  "name": "gpt4o_model",
+                  "name": "gpt_4_o_model",
                   "important": false,
                   "aliases": [
-                    "gpt4o_model"
+                    "gpt_4_o_model"
                   ],
                   "details": {}
                 },
                 {
                   "category": "goal",
-                  "name": "a2_a_goal",
+                  "name": "a_2_a_goal",
                   "important": false,
                   "aliases": [
-                    "a2_a_goal",
-                    "a2_agoal"
+                    "a_2_a_goal",
+                    "a_2_agoal"
                   ],
                   "details": {}
                 },
@@ -17098,11 +16792,11 @@
           "output_dir": "/Users/ravie/dev/agento/output_files/output_mastra/agent",
           "status": "ok",
           "kg_element_count": 132,
-          "code_element_count": 63,
+          "code_element_count": 62,
           "oec": {
             "all_extracted": {
-              "score": 0.8106060606060606,
-              "matched": 107,
+              "score": 0.8257575757575758,
+              "matched": 109,
               "total": 132,
               "missing": [
                 {
@@ -17121,16 +16815,16 @@
                 },
                 {
                   "category": "agent_llm",
-                  "name": "chef_agent_openai_gpt_4o_mini",
+                  "name": "chef_agent_openai_gpt_4_o_mini",
                   "important": false,
                   "aliases": [
-                    "chef_agent_openai_gpt_4o_mini",
+                    "chef_agent_openai_gpt_4_o_mini",
                     "chef_agent",
-                    "openai_gpt_4o_mini"
+                    "openai_gpt_4_o_mini"
                   ],
                   "details": {
                     "source": "chef_agent",
-                    "target": "openai_gpt_4o_mini"
+                    "target": "openai_gpt_4_o_mini"
                   }
                 },
                 {
@@ -17163,16 +16857,16 @@
                 },
                 {
                   "category": "agent_llm",
-                  "name": "chef_agent_responses_openai_gpt_4o",
+                  "name": "chef_agent_responses_openai_gpt_4_o",
                   "important": false,
                   "aliases": [
-                    "chef_agent_responses_openai_gpt_4o",
+                    "chef_agent_responses_openai_gpt_4_o",
                     "chef_agent_responses",
-                    "openai_gpt_4o"
+                    "openai_gpt_4_o"
                   ],
                   "details": {
                     "source": "chef_agent_responses",
-                    "target": "openai_gpt_4o"
+                    "target": "openai_gpt_4_o"
                   }
                 },
                 {
@@ -17205,44 +16899,44 @@
                 },
                 {
                   "category": "agent_llm",
-                  "name": "chef_model_v2_agent_openai_gpt_4o_mini",
+                  "name": "chef_model_v_2_agent_openai_gpt_4_o_mini",
                   "important": false,
                   "aliases": [
-                    "chef_model_v2_agent_openai_gpt_4o_mini",
-                    "chef_model_v2_agent",
-                    "openai_gpt_4o_mini"
+                    "chef_model_v_2_agent_openai_gpt_4_o_mini",
+                    "chef_model_v_2_agent",
+                    "openai_gpt_4_o_mini"
                   ],
                   "details": {
-                    "source": "chef_model_v2_agent",
-                    "target": "openai_gpt_4o_mini"
+                    "source": "chef_model_v_2_agent",
+                    "target": "openai_gpt_4_o_mini"
                   }
                 },
                 {
                   "category": "agent_capability",
-                  "name": "chef_model_v2_agent_moderation_capability",
+                  "name": "chef_model_v_2_agent_moderation_capability",
                   "important": false,
                   "aliases": [
-                    "chef_model_v2_agent_moderation_capability",
-                    "chef_model_v2_agent",
+                    "chef_model_v_2_agent_moderation_capability",
+                    "chef_model_v_2_agent",
                     "moderation_capability"
                   ],
                   "details": {
-                    "source": "chef_model_v2_agent",
+                    "source": "chef_model_v_2_agent",
                     "target": "moderation_capability"
                   }
                 },
                 {
                   "category": "agent_llm",
-                  "name": "agent_that_harasses_you_openai_gpt_4o",
+                  "name": "agent_that_harasses_you_openai_gpt_4_o",
                   "important": false,
                   "aliases": [
-                    "agent_that_harasses_you_openai_gpt_4o",
+                    "agent_that_harasses_you_openai_gpt_4_o",
                     "agent_that_harasses_you",
-                    "openai_gpt_4o"
+                    "openai_gpt_4_o"
                   ],
                   "details": {
                     "source": "agent_that_harasses_you",
-                    "target": "openai_gpt_4o"
+                    "target": "openai_gpt_4_o"
                   }
                 },
                 {
@@ -17261,58 +16955,58 @@
                 },
                 {
                   "category": "agent_llm",
-                  "name": "error_agent_openai_gpt_4o_mini",
+                  "name": "error_agent_openai_gpt_4_o_mini",
                   "important": false,
                   "aliases": [
-                    "error_agent_openai_gpt_4o_mini",
+                    "error_agent_openai_gpt_4_o_mini",
                     "error_agent",
-                    "openai_gpt_4o_mini"
+                    "openai_gpt_4_o_mini"
                   ],
                   "details": {
                     "source": "error_agent",
-                    "target": "openai_gpt_4o_mini"
+                    "target": "openai_gpt_4_o_mini"
                   }
                 },
                 {
                   "category": "agent_llm",
-                  "name": "network_agent_openai_gpt_4o_mini",
+                  "name": "network_agent_openai_gpt_4_o_mini",
                   "important": false,
                   "aliases": [
-                    "network_agent_openai_gpt_4o_mini",
+                    "network_agent_openai_gpt_4_o_mini",
                     "network_agent",
-                    "openai_gpt_4o_mini"
+                    "openai_gpt_4_o_mini"
                   ],
                   "details": {
                     "source": "network_agent",
-                    "target": "openai_gpt_4o_mini"
+                    "target": "openai_gpt_4_o_mini"
                   }
                 },
                 {
                   "category": "agent_llm",
-                  "name": "weather_agent_openai_gpt_4o_mini",
+                  "name": "weather_agent_openai_gpt_4_o_mini",
                   "important": false,
                   "aliases": [
-                    "weather_agent_openai_gpt_4o_mini",
+                    "weather_agent_openai_gpt_4_o_mini",
                     "weather_agent",
-                    "openai_gpt_4o_mini"
+                    "openai_gpt_4_o_mini"
                   ],
                   "details": {
                     "source": "weather_agent",
-                    "target": "openai_gpt_4o_mini"
+                    "target": "openai_gpt_4_o_mini"
                   }
                 },
                 {
                   "category": "agent_llm",
-                  "name": "eval_agent_openai_gpt_4o",
+                  "name": "eval_agent_openai_gpt_4_o",
                   "important": false,
                   "aliases": [
-                    "eval_agent_openai_gpt_4o",
+                    "eval_agent_openai_gpt_4_o",
                     "eval_agent",
-                    "openai_gpt_4o"
+                    "openai_gpt_4_o"
                   ],
                   "details": {
                     "source": "eval_agent",
-                    "target": "openai_gpt_4o"
+                    "target": "openai_gpt_4_o"
                   }
                 },
                 {
@@ -17344,33 +17038,6 @@
                   }
                 },
                 {
-                  "category": "task_agent",
-                  "name": "task_my_step_2_chef_agent",
-                  "important": true,
-                  "aliases": [
-                    "task_my_step_2_chef_agent",
-                    "task_my_step_2",
-                    "chef_agent"
-                  ],
-                  "details": {
-                    "source": "task_my_step_2",
-                    "target": "chef_agent"
-                  }
-                },
-                {
-                  "category": "step_task",
-                  "name": "task_my_step_2_task_my_step_2",
-                  "important": true,
-                  "aliases": [
-                    "task_my_step_2_task_my_step_2",
-                    "task_my_step_2"
-                  ],
-                  "details": {
-                    "source": "task_my_step_2",
-                    "target": "task_my_step_2"
-                  }
-                },
-                {
                   "category": "language_model",
                   "name": "google_gemini_2_0_flash_001",
                   "important": false,
@@ -17382,11 +17049,11 @@
                 },
                 {
                   "category": "capability",
-                  "name": "scorer_test_scorer1",
+                  "name": "scorer_test_scorer_1",
                   "important": false,
                   "aliases": [
-                    "scorer_test_scorer1",
-                    "test_scorer_scorer1"
+                    "scorer_test_scorer_1",
+                    "test_scorer_scorer_1"
                   ],
                   "details": {}
                 },
@@ -17499,8 +17166,8 @@
                   "total": 4
                 },
                 "step_task": {
-                  "score": 0.9333333333333333,
-                  "matched": 14,
+                  "score": 1.0,
+                  "matched": 15,
                   "total": 15
                 },
                 "task": {
@@ -17509,8 +17176,8 @@
                   "total": 17
                 },
                 "task_agent": {
-                  "score": 0.9333333333333333,
-                  "matched": 14,
+                  "score": 1.0,
+                  "matched": 15,
                   "total": 15
                 },
                 "task_produces": {
@@ -17536,38 +17203,10 @@
               }
             },
             "important_subset": {
-              "score": 0.978494623655914,
-              "matched": 91,
+              "score": 1.0,
+              "matched": 93,
               "total": 93,
-              "missing": [
-                {
-                  "category": "task_agent",
-                  "name": "task_my_step_2_chef_agent",
-                  "important": true,
-                  "aliases": [
-                    "task_my_step_2_chef_agent",
-                    "task_my_step_2",
-                    "chef_agent"
-                  ],
-                  "details": {
-                    "source": "task_my_step_2",
-                    "target": "chef_agent"
-                  }
-                },
-                {
-                  "category": "step_task",
-                  "name": "task_my_step_2_task_my_step_2",
-                  "important": true,
-                  "aliases": [
-                    "task_my_step_2_task_my_step_2",
-                    "task_my_step_2"
-                  ],
-                  "details": {
-                    "source": "task_my_step_2",
-                    "target": "task_my_step_2"
-                  }
-                }
-              ],
+              "missing": [],
               "by_category": {
                 "agent": {
                   "score": 1.0,
@@ -17580,8 +17219,8 @@
                   "total": 11
                 },
                 "step_task": {
-                  "score": 0.9333333333333333,
-                  "matched": 14,
+                  "score": 1.0,
+                  "matched": 15,
                   "total": 15
                 },
                 "task": {
@@ -17590,8 +17229,8 @@
                   "total": 17
                 },
                 "task_agent": {
-                  "score": 0.9333333333333333,
-                  "matched": 14,
+                  "score": 1.0,
+                  "matched": 15,
                   "total": 15
                 },
                 "tool": {
@@ -17615,15 +17254,15 @@
           "wgi": {
             "score": 1.0,
             "normalized_graph_edit_distance": 0.0,
-            "labeled_score": 0.8620689655172413,
+            "labeled_score": 1.0,
             "topology_score": 1.0,
-            "labeled_normalized_graph_edit_distance": 0.13793103448275862,
+            "labeled_normalized_graph_edit_distance": 0.0,
             "topology_normalized_graph_edit_distance": 0.0,
-            "exact_isomorphic": false,
+            "exact_isomorphic": true,
             "topology_isomorphic": true,
-            "edge_precision": 0.9166666666666666,
-            "edge_recall": 0.9166666666666666,
-            "edge_f1": 0.9166666666666666,
+            "edge_precision": 1.0,
+            "edge_recall": 1.0,
+            "edge_f1": 1.0,
             "kg_nodes": [
               "task_add_letter",
               "task_add_letter_b",
@@ -17649,7 +17288,7 @@
               "task_final_step",
               "task_long_text",
               "task_my_step",
-              "task_my_step2",
+              "task_my_step_2",
               "task_nested_text_processor",
               "task_short_text",
               "task_step_four",
@@ -17731,7 +17370,7 @@
               },
               {
                 "source": "task_my_step",
-                "target": "task_my_step2"
+                "target": "task_my_step_2"
               },
               {
                 "source": "task_nested_text_processor",
@@ -17758,24 +17397,10 @@
                 "target": "task_short_text"
               }
             ],
-            "missing_nodes": [
-              "task_my_step_2"
-            ],
-            "extra_nodes": [
-              "task_my_step2"
-            ],
-            "missing_edges": [
-              {
-                "source": "task_my_step",
-                "target": "task_my_step_2"
-              }
-            ],
-            "extra_edges": [
-              {
-                "source": "task_my_step",
-                "target": "task_my_step2"
-              }
-            ]
+            "missing_nodes": [],
+            "extra_nodes": [],
+            "missing_edges": [],
+            "extra_edges": []
           },
           "syntax_ok": true,
           "run_status": "N/A",
@@ -17860,16 +17485,16 @@
                 },
                 {
                   "category": "agent_llm",
-                  "name": "weather_agent_gpt4o_model",
+                  "name": "weather_agent_gpt_4_o_model",
                   "important": false,
                   "aliases": [
-                    "weather_agent_gpt4o_model",
+                    "weather_agent_gpt_4_o_model",
                     "weather_agent",
-                    "gpt4o_model"
+                    "gpt_4_o_model"
                   ],
                   "details": {
                     "source": "weather_agent",
-                    "target": "gpt4o_model"
+                    "target": "gpt_4_o_model"
                   }
                 },
                 {
@@ -17891,10 +17516,10 @@
                 },
                 {
                   "category": "language_model",
-                  "name": "gpt4o_model",
+                  "name": "gpt_4_o_model",
                   "important": false,
                   "aliases": [
-                    "gpt4o_model"
+                    "gpt_4_o_model"
                   ],
                   "details": {}
                 },
@@ -18364,16 +17989,16 @@
               "missing": [
                 {
                   "category": "agent_llm",
-                  "name": "weather_agent_gpt4o_model",
+                  "name": "weather_agent_gpt_4_o_model",
                   "important": false,
                   "aliases": [
-                    "weather_agent_gpt4o_model",
+                    "weather_agent_gpt_4_o_model",
                     "weather_agent",
-                    "gpt4o_model"
+                    "gpt_4_o_model"
                   ],
                   "details": {
                     "source": "weather_agent",
-                    "target": "gpt4o_model"
+                    "target": "gpt_4_o_model"
                   }
                 },
                 {
@@ -18383,8 +18008,8 @@
                   "aliases": [
                     "agent_weather_agent_agent_instantiation",
                     "agent_instantiation",
-                    "constructed_via_mastra_agent_with_id_weather_agent_name_weather_agent_model_openai_gpt_4o_tools_get_weather_memory_lib_sql_backed_memory",
-                    "agent_instantiation_constructed_via_mastra_agent_with_id_weather_agent_name_weather_agent_model_openai_gpt_4o_tools_get_weather_memory_lib_sql_backed_memory"
+                    "constructed_via_mastra_agent_with_id_weather_agent_name_weather_agent_model_openai_gpt_4_o_tools_get_weather_memory_lib_sql_backed_memory",
+                    "agent_instantiation_constructed_via_mastra_agent_with_id_weather_agent_name_weather_agent_model_openai_gpt_4_o_tools_get_weather_memory_lib_sql_backed_memory"
                   ],
                   "details": {
                     "key": "agent_instantiation",
@@ -18451,10 +18076,10 @@
                 },
                 {
                   "category": "language_model",
-                  "name": "gpt4o_model",
+                  "name": "gpt_4_o_model",
                   "important": false,
                   "aliases": [
-                    "gpt4o_model"
+                    "gpt_4_o_model"
                   ],
                   "details": {}
                 },
@@ -20240,8 +19865,8 @@
           "code_element_count": 15,
           "oec": {
             "all_extracted": {
-              "score": 0.5185185185185185,
-              "matched": 28,
+              "score": 0.5555555555555556,
+              "matched": 30,
               "total": 54,
               "missing": [
                 {
@@ -20276,20 +19901,6 @@
                     "owner": "mastrasystem",
                     "owner_category": "system",
                     "value": "debug"
-                  }
-                },
-                {
-                  "category": "agent_llm",
-                  "name": "crypto_agent_gpt_4_o_mini",
-                  "important": false,
-                  "aliases": [
-                    "crypto_agent_gpt_4_o_mini",
-                    "crypto_agent",
-                    "gpt_4_o_mini"
-                  ],
-                  "details": {
-                    "source": "crypto_agent",
-                    "target": "gpt_4_o_mini"
                   }
                 },
                 {
@@ -20478,15 +20089,6 @@
                   }
                 },
                 {
-                  "category": "language_model",
-                  "name": "gpt_4_o_mini",
-                  "important": false,
-                  "aliases": [
-                    "gpt_4_o_mini"
-                  ],
-                  "details": {}
-                },
-                {
                   "category": "capability",
                   "name": "capability_search_coins",
                   "important": false,
@@ -20580,8 +20182,8 @@
                   "total": 3
                 },
                 "agent_llm": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "agent_tool": {
@@ -20600,8 +20202,8 @@
                   "total": 12
                 },
                 "language_model": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "memory": {
@@ -21525,8 +21127,8 @@
                   "aliases": [
                     "system_mastraserversystem_auth_providers",
                     "auth_providers",
-                    "supported_auth0_firebase_supabase_workos_clerk_jwt_selection_based_on_environment_variable_auth_provider_default_jwt",
-                    "auth_providers_supported_auth0_firebase_supabase_workos_clerk_jwt_selection_based_on_environment_variable_auth_provider_default_jwt"
+                    "supported_auth_0_firebase_supabase_workos_clerk_jwt_selection_based_on_environment_variable_auth_provider_default_jwt",
+                    "auth_providers_supported_auth_0_firebase_supabase_workos_clerk_jwt_selection_based_on_environment_variable_auth_provider_default_jwt"
                   ],
                   "details": {
                     "key": "auth_providers",
@@ -21925,16 +21527,16 @@
                 },
                 {
                   "category": "agent_llm",
-                  "name": "example_agent_deepseek_r1_model",
+                  "name": "example_agent_deepseek_r_1_model",
                   "important": false,
                   "aliases": [
-                    "example_agent_deepseek_r1_model",
+                    "example_agent_deepseek_r_1_model",
                     "example_agent",
-                    "deepseek_r1_model"
+                    "deepseek_r_1_model"
                   ],
                   "details": {
                     "source": "example_agent",
-                    "target": "deepseek_r1_model"
+                    "target": "deepseek_r_1_model"
                   }
                 },
                 {
@@ -21984,10 +21586,10 @@
                 },
                 {
                   "category": "language_model",
-                  "name": "deepseek_r1_model",
+                  "name": "deepseek_r_1_model",
                   "important": false,
                   "aliases": [
-                    "deepseek_r1_model"
+                    "deepseek_r_1_model"
                   ],
                   "details": {}
                 },
@@ -22602,16 +22204,16 @@
                 },
                 {
                   "category": "agent_llm",
-                  "name": "stock_weather_agent_gpt4o_model",
+                  "name": "stock_weather_agent_gpt_4_o_model",
                   "important": false,
                   "aliases": [
-                    "stock_weather_agent_gpt4o_model",
+                    "stock_weather_agent_gpt_4_o_model",
                     "stock_weather_agent",
-                    "gpt4o_model"
+                    "gpt_4_o_model"
                   ],
                   "details": {
                     "source": "stock_weather_agent",
-                    "target": "gpt4o_model"
+                    "target": "gpt_4_o_model"
                   }
                 },
                 {
@@ -22742,10 +22344,10 @@
                 },
                 {
                   "category": "language_model",
-                  "name": "gpt4o_model",
+                  "name": "gpt_4_o_model",
                   "important": false,
                   "aliases": [
-                    "gpt4o_model"
+                    "gpt_4_o_model"
                   ],
                   "details": {}
                 },
@@ -23078,16 +22680,16 @@
                 },
                 {
                   "category": "agent_llm",
-                  "name": "mcp_registry_agent_gpt4o_model",
+                  "name": "mcp_registry_agent_gpt_4_o_model",
                   "important": false,
                   "aliases": [
-                    "mcp_registry_agent_gpt4o_model",
+                    "mcp_registry_agent_gpt_4_o_model",
                     "mcp_registry_agent",
-                    "gpt4o_model"
+                    "gpt_4_o_model"
                   ],
                   "details": {
                     "source": "mcp_registry_agent",
-                    "target": "gpt4o_model"
+                    "target": "gpt_4_o_model"
                   }
                 },
                 {
@@ -23120,10 +22722,10 @@
                 },
                 {
                   "category": "language_model",
-                  "name": "gpt4o_model",
+                  "name": "gpt_4_o_model",
                   "important": false,
                   "aliases": [
-                    "gpt4o_model"
+                    "gpt_4_o_model"
                   ],
                   "details": {}
                 },
@@ -23340,24 +22942,10 @@
           "code_element_count": 9,
           "oec": {
             "all_extracted": {
-              "score": 0.6,
-              "matched": 21,
+              "score": 0.6571428571428571,
+              "matched": 23,
               "total": 35,
               "missing": [
-                {
-                  "category": "agent_llm",
-                  "name": "personal_assistant_gpt4o_mini",
-                  "important": false,
-                  "aliases": [
-                    "personal_assistant_gpt4o_mini",
-                    "personal_assistant",
-                    "gpt4o_mini"
-                  ],
-                  "details": {
-                    "source": "personal_assistant",
-                    "target": "gpt4o_mini"
-                  }
-                },
                 {
                   "category": "agent_capability",
                   "name": "personal_assistant_cap_conversational",
@@ -23427,15 +23015,6 @@
                     "source": "task_interactive_chat",
                     "target": "cap_conversational"
                   }
-                },
-                {
-                  "category": "language_model",
-                  "name": "gpt4o_mini",
-                  "important": false,
-                  "aliases": [
-                    "gpt4o_mini"
-                  ],
-                  "details": {}
                 },
                 {
                   "category": "goal",
@@ -23513,8 +23092,8 @@
                   "total": 3
                 },
                 "agent_llm": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "capability": {
@@ -23533,8 +23112,8 @@
                   "total": 1
                 },
                 "language_model": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "memory": {
@@ -23695,24 +23274,10 @@
           "code_element_count": 15,
           "oec": {
             "all_extracted": {
-              "score": 0.6779661016949152,
-              "matched": 40,
+              "score": 0.7966101694915254,
+              "matched": 47,
               "total": 59,
               "missing": [
-                {
-                  "category": "agent_llm",
-                  "name": "todo_agent_gpt4o_mini",
-                  "important": false,
-                  "aliases": [
-                    "todo_agent_gpt4o_mini",
-                    "todo_agent",
-                    "gpt4o_mini"
-                  ],
-                  "details": {
-                    "source": "todo_agent",
-                    "target": "gpt4o_mini"
-                  }
-                },
                 {
                   "category": "config",
                   "name": "agent_todo_agent_working_memory_template",
@@ -23788,76 +23353,6 @@
                   }
                 },
                 {
-                  "category": "task_requires",
-                  "name": "init_first_chat_task_gpt4o_mini",
-                  "important": false,
-                  "aliases": [
-                    "init_first_chat_task_gpt4o_mini",
-                    "init_first_chat_task",
-                    "gpt4o_mini"
-                  ],
-                  "details": {
-                    "source": "init_first_chat_task",
-                    "target": "gpt4o_mini"
-                  }
-                },
-                {
-                  "category": "task_requires",
-                  "name": "init_return_chat_task_gpt4o_mini",
-                  "important": false,
-                  "aliases": [
-                    "init_return_chat_task_gpt4o_mini",
-                    "init_return_chat_task",
-                    "gpt4o_mini"
-                  ],
-                  "details": {
-                    "source": "init_return_chat_task",
-                    "target": "gpt4o_mini"
-                  }
-                },
-                {
-                  "category": "task_requires",
-                  "name": "present_list_task_gpt4o_mini",
-                  "important": false,
-                  "aliases": [
-                    "present_list_task_gpt4o_mini",
-                    "present_list_task",
-                    "gpt4o_mini"
-                  ],
-                  "details": {
-                    "source": "present_list_task",
-                    "target": "gpt4o_mini"
-                  }
-                },
-                {
-                  "category": "task_requires",
-                  "name": "update_list_task_gpt4o_mini",
-                  "important": false,
-                  "aliases": [
-                    "update_list_task_gpt4o_mini",
-                    "update_list_task",
-                    "gpt4o_mini"
-                  ],
-                  "details": {
-                    "source": "update_list_task",
-                    "target": "gpt4o_mini"
-                  }
-                },
-                {
-                  "category": "task_requires",
-                  "name": "timebox_task_gpt4o_mini",
-                  "important": false,
-                  "aliases": [
-                    "timebox_task_gpt4o_mini",
-                    "timebox_task",
-                    "gpt4o_mini"
-                  ],
-                  "details": {
-                    "source": "timebox_task",
-                    "target": "gpt4o_mini"
-                  }
-                },
-                {
                   "category": "task_produces",
                   "name": "save_working_memory_task_working_memory_instance",
                   "important": false,
@@ -23884,15 +23379,6 @@
                     "source": "save_working_memory_task",
                     "target": "working_memory_instance"
                   }
-                },
-                {
-                  "category": "language_model",
-                  "name": "gpt4o_mini",
-                  "important": false,
-                  "aliases": [
-                    "gpt4o_mini"
-                  ],
-                  "details": {}
                 },
                 {
                   "category": "objective",
@@ -23923,10 +23409,10 @@
                 },
                 {
                   "category": "resource",
-                  "name": "thread_d4e58927_ca27_46f9_8559_0c792e76e6f6",
+                  "name": "thread_d_4_e_58927_ca_27_46_f_9_8559_0_c_792_e_76_e_6_f_6",
                   "important": false,
                   "aliases": [
-                    "thread_d4e58927_ca27_46f9_8559_0c792e76e6f6"
+                    "thread_d_4_e_58927_ca_27_46_f_9_8559_0_c_792_e_76_e_6_f_6"
                   ],
                   "details": {}
                 },
@@ -23952,8 +23438,8 @@
                   "total": 4
                 },
                 "agent_llm": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "capability": {
@@ -23972,8 +23458,8 @@
                   "total": 1
                 },
                 "language_model": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "memory": {
@@ -24017,8 +23503,8 @@
                   "total": 1
                 },
                 "task_requires": {
-                  "score": 0.45454545454545453,
-                  "matched": 5,
+                  "score": 0.9090909090909091,
+                  "matched": 10,
                   "total": 11
                 },
                 "workflow": {
@@ -24160,16 +23646,16 @@
               "missing": [
                 {
                   "category": "agent_llm",
-                  "name": "memory_agent_lm_gpt4o_mini",
+                  "name": "memory_agent_lm_gpt_4_o_mini",
                   "important": false,
                   "aliases": [
-                    "memory_agent_lm_gpt4o_mini",
+                    "memory_agent_lm_gpt_4_o_mini",
                     "memory_agent",
-                    "lm_gpt4o_mini"
+                    "lm_gpt_4_o_mini"
                   ],
                   "details": {
                     "source": "memory_agent",
-                    "target": "lm_gpt4o_mini"
+                    "target": "lm_gpt_4_o_mini"
                   }
                 },
                 {
@@ -24230,10 +23716,10 @@
                 },
                 {
                   "category": "language_model",
-                  "name": "lm_gpt4o_mini",
+                  "name": "lm_gpt_4_o_mini",
                   "important": false,
                   "aliases": [
-                    "lm_gpt4o_mini"
+                    "lm_gpt_4_o_mini"
                   ],
                   "details": {}
                 },
@@ -24459,30 +23945,30 @@
               "missing": [
                 {
                   "category": "agent_llm",
-                  "name": "chef_agent_lm_gpt4o",
+                  "name": "chef_agent_lm_gpt_4_o",
                   "important": false,
                   "aliases": [
-                    "chef_agent_lm_gpt4o",
+                    "chef_agent_lm_gpt_4_o",
                     "chef_agent",
-                    "lm_gpt4o"
+                    "lm_gpt_4_o"
                   ],
                   "details": {
                     "source": "chef_agent",
-                    "target": "lm_gpt4o"
+                    "target": "lm_gpt_4_o"
                   }
                 },
                 {
                   "category": "agent_llm",
-                  "name": "memory_agent_lm_gpt4o",
+                  "name": "memory_agent_lm_gpt_4_o",
                   "important": false,
                   "aliases": [
-                    "memory_agent_lm_gpt4o",
+                    "memory_agent_lm_gpt_4_o",
                     "memory_agent",
-                    "lm_gpt4o"
+                    "lm_gpt_4_o"
                   ],
                   "details": {
                     "source": "memory_agent",
-                    "target": "lm_gpt4o"
+                    "target": "lm_gpt_4_o"
                   }
                 },
                 {
@@ -24626,10 +24112,10 @@
                 },
                 {
                   "category": "language_model",
-                  "name": "lm_gpt4o",
+                  "name": "lm_gpt_4_o",
                   "important": false,
                   "aliases": [
-                    "lm_gpt4o"
+                    "lm_gpt_4_o"
                   ],
                   "details": {}
                 },
@@ -25117,17 +24603,17 @@
                   "important": false,
                   "aliases": [
                     "welcome_message_1",
-                    "welcome_restart_message",
-                    "restart_message"
+                    "restart_message",
+                    "welcome_restart_message"
                   ],
                   "details": {}
                 },
                 {
                   "category": "resource",
-                  "name": "thread_39873fbf_84d6_425e_8c1b_8afd798d72a4",
+                  "name": "thread_39873_fbf_84_d_6_425_e_8_c_1_b_8_afd_798_d_72_a_4",
                   "important": false,
                   "aliases": [
-                    "thread_39873fbf_84d6_425e_8c1b_8afd798d72a4"
+                    "thread_39873_fbf_84_d_6_425_e_8_c_1_b_8_afd_798_d_72_a_4"
                   ],
                   "details": {}
                 },
@@ -25296,16 +24782,16 @@
               "missing": [
                 {
                   "category": "agent_llm",
-                  "name": "chef_agent_lm_gpt_4o",
+                  "name": "chef_agent_lm_gpt_4_o",
                   "important": false,
                   "aliases": [
-                    "chef_agent_lm_gpt_4o",
+                    "chef_agent_lm_gpt_4_o",
                     "chef_agent",
-                    "lm_gpt_4o"
+                    "lm_gpt_4_o"
                   ],
                   "details": {
                     "source": "chef_agent",
-                    "target": "lm_gpt_4o"
+                    "target": "lm_gpt_4_o"
                   }
                 },
                 {
@@ -25341,16 +24827,16 @@
                 },
                 {
                   "category": "agent_llm",
-                  "name": "memory_agent_lm_gpt_4o",
+                  "name": "memory_agent_lm_gpt_4_o",
                   "important": false,
                   "aliases": [
-                    "memory_agent_lm_gpt_4o",
+                    "memory_agent_lm_gpt_4_o",
                     "memory_agent",
-                    "lm_gpt_4o"
+                    "lm_gpt_4_o"
                   ],
                   "details": {
                     "source": "memory_agent",
-                    "target": "lm_gpt_4o"
+                    "target": "lm_gpt_4_o"
                   }
                 },
                 {
@@ -25377,8 +24863,8 @@
                   "aliases": [
                     "agent_memory_agent_agent_behavior",
                     "agent_behavior",
-                    "info_if_unknown",
                     "automatic_recall_of_memories_prompt_for_user_name_info_if_unknown",
+                    "info_if_unknown",
                     "agent_behavior_automatic_recall_of_memories_prompt_for_user_name_info_if_unknown"
                   ],
                   "details": {
@@ -25404,16 +24890,16 @@
                 },
                 {
                   "category": "task_produces",
-                  "name": "task_recipe_suggest_initial_query_recipe_suggestion_output1",
+                  "name": "task_recipe_suggest_initial_query_recipe_suggestion_output_1",
                   "important": false,
                   "aliases": [
-                    "task_recipe_suggest_initial_query_recipe_suggestion_output1",
+                    "task_recipe_suggest_initial_query_recipe_suggestion_output_1",
                     "task_recipe_suggest_initial_query",
-                    "recipe_suggestion_output1"
+                    "recipe_suggestion_output_1"
                   ],
                   "details": {
                     "source": "task_recipe_suggest_initial_query",
-                    "target": "recipe_suggestion_output1"
+                    "target": "recipe_suggestion_output_1"
                   }
                 },
                 {
@@ -25460,16 +24946,16 @@
                 },
                 {
                   "category": "task_produces",
-                  "name": "task_recipe_suggest_friends_house_query_recipe_suggestion_output2",
+                  "name": "task_recipe_suggest_friends_house_query_recipe_suggestion_output_2",
                   "important": false,
                   "aliases": [
-                    "task_recipe_suggest_friends_house_query_recipe_suggestion_output2",
+                    "task_recipe_suggest_friends_house_query_recipe_suggestion_output_2",
                     "task_recipe_suggest_friends_house_query",
-                    "recipe_suggestion_output2"
+                    "recipe_suggestion_output_2"
                   ],
                   "details": {
                     "source": "task_recipe_suggest_friends_house_query",
-                    "target": "recipe_suggestion_output2"
+                    "target": "recipe_suggestion_output_2"
                   }
                 },
                 {
@@ -25544,10 +25030,10 @@
                 },
                 {
                   "category": "language_model",
-                  "name": "lm_gpt_4o",
+                  "name": "lm_gpt_4_o",
                   "important": false,
                   "aliases": [
-                    "lm_gpt_4o"
+                    "lm_gpt_4_o"
                   ],
                   "details": {}
                 },
@@ -25580,28 +25066,28 @@
                 },
                 {
                   "category": "resource",
-                  "name": "thread_example_39873fbf",
+                  "name": "thread_example_39873_fbf",
                   "important": false,
                   "aliases": [
-                    "thread_example_39873fbf"
+                    "thread_example_39873_fbf"
                   ],
                   "details": {}
                 },
                 {
                   "category": "resource",
-                  "name": "recipe_suggestion_output1",
+                  "name": "recipe_suggestion_output_1",
                   "important": false,
                   "aliases": [
-                    "recipe_suggestion_output1"
+                    "recipe_suggestion_output_1"
                   ],
                   "details": {}
                 },
                 {
                   "category": "resource",
-                  "name": "recipe_suggestion_output2",
+                  "name": "recipe_suggestion_output_2",
                   "important": false,
                   "aliases": [
-                    "recipe_suggestion_output2"
+                    "recipe_suggestion_output_2"
                   ],
                   "details": {}
                 },
@@ -25766,17 +25252,17 @@
             }
           },
           "wgi": {
-            "score": 0.4,
-            "normalized_graph_edit_distance": 0.6,
-            "labeled_score": 0.3846153846153846,
+            "score": 0.8,
+            "normalized_graph_edit_distance": 0.2,
+            "labeled_score": 0.8,
             "topology_score": 0.4,
-            "labeled_normalized_graph_edit_distance": 0.6153846153846154,
+            "labeled_normalized_graph_edit_distance": 0.2,
             "topology_normalized_graph_edit_distance": 0.6,
             "exact_isomorphic": false,
             "topology_isomorphic": false,
-            "edge_precision": 0.0,
-            "edge_recall": 0.0,
-            "edge_f1": 0.0,
+            "edge_precision": 1.0,
+            "edge_recall": 0.6,
+            "edge_f1": 0.7499999999999999,
             "kg_nodes": [
               "task_chat_interactive_message",
               "task_chat_start_conversation",
@@ -25797,15 +25283,15 @@
                 "target": "task_chat_interactive_message"
               },
               {
-                "source": "task_chat_interactive_message",
-                "target": "task_chat_start_conversation"
+                "source": "task_chat_start_conversation",
+                "target": "task_chat_interactive_message"
               },
               {
                 "source": "task_recipe_suggest_friends_house_query",
-                "target": "task_recipe_suggest_initial_query"
+                "target": "task_recipe_suggest_recall_previous"
               },
               {
-                "source": "task_recipe_suggest_recall_previous",
+                "source": "task_recipe_suggest_initial_query",
                 "target": "task_recipe_suggest_friends_house_query"
               },
               {
@@ -25835,36 +25321,11 @@
                 "target": "task_chat_interactive_message"
               },
               {
-                "source": "task_chat_interactive_message",
-                "target": "task_chat_start_conversation"
-              },
-              {
-                "source": "task_recipe_suggest_friends_house_query",
-                "target": "task_recipe_suggest_initial_query"
-              },
-              {
-                "source": "task_recipe_suggest_recall_previous",
-                "target": "task_recipe_suggest_friends_house_query"
-              },
-              {
                 "source": "task_recipe_suggest_recall_previous",
                 "target": "task_recipe_suggest_recall_previous"
               }
             ],
-            "extra_edges": [
-              {
-                "source": "task_chat_start_conversation",
-                "target": "task_chat_interactive_message"
-              },
-              {
-                "source": "task_recipe_suggest_friends_house_query",
-                "target": "task_recipe_suggest_recall_previous"
-              },
-              {
-                "source": "task_recipe_suggest_initial_query",
-                "target": "task_recipe_suggest_friends_house_query"
-              }
-            ]
+            "extra_edges": []
           },
           "syntax_ok": true,
           "run_status": "N/A",
@@ -25909,8 +25370,8 @@
                   "aliases": [
                     "agent_forgetful_job_interviewer_interactive_mode",
                     "interactive_mode",
-                    "stdout_loop_exit_or_quit_to_stop_initial_system_message_interview_starting_now_ask_the_candidate_to_introduce_themselves_and_their_background",
                     "uses_stdin_stdout_loop_exit_or_quit_to_stop_initial_system_message_interview_starting_now_ask_the_candidate_to_introduce_themselves_and_their_background",
+                    "stdout_loop_exit_or_quit_to_stop_initial_system_message_interview_starting_now_ask_the_candidate_to_introduce_themselves_and_their_background",
                     "interactive_mode_uses_stdin_stdout_loop_exit_or_quit_to_stop_initial_system_message_interview_starting_now_ask_the_candidate_to_introduce_themselves_and_their_background"
                   ],
                   "details": {
@@ -26164,30 +25625,30 @@
               "missing": [
                 {
                   "category": "agent_llm",
-                  "name": "chef_agent_gpt_4o_open_ai_model",
+                  "name": "chef_agent_gpt_4_o_open_ai_model",
                   "important": false,
                   "aliases": [
-                    "chef_agent_gpt_4o_open_ai_model",
+                    "chef_agent_gpt_4_o_open_ai_model",
                     "chef_agent",
-                    "gpt_4o_open_ai_model"
+                    "gpt_4_o_open_ai_model"
                   ],
                   "details": {
                     "source": "chef_agent",
-                    "target": "gpt_4o_open_ai_model"
+                    "target": "gpt_4_o_open_ai_model"
                   }
                 },
                 {
                   "category": "agent_llm",
-                  "name": "memory_agent_gpt_4o_open_ai_model",
+                  "name": "memory_agent_gpt_4_o_open_ai_model",
                   "important": false,
                   "aliases": [
-                    "memory_agent_gpt_4o_open_ai_model",
+                    "memory_agent_gpt_4_o_open_ai_model",
                     "memory_agent",
-                    "gpt_4o_open_ai_model"
+                    "gpt_4_o_open_ai_model"
                   ],
                   "details": {
                     "source": "memory_agent",
-                    "target": "gpt_4o_open_ai_model"
+                    "target": "gpt_4_o_open_ai_model"
                   }
                 },
                 {
@@ -26386,11 +25847,11 @@
                 },
                 {
                   "category": "language_model",
-                  "name": "gpt_4o_open_ai_model",
+                  "name": "gpt_4_o_open_ai_model",
                   "important": false,
                   "aliases": [
-                    "gpt_4o_open_ai_model",
-                    "open_ai_gpt4o_model"
+                    "gpt_4_o_open_ai_model",
+                    "open_ai_gpt_4_o_model"
                   ],
                   "details": {}
                 },
@@ -26459,8 +25920,8 @@
                   "important": false,
                   "aliases": [
                     "example_bubble_file",
-                    "formatting_only",
-                    "src_bubble_ts_message_bubble_utility_ui_formatting_only"
+                    "src_bubble_ts_message_bubble_utility_ui_formatting_only",
+                    "formatting_only"
                   ],
                   "details": {}
                 },
@@ -27296,16 +26757,16 @@
                 },
                 {
                   "category": "agent_llm",
-                  "name": "cat_one_lm_gpt4o",
+                  "name": "cat_one_lm_gpt_4_o",
                   "important": false,
                   "aliases": [
-                    "cat_one_lm_gpt4o",
+                    "cat_one_lm_gpt_4_o",
                     "cat_one",
-                    "lm_gpt4o"
+                    "lm_gpt_4_o"
                   ],
                   "details": {
                     "source": "cat_one",
-                    "target": "lm_gpt4o"
+                    "target": "lm_gpt_4_o"
                   }
                 },
                 {
@@ -27380,10 +26841,10 @@
                 },
                 {
                   "category": "language_model",
-                  "name": "lm_gpt4o",
+                  "name": "lm_gpt_4_o",
                   "important": false,
                   "aliases": [
-                    "lm_gpt4o"
+                    "lm_gpt_4_o"
                   ],
                   "details": {}
                 },
@@ -27899,8 +27360,8 @@
                   "aliases": [
                     "travel_agent_openai_gpt_4_1",
                     "travel_agent",
-                    "openai_gpt_4_1",
-                    "gpt_4_1"
+                    "gpt_4_1",
+                    "openai_gpt_4_1"
                   ],
                   "details": {
                     "source": "travel_agent",
@@ -27987,8 +27448,8 @@
                   "aliases": [
                     "travel_analyzer_openai_gpt_4_1",
                     "travel_analyzer",
-                    "openai_gpt_4_1",
-                    "gpt_4_1"
+                    "gpt_4_1",
+                    "openai_gpt_4_1"
                   ],
                   "details": {
                     "source": "travel_analyzer",
@@ -28196,8 +27657,8 @@
                   "name": "anthropic_claude_3_5_sonnet_20240620",
                   "important": false,
                   "aliases": [
-                    "claude_3_5_sonnet_20240620",
                     "anthropic_claude_3_5_sonnet_20240620",
+                    "claude_3_5_sonnet_20240620",
                     "anthropic_claude_example"
                   ],
                   "details": {}
@@ -28504,13 +27965,13 @@
           "kg_path": "/Users/ravie/dev/agento/kgs_original/Mastra AI/weather-agent_instances.ttl",
           "output_dir": "/Users/ravie/dev/agento/output_files/output_mastra/weather-agent",
           "status": "ok",
-          "kg_element_count": 59,
+          "kg_element_count": 61,
           "code_element_count": 18,
           "oec": {
             "all_extracted": {
-              "score": 0.6271186440677966,
+              "score": 0.6065573770491803,
               "matched": 37,
-              "total": 59,
+              "total": 61,
               "missing": [
                 {
                   "category": "config",
@@ -28550,16 +28011,16 @@
                 },
                 {
                   "category": "agent_llm",
-                  "name": "weather_agent_openai_gpt_4o_mini",
+                  "name": "weather_agent_openai_gpt_4_o_mini",
                   "important": false,
                   "aliases": [
-                    "weather_agent_openai_gpt_4o_mini",
+                    "weather_agent_openai_gpt_4_o_mini",
                     "weather_agent",
-                    "openai_gpt_4o_mini"
+                    "openai_gpt_4_o_mini"
                   ],
                   "details": {
                     "source": "weather_agent",
-                    "target": "openai_gpt_4o_mini"
+                    "target": "openai_gpt_4_o_mini"
                   }
                 },
                 {
@@ -28581,16 +28042,16 @@
                 },
                 {
                   "category": "agent_llm",
-                  "name": "weather_explainer_agent_openai_gpt_4o",
+                  "name": "weather_explainer_agent_openai_gpt_4_o",
                   "important": false,
                   "aliases": [
-                    "weather_explainer_agent_openai_gpt_4o",
+                    "weather_explainer_agent_openai_gpt_4_o",
                     "weather_explainer_agent",
-                    "openai_gpt_4o"
+                    "openai_gpt_4_o"
                   ],
                   "details": {
                     "source": "weather_explainer_agent",
-                    "target": "openai_gpt_4o"
+                    "target": "openai_gpt_4_o"
                   }
                 },
                 {
@@ -28651,6 +28112,48 @@
                 },
                 {
                   "category": "task_produces",
+                  "name": "plan_activities_resource_activities_text",
+                  "important": false,
+                  "aliases": [
+                    "plan_activities_resource_activities_text",
+                    "plan_activities",
+                    "resource_activities_text"
+                  ],
+                  "details": {
+                    "source": "plan_activities",
+                    "target": "resource_activities_text"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "plan_activities_resource_forecast_array",
+                  "important": false,
+                  "aliases": [
+                    "plan_activities_resource_forecast_array",
+                    "plan_activities",
+                    "resource_forecast_array"
+                  ],
+                  "details": {
+                    "source": "plan_activities",
+                    "target": "resource_forecast_array"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "plan_activities_resource_agent_input_string",
+                  "important": false,
+                  "aliases": [
+                    "plan_activities_resource_agent_input_string",
+                    "plan_activities",
+                    "resource_agent_input_string"
+                  ],
+                  "details": {
+                    "source": "plan_activities",
+                    "target": "resource_agent_input_string"
+                  }
+                },
+                {
+                  "category": "task_produces",
                   "name": "map_forecast_to_prompt_task_resource_agent_input_string",
                   "important": false,
                   "aliases": [
@@ -28706,48 +28209,6 @@
                   }
                 },
                 {
-                  "category": "task_produces",
-                  "name": "plan_activities_resource_activities_text",
-                  "important": false,
-                  "aliases": [
-                    "plan_activities_resource_activities_text",
-                    "plan_activities",
-                    "resource_activities_text"
-                  ],
-                  "details": {
-                    "source": "plan_activities",
-                    "target": "resource_activities_text"
-                  }
-                },
-                {
-                  "category": "task_requires",
-                  "name": "plan_activities_resource_forecast_array",
-                  "important": false,
-                  "aliases": [
-                    "plan_activities_resource_forecast_array",
-                    "plan_activities",
-                    "resource_forecast_array"
-                  ],
-                  "details": {
-                    "source": "plan_activities",
-                    "target": "resource_forecast_array"
-                  }
-                },
-                {
-                  "category": "task_requires",
-                  "name": "plan_activities_resource_agent_input_string",
-                  "important": false,
-                  "aliases": [
-                    "plan_activities_resource_agent_input_string",
-                    "plan_activities",
-                    "resource_agent_input_string"
-                  ],
-                  "details": {
-                    "source": "plan_activities",
-                    "target": "resource_agent_input_string"
-                  }
-                },
-                {
                   "category": "tool_capability",
                   "name": "weather_tool_capability_get_weather",
                   "important": false,
@@ -28763,11 +28224,31 @@
                 },
                 {
                   "category": "language_model",
+                  "name": "openai_gpt_4_o",
+                  "important": false,
+                  "aliases": [
+                    "openai_gpt_4_o",
+                    "lm_openai_gpt_4_o"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "language_model",
+                  "name": "openai_gpt_4_o_mini",
+                  "important": false,
+                  "aliases": [
+                    "openai_gpt_4_o_mini",
+                    "lm_openai_gpt_4_o_mini"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "language_model",
                   "name": "anthropic_claude_3_5_sonnet_20241022",
                   "important": false,
                   "aliases": [
                     "anthropic_claude_3_5_sonnet_20241022",
-                    "lm_anthropic_claude3_sonnet"
+                    "lm_anthropic_claude_3_sonnet"
                   ],
                   "details": {}
                 },
@@ -28844,8 +28325,8 @@
                   "total": 2
                 },
                 "language_model": {
-                  "score": 0.6666666666666666,
-                  "matched": 2,
+                  "score": 0.0,
+                  "matched": 0,
                   "total": 3
                 },
                 "project": {
@@ -28860,8 +28341,8 @@
                 },
                 "step_task": {
                   "score": 1.0,
-                  "matched": 4,
-                  "total": 4
+                  "matched": 5,
+                  "total": 5
                 },
                 "task": {
                   "score": 1.0,
@@ -28905,15 +28386,15 @@
                 },
                 "workflow_step": {
                   "score": 1.0,
-                  "matched": 4,
-                  "total": 4
+                  "matched": 5,
+                  "total": 5
                 }
               }
             },
             "important_subset": {
               "score": 1.0,
-              "matched": 24,
-              "total": 24,
+              "matched": 26,
+              "total": 26,
               "missing": [],
               "by_category": {
                 "agent": {
@@ -28928,8 +28409,8 @@
                 },
                 "step_task": {
                   "score": 1.0,
-                  "matched": 4,
-                  "total": 4
+                  "matched": 5,
+                  "total": 5
                 },
                 "task": {
                   "score": 1.0,
@@ -28958,8 +28439,8 @@
                 },
                 "workflow_step": {
                   "score": 1.0,
-                  "matched": 4,
-                  "total": 4
+                  "matched": 5,
+                  "total": 5
                 }
               }
             }
@@ -28980,15 +28461,21 @@
               "explain_weather_task",
               "fetch_weather_task",
               "map_forecast_to_prompt_task",
+              "plan_activities",
               "weather_tool_call_task"
             ],
             "code_nodes": [
               "explain_weather_task",
               "fetch_weather_task",
               "map_forecast_to_prompt_task",
+              "plan_activities",
               "weather_tool_call_task"
             ],
             "kg_edges": [
+              {
+                "source": "fetch_weather_task",
+                "target": "plan_activities"
+              },
               {
                 "source": "map_forecast_to_prompt_task",
                 "target": "explain_weather_task"
@@ -28999,6 +28486,10 @@
               }
             ],
             "code_edges": [
+              {
+                "source": "fetch_weather_task",
+                "target": "plan_activities"
+              },
               {
                 "source": "map_forecast_to_prompt_task",
                 "target": "explain_weather_task"
@@ -29017,7 +28508,7 @@
           "run_status": "N/A",
           "run_output": "",
           "gt_found": true,
-          "ast_sim": 0.5423728813559322
+          "ast_sim": 0.5254237288135594
         },
         {
           "project": "workflow-ai-recruiter",
@@ -29034,16 +28525,16 @@
               "missing": [
                 {
                   "category": "agent_llm",
-                  "name": "recruiter_agent_lm_gpt4o_mini",
+                  "name": "recruiter_agent_lm_gpt_4_o_mini",
                   "important": false,
                   "aliases": [
-                    "recruiter_agent_lm_gpt4o_mini",
+                    "recruiter_agent_lm_gpt_4_o_mini",
                     "recruiter_agent",
-                    "lm_gpt4o_mini"
+                    "lm_gpt_4_o_mini"
                   ],
                   "details": {
                     "source": "recruiter_agent",
-                    "target": "lm_gpt4o_mini"
+                    "target": "lm_gpt_4_o_mini"
                   }
                 },
                 {
@@ -29132,10 +28623,10 @@
                 },
                 {
                   "category": "language_model",
-                  "name": "lm_gpt4o_mini",
+                  "name": "lm_gpt_4_o_mini",
                   "important": false,
                   "aliases": [
-                    "lm_gpt4o_mini"
+                    "lm_gpt_4_o_mini"
                   ],
                   "details": {}
                 },
@@ -29691,16 +29182,16 @@
                 },
                 {
                   "category": "agent_llm",
-                  "name": "cat_one_gpt_4o_language_model",
+                  "name": "cat_one_gpt_4_o_language_model",
                   "important": false,
                   "aliases": [
-                    "cat_one_gpt_4o_language_model",
+                    "cat_one_gpt_4_o_language_model",
                     "cat_one",
-                    "gpt_4o_language_model"
+                    "gpt_4_o_language_model"
                   ],
                   "details": {
                     "source": "cat_one",
-                    "target": "gpt_4o_language_model"
+                    "target": "gpt_4_o_language_model"
                   }
                 },
                 {
@@ -29831,11 +29322,11 @@
                 },
                 {
                   "category": "language_model",
-                  "name": "gpt_4o_language_model",
+                  "name": "gpt_4_o_language_model",
                   "important": false,
                   "aliases": [
-                    "gpt_4o_language_model",
-                    "gpt4o_model"
+                    "gpt_4_o_language_model",
+                    "gpt_4_o_model"
                   ],
                   "details": {}
                 },
@@ -30001,17 +29492,17 @@
             }
           },
           "wgi": {
-            "score": 0.6875,
-            "normalized_graph_edit_distance": 0.3125,
-            "labeled_score": 0.6875,
-            "topology_score": 0.2666666666666667,
-            "labeled_normalized_graph_edit_distance": 0.3125,
-            "topology_normalized_graph_edit_distance": 0.7333333333333333,
+            "score": 0.7333333333333334,
+            "normalized_graph_edit_distance": 0.26666666666666666,
+            "labeled_score": 0.7333333333333334,
+            "topology_score": 0.2857142857142857,
+            "labeled_normalized_graph_edit_distance": 0.26666666666666666,
+            "topology_normalized_graph_edit_distance": 0.7142857142857143,
             "exact_isomorphic": false,
             "topology_isomorphic": false,
             "edge_precision": 0.8333333333333334,
-            "edge_recall": 0.5555555555555556,
-            "edge_f1": 0.6666666666666667,
+            "edge_recall": 0.625,
+            "edge_f1": 0.7142857142857143,
             "kg_nodes": [
               "step_five_task",
               "step_four_task",
@@ -30036,10 +29527,6 @@
               {
                 "source": "step_one_task",
                 "target": "step_six_task"
-              },
-              {
-                "source": "step_one_task",
-                "target": "step_three_task"
               },
               {
                 "source": "step_one_task",
@@ -30095,10 +29582,6 @@
             "missing_nodes": [],
             "extra_nodes": [],
             "missing_edges": [
-              {
-                "source": "step_one_task",
-                "target": "step_three_task"
-              },
               {
                 "source": "step_three_task",
                 "target": "step_five_task"
@@ -30364,10 +29847,9 @@
                 },
                 {
                   "category": "resource",
-                  "name": "example_run1",
+                  "name": "example_run_1",
                   "important": false,
                   "aliases": [
-                    "example_run1",
                     "example_run_1"
                   ],
                   "details": {}
@@ -30476,17 +29958,17 @@
             }
           },
           "wgi": {
-            "score": 0.7,
-            "normalized_graph_edit_distance": 0.3,
-            "labeled_score": 0.7,
-            "topology_score": 0.30000000000000004,
-            "labeled_normalized_graph_edit_distance": 0.3,
-            "topology_normalized_graph_edit_distance": 0.7,
-            "exact_isomorphic": false,
-            "topology_isomorphic": false,
+            "score": 1.0,
+            "normalized_graph_edit_distance": 0.0,
+            "labeled_score": 1.0,
+            "topology_score": 1.0,
+            "labeled_normalized_graph_edit_distance": 0.0,
+            "topology_normalized_graph_edit_distance": 0.0,
+            "exact_isomorphic": true,
+            "topology_isomorphic": true,
             "edge_precision": 1.0,
-            "edge_recall": 0.5,
-            "edge_f1": 0.6666666666666666,
+            "edge_recall": 1.0,
+            "edge_f1": 1.0,
             "kg_nodes": [
               "task_step_four",
               "task_step_one",
@@ -30501,24 +29983,12 @@
             ],
             "kg_edges": [
               {
-                "source": "task_step_four",
-                "target": "task_step_three"
-              },
-              {
                 "source": "task_step_one",
                 "target": "task_step_two"
               },
               {
                 "source": "task_step_three",
                 "target": "task_step_four"
-              },
-              {
-                "source": "task_step_three",
-                "target": "task_step_two"
-              },
-              {
-                "source": "task_step_two",
-                "target": "task_step_one"
               },
               {
                 "source": "task_step_two",
@@ -30541,20 +30011,7 @@
             ],
             "missing_nodes": [],
             "extra_nodes": [],
-            "missing_edges": [
-              {
-                "source": "task_step_four",
-                "target": "task_step_three"
-              },
-              {
-                "source": "task_step_three",
-                "target": "task_step_two"
-              },
-              {
-                "source": "task_step_two",
-                "target": "task_step_one"
-              }
-            ],
+            "missing_edges": [],
             "extra_edges": []
           },
           "syntax_ok": true,
@@ -30744,8 +30201,8 @@
                   "important": false,
                   "aliases": [
                     "res_example_run_resumed",
-                    "example_run_result_resumed_completed",
-                    "completed"
+                    "completed",
+                    "example_run_result_resumed_completed"
                   ],
                   "details": {}
                 }
@@ -30983,30 +30440,30 @@
                 },
                 {
                   "category": "task_produces",
-                  "name": "fetch_yc_data_task_yc2024_data",
+                  "name": "fetch_yc_data_task_yc_2024_data",
                   "important": false,
                   "aliases": [
-                    "fetch_yc_data_task_yc2024_data",
+                    "fetch_yc_data_task_yc_2024_data",
                     "fetch_yc_data_task",
-                    "yc2024_data"
+                    "yc_2024_data"
                   ],
                   "details": {
                     "source": "fetch_yc_data_task",
-                    "target": "yc2024_data"
+                    "target": "yc_2024_data"
                   }
                 },
                 {
                   "category": "task_requires",
-                  "name": "answer_yc_directory_query_yc2024_data",
+                  "name": "answer_yc_directory_query_yc_2024_data",
                   "important": false,
                   "aliases": [
-                    "answer_yc_directory_query_yc2024_data",
+                    "answer_yc_directory_query_yc_2024_data",
                     "answer_yc_directory_query",
-                    "yc2024_data"
+                    "yc_2024_data"
                   ],
                   "details": {
                     "source": "answer_yc_directory_query",
-                    "target": "yc2024_data"
+                    "target": "yc_2024_data"
                   }
                 },
                 {
@@ -31038,10 +30495,10 @@
                 },
                 {
                   "category": "resource",
-                  "name": "yc2024_data",
+                  "name": "yc_2024_data",
                   "important": false,
                   "aliases": [
-                    "yc2024_data"
+                    "yc_2024_data"
                   ],
                   "details": {}
                 },

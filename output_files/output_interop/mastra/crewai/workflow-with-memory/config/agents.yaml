@@ -1,0 +1,5 @@
+cat_one:
+  role: feline expert
+  goal: feline expert
+  backstory: Agent role and long-form instructions provided in Agent instantiation
+    (instructions in source code).

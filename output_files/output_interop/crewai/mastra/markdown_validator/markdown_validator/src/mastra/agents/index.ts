@@ -1,0 +1,1 @@
+export { requirementsManager } from './requirementsManager'

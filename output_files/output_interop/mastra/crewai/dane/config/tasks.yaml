@@ -1,0 +1,97 @@
+get_git_diff_task:
+  description: Reads staged changes from a git repository at repoPath. Produces 'diff'
+    string resource.
+  expected_output: 'diff: string'
+read_conventional_commit_spec:
+  description: |
+    Read file data/crawl/conventional-commit.json using fsTool action 'read'. If not present, fallback to built-in guidelines.
+  expected_output: 'fileData: any (JSON content)'
+generate_commit_message:
+  description: |
+    Agent is asked to produce commit message and meta information. If diff empty return 'No staged changes found' and generated=false; otherwise return generated=true and commit message string.
+  expected_output: 'JSON: { commitMessage: string, generated: boolean, guidelines:
+    string[] }'
+user_confirmation:
+  description: |
+    Interactive confirmation step; modeled as a task that expects boolean response. Implementation uses inquirer.prompt confirm.
+  expected_output: 'Completed: user_confirmation'
+create_git_commit_task:
+  description: Performs git commit using execaTool after confirmation. Produces commit
+    status.
+  expected_output: 'Completed: create_git_commit_task'
+start_message:
+  description: Initial step produces a message string 'Test'.
+  expected_output: 'Completed: start_message'
+pass_message_through_user_input:
+  description: Prompts user to enter a message; ensures non-empty.
+  expected_output: 'Completed: pass_message_through_user_input'
+check_message_exists:
+  description: Verifies the message exists in workflow state and returns it; may throw
+    if not found.
+  expected_output: 'Completed: check_message_exists'
+ask_modify_message:
+  description: |
+    If resumeData.confirm is true, agent.generate is called to change the message; otherwise workflow suspends.
+  expected_output: Single message string (no extra text)
+pass_final_message:
+  description: Returns message from stepC2.output to finish the workflow.
+  expected_output: 'Completed: pass_final_message'
+generate_per_module_changelog:
+  description: |
+    For each module with changes, agent.generate is invoked with: Time window, Module path, Git diff, and tasks to create structured narrative changelog grouped by categories (New features, Improvements, Notable bug fixes, Build/deployment improvements, Performance optimizations).
+  expected_output: Textual changelog for module; agent usage metadata (usage.promptTokens)
+    may be returned.
+get_broken_links_task:
+  description: |
+    Runs linkinator, parse results and outputs array of broken link objects: { url, status, state, parent? }.
+  expected_output: Array of link objects { url, status, state, parent? }
+report_broken_links_to_slack:
+  description: |
+    Agent asked to format the broken link list as Slack-friendly markdown and to send to specified channel using Slack toolset returned by MCP.
+  expected_output: Markdown message string suitable for posting to Slack
+compile_changelog_and_post_to_slack:
+  description: |
+    Combines module summaries and requests agent to format full changelog message then uses Slack toolset to post to channel.
+  expected_output: Final changelog markdown text to send to Slack
+build_all_packages:
+  description: |
+    Build monorepo packages; may call pnpmBuild per-package or run root-level pnpm run build as implementation.
+  expected_output: No structured output; success or failure logged.
+publish_all_packages:
+  description: Executes publish step and expects success; on error reporting, stop
+    workflow.
+  expected_output: 'Completed: publish_all_packages'
+set_dist_tags:
+  description: |
+    Iterates package.json files under package directories and runs npm dist-tag add <pkg>@<version> latest.
+  expected_output: 'Completed: set_dist_tags'
+user_chat_input:
+  description: 'Prompt user with ''\n You:'' and validate non-empty input; returns
+    {message: string}.'
+  expected_output: 'message: string'
+agent_response_generation:
+  description: |
+    Agent receives message, optional context: resourceId/threadId, and produces textual response. Supports streaming of text.
+  expected_output: Free-text response; streaming possible
+fetch_issue_from_git_hub:
+  description: 'Uses GitHub integration to get issue and labels. Output: title, body,
+    labelNames[]'
+  expected_output: 'title: string, body: string, labelNames: string[]'
+generate_labels_task:
+  description: Agent is prompted with issue title/body and available labels; returns
+    labels array.
+  expected_output: 'JSON: { labels: string[] }'
+apply_labels_to_git_hub_issue:
+  description: Uses GitHub integration to add labels to issue.
+  expected_output: 'Completed: apply_labels_to_git_hub_issue'
+get_pull_request:
+  description: Fetch PR via GitHub client and fetch diff URL to retrieve diff text.
+  expected_output: 'Completed: get_pull_request'
+generate_new_contributor_message:
+  description: |
+    Agent provided PR title/body/diff and Mastra docs; generate intro, checklist entries based on guidelines, and outro.
+  expected_output: 'JSON: { intro: string, checklist: string[], outro: string }'
+create_pr_comment:
+  description: Uses GitHub API to create a comment with intro, checklist as - [ ]
+    items, and outro.
+  expected_output: 'Completed: create_pr_comment'

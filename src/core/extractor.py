@@ -414,7 +414,7 @@ def _extract_workflow(g: Graph, tasks_map: Dict[str, TaskModel]) -> List[Workflo
         task_iri = s(row.task)
         task_var = task_iri_to_var.get(task_iri, safe_var(task_iri))
         order = int(row.stepOrder) if row.stepOrder is not None else len(steps) + 1
-        step_type = s(row.stepType).split("#")[-1]
+        step_type = s(row.stepType).split("#")[-1] if row.stepType else "WorkflowStep"
 
         steps.append(WorkflowStepModel(
             iri=step_iri,

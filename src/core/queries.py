@@ -190,8 +190,10 @@ WORKFLOW_QUERY = PREFIXES + """
 SELECT ?step ?stepOrder ?task ?stepType
 WHERE {
     ?step :hasAssociatedTask ?task .
-    ?step a ?stepType .
-    VALUES ?stepType { :WorkflowStep :StartStep :EndStep }
+    OPTIONAL {
+        ?step a ?stepType .
+        FILTER(?stepType IN (:WorkflowStep, :StartStep, :EndStep))
+    }
     OPTIONAL { ?step :stepOrder ?stepOrder }
 }
 ORDER BY ?stepOrder
@@ -225,9 +227,7 @@ WHERE {
 STEP_EDGES_QUERY = PREFIXES + """
 SELECT DISTINCT ?source ?target
 WHERE {
-    { ?source :nextStep ?target . }
-    UNION
-    { ?source :relatedStep ?target . }
+    ?source :nextStep ?target .
 }
 """
 

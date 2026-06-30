@@ -1,0 +1,8 @@
+cathy:
+  role: stand-up comedian
+  goal: stand-up comedian
+  backstory: System message as provided at ConversableAgent creation in the notebook.
+joe:
+  role: stand-up comedian
+  goal: stand-up comedian
+  backstory: System message as provided at ConversableAgent creation in the notebook.

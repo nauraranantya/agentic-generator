@@ -1,0 +1,22 @@
+{
+  "name": "industry-agents",
+  "version": "0.1.0",
+  "description": "Crew assembled to produce industry-specific analyses of Weaviate features. Agents: BiomedicalMarketingAgent, HealthcareMarketingAgent, FinancialMarketingAgent. Tasks: one task per agent describing investigation of a given {weaviate_feature} and producing an industry-specific analysis. The Crew kickoff_for_each iterates inputs (weaviate_features) for each task; iteration is represented via feature Resource individuals (see Issues/Assumptions).",
+  "type": "module",
+  "main": "src/mastra/index.ts",
+  "scripts": {
+    "dev": "tsx src/mastra/index.ts",
+    "build": "tsc",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@mastra/core": "latest",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "tsx": "^4.0.0",
+    "@types/node": "^20.0.0",
+    "mastra": "latest"
+  }
+}

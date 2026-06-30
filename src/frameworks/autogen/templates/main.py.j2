@@ -1,6 +1,7 @@
 import asyncio
 
 {% if resolved_steps %}
+{% if project.agents or human_agents %}
 from team import (
 {% for agent in project.agents %}
     {{ agent.var_name }},
@@ -9,6 +10,7 @@ from team import (
     {{ h.var_name }},
 {% endfor %}
 )
+{% endif %}
 {% else %}
 from team import (
     team,
@@ -50,7 +52,7 @@ async def main():
         print("Executing step: {{ step.task_var_name }}")
         print("=" * 80)
 
-        task_prompt = """{{ step.task_description }}"""
+        task_prompt = """{{ step.task_description | replace('"""', '\\"\\"\\"') }}"""
         # Execute via the assigned agent: {{ step.agent_var }}
         result = await {{ step.agent_var }}.run(task=task_prompt)
 

@@ -1,0 +1,8 @@
+task_fetch_random_image:
+  description: |
+    Task that selects a random image from Unsplash using the getRandomImage tool with a query parameter drawn from an enum of options.
+  expected_output: 'Completed: task_fetch_random_image'
+task_analyze_image:
+  description: |
+    Task that sends an image and an instruction prompt to the LLM agent to determine whether the image is a bird, the species (scientific name) and a short summary of the picture location.
+  expected_output: '{"bird":"boolean","species":"string","location":"string"}'

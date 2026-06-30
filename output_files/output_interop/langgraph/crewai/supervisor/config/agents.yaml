@@ -1,0 +1,4 @@
+generative_ui_supervisor:
+  role: supervisor
+  goal: supervisor
+  backstory: You are a supervisor.

@@ -1,0 +1,6 @@
+stockbroker_01:
+  role: stockbroker
+  goal: |
+    Goal: Provide stock price information to the user, show portfolio details on request, and facilitate buy orders when requested by user.
+  backstory: |
+    System-level instruction provided to the LLM on each invocation. Used with the conversation messages array state.messages.

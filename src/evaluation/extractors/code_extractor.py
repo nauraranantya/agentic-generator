@@ -28,6 +28,13 @@ def _element(category: str, name: str, *aliases: object, important: bool = False
     return EvaluationElement(category=category, name=normalize_name(name), aliases=aliases_for(name, *aliases), important=important)
 
 
+_YAML_CONFIG_KEYWORDS = {
+    "temperature", "model", "model_name", "max_iter", "max_iters", "max_loops",
+    "max_messages", "max_turns", "verbose", "process", "memory",
+    "allow_delegation", "delegation", "human_input",
+}
+
+
 def _extract_common_elements(text: str, project_dir: Path, framework: str) -> List[EvaluationElement]:
     elements: List[EvaluationElement] = []
     framework = framework.lower()
@@ -40,30 +47,99 @@ def _extract_common_elements(text: str, project_dir: Path, framework: str) -> Li
     if framework in {"langgraph", "mastra"}:
         elements.extend(_extract_typescript_elements(text, framework))
 
-    # Config-like key/value strings are useful for OEC config matching.
-    for key in re.findall(r"[\"']([a-zA-Z_][a-zA-Z0-9_\-]*(?:temperature|model|max|verbose|process|memory|delegation)[a-zA-Z0-9_\-]*)[\"']\s*[:=]", text):
+    # Config detection — path A: quoted keys (JSON / Python dicts / TypeScript)
+    for key in re.findall(
+        r"[\"']([a-zA-Z_][a-zA-Z0-9_\-]*(?:temperature|model|max|verbose|process|memory|delegation)[a-zA-Z0-9_\-]*)[\"']\s*[:=]",
+        text,
+    ):
         elements.append(_element("config", key, important=True))
 
+    # Config detection — path B: unquoted YAML bare keys (e.g. `verbose: true`)
+    for match in re.finditer(r"^([a-zA-Z_][a-zA-Z0-9_]*)[ \t]*:", text, re.MULTILINE):
+        key = match.group(1)
+        if any(kw in key.lower() for kw in _YAML_CONFIG_KEYWORDS):
+            elements.append(_element("config", key, important=True))
+
     return elements
+
+
+# --- Python workflow/step patterns ----------------------------------------
+# These are structural API patterns, not dataset-specific identifiers.
+# They match the public API surface of CrewAI and AutoGen.
+
+# CrewAI: classes decorated with @CrewBase are workflow containers.
+_CREWAI_BASE_DECORATOR = re.compile(r"@CrewBase")
+# CrewAI: functions decorated with @crew return the Crew object (workflow root).
+_CREWAI_CREW_DECORATOR = re.compile(r"@crew")
+# CrewAI: Process.sequential / Process.hierarchical imply a workflow.
+_CREWAI_PROCESS = re.compile(r"Process\.(sequential|hierarchical)")
+# AutoGen: group chat team instantiation = workflow.
+_AUTOGEN_TEAM_CALL = re.compile(
+    r"(?:RoundRobinGroupChat|SelectorGroupChat|Swarm)\s*\("
+)
+# AutoGen generator emits structured step comments.
+_AUTOGEN_STEP_COMMENT = re.compile(r"#\s*Workflow Step:\s*([a-zA-Z0-9_]+)")
+# AutoGen generator emits workflow name comments.
+_AUTOGEN_WF_COMMENT = re.compile(r"#\s*Workflow:\s*([a-zA-Z0-9_]+)")
+# --------------------------------------------------------------------------
 
 
 def _extract_python_elements(path: Path) -> List[EvaluationElement]:
     elements: List[EvaluationElement] = []
     try:
-        tree = ast.parse(path.read_text(encoding="utf-8"))
+        source = path.read_text(encoding="utf-8")
+        tree = ast.parse(source)
     except (SyntaxError, UnicodeDecodeError):
         return elements
 
+    # ── Source-text level patterns (regex over raw text) ─────────────────
+
+    # AutoGen: structured step and workflow comments emitted by the generator
+    for match in _AUTOGEN_STEP_COMMENT.finditer(source):
+        step_name = match.group(1)
+        elements.append(_element("workflow_step", step_name, important=True))
+        elements.append(_element("task", step_name, important=True))
+
+    for match in _AUTOGEN_WF_COMMENT.finditer(source):
+        elements.append(_element("workflow", match.group(1), important=True))
+
+    # AutoGen: team instantiation implies a workflow
+    if _AUTOGEN_TEAM_CALL.search(source):
+        # The variable name the team is assigned to is the workflow identifier
+        for m in re.finditer(
+            r"([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(?:RoundRobinGroupChat|SelectorGroupChat|Swarm)\s*\(",
+            source,
+        ):
+            elements.append(_element("workflow", m.group(1), important=True))
+
+    # CrewAI: Process.sequential / Process.hierarchical
+    if _CREWAI_PROCESS.search(source):
+        elements.append(_element("workflow", "crew", important=True))
+
+    # ── AST-level patterns ────────────────────────────────────────────────
+    crewbase_classes: List[str] = []
     for node in ast.walk(tree):
+        # CrewAI: classes with @CrewBase decorator
+        if isinstance(node, ast.ClassDef):
+            dec_names = {_decorator_name(d) for d in node.decorator_list}
+            if "CrewBase" in dec_names:
+                crewbase_classes.append(node.name)
+                elements.append(_element("workflow", node.name, important=True))
+
         if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
             decorators = {_decorator_name(dec) for dec in node.decorator_list}
             if "agent" in decorators:
                 elements.append(_element("agent", node.name, important=True))
             if "task" in decorators:
                 elements.append(_element("task", node.name, important=True))
+                # In CrewAI each @task function is also a workflow step
+                elements.append(_element("workflow_step", node.name, important=True))
             if "tool" in decorators:
                 tool_name = _first_string_arg(node.decorator_list) or node.name
                 elements.append(_element("tool", node.name, tool_name, important=True))
+            if "crew" in decorators:
+                # @crew method is the workflow entry point
+                elements.append(_element("workflow", node.name, important=True))
 
         if isinstance(node, ast.Assign):
             call = node.value if isinstance(node.value, ast.Call) else None
@@ -76,6 +152,9 @@ def _extract_python_elements(path: Path) -> List[EvaluationElement]:
                     elements.append(_element("agent", target_name, _keyword_string(call, "name"), important=True))
                 if call_name in {"FunctionTool", "Tool"}:
                     elements.append(_element("tool", target_name, _keyword_string(call, "name"), important=True))
+                # CrewAI: Crew(...) assignment
+                if call_name == "Crew":
+                    elements.append(_element("workflow", target_name, important=True))
 
     return elements
 

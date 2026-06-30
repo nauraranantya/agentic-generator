@@ -1,0 +1,12 @@
+run_evals_task:
+  description: |
+    Task representing the tests/runEvals invocation that evaluates ycAgent using the AnswerRelevancyScorer with a small input dataset.
+  expected_output: 'Completed: run_evals_task'
+fetch_yc_data_task:
+  description: Task that represents the operation of the yc-directory tool's execute
+    function returning YC data.
+  expected_output: 'Completed: fetch_yc_data_task'
+answer_yc_directory_query:
+  description: |
+    Primary task the ycDirectoryAgent performs: accept a natural language query about the YC 2024 directory and produce an answer exclusively using the yc-directory tool's dataset. Must include batch numbers when referencing companies and must not hallucinate beyond the available fields.
+  expected_output: 'Completed: answer_yc_directory_query'

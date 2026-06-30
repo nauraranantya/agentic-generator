@@ -1,0 +1,26 @@
+sync_csv_data_task:
+  description: Sync Csv Data Task
+  expected_output: 'Completed: sync_csv_data_task'
+find_outbound_flight:
+  description: |
+    Select 1 outbound flight for the given departureLocation -> arrivalLocation and date range. Return entire flight object including legs and timestamps. Consider flightPriority to trade off price vs convenience.
+  expected_output: 'Completed: find_outbound_flight'
+find_return_flight:
+  description: |
+    Select 1 return flight for the given arrivalLocation -> departureLocation and date range. Return entire flight object including legs and timestamps.
+  expected_output: 'Completed: find_return_flight'
+find_accommodation_hotel_or_airbnb:
+  description: |
+    If accommodationType is 'hotel' call Search Hotels tool using arrivalCityId. If accommodationType is 'airbnb', first call Search Airbnb Location tool to get place id and then call Search Airbnb tool using that id, typeOfPlace, startDate, endDate. Do NOT call Airbnb tools if accommodationType is hotel. Do NOT call searchHotels if accommodationType is airbnb.
+  expected_output: 'Completed: find_accommodation_hotel_or_airbnb'
+find_attractions:
+  description: |
+    Find three activities and attractions for the customer based on interests and arrivalAttractionId; return id, name, description, rating, price, imageUrl, location.
+  expected_output: 'Completed: find_attractions'
+analyze_and_format_results:
+  description: |
+    Take the travel agent's research outputs and format them precisely into the travelSchema: flights {outbound, return}, accommodation, attractions. Extract numeric hotel ratings from description text; replace '<UNKNOWN>' with empty strings; include layover legs. Return JSON matching schema.
+  expected_output: 'Completed: analyze_and_format_results'
+travel_agent_participates_in_planning_tasks:
+  description: Travel Agent Participates In Planning Tasks
+  expected_output: 'Completed: travel_agent_participates_in_planning_tasks'

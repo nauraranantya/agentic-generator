@@ -1,0 +1,89 @@
+import asyncio
+
+from team import (
+    open_code_agent_001,
+    human_user,
+)
+
+from autogen_agentchat.conditions import (
+    MaxMessageTermination,
+)
+
+INPUTS = {
+
+}
+
+
+async def main():
+    try:
+        # Step-by-step sequential execution
+        # ==================================================
+        # Workflow Step: planner_task_produce_plan_tool_call
+        # Workflow Edge: planner_task_produce_plan_tool_call -> executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push
+        # ==================================================
+        print("\n" + "=" * 80)
+        print("Executing step: planner_task_produce_plan_tool_call")
+        print("=" * 80)
+
+        task_prompt = """Generates a plan tool_call with args:
+- executedPlans: array of strings (items already executed)
+- rejectedPlans: array of strings (items rejected by user)
+- remainingPlans: array of strings (items still to execute)
+Default PLAN (remainingPlans initial value) is the 6-step plan to build the todo app (see PlanPrompt.promptInputData).
+Emits:
+- an AI message containing a short summary in content (either initial plan text or 'I've updated the plan list based on the last proposed change.')
+- a tool call named 'plan' with the args above
+Also produces a ToolMessage representing a simulated user approval ("User has approved the plan.") that the StateGraph uses to progress."""
+        # Execute via the assigned agent: open_code_agent_001
+        result = await open_code_agent_001.run(task=task_prompt)
+
+        # Print step output
+        if hasattr(result, "messages") and result.messages:
+            print(result.messages[-1].content)
+        else:
+            print(result)
+
+        # ==================================================
+        # Workflow Step: executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push
+        # Workflow Edge: executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push -> planner_task_produce_plan_tool_call
+        # ==================================================
+        print("\n" + "=" * 80)
+        print("Executing step: executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push")
+        print("=" * 80)
+
+        task_prompt = """Reads the last 'plan' tool_call to compute:
+- nextPlanItem: the first element of remainingPlans (if any)
+- numSeenPlans = executedPlans.length + rejectedPlans.length
+If no nextPlanItem: returns an AI message with content:
+"Successfully completed all the steps in the plan. Please let me know if you need anything else!"
+Otherwise:
+- Selects file update content based on numSeenPlans (maps 0..5 to step-1..step-6 file resources).
+- Builds a tool_call named 'update_file' with args:
+  - new_file_content (string): the file content to write
+  - executed_plan_item (string): the plan item description being executed
+- Generates an AI message containing the tool_call and pushes a UI item named 'proposed-change' with props { toolCallId, change, planItem, fullWriteAccess }.
+The UI push is intended to present the proposed change to the human for approval or rejection."""
+        # Execute via the assigned agent: open_code_agent_001
+        result = await open_code_agent_001.run(task=task_prompt)
+
+        # Print step output
+        if hasattr(result, "messages") and result.messages:
+            print(result.messages[-1].content)
+        else:
+            print(result)
+
+        print("\n" + "=" * 80)
+        print("DONE")
+        print("=" * 80)
+
+    except Exception as e:
+        print("\n" + "=" * 80)
+        print("ERROR")
+        print("=" * 80)
+        print(type(e).__name__)
+        print(str(e))
+
+
+
+if __name__ == "__main__":
+    asyncio.run(main())

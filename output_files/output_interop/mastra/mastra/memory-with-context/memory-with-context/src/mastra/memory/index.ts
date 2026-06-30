@@ -1,0 +1,1 @@
+export { memoryKb } from './memoryKb'

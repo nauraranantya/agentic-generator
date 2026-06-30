@@ -1,0 +1,22 @@
+{
+  "name": "starter_template",
+  "version": "0.1.0",
+  "description": "A Crew defined in main.py that composes two custom agents and two custom tasks. Verbose=True, debug default False.",
+  "type": "module",
+  "main": "src/mastra/index.ts",
+  "scripts": {
+    "dev": "tsx src/mastra/index.ts",
+    "build": "tsc",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@mastra/core": "latest",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "tsx": "^4.0.0",
+    "@types/node": "^20.0.0",
+    "mastra": "latest"
+  }
+}

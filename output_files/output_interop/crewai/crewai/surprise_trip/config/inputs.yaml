@@ -1,0 +1,14 @@
+# Runtime inputs for crew.kickoff(inputs=...)
+# Edit values below before running the crew.
+#
+# When a key maps to a list, main.py uses the FIRST item as the
+# runtime value.  Reorder or edit the list to choose a different example.
+#
+# Variables marked 'required' have no default — you must provide a value.
+
+destination: ""  # required — provide a value before running
+origin: ""  # required — provide a value before running
+age: ""  # required — provide a value before running
+hotel_location: ""  # required — provide a value before running
+flight_information: ""  # required — provide a value before running
+trip_duration: ""  # required — provide a value before running

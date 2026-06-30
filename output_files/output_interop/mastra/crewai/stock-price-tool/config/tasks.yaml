@@ -1,0 +1,8 @@
+fetch_stock_price_for_symbol_aapl_example:
+  description: |
+    Task representing the user's invocation in src/index.ts where the agent is asked: 'What is the current stock price of Apple (AAPL)?'. The agent handles the query using its model and invokes the stockPrices tool to fetch the numeric price.
+  expected_output: currentPrice (numeric)
+index_ts:
+  description: |
+    Sequence in source: const stockAgent = mastra.getAgent('stockAgent'); const response = await stockAgent.generate('What is the current stock price of Apple (AAPL)?'); The runtime inspects response.toolResults to find an entry where toolName === 'stockPrices' and reads result.currentPrice, then logs 'The current price of Apple (AAPL) is $<currentPrice>'.
+  expected_output: currentPrice (numeric)

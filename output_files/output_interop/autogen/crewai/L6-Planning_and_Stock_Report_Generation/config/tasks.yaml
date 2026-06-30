@@ -1,0 +1,24 @@
+main_task:
+  description: Top-level task given by Admin that initiates the workflow. Text preserved
+    in MainTaskPrompt.
+  expected_output: 'Completed: main_task'
+plan_information_task:
+  description: |
+    Planner determines which information (stock prices, date range, sources, computation methods) is needed and specifies steps for retrieving it using Python code.
+  expected_output: 'Completed: plan_information_task'
+write_code_task:
+  description: |
+    Engineer implements Python code to retrieve stock data, compute required metrics, and produce artifacts for the writer. Code artifact contains instructions like 'retrieve historic prices, compute performance over last month, format data for report'.
+  expected_output: 'Completed: write_code_task'
+execute_code_task:
+  description: |
+    Executor runs the code produced by the Engineer in a specified working directory and returns execution outputs (e.g., numerical results, csv, figures). Execution config preserved on ExecutorConfig_Execution.
+  expected_output: 'Completed: execute_code_task'
+write_report_task:
+  description: |
+    Writer composes the blog post using execution results; writes in markdown format with relevant titles and places content inside a pseudo ```md``` code block. The writer should accept feedback from Admin and refine the blog.
+  expected_output: 'Completed: write_report_task'
+admin_feedback_task:
+  description: |
+    Admin (user_proxy) reviews the blog draft and provides feedback; the Writer will refine the blog accordingly. Modeled as a Task performed by a HumanAgent.
+  expected_output: 'Completed: admin_feedback_task'

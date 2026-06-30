@@ -1,0 +1,12 @@
+task_collect_personal_info:
+  description: |
+    sender: onboarding_personal_information_agent; recipient: customer_proxy_agent; summary_method: reflection_with_llm; summary_args: { 'summary_prompt': "Return the customer information into as JSON object only: {'name': '', 'location': ''}" }; max_turns: 2; clear_history: True
+  expected_output: JSON object with keys 'name' and 'location'
+task_collect_topic_preferences:
+  description: |
+    sender: onboarding_topic_preference_agent; recipient: customer_proxy_agent; summary_method: reflection_with_llm; max_turns: 1; clear_history: False
+  expected_output: 'Completed: task_collect_topic_preferences'
+task_customer_proxy_to_engagement:
+  description: |
+    sender: customer_proxy_agent; recipient: customer_engagement_agent; message: "Let's find something fun to read."; summary_method: reflection_with_llm; max_turns: 1
+  expected_output: 'Completed: task_customer_proxy_to_engagement'

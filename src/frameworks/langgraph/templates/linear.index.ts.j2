@@ -74,3 +74,6 @@ const graph = new StateGraph({{ graph_class_name }}Annotation)
 
 export const agent = graph.compile();
 agent.name = "{{ graph_name | ts_escape }}";
+{% for wf_name in workflow_names %}
+// Workflow: {{ wf_name }}
+{% endfor %}

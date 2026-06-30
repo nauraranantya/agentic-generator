@@ -1,0 +1,4 @@
+bird_checker:
+  role: image-analyst
+  goal: image-analyst
+  backstory: You are a image-analyst.

@@ -1,0 +1,12 @@
+initialize_agent_task:
+  description: |
+    Initialization task where the MCP client is queried (listTools()) and the agent's tools collection is populated.
+  expected_output: 'Completed: initialize_agent_task'
+search_mcp_registries_task:
+  description: |
+    Task performed by the MCP Registry Agent: search for registries by ID, tag, or name. This task uses the agent prompt (instructions) and the MCP Registry Tool / MCP Client to obtain information about registries.
+  expected_output: 'Completed: search_mcp_registries_task'
+finalize_task:
+  description: Task to finalize the search operation and present results (formatting,
+    references).
+  expected_output: 'Completed: finalize_task'

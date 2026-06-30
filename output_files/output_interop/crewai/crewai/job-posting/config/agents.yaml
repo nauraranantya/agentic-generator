@@ -1,0 +1,12 @@
+research_agent:
+  role: Research Analyst
+  goal: Research Analyst
+  backstory: 'Role: Research Analyst'
+writer_agent:
+  role: Job Description Writer
+  goal: Job Description Writer
+  backstory: 'Role: Job Description Writer'
+review_agent:
+  role: Review and Editing Specialist
+  goal: Review and Editing Specialist
+  backstory: 'Role: Review and Editing Specialist'

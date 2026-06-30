@@ -1,0 +1,6 @@
+meta_quest_expert:
+  role: Meta Quest Expert
+  goal: Goal expressed in agents configuration to provide best answers to questions
+    about Meta Quest.
+  backstory: Agent-level instruction/backstory used to guide the agent's independent
+    reasoning and responses.

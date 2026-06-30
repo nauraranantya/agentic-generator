@@ -1,0 +1,15 @@
+{
+  "framework": "langgraph",
+  "language": "typescript",
+  "pattern": "supervisor",
+  "generated_files": [
+    ".env.example",
+    "index.ts",
+    "nodes/general-input.ts",
+    "nodes/router.ts",
+    "package.json",
+    "tsconfig.json",
+    "types.ts"
+  ],
+  "timestamp": "2026-06-30T09:05:22.091237+00:00"
+}

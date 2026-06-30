@@ -1,0 +1,1 @@
+export { consoleTool } from './consoleTool'

@@ -1,0 +1,5 @@
+stock_analysis_ytd_stock_gain_plot:
+  description: |
+    Today is {today}. Create a plot showing stock gain YTD for NVDA and TLSA. Make sure the code is in markdown code block and save the figure to a file ytd_stock_gains.png.
+  expected_output: A markdown code block containing runnable code and a saved image
+    file ytd_stock_gains.png

@@ -13,7 +13,12 @@ SKIP_PARTS = {"node_modules", "__pycache__", ".pytest_cache", ".agento-env", "di
 
 def normalize_name(value: object) -> str:
     text = str(value or "")
+    # camelCase boundary: aB → a_B
     text = re.sub(r"([a-z0-9])([A-Z])", r"\1_\2", text)
+    # letter → digit boundary: stepA2 → stepA_2, task2 → task_2
+    text = re.sub(r"([a-zA-Z])(\d)", r"\1_\2", text)
+    # digit → letter boundary: 2step → 2_step
+    text = re.sub(r"(\d)([a-zA-Z])", r"\1_\2", text)
     text = text.replace("-", "_").replace(" ", "_")
     text = re.sub(r"[^a-zA-Z0-9_]+", "_", text)
     text = re.sub(r"_+", "_", text).strip("_")
@@ -27,7 +32,8 @@ def local_name(iri: str) -> str:
 
 
 def token_set(text: str) -> Set[str]:
-    raw = re.findall(r"[a-zA-Z_][a-zA-Z0-9_\-]*", text or "")
+    # Include colon-joined identifiers (e.g. "task:my-step-2") in addition to plain words
+    raw = re.findall(r"[a-zA-Z_][a-zA-Z0-9_:\-]*", text or "")
     tokens = {normalize_name(token) for token in raw if token}
     compact = normalize_name(text)
     if compact:

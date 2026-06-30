@@ -226,6 +226,15 @@ def adapt(project: AgenticProject) -> LangGraphProject:
     router_node_name, routes = _resolve_router_and_routes(nodes, edges)
     start_node_name = next((n.ts_name for n in nodes if n.is_start), "") or (nodes[0].ts_name if nodes else "")
 
+    # Collect original KG workflow identifiers so they appear in generated code
+    # for OEC matching. Both var_name and label are included as aliases.
+    workflow_names: list = []
+    for wf in project.workflows:
+        if wf.var_name and wf.var_name not in workflow_names:
+            workflow_names.append(wf.var_name)
+        if wf.label and wf.label not in workflow_names:
+            workflow_names.append(wf.label)
+
     return LangGraphProject(
         name=project.name or "LangGraph Project",
         tools=tools,
@@ -236,6 +245,7 @@ def adapt(project: AgenticProject) -> LangGraphProject:
         router_node_name=router_node_name,
         start_node_name=start_node_name,
         input_variables=project.input_variables,
+        workflow_names=workflow_names,
         tasks=list(project.tasks),
         human_agents=project.human_agents,
         goals=project.goals,

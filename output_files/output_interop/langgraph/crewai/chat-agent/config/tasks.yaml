@@ -1,0 +1,9 @@
+chat_task:
+  description: |
+    Task logic (semantic summary extracted from source code):
+        - Build an array of messages to send to the language model by making the first message a system role: 'You are a helpful assistant.' and then appending the runtime state.messages array.
+        - Invoke the language model with that messages array.
+        - Return the model response as the task output (messages).
+        Implementation detail: The source uses a ChatOpenAI client with { model: 'gpt-4o-mini' } and calls model.invoke([...]).
+  expected_output: |
+    Language model response messages (returned as the 'messages' value from model.invoke). The node stores that response back into the agent's state.

@@ -1,0 +1,13 @@
+get_random_image_task:
+  description: |
+    Task to fetch a random image from Unsplash using a user-selected query option (wildlife, feathers, flying, birds).
+  expected_output: 'Completed: get_random_image_task'
+analyze_image_task:
+  description: |
+    Task to analyze an image and determine whether it is a bird, the species scientific name, and a short location summary. Implemented via the birdAgent (agent.generate with an image and a text instruction).
+  expected_output: 'z.object({ bird: z.boolean(), species: z.string(), location: z.string()
+    })'
+bird_detection_evaluation_is_a_bird:
+  description: |
+    Evaluation task that runs the agent on sample images and compares results to expected labels and species. Mirrors src/lib/evals/index.eval.ts.
+  expected_output: 'Completed: bird_detection_evaluation_is_a_bird'

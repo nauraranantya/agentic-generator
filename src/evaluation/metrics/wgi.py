@@ -59,7 +59,7 @@ def _edge_payload(edge: Tuple[str, str]) -> Dict[str, str]:
 
 def _topology_score(kg_graph: GraphSpec, code_graph: GraphSpec) -> Tuple[float, float, bool]:
     """Approximate unlabeled directed-graph similarity using degree signatures."""
-    if not kg_graph.edges and not code_graph.edges:
+    if not kg_graph.nodes and not code_graph.nodes:
         return 1.0, 0.0, True
 
     kg_signature = _degree_signature(kg_graph)

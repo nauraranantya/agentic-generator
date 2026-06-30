@@ -1,0 +1,8 @@
+player_white:
+  role: white
+  goal: white
+  backstory: You are a white.
+player_black:
+  role: black
+  goal: black
+  backstory: You are a black.

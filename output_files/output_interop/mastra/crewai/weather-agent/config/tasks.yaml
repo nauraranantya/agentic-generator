@@ -1,0 +1,20 @@
+fetch_weather_task:
+  description: |
+    Fetches weather forecast for a given city and produces forecast array resource. Semantics: take city -> produce daily forecast array with fields date, maxTemp, minTemp, precipitationChance, condition, location.
+  expected_output: 'Completed: fetch_weather_task'
+weather_tool_call_task:
+  description: |
+    Task that calls the get-weather tool. Input: { location: string }. Output: simplified current weather object (temperature, feelsLike, humidity, windSpeed, windGust, conditions, location).
+  expected_output: 'Completed: weather_tool_call_task'
+map_forecast_to_prompt_task:
+  description: |
+    Takes the tool output and formats a short prompt string for the agent. Produces a single string resource.
+  expected_output: 'Completed: map_forecast_to_prompt_task'
+plan_activities:
+  description: |
+    Suggests activities based on weather conditions. Input: forecast array (or forecast object). The step constructs a prompt 'Based on the following weather forecast for {location}, suggest appropriate activities: {JSON}' and streams agent response. Produces an activities text resource.
+  expected_output: 'Completed: plan_activities'
+explain_weather_task:
+  description: |
+    Agent task that receives a prompt string and produces an explanatory text and activity suggestions. Uses the agent instruction template that enforces a specific output formatting (emoji sections, weather summary, activities, indoor alternatives, special considerations).
+  expected_output: 'Completed: explain_weather_task'

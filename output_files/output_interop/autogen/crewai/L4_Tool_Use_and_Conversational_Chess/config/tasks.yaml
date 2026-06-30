@@ -1,0 +1,11 @@
+task_initiate_chat_black_white:
+  description: Let's play chess! Your move.
+  expected_output: 'Completed: task_initiate_chat_black_white'
+task_make_move:
+  description: |
+    Call make_move(move) with a single move argument in UCI format when selecting a move to apply. Expect a textual confirmation describing the moved piece and board update.
+  expected_output: 'Completed: task_make_move'
+task_get_legal_moves:
+  description: |
+    Call get_legal_moves() to obtain the legal moves in UCI format; parse or present the returned comma-separated list to decide on the next move.
+  expected_output: 'Completed: task_get_legal_moves'

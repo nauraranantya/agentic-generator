@@ -1,0 +1,29 @@
+task_extraction:
+  description: |
+    Extraction task: given the entire conversation history, call a tool named "extract" with the following schema:
+    - location: string (required) - "The location to plan the trip for. Can be a city, state, or country."
+    - startDate: string (optional) - "YYYY-MM-DD"
+    - endDate: string (optional) - "YYYY-MM-DD"
+    - numberOfGuests: number (optional) - defaults to 2 if not provided
+
+    Behavior notes:
+    - Do NOT guess or make up information. If location missing, produce a single-sentence clarification request: "Please specify the location for the trip you want to go on".
+    - After extraction: apply date defaulting logic (see TripDetails resource description).
+  expected_output: JSON-like tool call with fields [location, startDate?, endDate?,
+    numberOfGuests?]
+task_classify:
+  description: |
+    Classification task: use a tool named "classify" with schema { isRelevant: boolean } to determine if previously extracted tripDetails remain relevant to the user's most recent message.
+    - If isRelevant == false -> the agent will clear tripDetails (tripDetails becomes undefined) and routing will proceed to extraction.
+    - If isRelevant == true -> proceed to callTools.
+  expected_output: 'Tool call returning { isRelevant: boolean }'
+task_call_tools:
+  description: |
+    CallTools task: binds ACCOMMODATIONS_TOOLS (list-accommodations and list-restaurants), invokes the language model to decide which tool(s) to call, and pushes UI items for results. The LLM receives the system message:
+    "You are an AI assistant who helps users book trips. Use the user's most recent message(s) to contextually generate a response."
+    The task expects state.tripDetails to be defined and produces resources:
+    - Accommodations list resource
+    - Restaurants list resource
+    - UI items (represented here as produced resources)
+  expected_output: |
+    LLM may invoke one or more tool calls (list-accommodations, list-restaurants) or produce direct message responses.

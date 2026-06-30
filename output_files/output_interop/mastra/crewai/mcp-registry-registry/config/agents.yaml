@@ -1,0 +1,5 @@
+mcp_registry_agent:
+  role: registry
+  goal: registry
+  backstory: Agent bootstrap prompt / instruction used to guide agent behavior independent
+    of a specific task.

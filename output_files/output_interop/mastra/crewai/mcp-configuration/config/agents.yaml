@@ -1,0 +1,5 @@
+stock_weather_agent:
+  role: LLM Agent
+  goal: LLM Agent
+  backstory: Agent-level system instructions for independent operation (agent behavior
+    and role).

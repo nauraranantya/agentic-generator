@@ -83,6 +83,10 @@ class LangGraphProject(BaseModel):
         default_factory=list,
         description="Runtime input variables (from agento-ext:KickoffInputBundle)",
     )
+    workflow_names: List[str] = Field(
+        default_factory=list,
+        description="Original workflow identifiers from the KG (used in generated code comments for OEC matching)",
+    )
     tasks: List[TaskModel] = Field(default_factory=list, description="Original tasks for human_input detection in templates")
 
     human_agents: List[HumanAgentModel] = Field(default_factory=list)

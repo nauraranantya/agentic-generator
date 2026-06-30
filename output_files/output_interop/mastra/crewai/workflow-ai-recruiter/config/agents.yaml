@@ -1,0 +1,5 @@
+recruiter_agent:
+  role: Recruiter Agent
+  goal: Recruiter Agent
+  backstory: Agent-level static instruction used as the recruiter's persona/instruction
+    set for generation.

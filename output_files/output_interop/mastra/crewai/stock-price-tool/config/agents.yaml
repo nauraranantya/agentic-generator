@@ -1,0 +1,4 @@
+stock_agent:
+  role: price_provider
+  goal: price_provider
+  backstory: Agent-level instruction used as the LLM system prompt / persona.

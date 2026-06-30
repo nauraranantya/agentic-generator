@@ -1,0 +1,13 @@
+site_crawl_sync_step_task:
+  description: |
+    Task executed by the workflow step site-crawl-sync-step. It runs the SiteCrawlTool (Firecrawl client) to extract markdown pages.
+  expected_output: 'Completed: site_crawl_sync_step_task'
+generate_spec_task:
+  description: |
+    Task executed by the generate-spec step: this task iterates crawled pages, calls the agent to produce OpenAPI fragments, and then asks the agent to merge them.
+  expected_output: |
+    OpenAPI spec fragment (yaml or json) representing endpoints, parameters, responses, schemas extracted from the provided markdown.
+add_to_github_task:
+  description: |
+    Task executed by makePRToMastra workflow: formats YAML via agent and writes files to GitHub then creates a PR.
+  expected_output: Properly formatted YAML (no code fences), ready to write to file.

@@ -1,0 +1,18 @@
+biomedical_agent_task_research_a_weaviate_feature:
+  description: |
+    Conduct a thorough research about {weaviate_feature}
+    Make sure you find any interesting and relevant information using the web and Weaviate blogs.
+  expected_output: |
+    Write an industry specific analysis of why this Weaviate feature would be useful for your industry of expertise.
+healthcare_agent_task_research_a_weaviate_feature:
+  description: |
+    Conduct a thorough research about {weaviate_feature}
+    Make sure you find any interesting and relevant information using the web and Weaviate blogs.
+  expected_output: |
+    Write an industry specific analysis of why this Weaviate feature would be useful for your industry of expertise.
+financial_agent_task_research_a_weaviate_feature:
+  description: |
+    Conduct a thorough research about {weaviate_feature}
+    Make sure you find any interesting and relevant information using the web and Weaviate blogs.
+  expected_output: |
+    Write an industry specific analysis of why this Weaviate feature would be useful for your industry of expertise.

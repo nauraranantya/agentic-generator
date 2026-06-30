@@ -1,0 +1,24 @@
+dane:
+  role: assistant
+  goal: assistant
+  backstory: You are a assistant.
+dane_commit_message:
+  role: LLM Agent
+  goal: LLM Agent
+  backstory: You are a LLM Agent.
+dane_issue_labeler:
+  role: LLM Agent
+  goal: LLM Agent
+  backstory: You are a LLM Agent.
+dane_link_checker:
+  role: LLM Agent
+  goal: LLM Agent
+  backstory: You are a LLM Agent.
+dane_package_publisher:
+  role: LLM Agent
+  goal: LLM Agent
+  backstory: You are a LLM Agent.
+dane_new_contributor:
+  role: LLM Agent
+  goal: LLM Agent
+  backstory: You are a LLM Agent.

@@ -10,10 +10,10 @@
         "projects": 9,
         "evaluated": 9,
         "errors": 0,
-        "avg_oec_all": 0.45376841704304677,
-        "avg_oec_important": 0.8863609680388363,
-        "avg_wgi": 1.0,
-        "avg_edge_f1": 0.9444444444444444,
+        "avg_oec_all": 0.49804725762311086,
+        "avg_oec_important": 0.9468116094536126,
+        "avg_wgi": 0.9333333333333333,
+        "avg_edge_f1": 0.925925925925926,
         "avg_ast_sim": 0.4057011844169407,
         "syntax_success_rate": 1.0,
         "run_success_rate": 1.0
@@ -28,24 +28,10 @@
           "code_element_count": 4,
           "oec": {
             "all_extracted": {
-              "score": 0.5384615384615384,
-              "matched": 7,
+              "score": 0.7692307692307693,
+              "matched": 10,
               "total": 13,
               "missing": [
-                {
-                  "category": "agent_llm",
-                  "name": "chat_agent_1_gpt4o_mini",
-                  "important": false,
-                  "aliases": [
-                    "chat_agent_1_gpt4o_mini",
-                    "chat_agent_1",
-                    "gpt4o_mini"
-                  ],
-                  "details": {
-                    "source": "chat_agent_1",
-                    "target": "gpt4o_mini"
-                  }
-                },
                 {
                   "category": "task_produces",
                   "name": "chat_task_chat_response_resource",
@@ -75,24 +61,6 @@
                   }
                 },
                 {
-                  "category": "workflow",
-                  "name": "chat_agent_state_graph",
-                  "important": true,
-                  "aliases": [
-                    "chat_agent_state_graph"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "language_model",
-                  "name": "gpt4o_mini",
-                  "important": false,
-                  "aliases": [
-                    "gpt4o_mini"
-                  ],
-                  "details": {}
-                },
-                {
                   "category": "resource",
                   "name": "chat_response_resource",
                   "important": false,
@@ -109,8 +77,8 @@
                   "total": 1
                 },
                 "agent_llm": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "config": {
@@ -119,8 +87,8 @@
                   "total": 1
                 },
                 "language_model": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "project": {
@@ -159,8 +127,8 @@
                   "total": 1
                 },
                 "workflow": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "workflow_step": {
@@ -171,20 +139,10 @@
               }
             },
             "important_subset": {
-              "score": 0.8571428571428571,
-              "matched": 6,
+              "score": 1.0,
+              "matched": 7,
               "total": 7,
-              "missing": [
-                {
-                  "category": "workflow",
-                  "name": "chat_agent_state_graph",
-                  "important": true,
-                  "aliases": [
-                    "chat_agent_state_graph"
-                  ],
-                  "details": {}
-                }
-              ],
+              "missing": [],
               "by_category": {
                 "agent": {
                   "score": 1.0,
@@ -212,8 +170,8 @@
                   "total": 1
                 },
                 "workflow": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "workflow_step": {
@@ -264,22 +222,22 @@
           "code_element_count": 16,
           "oec": {
             "all_extracted": {
-              "score": 0.3584905660377358,
-              "matched": 19,
+              "score": 0.37735849056603776,
+              "matched": 20,
               "total": 53,
               "missing": [
                 {
                   "category": "agent_llm",
-                  "name": "email_assistant_agent_gpt_4o_chat_open_ai",
+                  "name": "email_assistant_agent_gpt_4_o_chat_open_ai",
                   "important": false,
                   "aliases": [
-                    "email_assistant_agent_gpt_4o_chat_open_ai",
+                    "email_assistant_agent_gpt_4_o_chat_open_ai",
                     "email_assistant_agent",
-                    "gpt_4o_chat_open_ai"
+                    "gpt_4_o_chat_open_ai"
                   ],
                   "details": {
                     "source": "email_assistant_agent",
-                    "target": "gpt_4o_chat_open_ai"
+                    "target": "gpt_4_o_chat_open_ai"
                   }
                 },
                 {
@@ -573,16 +531,6 @@
                   }
                 },
                 {
-                  "category": "workflow",
-                  "name": "email_assistant_workflow",
-                  "important": true,
-                  "aliases": [
-                    "email_assistant_workflow",
-                    "email_assistant_workflow_pattern"
-                  ],
-                  "details": {}
-                },
-                {
                   "category": "workflow_step",
                   "name": "rewrite_email_apply_user_s_requested_changes",
                   "important": true,
@@ -607,11 +555,11 @@
                 },
                 {
                   "category": "language_model",
-                  "name": "gpt_4o_chat_open_ai",
+                  "name": "gpt_4_o_chat_open_ai",
                   "important": false,
                   "aliases": [
-                    "gpt_4o_chat_open_ai",
-                    "gpt4o_model"
+                    "gpt_4_o_chat_open_ai",
+                    "gpt_4_o_model"
                   ],
                   "details": {}
                 },
@@ -791,8 +739,8 @@
                   "total": 1
                 },
                 "workflow": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "workflow_step": {
@@ -803,8 +751,8 @@
               }
             },
             "important_subset": {
-              "score": 0.6956521739130435,
-              "matched": 16,
+              "score": 0.7391304347826086,
+              "matched": 17,
               "total": 23,
               "missing": [
                 {
@@ -858,16 +806,6 @@
                     "source": "send_email_finalize_send",
                     "target": "rewrite_email_apply_user_s_requested_changes"
                   }
-                },
-                {
-                  "category": "workflow",
-                  "name": "email_assistant_workflow",
-                  "important": true,
-                  "aliases": [
-                    "email_assistant_workflow",
-                    "email_assistant_workflow_pattern"
-                  ],
-                  "details": {}
                 },
                 {
                   "category": "workflow_step",
@@ -935,8 +873,8 @@
                   "total": 1
                 },
                 "workflow": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "workflow_step": {
@@ -948,17 +886,17 @@
             }
           },
           "wgi": {
-            "score": 1.0,
-            "normalized_graph_edit_distance": 0.0,
-            "labeled_score": 0.4545454545454546,
-            "topology_score": 1.0,
-            "labeled_normalized_graph_edit_distance": 0.5454545454545454,
-            "topology_normalized_graph_edit_distance": 0.0,
+            "score": 0.4,
+            "normalized_graph_edit_distance": 0.6,
+            "labeled_score": 0.4,
+            "topology_score": 0.0,
+            "labeled_normalized_graph_edit_distance": 0.6,
+            "topology_normalized_graph_edit_distance": 1.0,
             "exact_isomorphic": false,
-            "topology_isomorphic": true,
-            "edge_precision": 0.5,
+            "topology_isomorphic": false,
+            "edge_precision": 0.25,
             "edge_recall": 0.5,
-            "edge_f1": 0.5,
+            "edge_f1": 0.3333333333333333,
             "kg_nodes": [
               "ignore",
               "rewrite_email_apply_user_s_requested_changes",
@@ -972,14 +910,6 @@
               "write_email_generate_draft"
             ],
             "kg_edges": [
-              {
-                "source": "ignore",
-                "target": "rewrite_email_apply_user_s_requested_changes"
-              },
-              {
-                "source": "ignore",
-                "target": "send_email_finalize_send"
-              },
               {
                 "source": "rewrite_email_apply_user_s_requested_changes",
                 "target": "ignore"
@@ -1015,10 +945,6 @@
             ],
             "missing_edges": [
               {
-                "source": "ignore",
-                "target": "rewrite_email_apply_user_s_requested_changes"
-              },
-              {
                 "source": "rewrite_email_apply_user_s_requested_changes",
                 "target": "ignore"
               }
@@ -1027,6 +953,10 @@
               {
                 "source": "ignore",
                 "target": "rewrite_email_apply_user_srequested_changes"
+              },
+              {
+                "source": "ignore",
+                "target": "send_email_finalize_send"
               },
               {
                 "source": "rewrite_email_apply_user_srequested_changes",
@@ -1049,8 +979,8 @@
           "code_element_count": 9,
           "oec": {
             "all_extracted": {
-              "score": 0.27450980392156865,
-              "matched": 14,
+              "score": 0.29411764705882354,
+              "matched": 15,
               "total": 51,
               "missing": [
                 {
@@ -1184,86 +1114,86 @@
                 },
                 {
                   "category": "task_produces",
-                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step1_file",
+                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step_1_file",
                   "important": false,
                   "aliases": [
-                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step1_file",
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step_1_file",
                     "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
-                    "resource_step1_file"
+                    "resource_step_1_file"
                   ],
                   "details": {
                     "source": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
-                    "target": "resource_step1_file"
+                    "target": "resource_step_1_file"
                   }
                 },
                 {
                   "category": "task_produces",
-                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step2_file",
+                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step_2_file",
                   "important": false,
                   "aliases": [
-                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step2_file",
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step_2_file",
                     "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
-                    "resource_step2_file"
+                    "resource_step_2_file"
                   ],
                   "details": {
                     "source": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
-                    "target": "resource_step2_file"
+                    "target": "resource_step_2_file"
                   }
                 },
                 {
                   "category": "task_produces",
-                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step3_file",
+                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step_3_file",
                   "important": false,
                   "aliases": [
-                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step3_file",
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step_3_file",
                     "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
-                    "resource_step3_file"
+                    "resource_step_3_file"
                   ],
                   "details": {
                     "source": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
-                    "target": "resource_step3_file"
+                    "target": "resource_step_3_file"
                   }
                 },
                 {
                   "category": "task_produces",
-                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step4_file",
+                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step_4_file",
                   "important": false,
                   "aliases": [
-                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step4_file",
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step_4_file",
                     "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
-                    "resource_step4_file"
+                    "resource_step_4_file"
                   ],
                   "details": {
                     "source": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
-                    "target": "resource_step4_file"
+                    "target": "resource_step_4_file"
                   }
                 },
                 {
                   "category": "task_produces",
-                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step5_file",
+                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step_5_file",
                   "important": false,
                   "aliases": [
-                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step5_file",
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step_5_file",
                     "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
-                    "resource_step5_file"
+                    "resource_step_5_file"
                   ],
                   "details": {
                     "source": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
-                    "target": "resource_step5_file"
+                    "target": "resource_step_5_file"
                   }
                 },
                 {
                   "category": "task_produces",
-                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step6_file",
+                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step_6_file",
                   "important": false,
                   "aliases": [
-                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step6_file",
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step_6_file",
                     "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
-                    "resource_step6_file"
+                    "resource_step_6_file"
                   ],
                   "details": {
                     "source": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
-                    "target": "resource_step6_file"
+                    "target": "resource_step_6_file"
                   }
                 },
                 {
@@ -1357,16 +1287,6 @@
                   }
                 },
                 {
-                  "category": "workflow",
-                  "name": "open_code_graph_pattern",
-                  "important": true,
-                  "aliases": [
-                    "open_code_graph_pattern",
-                    "open_code_graph"
-                  ],
-                  "details": {}
-                },
-                {
                   "category": "memory",
                   "name": "open_code_memory",
                   "important": false,
@@ -1427,60 +1347,60 @@
                 },
                 {
                   "category": "resource",
-                  "name": "resource_step1_file",
+                  "name": "resource_step_1_file",
                   "important": false,
                   "aliases": [
-                    "resource_step1_file",
+                    "resource_step_1_file",
                     "step_1_scaffold_commands"
                   ],
                   "details": {}
                 },
                 {
                   "category": "resource",
-                  "name": "resource_step2_file",
+                  "name": "resource_step_2_file",
                   "important": false,
                   "aliases": [
-                    "resource_step2_file",
+                    "resource_step_2_file",
                     "step_2_todo_item_component"
                   ],
                   "details": {}
                 },
                 {
                   "category": "resource",
-                  "name": "resource_step3_file",
+                  "name": "resource_step_3_file",
                   "important": false,
                   "aliases": [
-                    "resource_step3_file",
+                    "resource_step_3_file",
                     "step_3_todo_context_state_management"
                   ],
                   "details": {}
                 },
                 {
                   "category": "resource",
-                  "name": "resource_step4_file",
+                  "name": "resource_step_4_file",
                   "important": false,
                   "aliases": [
-                    "resource_step4_file",
+                    "resource_step_4_file",
                     "step_4_add_todo_component_form_and_validation"
                   ],
                   "details": {}
                 },
                 {
                   "category": "resource",
-                  "name": "resource_step5_file",
+                  "name": "resource_step_5_file",
                   "important": false,
                   "aliases": [
-                    "resource_step5_file",
+                    "resource_step_5_file",
                     "step_5_filters_and_sorting"
                   ],
                   "details": {}
                 },
                 {
                   "category": "resource",
-                  "name": "resource_step6_file",
+                  "name": "resource_step_6_file",
                   "important": false,
                   "aliases": [
-                    "resource_step6_file",
+                    "resource_step_6_file",
                     "step_6_local_storage_utils"
                   ],
                   "details": {}
@@ -1623,8 +1543,8 @@
                   "total": 2
                 },
                 "workflow": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "workflow_step": {
@@ -1635,8 +1555,8 @@
               }
             },
             "important_subset": {
-              "score": 0.8461538461538461,
-              "matched": 11,
+              "score": 0.9230769230769231,
+              "matched": 12,
               "total": 13,
               "missing": [
                 {
@@ -1652,16 +1572,6 @@
                     "source": "open_code_agent_001",
                     "target": "human_user"
                   }
-                },
-                {
-                  "category": "workflow",
-                  "name": "open_code_graph_pattern",
-                  "important": true,
-                  "aliases": [
-                    "open_code_graph_pattern",
-                    "open_code_graph"
-                  ],
-                  "details": {}
                 }
               ],
               "by_category": {
@@ -1696,8 +1606,8 @@
                   "total": 2
                 },
                 "workflow": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "workflow_step": {
@@ -1768,21 +1678,21 @@
           "code_element_count": 9,
           "oec": {
             "all_extracted": {
-              "score": 0.5384615384615384,
-              "matched": 21,
+              "score": 0.5641025641025641,
+              "matched": 22,
               "total": 39,
               "missing": [
                 {
                   "category": "agent_goal",
-                  "name": "pizza_orderer_v1_order_pizza_goal",
+                  "name": "pizza_orderer_v_1_order_pizza_goal",
                   "important": false,
                   "aliases": [
-                    "pizza_orderer_v1_order_pizza_goal",
-                    "pizza_orderer_v1",
+                    "pizza_orderer_v_1_order_pizza_goal",
+                    "pizza_orderer_v_1",
                     "order_pizza_goal"
                   ],
                   "details": {
-                    "source": "pizza_orderer_v1",
+                    "source": "pizza_orderer_v_1",
                     "target": "order_pizza_goal"
                   }
                 },
@@ -1897,15 +1807,6 @@
                     "source": "tool_pizza_ordering_system",
                     "target": "cap_place_order"
                   }
-                },
-                {
-                  "category": "workflow",
-                  "name": "order_pizza_graph",
-                  "important": true,
-                  "aliases": [
-                    "order_pizza_graph"
-                  ],
-                  "details": {}
                 },
                 {
                   "category": "goal",
@@ -2074,8 +1975,8 @@
                   "total": 2
                 },
                 "workflow": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "workflow_step": {
@@ -2086,20 +1987,10 @@
               }
             },
             "important_subset": {
-              "score": 0.9230769230769231,
-              "matched": 12,
+              "score": 1.0,
+              "matched": 13,
               "total": 13,
-              "missing": [
-                {
-                  "category": "workflow",
-                  "name": "order_pizza_graph",
-                  "important": true,
-                  "aliases": [
-                    "order_pizza_graph"
-                  ],
-                  "details": {}
-                }
-              ],
+              "missing": [],
               "by_category": {
                 "agent": {
                   "score": 1.0,
@@ -2132,8 +2023,8 @@
                   "total": 2
                 },
                 "workflow": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "workflow_step": {
@@ -2761,22 +2652,22 @@
           "code_element_count": 29,
           "oec": {
             "all_extracted": {
-              "score": 0.5263157894736842,
-              "matched": 50,
+              "score": 0.5368421052631579,
+              "matched": 51,
               "total": 95,
               "missing": [
                 {
                   "category": "agent_llm",
-                  "name": "generative_ui_supervisor_lm_gpt_4o_mini",
+                  "name": "generative_ui_supervisor_lm_gpt_4_o_mini",
                   "important": false,
                   "aliases": [
-                    "generative_ui_supervisor_lm_gpt_4o_mini",
+                    "generative_ui_supervisor_lm_gpt_4_o_mini",
                     "generative_ui_supervisor",
-                    "lm_gpt_4o_mini"
+                    "lm_gpt_4_o_mini"
                   ],
                   "details": {
                     "source": "generative_ui_supervisor",
-                    "target": "lm_gpt_4o_mini"
+                    "target": "lm_gpt_4_o_mini"
                   }
                 },
                 {
@@ -3111,22 +3002,11 @@
                   }
                 },
                 {
-                  "category": "workflow",
-                  "name": "generative_ui_workflow",
-                  "important": true,
-                  "aliases": [
-                    "generative_ui_workflow",
-                    "generative_ui_agent_workflow",
-                    "generative_uiworkflow"
-                  ],
-                  "details": {}
-                },
-                {
                   "category": "language_model",
-                  "name": "lm_anthropic_claude3_7",
+                  "name": "lm_anthropic_claude_3_7",
                   "important": false,
                   "aliases": [
-                    "lm_anthropic_claude3_7"
+                    "lm_anthropic_claude_3_7"
                   ],
                   "details": {}
                 },
@@ -3141,10 +3021,10 @@
                 },
                 {
                   "category": "language_model",
-                  "name": "lm_gpt_4o_mini",
+                  "name": "lm_gpt_4_o_mini",
                   "important": false,
                   "aliases": [
-                    "lm_gpt_4o_mini"
+                    "lm_gpt_4_o_mini"
                   ],
                   "details": {}
                 },
@@ -3400,8 +3280,8 @@
                   "total": 10
                 },
                 "workflow": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "workflow_step": {
@@ -3412,8 +3292,8 @@
               }
             },
             "important_subset": {
-              "score": 0.9534883720930233,
-              "matched": 41,
+              "score": 0.9767441860465116,
+              "matched": 42,
               "total": 43,
               "missing": [
                 {
@@ -3432,17 +3312,6 @@
                     "owner_category": "agent",
                     "value": "0.7"
                   }
-                },
-                {
-                  "category": "workflow",
-                  "name": "generative_ui_workflow",
-                  "important": true,
-                  "aliases": [
-                    "generative_ui_workflow",
-                    "generative_ui_agent_workflow",
-                    "generative_uiworkflow"
-                  ],
-                  "details": {}
                 }
               ],
               "by_category": {
@@ -3477,8 +3346,8 @@
                   "total": 7
                 },
                 "workflow": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "workflow_step": {
@@ -3591,22 +3460,22 @@
           "code_element_count": 13,
           "oec": {
             "all_extracted": {
-              "score": 0.5384615384615384,
-              "matched": 35,
+              "score": 0.5538461538461539,
+              "matched": 36,
               "total": 65,
               "missing": [
                 {
                   "category": "agent_llm",
-                  "name": "trip_planner_agent_language_model_gpt4o",
+                  "name": "trip_planner_agent_language_model_gpt_4_o",
                   "important": false,
                   "aliases": [
-                    "trip_planner_agent_language_model_gpt4o",
+                    "trip_planner_agent_language_model_gpt_4_o",
                     "trip_planner_agent",
-                    "language_model_gpt4o"
+                    "language_model_gpt_4_o"
                   ],
                   "details": {
                     "source": "trip_planner_agent",
-                    "target": "language_model_gpt4o"
+                    "target": "language_model_gpt_4_o"
                   }
                 },
                 {
@@ -3907,20 +3776,11 @@
                   }
                 },
                 {
-                  "category": "workflow",
-                  "name": "trip_planner_workflow",
-                  "important": true,
-                  "aliases": [
-                    "trip_planner_workflow"
-                  ],
-                  "details": {}
-                },
-                {
                   "category": "language_model",
-                  "name": "language_model_gpt4o",
+                  "name": "language_model_gpt_4_o",
                   "important": false,
                   "aliases": [
-                    "language_model_gpt4o"
+                    "language_model_gpt_4_o"
                   ],
                   "details": {}
                 },
@@ -4071,8 +3931,8 @@
                   "total": 4
                 },
                 "workflow": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "workflow_step": {
@@ -4083,20 +3943,10 @@
               }
             },
             "important_subset": {
-              "score": 0.9615384615384616,
-              "matched": 25,
+              "score": 1.0,
+              "matched": 26,
               "total": 26,
-              "missing": [
-                {
-                  "category": "workflow",
-                  "name": "trip_planner_workflow",
-                  "important": true,
-                  "aliases": [
-                    "trip_planner_workflow"
-                  ],
-                  "details": {}
-                }
-              ],
+              "missing": [],
               "by_category": {
                 "agent": {
                   "score": 1.0,
@@ -4139,8 +3989,8 @@
                   "total": 4
                 },
                 "workflow": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "workflow_step": {
@@ -4221,8 +4071,8 @@
           "code_element_count": 13,
           "oec": {
             "all_extracted": {
-              "score": 0.41935483870967744,
-              "matched": 13,
+              "score": 0.45161290322580644,
+              "matched": 14,
               "total": 31,
               "missing": [
                 {
@@ -4369,15 +4219,6 @@
                   }
                 },
                 {
-                  "category": "workflow",
-                  "name": "text_utilities_workflow_pattern",
-                  "important": true,
-                  "aliases": [
-                    "text_utilities_workflow_pattern"
-                  ],
-                  "details": {}
-                },
-                {
                   "category": "capability",
                   "name": "capitalize_sentence_capability",
                   "important": false,
@@ -4493,8 +4334,8 @@
                   "total": 3
                 },
                 "workflow": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "workflow_step": {
@@ -4505,20 +4346,10 @@
               }
             },
             "important_subset": {
-              "score": 0.9166666666666666,
-              "matched": 11,
+              "score": 1.0,
+              "matched": 12,
               "total": 12,
-              "missing": [
-                {
-                  "category": "workflow",
-                  "name": "text_utilities_workflow_pattern",
-                  "important": true,
-                  "aliases": [
-                    "text_utilities_workflow_pattern"
-                  ],
-                  "details": {}
-                }
-              ],
+              "missing": [],
               "by_category": {
                 "step_task": {
                   "score": 1.0,
@@ -4536,8 +4367,8 @@
                   "total": 2
                 },
                 "workflow": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "workflow_step": {
@@ -4610,22 +4441,22 @@
           "code_element_count": 13,
           "oec": {
             "all_extracted": {
-              "score": 0.4090909090909091,
-              "matched": 18,
+              "score": 0.45454545454545453,
+              "matched": 20,
               "total": 44,
               "missing": [
                 {
                   "category": "agent_llm",
-                  "name": "writer_annotation_agent_uuid_1_claude3_5_sonnet",
+                  "name": "writer_annotation_agent_uuid_1_claude_3_5_sonnet",
                   "important": false,
                   "aliases": [
-                    "writer_annotation_agent_uuid_1_claude3_5_sonnet",
+                    "writer_annotation_agent_uuid_1_claude_3_5_sonnet",
                     "writer_annotation_agent_uuid_1",
-                    "claude3_5_sonnet"
+                    "claude_3_5_sonnet"
                   ],
                   "details": {
                     "source": "writer_annotation_agent_uuid_1",
-                    "target": "claude3_5_sonnet"
+                    "target": "claude_3_5_sonnet"
                   }
                 },
                 {
@@ -4828,24 +4659,6 @@
                   }
                 },
                 {
-                  "category": "workflow",
-                  "name": "writer_workflow",
-                  "important": true,
-                  "aliases": [
-                    "writer_workflow"
-                  ],
-                  "details": {}
-                },
-                {
-                  "category": "language_model",
-                  "name": "claude3_5_sonnet",
-                  "important": false,
-                  "aliases": [
-                    "claude3_5_sonnet"
-                  ],
-                  "details": {}
-                },
-                {
                   "category": "capability",
                   "name": "capability_create_draft",
                   "important": false,
@@ -4966,8 +4779,8 @@
                   "total": 2
                 },
                 "language_model": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "project": {
@@ -5021,8 +4834,8 @@
                   "total": 1
                 },
                 "workflow": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "workflow_step": {
@@ -5033,20 +4846,10 @@
               }
             },
             "important_subset": {
-              "score": 0.9411764705882353,
-              "matched": 16,
+              "score": 1.0,
+              "matched": 17,
               "total": 17,
-              "missing": [
-                {
-                  "category": "workflow",
-                  "name": "writer_workflow",
-                  "important": true,
-                  "aliases": [
-                    "writer_workflow"
-                  ],
-                  "details": {}
-                }
-              ],
+              "missing": [],
               "by_category": {
                 "agent": {
                   "score": 1.0,
@@ -5084,8 +4887,8 @@
                   "total": 1
                 },
                 "workflow": {
-                  "score": 0.0,
-                  "matched": 0,
+                  "score": 1.0,
+                  "matched": 1,
                   "total": 1
                 },
                 "workflow_step": {

@@ -25,7 +25,7 @@
           "output_dir": "/Users/ravie/dev/agento/output_files/output_autogen/L1_Multi-Agent_Conversation_and_Stand-up_Comedy",
           "status": "ok",
           "kg_element_count": 14,
-          "code_element_count": 2,
+          "code_element_count": 3,
           "oec": {
             "all_extracted": {
               "score": 0.2857142857142857,
@@ -282,7 +282,7 @@
           "output_dir": "/Users/ravie/dev/agento/output_files/output_autogen/L2_Sequential_Chats_and_Customer_Onboarding",
           "status": "ok",
           "kg_element_count": 34,
-          "code_element_count": 4,
+          "code_element_count": 10,
           "oec": {
             "all_extracted": {
               "score": 0.5882352941176471,
@@ -291,16 +291,16 @@
               "missing": [
                 {
                   "category": "agent_llm",
-                  "name": "onboarding_personal_information_agent_lm_gpt3_5_turbo",
+                  "name": "onboarding_personal_information_agent_lm_gpt_3_5_turbo",
                   "important": false,
                   "aliases": [
-                    "onboarding_personal_information_agent_lm_gpt3_5_turbo",
+                    "onboarding_personal_information_agent_lm_gpt_3_5_turbo",
                     "onboarding_personal_information_agent",
-                    "lm_gpt3_5_turbo"
+                    "lm_gpt_3_5_turbo"
                   ],
                   "details": {
                     "source": "onboarding_personal_information_agent",
-                    "target": "lm_gpt3_5_turbo"
+                    "target": "lm_gpt_3_5_turbo"
                   }
                 },
                 {
@@ -339,16 +339,16 @@
                 },
                 {
                   "category": "agent_llm",
-                  "name": "onboarding_topic_preference_agent_lm_gpt3_5_turbo",
+                  "name": "onboarding_topic_preference_agent_lm_gpt_3_5_turbo",
                   "important": false,
                   "aliases": [
-                    "onboarding_topic_preference_agent_lm_gpt3_5_turbo",
+                    "onboarding_topic_preference_agent_lm_gpt_3_5_turbo",
                     "onboarding_topic_preference_agent",
-                    "lm_gpt3_5_turbo"
+                    "lm_gpt_3_5_turbo"
                   ],
                   "details": {
                     "source": "onboarding_topic_preference_agent",
-                    "target": "lm_gpt3_5_turbo"
+                    "target": "lm_gpt_3_5_turbo"
                   }
                 },
                 {
@@ -387,16 +387,16 @@
                 },
                 {
                   "category": "agent_llm",
-                  "name": "customer_engagement_agent_lm_gpt3_5_turbo",
+                  "name": "customer_engagement_agent_lm_gpt_3_5_turbo",
                   "important": false,
                   "aliases": [
-                    "customer_engagement_agent_lm_gpt3_5_turbo",
+                    "customer_engagement_agent_lm_gpt_3_5_turbo",
                     "customer_engagement_agent",
-                    "lm_gpt3_5_turbo"
+                    "lm_gpt_3_5_turbo"
                   ],
                   "details": {
                     "source": "customer_engagement_agent",
-                    "target": "lm_gpt3_5_turbo"
+                    "target": "lm_gpt_3_5_turbo"
                   }
                 },
                 {
@@ -475,10 +475,10 @@
                 },
                 {
                   "category": "language_model",
-                  "name": "lm_gpt3_5_turbo",
+                  "name": "lm_gpt_3_5_turbo",
                   "important": false,
                   "aliases": [
-                    "lm_gpt3_5_turbo"
+                    "lm_gpt_3_5_turbo"
                   ],
                   "details": {}
                 },
@@ -668,7 +668,7 @@
           "output_dir": "/Users/ravie/dev/agento/output_files/output_autogen/L3_Reflection_and_Blogpost_Writing",
           "status": "ok",
           "kg_element_count": 51,
-          "code_element_count": 6,
+          "code_element_count": 12,
           "oec": {
             "all_extracted": {
               "score": 0.5882352941176471,
@@ -677,30 +677,30 @@
               "missing": [
                 {
                   "category": "agent_llm",
-                  "name": "writer_1_lm_gpt4o_mini",
+                  "name": "writer_1_lm_gpt_4_o_mini",
                   "important": false,
                   "aliases": [
-                    "writer_1_lm_gpt4o_mini",
+                    "writer_1_lm_gpt_4_o_mini",
                     "writer_1",
-                    "lm_gpt4o_mini"
+                    "lm_gpt_4_o_mini"
                   ],
                   "details": {
                     "source": "writer_1",
-                    "target": "lm_gpt4o_mini"
+                    "target": "lm_gpt_4_o_mini"
                   }
                 },
                 {
                   "category": "agent_llm",
-                  "name": "critic_1_lm_gpt4o_mini",
+                  "name": "critic_1_lm_gpt_4_o_mini",
                   "important": false,
                   "aliases": [
-                    "critic_1_lm_gpt4o_mini",
+                    "critic_1_lm_gpt_4_o_mini",
                     "critic_1",
-                    "lm_gpt4o_mini"
+                    "lm_gpt_4_o_mini"
                   ],
                   "details": {
                     "source": "critic_1",
-                    "target": "lm_gpt4o_mini"
+                    "target": "lm_gpt_4_o_mini"
                   }
                 },
                 {
@@ -722,58 +722,58 @@
                 },
                 {
                   "category": "agent_llm",
-                  "name": "seo_reviewer_1_lm_gpt3_5_turbo",
+                  "name": "seo_reviewer_1_lm_gpt_3_5_turbo",
                   "important": false,
                   "aliases": [
-                    "seo_reviewer_1_lm_gpt3_5_turbo",
+                    "seo_reviewer_1_lm_gpt_3_5_turbo",
                     "seo_reviewer_1",
-                    "lm_gpt3_5_turbo"
+                    "lm_gpt_3_5_turbo"
                   ],
                   "details": {
                     "source": "seo_reviewer_1",
-                    "target": "lm_gpt3_5_turbo"
+                    "target": "lm_gpt_3_5_turbo"
                   }
                 },
                 {
                   "category": "agent_llm",
-                  "name": "legal_reviewer_1_lm_gpt3_5_turbo",
+                  "name": "legal_reviewer_1_lm_gpt_3_5_turbo",
                   "important": false,
                   "aliases": [
-                    "legal_reviewer_1_lm_gpt3_5_turbo",
+                    "legal_reviewer_1_lm_gpt_3_5_turbo",
                     "legal_reviewer_1",
-                    "lm_gpt3_5_turbo"
+                    "lm_gpt_3_5_turbo"
                   ],
                   "details": {
                     "source": "legal_reviewer_1",
-                    "target": "lm_gpt3_5_turbo"
+                    "target": "lm_gpt_3_5_turbo"
                   }
                 },
                 {
                   "category": "agent_llm",
-                  "name": "ethics_reviewer_1_lm_gpt3_5_turbo",
+                  "name": "ethics_reviewer_1_lm_gpt_3_5_turbo",
                   "important": false,
                   "aliases": [
-                    "ethics_reviewer_1_lm_gpt3_5_turbo",
+                    "ethics_reviewer_1_lm_gpt_3_5_turbo",
                     "ethics_reviewer_1",
-                    "lm_gpt3_5_turbo"
+                    "lm_gpt_3_5_turbo"
                   ],
                   "details": {
                     "source": "ethics_reviewer_1",
-                    "target": "lm_gpt3_5_turbo"
+                    "target": "lm_gpt_3_5_turbo"
                   }
                 },
                 {
                   "category": "agent_llm",
-                  "name": "meta_reviewer_1_lm_gpt3_5_turbo",
+                  "name": "meta_reviewer_1_lm_gpt_3_5_turbo",
                   "important": false,
                   "aliases": [
-                    "meta_reviewer_1_lm_gpt3_5_turbo",
+                    "meta_reviewer_1_lm_gpt_3_5_turbo",
                     "meta_reviewer_1",
-                    "lm_gpt3_5_turbo"
+                    "lm_gpt_3_5_turbo"
                   ],
                   "details": {
                     "source": "meta_reviewer_1",
-                    "target": "lm_gpt3_5_turbo"
+                    "target": "lm_gpt_3_5_turbo"
                   }
                 },
                 {
@@ -906,19 +906,19 @@
                 },
                 {
                   "category": "language_model",
-                  "name": "lm_gpt4o_mini",
+                  "name": "lm_gpt_4_o_mini",
                   "important": false,
                   "aliases": [
-                    "lm_gpt4o_mini"
+                    "lm_gpt_4_o_mini"
                   ],
                   "details": {}
                 },
                 {
                   "category": "language_model",
-                  "name": "lm_gpt3_5_turbo",
+                  "name": "lm_gpt_3_5_turbo",
                   "important": false,
                   "aliases": [
-                    "lm_gpt3_5_turbo"
+                    "lm_gpt_3_5_turbo"
                   ],
                   "details": {}
                 },
@@ -1184,7 +1184,7 @@
           "output_dir": "/Users/ravie/dev/agento/output_files/output_autogen/L4_Tool_Use_and_Conversational_Chess",
           "status": "ok",
           "kg_element_count": 50,
-          "code_element_count": 5,
+          "code_element_count": 9,
           "oec": {
             "all_extracted": {
               "score": 0.56,
@@ -1202,16 +1202,16 @@
                 },
                 {
                   "category": "agent_llm",
-                  "name": "player_white_gpt_4o_mini_language_model",
+                  "name": "player_white_gpt_4_o_mini_language_model",
                   "important": false,
                   "aliases": [
-                    "player_white_gpt_4o_mini_language_model",
+                    "player_white_gpt_4_o_mini_language_model",
                     "player_white",
-                    "gpt_4o_mini_language_model"
+                    "gpt_4_o_mini_language_model"
                   ],
                   "details": {
                     "source": "player_white",
-                    "target": "gpt_4o_mini_language_model"
+                    "target": "gpt_4_o_mini_language_model"
                   }
                 },
                 {
@@ -1275,16 +1275,16 @@
                 },
                 {
                   "category": "agent_llm",
-                  "name": "player_black_gpt_4o_mini_language_model",
+                  "name": "player_black_gpt_4_o_mini_language_model",
                   "important": false,
                   "aliases": [
-                    "player_black_gpt_4o_mini_language_model",
+                    "player_black_gpt_4_o_mini_language_model",
                     "player_black",
-                    "gpt_4o_mini_language_model"
+                    "gpt_4_o_mini_language_model"
                   ],
                   "details": {
                     "source": "player_black",
-                    "target": "gpt_4o_mini_language_model"
+                    "target": "gpt_4_o_mini_language_model"
                   }
                 },
                 {
@@ -1471,10 +1471,10 @@
                 },
                 {
                   "category": "language_model",
-                  "name": "gpt_4o_mini_language_model",
+                  "name": "gpt_4_o_mini_language_model",
                   "important": false,
                   "aliases": [
-                    "gpt_4o_mini_language_model",
+                    "gpt_4_o_mini_language_model",
                     "lm_gpt_4_turbo"
                   ],
                   "details": {}
@@ -1723,7 +1723,7 @@
           "output_dir": "/Users/ravie/dev/agento/output_files/output_autogen/L5_Coding_and_Financial_Analysis",
           "status": "ok",
           "kg_element_count": 30,
-          "code_element_count": 3,
+          "code_element_count": 5,
           "oec": {
             "all_extracted": {
               "score": 0.6,
@@ -1893,11 +1893,11 @@
                 },
                 {
                   "category": "workflow",
-                  "name": "l5_coding_financial_analysis_pattern",
+                  "name": "l_5_coding_financial_analysis_pattern",
                   "important": true,
                   "aliases": [
-                    "l5_coding_financial_analysis_pattern",
-                    "l5_coding_and_financial_analysis_pattern"
+                    "l_5_coding_financial_analysis_pattern",
+                    "l_5_coding_and_financial_analysis_pattern"
                   ],
                   "details": {}
                 },
@@ -1907,7 +1907,7 @@
                   "important": false,
                   "aliases": [
                     "gpt_4_turbo",
-                    "gpt4_turbo_model"
+                    "gpt_4_turbo_model"
                   ],
                   "details": {}
                 }
@@ -2012,11 +2012,11 @@
               "missing": [
                 {
                   "category": "workflow",
-                  "name": "l5_coding_financial_analysis_pattern",
+                  "name": "l_5_coding_financial_analysis_pattern",
                   "important": true,
                   "aliases": [
-                    "l5_coding_financial_analysis_pattern",
-                    "l5_coding_and_financial_analysis_pattern"
+                    "l_5_coding_financial_analysis_pattern",
+                    "l_5_coding_and_financial_analysis_pattern"
                   ],
                   "details": {}
                 }
@@ -2117,7 +2117,7 @@
           "output_dir": "/Users/ravie/dev/agento/output_files/output_autogen/L6-Planning_and_Stock_Report_Generation",
           "status": "ok",
           "kg_element_count": 67,
-          "code_element_count": 6,
+          "code_element_count": 18,
           "oec": {
             "all_extracted": {
               "score": 0.6567164179104478,
@@ -2143,16 +2143,16 @@
                 },
                 {
                   "category": "agent_llm",
-                  "name": "planner_agent_gpt4_turbo",
+                  "name": "planner_agent_gpt_4_turbo",
                   "important": false,
                   "aliases": [
-                    "planner_agent_gpt4_turbo",
+                    "planner_agent_gpt_4_turbo",
                     "planner_agent",
-                    "gpt4_turbo"
+                    "gpt_4_turbo"
                   ],
                   "details": {
                     "source": "planner_agent",
-                    "target": "gpt4_turbo"
+                    "target": "gpt_4_turbo"
                   }
                 },
                 {
@@ -2174,16 +2174,16 @@
                 },
                 {
                   "category": "agent_llm",
-                  "name": "engineer_agent_gpt4_turbo",
+                  "name": "engineer_agent_gpt_4_turbo",
                   "important": false,
                   "aliases": [
-                    "engineer_agent_gpt4_turbo",
+                    "engineer_agent_gpt_4_turbo",
                     "engineer_agent",
-                    "gpt4_turbo"
+                    "gpt_4_turbo"
                   ],
                   "details": {
                     "source": "engineer_agent",
-                    "target": "gpt4_turbo"
+                    "target": "gpt_4_turbo"
                   }
                 },
                 {
@@ -2205,16 +2205,16 @@
                 },
                 {
                   "category": "agent_llm",
-                  "name": "executor_agent_gpt4_turbo",
+                  "name": "executor_agent_gpt_4_turbo",
                   "important": false,
                   "aliases": [
-                    "executor_agent_gpt4_turbo",
+                    "executor_agent_gpt_4_turbo",
                     "executor_agent",
-                    "gpt4_turbo"
+                    "gpt_4_turbo"
                   ],
                   "details": {
                     "source": "executor_agent",
-                    "target": "gpt4_turbo"
+                    "target": "gpt_4_turbo"
                   }
                 },
                 {
@@ -2253,16 +2253,16 @@
                 },
                 {
                   "category": "agent_llm",
-                  "name": "writer_agent_gpt4_turbo",
+                  "name": "writer_agent_gpt_4_turbo",
                   "important": false,
                   "aliases": [
-                    "writer_agent_gpt4_turbo",
+                    "writer_agent_gpt_4_turbo",
                     "writer_agent",
-                    "gpt4_turbo"
+                    "gpt_4_turbo"
                   ],
                   "details": {
                     "source": "writer_agent",
-                    "target": "gpt4_turbo"
+                    "target": "gpt_4_turbo"
                   }
                 },
                 {
@@ -2394,10 +2394,10 @@
                 },
                 {
                   "category": "language_model",
-                  "name": "gpt4_turbo",
+                  "name": "gpt_4_turbo",
                   "important": false,
                   "aliases": [
-                    "gpt4_turbo"
+                    "gpt_4_turbo"
                   ],
                   "details": {}
                 },

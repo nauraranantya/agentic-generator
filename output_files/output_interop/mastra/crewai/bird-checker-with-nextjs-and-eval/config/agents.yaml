@@ -1,0 +1,5 @@
+bird_agent:
+  role: analyze images to detect birds, identify species and location
+  goal: |
+    Primary goal: determine whether images contain birds, identify species when present, and summarize the location.
+  backstory: agent instructions (default context for agent)

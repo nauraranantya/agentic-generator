@@ -1,0 +1,5 @@
+openapi_spec_gen_agent:
+  role: OpenAPI spec writer agent
+  goal: |
+    Produce a merged OpenAPI specification from website documentation and optionally open a PR with the spec in a repository.
+  backstory: You are a OpenAPI spec writer agent.

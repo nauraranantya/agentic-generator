@@ -60,6 +60,7 @@ def _build_common_context(project: LangGraphProject) -> Dict[str, Any]:
         "routes": project.routes,
         "router_node_name": project.router_node_name,
         "start_node_name": project.start_node_name,
+        "workflow_names": project.workflow_names,
     }
 
 

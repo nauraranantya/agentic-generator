@@ -1,0 +1,22 @@
+{
+  "name": "surprise_trip",
+  "version": "0.1.0",
+  "description": "SurpriseTravel crew coordinating agents to plan a surprise travel itinerary.\n    Agents: personalized_activity_planner, restaurant_scout, itinerary_compiler.\n    Process: sequential (represented in steps order).",
+  "type": "module",
+  "main": "src/mastra/index.ts",
+  "scripts": {
+    "dev": "tsx src/mastra/index.ts",
+    "build": "tsc",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@mastra/core": "latest",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "tsx": "^4.0.0",
+    "@types/node": "^20.0.0",
+    "mastra": "latest"
+  }
+}

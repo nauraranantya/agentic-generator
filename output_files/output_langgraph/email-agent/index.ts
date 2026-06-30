@@ -111,3 +111,5 @@ const workflow = new StateGraph(UnnamedProjectAnnotation)
 
 export const graph = workflow.compile();
 graph.name = "UnnamedProject";
+// Workflow: email_assistant_workflow
+// Workflow: Email Assistant Workflow Pattern

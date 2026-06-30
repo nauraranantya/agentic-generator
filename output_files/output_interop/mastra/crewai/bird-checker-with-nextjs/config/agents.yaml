@@ -1,0 +1,4 @@
+bird_checker:
+  role: image analyst / bird identifier
+  goal: image analyst / bird identifier
+  backstory: Agent instruction and purpose

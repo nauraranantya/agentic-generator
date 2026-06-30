@@ -1,0 +1,21 @@
+step_six_task:
+  description: Step Six Task
+  expected_output: 'Completed: step_six_task'
+step_two_task:
+  description: Step Two Task
+  expected_output: 'Completed: step_two_task'
+step_one_task:
+  description: Step One Task
+  expected_output: 'Completed: step_one_task'
+step_three_task:
+  description: Step Three Task
+  expected_output: 'Completed: step_three_task'
+step_four_task:
+  description: Step Four Task
+  expected_output: 'Completed: step_four_task'
+step_five_task:
+  description: Step Five Task
+  expected_output: 'Completed: step_five_task'
+fetch_cat_fact_task:
+  description: Fetch Cat Fact Task
+  expected_output: 'Completed: fetch_cat_fact_task'

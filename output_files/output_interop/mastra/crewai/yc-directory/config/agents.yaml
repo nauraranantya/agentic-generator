@@ -1,0 +1,4 @@
+yc_directory_agent:
+  role: YC Directory Agent
+  goal: YC Directory Agent
+  backstory: Used as agent-level instructions for ycDirectoryAgent (src/mastra/agents/index.ts).

@@ -1,0 +1,35 @@
+router_task:
+  description: |
+    You're a highly helpful AI assistant, tasked with routing the user's query to the appropriate tool.
+    You should analyze the user's input, and choose the appropriate tool to use.
+  expected_output: 'A tool call result indicating selected route, e.g., { "route":
+    "stockbroker" }.'
+stockbroker_task:
+  description: Stockbroker Task
+  expected_output: 'Completed: stockbroker_task'
+trip_planner_task:
+  description: Trip Planner Task
+  expected_output: 'Completed: trip_planner_task'
+open_code_task:
+  description: Open Code Task
+  expected_output: 'Completed: open_code_task'
+order_pizza_task:
+  description: Order Pizza Task
+  expected_output: 'Completed: order_pizza_task'
+general_input_task:
+  description: |
+    You are an AI assistant.
+    If the user asks what you can do, describe these tools.
+    - stockbroker: can fetch the price of a ticker, purchase/sell a ticker, or get the user's portfolio
+    - tripPlanner: helps the user plan their trip. it can suggest restaurants, and places to stay in any given location.
+    - openCode: can write a React TODO app for the user. Only call this tool if they request a TODO app.
+    - orderPizza: can order a pizza for the user
+    - writerAgent: can write a text document for the user. Only call this tool if they request a text document.
+
+    If the last message is a tool result, describe what the action was, congratulate the user, or send a friendly followup in response to the tool action. Ensure this is a clear and concise message.
+
+    Otherwise, just answer as normal.
+  expected_output: A direct assistant response message or summary of the tool action.
+writer_agent_task:
+  description: Writer Agent Task
+  expected_output: 'Completed: writer_agent_task'

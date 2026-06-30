@@ -1,0 +1,17 @@
+call_tools:
+  description: |
+    Task executed by the Stockbroker agent to call the language model with bound tools and to route resulting tool calls to tool-specific handlers. Uses the system prompt and conversation messages as input to the LLM.
+  expected_output: tool_calls (array), message (assistant response with content and
+    tool call entries)
+get_prices_for_ticker:
+  description: |
+    Task representing the retrieval of price series for a given ticker. This task calls the external prices endpoint and may follow next_page_url to fetch paginated thirty-day data. Produces oneDayPrices and thirtyDayPrices arrays.
+  expected_output: 'Completed: get_prices_for_ticker'
+get_price_snapshot_for_ticker:
+  description: |
+    Task representing retrieval of a snapshot for a ticker via the /prices/snapshot endpoint, used to support a buy-stock action. Produces a snapshot resource.
+  expected_output: 'Completed: get_price_snapshot_for_ticker'
+get_portfolio:
+  description: |
+    Task invoked when the user requests portfolio details. Performed by the portfolio tool and results in UI output describing the portfolio.
+  expected_output: 'Completed: get_portfolio'

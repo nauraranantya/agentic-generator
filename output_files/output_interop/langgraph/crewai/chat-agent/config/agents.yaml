@@ -1,0 +1,5 @@
+chat_agent_1:
+  role: conversational assistant
+  goal: conversational assistant
+  backstory: This system role message is prepended to every model invocation in the
+    chat node.

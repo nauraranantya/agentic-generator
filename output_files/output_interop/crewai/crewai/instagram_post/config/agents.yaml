@@ -1,0 +1,20 @@
+product_competitor_agent:
+  role: Lead Market Analyst
+  goal: Lead Market Analyst
+  backstory: Agent backstory and role description for Lead Market Analyst
+strategy_planner_agent:
+  role: Chief Marketing Strategist
+  goal: Chief Marketing Strategist
+  backstory: Agent backstory and role description for Chief Marketing Strategist
+creative_content_creator_agent:
+  role: Creative Content Creator
+  goal: Creative Content Creator
+  backstory: Agent backstory and role description for Creative Content Creator
+senior_photographer_agent:
+  role: Senior Photographer
+  goal: Senior Photographer
+  backstory: Agent backstory and role description for Senior Photographer
+chief_creative_director_agent:
+  role: Chief Creative Director
+  goal: Chief Creative Director
+  backstory: Agent backstory and role description for Chief Creative Director

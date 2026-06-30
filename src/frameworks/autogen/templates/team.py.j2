@@ -107,7 +107,7 @@ def {{ tool.var_name }}_impl(
 
 {{ tool.var_name }} = FunctionTool(
     {{ tool.var_name }}_impl,
-    description="{{ tool.description }}"
+    description="""{{ tool.description | replace('"""', '\\"\\"\\"') }}"""
 )
 
 {% endfor %}
@@ -123,13 +123,13 @@ def {{ tool.var_name }}_impl(
     model_client=model_client,
     system_message="""
 Role:
-{{ agent.role }}
+{{ agent.role | replace('"""', '\\"\\"\\"') }}
 
 Goal:
-{{ agent.goal }}
+{{ agent.goal | replace('"""', '\\"\\"\\"') }}
 
 Background:
-{{ agent.backstory }}
+{{ agent.backstory | replace('"""', '\\"\\"\\"') }}
 """,
 {% if agent.tool_var_names %}
     tools=[
@@ -150,7 +150,7 @@ Background:
 {% for h in human_agents %}
 {{ h.var_name }} = UserProxyAgent(
     name="{{ h.var_name }}",
-    description="{{ h.role }}",
+    description="""{{ h.role | replace('"""', '\\"\\"\\"') }}""",
 )
 {% endfor %}
 {% endif %}

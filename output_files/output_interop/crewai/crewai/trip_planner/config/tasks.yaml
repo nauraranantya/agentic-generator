@@ -1,0 +1,41 @@
+identify_task:
+  description: "Analyze and select the best city for the trip \nbased on specific\
+    \ criteria such as weather patterns, seasonal\nevents, and travel costs. This\
+    \ task involves comparing\nmultiple cities, considering factors like current weather\n\
+    conditions, upcoming cultural or seasonal events, and\noverall travel expenses.\
+    \ \n\nYour final answer must be a detailed\nreport on the chosen city, and everything\
+    \ you found out\nabout it, including the actual flight costs, weather \nforecast\
+    \ and attractions.\nIf you do your BEST WORK, I'll tip you $100!\n\nTraveling\
+    \ from: {origin}\nCity Options: {cities}\nTrip Date: {range}\nTraveler Interests:\
+    \ {interests}\n"
+  expected_output: Detailed report on the chosen city including flight costs, weather
+    forecast, and attractions
+gather_task:
+  description: "As a local expert on this city you must compile an \nin-depth guide\
+    \ for someone traveling there and wanting \nto have THE BEST trip ever!\nGather\
+    \ information about key attractions, local customs,\nspecial events, and daily\
+    \ activity recommendations.\nFind the best spots to go to, the kind of place only\
+    \ a\nlocal would know.\nThis guide should provide a thorough overview of what\
+    \ \nthe city has to offer, including hidden gems, cultural\nhotspots, must-visit\
+    \ landmarks, weather forecasts, and\nhigh level costs.\n\nThe final answer must\
+    \ be a comprehensive city guide, \nrich in cultural insights and practical tips,\
+    \ \ntailored to enhance the travel experience.\nIf you do your BEST WORK, I'll\
+    \ tip you $100!\n\nTrip Date: {range}\nTraveling from: {origin}\nTraveler Interests:\
+    \ {interests}\n"
+  expected_output: Comprehensive city guide including hidden gems, cultural hotspots,
+    and practical travel tips
+plan_task:
+  description: "Expand this guide into a full 7-day travel \nitinerary with detailed\
+    \ per-day plans, including \nweather forecasts, places to eat, packing suggestions,\
+    \ \nand a budget breakdown.\n\nYou MUST suggest actual places to visit, actual\
+    \ hotels \nto stay and actual restaurants to go to.\n\nThis itinerary should cover\
+    \ all aspects of the trip, \nfrom arrival to departure, integrating the city guide\n\
+    information with practical travel logistics.\n\nYour final answer MUST be a complete\
+    \ expanded travel plan,\nformatted as markdown, encompassing a daily schedule,\n\
+    anticipated weather conditions, recommended clothing and\nitems to pack, and a\
+    \ detailed budget, ensuring THE BEST\nTRIP EVER. Be specific and give it a reason\
+    \ why you picked\neach place, what makes them special! If you do your BEST WORK,\
+    \ I'll tip you $100!\n\nTrip Date: {range}\nTraveling from: {origin}\nTraveler\
+    \ Interests: {interests}\n"
+  expected_output: |
+    Complete expanded travel plan with daily schedule, weather conditions, packing suggestions, and budget breakdown
