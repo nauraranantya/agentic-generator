@@ -1,3 +1,3 @@
-export { emailAssistantWorkflow } from './emailAssistantWorkflow'
+export { emailAgentStateGraph } from './emailAgentStateGraph'
 export * from './ad_hoc_tasks'
 

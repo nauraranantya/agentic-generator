@@ -1,6 +1,6 @@
-# JobPostingCrewTeam
+# UnnamedProject
 
-
+CrewAI crew that orchestrates agents to create job postings
 
 **Auto-generated from AgentO Knowledge Graph**  
 Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
@@ -34,7 +34,7 @@ npm run dev
 ## 📦 Project Structure
 
 ```
-JobPostingCrewTeam/
+UnnamedProject/
 ├── src/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
@@ -63,7 +63,7 @@ JobPostingCrewTeam/
 - **Model:** `openai/gpt-4o-mini`
 - **Tools:** websiteSearchTool, serperDevTool
 
-Role: Research Analyst...
+Analyze the company website and provided description to extract insights on culture, values, and specific needs....
 
 ### Job Description Writer
 
@@ -71,7 +71,7 @@ Role: Research Analyst...
 - **Model:** `openai/gpt-4o-mini`
 - **Tools:** websiteSearchTool, serperDevTool, fileReadTool
 
-Role: Job Description Writer...
+Use insights from the Research Analyst to create a detailed, engaging, and enticing job posting....
 
 ### Review and Editing Specialist
 
@@ -79,28 +79,28 @@ Role: Job Description Writer...
 - **Model:** `openai/gpt-4o-mini`
 - **Tools:** websiteSearchTool, serperDevTool, fileReadTool
 
-Role: Review and Editing Specialist...
+Review the job posting for clarity, engagement, grammatical accuracy, and alignment with the company's culture and values....
 
 
 ---
 
 ## 🔧 Tools
 
-### WebsiteSearchTool
+### websiteSearchTool
 
-Tool used for general website search queries (instantiated in the solution as a web search tool)....
+A generic website search tool used to look up pages and content....
 
 **Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/websiteSearchTool.ts`)
 
-### SerperDevTool
+### serperDevTool
 
-Tool used for developer-oriented web search or SERP querying (instantiated as SerperDevTool in the code)....
+Serper.dev integration tool for advanced search queries....
 
 **Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/serperDevTool.ts`)
 
-### FileReadTool
+### fileReadTool
 
-Tool to read local files; configured to read job_description_example.md...
+A tool to read a local job description example file....
 
 **Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/fileReadTool.ts`)
 
@@ -109,7 +109,7 @@ Tool to read local files; configured to read job_description_example.md...
 
 ## 🔄 Workflows
 
-### Job Posting Workflow Pattern
+### job_posting_workflow
 
 
 

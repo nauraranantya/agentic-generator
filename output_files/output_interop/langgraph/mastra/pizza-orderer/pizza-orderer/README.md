@@ -1,6 +1,6 @@
 # UnnamedProject
 
-
+Team representing the StateGraph workflow for ordering pizza.
 
 **Auto-generated from AgentO Knowledge Graph**  
 Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
@@ -39,12 +39,12 @@ UnnamedProject/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
 │       ├── agents/            # Agent definitions
-│       │   └── pizzaOrdererV1.ts
+│       │   └── langgraphAnthropicAgent.ts
 │       ├── tools/             # Tool definitions
-│       │   └── toolPizzaFinder.ts
-│       │   └── toolPizzaOrderingSystem.ts
+│       │   └── findPizzaTool.ts
+│       │   └── placeOrderTool.ts
 │       └── workflows/         # Workflow definitions
-│           └── orderPizzaGraph.ts
+│           └── orderPizzaStateGraph.ts
 ├── package.json
 ├── tsconfig.json
 └── .env.example
@@ -54,42 +54,43 @@ UnnamedProject/
 
 ## 🤖 Agents
 
-### pizza-ordering-assistant
+### assistant
 
-- **ID:** `PizzaOrderer-v1`
+- **ID:** `langgraph_anthropic_agent`
 - **Model:** `anthropic/claude-3-5-sonnet-latest`
+- **Tools:** findPizzaTool, placeOrderTool
 
-General system role description used by both nodes as the system message....
+You are assistant....
 
 
 ---
 
 ## 🔧 Tools
 
-### Pizza Finder Tool
+### findPizzaTool
 
-Represents the external lookup mechanism that returns store contact information. In code this is emulated by constructing a ToolMessage with found shop details....
+Tool invoked to search for a pizza shop and return address and phone number....
 
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolPizzaFinder.ts`)
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/findPizzaTool.ts`)
 
-### Pizza Ordering System
+### placeOrderTool
 
-Represents the external ordering mechanism that places the pizza order and returns confirmation. In code this is emulated by constructing a ToolMessage 'Pizza order successfully placed.'....
+Tool invoked to place a pizza order and confirm success....
 
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolPizzaOrderingSystem.ts`)
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/placeOrderTool.ts`)
 
 
 ---
 
 ## 🔄 Workflows
 
-### Order Pizza Graph
+### order_pizza_state_graph
 
-
+Order Pizza Graph
 
 **Steps:** 2
-1. Find Pizza Shop Task
-2. Place Pizza Order Task
+1. find_store_task
+2. order_pizza_task
 
 
 ---

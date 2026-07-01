@@ -1,8 +1,12 @@
 player_white:
-  role: white
-  goal: white
-  backstory: You are a white.
+  role: Chess Player (White)
+  goal: Chess Player (White)
+  backstory: You are a Chess Player (White).
 player_black:
-  role: black
-  goal: black
-  backstory: You are a black.
+  role: Chess Player (Black)
+  goal: Chess Player (Black)
+  backstory: You are a Chess Player (Black).
+board_proxy:
+  role: Board Proxy / Referee
+  goal: Board Proxy / Referee
+  backstory: You are a Board Proxy / Referee.

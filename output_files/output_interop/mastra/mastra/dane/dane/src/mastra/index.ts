@@ -1,5 +1,5 @@
 /**
- * Mastra AI Instance - Mastraagentsystem
+ * Mastra AI Instance - UnnamedProject
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
@@ -8,18 +8,15 @@
 import { Mastra } from '@mastra/core'
 
 // Import agents
-import { dane, daneCommitMessage, daneIssueLabeler, daneLinkChecker, danePackagePublisher, daneNewContributor } from './agents'
+import { dane, daneCommitMessage, daneIssueLabeler, daneLinkChecker, daneChangeLog, daneNewContributor, danePackagePublisher } from './agents'
 
 // Import workflows
-import { workflowCommitMessage, workflowTelephoneGame, workflowLinkChecker, workflowChangelog, workflowPackagePublisher, workflowMessage, workflowGithubIssueLabeler, workflowGithubFirstContributor } from './workflows'
-
-// Import memory instances
-import { memoryUpstash } from './memory'
+import { workflowChangelog, workflowEntry, workflowCommitMessage, workflowGithubFirstContributorMessage, workflowGithubIssueLabeler, workflowLinkChecker, workflowPnpmChangsetPublisher, workflowTelephoneGame } from './workflows'
 
 /**
  * Mastra instance with registered agents, workflows, and memory.
  *
- * Collection of agents and tools composing the CLI assistant 'Dane' and associated workflows.
+ * Mastra instance bundling agents, tools, memory and workflows for the Dane assistant CLI project.
  */
 export const mastra = new Mastra({
   agents: {
@@ -27,20 +24,18 @@ export const mastra = new Mastra({
     daneCommitMessage,
     daneIssueLabeler,
     daneLinkChecker,
-    danePackagePublisher,
+    daneChangeLog,
     daneNewContributor,
+    danePackagePublisher,
   },
   workflows: {
-    workflowCommitMessage,
-    workflowTelephoneGame,
-    workflowLinkChecker,
     workflowChangelog,
-    workflowPackagePublisher,
-    workflowMessage,
+    workflowEntry,
+    workflowCommitMessage,
+    workflowGithubFirstContributorMessage,
     workflowGithubIssueLabeler,
-    workflowGithubFirstContributor,
-  },
-  memory: {
-    memoryUpstash,
+    workflowLinkChecker,
+    workflowPnpmChangsetPublisher,
+    workflowTelephoneGame,
   },
 })

@@ -8,20 +8,21 @@
 import { Mastra } from '@mastra/core'
 
 // Import agents
-import { recruiterAgent } from './agents'
+import { mastraLlm } from './agents'
 
 // Import workflows
-import { candidateWorkflow } from './workflows'
+import { candidateWorkflowPattern } from './workflows'
 
 /**
  * Mastra instance with registered agents, workflows, and memory.
  *
+ * Mastra instance hosting the candidate-workflow
  */
 export const mastra = new Mastra({
   agents: {
-    recruiterAgent,
+    mastraLlm,
   },
   workflows: {
-    candidateWorkflow,
+    candidateWorkflowPattern,
   },
 })

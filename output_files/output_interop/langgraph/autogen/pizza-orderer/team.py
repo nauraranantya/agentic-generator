@@ -1,16 +1,10 @@
 """
 Auto-generated AutoGen Team: UnnamedProject
 Goals:
-  - Order Pizza Goal: Top-level intent: find a pizza shop and place a pizza order for a user.
+  - : High-level goal to find a pizza shop and place an order for the user.
 Capabilities:
-  - find_store: Capability to find a pizza shop given a location and optional company name.
-  - place_order: Capability to place a pizza order given store contact and order details.
-Resources:
-  - User Location (input): User-provided location string (e.g., 'San Francisco' or 'New York'). Required input for the findStore task.
-  - Pizza Company Name (optional input): Optional user-provided pizza company name (e.g., 'Dominos' or 'Papa John's').
-  - Store Information (found store): Example produced content (from code's toolResponse): "I've found a pizza shop at 1119 19th St, San Francisco, CA 94107. The phone number for the shop is 415-555-1234.". Also includes link to the tool_call_id produced by the model call in runtime (tool_call_id captured in code), represented here as descriptive metadata.
-  - Order Details (input for placing order): Structured fields expected from place_pizza_order output: address (address of store), phone_number (store phone), order (full pizza order for the user).
-  - Order Confirmation (produced resource): Example produced content (from code's toolResponse): "Pizza order successfully placed.". In runtime the tool_call_id linking the confirmation to the model/tool invocation is present; represented in this resource description.
+  - : Find nearby pizza shop and return contact details (address, phone).
+  - : Place an order at the specified pizza shop and return order confirmation.
 """
 
 from autogen_agentchat.agents import AssistantAgent
@@ -39,49 +33,49 @@ model_client = OpenAIChatCompletionClient(
 # ==================================================
 
 
-def tool_pizza_finder_impl(
+def find_pizza_tool_impl(
     query: str = ""
 ) -> str:
     """
     AgentO Tool:
-    PizzaFinderTool
+    find_pizza_tool
 
     Description:
-    Represents the external lookup mechanism that returns store contact information. In code this is emulated by constructing a ToolMessage with found shop details.
+    Tool invoked to search for a pizza shop and return address and phone number.
     """
     return (
-        "Tool 'tool_pizza_finder' "
+        "Tool 'find_pizza_tool' "
         "is a generated stub and "
         "has not been implemented yet."
     )
 
 
-tool_pizza_finder = FunctionTool(
-    tool_pizza_finder_impl,
-    description="""Represents the external lookup mechanism that returns store contact information. In code this is emulated by constructing a ToolMessage with found shop details."""
+find_pizza_tool = FunctionTool(
+    find_pizza_tool_impl,
+    description="""Tool invoked to search for a pizza shop and return address and phone number. """
 )
 
 
-def tool_pizza_ordering_system_impl(
+def place_order_tool_impl(
     query: str = ""
 ) -> str:
     """
     AgentO Tool:
-    PizzaOrderingSystem
+    place_order_tool
 
     Description:
-    Represents the external ordering mechanism that places the pizza order and returns confirmation. In code this is emulated by constructing a ToolMessage 'Pizza order successfully placed.'.
+    Tool invoked to place a pizza order and confirm success.
     """
     return (
-        "Tool 'tool_pizza_ordering_system' "
+        "Tool 'place_order_tool' "
         "is a generated stub and "
         "has not been implemented yet."
     )
 
 
-tool_pizza_ordering_system = FunctionTool(
-    tool_pizza_ordering_system_impl,
-    description="""Represents the external ordering mechanism that places the pizza order and returns confirmation. In code this is emulated by constructing a ToolMessage 'Pizza order successfully placed.'."""
+place_order_tool = FunctionTool(
+    place_order_tool_impl,
+    description="""Tool invoked to place a pizza order and confirm success. """
 )
 
 
@@ -90,18 +84,18 @@ tool_pizza_ordering_system = FunctionTool(
 # ==================================================
 
 
-pizza_orderer_v1 = AssistantAgent(
-    name="pizza_orderer_v1",
+langgraph_anthropic_agent = AssistantAgent(
+    name="langgraph_anthropic_agent",
     model_client=model_client,
     system_message="""
 Role:
-pizza-ordering-assistant
+assistant
 
 Goal:
-Top-level intent: find a pizza shop and place a pizza order for a user.
+assistant
 
 Background:
-General system role description used by both nodes as the system message.
+You are a assistant.
 """,
 )
 

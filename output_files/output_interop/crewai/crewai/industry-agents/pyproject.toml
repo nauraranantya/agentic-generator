@@ -1,7 +1,7 @@
 [project]
-name = "blog_crew_industryspecializedagentsexample"
+name = "unnamed_project"
 version = "0.1.0"
-description = "Crew assembled to produce industry-specific analyses of Weaviate features. Agent"
+description = ""
 authors = [{name = "Your Name", email = "you@example.com"}]
 readme = "README.md"
 requires-python = ">=3.10,<=3.13"
@@ -10,12 +10,12 @@ dependencies = [
     "crewai[tools]>=0.152.0",
     "python-dotenv>=1.0.1",
     "pyyaml>=6.0.1",
-    # TODO: add PyPI package for custom tool "WeaviateVectorSearchTool"
-    # TODO: add PyPI package for custom tool "SerperDevWebSearchTool"
+    # TODO: add PyPI package for custom tool "ToolWeaviateVectorSearchTool"
+    # TODO: add PyPI package for custom tool "ToolSerperDevTool"
 ]
 
 [project.scripts]
-blog_crew_industryspecializedagentsexample = "main:run"
+unnamed_project = "main:run"
 train      = "main:train"
 
 [tool.uv]

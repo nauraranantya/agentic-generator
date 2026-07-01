@@ -1,9 +1,11 @@
 """
 Auto-generated AutoGen Team: UnnamedProject
-Objectives:
-  - : Objective for the MCP Registry Agent and Team: enable searching and retrieving MCP registry information by ID, tag, or name.
+Goals:
+  - : Provide discovery and access to MCP registries and their servers; normalize heterogeneous registry responses into a standard ServerEntry format.
 Capabilities:
-  - : Capability to return the set of available MCP tools. In source code this is invoked at initialization (await mcp.listTools()) to populate the agent's tools.
+  - : Provides filtered listings of MCP registries (id, tag, name) and can emit detailed or summary responses.
+  - : Fetch servers from a registry endpoint, apply registry-specific post-processing, and filter results by tag or search term.
+  - : Ability to list registries and retrieve servers from registries via exposed tools.
 """
 
 from autogen_agentchat.agents import AssistantAgent
@@ -32,49 +34,49 @@ model_client = OpenAIChatCompletionClient(
 # ==================================================
 
 
-def mcp_client_impl(
+def tool_registry_list_impl(
     query: str = ""
 ) -> str:
     """
     AgentO Tool:
-    mcp_client
+    tool_registry_list
 
     Description:
-    Client used by the Mastra configuration to enumerate available MCP tool endpoints. In the source it is an MCPClient instance with server configuration; provides a listTools() capability.
+    List available MCP registries. Can filter by ID, tag, or name and provide detailed or summary views.
     """
     return (
-        "Tool 'mcp_client' "
+        "Tool 'tool_registry_list' "
         "is a generated stub and "
         "has not been implemented yet."
     )
 
 
-mcp_client = FunctionTool(
-    mcp_client_impl,
-    description="""Client used by the Mastra configuration to enumerate available MCP tool endpoints. In the source it is an MCPClient instance with server configuration; provides a listTools() capability."""
+tool_registry_list = FunctionTool(
+    tool_registry_list_impl,
+    description="""List available MCP registries. Can filter by ID, tag, or name and provide detailed or summary views. """
 )
 
 
-def mcp_registry_tool_impl(
+def tool_registry_servers_impl(
     query: str = ""
 ) -> str:
     """
     AgentO Tool:
-    mcp_registry_tool
+    tool_registry_servers
 
     Description:
-    Tool instance representing the MCP registry server process launched via the configured command. In the source the agent's tools are populated by await mcp.listTools(); the registry server is configured to run as a node process and communicate over stdio (path: ../../packages/mcp-registry-registry/dist/stdio.js).
+    Get servers from a specific MCP registry. Can filter by tag or search term. Internally fetches registry data, invokes post-processing, and filters results.
     """
     return (
-        "Tool 'mcp_registry_tool' "
+        "Tool 'tool_registry_servers' "
         "is a generated stub and "
         "has not been implemented yet."
     )
 
 
-mcp_registry_tool = FunctionTool(
-    mcp_registry_tool_impl,
-    description="""Tool instance representing the MCP registry server process launched via the configured command. In the source the agent's tools are populated by await mcp.listTools(); the registry server is configured to run as a node process and communicate over stdio (path: ../../packages/mcp-registry-registry/dist/stdio.js)."""
+tool_registry_servers = FunctionTool(
+    tool_registry_servers_impl,
+    description="""Get servers from a specific MCP registry. Can filter by tag or search term. Internally fetches registry data, invokes post-processing, and filters results. """
 )
 
 
@@ -83,18 +85,18 @@ mcp_registry_tool = FunctionTool(
 # ==================================================
 
 
-mcp_registry_agent = AssistantAgent(
-    name="mcp_registry_agent",
+registry_registry_server = AssistantAgent(
+    name="registry_registry_server",
     model_client=model_client,
     system_message="""
 Role:
-registry
+mcp-server
 
 Goal:
-registry
+mcp-server
 
 Background:
-Agent bootstrap prompt / instruction used to guide agent behavior independent of a specific task.
+You are a mcp-server.
 """,
 )
 

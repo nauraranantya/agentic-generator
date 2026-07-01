@@ -3,64 +3,64 @@ import { Annotation, START, END, StateGraph } from "@langchain/langgraph";
 import { tool } from "@langchain/core/tools";
 import { z } from "zod";
 
-const TravelAISystemMastraexampleappAnnotation = Annotation.Root({
+const UnnamedProjectAnnotation = Annotation.Root({
   messages: Annotation<any[]>({
     reducer: (_, next) => next,
     default: () => [],
   }),
 });
 
-// Tool: search_flights_tool
-const search_flights_tool = tool(
+// Tool: tool_search_flights
+const tool_search_flights = tool(
   async () => {
-    return "Result of search_flights_tool";
+    return "Result of tool_search_flights";
   },
   {
-    name: "search_flights_tool",
+    name: "tool_search_flights",
     description: "Fetches flight information for a given date range, origin and destination. Origin and Destination are Airport codes like DFW.AIRPORT or SEA.AIRPORT",
     schema: z.object({}),
   }
 );
-// Tool: search_hotels_tool
-const search_hotels_tool = tool(
+// Tool: tool_search_hotels
+const tool_search_hotels = tool(
   async () => {
-    return "Result of search_hotels_tool";
+    return "Result of tool_search_hotels";
   },
   {
-    name: "search_hotels_tool",
+    name: "tool_search_hotels",
     description: "Searches for hotels in a specified location. Destination is a cityId like 20015732 for 20015733",
     schema: z.object({}),
   }
 );
-// Tool: search_attractions_tool
-const search_attractions_tool = tool(
+// Tool: tool_search_attractions
+const tool_search_attractions = tool(
   async () => {
-    return "Result of search_attractions_tool";
+    return "Result of tool_search_attractions";
   },
   {
-    name: "search_attractions_tool",
+    name: "tool_search_attractions",
     description: "Searches for attractions in a specified location. Destination is a cityId like 20015732 for 20015733",
     schema: z.object({}),
   }
 );
-// Tool: search_airbnb_location_tool
-const search_airbnb_location_tool = tool(
+// Tool: tool_search_airbnb_location
+const tool_search_airbnb_location = tool(
   async () => {
-    return "Result of search_airbnb_location_tool";
+    return "Result of tool_search_airbnb_location";
   },
   {
-    name: "search_airbnb_location_tool",
+    name: "tool_search_airbnb_location",
     description: "Searches for Airbnb places in a specified location. Place is a city name like New York, NY",
     schema: z.object({}),
   }
 );
-// Tool: search_airbnb_tool
-const search_airbnb_tool = tool(
+// Tool: tool_search_airbnb
+const tool_search_airbnb = tool(
   async () => {
-    return "Result of search_airbnb_tool";
+    return "Result of tool_search_airbnb";
   },
   {
-    name: "search_airbnb_tool",
+    name: "tool_search_airbnb",
     description: "Searches for Airbnb in a specified location. Place is a cityId like 20015732 for 20015733",
     schema: z.object({}),
   }
@@ -69,17 +69,17 @@ const search_airbnb_tool = tool(
 
 
 /**
- * Node: findOutboundFlight
- * Agent: travel_agent
+ * Node: taskOutboundFlight
+ * Agent: travel_analyzer
  */
-async function findOutboundFlight(state: typeof TravelAISystemMastraexampleappAnnotation.State) {
-  const model = new ChatOpenAI({ model: "gpt-4" });
+async function taskOutboundFlight(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Agent-level instruction used on agent initialization" +
-        "\nNode: findOutboundFlight",
+        "You are a travel analyzer." +
+        "\nNode: taskOutboundFlight",
     },
     ...state.messages,
   ]);
@@ -87,17 +87,17 @@ async function findOutboundFlight(state: typeof TravelAISystemMastraexampleappAn
 }
 
 /**
- * Node: findReturnFlight
- * Agent: travel_agent
+ * Node: taskReturnFlight
+ * Agent: travel_analyzer
  */
-async function findReturnFlight(state: typeof TravelAISystemMastraexampleappAnnotation.State) {
-  const model = new ChatOpenAI({ model: "gpt-4" });
+async function taskReturnFlight(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Agent-level instruction used on agent initialization" +
-        "\nNode: findReturnFlight",
+        "You are a travel analyzer." +
+        "\nNode: taskReturnFlight",
     },
     ...state.messages,
   ]);
@@ -105,17 +105,17 @@ async function findReturnFlight(state: typeof TravelAISystemMastraexampleappAnno
 }
 
 /**
- * Node: findAccommodationHotelOrAirbnb
- * Agent: travel_agent
+ * Node: taskAccommodationHotels
+ * Agent: travel_analyzer
  */
-async function findAccommodationHotelOrAirbnb(state: typeof TravelAISystemMastraexampleappAnnotation.State) {
-  const model = new ChatOpenAI({ model: "gpt-4" });
+async function taskAccommodationHotels(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Agent-level instruction used on agent initialization" +
-        "\nNode: findAccommodationHotelOrAirbnb",
+        "You are a travel analyzer." +
+        "\nNode: taskAccommodationHotels",
     },
     ...state.messages,
   ]);
@@ -123,17 +123,17 @@ async function findAccommodationHotelOrAirbnb(state: typeof TravelAISystemMastra
 }
 
 /**
- * Node: findAccommodationHotelOrAirbnb
- * Agent: travel_agent
+ * Node: taskAttraction
+ * Agent: travel_analyzer
  */
-async function findAccommodationHotelOrAirbnb(state: typeof TravelAISystemMastraexampleappAnnotation.State) {
-  const model = new ChatOpenAI({ model: "gpt-4" });
+async function taskAttraction(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Agent-level instruction used on agent initialization" +
-        "\nNode: findAccommodationHotelOrAirbnb",
+        "You are a travel analyzer." +
+        "\nNode: taskAttraction",
     },
     ...state.messages,
   ]);
@@ -141,17 +141,17 @@ async function findAccommodationHotelOrAirbnb(state: typeof TravelAISystemMastra
 }
 
 /**
- * Node: findAttractions
- * Agent: travel_agent
+ * Node: taskAirbnbLocation
+ * Agent: travel_analyzer
  */
-async function findAttractions(state: typeof TravelAISystemMastraexampleappAnnotation.State) {
-  const model = new ChatOpenAI({ model: "gpt-4" });
+async function taskAirbnbLocation(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Agent-level instruction used on agent initialization" +
-        "\nNode: findAttractions",
+        "You are a travel analyzer." +
+        "\nNode: taskAirbnbLocation",
     },
     ...state.messages,
   ]);
@@ -159,46 +159,60 @@ async function findAttractions(state: typeof TravelAISystemMastraexampleappAnnot
 }
 
 /**
- * Node: syncCsvDataTask
- * Agent: travel_agent
+ * Node: taskAccommodationAirbnb
+ * Agent: travel_analyzer
  */
-async function syncCsvDataTask(state: typeof TravelAISystemMastraexampleappAnnotation.State) {
-  const model = new ChatOpenAI({ model: "gpt-4" });
+async function taskAccommodationAirbnb(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Agent-level instruction used on agent initialization" +
-        "\nNode: syncCsvDataTask",
+        "You are a travel analyzer." +
+        "\nNode: taskAccommodationAirbnb",
     },
     ...state.messages,
   ]);
   return { messages: [response] };
 }
 
-const workflow = new StateGraph(TravelAISystemMastraexampleappAnnotation)
-  .addNode("findOutboundFlight", findOutboundFlight)
-  .addNode("findReturnFlight", findReturnFlight)
-  .addNode("findAccommodationHotelOrAirbnb", findAccommodationHotelOrAirbnb)
-  .addNode("findAccommodationHotelOrAirbnb", findAccommodationHotelOrAirbnb)
-  .addNode("findAttractions", findAttractions)
-  .addNode("syncCsvDataTask", syncCsvDataTask)
-  .addEdge(START, "findOutboundFlight")
-  .addEdge("findOutboundFlight", "findReturnFlight")
-  .addEdge("findReturnFlight", "findAccommodationHotelOrAirbnb")
-  .addEdge("findAccommodationHotelOrAirbnb", "findAttractions")
-  .addEdge("findAccommodationHotelOrAirbnb", "findAccommodationHotelOrAirbnb")
-  .addEdge("findAccommodationHotelOrAirbnb", "findAccommodationHotelOrAirbnb")
-  .addEdge("findAccommodationHotelOrAirbnb", "findAttractions")
-  .addEdge("findAttractions", END)
-  .addEdge("syncCsvDataTask", END)
+/**
+ * Node: taskSyncCsvData
+ * Agent: travel_analyzer
+ */
+async function taskSyncCsvData(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
+  const response = await model.invoke([
+    {
+      role: "system",
+      content:
+        "You are a travel analyzer." +
+        "\nNode: taskSyncCsvData",
+    },
+    ...state.messages,
+  ]);
+  return { messages: [response] };
+}
+
+const workflow = new StateGraph(UnnamedProjectAnnotation)
+  .addNode("taskOutboundFlight", taskOutboundFlight)
+  .addNode("taskReturnFlight", taskReturnFlight)
+  .addNode("taskAccommodationHotels", taskAccommodationHotels)
+  .addNode("taskAttraction", taskAttraction)
+  .addNode("taskAirbnbLocation", taskAirbnbLocation)
+  .addNode("taskAccommodationAirbnb", taskAccommodationAirbnb)
+  .addNode("taskSyncCsvData", taskSyncCsvData)
+  .addEdge(START, "taskOutboundFlight")
+  .addEdge("taskReturnFlight", "taskAccommodationHotels")
+  .addEdge("taskAccommodationHotels", "taskAttraction")
+  .addEdge("taskAttraction", "taskAirbnbLocation")
+  .addEdge("taskAirbnbLocation", "taskAccommodationAirbnb")
+  .addEdge("taskOutboundFlight", END)
+  .addEdge("taskAccommodationAirbnb", END)
+  .addEdge("taskSyncCsvData", END)
 ;
 
 export const graph = workflow.compile();
-graph.name = "TravelAISystemMastraexampleapp";
-// Workflow: travel_submission_workflow
-// Workflow: travel-submission
-// Workflow: airbnb_flow_pattern
-// Workflow: airbnb-flow
-// Workflow: sync_csv_workflow
-// Workflow: syncCsvData
+graph.name = "UnnamedProject";
+// Workflow: workflow_travel_submission
+// Workflow: workflow_sync_csv_data

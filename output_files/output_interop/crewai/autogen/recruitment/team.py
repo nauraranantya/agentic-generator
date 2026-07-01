@@ -1,25 +1,15 @@
 """
-Auto-generated AutoGen Team: RecruitmentCrew
+Auto-generated AutoGen Team: UnnamedProject
 Goals:
-  - Find potential candidates for the job: Find potential candidates for the job specified in inputs (job_requirements). Use multiple public resources to assemble candidate brief profiles and contact info.
-  - Match the candidates to the best jobs and score them: Evaluate candidates relative to the job_requirements, compute scores and rank candidates with justifications.
-  - Develop outreach strategies for the selected candidates: Produce outreach methods and message templates tailored to prioritized candidates.
-  - Report the best candidates to the recruiters: Assemble a concise report for recruiters with profiles, scores, and outreach plan; follow output formatting instruction from tasks configuration.
-Objectives:
-  - Find and report best candidates for a job opening: Coordinate research, matching/scoring, outreach strategy, and reporting to produce a ranked and actionable list of candidates for a given job requirement input.
+  - : Agent goal: find potential candidates matching provided job requirements.
+  - : Agent goal: evaluate and rank candidates against job requirements.
+  - : Agent goal: create outreach templates and communication plans.
+  - : Agent goal: compile findings and recommend top candidates.
+  - : Team-level objective to orchestrate agent collaboration for recruitment.
 Capabilities:
-  - candidate_research: Search public data sources and extract candidate basic profile information.
-  - candidate_matching_and_scoring: Evaluate candidates against job requirements and produce a numeric or ordinal score and justification.
-  - outreach_strategy_development: Design outreach approaches and generate template messages for contacting candidates.
-  - candidate_reporting: Compose recruiter-facing reports summarizing findings, scores and outreach strategies.
-  - search_api: 
-  - web_scraping: 
-  - retrieve_linkedin_profiles: 
-Resources:
-  - candidates_raw_list: Raw list of found candidate profiles and their basic contact/profile information produced by research_candidates_task.
-  - candidates_scored: Candidates evaluated and scored by match_and_score_candidates_task; contains scores and justifications.
-  - outreach_plan: Outreach methods and message templates produced by outreach_strategy_task.
-  - final_report_for_recruiters: Compiled report produced by report_candidates_task with recommended candidates, scores, and outreach templates.
+  - : Capability to query search APIs and return structured search results.
+  - : Capability to extract information from web pages using DOM parsing.
+  - : Capability to query LinkedIn search results and format profile summaries.
 """
 
 from autogen_agentchat.agents import AssistantAgent
@@ -53,10 +43,10 @@ def tool_serperdev_impl(
 ) -> str:
     """
     AgentO Tool:
-    SerperDevTool
+    tool_serperdev
 
     Description:
-    Search / knowledge tool (SerperDev) used by agents for web search or knowledge lookups.
+    Search API tool for retrieving web search results.
     """
     return (
         "Tool 'tool_serperdev' "
@@ -67,30 +57,30 @@ def tool_serperdev_impl(
 
 tool_serperdev = FunctionTool(
     tool_serperdev_impl,
-    description="""Search / knowledge tool (SerperDev) used by agents for web search or knowledge lookups."""
+    description="""Search API tool for retrieving web search results. """
 )
 
 
-def tool_scrapewebsite_impl(
+def tool_scrape_website_impl(
     query: str = ""
 ) -> str:
     """
     AgentO Tool:
-    ScrapeWebsiteTool
+    tool_scrape_website
 
     Description:
-    General web scraping tool used to extract structured information from web pages.
+    Tool for scraping and extracting structured information from websites.
     """
     return (
-        "Tool 'tool_scrapewebsite' "
+        "Tool 'tool_scrape_website' "
         "is a generated stub and "
         "has not been implemented yet."
     )
 
 
-tool_scrapewebsite = FunctionTool(
-    tool_scrapewebsite_impl,
-    description="""General web scraping tool used to extract structured information from web pages."""
+tool_scrape_website = FunctionTool(
+    tool_scrape_website_impl,
+    description="""Tool for scraping and extracting structured information from websites. """
 )
 
 
@@ -99,10 +89,10 @@ def tool_linkedin_impl(
 ) -> str:
     """
     AgentO Tool:
-    RetrieveLinkedInprofiles
+    tool_linkedin
 
     Description:
-    Retrieve LinkedIn profiles given a list of skills. Input is a comma-separated list of skills. Returns candidate name, position, location, and profile link. Implemented via a web client that navigates LinkedIn search and extracts entries (requires a LinkedIn session cookie in environment).
+    Custom LinkedIn retrieval tool that uses an authenticated browser session to find candidate profiles.
     """
     return (
         "Tool 'tool_linkedin' "
@@ -113,7 +103,7 @@ def tool_linkedin_impl(
 
 tool_linkedin = FunctionTool(
     tool_linkedin_impl,
-    description="""Retrieve LinkedIn profiles given a list of skills. Input is a comma-separated list of skills. Returns candidate name, position, location, and profile link. Implemented via a web client that navigates LinkedIn search and extracts entries (requires a LinkedIn session cookie in environment)."""
+    description="""Custom LinkedIn retrieval tool that uses an authenticated browser session to find candidate profiles. """
 )
 
 
@@ -130,10 +120,10 @@ Role:
 Job Candidate Researcher
 
 Goal:
-Find potential candidates for the job specified in inputs (job_requirements). Use multiple public resources to assemble candidate brief profiles and contact info.
+Agent goal: find potential candidates matching provided job requirements.
 
 Background:
-Agent-level base instruction for researcher.
+You are a Job Candidate Researcher.
 """,
 )
 
@@ -146,10 +136,10 @@ Role:
 Candidate Matcher and Scorer
 
 Goal:
-Evaluate candidates relative to the job_requirements, compute scores and rank candidates with justifications.
+Agent goal: evaluate and rank candidates against job requirements.
 
 Background:
-Agent-level base instruction for matcher.
+You are a Candidate Matcher and Scorer.
 """,
 )
 
@@ -162,10 +152,10 @@ Role:
 Candidate Outreach Strategist
 
 Goal:
-Produce outreach methods and message templates tailored to prioritized candidates.
+Agent goal: create outreach templates and communication plans.
 
 Background:
-Agent-level base instruction for communicator.
+You are a Candidate Outreach Strategist.
 """,
 )
 
@@ -178,10 +168,10 @@ Role:
 Candidate Reporting Specialist
 
 Goal:
-Assemble a concise report for recruiters with profiles, scores, and outreach plan; follow output formatting instruction from tasks configuration.
+Agent goal: compile findings and recommend top candidates.
 
 Background:
-Agent-level base instruction for reporter.
+You are a Candidate Reporting Specialist.
 """,
 )
 

@@ -17,14 +17,14 @@ async def main():
     try:
         # Step-by-step sequential execution
         # ==================================================
-        # Workflow Step: task_fetch_random_image
-        # Workflow Edge: task_fetch_random_image -> task_analyze_image
+        # Workflow Step: get_random_image_task
+        # Workflow Edge: get_random_image_task -> image_metadata_task
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: task_fetch_random_image")
+        print("Executing step: get_random_image_task")
         print("=" * 80)
 
-        task_prompt = """Task that selects a random image from Unsplash using the getRandomImage tool with a query parameter drawn from an enum of options."""
+        task_prompt = """Task that obtains an image (imageUrl, photographer info) from Unsplash based on a query. """
         # Execute via the assigned agent: agent
         result = await agent.run(task=task_prompt)
 
@@ -35,13 +35,13 @@ async def main():
             print(result)
 
         # ==================================================
-        # Workflow Step: task_analyze_image
+        # Workflow Step: image_metadata_task
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: task_analyze_image")
+        print("Executing step: image_metadata_task")
         print("=" * 80)
 
-        task_prompt = """Task that sends an image and an instruction prompt to the LLM agent to determine whether the image is a bird, the species (scientific name) and a short summary of the picture location."""
+        task_prompt = """Task where the agent inspects an image and returns structured output indicating whether it is a bird, the species, and a short location summary. """
         # Execute via the assigned agent: bird_checker
         result = await bird_checker.run(task=task_prompt)
 

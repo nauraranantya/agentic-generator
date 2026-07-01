@@ -1,3 +1,14 @@
+"""
+Auto-generated AutoGen Team: UnnamedProject
+Goals:
+  - : No explicit goal provided in source; placeholder goal.
+  - : No explicit goal provided in source; placeholder goal.
+Capabilities:
+  - : Execute workflow step code and perform system actions (e.g., logging).
+Resources:
+  - : Schema-constrained output object with property 'species'.
+  - : Output of logCatName step (rawText value).
+"""
 
 from autogen_agentchat.agents import AssistantAgent
 
@@ -25,26 +36,26 @@ model_client = OpenAIChatCompletionClient(
 # ==================================================
 
 
-def console_tool_impl(
+def mastra_runtime_impl(
     query: str = ""
 ) -> str:
     """
     AgentO Tool:
-    console_tool
+    mastra_runtime
 
     Description:
-    Represents the runtime logging facility used by the step (the source prints to console via console.log). Modeled as a Tool to indicate the step uses an execution tool.
+    Runtime engine that executes workflow step code (non-LLM execution).
     """
     return (
-        "Tool 'console_tool' "
+        "Tool 'mastra_runtime' "
         "is a generated stub and "
         "has not been implemented yet."
     )
 
 
-console_tool = FunctionTool(
-    console_tool_impl,
-    description="""Represents the runtime logging facility used by the step (the source prints to console via console.log). Modeled as a Tool to indicate the step uses an execution tool."""
+mastra_runtime = FunctionTool(
+    mastra_runtime_impl,
+    description="""Runtime engine that executes workflow step code (non-LLM execution). """
 )
 
 
@@ -61,10 +72,26 @@ Role:
 feline expert
 
 Goal:
-feline expert
+No explicit goal provided in source; placeholder goal.
 
 Background:
-Default agent-level instructions to guide behavior when the agent is asked about cat species. This prompt is intended to be used by the agent as its core persona/instructions.
+You are a feline expert.
+""",
+)
+
+
+agent_two = AssistantAgent(
+    name="agent_two",
+    model_client=model_client,
+    system_message="""
+Role:
+assistant
+
+Goal:
+No explicit goal provided in source; placeholder goal.
+
+Background:
+You are a assistant.
 """,
 )
 

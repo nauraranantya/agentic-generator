@@ -4,24 +4,30 @@
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Capabilities:
- *   - Spam detection / vulgar content detection: 
- *   - Discussion analysis and summarization: 
- *   - Create dialogue-heavy screenplay from discussion: 
- *   - Text formatting, removing actions/parentheticals: 
- *   - Score a dialogue on a 1-10 scale: 
+ *   - : Access and call Mistral LLM endpoint.
+ *   - : Access and call Together.ai LLM endpoint.
+ *   - : Access and call Anyscale LLM endpoint.
  */
 
 import { Agent } from '@mastra/core/agent'
+
+// Import tools
+import { mistralTool, togetherTool, anyscaleTool } from '../tools'
 
 /**
  * formatter
  * 
  * Instructions:
- * role: formatter; goal: Format text and remove bracketed actions; backstory: expert text formatter.
+ * You are formatter.
  */
 export const formatter = new Agent({
   id: `formatter`,
   name: `formatter`,
-  instructions: `role: formatter; goal: Format text and remove bracketed actions; backstory: expert text formatter.`,
+  instructions: `You are formatter.`,
   model: 'openai/gpt-4o-mini',
+  tools: {
+    mistralTool,
+    togetherTool,
+    anyscaleTool,
+  },
 })

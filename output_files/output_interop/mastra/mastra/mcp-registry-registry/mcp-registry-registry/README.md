@@ -1,6 +1,6 @@
 # UnnamedProject
 
-Mastra configured with a single MCP Registry Agent and a Pino logger. This Team represents the runtime composition (agents, system configuration).
+An MCP server that provides a registry of MCP registries and exposes tools 'registryList' and 'registryServers'.
 
 **Auto-generated from AgentO Knowledge Graph**  
 Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
@@ -39,12 +39,12 @@ UnnamedProject/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
 │       ├── agents/            # Agent definitions
-│       │   └── mcpRegistryAgent.ts
+│       │   └── registryRegistryServer.ts
 │       ├── tools/             # Tool definitions
-│       │   └── mcpClient.ts
-│       │   └── mcpRegistryTool.ts
+│       │   └── toolRegistryList.ts
+│       │   └── toolRegistryServers.ts
 │       └── workflows/         # Workflow definitions
-│           └── mastraSimpleWorkflow.ts
+│           └── workflowRegistryServers.ts
 ├── package.json
 ├── tsconfig.json
 └── .env.example
@@ -54,44 +54,45 @@ UnnamedProject/
 
 ## 🤖 Agents
 
-### registry
+### mcp-server
 
-- **ID:** `mcp-registry-agent`
-- **Model:** `openai/gpt-4o`
-- **Tools:** mcpClient, mcpRegistryTool
+- **ID:** `registry-registry-server`
+- **Model:** `openai/gpt-4o-mini`
+- **Tools:** toolRegistryList, toolRegistryServers
 
-Agent bootstrap prompt / instruction used to guide agent behavior independent of a specific task....
+You are mcp-server....
 
 
 ---
 
 ## 🔧 Tools
 
-### mcpClient
+### toolRegistryList
 
-Client used by the Mastra configuration to enumerate available MCP tool endpoints. In the source it is an MCPClient instance with server configuration; provides a listTools() capability....
+List available MCP registries. Can filter by ID, tag, or name and provide detailed or summary views....
 
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/mcpClient.ts`)
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolRegistryList.ts`)
 
-### mcpRegistryTool
+### toolRegistryServers
 
-Tool instance representing the MCP registry server process launched via the configured command. In the source the agent's tools are populated by await mcp.listTools(); the registry server is configure...
+Get servers from a specific MCP registry. Can filter by tag or search term. Internally fetches registry data, invokes post-processing, and filters results....
 
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/mcpRegistryTool.ts`)
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolRegistryServers.ts`)
 
 
 ---
 
 ## 🔄 Workflows
 
-### mastra_simple_workflow
+### workflow_registry_servers
 
-A minimal workflow pattern capturing a single LLM agent (MCP Registry Agent) that uses a client to enumerate tools and perform registry lookup tasks.
+Inferred workflow for serving registry server listing: start -> fetch & post-process -> filter -> return results.
 
-**Steps:** 3
-1. initialize_agent_task
-2. search_mcp_registries_task
-3. finalize_task
+**Steps:** 4
+1. task_fetch_servers_from_registry
+2. task_post_process_servers
+3. task_filter_servers
+4. task_get_servers_from_registry
 
 
 ---

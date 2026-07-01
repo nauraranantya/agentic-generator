@@ -1,37 +1,36 @@
 /**
- * Tool: execaTool
+ * Tool: toolExecaTool
  * 
  * Auto-generated from AgentO Knowledge Graph
  * 
- * Tool wrapping execa to run commands and stream output to console. Input: {command, args}. Output: {message}.
+ * Execute shell commands and stream output.
  */
 
 import { createTool } from '@mastra/core/tools'
 import { z } from 'zod'
 
 /**
- * execaTool
+ * toolExecaTool
  * 
- * Implementation: Tool wrapping execa to run commands and stream output to console. Input: {command, args}. Output: {message}.
+ * Implementation: Execute shell commands and stream output.
  */
 export const toolExecaTool = createTool({
-  id: 'execaTool',
-  description: `Tool wrapping execa to run commands and stream output to console. Input: {command, args}. Output: {message}.`,
-  inputSchema: z.object({command: z.string(), args: z.string()}),
-  outputSchema: z.object({message: z.string()}),
+  id: 'toolExecaTool',
+  description: `Execute shell commands and stream output.`,
+  inputSchema: z.object({}),  // TODO: Define input schema
+  outputSchema: z.object({}),  // TODO: Define output schema
   execute: async ({ inputData }) => {
     // TODO: Implement tool logic
     // 
-    // Description: Tool wrapping execa to run commands and stream output to console. Input: {command, args}. Output: {message}.
+    // Description: Execute shell commands and stream output.
     // Configurations:
-    //   - inputSchema: { "command": "string", "args": "string[]" }
-    //   - outputSchema: { "message": "string" }
+    //   - EXECA_STDIN: inherit
     // 
     // Implementation should:
     // 1. Use inputData according to inputSchema
     // 2. Perform the tool's logic
     // 3. Return result matching outputSchema
     
-    throw new Error('Tool execaTool not implemented yet')
+    throw new Error('Tool toolExecaTool not implemented yet')
   },
 })

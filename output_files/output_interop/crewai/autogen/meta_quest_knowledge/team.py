@@ -1,9 +1,7 @@
 """
 Auto-generated AutoGen Team: UnnamedProject
 Goals:
-  - : Goal expressed in agents configuration to provide best answers to questions about Meta Quest.
-Objectives:
-  - : Objective assigned to the crew: answer user questions by using available knowledge sources (PDF manual) and agent capabilities.
+  - : Agent-level goal extracted from agents.yaml.
 """
 
 from autogen_agentchat.agents import AssistantAgent
@@ -45,10 +43,10 @@ Role:
 Meta Quest Expert
 
 Goal:
-Goal expressed in agents configuration to provide best answers to questions about Meta Quest.
+Agent-level goal extracted from agents.yaml.
 
 Background:
-Agent-level instruction/backstory used to guide the agent's independent reasoning and responses.
+You are a Meta Quest Expert.
 """,
 )
 

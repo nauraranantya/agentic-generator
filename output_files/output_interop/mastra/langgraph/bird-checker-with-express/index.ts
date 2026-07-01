@@ -17,7 +17,7 @@ const get_random_image_tool = tool(
   },
   {
     name: "get_random_image_tool",
-    description: "Gets a random image from Unsplash based on selected query option. Random page selection and order_by ('relevant' or 'latest') logic is applied at runtime.",
+    description: "Gets a random image from Unsplash based on the selected option",
     schema: z.object({}),
   }
 );
@@ -25,17 +25,17 @@ const get_random_image_tool = tool(
 
 
 /**
- * Node: taskFetchRandomImage
+ * Node: getRandomImageTask
  * Agent: bird_checker
  */
-async function taskFetchRandomImage(state: typeof UnnamedProjectAnnotation.State) {
+async function getRandomImageTask(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "You are a image-analyst." +
-        "\nNode: taskFetchRandomImage",
+        "You are a bird-checker." +
+        "\nNode: getRandomImageTask",
     },
     ...state.messages,
   ]);
@@ -43,17 +43,17 @@ async function taskFetchRandomImage(state: typeof UnnamedProjectAnnotation.State
 }
 
 /**
- * Node: taskAnalyzeImage
+ * Node: imageMetadataTask
  * Agent: bird_checker
  */
-async function taskAnalyzeImage(state: typeof UnnamedProjectAnnotation.State) {
+async function imageMetadataTask(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "You are a image-analyst." +
-        "\nNode: taskAnalyzeImage",
+        "You are a bird-checker." +
+        "\nNode: imageMetadataTask",
     },
     ...state.messages,
   ]);
@@ -61,13 +61,13 @@ async function taskAnalyzeImage(state: typeof UnnamedProjectAnnotation.State) {
 }
 
 const workflow = new StateGraph(UnnamedProjectAnnotation)
-  .addNode("taskFetchRandomImage", taskFetchRandomImage)
-  .addNode("taskAnalyzeImage", taskAnalyzeImage)
-  .addEdge(START, "taskFetchRandomImage")
-  .addEdge("taskFetchRandomImage", "taskAnalyzeImage")
-  .addEdge("taskAnalyzeImage", END)
+  .addNode("getRandomImageTask", getRandomImageTask)
+  .addNode("imageMetadataTask", imageMetadataTask)
+  .addEdge(START, "getRandomImageTask")
+  .addEdge("getRandomImageTask", "imageMetadataTask")
+  .addEdge("imageMetadataTask", END)
 ;
 
 export const graph = workflow.compile();
 graph.name = "UnnamedProject";
-// Workflow: image_metadata_workflow
+// Workflow: bird_check_workflow

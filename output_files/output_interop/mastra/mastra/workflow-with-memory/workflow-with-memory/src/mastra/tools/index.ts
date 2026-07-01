@@ -1,1 +1,1 @@
-export { catFactTool } from './catFactTool'
+export { toolGetCatFacts } from './toolGetCatFacts'

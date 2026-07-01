@@ -29,7 +29,7 @@ async def main():
         print("Executing step: stock_analysis_ytd_stock_gain_plot")
         print("=" * 80)
 
-        task_prompt = """Today is {today}. Create a plot showing stock gain YTD for NVDA and TLSA. Make sure the code is in markdown code block and save the figure to a file ytd_stock_gains.png."""
+        task_prompt = """Today is {today}. Create a plot showing stock gain YTD for NVDA and TLSA. Make sure the code is in markdown code block and save the figure to a file ytd_stock_gains.png. """
         # Execute via the assigned agent: code_writer_agent
         result = await code_writer_agent.run(task=task_prompt)
 

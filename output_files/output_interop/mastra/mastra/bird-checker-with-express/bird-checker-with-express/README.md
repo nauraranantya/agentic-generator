@@ -1,6 +1,6 @@
 # UnnamedProject
 
-The deployed Mastra-based system hosting an agent and tools to fetch and analyze images (server runs on Node/Express).
+Mastra instance that hosts the bird checker agent and associated tools.
 
 **Auto-generated from AgentO Knowledge Graph**  
 Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
@@ -43,7 +43,7 @@ UnnamedProject/
 │       ├── tools/             # Tool definitions
 │       │   └── getRandomImageTool.ts
 │       └── workflows/         # Workflow definitions
-│           └── imageMetadataWorkflow.ts
+│           └── birdCheckWorkflow.ts
 ├── package.json
 ├── tsconfig.json
 └── .env.example
@@ -53,12 +53,13 @@ UnnamedProject/
 
 ## 🤖 Agents
 
-### image-analyst
+### bird-checker
 
-- **ID:** `bird-checker`
+- **ID:** `Bird checker`
 - **Model:** `anthropic/claude-3-5-sonnet-latest`
+- **Tools:** getRandomImageTool
 
-You are image-analyst....
+Determine whether an image contains a bird, identify the species, and summarize the location....
 
 
 ---
@@ -67,7 +68,7 @@ You are image-analyst....
 
 ### getRandomImageTool
 
-Gets a random image from Unsplash based on selected query option. Random page selection and order_by ('relevant' or 'latest') logic is applied at runtime....
+Gets a random image from Unsplash based on the selected option...
 
 **Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/getRandomImageTool.ts`)
 
@@ -76,13 +77,13 @@ Gets a random image from Unsplash based on selected query option. Random page se
 
 ## 🔄 Workflows
 
-### image_metadata_workflow
+### bird_check_workflow
 
-A simple two-step workflow: fetch a random image and analyze it for bird metadata. This workflow represents the server endpoints' functional logic.
+Simple workflow representing (1) obtaining an image and (2) analyzing it with the birdCheckerAgent.
 
 **Steps:** 2
-1. task_fetch_random_image
-2. task_analyze_image
+1. get_random_image_task
+2. image_metadata_task
 
 
 ---

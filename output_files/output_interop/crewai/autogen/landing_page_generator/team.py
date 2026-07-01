@@ -1,30 +1,20 @@
 """
-Auto-generated AutoGen Team: ExpandIdeaCrewteam
+Auto-generated AutoGen Team: UnnamedProject
 Goals:
-  - : Understand and expand the idea into a comprehensive idea report, detailing value proposition and features.
-  - : Provide WHY, HOW, WHAT messaging and core message for the idea.
-  - : Select a Tailwind template that fits the idea and copy it into the working folder; then update components.
-  - : Produce content for components, update components, and QA them according to rules.
+  - : Understand and expand upon the essence of ideas, make sure they are great and focus on real pain points others could benefit from.
+  - : Craft compelling stories using the Golden Circle method to captivate and engage people around an idea.
+  - : Build an intuitive, aesthetically pleasing, and high-converting landing page.
+  - : Ensure the landing page content is clear, concise, and captivating.
 Capabilities:
-  - web search: Capability to search internet and return snippets.
-  - web scraping and summarization: Capability to scrape a website and summarize content.
-  - file write: Capability to write content safely to files in workdir.
-  - learn templates listing: Capability to read templates configuration and list template options.
-  - copy template folder: Capability to copy template folders into project workspace.
-  - read file: Capability to read file content from the workspace.
-  - list directory: Capability to list directories in the workspace.
+  - : Perform web search queries and return structured results.
+  - : Scrape website HTML and summarize content into concise summaries.
+  - : Inspect available landing page templates and surface options.
+  - : Copy a landing page template folder into the working project directory.
+  - : Write files to the workdir with validation and allowed extensions.
+  - : Read files from the workdir.
+  - : List directory contents under the workdir.
 Resources:
-  - templates/ (folder of Tailwind templates): Local templates base folder. The code expects user to place individual template folders here. Referenced by TemplateTools.copy_landing_page_template_to_project_folder.
-  - workdir.zip (final packaged project archive): At the end of execution the system compresses ./workdir into a zip and returns it to the user.
-  - Expanded idea report (text): Output of expand_idea_task. The code uses this expanded idea as input to the next crews.
-  - Refined idea report (text): Output of refine_idea_task. Used by other tasks to craft landing page content.
-  - Copied template folder in workdir: Result of copying a template folder into ./workdir. The copy is executed by TemplateTools.copy_landing_page_template_to_project_folder.
-  - List of component paths used in main page.jsx: Produced by update_page_task: the set of component file paths that will be used on the final single page.
-  - Component text suggestions (structured text): Produced by component_content_task and used by update_component_task.
-  - Updated React component files (on disk): Files written to ./workdir by update_component_task using WriteFileTool. Filenames correspond to the components list.
-  - QA confirmation / corrections applied: Confirmation that updated components pass QA rules. If not, corrected files are written to disk.
-  - Copied template folder (workdir/<template>): A template folder copied from ./templates into ./workdir. Expected structure includes src/components and src/app/page.jsx.
-  - Components full path list (JSON array): The JSON array that choose_template_task must return listing the most important 4 components' full paths to update; later used by CreateContentCrew.
+  - : Extraction created LLMAgent, Tool, Task, WorkflowPattern, WorkflowStep, Prompt, Goal, Config, and LanguageModel individuals per CrewAI mapping. Assumed default model 'gpt-4'.
 """
 
 from autogen_agentchat.agents import AssistantAgent
@@ -53,187 +43,164 @@ model_client = OpenAIChatCompletionClient(
 # ==================================================
 
 
-def search_internet_tool_impl(
+def tool_search_internet_impl(
     query: str = ""
 ) -> str:
     """
     AgentO Tool:
-    SearchtheinternetSearchToolssearchinternet
+    tool_search_internet
 
     Description:
-    Performs internet search using an external search API (serper.dev). Requires SERPER_API_KEY environment variable.
+    Search the internet using Serper Dev API and return organic results.
     """
     return (
-        "Tool 'search_internet_tool' "
+        "Tool 'tool_search_internet' "
         "is a generated stub and "
         "has not been implemented yet."
     )
 
 
-search_internet_tool = FunctionTool(
-    search_internet_tool_impl,
-    description="""Performs internet search using an external search API (serper.dev). Requires SERPER_API_KEY environment variable."""
+tool_search_internet = FunctionTool(
+    tool_search_internet_impl,
+    description="""Search the internet using Serper Dev API and return organic results. """
 )
 
 
-def scrape_website_tool_impl(
+def tool_scrape_and_summarize_website_impl(
     query: str = ""
 ) -> str:
     """
     AgentO Tool:
-    ScrapewebsitecontentBrowserToolsscrapeandsummarizewebsite
+    tool_scrape_and_summarize_website
 
     Description:
-    Scrapes website HTML via browserless API and summarizes content using an internal summarization Task. Requires BROWSERLESS_API_KEY environment variable.
+    Scrape website content via Browserless and summarize chunks using internal agent tasks.
     """
     return (
-        "Tool 'scrape_website_tool' "
+        "Tool 'tool_scrape_and_summarize_website' "
         "is a generated stub and "
         "has not been implemented yet."
     )
 
 
-scrape_website_tool = FunctionTool(
-    scrape_website_tool_impl,
-    description="""Scrapes website HTML via browserless API and summarizes content using an internal summarization Task. Requires BROWSERLESS_API_KEY environment variable."""
+tool_scrape_and_summarize_website = FunctionTool(
+    tool_scrape_and_summarize_website_impl,
+    description="""Scrape website content via Browserless and summarize chunks using internal agent tasks. """
 )
 
 
-def write_file_tool_impl(
+def tool_learn_landing_page_options_impl(
     query: str = ""
 ) -> str:
     """
     AgentO Tool:
-    WritefiletoworkdirFileToolswritefile
+    tool_learn_landing_page_options
 
     Description:
-    Writes files into ./workdir with path sanitization and allowed extensions.
+    Read templates configuration and surface available landing page templates.
     """
     return (
-        "Tool 'write_file_tool' "
+        "Tool 'tool_learn_landing_page_options' "
         "is a generated stub and "
         "has not been implemented yet."
     )
 
 
-write_file_tool = FunctionTool(
-    write_file_tool_impl,
-    description="""Writes files into ./workdir with path sanitization and allowed extensions."""
+tool_learn_landing_page_options = FunctionTool(
+    tool_learn_landing_page_options_impl,
+    description="""Read templates configuration and surface available landing page templates. """
 )
 
 
-def learn_templates_tool_impl(
+def tool_copy_landing_page_template_impl(
     query: str = ""
 ) -> str:
     """
     AgentO Tool:
-    LearnlandingpageoptionsTemplateToolslearnlandingpageoptions
+    tool_copy_landing_page_template
 
     Description:
-    Reads config/templates.json to list available templates.
+    Copy a selected landing page template folder from templates/ into workdir/.
     """
     return (
-        "Tool 'learn_templates_tool' "
+        "Tool 'tool_copy_landing_page_template' "
         "is a generated stub and "
         "has not been implemented yet."
     )
 
 
-learn_templates_tool = FunctionTool(
-    learn_templates_tool_impl,
-    description="""Reads config/templates.json to list available templates."""
+tool_copy_landing_page_template = FunctionTool(
+    tool_copy_landing_page_template_impl,
+    description="""Copy a selected landing page template folder from templates/ into workdir/. """
 )
 
 
-def copy_template_tool_impl(
+def tool_write_file_impl(
     query: str = ""
 ) -> str:
     """
     AgentO Tool:
-    CopylandingpagetemplatetoprojectfolderTemplateToolscopylandingpagetemplatetoprojectfolder
+    tool_write_file
 
     Description:
-    Copies a template folder from ./templates to ./workdir with safety checks.
+    Validated write file tool that writes React component and other files into workdir.
     """
     return (
-        "Tool 'copy_template_tool' "
+        "Tool 'tool_write_file' "
         "is a generated stub and "
         "has not been implemented yet."
     )
 
 
-copy_template_tool = FunctionTool(
-    copy_template_tool_impl,
-    description="""Copies a template folder from ./templates to ./workdir with safety checks."""
+tool_write_file = FunctionTool(
+    tool_write_file_impl,
+    description="""Validated write file tool that writes React component and other files into workdir. """
 )
 
 
-def read_file_tool_impl(
+def tool_read_file_impl(
     query: str = ""
 ) -> str:
     """
     AgentO Tool:
-    Readfilefilemanagementtoolkitreadfile
+    tool_read_file
 
     Description:
-    Read file contents from workdir (used by agent toolkits).
+    Read file from the toolkit root_dir (workdir).
     """
     return (
-        "Tool 'read_file_tool' "
+        "Tool 'tool_read_file' "
         "is a generated stub and "
         "has not been implemented yet."
     )
 
 
-read_file_tool = FunctionTool(
-    read_file_tool_impl,
-    description="""Read file contents from workdir (used by agent toolkits)."""
+tool_read_file = FunctionTool(
+    tool_read_file_impl,
+    description="""Read file from the toolkit root_dir (workdir). """
 )
 
 
-def list_directory_tool_impl(
+def tool_list_directory_impl(
     query: str = ""
 ) -> str:
     """
     AgentO Tool:
-    Listdirectoryfilemanagementtoolkitlistdirectory
+    tool_list_directory
 
     Description:
-    List directories in workdir (used by agent toolkits).
+    List directory contents from the toolkit root_dir (workdir).
     """
     return (
-        "Tool 'list_directory_tool' "
+        "Tool 'tool_list_directory' "
         "is a generated stub and "
         "has not been implemented yet."
     )
 
 
-list_directory_tool = FunctionTool(
-    list_directory_tool_impl,
-    description="""List directories in workdir (used by agent toolkits)."""
-)
-
-
-def file_management_toolkit_impl(
-    query: str = ""
-) -> str:
-    """
-    AgentO Tool:
-    Filemanagementtoolkitcontainerprovidesreadfilelistdirectorytools
-
-    Description:
-    In the code this is an instantiation of FileManagementToolkit(root_dir='workdir', selected_tools=['read_file','list_directory']). Modeled here as a Tool-like resource containing ReadFileTool and ListDirectoryTool.
-    """
-    return (
-        "Tool 'file_management_toolkit' "
-        "is a generated stub and "
-        "has not been implemented yet."
-    )
-
-
-file_management_toolkit = FunctionTool(
-    file_management_toolkit_impl,
-    description="""In the code this is an instantiation of FileManagementToolkit(root_dir='workdir', selected_tools=['read_file','list_directory']). Modeled here as a Tool-like resource containing ReadFileTool and ListDirectoryTool."""
+tool_list_directory = FunctionTool(
+    tool_list_directory_impl,
+    description="""List directory contents from the toolkit root_dir (workdir). """
 )
 
 
@@ -250,7 +217,7 @@ Role:
 Senior Idea Analyst
 
 Goal:
-Understand and expand the idea into a comprehensive idea report, detailing value proposition and features.
+Understand and expand upon the essence of ideas, make sure they are great and focus on real pain points others could benefit from.
 
 Background:
 You are a Senior Idea Analyst.
@@ -266,7 +233,7 @@ Role:
 Senior Communications Strategist
 
 Goal:
-Provide WHY, HOW, WHAT messaging and core message for the idea.
+Craft compelling stories using the Golden Circle method to captivate and engage people around an idea.
 
 Background:
 You are a Senior Communications Strategist.
@@ -282,7 +249,7 @@ Role:
 Senior React Engineer
 
 Goal:
-Select a Tailwind template that fits the idea and copy it into the working folder; then update components.
+Build an intuitive, aesthetically pleasing, and high-converting landing page.
 
 Background:
 You are a Senior React Engineer.
@@ -298,7 +265,7 @@ Role:
 Senior Content Editor
 
 Goal:
-Produce content for components, update components, and QA them according to rules.
+Ensure the landing page content is clear, concise, and captivating.
 
 Background:
 You are a Senior Content Editor.

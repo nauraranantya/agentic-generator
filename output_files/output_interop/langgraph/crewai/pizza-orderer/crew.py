@@ -4,16 +4,10 @@ Auto-generated CrewAI Crew: UnnamedProject
 Source  : AgentO Knowledge Graph → SPARQL → Pydantic → Jinja2
 Pipeline: 3-Layer Conversion Pipeline
 Goals:
-  - Order Pizza Goal: Top-level intent: find a pizza shop and place a pizza order for a user.
+  - : High-level goal to find a pizza shop and place an order for the user.
 Capabilities:
-  - find_store: Capability to find a pizza shop given a location and optional company name.
-  - place_order: Capability to place a pizza order given store contact and order details.
-Resources:
-  - User Location (input): User-provided location string (e.g., 'San Francisco' or 'New York'). Required input for the findStore task.
-  - Pizza Company Name (optional input): Optional user-provided pizza company name (e.g., 'Dominos' or 'Papa John's').
-  - Store Information (found store): Example produced content (from code's toolResponse): "I've found a pizza shop at 1119 19th St, San Francisco, CA 94107. The phone number for the shop is 415-555-1234.". Also includes link to the tool_call_id produced by the model call in runtime (tool_call_id captured in code), represented here as descriptive metadata.
-  - Order Details (input for placing order): Structured fields expected from place_pizza_order output: address (address of store), phone_number (store phone), order (full pizza order for the user).
-  - Order Confirmation (produced resource): Example produced content (from code's toolResponse): "Pizza order successfully placed.". In runtime the tool_call_id linking the confirmation to the model/tool invocation is present; represented in this resource description.
+  - : Find nearby pizza shop and return contact details (address, phone).
+  - : Place an order at the specified pizza shop and return order confirmation.
 """
 
 from crewai import Agent, Crew, Process, Task
@@ -24,19 +18,19 @@ from crewai.tools import tool
 # ===========================================================
 # Tool Instances
 # ===========================================================
-# TODO: tool_pizza_finder — unknown tool class "PizzaFinderTool"
+# TODO: find_pizza_tool — unknown tool class "FindPizzaTool"
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-@tool("PizzaFinderTool")
-def tool_pizza_finder(*args, **kwargs) -> str:
-    """Represents the external lookup mechanism that returns store contact information. In code this is emu"""
-    return "tool_pizza_finder result"
+@tool("FindPizzaTool")
+def find_pizza_tool(*args, **kwargs) -> str:
+    """Tool invoked to search for a pizza shop and return address and phone number."""
+    return "find_pizza_tool result"
 
-# TODO: tool_pizza_ordering_system — unknown tool class "PizzaOrderingSystem"
+# TODO: place_order_tool — unknown tool class "PlaceOrderTool"
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-@tool("PizzaOrderingSystem")
-def tool_pizza_ordering_system(*args, **kwargs) -> str:
-    """Represents the external ordering mechanism that places the pizza order and returns confirmation. In """
-    return "tool_pizza_ordering_system result"
+@tool("PlaceOrderTool")
+def place_order_tool(*args, **kwargs) -> str:
+    """Tool invoked to place a pizza order and confirm success."""
+    return "place_order_tool result"
 
 
 
@@ -51,26 +45,26 @@ class UnnamedProject:
     # ── Agents ──────────────────────────────────────────
 
     @agent
-    def pizza_orderer_v1(self) -> Agent:
+    def langgraph_anthropic_agent(self) -> Agent:
         return Agent(
-            config=self.agents_config['pizza_orderer_v1'],
+            config=self.agents_config['langgraph_anthropic_agent'],
+            tools=[find_pizza_tool, place_order_tool],
         )
 
     # ── Tasks ───────────────────────────────────────────
 
     @task
-    def find_pizza_shop_task(self) -> Task:
+    def find_store_task(self) -> Task:
         return Task(
-            config=self.tasks_config['find_pizza_shop_task'],
-            agent=self.pizza_orderer_v1(),
+            config=self.tasks_config['find_store_task'],
+            agent=self.langgraph_anthropic_agent(),
         )
 
     @task
-    def place_pizza_order_task(self) -> Task:
+    def order_pizza_task(self) -> Task:
         return Task(
-            config=self.tasks_config['place_pizza_order_task'],
-            agent=self.pizza_orderer_v1(),
-            context=[self.find_pizza_shop_task()],
+            config=self.tasks_config['order_pizza_task'],
+            agent=self.langgraph_anthropic_agent(),
         )
 
     # ── Crew ────────────────────────────────────────────

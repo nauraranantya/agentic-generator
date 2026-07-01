@@ -1,22 +1,25 @@
 /**
- * Mastra AI Instance - CopyCrew
+ * Mastra AI Instance - UnnamedProject
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
  * Goals:
- *   - Marketing Campaign Objective: Overarching objective: produce Instagram post copy and photograph concepts that highlight the product, its unique selling points, and create a high-impact campaign.
- * Objectives:
- *   - Copy Crew Objective: Generate analysis-informed ad copy and campaign strategy to drive engagement.
- *   - Image Crew Objective: Create photograph concepts aligned with ad copy and campaign to produce visuals for Instagram.
+ *   - : Produce thorough product and competitor analysis to inform marketing strategy.
+ *   - : Formulate marketing strategies and creative ideas based on product and competitor analysis.
+ *   - : Produce multiple Instagram ad copy options aligned with campaign strategy.
+ *   - : Generate three photographic concepts that best represent the campaign and product without showing the actual product.
+ *   - : Ensure final creative outputs are aligned with product goals; review and approve imagery.
+ *   - : Produce marketing analysis and 3 Instagram ad copy options for the product.
+ *   - : Produce three photograph concepts and a reviewed final selection aligned with campaign copy.
  */
 
 import { Mastra } from '@mastra/core'
 
 // Import agents
-import { productCompetitorAgent, strategyPlannerAgent, creativeContentCreatorAgent, seniorPhotographerAgent, chiefCreativeDirectorAgent } from './agents'
+import { productCompetitorAgent, strategyPlannerAgent, creativeContentCreatorAgent, seniorPhotographerAgent, chiefCreativeDiretorAgent } from './agents'
 
 // Import workflows
-import { wpCopyCrew, wpImageCrew } from './workflows'
+import { workflowCopyCrew, workflowImageCrew } from './workflows'
 
 /**
  * Mastra instance with registered agents, workflows, and memory.
@@ -28,10 +31,10 @@ export const mastra = new Mastra({
     strategyPlannerAgent,
     creativeContentCreatorAgent,
     seniorPhotographerAgent,
-    chiefCreativeDirectorAgent,
+    chiefCreativeDiretorAgent,
   },
   workflows: {
-    wpCopyCrew,
-    wpImageCrew,
+    workflowCopyCrew,
+    workflowImageCrew,
   },
 })

@@ -1,28 +1,52 @@
 import { ChatOpenAI } from "@langchain/openai";
 import { Annotation, START, END, StateGraph } from "@langchain/langgraph";
+import { tool } from "@langchain/core/tools";
+import { z } from "zod";
 
-const GameBuilderCrewAnnotation = Annotation.Root({
+const UnnamedProjectAnnotation = Annotation.Root({
   messages: Annotation<any[]>({
     reducer: (_, next) => next,
     default: () => [],
   }),
 });
 
+// Tool: tool_serper
+const tool_serper = tool(
+  async () => {
+    return "Result of tool_serper";
+  },
+  {
+    name: "tool_serper",
+    description: "Serper search API used for web search (mentioned in README).",
+    schema: z.object({}),
+  }
+);
+// Tool: tool_openai_api
+const tool_openai_api = tool(
+  async () => {
+    return "Result of tool_openai_api";
+  },
+  {
+    name: "tool_openai_api",
+    description: "OpenAI API access used by CrewAI to call LLMs (configured via environment variables).",
+    schema: z.object({}),
+  }
+);
 
 
 
 /**
- * Node: codeTask
+ * Node: taskCode
  * Agent: senior_engineer_agent
  */
-async function codeTask(state: typeof GameBuilderCrewAnnotation.State) {
+async function taskCode(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Role: Senior Software Engineer" +
-        "\nNode: codeTask",
+        "You are a Senior Software Engineer." +
+        "\nNode: taskCode",
     },
     ...state.messages,
   ]);
@@ -30,17 +54,17 @@ async function codeTask(state: typeof GameBuilderCrewAnnotation.State) {
 }
 
 /**
- * Node: reviewTask
+ * Node: taskReview
  * Agent: qa_engineer_agent
  */
-async function reviewTask(state: typeof GameBuilderCrewAnnotation.State) {
+async function taskReview(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Role: Software Quality Control Engineer" +
-        "\nNode: reviewTask",
+        "You are a Software Quality Control Engineer." +
+        "\nNode: taskReview",
     },
     ...state.messages,
   ]);
@@ -48,34 +72,33 @@ async function reviewTask(state: typeof GameBuilderCrewAnnotation.State) {
 }
 
 /**
- * Node: evaluateTask
+ * Node: taskEvaluate
  * Agent: chief_qa_engineer_agent
  */
-async function evaluateTask(state: typeof GameBuilderCrewAnnotation.State) {
+async function taskEvaluate(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Role: Chief Software Quality Control Engineer" +
-        "\nNode: evaluateTask",
+        "You are a Chief Software Quality Control Engineer." +
+        "\nNode: taskEvaluate",
     },
     ...state.messages,
   ]);
   return { messages: [response] };
 }
 
-const workflow = new StateGraph(GameBuilderCrewAnnotation)
-  .addNode("codeTask", codeTask)
-  .addNode("reviewTask", reviewTask)
-  .addNode("evaluateTask", evaluateTask)
-  .addEdge(START, "codeTask")
-  .addEdge("codeTask", "reviewTask")
-  .addEdge("reviewTask", "evaluateTask")
-  .addEdge("evaluateTask", END)
+const workflow = new StateGraph(UnnamedProjectAnnotation)
+  .addNode("taskCode", taskCode)
+  .addNode("taskReview", taskReview)
+  .addNode("taskEvaluate", taskEvaluate)
+  .addEdge(START, "taskCode")
+  .addEdge("taskCode", "taskReview")
+  .addEdge("taskReview", "taskEvaluate")
+  .addEdge("taskEvaluate", END)
 ;
 
 export const graph = workflow.compile();
-graph.name = "GameBuilderCrew";
-// Workflow: game_builder_workflow
-// Workflow: Game Builder Sequential Workflow
+graph.name = "UnnamedProject";
+// Workflow: wp_sequential

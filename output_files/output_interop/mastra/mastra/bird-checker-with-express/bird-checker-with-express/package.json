@@ -1,7 +1,7 @@
 {
   "name": "bird-checker-with-express",
   "version": "0.1.0",
-  "description": "The deployed Mastra-based system hosting an agent and tools to fetch and analyze images (server runs on Node/Express).",
+  "description": "Mastra instance that hosts the bird checker agent and associated tools.",
   "type": "module",
   "main": "src/mastra/index.ts",
   "scripts": {

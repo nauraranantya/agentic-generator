@@ -1,18 +1,12 @@
 """
-Auto-generated CrewAI Crew: MastraSystem
+Auto-generated CrewAI Crew: UnnamedProject
 
 Source  : AgentO Knowledge Graph → SPARQL → Pydantic → Jinja2
 Pipeline: 3-Layer Conversion Pipeline
-Goals:
-  - Generate OpenAPI spec from docs: Produce a merged OpenAPI specification from website documentation and optionally open a PR with the spec in a repository.
 Capabilities:
-  - Convert markdown to OpenAPI spec: Extract endpoints, parameters, responses and models from markdown documentation and produce an OpenAPI fragment.
-  - Merge OpenAPI fragments: Merge multiple OpenAPI fragments into a single valid OpenAPI spec (resolve conflicts, unify components).
-  - Format spec as YAML: Produce a properly formatted YAML spec from textual content.
-Resources:
-  - Crawled data (markdown pages): Resource produced by site-crawl tool: an array of objects containing markdown text and metadata with sourceURL. Used as input for generate-spec tool.
-  - Merged OpenAPI spec (yaml string): The merged OpenAPI specification produced by the generate-spec tool (string YAML). This resource is consumed by the add-to-github tool.
-  - Pull Request URL / result: The PR created on GitHub as a result of add-to-github tool (pr_url if created).
+  - : Crawls a website and extracts markdown content for downstream processing.
+  - : Generates OpenAPI specification fragments from documentation pages and merges them.
+  - : Formats YAML, creates branch, commits files and opens a pull request on GitHub.
 """
 
 from crewai import Agent, Crew, Process, Task
@@ -23,47 +17,33 @@ from crewai.tools import tool
 # ===========================================================
 # Tool Instances
 # ===========================================================
-# TODO: site_crawl_tool — unknown tool class "SiteCrawl"
+# TODO: tool_site_crawl — unknown tool class "toolsitecrawl"
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-@tool("SiteCrawl")
-def site_crawl_tool(*args, **kwargs) -> str:
+@tool("toolsitecrawl")
+def tool_site_crawl(*args, **kwargs) -> str:
     """Crawl a website and extract the markdown content"""
-    return "site_crawl_tool result"
+    return "tool_site_crawl result"
 
-# TODO: firecrawl_integration — unknown tool class "FirecrawlIntegration"
+# TODO: tool_generate_spec — unknown tool class "toolgeneratespec"
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-@tool("FirecrawlIntegration")
-def firecrawl_integration(*args, **kwargs) -> str:
-    """Integration client used to crawl websites (Firecrawl API key supplied at runtime)."""
-    return "firecrawl_integration result"
+@tool("toolgeneratespec")
+def tool_generate_spec(*args, **kwargs) -> str:
+    """Generate a spec from a website"""
+    return "tool_generate_spec result"
 
-# TODO: generate_spec_tool — unknown tool class "GenerateSpec"
+# TODO: tool_add_to_github — unknown tool class "tooladdtogithub"
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-@tool("GenerateSpec")
-def generate_spec_tool(*args, **kwargs) -> str:
-    """Generate an OpenAPI spec from crawled website markdown; uses the OpenAPI agent to convert pages and """
-    return "generate_spec_tool result"
-
-# TODO: add_to_git_hub_tool — unknown tool class "AddtoGit"
-#   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-@tool("AddtoGit")
-def add_to_git_hub_tool(*args, **kwargs) -> str:
-    """Commit the spec to GitHub: formats YAML via the agent, creates branch, commits files and opens a pul"""
-    return "add_to_git_hub_tool result"
-
-# TODO: git_hub_integration — unknown tool class "GitHubIntegration"
-#   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-@tool("GitHubIntegration")
-def git_hub_integration(*args, **kwargs) -> str:
-    """GitHub integration client that performs git ref, file write and pull request operations (requires PE"""
-    return "git_hub_integration result"
+@tool("tooladdtogithub")
+def tool_add_to_github(*args, **kwargs) -> str:
+    """Commit the spec to GitHub and create a PR"""
+    return "tool_add_to_github result"
 
 
 
 
 @CrewBase
-class MastraSystem:
-    """MastraSystem crew"""
+class UnnamedProject:
+    """UnnamedProject crew"""
 
     agents_config = 'config/agents.yaml'
     tasks_config = 'config/tasks.yaml'
@@ -74,35 +54,36 @@ class MastraSystem:
     def openapi_spec_gen_agent(self) -> Agent:
         return Agent(
             config=self.agents_config['openapi_spec_gen_agent'],
+            tools=[tool_site_crawl, tool_generate_spec, tool_add_to_github],
         )
 
     # ── Tasks ───────────────────────────────────────────
 
     @task
-    def site_crawl_sync_step_task(self) -> Task:
+    def task_site_crawl_sync(self) -> Task:
         return Task(
-            config=self.tasks_config['site_crawl_sync_step_task'],
+            config=self.tasks_config['task_site_crawl_sync'],
         )
 
     @task
-    def generate_spec_task(self) -> Task:
+    def task_add_to_github(self) -> Task:
         return Task(
-            config=self.tasks_config['generate_spec_task'],
-            context=[self.site_crawl_sync_step_task()],
+            config=self.tasks_config['task_add_to_github'],
+            agent=self.openapi_spec_gen_agent(),
         )
 
     @task
-    def add_to_github_task(self) -> Task:
+    def task_generate_spec(self) -> Task:
         return Task(
-            config=self.tasks_config['add_to_github_task'],
-            context=[self.generate_spec_task()],
+            config=self.tasks_config['task_generate_spec'],
+            agent=self.openapi_spec_gen_agent(),
         )
 
     # ── Crew ────────────────────────────────────────────
 
     @crew
     def crew(self) -> Crew:
-        """Creates the MastraSystem"""
+        """Creates the UnnamedProject"""
         return Crew(
             agents=self.agents,
             tasks=self.tasks,

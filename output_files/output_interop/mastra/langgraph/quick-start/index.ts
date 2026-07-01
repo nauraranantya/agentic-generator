@@ -10,14 +10,14 @@ const UnnamedProjectAnnotation = Annotation.Root({
   }),
 });
 
-// Tool: console_tool
-const console_tool = tool(
+// Tool: mastra_runtime
+const mastra_runtime = tool(
   async () => {
-    return "Result of console_tool";
+    return "Result of mastra_runtime";
   },
   {
-    name: "console_tool",
-    description: "Represents the runtime logging facility used by the step (the source prints to console via console.log). Modeled as a Tool to indicate the step uses an execution tool.",
+    name: "mastra_runtime",
+    description: "Runtime engine that executes workflow step code (non-LLM execution).",
     schema: z.object({}),
   }
 );
@@ -29,12 +29,12 @@ const console_tool = tool(
  * Agent: cat_one
  */
 async function taskLogCatName(state: typeof UnnamedProjectAnnotation.State) {
-  const model = new ChatOpenAI({ model: "gpt-4o" });
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Default agent-level instructions to guide behavior when the agent is asked about cat species. This prompt is intended to be used by the agent as its core persona/instructions." +
+        "You are a feline expert." +
         "\\nNode: taskLogCatName",
     },
     ...state.messages,
@@ -50,5 +50,4 @@ const workflow = new StateGraph(UnnamedProjectAnnotation)
 
 export const graph = workflow.compile();
 graph.name = "UnnamedProject";
-// Workflow: log_cat_workflow_pattern
-// Workflow: legacy_log_cat_workflow_pattern
+// Workflow: log_cat_workflow

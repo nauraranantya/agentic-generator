@@ -10,36 +10,25 @@ const UnnamedProjectAnnotation = Annotation.Root({
   }),
 });
 
-// Tool: file_read_tool
-const file_read_tool = tool(
+// Tool: tool_file_read
+const tool_file_read = tool(
   async () => {
-    return "Result of file_read_tool";
+    return "Result of tool_file_read";
   },
   {
-    name: "file_read_tool",
-    description: "Tool used to read file contents (used by cv_reader and matcher).",
+    name: "tool_file_read",
+    description: "Tool to read file contents (used to read CV and other files).",
     schema: z.object({}),
   }
 );
-// Tool: csv_search_tool
-const csv_search_tool = tool(
+// Tool: tool_csv_search
+const tool_csv_search = tool(
   async () => {
-    return "Result of csv_search_tool";
+    return "Result of tool_csv_search";
   },
   {
-    name: "csv_search_tool",
-    description: "Tool used to search and parse CSV job listings (used by matcher).",
-    schema: z.object({}),
-  }
-);
-// Tool: my_custom_tool
-const my_custom_tool = tool(
-  async () => {
-    return "Result of my_custom_tool";
-  },
-  {
-    name: "my_custom_tool",
-    description: "Custom tool implemented at src/match_to_proposal/tools/job_db_connect.py. Placeholder for an external DB connector. Implementation-specific behavior not modeled.",
+    name: "tool_csv_search",
+    description: "Tool to search and query CSV files for matching job opportunities.",
     schema: z.object({}),
   }
 );
@@ -47,17 +36,17 @@ const my_custom_tool = tool(
 
 
 /**
- * Node: readCvTask
+ * Node: taskReadCv
  * Agent: cv_reader
  */
-async function readCvTask(state: typeof UnnamedProjectAnnotation.State) {
+async function taskReadCv(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Agent-level prompt to orient behavior. Use FileReadTool to access CV file. Produce a structured CV summary." +
-        "\nNode: readCvTask",
+        "You are a CV Reader." +
+        "\nNode: taskReadCv",
     },
     ...state.messages,
   ]);
@@ -65,17 +54,17 @@ async function readCvTask(state: typeof UnnamedProjectAnnotation.State) {
 }
 
 /**
- * Node: matchCvTask
+ * Node: taskMatchCv
  * Agent: matcher
  */
-async function matchCvTask(state: typeof UnnamedProjectAnnotation.State) {
+async function taskMatchCv(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Agent-level prompt to orient behavior. Use CSVSearchTool and FileReadTool to access jobs CSV and CV summary." +
-        "\nNode: matchCvTask",
+        "You are a Matcher." +
+        "\nNode: taskMatchCv",
     },
     ...state.messages,
   ]);
@@ -83,14 +72,13 @@ async function matchCvTask(state: typeof UnnamedProjectAnnotation.State) {
 }
 
 const workflow = new StateGraph(UnnamedProjectAnnotation)
-  .addNode("readCvTask", readCvTask)
-  .addNode("matchCvTask", matchCvTask)
-  .addEdge(START, "readCvTask")
-  .addEdge("readCvTask", "matchCvTask")
-  .addEdge("matchCvTask", END)
+  .addNode("taskReadCv", taskReadCv)
+  .addNode("taskMatchCv", taskMatchCv)
+  .addEdge(START, "taskReadCv")
+  .addEdge("taskReadCv", "taskMatchCv")
+  .addEdge("taskMatchCv", END)
 ;
 
 export const graph = workflow.compile();
 graph.name = "UnnamedProject";
-// Workflow: match_to_proposal_workflow_pattern
-// Workflow: next_pattern_placeholder
+// Workflow: workflow_sequential

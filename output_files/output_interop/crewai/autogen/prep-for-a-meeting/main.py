@@ -1,10 +1,10 @@
 import asyncio
 
 from team import (
-    researcher_agent_1,
-    industry_analyst_agent_1,
-    meeting_strategy_agent_1,
-    briefing_coordinator_agent_1,
+    researcher_agent,
+    industry_analyst_agent,
+    meeting_strategy_agent,
+    summary_and_briefing_agent,
 )
 
 from autogen_agentchat.conditions import (
@@ -45,11 +45,9 @@ news, achievements, professional background, and any relevant
 business activities.
 
 Participants: {participants}
-Meeting Context: {context}
-
-Note: asynchronous execution requested in source (async_execution=True)."""
-        # Execute via the assigned agent: researcher_agent_1
-        result = await researcher_agent_1.run(task=task_prompt)
+Meeting Context: {context} """
+        # Execute via the assigned agent: researcher_agent
+        result = await researcher_agent.run(task=task_prompt)
 
         # Print step output
         if hasattr(result, "messages") and result.messages:
@@ -71,11 +69,9 @@ developments, and expert opinions to provide a comprehensive
 overview of the industry landscape.
 
 Participants: {participants}
-Meeting Context: {context}
-
-Note: asynchronous execution requested in source (async_execution=True)."""
-        # Execute via the assigned agent: industry_analyst_agent_1
-        result = await industry_analyst_agent_1.run(task=task_prompt)
+Meeting Context: {context} """
+        # Execute via the assigned agent: industry_analyst_agent
+        result = await industry_analyst_agent.run(task=task_prompt)
 
         # Print step output
         if hasattr(result, "messages") and result.messages:
@@ -92,14 +88,12 @@ Note: asynchronous execution requested in source (async_execution=True)."""
         print("=" * 80)
 
         task_prompt = """Develop strategic talking points, questions, and discussion angles
-for the meeting based on the research and industry analysis conducted.
+for the meeting based on the research and industry analysis conducted
 
 Meeting Context: {context}
-Meeting Objective: {objective}
-
-Note: This task's context in the source is set to [research, industry_analysis], i.e., it depends on outputs from Task_Research and Task_IndustryAnalysis."""
-        # Execute via the assigned agent: meeting_strategy_agent_1
-        result = await meeting_strategy_agent_1.run(task=task_prompt)
+Meeting Objective: {objective} """
+        # Execute via the assigned agent: meeting_strategy_agent
+        result = await meeting_strategy_agent.run(task=task_prompt)
 
         # Print step output
         if hasattr(result, "messages") and result.messages:
@@ -121,11 +115,9 @@ Ensure the briefing is easy to digest and equips the meeting
 participants with all necessary information and strategies.
 
 Meeting Context: {context}
-Meeting Objective: {objective}
-
-Note: This task's context in the source is set to [research, industry_analysis, meeting_strategy], i.e., depends on prior task outputs."""
-        # Execute via the assigned agent: briefing_coordinator_agent_1
-        result = await briefing_coordinator_agent_1.run(task=task_prompt)
+Meeting Objective: {objective} """
+        # Execute via the assigned agent: summary_and_briefing_agent
+        result = await summary_and_briefing_agent.run(task=task_prompt)
 
         # Print step output
         if hasattr(result, "messages") and result.messages:

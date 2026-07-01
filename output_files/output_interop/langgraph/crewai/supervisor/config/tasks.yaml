@@ -1,22 +1,23 @@
-router_task:
+task_start:
+  description: Start step for the supervisor StateGraph that initializes routing to
+    the 'router' step.
+  expected_output: Routing initiation
+task_router:
   description: |
+    The route to take based on the user's input.
+    - stockbroker: can fetch the price of a ticker, purchase/sell a ticker, or get the user's portfolio
+    - tripPlanner: helps the user plan their trip. it can suggest restaurants, and places to stay in any given location.
+    - openCode: can write a React TODO app for the user. Only call this tool if they request a TODO app.
+    - orderPizza: can order a pizza for the user
+    - writerAgent: can write a text document for the user. Only call this tool if they request a text document.
+    - generalInput: handles all other cases where the above tools don't apply
+
     You're a highly helpful AI assistant, tasked with routing the user's query to the appropriate tool.
     You should analyze the user's input, and choose the appropriate tool to use.
-  expected_output: 'A tool call result indicating selected route, e.g., { "route":
-    "stockbroker" }.'
-stockbroker_task:
-  description: Stockbroker Task
-  expected_output: 'Completed: stockbroker_task'
-trip_planner_task:
-  description: Trip Planner Task
-  expected_output: 'Completed: trip_planner_task'
-open_code_task:
-  description: Open Code Task
-  expected_output: 'Completed: open_code_task'
-order_pizza_task:
-  description: Order Pizza Task
-  expected_output: 'Completed: order_pizza_task'
-general_input_task:
+
+    The expected output is a single route name: one of {stockbroker, tripPlanner, openCode, orderPizza, generalInput, writerAgent}.
+  expected_output: Selected route name (one of stockbroker|tripPlanner|openCode|orderPizza|generalInput|writerAgent)
+task_general_input:
   description: |
     You are an AI assistant.
     If the user asks what you can do, describe these tools.
@@ -29,7 +30,27 @@ general_input_task:
     If the last message is a tool result, describe what the action was, congratulate the user, or send a friendly followup in response to the tool action. Ensure this is a clear and concise message.
 
     Otherwise, just answer as normal.
-  expected_output: A direct assistant response message or summary of the tool action.
-writer_agent_task:
-  description: Writer Agent Task
-  expected_output: 'Completed: writer_agent_task'
+  expected_output: Assistant chat response or follow-up after tool result
+task_stockbroker:
+  description: |
+    Tool: stockbroker — can fetch the price of a ticker, purchase/sell a ticker, or get the user's portfolio.
+  expected_output: Result of stockbroker action (price, portfolio, or confirmation
+    of trade)
+task_trip_planner:
+  description: |
+    Tool: tripPlanner — helps the user plan their trip; can suggest restaurants and places to stay for a given location.
+  expected_output: Trip suggestions (places, restaurants, accommodations)
+task_open_code:
+  description: |
+    Tool: openCode — can write a React TODO app for the user. Only call this tool if they request a TODO app.
+  expected_output: Code files / instructions for a React TODO app
+task_order_pizza:
+  description: 'Tool: orderPizza — can order a pizza for the user.'
+  expected_output: Order confirmation and details
+task_writer_agent:
+  description: |
+    Tool: writerAgent — can write a text document for the user. Only call this tool if they request a text document.
+  expected_output: Generated text document or writing deliverable
+task_end:
+  description: End step for the supervisor StateGraph indicating the workflow is complete.
+  expected_output: Workflow completion indicator

@@ -1,20 +1,10 @@
 """
-Auto-generated CrewAI Crew: MastraSystem
+Auto-generated CrewAI Crew: UnnamedProject
 
 Source  : AgentO Knowledge Graph → SPARQL → Pydantic → Jinja2
 Pipeline: 3-Layer Conversion Pipeline
-Environments:
-  -  (): 
 Capabilities:
-  - fetch cat fact: Capability of the tool: retrieve a cat fact string from a remote API.
-  - double numeric value: 
-  - increment numeric value by 1: 
-  - square numeric value: 
-  - square root numeric value: 
-  - triple numeric value: 
-  - log numeric value and return raw text: 
-Resources:
-  - Cat Fact Resource: 
+  - : Returns a cat fact string from an external API (catfact.ninja).
 """
 
 from crewai import Agent, Crew, Process, Task
@@ -25,19 +15,19 @@ from crewai.tools import tool
 # ===========================================================
 # Tool Instances
 # ===========================================================
-# TODO: cat_fact_tool — unknown tool class "catFactTool"
+# TODO: tool_get_cat_facts — unknown tool class "toolGetCatFacts"
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-@tool("catFactTool")
-def cat_fact_tool(*args, **kwargs) -> str:
-    """Description for cat_fact_tool"""
-    return "cat_fact_tool result"
+@tool("toolGetCatFacts")
+def tool_get_cat_facts(*args, **kwargs) -> str:
+    """Fetches cat facts"""
+    return "tool_get_cat_facts result"
 
 
 
 
 @CrewBase
-class MastraSystem:
-    """MastraSystem crew"""
+class UnnamedProject:
+    """UnnamedProject crew"""
 
     agents_config = 'config/agents.yaml'
     tasks_config = 'config/tasks.yaml'
@@ -48,58 +38,142 @@ class MastraSystem:
     def cat_one(self) -> Agent:
         return Agent(
             config=self.agents_config['cat_one'],
-            tools=[cat_fact_tool],
+            tools=[tool_get_cat_facts],
         )
 
     # ── Tasks ───────────────────────────────────────────
 
     @task
-    def step_six_task(self) -> Task:
+    def task_step_one(self) -> Task:
         return Task(
-            config=self.tasks_config['step_six_task'],
+            config=self.tasks_config['task_step_one'],
+            agent=self.cat_one(),
         )
 
     @task
-    def step_two_task(self) -> Task:
+    def task_par_step_one(self) -> Task:
         return Task(
-            config=self.tasks_config['step_two_task'],
+            config=self.tasks_config['task_par_step_one'],
+            agent=self.cat_one(),
         )
 
     @task
-    def step_one_task(self) -> Task:
+    def task_br_step_one(self) -> Task:
         return Task(
-            config=self.tasks_config['step_one_task'],
+            config=self.tasks_config['task_br_step_one'],
+            agent=self.cat_one(),
         )
 
     @task
-    def step_three_task(self) -> Task:
+    def task_cyc_step_one(self) -> Task:
         return Task(
-            config=self.tasks_config['step_three_task'],
+            config=self.tasks_config['task_cyc_step_one'],
+            agent=self.cat_one(),
         )
 
     @task
-    def step_four_task(self) -> Task:
+    def task_step_two(self) -> Task:
         return Task(
-            config=self.tasks_config['step_four_task'],
+            config=self.tasks_config['task_step_two'],
+            agent=self.cat_one(),
         )
 
     @task
-    def step_five_task(self) -> Task:
+    def task_par_step_six(self) -> Task:
         return Task(
-            config=self.tasks_config['step_five_task'],
+            config=self.tasks_config['task_par_step_six'],
+            agent=self.cat_one(),
         )
 
     @task
-    def fetch_cat_fact_task(self) -> Task:
+    def task_br_step_two(self) -> Task:
         return Task(
-            config=self.tasks_config['fetch_cat_fact_task'],
+            config=self.tasks_config['task_br_step_two'],
+            agent=self.cat_one(),
+        )
+
+    @task
+    def task_cyc_step_two(self) -> Task:
+        return Task(
+            config=self.tasks_config['task_cyc_step_two'],
+            agent=self.cat_one(),
+        )
+
+    @task
+    def task_step_three(self) -> Task:
+        return Task(
+            config=self.tasks_config['task_step_three'],
+            agent=self.cat_one(),
+        )
+
+    @task
+    def task_par_step_two(self) -> Task:
+        return Task(
+            config=self.tasks_config['task_par_step_two'],
+            agent=self.cat_one(),
+        )
+
+    @task
+    def task_br_step_four(self) -> Task:
+        return Task(
+            config=self.tasks_config['task_br_step_four'],
+            agent=self.cat_one(),
+        )
+
+    @task
+    def task_cyc_step_three(self) -> Task:
+        return Task(
+            config=self.tasks_config['task_cyc_step_three'],
+            agent=self.cat_one(),
+        )
+
+    @task
+    def task_step_four(self) -> Task:
+        return Task(
+            config=self.tasks_config['task_step_four'],
+            agent=self.cat_one(),
+        )
+
+    @task
+    def task_par_step_three(self) -> Task:
+        return Task(
+            config=self.tasks_config['task_par_step_three'],
+            agent=self.cat_one(),
+        )
+
+    @task
+    def task_br_step_three(self) -> Task:
+        return Task(
+            config=self.tasks_config['task_br_step_three'],
+            agent=self.cat_one(),
+        )
+
+    @task
+    def task_cyc_step_one_loop(self) -> Task:
+        return Task(
+            config=self.tasks_config['task_cyc_step_one_loop'],
+            agent=self.cat_one(),
+        )
+
+    @task
+    def task_step_five(self) -> Task:
+        return Task(
+            config=self.tasks_config['task_step_five'],
+            agent=self.cat_one(),
+        )
+
+    @task
+    def task_br_step_five(self) -> Task:
+        return Task(
+            config=self.tasks_config['task_br_step_five'],
+            agent=self.cat_one(),
         )
 
     # ── Crew ────────────────────────────────────────────
 
     @crew
     def crew(self) -> Crew:
-        """Creates the MastraSystem"""
+        """Creates the UnnamedProject"""
         return Crew(
             agents=self.agents,
             tasks=self.tasks,

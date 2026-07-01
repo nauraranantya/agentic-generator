@@ -1,7 +1,7 @@
 {
   "name": "stock_analysis",
   "version": "0.1.0",
-  "description": "Team that coordinates a set of LLM agents and tasks to perform stock/filings/research analysis for a given company ticker (example: AMZN).",
+  "description": "CrewAI-based team coordinating multiple analyst agents to produce stock analysis and recommendations.",
   "type": "module",
   "main": "src/mastra/index.ts",
   "scripts": {

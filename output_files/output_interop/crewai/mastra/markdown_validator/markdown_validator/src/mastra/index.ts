@@ -1,11 +1,13 @@
 /**
- * Mastra AI Instance - MarkDownValidatorCrew
+ * Mastra AI Instance - UnnamedProject
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
  * Goals:
- *   - Markdown validation crew goal: Provide a detailed list of the markdown linting results. Give a summary with actionable tasks to address the validation results. Write your response as if you were handing it to a developer to fix the issues. DO NOT provide examples of how to fix the issues or recommend other tools to use.
- *   - Requirements Manager goal: Provide a detailed list of the markdown linting results. Give a summary with actionable tasks to address the validation results. Write your response as if you were handing it to a developer to fix the issues. DO NOT provide examples of how to fix the issues or recommend other tools to use.
+ *   - : Provide a detailed list of the markdown linting results.
+Give a summary with actionable tasks to address the validation results.
+Write your response as if you were handing it to a developer to fix the issues.
+DO NOT provide examples of how to fix the issues or recommend other tools to use.
  */
 
 import { Mastra } from '@mastra/core'
@@ -14,7 +16,7 @@ import { Mastra } from '@mastra/core'
 import { requirementsManager } from './agents'
 
 // Import workflows
-import { markdownValidationWorkflowPattern } from './workflows'
+import { markdownValidationWorkflow } from './workflows'
 
 /**
  * Mastra instance with registered agents, workflows, and memory.
@@ -25,6 +27,6 @@ export const mastra = new Mastra({
     requirementsManager,
   },
   workflows: {
-    markdownValidationWorkflowPattern,
+    markdownValidationWorkflow,
   },
 })

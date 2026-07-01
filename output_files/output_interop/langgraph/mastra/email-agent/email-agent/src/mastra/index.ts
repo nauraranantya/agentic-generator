@@ -4,7 +4,7 @@
  * Auto-generated from AgentO Knowledge Graph
  * Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
  * Human Agents:
- *   - user_human ()
+ *   - human_user ()
  */
 
 import { Mastra } from '@mastra/core'
@@ -13,7 +13,7 @@ import { Mastra } from '@mastra/core'
 import { emailAssistantAgent } from './agents'
 
 // Import workflows
-import { emailAssistantWorkflow } from './workflows'
+import { emailAgentStateGraph } from './workflows'
 
 /**
  * Mastra instance with registered agents, workflows, and memory.
@@ -24,6 +24,6 @@ export const mastra = new Mastra({
     emailAssistantAgent,
   },
   workflows: {
-    emailAssistantWorkflow,
+    emailAgentStateGraph,
   },
 })

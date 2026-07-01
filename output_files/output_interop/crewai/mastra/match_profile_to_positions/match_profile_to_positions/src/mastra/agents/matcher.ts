@@ -3,29 +3,29 @@
  * ID: matcher
  * 
  * Auto-generated from AgentO Knowledge Graph
- * Objectives:
- *   - : Objective for producing a structured summary of the given CV.
- *   - : Objective for producing a ranked list of job matches for the candidate.
+ * Capabilities:
+ *   - : Capability to read file contents from disk.
+ *   - : Capability to search and query CSV-formatted job listings.
  */
 
 import { Agent } from '@mastra/core/agent'
 
 // Import tools
-import { fileReadTool, csvSearchTool } from '../tools'
+import { toolFileRead, toolCsvSearch } from '../tools'
 
 /**
  * Matcher
  * 
  * Instructions:
- * Agent-level prompt to orient behavior. Use CSVSearchTool and FileReadTool to access jobs CSV and CV summary.
+ * Match the CV to the job opportunities based on skills, experience, and key achievements.
  */
 export const matcher = new Agent({
   id: `matcher`,
   name: `Matcher`,
-  instructions: `Agent-level prompt to orient behavior. Use CSVSearchTool and FileReadTool to access jobs CSV and CV summary.`,
+  instructions: `Match the CV to the job opportunities based on skills, experience, and key achievements.`,
   model: 'openai/gpt-4o-mini',
   tools: {
-    fileReadTool,
-    csvSearchTool,
+    toolFileRead,
+    toolCsvSearch,
   },
 })

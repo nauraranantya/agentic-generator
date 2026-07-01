@@ -1,25 +1,33 @@
 /**
- * Agent: OpenAPI spec writer agent
+ * Agent: openapi-spec-writer
  * ID: openapi-spec-gen-agent
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Capabilities:
- *   - Convert markdown to OpenAPI spec: Extract endpoints, parameters, responses and models from markdown documentation and produce an OpenAPI fragment.
- *   - Merge OpenAPI fragments: Merge multiple OpenAPI fragments into a single valid OpenAPI spec (resolve conflicts, unify components).
- *   - Format spec as YAML: Produce a properly formatted YAML spec from textual content.
+ *   - : Crawls a website and extracts markdown content for downstream processing.
+ *   - : Generates OpenAPI specification fragments from documentation pages and merges them.
+ *   - : Formats YAML, creates branch, commits files and opens a pull request on GitHub.
  */
 
 import { Agent } from '@mastra/core/agent'
 
+// Import tools
+import { toolSiteCrawl, toolGenerateSpec, toolAddToGithub } from '../tools'
+
 /**
- * OpenAPI spec writer agent
+ * openapi-spec-writer
  * 
  * Instructions:
- * Produce a merged OpenAPI specification from website documentation and optionally open a PR with the spec in a repository.
+ * You are openapi-spec-writer.
  */
 export const openapiSpecGenAgent = new Agent({
   id: `openapi-spec-gen-agent`,
-  name: `OpenAPI spec writer agent`,
-  instructions: `Produce a merged OpenAPI specification from website documentation and optionally open a PR with the spec in a repository.`,
+  name: `openapi-spec-writer`,
+  instructions: `You are openapi-spec-writer.`,
   model: 'openai/gpt-3.5-turbo',
+  tools: {
+    toolSiteCrawl,
+    toolGenerateSpec,
+    toolAddToGithub,
+  },
 })

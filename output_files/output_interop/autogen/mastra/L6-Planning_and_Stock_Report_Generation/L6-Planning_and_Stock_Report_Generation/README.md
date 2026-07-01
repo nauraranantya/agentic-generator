@@ -1,6 +1,6 @@
 # UnnamedProject
 
-Represents the group chat coordinating agents: Admin (user proxy), Planner, Engineer, Executor, Writer. Modeled as a Team for lack of a dedicated GroupChat class in the ontology.
+Team instantiated by GroupChat(agents=[...]) with a max_round and allowed speaker transitions.
 
 **Auto-generated from AgentO Knowledge Graph**  
 Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
@@ -39,14 +39,15 @@ UnnamedProject/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
 │       ├── agents/            # Agent definitions
-│       │   └── plannerAgent.ts
-│       │   └── engineerAgent.ts
-│       │   └── executorAgent.ts
-│       │   └── writerAgent.ts
+│       │   └── admin.ts
+│       │   └── planner.ts
+│       │   └── engineer.ts
+│       │   └── executor.ts
+│       │   └── writer.ts
+│       │   └── groupChatManager.ts
 │       ├── tools/             # Tool definitions
-│       │   └── codingEnvironmentTool.ts
 │       └── workflows/         # Workflow definitions
-│           └── stockReportGenerationPattern.ts
+│           └── wpGroupChat1.ts
 ├── package.json
 ├── tsconfig.json
 └── .env.example
@@ -56,62 +57,69 @@ UnnamedProject/
 
 ## 🤖 Agents
 
+### Admin
+
+- **ID:** `Admin`
+- **Model:** `openai/gpt-4o-mini`
+
+You are Admin....
+
 ### Planner
 
-- **ID:** `plannerAgent`
-- **Model:** `openai/gpt-4-turbo`
+- **ID:** `Planner`
+- **Model:** `openai/gpt-4o-mini`
 
-Planner. Given a task, determine what information is needed to complete the task. After each step is done by others, check the progress and instruct the remaining steps...
+You are Planner....
 
 ### Engineer
 
-- **ID:** `engineerAgent`
-- **Model:** `openai/gpt-4-turbo`
+- **ID:** `Engineer`
+- **Model:** `openai/gpt-4o-mini`
 
-Engineer: writes code per planner's plan...
+You are Engineer....
 
 ### Executor
 
-- **ID:** `executorAgent`
-- **Model:** `openai/gpt-4-turbo`
+- **ID:** `Executor`
+- **Model:** `openai/gpt-4o-mini`
 
-Executor: execute code and return execution results (no human input)....
+You are Executor....
 
 ### Writer
 
-- **ID:** `writerAgent`
-- **Model:** `openai/gpt-4-turbo`
-- **Tools:** codingEnvironmentTool
+- **ID:** `Writer`
+- **Model:** `openai/gpt-4o-mini`
 
-Writer: write blogs based on the code execution results and take feedback from the admin to refine the blog....
+You are Writer....
+
+### GroupChatManager
+
+- **ID:** `GroupChatManager`
+- **Model:** `openai/gpt-4o-mini`
+
+You are GroupChatManager....
 
 
 ---
 
 ## 🔧 Tools
 
-### codingEnvironmentTool
-
-Conceptual tool representing the environment used by Executor to run code. Config captured as key/value on Config individual....
-
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/codingEnvironmentTool.ts`)
-
+No tools defined in this project.
 
 ---
 
 ## 🔄 Workflows
 
-### stock_report_generation_pattern
+### wp_group_chat1
 
-Pattern created from the notebook 'L6-Planning_and_Stock_Report_Generation.ipynb'. Captures the sequence of roles (Admin/Planner/Engineer/Executor/Writer), their responsibilities, and the artifacts exchanged.
+Derived workflow pattern from the GroupChat agent configuration.
 
-**Steps:** 6
-1. main_task
-2. plan_information_task
-3. write_code_task
-4. execute_code_task
-5. write_report_task
-6. admin_feedback_task
+**Steps:** 5
+1. task_initiate_write_blog
+2. task_planner_plan
+3. task_engineer_write_code
+4. task_executor_run_code
+5. task_writer_produce_blog
 
 
 ---

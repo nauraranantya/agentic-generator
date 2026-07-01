@@ -1,7 +1,7 @@
 {
   "name": "quick-start",
   "version": "0.1.0",
-  "description": "Agent orchestration system instance containing agents, workflows and logger configuration as defined in the source repository.",
+  "description": "",
   "type": "module",
   "main": "src/mastra/index.ts",
   "scripts": {

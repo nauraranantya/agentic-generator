@@ -1,28 +1,63 @@
 import { ChatOpenAI } from "@langchain/openai";
 import { Annotation, START, END, StateGraph } from "@langchain/langgraph";
+import { tool } from "@langchain/core/tools";
+import { z } from "zod";
 
-const AICrewforscreenwritingAnnotation = Annotation.Root({
+const UnnamedProjectAnnotation = Annotation.Root({
   messages: Annotation<any[]>({
     reducer: (_, next) => next,
     default: () => [],
   }),
 });
 
+// Tool: mistral_tool
+const mistral_tool = tool(
+  async () => {
+    return "Result of mistral_tool";
+  },
+  {
+    name: "mistral_tool",
+    description: "Official Mistral LLM API endpoint (optional selection in script).",
+    schema: z.object({}),
+  }
+);
+// Tool: together_tool
+const together_tool = tool(
+  async () => {
+    return "Result of together_tool";
+  },
+  {
+    name: "together_tool",
+    description: "Together.ai models endpoint (optional selection in script).",
+    schema: z.object({}),
+  }
+);
+// Tool: anyscale_tool
+const anyscale_tool = tool(
+  async () => {
+    return "Result of anyscale_tool";
+  },
+  {
+    name: "anyscale_tool",
+    description: "Anyscale models endpoint (optional selection in script).",
+    schema: z.object({}),
+  }
+);
 
 
 
 /**
- * Node: task1Analysis
+ * Node: task1
  * Agent: analyst
  */
-async function task1Analysis(state: typeof AICrewforscreenwritingAnnotation.State) {
+async function task1(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "role: analyse; goal: Distill arguments and identify who said what; backstory: Expert discussion analyst." +
-        "\nNode: task1Analysis",
+        "You are a analyse." +
+        "\nNode: task1",
     },
     ...state.messages,
   ]);
@@ -30,17 +65,17 @@ async function task1Analysis(state: typeof AICrewforscreenwritingAnnotation.Stat
 }
 
 /**
- * Node: task2Scriptwriting
+ * Node: task2
  * Agent: scriptwriter
  */
-async function task2Scriptwriting(state: typeof AICrewforscreenwritingAnnotation.State) {
+async function task2(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "role: scriptwriter; goal: Produce dialogue-only screenplay; backstory: hates directional notes" +
-        "\nNode: task2Scriptwriting",
+        "You are a scriptwriter." +
+        "\nNode: task2",
     },
     ...state.messages,
   ]);
@@ -48,34 +83,33 @@ async function task2Scriptwriting(state: typeof AICrewforscreenwritingAnnotation
 }
 
 /**
- * Node: task3Formatting
+ * Node: task3
  * Agent: formatter
  */
-async function task3Formatting(state: typeof AICrewforscreenwritingAnnotation.State) {
+async function task3(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "role: formatter; goal: Format text and remove bracketed actions; backstory: expert text formatter." +
-        "\nNode: task3Formatting",
+        "You are a formatter." +
+        "\nNode: task3",
     },
     ...state.messages,
   ]);
   return { messages: [response] };
 }
 
-const workflow = new StateGraph(AICrewforscreenwritingAnnotation)
-  .addNode("task1Analysis", task1Analysis)
-  .addNode("task2Scriptwriting", task2Scriptwriting)
-  .addNode("task3Formatting", task3Formatting)
-  .addEdge(START, "task1Analysis")
-  .addEdge("task1Analysis", "task2Scriptwriting")
-  .addEdge("task2Scriptwriting", "task3Formatting")
-  .addEdge("task3Formatting", END)
+const workflow = new StateGraph(UnnamedProjectAnnotation)
+  .addNode("task1", task1)
+  .addNode("task2", task2)
+  .addNode("task3", task3)
+  .addEdge(START, "task1")
+  .addEdge("task1", "task2")
+  .addEdge("task2", "task3")
+  .addEdge("task3", END)
 ;
 
 export const graph = workflow.compile();
-graph.name = "AICrewforscreenwriting";
-// Workflow: workflow_pattern_screenplay
-// Workflow: screenplay_creation_sequential
+graph.name = "UnnamedProject";
+// Workflow: crew_sequential_workflow

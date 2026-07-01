@@ -1,30 +1,3 @@
-"""
-Auto-generated AutoGen Team: UnnamedProject
-Goals:
-  - Provide assistance to user: 
-Objectives:
-  - Handle user query: 
-  - Route selection: 
-Capabilities:
-  - fetch ticker price: Fetch the price of a stock ticker.
-  - trade ticker: Purchase or sell a ticker (trade operation).
-  - get portfolio: Retrieve the user's portfolio.
-  - suggest restaurants: Suggest restaurants for a given location.
-  - suggest accommodations: Suggest places to stay for a trip.
-  - write React TODO app: Generate a React TODO application when requested.
-  - order pizza: Order a pizza on behalf of the user.
-  - write document: Produce a text document for the user.
-  - route selection: Analyze conversation and select appropriate tool route.
-  - general assistant: Generic assistant capabilities to answer queries, summarize tool results, and follow up.
-Resources:
-  - Router tool call result: Result of router tool indicating chosen route, e.g., { 'route': 'stockbroker' }.
-  - Stockbroker result: Resource representing the output(s) of stockbroker tasks such as price data, trade confirmations, or portfolio summaries.
-  - TripPlanner result: Trip planning suggestions (restaurants, accommodations, itinerary).
-  - OpenCode result: Generated code artifact: a React TODO app (source files, instructions).
-  - OrderPizza result: Confirmation and details of pizza order (order receipt, status).
-  - GeneralInput response: Text response from the general assistant (answers, summaries, follow-ups).
-  - WriterAgent document: Text document created by writerAgent (full content of the requested document).
-"""
 
 from autogen_agentchat.agents import AssistantAgent
 
@@ -57,10 +30,10 @@ def tool_stockbroker_impl(
 ) -> str:
     """
     AgentO Tool:
-    stockbroker
+    tool_stockbroker
 
     Description:
-    Can fetch the price of a ticker, purchase/sell a ticker, or get the user's portfolio.
+    can fetch the price of a ticker, purchase/sell a ticker, or get the user's portfolio
     """
     return (
         "Tool 'tool_stockbroker' "
@@ -71,7 +44,7 @@ def tool_stockbroker_impl(
 
 tool_stockbroker = FunctionTool(
     tool_stockbroker_impl,
-    description="""Can fetch the price of a ticker, purchase/sell a ticker, or get the user's portfolio."""
+    description="""can fetch the price of a ticker, purchase/sell a ticker, or get the user's portfolio """
 )
 
 
@@ -80,10 +53,10 @@ def tool_trip_planner_impl(
 ) -> str:
     """
     AgentO Tool:
-    tripPlanner
+    tool_trip_planner
 
     Description:
-    Helps the user plan their trip. It can suggest restaurants and places to stay in any given location.
+    helps the user plan their trip; can suggest restaurants and places to stay in any given location.
     """
     return (
         "Tool 'tool_trip_planner' "
@@ -94,7 +67,7 @@ def tool_trip_planner_impl(
 
 tool_trip_planner = FunctionTool(
     tool_trip_planner_impl,
-    description="""Helps the user plan their trip. It can suggest restaurants and places to stay in any given location."""
+    description="""helps the user plan their trip; can suggest restaurants and places to stay in any given location. """
 )
 
 
@@ -103,10 +76,10 @@ def tool_open_code_impl(
 ) -> str:
     """
     AgentO Tool:
-    openCode
+    tool_open_code
 
     Description:
-    Can write a React TODO app for the user. Only call this tool if the user requests a TODO app.
+    can write a React TODO app for the user. Only call this tool if they request a TODO app.
     """
     return (
         "Tool 'tool_open_code' "
@@ -117,7 +90,7 @@ def tool_open_code_impl(
 
 tool_open_code = FunctionTool(
     tool_open_code_impl,
-    description="""Can write a React TODO app for the user. Only call this tool if the user requests a TODO app."""
+    description="""can write a React TODO app for the user. Only call this tool if they request a TODO app. """
 )
 
 
@@ -126,10 +99,10 @@ def tool_order_pizza_impl(
 ) -> str:
     """
     AgentO Tool:
-    orderPizza
+    tool_order_pizza
 
     Description:
-    Can order a pizza for the user.
+    can order a pizza for the user
     """
     return (
         "Tool 'tool_order_pizza' "
@@ -140,7 +113,7 @@ def tool_order_pizza_impl(
 
 tool_order_pizza = FunctionTool(
     tool_order_pizza_impl,
-    description="""Can order a pizza for the user."""
+    description="""can order a pizza for the user """
 )
 
 
@@ -149,10 +122,10 @@ def tool_writer_agent_impl(
 ) -> str:
     """
     AgentO Tool:
-    writerAgent
+    tool_writer_agent
 
     Description:
-    Can write a text document for the user. Only call this tool if they request a text document.
+    can write a text document for the user. Only call this tool if they request a text document.
     """
     return (
         "Tool 'tool_writer_agent' "
@@ -163,7 +136,7 @@ def tool_writer_agent_impl(
 
 tool_writer_agent = FunctionTool(
     tool_writer_agent_impl,
-    description="""Can write a text document for the user. Only call this tool if they request a text document."""
+    description="""can write a text document for the user. Only call this tool if they request a text document. """
 )
 
 
@@ -172,10 +145,10 @@ def tool_router_impl(
 ) -> str:
     """
     AgentO Tool:
-    router
+    tool_router
 
     Description:
-    A tool used by the router node to select which tool should handle the user's query (routes: stockbroker, tripPlanner, openCode, orderPizza, generalInput, writerAgent).
+    A tool to route the user's query to the appropriate tool. (Used as a tool schema bound to the routing model)
     """
     return (
         "Tool 'tool_router' "
@@ -186,30 +159,7 @@ def tool_router_impl(
 
 tool_router = FunctionTool(
     tool_router_impl,
-    description="""A tool used by the router node to select which tool should handle the user's query (routes: stockbroker, tripPlanner, openCode, orderPizza, generalInput, writerAgent)."""
-)
-
-
-def tool_general_input_impl(
-    query: str = ""
-) -> str:
-    """
-    AgentO Tool:
-    generalInput
-
-    Description:
-    Tool/node that responds to general user inputs and summarizes or follows up on tool results.
-    """
-    return (
-        "Tool 'tool_general_input' "
-        "is a generated stub and "
-        "has not been implemented yet."
-    )
-
-
-tool_general_input = FunctionTool(
-    tool_general_input_impl,
-    description="""Tool/node that responds to general user inputs and summarizes or follows up on tool results."""
+    description="""A tool to route the user's query to the appropriate tool. (Used as a tool schema bound to the routing model) """
 )
 
 
@@ -218,8 +168,8 @@ tool_general_input = FunctionTool(
 # ==================================================
 
 
-generative_ui_supervisor = AssistantAgent(
-    name="generative_ui_supervisor",
+supervisor = AssistantAgent(
+    name="supervisor",
     model_client=model_client,
     system_message="""
 Role:
@@ -230,6 +180,118 @@ supervisor
 
 Background:
 You are a supervisor.
+""",
+)
+
+
+router = AssistantAgent(
+    name="router",
+    model_client=model_client,
+    system_message="""
+Role:
+router
+
+Goal:
+router
+
+Background:
+You are a router.
+""",
+)
+
+
+general_input = AssistantAgent(
+    name="general_input",
+    model_client=model_client,
+    system_message="""
+Role:
+general_input_handler
+
+Goal:
+general_input_handler
+
+Background:
+You are a general_input_handler.
+""",
+)
+
+
+stockbroker = AssistantAgent(
+    name="stockbroker",
+    model_client=model_client,
+    system_message="""
+Role:
+stockbroker_tool_agent
+
+Goal:
+stockbroker_tool_agent
+
+Background:
+You are a stockbroker_tool_agent.
+""",
+)
+
+
+trip_planner = AssistantAgent(
+    name="trip_planner",
+    model_client=model_client,
+    system_message="""
+Role:
+trip_planner_tool_agent
+
+Goal:
+trip_planner_tool_agent
+
+Background:
+You are a trip_planner_tool_agent.
+""",
+)
+
+
+open_code = AssistantAgent(
+    name="open_code",
+    model_client=model_client,
+    system_message="""
+Role:
+open_code_tool_agent
+
+Goal:
+open_code_tool_agent
+
+Background:
+You are a open_code_tool_agent.
+""",
+)
+
+
+order_pizza = AssistantAgent(
+    name="order_pizza",
+    model_client=model_client,
+    system_message="""
+Role:
+order_pizza_tool_agent
+
+Goal:
+order_pizza_tool_agent
+
+Background:
+You are a order_pizza_tool_agent.
+""",
+)
+
+
+writer_agent = AssistantAgent(
+    name="writer_agent",
+    model_client=model_client,
+    system_message="""
+Role:
+writer_agent_tool
+
+Goal:
+writer_agent_tool
+
+Background:
+You are a writer_agent_tool.
 """,
 )
 

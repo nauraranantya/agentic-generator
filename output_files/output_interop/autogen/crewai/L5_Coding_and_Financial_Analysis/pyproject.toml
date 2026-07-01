@@ -1,7 +1,7 @@
 [project]
 name = "unnamed_project"
 version = "0.1.0"
-description = ""
+description = "Team comprising a code writer and a code executor that collaborate to generate a"
 authors = [{name = "Your Name", email = "you@example.com"}]
 readme = "README.md"
 requires-python = ">=3.10,<=3.13"
@@ -10,7 +10,9 @@ dependencies = [
     "crewai[tools]>=0.152.0",
     "python-dotenv>=1.0.1",
     "pyyaml>=6.0.1",
-    # TODO: add PyPI package for custom tool "LocalCommandLineCodeExecutor"
+    # TODO: add PyPI package for custom tool "toollocalcliexecutor"
+    # TODO: add PyPI package for custom tool "toolgetstockprices"
+    # TODO: add PyPI package for custom tool "toolplotstockprices"
 ]
 
 [project.scripts]

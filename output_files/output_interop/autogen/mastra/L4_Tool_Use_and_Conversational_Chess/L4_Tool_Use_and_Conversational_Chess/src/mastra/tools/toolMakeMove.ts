@@ -1,36 +1,34 @@
 /**
- * Tool: make_move (tool)
+ * Tool: toolMakeMove
  * 
  * Auto-generated from AgentO Knowledge Graph
  * 
- * Registered tool name: 'make_move'. Description: apply a move in UCI format to the ChessBoard. Parameters: move (string, UCI). Behavior summary preserved: (1) convert the provided string to a chess.Move, push the move to the board state, set a made_move flag to True, display the board (SVG), identify the moved piece and return a human-readable message 'Moved <PieceName> (<PieceSymbol>) from <from_square> to <to_square>.' This tool reads and updates the ChessBoard resource and causes a termination predicate (is_termination_msg) to become true for nested chat closing.
+ * Executes a move on the chess board in UCI format and returns a human-readable result string.
  */
 
 import { createTool } from '@mastra/core/tools'
 import { z } from 'zod'
 
 /**
- * make_move (tool)
+ * toolMakeMove
  * 
- * Implementation: Registered tool name: 'make_move'. Description: apply a move in UCI format to the ChessBoard. Parameters: move (string, UCI). Behavior summary preserved: (1) convert the provided string to a chess.Move, push the move to the board state, set a made_move flag to True, display the board (SVG), identify the moved piece and return a human-readable message 'Moved <PieceName> (<PieceSymbol>) from <from_square> to <to_square>.' This tool reads and updates the ChessBoard resource and causes a termination predicate (is_termination_msg) to become true for nested chat closing.
+ * Implementation: Executes a move on the chess board in UCI format and returns a human-readable result string.
  */
 export const toolMakeMove = createTool({
-  id: 'make_move (tool)',
-  description: `Registered tool name: 'make_move'. Description: apply a move in UCI format to the ChessBoard. Parameters: move (string, UCI). Behavior summary preserved: (1) convert the provided string to a chess.Move, push the move to the board state, set a made_move flag to True, display the board (SVG), identify the moved piece and return a human-readable message 'Moved <PieceName> (<PieceSymbol>) from <from_square> to <to_square>.' This tool reads and updates the ChessBoard resource and causes a termination predicate (is_termination_msg) to become true for nested chat closing.`,
-  inputSchema: z.object({Description: z.string()}),
+  id: 'toolMakeMove',
+  description: `Executes a move on the chess board in UCI format and returns a human-readable result string.`,
+  inputSchema: z.object({Executes_a_move_on_the_chess_board_in_UCI_format_and_returns_a_human: z.string()}),
   outputSchema: z.object({}),  // TODO: Define output schema
   execute: async ({ inputData }) => {
     // TODO: Implement tool logic
     // 
-    // Description: Registered tool name: 'make_move'. Description: apply a move in UCI format to the ChessBoard. Parameters: move (string, UCI). Behavior summary preserved: (1) convert the provided string to a chess.Move, push the move to the board state, set a made_move flag to True, display the board (SVG), identify the moved piece and return a human-readable message 'Moved <PieceName> (<PieceSymbol>) from <from_square> to <to_square>.' This tool reads and updates the ChessBoard resource and causes a termination predicate (is_termination_msg) to become true for nested chat closing.
-    // Configurations:
-    //   - description: Call this tool to make a move. Parameter: move (UCI string). Applies the move to the ChessBoard and returns a textual confirmation about the moved piece and squares.
+    // Description: Executes a move on the chess board in UCI format and returns a human-readable result string.
     // 
     // Implementation should:
     // 1. Use inputData according to inputSchema
     // 2. Perform the tool's logic
     // 3. Return result matching outputSchema
     
-    throw new Error('Tool make_move (tool) not implemented yet')
+    throw new Error('Tool toolMakeMove not implemented yet')
   },
 })

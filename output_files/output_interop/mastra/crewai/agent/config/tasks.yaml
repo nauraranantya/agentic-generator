@@ -1,57 +1,30 @@
-task_my_step:
+task_query_pantry:
   description: |
-    Task backing my-step. Performs the core recipe extraction (echo ingredient back) and returns result string.
-  expected_output: 'Completed: task_my_step'
-task_add_letter:
-  description: 'Execution: returns { text: text + ''A'' } after ~500ms.'
-  expected_output: 'Completed: task_add_letter'
-task_step_one:
-  description: 'Takes { inputValue }, returns { doubledValue: inputValue*2 }.'
-  expected_output: 'Completed: task_step_one'
-task_my_step_2:
-  description: |
-    Second step in recipe-maker that finalizes the output; returns static placeholder 'suh' in the source.
-  expected_output: 'Completed: task_my_step_2'
-task_add_letter_b:
-  description: 'Execution: returns { text: text + ''B'' }.'
-  expected_output: 'Completed: task_add_letter_b'
-task_step_two:
-  description: If resumeData.extraNumber absent => suspend({}) and return interim;
-    else compute incrementedValue.
-  expected_output: 'Completed: task_step_two'
-task_add_letter_c:
-  description: 'Execution: returns { text: text + ''C'' }.'
-  expected_output: 'Completed: task_add_letter_c'
-task_step_three:
-  description: 'Returns { tripledValue: incrementedValue * 3 }.'
-  expected_output: 'Completed: task_step_three'
-task_add_letter_with_count:
-  description: 'Execution: returns text + ''D'' and iterationCount+1.'
-  expected_output: 'Completed: task_add_letter_with_count'
-task_step_four:
-  description: 'Returns { isEven: tripledValue % 2 === 0 }.'
-  expected_output: 'Completed: task_step_four'
-task_suspend_resume:
-  description: Requires user input to resume. Modeled as a suspend/resume interactive
-    step.
-  expected_output: 'Completed: task_suspend_resume'
-task_short_text:
-  description: Branch step executed when text length <= 10.
-  expected_output: 'Completed: task_short_text'
-task_long_text:
-  description: Branch step executed when text length > 10.
-  expected_output: 'Completed: task_long_text'
-task_nested_text_processor:
-  description: Executes nested sub-workflow that appends letters A then B.
-  expected_output: 'Completed: task_nested_text_processor'
-task_final_step:
-  description: Finalization operation adding '-ENDED'.
-  expected_output: 'Completed: task_final_step'
-task_fetch_weather:
-  description: 'Task executed by fetchWeather tool: returns textual forecast for the
-    given city.'
-  expected_output: 'Completed: task_fetch_weather'
-task_calculator:
-  description: Calculator tool performs arithmetic operations requested by agent or
-    workflow.
-  expected_output: 'Completed: task_calculator'
+    User asks what they can make given pantry ingredients (pasta, canned tomatoes, garlic, olive oil, dried herbs).
+  expected_output: Natural language recipe suggestions and possible ingredient substitutions.
+task_generate_text:
+  description: Alternate/duplicate generate usage with same pantry query.
+  expected_output: Natural language recipe suggestions.
+task_text_stream:
+  description: Streamed response for chicken/coconut/sweet potatoes/curry powder scenario.
+  expected_output: Streamed recipe text (incremental chunks) until completion.
+task_generate_stream:
+  description: Streaming variant with array input; yields streamed recipe.
+  expected_output: Streamed recipe text (incremental chunks) until completion.
+task_text_object:
+  description: Generate a lasagna recipe structured as an object with ingredients
+    and steps.
+  expected_output: |
+    JSON object with properties: ingredients (array of {name:string, amount:number}) and steps (array of strings).
+task_text_object_jsonschema:
+  description: Generate lasagna recipe constrained by provided JSON Schema.
+  expected_output: JSON matching the provided JSON Schema (ingredients and steps).
+task_generate_object:
+  description: Generate lasagna recipe with structured output (array input variant).
+  expected_output: JSON object with ingredients and steps as per zod schema.
+task_stream_object:
+  description: Streamed generation of a lasagna recipe as structured object.
+  expected_output: Streamed JSON chunks composing a structured recipe object.
+task_generate_stream_object:
+  description: Final streaming structured generation variant.
+  expected_output: Streamed JSON object containing ingredients and steps.

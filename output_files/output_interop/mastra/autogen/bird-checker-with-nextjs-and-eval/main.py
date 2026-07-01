@@ -17,14 +17,14 @@ async def main():
     try:
         # Step-by-step sequential execution
         # ==================================================
-        # Workflow Step: get_random_image_task
-        # Workflow Edge: get_random_image_task -> analyze_image_task
+        # Workflow Step: get_image_task
+        # Workflow Edge: get_image_task -> classify_image_task
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: get_random_image_task")
+        print("Executing step: get_image_task")
         print("=" * 80)
 
-        task_prompt = """Task to fetch a random image from Unsplash using a user-selected query option (wildlife, feathers, flying, birds)."""
+        task_prompt = """UI-triggered task to obtain a random image from Unsplash based on selected query. """
         # Execute via the assigned agent: agent
         result = await agent.run(task=task_prompt)
 
@@ -35,13 +35,13 @@ async def main():
             print(result)
 
         # ==================================================
-        # Workflow Step: analyze_image_task
+        # Workflow Step: classify_image_task
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: analyze_image_task")
+        print("Executing step: classify_image_task")
         print("=" * 80)
 
-        task_prompt = """Task to analyze an image and determine whether it is a bird, the species scientific name, and a short location summary. Implemented via the birdAgent (agent.generate with an image and a text instruction)."""
+        task_prompt = """Agent task to determine bird presence, species, and summarize location. """
         # Execute via the assigned agent: bird_agent
         result = await bird_agent.run(task=task_prompt)
 

@@ -60,7 +60,7 @@ def coding_environment_tool_impl(
 
 coding_environment_tool = FunctionTool(
     coding_environment_tool_impl,
-    description="""Conceptual tool representing the environment used by Executor to run code. Config captured as key/value on Config individual."""
+    description="""Conceptual tool representing the environment used by Executor to run code. Config captured as key/value on Config individual. """
 )
 
 
@@ -139,6 +139,6 @@ Writer: write blogs based on the code execution results and take feedback from t
 
 admin = UserProxyAgent(
     name="admin",
-    description="""""",
+    description=""" """,
 )
 

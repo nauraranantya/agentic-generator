@@ -17,14 +17,14 @@ async def main():
     try:
         # Step-by-step sequential execution
         # ==================================================
-        # Workflow Step: site_crawl_sync_step_task
-        # Workflow Edge: site_crawl_sync_step_task -> generate_spec_task
+        # Workflow Step: task_site_crawl_sync
+        # Workflow Edge: task_site_crawl_sync -> task_generate_spec
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: site_crawl_sync_step_task")
+        print("Executing step: task_site_crawl_sync")
         print("=" * 80)
 
-        task_prompt = """Task executed by the workflow step site-crawl-sync-step. It runs the SiteCrawlTool (Firecrawl client) to extract markdown pages."""
+        task_prompt = """Crawl a website and extract the markdown content and sync it to the database. """
         # Execute via the assigned agent: agent
         result = await agent.run(task=task_prompt)
 
@@ -35,15 +35,15 @@ async def main():
             print(result)
 
         # ==================================================
-        # Workflow Step: generate_spec_task
+        # Workflow Step: task_generate_spec
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: generate_spec_task")
+        print("Executing step: task_generate_spec")
         print("=" * 80)
 
-        task_prompt = """Task executed by the generate-spec step: this task iterates crawled pages, calls the agent to produce OpenAPI fragments, and then asks the agent to merge them."""
-        # Execute via the assigned agent: agent
-        result = await agent.run(task=task_prompt)
+        task_prompt = """For each crawled markdown page, ask the agent to turn it into an OpenAPI spec fragment; then ask the agent to merge fragments into a single spec. """
+        # Execute via the assigned agent: openapi_spec_gen_agent
+        result = await openapi_spec_gen_agent.run(task=task_prompt)
 
         # Print step output
         if hasattr(result, "messages") and result.messages:
@@ -52,15 +52,15 @@ async def main():
             print(result)
 
         # ==================================================
-        # Workflow Step: add_to_github_task
+        # Workflow Step: task_add_to_github
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: add_to_github_task")
+        print("Executing step: task_add_to_github")
         print("=" * 80)
 
-        task_prompt = """Task executed by makePRToMastra workflow: formats YAML via agent and writes files to GitHub then creates a PR."""
-        # Execute via the assigned agent: agent
-        result = await agent.run(task=task_prompt)
+        task_prompt = """Take a YAML blob, ask the agent to format it, then create branch, commit files and open a PR via the GitHub client. """
+        # Execute via the assigned agent: openapi_spec_gen_agent
+        result = await openapi_spec_gen_agent.run(task=task_prompt)
 
         # Print step output
         if hasattr(result, "messages") and result.messages:

@@ -1,12 +1,13 @@
 /**
- * Mastra AI Instance - JobPostingCrewTeam
+ * Mastra AI Instance - UnnamedProject
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
  * Goals:
- *   - Hiring Goal: Goal: hire for the specified hiring needs (e.g., Production Assistant for TV production in Los Angeles, June 2025) using a compelling job posting aligned with company values.
- * Objectives:
- *   - Create Job Posting Objective: Collective objective: produce a job posting that aligns with company culture and hiring needs.
+ *   - : Analyze the company website and provided description to extract insights on culture, values, and specific needs.
+ *   - : Use insights from the Research Analyst to create a detailed, engaging, and enticing job posting.
+ *   - : Review the job posting for clarity, engagement, grammatical accuracy, and alignment with the company's culture and values.
+ *   - : Automate the creation of job postings using CrewAI to analyze company information and produce polished job descriptions and analyses.
  */
 
 import { Mastra } from '@mastra/core'
@@ -20,6 +21,7 @@ import { jobPostingWorkflow } from './workflows'
 /**
  * Mastra instance with registered agents, workflows, and memory.
  *
+ * CrewAI crew that orchestrates agents to create job postings
  */
 export const mastra = new Mastra({
   agents: {

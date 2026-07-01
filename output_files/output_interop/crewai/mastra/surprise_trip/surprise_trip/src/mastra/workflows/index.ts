@@ -1,3 +1,3 @@
-export { surpriseTravelWorkflow } from './surpriseTravelWorkflow'
+export { workflowSequential } from './workflowSequential'
 export * from './ad_hoc_tasks'
 

@@ -39,8 +39,8 @@ UnnamedProject/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
 │       ├── agents/            # Agent definitions
+│       │   └── mastraAgent.ts
 │       ├── tools/             # Tool definitions
-│       │   └── mastraTool.ts
 │       └── workflows/         # Workflow definitions
 │           └── myWorkflowPattern.ts
 ├── package.json
@@ -52,32 +52,33 @@ UnnamedProject/
 
 ## 🤖 Agents
 
-No agents defined in this project.
+### workflow-executor
+
+- **ID:** `mastra-agent`
+- **Model:** `openai/gpt-4o-mini`
+
+You are workflow-executor....
+
 
 ---
 
 ## 🔧 Tools
 
-### Mastra Runtime Tool
-
-Represents the Mastra runtime that executes workflow steps, performs validation of input/output schemas, and manages step execution....
-
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/mastraTool.ts`)
-
+No tools defined in this project.
 
 ---
 
 ## 🔄 Workflows
 
-### my-workflow
+### my_workflow_pattern
 
 
 
 **Steps:** 4
-1. task_stepOne
-2. task_stepTwo
-3. task_stepThree
-4. task_stepFour
+1. task_step_one
+2. task_step_three
+3. task_step_two
+4. task_step_four
 
 
 ---

@@ -1,6 +1,6 @@
-# Chessplayersteam
+# UnnamedProject
 
-
+A small team consisting of two player agents and a board proxy orchestrating the game.
 
 **Auto-generated from AgentO Knowledge Graph**  
 Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
@@ -34,19 +34,19 @@ npm run dev
 ## 📦 Project Structure
 
 ```
-Chessplayersteam/
+UnnamedProject/
 ├── src/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
 │       ├── agents/            # Agent definitions
 │       │   └── playerWhite.ts
 │       │   └── playerBlack.ts
-│       ├── tools/             # Tool definitions
 │       │   └── boardProxy.ts
+│       ├── tools/             # Tool definitions
 │       │   └── toolGetLegalMoves.ts
 │       │   └── toolMakeMove.ts
 │       └── workflows/         # Workflow definitions
-│           └── workflowPatternConversationalChess.ts
+│           └── wpChessNested.ts
 ├── package.json
 ├── tsconfig.json
 └── .env.example
@@ -56,40 +56,43 @@ Chessplayersteam/
 
 ## 🤖 Agents
 
-### white
+### Chess Player (White)
 
 - **ID:** `player_white`
 - **Model:** `openai/gpt-4o-mini`
+- **Tools:** toolGetLegalMoves, toolMakeMove
 
-You are white....
+You are Chess Player (White)....
 
-### black
+### Chess Player (Black)
 
 - **ID:** `player_black`
 - **Model:** `openai/gpt-4o-mini`
+- **Tools:** toolGetLegalMoves, toolMakeMove
 
-You are black....
+You are Chess Player (Black)....
+
+### Board Proxy / Referee
+
+- **ID:** `board_proxy`
+- **Model:** `openai/gpt-4o-mini`
+
+You are Board Proxy / Referee....
 
 
 ---
 
 ## 🔧 Tools
 
-### Board Proxy (executor agent/tool)
+### toolGetLegalMoves
 
-A conversational proxy agent that executes board-related tools (get_legal_moves, make_move). Created with llm_config=False in code; it receives tool execution requests and applies them to the ChessBoa...
-
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/boardProxy.ts`)
-
-### get_legal_moves (tool)
-
-Registered tool name: 'get_legal_moves'. Description: Get legal moves. Returns a comma-separated list of legal moves in UCI format. In code, returns: 'Possible moves are: ' + ','.join([str(move) for m...
+Returns a list of legal moves in UCI format for the current chess board state....
 
 **Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolGetLegalMoves.ts`)
 
-### make_move (tool)
+### toolMakeMove
 
-Registered tool name: 'make_move'. Description: apply a move in UCI format to the ChessBoard. Parameters: move (string, UCI). Behavior summary preserved: (1) convert the provided string to a chess.Mov...
+Executes a move on the chess board in UCI format and returns a human-readable result string....
 
 **Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolMakeMove.ts`)
 
@@ -98,13 +101,16 @@ Registered tool name: 'make_move'. Description: apply a move in UCI format to th
 
 ## 🔄 Workflows
 
-### Conversational Chess Workflow Pattern
+### wp_chess_nested
 
+Workflow capturing a turn sequence: initiation -> nested board summary -> get legal moves -> make move -> check termination.
 
-
-**Steps:** 2
-1. Task: Initiate chat (black -> white)
-2. Task: Make move
+**Steps:** 5
+1. task_initiate_chat
+2. task_board_proxy_summary_to_white
+3. task_get_legal_moves
+4. task_make_move
+5. task_check_made_move
 
 
 ---

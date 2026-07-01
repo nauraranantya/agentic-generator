@@ -1,5 +1,5 @@
 /**
- * Workflow: my-workflow
+ * Workflow: my_workflow_pattern
  *
  * Auto-generated from AgentO Knowledge Graph
  */
@@ -7,76 +7,80 @@
 import { createWorkflow, createStep } from '@mastra/core/workflows'
 import { z } from 'zod'
 
-// Import tools used by workflow steps
-import { mastraTool } from '../tools'
+// Import agents used by workflow steps
+import { mastraAgent } from '../agents'
 
 // ── Workflow Steps ──
 
 const taskStepOne = createStep({
-  id: 'task_stepOne',
-  description: `Semantic algorithm (no code): `,
-  inputSchema: z.object({type: z.string(), properties: z.object({}), required: z.array(z.string())}),
-  outputSchema: z.object({type: z.string(), properties: z.object({}), required: z.array(z.string())}),
+  id: 'task_step_one',
+  description: `Doubles triggerData.inputValue and returns an object with { doubledValue }.`,
+  inputSchema: z.object({}),
+  outputSchema: z.object({}),
   execute: async ({ inputData }) => {
-    // Semantic algorithm (no code): 
-    // This step uses tool: mastraTool
+    // Doubles triggerData.inputValue and returns an object with { doubledValue }.
+    // This step uses agent: mastraAgent
+    // const result = await mastraAgent.generate('...')
     // TODO: Implement step logic
-    throw new Error('task_stepOne not implemented yet')
-  },
-})
-
-const taskStepTwo = createStep({
-  id: 'task_stepTwo',
-  description: `Semantic algorithm (no code):`,
-  inputSchema: z.object({type: z.string(), properties: z.object({}), required: z.array(z.string())}),
-  outputSchema: z.object({type: z.string(), properties: z.object({}), required: z.array(z.string())}),
-  execute: async ({ inputData }) => {
-    // Semantic algorithm (no code):
-    // This step uses tool: mastraTool
-    // TODO: Implement step logic
-    throw new Error('task_stepTwo not implemented yet')
+    throw new Error('task_step_one not implemented yet')
   },
 })
 
 const taskStepThree = createStep({
-  id: 'task_stepThree',
-  description: `Semantic algorithm (no code):`,
-  inputSchema: z.object({type: z.string(), properties: z.object({}), required: z.array(z.string())}),
-  outputSchema: z.object({type: z.string(), properties: z.object({}), required: z.array(z.string())}),
+  id: 'task_step_three',
+  description: `Triples triggerData.inputValue and returns an object with { tripledValue }.`,
+  inputSchema: z.object({}),
+  outputSchema: z.object({}),
   execute: async ({ inputData }) => {
-    // Semantic algorithm (no code):
-    // This step uses tool: mastraTool
+    // Triples triggerData.inputValue and returns an object with { tripledValue }.
+    // This step uses agent: mastraAgent
+    // const result = await mastraAgent.generate('...')
     // TODO: Implement step logic
-    throw new Error('task_stepThree not implemented yet')
+    throw new Error('task_step_three not implemented yet')
+  },
+})
+
+const taskStepTwo = createStep({
+  id: 'task_step_two',
+  description: `Reads the payload from stepOne (doubledValue) and returns an object with { incrementedValue } which is doubledValue + 1.`,
+  inputSchema: z.object({}),
+  outputSchema: z.object({}),
+  execute: async ({ inputData }) => {
+    // Reads the payload from stepOne (doubledValue) and returns an object with { incrementedValue } which is doubledValue + 1.
+    // This step uses agent: mastraAgent
+    // const result = await mastraAgent.generate('...')
+    // TODO: Implement step logic
+    throw new Error('task_step_two not implemented yet')
   },
 })
 
 const taskStepFour = createStep({
-  id: 'task_stepFour',
-  description: `Semantic algorithm (no code):`,
-  inputSchema: z.object({type: z.string(), properties: z.object({}), required: z.array(z.string())}),
-  outputSchema: z.object({type: z.string(), properties: z.object({}), required: z.array(z.string())}),
+  id: 'task_step_four',
+  description: `Reads the payload from stepThree (tripledValue) and returns an object with { isEven } indicating whether tripledValue is even.`,
+  inputSchema: z.object({}),
+  outputSchema: z.object({}),
   execute: async ({ inputData }) => {
-    // Semantic algorithm (no code):
-    // This step uses tool: mastraTool
+    // Reads the payload from stepThree (tripledValue) and returns an object with { isEven } indicating whether tripledValue is even.
+    // This step uses agent: mastraAgent
+    // const result = await mastraAgent.generate('...')
     // TODO: Implement step logic
-    throw new Error('task_stepFour not implemented yet')
+    throw new Error('task_step_four not implemented yet')
   },
 })
 
 // ── Workflow Definition ──
 
 /**
- * my-workflow
+ * my_workflow_pattern
  */
 export const myWorkflowPattern = createWorkflow({
-  id: 'my-workflow',
-  inputSchema: z.object({type: z.string(), properties: z.object({}), required: z.array(z.string())}),
-  outputSchema: z.object({type: z.string(), properties: z.object({}), required: z.array(z.string())}),
-  steps: [taskStepOne, taskStepTwo, taskStepThree, taskStepFour],
+  id: 'my_workflow_pattern',
+  inputSchema: z.object({}),
+  outputSchema: z.object({}),
+  steps: [taskStepOne, taskStepThree, taskStepTwo, taskStepFour],
 })
   .then(taskStepOne)
-  .then(taskStepTwo)
   .then(taskStepThree)
+  .then(taskStepTwo)
   .then(taskStepFour)
   .commit()

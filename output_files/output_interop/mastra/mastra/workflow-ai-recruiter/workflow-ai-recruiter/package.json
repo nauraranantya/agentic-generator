@@ -1,7 +1,7 @@
 {
   "name": "workflow-ai-recruiter",
   "version": "0.1.0",
-  "description": "",
+  "description": "Mastra instance hosting the candidate-workflow",
   "type": "module",
   "main": "src/mastra/index.ts",
   "scripts": {

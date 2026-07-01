@@ -1,6 +1,6 @@
 # UnnamedProject
 
-The Mastra system instance created in src/mastra/index.ts that composes agents and a logger.
+Mastra instance constructed in src/mastra/index.ts with a single agent 'ycAgent' and logger configuration.
 
 **Auto-generated from AgentO Knowledge Graph**  
 Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
@@ -42,9 +42,8 @@ UnnamedProject/
 │       │   └── ycDirectoryAgent.ts
 │       ├── tools/             # Tool definitions
 │       │   └── ycDirectoryTool.ts
-│       │   └── mastraEvalsRunner.ts
 │       └── workflows/         # Workflow definitions
-│           └── ycQueryWorkflow.ts
+│           └── ycDirectoryWorkflow.ts
 ├── package.json
 ├── tsconfig.json
 └── .env.example
@@ -54,13 +53,13 @@ UnnamedProject/
 
 ## 🤖 Agents
 
-### YC Directory Agent
+### directory
 
-- **ID:** `yc-directory-agent`
-- **Model:** `anthropic/claude-3-5-sonnet-20241022`
+- **ID:** `YC Directory Agent`
+- **Model:** `anthropic/claude-3-5-sonnet-latest`
 - **Tools:** ycDirectoryTool
 
-Used as agent-level instructions for ycDirectoryAgent (src/mastra/agents/index.ts)....
+You are directory....
 
 
 ---
@@ -69,29 +68,22 @@ Used as agent-level instructions for ycDirectoryAgent (src/mastra/agents/index.t
 
 ### ycDirectoryTool
 
-Tool that returns the Y Combinator 2024 directory data. Created in src/mastra/tools/index.ts. Exposes an execute action that returns the dataset....
+Get data from the 2024 YC directory...
 
 **Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/ycDirectoryTool.ts`)
-
-### mastraEvalsRunner
-
-Represents the runEvals invocation in src/mastra/tests/index.ts. Executes an evaluation run on a target agent using a set of scorer capabilities and data inputs....
-
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/mastraEvalsRunner.ts`)
 
 
 ---
 
 ## 🔄 Workflows
 
-### yc_query_workflow
+### yc_directory_workflow
 
-Semantic workflow: (1) Accept query input (natural language). (2) Agent decides to call yc-directory tool (if needed) to fetch or filter data. (3) Agent composes answer constrained to dataset fields and batch numbers only. (4) Optionally, evaluation runner can send agent responses to the relevancy scorer.
+Simple workflow: Start -> Fetch directory -> Process results.
 
-**Steps:** 3
-1. run_evals_task
-2. fetch_yc_data_task
-3. answer_yc_directory_query
+**Steps:** 2
+1. fetch_yc_directory_task
+2. process_yc_data_task
 
 
 ---

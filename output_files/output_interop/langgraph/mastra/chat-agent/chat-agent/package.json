@@ -1,7 +1,7 @@
 {
   "name": "chat-agent",
   "version": "0.1.0",
-  "description": "A logical grouping used here so the workflow pattern can be linked to the agent; the original source is a single compiled agent graph.",
+  "description": "",
   "type": "module",
   "main": "src/mastra/index.ts",
   "scripts": {

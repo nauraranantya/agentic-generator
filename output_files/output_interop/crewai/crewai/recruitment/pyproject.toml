@@ -1,7 +1,7 @@
 [project]
-name = "recruitment"
+name = "unnamed_project"
 version = "0.1.0"
-description = ""
+description = "CrewAI-based team coordinating agents to automate recruitment tasks."
 authors = [{name = "Your Name", email = "you@example.com"}]
 readme = "README.md"
 requires-python = ">=3.10,<=3.13"
@@ -10,11 +10,13 @@ dependencies = [
     "crewai[tools]>=0.152.0",
     "python-dotenv>=1.0.1",
     "pyyaml>=6.0.1",
-    # TODO: add PyPI package for custom tool "RetrieveLinkedInprofiles"
+    # TODO: add PyPI package for custom tool "toolserperdev"
+    # TODO: add PyPI package for custom tool "toolscrapewebsite"
+    # TODO: add PyPI package for custom tool "toollinkedin"
 ]
 
 [project.scripts]
-recruitment = "main:run"
+unnamed_project = "main:run"
 train      = "main:train"
 
 [tool.uv]

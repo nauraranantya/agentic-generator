@@ -1,25 +1,14 @@
 """
-Auto-generated CrewAI Crew: TravelAISystemMastraexampleapp
+Auto-generated CrewAI Crew: UnnamedProject
 
 Source  : AgentO Knowledge Graph → SPARQL → Pydantic → Jinja2
 Pipeline: 3-Layer Conversion Pipeline
-Goals:
-  - Plan Trip: 
-  - Format Output: 
-Objectives:
-  - Assemble trip components: 
 Capabilities:
-  - Find Flights: Capability to search and select flight options.
-  - Find Hotels: Capability to search and select hotels.
-  - Find Attractions: Capability to search and select attractions.
-  - Search Airbnb: Capability to search airbnb locations and listings.
-  - Analyze Travel Results: Capability to analyze raw agent search outputs and reformat into application schema.
-Resources:
-  - outboundFlight (Flight object): Domain Flight object produced by searchFlights: includes airline, flightNumber, departure/arrival airports/cities/times, duration, price, legs.
-  - returnFlight (Flight object): Return flight object (same structure as outbound).
-  - accommodation (Hotel or Airbnb listing): Hotel or Airbnb domain object with fields: name, rating, pricePerNight or price, images, location, address, description, amenities.
-  - attractions (list of Attraction): Array of Attraction items recommended for trip.
-  - Formatted travel plan (travelSchema): Final application JSON matching travelSchema with flights.outbound, flights.return, accommodation, attractions.
+  - : 
+  - : 
+  - : 
+  - : 
+  - : 
 """
 
 from crewai import Agent, Crew, Process, Task
@@ -30,47 +19,47 @@ from crewai.tools import tool
 # ===========================================================
 # Tool Instances
 # ===========================================================
-# TODO: search_flights_tool — unknown tool class "GetFlightInfosearchFlights"
+# TODO: tool_search_flights — unknown tool class "toolsearchFlights"
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-@tool("GetFlightInfosearchFlights")
-def search_flights_tool(*args, **kwargs) -> str:
+@tool("toolsearchFlights")
+def tool_search_flights(*args, **kwargs) -> str:
     """Fetches flight information for a given date range, origin and destination. Origin and Destination ar"""
-    return "search_flights_tool result"
+    return "tool_search_flights result"
 
-# TODO: search_hotels_tool — unknown tool class "SearchHotelssearchHotels"
+# TODO: tool_search_hotels — unknown tool class "toolsearchHotels"
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-@tool("SearchHotelssearchHotels")
-def search_hotels_tool(*args, **kwargs) -> str:
+@tool("toolsearchHotels")
+def tool_search_hotels(*args, **kwargs) -> str:
     """Searches for hotels in a specified location. Destination is a cityId like 20015732 for 20015733"""
-    return "search_hotels_tool result"
+    return "tool_search_hotels result"
 
-# TODO: search_attractions_tool — unknown tool class "SearchAttractionssearchAttractions"
+# TODO: tool_search_attractions — unknown tool class "toolsearchAttractions"
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-@tool("SearchAttractionssearchAttractions")
-def search_attractions_tool(*args, **kwargs) -> str:
+@tool("toolsearchAttractions")
+def tool_search_attractions(*args, **kwargs) -> str:
     """Searches for attractions in a specified location. Destination is a cityId like 20015732 for 20015733"""
-    return "search_attractions_tool result"
+    return "tool_search_attractions result"
 
-# TODO: search_airbnb_location_tool — unknown tool class "SearchAirbnbLocationsearchAirbnbLocation"
+# TODO: tool_search_airbnb_location — unknown tool class "toolsearchAirbnbLocation"
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-@tool("SearchAirbnbLocationsearchAirbnbLocation")
-def search_airbnb_location_tool(*args, **kwargs) -> str:
+@tool("toolsearchAirbnbLocation")
+def tool_search_airbnb_location(*args, **kwargs) -> str:
     """Searches for Airbnb places in a specified location. Place is a city name like New York, NY"""
-    return "search_airbnb_location_tool result"
+    return "tool_search_airbnb_location result"
 
-# TODO: search_airbnb_tool — unknown tool class "SearchAirbnbsearchAirbnb"
+# TODO: tool_search_airbnb — unknown tool class "toolsearchAirbnb"
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-@tool("SearchAirbnbsearchAirbnb")
-def search_airbnb_tool(*args, **kwargs) -> str:
+@tool("toolsearchAirbnb")
+def tool_search_airbnb(*args, **kwargs) -> str:
     """Searches for Airbnb in a specified location. Place is a cityId like 20015732 for 20015733"""
-    return "search_airbnb_tool result"
+    return "tool_search_airbnb result"
 
 
 
 
 @CrewBase
-class TravelAISystemMastraexampleapp:
-    """TravelAISystemMastraexampleapp crew"""
+class UnnamedProject:
+    """UnnamedProject crew"""
 
     agents_config = 'config/agents.yaml'
     tasks_config = 'config/tasks.yaml'
@@ -81,7 +70,7 @@ class TravelAISystemMastraexampleapp:
     def travel_agent(self) -> Agent:
         return Agent(
             config=self.agents_config['travel_agent'],
-            tools=[search_flights_tool, search_hotels_tool, search_attractions_tool, search_airbnb_location_tool, search_airbnb_tool],
+            tools=[tool_search_flights, tool_search_hotels, tool_search_attractions, tool_search_airbnb_location, tool_search_airbnb],
         )
 
     @agent
@@ -93,56 +82,59 @@ class TravelAISystemMastraexampleapp:
     # ── Tasks ───────────────────────────────────────────
 
     @task
-    def sync_csv_data_task(self) -> Task:
+    def task_outbound_flight(self) -> Task:
         return Task(
-            config=self.tasks_config['sync_csv_data_task'],
-        )
-
-    @task
-    def find_outbound_flight(self) -> Task:
-        return Task(
-            config=self.tasks_config['find_outbound_flight'],
-            agent=self.travel_agent(),
-            context=[self.sync_csv_data_task()],
-        )
-
-    @task
-    def find_return_flight(self) -> Task:
-        return Task(
-            config=self.tasks_config['find_return_flight'],
-            context=[self.sync_csv_data_task()],
-        )
-
-    @task
-    def find_accommodation_hotel_or_airbnb(self) -> Task:
-        return Task(
-            config=self.tasks_config['find_accommodation_hotel_or_airbnb'],
-        )
-
-    @task
-    def find_attractions(self) -> Task:
-        return Task(
-            config=self.tasks_config['find_attractions'],
-        )
-
-    @task
-    def analyze_and_format_results(self) -> Task:
-        return Task(
-            config=self.tasks_config['analyze_and_format_results'],
+            config=self.tasks_config['task_outbound_flight'],
             agent=self.travel_analyzer(),
         )
 
     @task
-    def travel_agent_participates_in_planning_tasks(self) -> Task:
+    def task_sync_csv_data(self) -> Task:
         return Task(
-            config=self.tasks_config['travel_agent_participates_in_planning_tasks'],
+            config=self.tasks_config['task_sync_csv_data'],
+            agent=self.travel_analyzer(),
+        )
+
+    @task
+    def task_return_flight(self) -> Task:
+        return Task(
+            config=self.tasks_config['task_return_flight'],
+            agent=self.travel_analyzer(),
+        )
+
+    @task
+    def task_accommodation_hotels(self) -> Task:
+        return Task(
+            config=self.tasks_config['task_accommodation_hotels'],
+            agent=self.travel_analyzer(),
+        )
+
+    @task
+    def task_attraction(self) -> Task:
+        return Task(
+            config=self.tasks_config['task_attraction'],
+            agent=self.travel_analyzer(),
+        )
+
+    @task
+    def task_airbnb_location(self) -> Task:
+        return Task(
+            config=self.tasks_config['task_airbnb_location'],
+            agent=self.travel_analyzer(),
+        )
+
+    @task
+    def task_accommodation_airbnb(self) -> Task:
+        return Task(
+            config=self.tasks_config['task_accommodation_airbnb'],
+            agent=self.travel_analyzer(),
         )
 
     # ── Crew ────────────────────────────────────────────
 
     @crew
     def crew(self) -> Crew:
-        """Creates the TravelAISystemMastraexampleapp"""
+        """Creates the UnnamedProject"""
         return Crew(
             agents=self.agents,
             tasks=self.tasks,

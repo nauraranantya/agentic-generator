@@ -1,12 +1,11 @@
 """
 Auto-generated AutoGen Team: UnnamedProject
 Goals:
-  - Lesson 5: Coding and Financial Analysis Goal: 
-Objectives:
-  - Produce stock gain YTD plot objective: 
-Resources:
-  - ytd_stock_gains.png: PNG image file saved by the code executor containing the YTD stock gain plot for NVDA and TLSA. Filename specified in prompt.
-  - chat_result (chat session artifact): Result of initiating chat: chat_result = code_executor_agent.initiate_chat(code_writer_agent, message=message). Represents the chat session/response resource created by the notebook run (content not captured here).
+  - : Produce and save plots (e.g., ytd_stock_gains.png, stock_prices_YTD_plot.png) showing year-to-date gains for requested tickers (NVDA and TSLA/TLSA).
+Capabilities:
+  - : Ability to execute arbitrary code snippets in a sandboxed local environment.
+  - : Download historical stock close prices for given symbols and date range.
+  - : Render time series plots for stock price data and save to image files.
 """
 
 from autogen_agentchat.agents import AssistantAgent
@@ -35,26 +34,72 @@ model_client = OpenAIChatCompletionClient(
 # ==================================================
 
 
-def local_cmd_executor_tool_impl(
+def tool_local_cli_executor_impl(
     query: str = ""
 ) -> str:
     """
     AgentO Tool:
-    LocalCommandLineCodeExecutor
+    tool_local_cli_executor
 
     Description:
-    Local command-line code executor used to run code with timeout and working directory.
+    Executor used to run code locally with a working directory and timeout; can register functions to be callable during execution.
     """
     return (
-        "Tool 'local_cmd_executor_tool' "
+        "Tool 'tool_local_cli_executor' "
         "is a generated stub and "
         "has not been implemented yet."
     )
 
 
-local_cmd_executor_tool = FunctionTool(
-    local_cmd_executor_tool_impl,
-    description="""Local command-line code executor used to run code with timeout and working directory."""
+tool_local_cli_executor = FunctionTool(
+    tool_local_cli_executor_impl,
+    description="""Executor used to run code locally with a working directory and timeout; can register functions to be callable during execution. """
+)
+
+
+def tool_get_stock_prices_impl(
+    query: str = ""
+) -> str:
+    """
+    AgentO Tool:
+    tool_get_stock_prices
+
+    Description:
+    Function that downloads stock prices using yfinance and returns closing prices for given symbols between start and end dates.
+    """
+    return (
+        "Tool 'tool_get_stock_prices' "
+        "is a generated stub and "
+        "has not been implemented yet."
+    )
+
+
+tool_get_stock_prices = FunctionTool(
+    tool_get_stock_prices_impl,
+    description="""Function that downloads stock prices using yfinance and returns closing prices for given symbols between start and end dates. """
+)
+
+
+def tool_plot_stock_prices_impl(
+    query: str = ""
+) -> str:
+    """
+    AgentO Tool:
+    tool_plot_stock_prices
+
+    Description:
+    Function that plots provided stock prices dataframe and saves the figure to a specified filename using matplotlib.
+    """
+    return (
+        "Tool 'tool_plot_stock_prices' "
+        "is a generated stub and "
+        "has not been implemented yet."
+    )
+
+
+tool_plot_stock_prices = FunctionTool(
+    tool_plot_stock_prices_impl,
+    description="""Function that plots provided stock prices dataframe and saves the figure to a specified filename using matplotlib. """
 )
 
 
@@ -63,34 +108,34 @@ local_cmd_executor_tool = FunctionTool(
 # ==================================================
 
 
-code_executor_agent = AssistantAgent(
-    name="code_executor_agent",
-    model_client=model_client,
-    system_message="""
-Role:
-conversable code executor
-
-Goal:
-conversable code executor
-
-Background:
-You are a conversable code executor.
-""",
-)
-
-
 code_writer_agent = AssistantAgent(
     name="code_writer_agent",
     model_client=model_client,
     system_message="""
 Role:
-assistant code writer
+Assistant / Code Writer
 
 Goal:
-assistant code writer
+Assistant / Code Writer
 
 Background:
-The source obtains code_writer_agent.system_message and prints it; exact content is not available in the provided artifact.
+You are a Assistant / Code Writer.
+""",
+)
+
+
+code_executor_agent = AssistantAgent(
+    name="code_executor_agent",
+    model_client=model_client,
+    system_message="""
+Role:
+Code Executor
+
+Goal:
+Code Executor
+
+Background:
+You are a Code Executor.
 """,
 )
 

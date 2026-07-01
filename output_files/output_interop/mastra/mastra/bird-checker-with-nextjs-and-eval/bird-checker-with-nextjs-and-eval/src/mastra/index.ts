@@ -1,14 +1,10 @@
 /**
- * Mastra AI Instance - MastraDeploymentBirdChecker
+ * Mastra AI Instance - UnnamedProject
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
  * Goals:
- *   - Identify birds and species from images: Primary goal: determine whether images contain birds, identify species when present, and summarize the location.
- * Objectives:
- *   - Accuracy evaluation objective: Objective to measure whether the agent identifies birds and species correctly (used by evaluation).
- * Environments:
- *   - Web UI Environment (nextjs + browser UI (visualization of images, interactive tags)): Operational environment of the Bird Checker (user selects tags in UI which trigger image retrieval and agent analysis).
+ *   - : System should determine whether a provided image contains a bird, identify its scientific name if present, and summarize location.
  */
 
 import { Mastra } from '@mastra/core'
@@ -22,7 +18,7 @@ import { birdCheckerWorkflow } from './workflows'
 /**
  * Mastra instance with registered agents, workflows, and memory.
  *
- * Deployment of the Bird Checker composed using Mastra: maps an agent id to a running LLM agent component.
+ * Mastra instance wrapping the birdAgent and application workflow.
  */
 export const mastra = new Mastra({
   agents: {

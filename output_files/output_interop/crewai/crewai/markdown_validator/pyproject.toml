@@ -1,5 +1,5 @@
 [project]
-name = "mark_down_validator"
+name = "unnamed_project"
 version = "0.1.0"
 description = ""
 authors = [{name = "Your Name", email = "you@example.com"}]
@@ -14,7 +14,7 @@ dependencies = [
 ]
 
 [project.scripts]
-mark_down_validator = "main:run"
+unnamed_project = "main:run"
 train      = "main:train"
 
 [tool.uv]

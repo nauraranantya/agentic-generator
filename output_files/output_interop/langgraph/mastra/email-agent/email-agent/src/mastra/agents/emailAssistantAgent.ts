@@ -1,32 +1,29 @@
 /**
- * Agent: email_assistant
+ * Agent: Email Assistant
  * ID: email-assistant-agent
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Capabilities:
- *   - Compose Email: Generate a draft email (subject, body, to) from conversation history.
- *   - Rewrite Email: Rewrite email content given user's response/instructions; should only change requested fields.
- *   - Send Email: Finalize and send the composed email (in this implementation it yields a confirmation message indicating successful send).
- *   - Handle Human Interrupt: Present the email to a human for review and accept/edit/ignore/response and handle the resulting input accordingly.
+ *   - : Produces an email object with subject, body, and recipient based on conversation history or user edits.
  */
 
 import { Agent } from '@mastra/core/agent'
 
 // Import tools
-import { writeEmailTool } from '../tools'
+import { toolWriteEmail } from '../tools'
 
 /**
- * email_assistant
+ * Email Assistant
  * 
  * Instructions:
- * You are email_assistant.
+ * You are Email Assistant.
  */
 export const emailAssistantAgent = new Agent({
   id: `email-assistant-agent`,
-  name: `email_assistant`,
-  instructions: `You are email_assistant.`,
+  name: `Email Assistant`,
+  instructions: `You are Email Assistant.`,
   model: 'openai/gpt-4o',
   tools: {
-    writeEmailTool,
+    toolWriteEmail,
   },
 })

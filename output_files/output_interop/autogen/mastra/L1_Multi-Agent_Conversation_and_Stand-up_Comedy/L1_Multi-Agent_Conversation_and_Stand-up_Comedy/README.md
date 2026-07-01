@@ -39,9 +39,14 @@ UnnamedProject/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
 │       ├── agents/            # Agent definitions
-│       │   └── cathy.ts
-│       │   └── joe.ts
+│       │   └── chatbot.ts
+│       │   └── unnamed.ts
+│       │   └── unnamed.ts
 │       ├── tools/             # Tool definitions
+│       │   └── toolOpenAiApi.ts
+│       │   └── toolGetOpenaiApiKey.ts
+│       └── workflows/         # Workflow definitions
+│           └── workflowXiangsheng.ts
 ├── package.json
 ├── tsconfig.json
 └── .env.example
@@ -51,38 +56,68 @@ UnnamedProject/
 
 ## 🤖 Agents
 
-### stand-up comedian
+### conversable agent
 
-- **ID:** `cathy`
+- **ID:** `chatbot`
 - **Model:** `openai/gpt-4o-mini`
+- **Tools:** toolOpenAiApi, toolGetOpenaiApiKey
 
-System message as provided at ConversableAgent creation in the notebook....
+You are conversable agent....
 
-### stand-up comedian
+### 逗哏 / stand-up comedian (performer)
 
-- **ID:** `joe`
+- **ID:** `郭德纲`
 - **Model:** `openai/gpt-4o-mini`
+- **Tools:** toolOpenAiApi
 
-System message as provided at ConversableAgent creation in the notebook....
+You are 逗哏 / stand-up comedian (performer)....
+
+### 捧哏 / stand-up partner (support)
+
+- **ID:** `于谦`
+- **Model:** `openai/gpt-4o-mini`
+- **Tools:** toolOpenAiApi
+
+You are 捧哏 / stand-up partner (support)....
 
 
 ---
 
 ## 🔧 Tools
 
-No tools defined in this project.
+### toolOpenAiApi
+
+External LLM API used by ConversableAgent (via autogen/OpenAI client)....
+
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolOpenAiApi.ts`)
+
+### toolGetOpenaiApiKey
+
+Helper function used to retrieve the OpenAI API key from environment/config....
+
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolGetOpenaiApiKey.ts`)
+
 
 ---
 
 ## 🔄 Workflows
 
-No workflows defined in this project.
+### workflow_xiangsheng
+
+High-level workflow capturing initiation, summary, and follow-up interactions for the stand-up duo.
+
+**Steps:** 3
+1. task_guodegang_initiate_chat_1
+2. task_guodegang_initiate_chat_2
+3. task_guodegang_send_followup
+
 
 ---
 
 ## 📝 Next Steps
 
 1. **Implement tools:** Replace `throw new Error(...)` in tool files with actual implementations
+2. **Implement workflow steps:** Add logic to each step's `execute` function
 3. **Test agents:** Use Mastra Studio or write test scripts
 4. **Deploy:** Follow [Mastra deployment guide](https://mastra.ai/docs/deployment)
 

@@ -1,4 +1,4 @@
-# MeetingPreparationCrew
+# UnnamedProject
 
 
 
@@ -34,17 +34,19 @@ npm run dev
 ## 📦 Project Structure
 
 ```
-MeetingPreparationCrew/
+UnnamedProject/
 ├── src/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
 │       ├── agents/            # Agent definitions
-│       │   └── researcherAgent1.ts
-│       │   └── industryAnalystAgent1.ts
-│       │   └── meetingStrategyAgent1.ts
-│       │   └── briefingCoordinatorAgent1.ts
+│       │   └── researcherAgent.ts
+│       │   └── industryAnalystAgent.ts
+│       │   └── meetingStrategyAgent.ts
+│       │   └── summaryAndBriefingAgent.ts
 │       ├── tools/             # Tool definitions
-│       │   └── exaSearchTool.ts
+│       │   └── exaSearchToolSearch.ts
+│       │   └── exaSearchToolFindSimilar.ts
+│       │   └── exaSearchToolGetContents.ts
 │       └── workflows/         # Workflow definitions
 │           └── meetingPreparationPattern.ts
 ├── package.json
@@ -58,55 +60,65 @@ MeetingPreparationCrew/
 
 ### Research Specialist
 
-- **ID:** `researcher_agent_1`
+- **ID:** `researcher_agent`
 - **Model:** `openai/gpt-4o-mini`
-- **Tools:** exaSearchTool
+- **Tools:** exaSearchToolSearch, exaSearchToolFindSimilar, exaSearchToolGetContents
 
-Role: Research Specialist; Goal: Conduct thorough research on people and companies involved in the meeting...
+Conduct thorough research on people and companies involved in the meeting....
 
 ### Industry Analyst
 
-- **ID:** `industry_analyst_agent_1`
+- **ID:** `industry_analyst_agent`
 - **Model:** `openai/gpt-4o-mini`
-- **Tools:** exaSearchTool
+- **Tools:** exaSearchToolSearch, exaSearchToolFindSimilar, exaSearchToolGetContents
 
-Role: Industry Analyst; Goal: Analyze industry trends and opportunities...
+Analyze the current industry trends, challenges, and opportunities....
 
 ### Meeting Strategy Advisor
 
-- **ID:** `meeting_strategy_agent_1`
+- **ID:** `meeting_strategy_agent`
 - **Model:** `openai/gpt-4o-mini`
-- **Tools:** exaSearchTool
+- **Tools:** exaSearchToolSearch, exaSearchToolFindSimilar, exaSearchToolGetContents
 
-Role: Meeting Strategy Advisor; Goal: Develop talking points and strategies...
+Develop talking points, questions, and strategic angles for the meeting....
 
 ### Briefing Coordinator
 
-- **ID:** `briefing_coordinator_agent_1`
+- **ID:** `summary_and_briefing_agent`
 - **Model:** `openai/gpt-4o-mini`
-- **Tools:** exaSearchTool
+- **Tools:** exaSearchToolSearch, exaSearchToolFindSimilar, exaSearchToolGetContents
 
-Role: Briefing Coordinator; Goal: Compile information into briefing document...
+Compile all gathered information into a concise, informative briefing document....
 
 
 ---
 
 ## 🔧 Tools
 
-### ExaSearchTool
+### exaSearchToolSearch
 
-Tool wrapping Exa (exa_py) search capabilities used by agents.
-Provides three main operations: search(query), find_similar(url), and get_contents(ids).
-The tool requires an EXA_API_KEY configuration v...
+Search for a webpage based on the query (returns a list of result IDs)....
 
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/exaSearchTool.ts`)
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/exaSearchToolSearch.ts`)
+
+### exaSearchToolFindSimilar
+
+Search for webpages similar to a given URL....
+
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/exaSearchToolFindSimilar.ts`)
+
+### exaSearchToolGetContents
+
+Get the contents of webpages given a list of IDs....
+
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/exaSearchToolGetContents.ts`)
 
 
 ---
 
 ## 🔄 Workflows
 
-### Meeting Preparation Workflow Pattern
+### meeting_preparation_pattern
 
 
 

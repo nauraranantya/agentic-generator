@@ -1,15 +1,14 @@
 /**
- * Mastra AI Instance - RecruitmentCrew
+ * Mastra AI Instance - UnnamedProject
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
  * Goals:
- *   - Find potential candidates for the job: Find potential candidates for the job specified in inputs (job_requirements). Use multiple public resources to assemble candidate brief profiles and contact info.
- *   - Match the candidates to the best jobs and score them: Evaluate candidates relative to the job_requirements, compute scores and rank candidates with justifications.
- *   - Develop outreach strategies for the selected candidates: Produce outreach methods and message templates tailored to prioritized candidates.
- *   - Report the best candidates to the recruiters: Assemble a concise report for recruiters with profiles, scores, and outreach plan; follow output formatting instruction from tasks configuration.
- * Objectives:
- *   - Find and report best candidates for a job opening: Coordinate research, matching/scoring, outreach strategy, and reporting to produce a ranked and actionable list of candidates for a given job requirement input.
+ *   - : Agent goal: find potential candidates matching provided job requirements.
+ *   - : Agent goal: evaluate and rank candidates against job requirements.
+ *   - : Agent goal: create outreach templates and communication plans.
+ *   - : Agent goal: compile findings and recommend top candidates.
+ *   - : Team-level objective to orchestrate agent collaboration for recruitment.
  */
 
 import { Mastra } from '@mastra/core'
@@ -18,11 +17,12 @@ import { Mastra } from '@mastra/core'
 import { researcher, matcher, communicator, reporter } from './agents'
 
 // Import workflows
-import { recruitmentWorkflow } from './workflows'
+import { workflowRecruitment } from './workflows'
 
 /**
  * Mastra instance with registered agents, workflows, and memory.
  *
+ * CrewAI-based team coordinating agents to automate recruitment tasks.
  */
 export const mastra = new Mastra({
   agents: {
@@ -32,6 +32,6 @@ export const mastra = new Mastra({
     reporter,
   },
   workflows: {
-    recruitmentWorkflow,
+    workflowRecruitment,
   },
 })

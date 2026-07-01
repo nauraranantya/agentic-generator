@@ -4,32 +4,32 @@
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Capabilities:
- *   - : Analyze and compare cities by weather conditions, events, and travel costs; deliver a detailed city selection report.
- *   - : Collect and synthesize local cultural, tourism and attraction information into a comprehensive guide.
- *   - : Generate optimized daily travel itineraries with logistics, budget calculations, and packing recommendations.
- *   - : Search the internet for relevant results and return structured snippets with title, link, and snippet text.
- *   - : Scrape raw HTML of a website, partition and summarize content with an internal summarization agent; returns concise summaries for each chunk.
- *   - : Perform safe arithmetic evaluation of mathematical expressions (supports + - * / % ** and parentheses). Returns numeric result or error message.
+ *   - : Search the internet for relevant results using Serper API.
+ *   - : Scrape and summarize website content using browserless and HTML partitioning.
+ *   - : Perform safe mathematical calculations.
+ *   - : Analyze travel data to select an optimal city based on weather, season, and prices.
+ *   - : Provide deep local insights, attractions, cultural context, and practical tips.
+ *   - : Create detailed itineraries, budgets, packing suggestions, and logistics.
  */
 
 import { Agent } from '@mastra/core/agent'
 
 // Import tools
-import { searchTools, browserTools } from '../tools'
+import { toolSearch, toolBrowser } from '../tools'
 
 /**
  * Local Expert at this city
  * 
  * Instructions:
- * Role: Local Expert; purpose: compile an in-depth city guide with hidden gems and local insights.
+ * Provide the BEST insights about the selected city
  */
 export const localExpertAgent = new Agent({
   id: `local_expert_agent`,
   name: `Local Expert at this city`,
-  instructions: `Role: Local Expert; purpose: compile an in-depth city guide with hidden gems and local insights.`,
-  model: 'openai/gpt-4o-mini',
+  instructions: `Provide the BEST insights about the selected city`,
+  model: 'openai/gpt-4',
   tools: {
-    searchTools,
-    browserTools,
+    toolSearch,
+    toolBrowser,
   },
 })

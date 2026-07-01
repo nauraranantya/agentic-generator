@@ -4,10 +4,9 @@
  * Auto-generated from AgentO Knowledge Graph
  * Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
  * Goals:
- *   - : Top-level goal: identify and rank job opportunities for a given CV.
- * Objectives:
- *   - : Objective for producing a structured summary of the given CV.
- *   - : Objective for producing a ranked list of job matches for the candidate.
+ *   - : Extract relevant information from the CV, such as skills, experience, and education.
+ *   - : Match the CV to the job opportunities based on skills, experience, and key achievements.
+ *   - : Overall objective for the crew: automate the matching of candidate CVs to job proposals.
  */
 
 import { Mastra } from '@mastra/core'
@@ -16,12 +15,12 @@ import { Mastra } from '@mastra/core'
 import { cvReader, matcher } from './agents'
 
 // Import workflows
-import { matchToProposalWorkflowPattern, nextPatternPlaceholder } from './workflows'
+import { workflowSequential } from './workflows'
 
 /**
  * Mastra instance with registered agents, workflows, and memory.
  *
- * A Crew that coordinates reading CVs and matching them to job opportunities. Constructed with two agents (cv_reader, matcher) and two tasks run sequentially.
+ * CrewAI Team that coordinates cv_reader and matcher agents to match CVs to job proposals.
  */
 export const mastra = new Mastra({
   agents: {
@@ -29,7 +28,6 @@ export const mastra = new Mastra({
     matcher,
   },
   workflows: {
-    matchToProposalWorkflowPattern,
-    nextPatternPlaceholder,
+    workflowSequential,
   },
 })

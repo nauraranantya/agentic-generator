@@ -12,17 +12,17 @@ const UnnamedProjectAnnotation = Annotation.Root({
 
 
 /**
- * Node: taskCollectPersonalInfo
+ * Node: taskOnboardingPersonalInfo
  * Agent: onboarding_personal_information_agent
  */
-async function taskCollectPersonalInfo(state: typeof UnnamedProjectAnnotation.State) {
-  const model = new ChatOpenAI({ model: "gpt-3.5-turbo" });
+async function taskOnboardingPersonalInfo(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "You are a personal_information_collector." +
-        "\nNode: taskCollectPersonalInfo",
+        "You are a onboarding_personal_information." +
+        "\nNode: taskOnboardingPersonalInfo",
     },
     ...state.messages,
   ]);
@@ -30,17 +30,17 @@ async function taskCollectPersonalInfo(state: typeof UnnamedProjectAnnotation.St
 }
 
 /**
- * Node: taskCollectTopicPreferences
- * Agent: onboarding_personal_information_agent
+ * Node: taskOnboardingTopicPreference
+ * Agent: onboarding_topic_preference_agent
  */
-async function taskCollectTopicPreferences(state: typeof UnnamedProjectAnnotation.State) {
-  const model = new ChatOpenAI({ model: "gpt-3.5-turbo" });
+async function taskOnboardingTopicPreference(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "You are a personal_information_collector." +
-        "\nNode: taskCollectTopicPreferences",
+        "You are a onboarding_topic_preference." +
+        "\nNode: taskOnboardingTopicPreference",
     },
     ...state.messages,
   ]);
@@ -48,17 +48,17 @@ async function taskCollectTopicPreferences(state: typeof UnnamedProjectAnnotatio
 }
 
 /**
- * Node: taskCustomerProxyToEngagement
- * Agent: onboarding_personal_information_agent
+ * Node: taskCustomerEngagementRequest
+ * Agent: customer_engagement_agent
  */
-async function taskCustomerProxyToEngagement(state: typeof UnnamedProjectAnnotation.State) {
-  const model = new ChatOpenAI({ model: "gpt-3.5-turbo" });
+async function taskCustomerEngagementRequest(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "You are a personal_information_collector." +
-        "\nNode: taskCustomerProxyToEngagement",
+        "You are a customer_engagement." +
+        "\nNode: taskCustomerEngagementRequest",
     },
     ...state.messages,
   ]);
@@ -66,15 +66,15 @@ async function taskCustomerProxyToEngagement(state: typeof UnnamedProjectAnnotat
 }
 
 const workflow = new StateGraph(UnnamedProjectAnnotation)
-  .addNode("taskCollectPersonalInfo", taskCollectPersonalInfo)
-  .addNode("taskCollectTopicPreferences", taskCollectTopicPreferences)
-  .addNode("taskCustomerProxyToEngagement", taskCustomerProxyToEngagement)
-  .addEdge(START, "taskCollectPersonalInfo")
-  .addEdge("taskCollectPersonalInfo", "taskCollectTopicPreferences")
-  .addEdge("taskCollectTopicPreferences", "taskCustomerProxyToEngagement")
-  .addEdge("taskCustomerProxyToEngagement", END)
+  .addNode("taskOnboardingPersonalInfo", taskOnboardingPersonalInfo)
+  .addNode("taskOnboardingTopicPreference", taskOnboardingTopicPreference)
+  .addNode("taskCustomerEngagementRequest", taskCustomerEngagementRequest)
+  .addEdge(START, "taskOnboardingPersonalInfo")
+  .addEdge("taskOnboardingPersonalInfo", "taskOnboardingTopicPreference")
+  .addEdge("taskOnboardingTopicPreference", "taskCustomerEngagementRequest")
+  .addEdge("taskCustomerEngagementRequest", END)
 ;
 
 export const graph = workflow.compile();
 graph.name = "UnnamedProject";
-// Workflow: customer_onboarding_workflow
+// Workflow: onboarding_workflow

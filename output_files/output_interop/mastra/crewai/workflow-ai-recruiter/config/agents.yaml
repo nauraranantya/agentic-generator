@@ -1,5 +1,4 @@
-recruiter_agent:
-  role: Recruiter Agent
-  goal: Recruiter Agent
-  backstory: Agent-level static instruction used as the recruiter's persona/instruction
-    set for generation.
+mastra_llm:
+  role: workflow-processor
+  goal: workflow-processor
+  backstory: You are a workflow-processor.

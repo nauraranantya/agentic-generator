@@ -1,7 +1,7 @@
 {
   "name": "pizza-orderer",
   "version": "0.1.0",
-  "description": "",
+  "description": "Team representing the StateGraph workflow for ordering pizza.",
   "type": "module",
   "main": "src/mastra/index.ts",
   "scripts": {

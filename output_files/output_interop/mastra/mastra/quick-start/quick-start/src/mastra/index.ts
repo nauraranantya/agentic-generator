@@ -3,27 +3,29 @@
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
+ * Goals:
+ *   - : No explicit goal provided in source; placeholder goal.
+ *   - : No explicit goal provided in source; placeholder goal.
  */
 
 import { Mastra } from '@mastra/core'
 
 // Import agents
-import { catOne } from './agents'
+import { catOne, agentTwo } from './agents'
 
 // Import workflows
-import { logCatWorkflowPattern, legacyLogCatWorkflowPattern } from './workflows'
+import { logCatWorkflow } from './workflows'
 
 /**
  * Mastra instance with registered agents, workflows, and memory.
  *
- * Agent orchestration system instance containing agents, workflows and logger configuration as defined in the source repository.
  */
 export const mastra = new Mastra({
   agents: {
     catOne,
+    agentTwo,
   },
   workflows: {
-    logCatWorkflowPattern,
-    legacyLogCatWorkflowPattern,
+    logCatWorkflow,
   },
 })

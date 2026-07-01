@@ -4,26 +4,27 @@
  * Auto-generated from AgentO Knowledge Graph
  * Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
  * Goals:
- *   - Order Pizza Goal: Top-level intent: find a pizza shop and place a pizza order for a user.
+ *   - : High-level goal to find a pizza shop and place an order for the user.
  */
 
 import { Mastra } from '@mastra/core'
 
 // Import agents
-import { pizzaOrdererV1 } from './agents'
+import { langgraphAnthropicAgent } from './agents'
 
 // Import workflows
-import { orderPizzaGraph } from './workflows'
+import { orderPizzaStateGraph } from './workflows'
 
 /**
  * Mastra instance with registered agents, workflows, and memory.
  *
+ * Team representing the StateGraph workflow for ordering pizza.
  */
 export const mastra = new Mastra({
   agents: {
-    pizzaOrdererV1,
+    langgraphAnthropicAgent,
   },
   workflows: {
-    orderPizzaGraph,
+    orderPizzaStateGraph,
   },
 })

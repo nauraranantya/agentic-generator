@@ -1,7 +1,7 @@
 import type { SupervisorState } from "../types";
 
-const ROUTES = ["stockbrokerTask", "tripPlannerTask", "openCodeTask", "orderPizzaTask", "generalInputTask", "writerAgentTask"];
-const FALLBACK = "generalInputTask";
+const ROUTES = ["taskStockbroker", "taskTripPlanner", "taskOpenCode", "taskOrderPizza", "taskGeneralInput", "taskWriterAgent"];
+const FALLBACK = "taskGeneralInput";
 
 export async function router(state: SupervisorState) {
   const last = state.messages?.[state.messages.length - 1];

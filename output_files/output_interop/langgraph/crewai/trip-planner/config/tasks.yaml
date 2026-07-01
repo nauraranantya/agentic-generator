@@ -1,29 +1,17 @@
-task_extraction:
+view_accommodations_task:
+  description: Display available accommodations or restaurants to the user and allow
+    selection.
+  expected_output: A list of accommodation summary items suitable for a UI carousel/list.
+select_accommodation_task:
   description: |
-    Extraction task: given the entire conversation history, call a tool named "extract" with the following schema:
-    - location: string (required) - "The location to plan the trip for. Can be a city, state, or country."
-    - startDate: string (optional) - "YYYY-MM-DD"
-    - endDate: string (optional) - "YYYY-MM-DD"
-    - numberOfGuests: number (optional) - defaults to 2 if not provided
-
-    Behavior notes:
-    - Do NOT guess or make up information. If location missing, produce a single-sentence clarification request: "Please specify the location for the trip you want to go on".
-    - After extraction: apply date defaulting logic (see TripDetails resource description).
-  expected_output: JSON-like tool call with fields [location, startDate?, endDate?,
-    numberOfGuests?]
-task_classify:
+    Handle user selection of an accommodation and present detailed view including price breakdown and booking option.
+  expected_output: Selected accommodation details and a ready-to-send booking payload.
+confirm_booking_task:
+  description: Prepare order details and invoke the booking tool using the 'book-accommodation'
+    tool call.
+  expected_output: Tool call with serialized booking order; subsequent human confirmation
+    message.
+booked_confirmation_task:
   description: |
-    Classification task: use a tool named "classify" with schema { isRelevant: boolean } to determine if previously extracted tripDetails remain relevant to the user's most recent message.
-    - If isRelevant == false -> the agent will clear tripDetails (tripDetails becomes undefined) and routing will proceed to extraction.
-    - If isRelevant == true -> proceed to callTools.
-  expected_output: 'Tool call returning { isRelevant: boolean }'
-task_call_tools:
-  description: |
-    CallTools task: binds ACCOMMODATIONS_TOOLS (list-accommodations and list-restaurants), invokes the language model to decide which tool(s) to call, and pushes UI items for results. The LLM receives the system message:
-    "You are an AI assistant who helps users book trips. Use the user's most recent message(s) to contextually generate a response."
-    The task expects state.tripDetails to be defined and produces resources:
-    - Accommodations list resource
-    - Restaurants list resource
-    - UI items (represented here as produced resources)
-  expected_output: |
-    LLM may invoke one or more tool calls (list-accommodations, list-restaurants) or produce direct message responses.
+    Display booking confirmation details returned by the booking tool or show success message if no details returned.
+  expected_output: A confirmation view or message; optionally a booking reference.

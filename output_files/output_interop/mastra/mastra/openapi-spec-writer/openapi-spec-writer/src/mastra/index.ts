@@ -1,10 +1,8 @@
 /**
- * Mastra AI Instance - MastraSystem
+ * Mastra AI Instance - UnnamedProject
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
- * Goals:
- *   - Generate OpenAPI spec from docs: Produce a merged OpenAPI specification from website documentation and optionally open a PR with the spec in a repository.
  */
 
 import { Mastra } from '@mastra/core'
@@ -13,25 +11,19 @@ import { Mastra } from '@mastra/core'
 import { openapiSpecGenAgent } from './agents'
 
 // Import workflows
-import { openApiSpecGenWorkflowPattern, makePrWorkflowPattern } from './workflows'
-
-// Import memory instances
-import { openApiSpecAgentMemory } from './memory'
+import { wpOpenApiSpecGenWorkflow, wpMakePrToMastra } from './workflows'
 
 /**
  * Mastra instance with registered agents, workflows, and memory.
  *
- * The deployed Mastra system that coordinates agents, tools and workflows for generating OpenAPI specs and creating PRs.
+ * Mastra instance configured in src/mastra/index.ts (serviceName: mastra-vnext).
  */
 export const mastra = new Mastra({
   agents: {
     openapiSpecGenAgent,
   },
   workflows: {
-    openApiSpecGenWorkflowPattern,
-    makePrWorkflowPattern,
-  },
-  memory: {
-    openApiSpecAgentMemory,
+    wpOpenApiSpecGenWorkflow,
+    wpMakePrToMastra,
   },
 })

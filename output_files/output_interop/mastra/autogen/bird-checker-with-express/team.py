@@ -1,3 +1,11 @@
+"""
+Auto-generated AutoGen Team: UnnamedProject
+Goals:
+  - : Determine whether an image contains a bird, identify the species, and summarize the location.
+Capabilities:
+  - : Classify images as bird/non-bird, identify species, and summarize location.
+  - : Search Unsplash and return a random image matching a query (returns imageUrl, photographerName, photographerProfile).
+"""
 
 from autogen_agentchat.agents import AssistantAgent
 
@@ -33,7 +41,7 @@ def get_random_image_tool_impl(
     get_random_image_tool
 
     Description:
-    Gets a random image from Unsplash based on selected query option. Random page selection and order_by ('relevant' or 'latest') logic is applied at runtime.
+    Gets a random image from Unsplash based on the selected option
     """
     return (
         "Tool 'get_random_image_tool' "
@@ -44,7 +52,7 @@ def get_random_image_tool_impl(
 
 get_random_image_tool = FunctionTool(
     get_random_image_tool_impl,
-    description="""Gets a random image from Unsplash based on selected query option. Random page selection and order_by ('relevant' or 'latest') logic is applied at runtime."""
+    description="""Gets a random image from Unsplash based on the selected option """
 )
 
 
@@ -58,13 +66,13 @@ bird_checker = AssistantAgent(
     model_client=model_client,
     system_message="""
 Role:
-image-analyst
+bird-checker
 
 Goal:
-image-analyst
+Determine whether an image contains a bird, identify the species, and summarize the location.
 
 Background:
-You are a image-analyst.
+You are a bird-checker.
 """,
 )
 

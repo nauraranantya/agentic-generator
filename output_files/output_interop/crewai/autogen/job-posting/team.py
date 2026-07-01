@@ -1,60 +1,14 @@
 """
-Auto-generated AutoGen Team: JobPostingCrewTeam
+Auto-generated AutoGen Team: UnnamedProject
 Goals:
-  - Hiring Goal: Goal: hire for the specified hiring needs (e.g., Production Assistant for TV production in Los Angeles, June 2025) using a compelling job posting aligned with company values.
-Objectives:
-  - Create Job Posting Objective: Collective objective: produce a job posting that aligns with company culture and hiring needs.
-Resources:
-  - DefaultInputs for JobPostingCrew: Example input values used for kickoff/train:
-- company_domain: careers.wbd.com
-- company_description: Warner Bros. Discovery is a premier global media and entertainment company, offering audiences the world’s most differentiated and complete portfolio of content, brands and franchises across television, film, sports, news, streaming and gaming. We're home to the world’s best storytellers, creating world-class products for consumers
-- hiring_needs: Production Assistant, for a TV production set in Los Angeles in June 2025
-- specific_benefits: Weekly Pay, Employee Meals, healthcare
-These are preserved as the default input bundle used to initiate the crew."
-  - job_description_example.md: # Amazing Job Description Example
-
-## Company Overview
-At InnovateTech, we're at the forefront of digital transformation, leveraging cutting-edge technologies to create impactful solutions. Our culture thrives on innovation, collaboration, and a commitment to excellence. Join us to be a part of a dynamic team shaping the future of tech.
-
-## Job Title: Senior Software Engineer
-
-### Location
-Remote - Global Team
-
-### Job Summary
-As a Senior Software Engineer at InnovateTech, you'll lead the development of scalable software solutions that revolutionize how businesses interact with technology. You'll collaborate with cross-functional teams to drive projects from conception to deployment, ensuring high-quality and innovative outcomes.
-
-### Responsibilities
-- Design, develop, and implement high-quality software solutions that align with our strategic direction.
-- Lead technical discussions and decision-making processes to drive technology forward.
-- Mentor junior engineers, providing guidance and support to foster a culture of excellence and growth.
-- Collaborate with stakeholders across the company to understand requirements and deliver beyond expectations.
-- Stay abreast of industry trends and emerging technologies to incorporate best practices into our workflows.
-
-### Requirements
-- Bachelor's degree in Computer Science, Engineering, or related field.
-- 5+ years of experience in software development, with a strong background in [Specific Technology/Programming Language].
-- Proven track record of leading successful projects from inception to completion.
-- Excellent problem-solving skills and a passion for technology.
-- Strong communication and teamwork abilities.
-
-### Benefits
-- Competitive salary and equity package.
-- Comprehensive health, dental, and vision insurance.
-- Unlimited PTO to promote work-life balance.
-- Remote work flexibility.
-- Professional development stipends.
-- Monthly wellness allowances.
-- Inclusive and dynamic work culture.
-
-### How to Apply
-Please submit your resume, cover letter, and any relevant portfolio links to careers@innovatetech.com with the subject "Senior Software Engineer Application". We're excited to hear from you!
-
-# ---
-
-InnovateTech is an equal opportunity employer. We celebrate diversity and are committed to creating an inclusive environment for all employees.
-  - draft_job_posting.md: Draft job posting produced by DraftJobPostingTask; initial markdown draft.
-  - final_job_posting.md: Review-edited, final job posting in markdown, ready for publishing.
+  - : Analyze the company website and provided description to extract insights on culture, values, and specific needs.
+  - : Use insights from the Research Analyst to create a detailed, engaging, and enticing job posting.
+  - : Review the job posting for clarity, engagement, grammatical accuracy, and alignment with the company's culture and values.
+  - : Automate the creation of job postings using CrewAI to analyze company information and produce polished job descriptions and analyses.
+Capabilities:
+  - : Performs general website search and retrieval.
+  - : Uses Serper.dev API for search and rich web results.
+  - : Reads the contents of a local file for use by agents.
 """
 
 from autogen_agentchat.agents import AssistantAgent
@@ -88,10 +42,10 @@ def website_search_tool_impl(
 ) -> str:
     """
     AgentO Tool:
-    WebsiteSearchTool
+    website_search_tool
 
     Description:
-    Tool used for general website search queries (instantiated in the solution as a web search tool).
+    A generic website search tool used to look up pages and content.
     """
     return (
         "Tool 'website_search_tool' "
@@ -102,7 +56,7 @@ def website_search_tool_impl(
 
 website_search_tool = FunctionTool(
     website_search_tool_impl,
-    description="""Tool used for general website search queries (instantiated in the solution as a web search tool)."""
+    description="""A generic website search tool used to look up pages and content. """
 )
 
 
@@ -111,10 +65,10 @@ def serper_dev_tool_impl(
 ) -> str:
     """
     AgentO Tool:
-    SerperDevTool
+    serper_dev_tool
 
     Description:
-    Tool used for developer-oriented web search or SERP querying (instantiated as SerperDevTool in the code).
+    Serper.dev integration tool for advanced search queries.
     """
     return (
         "Tool 'serper_dev_tool' "
@@ -125,7 +79,7 @@ def serper_dev_tool_impl(
 
 serper_dev_tool = FunctionTool(
     serper_dev_tool_impl,
-    description="""Tool used for developer-oriented web search or SERP querying (instantiated as SerperDevTool in the code)."""
+    description="""Serper.dev integration tool for advanced search queries. """
 )
 
 
@@ -134,10 +88,10 @@ def file_read_tool_impl(
 ) -> str:
     """
     AgentO Tool:
-    FileReadTool
+    file_read_tool
 
     Description:
-    Tool to read local files; configured to read job_description_example.md
+    A tool to read a local job description example file.
     """
     return (
         "Tool 'file_read_tool' "
@@ -148,7 +102,7 @@ def file_read_tool_impl(
 
 file_read_tool = FunctionTool(
     file_read_tool_impl,
-    description="""Tool to read local files; configured to read job_description_example.md"""
+    description="""A tool to read a local job description example file. """
 )
 
 
@@ -165,10 +119,10 @@ Role:
 Research Analyst
 
 Goal:
-Research Analyst
+Analyze the company website and provided description to extract insights on culture, values, and specific needs.
 
 Background:
-Role: Research Analyst
+You are a Research Analyst.
 """,
 )
 
@@ -181,10 +135,10 @@ Role:
 Job Description Writer
 
 Goal:
-Job Description Writer
+Use insights from the Research Analyst to create a detailed, engaging, and enticing job posting.
 
 Background:
-Role: Job Description Writer
+You are a Job Description Writer.
 """,
 )
 
@@ -197,10 +151,10 @@ Role:
 Review and Editing Specialist
 
 Goal:
-Review and Editing Specialist
+Review the job posting for clarity, engagement, grammatical accuracy, and alignment with the company's culture and values.
 
 Background:
-Role: Review and Editing Specialist
+You are a Review and Editing Specialist.
 """,
 )
 

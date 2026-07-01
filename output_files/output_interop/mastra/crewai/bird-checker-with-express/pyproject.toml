@@ -1,7 +1,7 @@
 [project]
 name = "unnamed_project"
 version = "0.1.0"
-description = "The deployed Mastra-based system hosting an agent and tools to fetch and analyze"
+description = "Mastra instance that hosts the bird checker agent and associated tools."
 authors = [{name = "Your Name", email = "you@example.com"}]
 readme = "README.md"
 requires-python = ">=3.10,<=3.13"

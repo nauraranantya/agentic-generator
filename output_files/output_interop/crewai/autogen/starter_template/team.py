@@ -4,9 +4,7 @@ Goals:
   - : Define agent 1 goal here
   - : Define agent 2 goal here
 Capabilities:
-  - web search: Capability to run web searches and return search results.
-Resources:
-  - : Represents the output produced by task_1_name; used as input to task_2_name. Created by Task_1.
+  - : Performs web searches and returns results
 """
 
 from autogen_agentchat.agents import AssistantAgent
@@ -35,26 +33,26 @@ model_client = OpenAIChatCompletionClient(
 # ==================================================
 
 
-def duck_duck_go_tool_impl(
+def tool_duck_duck_go_search_run_impl(
     query: str = ""
 ) -> str:
     """
     AgentO Tool:
-    duck_duck_go_tool
+    tool_duck_duck_go_search_run
 
     Description:
-    An instance of DuckDuckGoSearchRun created in main.py and intended for web search functionality. (Note: installed via 'duckduckgo-search' if used.)
+    LangChain DuckDuckGo search tool used for web search
     """
     return (
-        "Tool 'duck_duck_go_tool' "
+        "Tool 'tool_duck_duck_go_search_run' "
         "is a generated stub and "
         "has not been implemented yet."
     )
 
 
-duck_duck_go_tool = FunctionTool(
-    duck_duck_go_tool_impl,
-    description="""An instance of DuckDuckGoSearchRun created in main.py and intended for web search functionality. (Note: installed via 'duckduckgo-search' if used.)"""
+tool_duck_duck_go_search_run = FunctionTool(
+    tool_duck_duck_go_search_run_impl,
+    description="""LangChain DuckDuckGo search tool used for web search """
 )
 
 
@@ -74,7 +72,7 @@ Goal:
 Define agent 1 goal here
 
 Background:
-agent settings: allow_delegation=False; verbose=True; llm=ChatOpenAI(gpt-3.5-turbo)
+You are a Define agent 1 role here.
 """,
 )
 
@@ -90,7 +88,7 @@ Goal:
 Define agent 2 goal here
 
 Background:
-agent settings: allow_delegation=False; verbose=True; llm=ChatOpenAI(gpt-3.5-turbo)
+You are a Define agent 2 role here.
 """,
 )
 

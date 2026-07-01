@@ -1,3 +1,3 @@
-export { fetchStockPricePattern } from './fetchStockPricePattern'
+export { stockWorkflow } from './stockWorkflow'
 export * from './ad_hoc_tasks'
 

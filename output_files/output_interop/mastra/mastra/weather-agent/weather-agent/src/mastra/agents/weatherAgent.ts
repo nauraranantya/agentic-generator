@@ -1,16 +1,17 @@
 /**
  * Agent: weather assistant
- * ID: weather-agent
+ * ID: Weather Agent
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Capabilities:
- *   - Fetch current weather capability: Fetches geocoding for a city and retrieves current weather fields. Input: { location: string }. Output: { temperature, feelsLike, humidity, windSpeed, windGust, conditions, location }.
+ *   - : Provide concise weather information including humidity, wind, precipitation; ask for location if not provided.
+ *   - : Fetch current weather and geocoding for a given location using Open-Meteo APIs.
  */
 
 import { Agent } from '@mastra/core/agent'
 
 // Import tools
-import { weatherTool } from '../tools'
+import { toolGetWeather } from '../tools'
 
 /**
  * weather assistant
@@ -19,11 +20,11 @@ import { weatherTool } from '../tools'
  * You are weather assistant.
  */
 export const weatherAgent = new Agent({
-  id: `weather-agent`,
+  id: `Weather Agent`,
   name: `weather assistant`,
   instructions: `You are weather assistant.`,
-  model: 'openai/gpt-4o-mini',
+  model: 'openai/gpt-4o',
   tools: {
-    weatherTool,
+    toolGetWeather,
   },
 })

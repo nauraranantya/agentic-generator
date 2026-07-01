@@ -30,10 +30,10 @@ def stock_prices_tool_impl(
 ) -> str:
     """
     AgentO Tool:
-    GetStockPricestockPrices
+    stock_prices_tool
 
     Description:
-    Fetches the last day's closing stock price for a given symbol. Source tool implementation uses an HTTP fetch to https://mastra-stock-data.vercel.app/api/stock-data?symbol={symbol} and returns { symbol, currentPrice } with currentPrice mapped from data.prices['4. close'].
+    Fetches the last day's closing stock price for a given symbol
     """
     return (
         "Tool 'stock_prices_tool' "
@@ -44,7 +44,7 @@ def stock_prices_tool_impl(
 
 stock_prices_tool = FunctionTool(
     stock_prices_tool_impl,
-    description="""Fetches the last day's closing stock price for a given symbol. Source tool implementation uses an HTTP fetch to https://mastra-stock-data.vercel.app/api/stock-data?symbol={symbol} and returns { symbol, currentPrice } with currentPrice mapped from data.prices['4. close']."""
+    description="""Fetches the last day's closing stock price for a given symbol """
 )
 
 
@@ -58,13 +58,13 @@ stock_agent = AssistantAgent(
     model_client=model_client,
     system_message="""
 Role:
-price_provider
+assistant
 
 Goal:
-price_provider
+assistant
 
 Background:
-Agent-level instruction used as the LLM system prompt / persona.
+You are a assistant.
 """,
 )
 

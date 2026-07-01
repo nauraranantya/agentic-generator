@@ -92,6 +92,6 @@ You are a engagement_generator.
 
 customer_proxy_agent = UserProxyAgent(
     name="customer_proxy_agent",
-    description="""customer_proxy""",
+    description="""customer_proxy """,
 )
 

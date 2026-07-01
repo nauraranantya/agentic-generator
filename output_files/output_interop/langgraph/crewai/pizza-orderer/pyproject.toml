@@ -1,7 +1,7 @@
 [project]
 name = "unnamed_project"
 version = "0.1.0"
-description = ""
+description = "Team representing the StateGraph workflow for ordering pizza."
 authors = [{name = "Your Name", email = "you@example.com"}]
 readme = "README.md"
 requires-python = ">=3.10,<=3.13"
@@ -11,8 +11,8 @@ dependencies = [
     "python-dotenv>=1.0.1",
     "pyyaml>=6.0.1",
     "anthropic>=0.60.0",
-    # TODO: add PyPI package for custom tool "PizzaFinderTool"
-    # TODO: add PyPI package for custom tool "PizzaOrderingSystem"
+    # TODO: add PyPI package for custom tool "FindPizzaTool"
+    # TODO: add PyPI package for custom tool "PlaceOrderTool"
 ]
 
 [project.scripts]

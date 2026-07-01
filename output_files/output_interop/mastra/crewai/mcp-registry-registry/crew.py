@@ -3,10 +3,12 @@ Auto-generated CrewAI Crew: UnnamedProject
 
 Source  : AgentO Knowledge Graph → SPARQL → Pydantic → Jinja2
 Pipeline: 3-Layer Conversion Pipeline
-Objectives:
-  - : Objective for the MCP Registry Agent and Team: enable searching and retrieving MCP registry information by ID, tag, or name.
+Goals:
+  - : Provide discovery and access to MCP registries and their servers; normalize heterogeneous registry responses into a standard ServerEntry format.
 Capabilities:
-  - : Capability to return the set of available MCP tools. In source code this is invoked at initialization (await mcp.listTools()) to populate the agent's tools.
+  - : Provides filtered listings of MCP registries (id, tag, name) and can emit detailed or summary responses.
+  - : Fetch servers from a registry endpoint, apply registry-specific post-processing, and filter results by tag or search term.
+  - : Ability to list registries and retrieve servers from registries via exposed tools.
 """
 
 from crewai import Agent, Crew, Process, Task
@@ -17,19 +19,19 @@ from crewai.tools import tool
 # ===========================================================
 # Tool Instances
 # ===========================================================
-# TODO: mcp_client — unknown tool class "mcpClient"
+# TODO: tool_registry_list — unknown tool class "ToolregistryList"
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-@tool("mcpClient")
-def mcp_client(*args, **kwargs) -> str:
-    """Client used by the Mastra configuration to enumerate available MCP tool endpoints. In the source it """
-    return "mcp_client result"
+@tool("ToolregistryList")
+def tool_registry_list(*args, **kwargs) -> str:
+    """List available MCP registries. Can filter by ID, tag, or name and provide detailed or summary views."""
+    return "tool_registry_list result"
 
-# TODO: mcp_registry_tool — unknown tool class "mcpRegistryTool"
+# TODO: tool_registry_servers — unknown tool class "ToolregistryServers"
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-@tool("mcpRegistryTool")
-def mcp_registry_tool(*args, **kwargs) -> str:
-    """Tool instance representing the MCP registry server process launched via the configured command. In t"""
-    return "mcp_registry_tool result"
+@tool("ToolregistryServers")
+def tool_registry_servers(*args, **kwargs) -> str:
+    """Get servers from a specific MCP registry. Can filter by tag or search term. Internally fetches regis"""
+    return "tool_registry_servers result"
 
 
 
@@ -44,33 +46,40 @@ class UnnamedProject:
     # ── Agents ──────────────────────────────────────────
 
     @agent
-    def mcp_registry_agent(self) -> Agent:
+    def registry_registry_server(self) -> Agent:
         return Agent(
-            config=self.agents_config['mcp_registry_agent'],
-            tools=[mcp_client, mcp_registry_tool],
+            config=self.agents_config['registry_registry_server'],
+            tools=[tool_registry_list, tool_registry_servers],
         )
 
     # ── Tasks ───────────────────────────────────────────
 
     @task
-    def initialize_agent_task(self) -> Task:
+    def task_fetch_servers_from_registry(self) -> Task:
         return Task(
-            config=self.tasks_config['initialize_agent_task'],
-            agent=self.mcp_registry_agent(),
+            config=self.tasks_config['task_fetch_servers_from_registry'],
+            agent=self.registry_registry_server(),
         )
 
     @task
-    def search_mcp_registries_task(self) -> Task:
+    def task_post_process_servers(self) -> Task:
         return Task(
-            config=self.tasks_config['search_mcp_registries_task'],
-            agent=self.mcp_registry_agent(),
+            config=self.tasks_config['task_post_process_servers'],
+            agent=self.registry_registry_server(),
         )
 
     @task
-    def finalize_task(self) -> Task:
+    def task_filter_servers(self) -> Task:
         return Task(
-            config=self.tasks_config['finalize_task'],
-            agent=self.mcp_registry_agent(),
+            config=self.tasks_config['task_filter_servers'],
+            agent=self.registry_registry_server(),
+        )
+
+    @task
+    def task_get_servers_from_registry(self) -> Task:
+        return Task(
+            config=self.tasks_config['task_get_servers_from_registry'],
+            agent=self.registry_registry_server(),
         )
 
     # ── Crew ────────────────────────────────────────────

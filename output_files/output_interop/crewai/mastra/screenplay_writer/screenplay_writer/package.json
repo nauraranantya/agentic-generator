@@ -1,7 +1,7 @@
 {
   "name": "screenplay_writer",
   "version": "0.1.0",
-  "description": "Team that orchestrates the sequence of agents to convert a newsgroup post into a formatted screenplay.",
+  "description": "Crew.ai based crew that analyses a discussion, turns it into screenplay dialogue and formats it.",
   "type": "module",
   "main": "src/mastra/index.ts",
   "scripts": {

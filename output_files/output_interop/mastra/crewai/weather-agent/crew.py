@@ -1,28 +1,11 @@
 """
-Auto-generated CrewAI Crew: MastraSystem
+Auto-generated CrewAI Crew: UnnamedProject
 
 Source  : AgentO Knowledge Graph → SPARQL → Pydantic → Jinja2
 Pipeline: 3-Layer Conversion Pipeline
 Capabilities:
-  - Fetch current weather capability: Fetches geocoding for a city and retrieves current weather fields. Input: { location: string }. Output: { temperature, feelsLike, humidity, windSpeed, windGust, conditions, location }.
-Resources:
-  - forecast array: Forecast array produced by fetch-weather:
-Array of objects with schema:
-[{ date: string, maxTemp: number, minTemp: number, precipitationChance: number, condition: string, location: string }]
-  - open-meteo geocoding API: Used to convert city names to lat/lon.
-  - open-meteo forecast API: Used to fetch daily or hourly forecast values.
-  - current weather (tool output): Object returned by the weather tool with current weather metrics and location as a string.
-  - agent input string: A string like: 'Forecast data: { ... }' that will be provided to the weatherReporterAgent.
-  - activities text: Activities textual output produced by agent with a structured format per guidelines:
-📅 [Day, Month Date, Year]
-═══════════════════════════
-
-🌡️ WEATHER SUMMARY
-• Conditions: ...
-• Temperature: ...
-• Precipitation: ...
-
-... (sections for MORNING ACTIVITIES, AFTERNOON ACTIVITIES, INDOOR ALTERNATIVES, SPECIAL CONSIDERATIONS)
+  - : Provide concise weather information including humidity, wind, precipitation; ask for location if not provided.
+  - : Fetch current weather and geocoding for a given location using Open-Meteo APIs.
 """
 
 from crewai import Agent, Crew, Process, Task
@@ -33,19 +16,19 @@ from crewai.tools import tool
 # ===========================================================
 # Tool Instances
 # ===========================================================
-# TODO: weather_tool — unknown tool class "getweather"
+# TODO: tool_get_weather — unknown tool class "toolgetweather"
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-@tool("getweather")
-def weather_tool(*args, **kwargs) -> str:
-    """Tool to get current weather for a location. Wraps geocoding and open-meteo APIs and returns a simpli"""
-    return "weather_tool result"
+@tool("toolgetweather")
+def tool_get_weather(*args, **kwargs) -> str:
+    """Get current weather for a location"""
+    return "tool_get_weather result"
 
 
 
 
 @CrewBase
-class MastraSystem:
-    """MastraSystem crew"""
+class UnnamedProject:
+    """UnnamedProject crew"""
 
     agents_config = 'config/agents.yaml'
     tasks_config = 'config/tasks.yaml'
@@ -56,56 +39,30 @@ class MastraSystem:
     def weather_agent(self) -> Agent:
         return Agent(
             config=self.agents_config['weather_agent'],
-            tools=[weather_tool],
-        )
-
-    @agent
-    def weather_explainer_agent(self) -> Agent:
-        return Agent(
-            config=self.agents_config['weather_explainer_agent'],
+            tools=[tool_get_weather],
         )
 
     # ── Tasks ───────────────────────────────────────────
 
     @task
-    def fetch_weather_task(self) -> Task:
+    def task_fetch_weather(self) -> Task:
         return Task(
-            config=self.tasks_config['fetch_weather_task'],
-        )
-
-    @task
-    def weather_tool_call_task(self) -> Task:
-        return Task(
-            config=self.tasks_config['weather_tool_call_task'],
-        )
-
-    @task
-    def map_forecast_to_prompt_task(self) -> Task:
-        return Task(
-            config=self.tasks_config['map_forecast_to_prompt_task'],
-            context=[self.weather_tool_call_task()],
-        )
-
-    @task
-    def plan_activities(self) -> Task:
-        return Task(
-            config=self.tasks_config['plan_activities'],
+            config=self.tasks_config['task_fetch_weather'],
             agent=self.weather_agent(),
-            context=[self.fetch_weather_task(), self.map_forecast_to_prompt_task()],
         )
 
     @task
-    def explain_weather_task(self) -> Task:
+    def task_plan_activities(self) -> Task:
         return Task(
-            config=self.tasks_config['explain_weather_task'],
-            context=[self.map_forecast_to_prompt_task()],
+            config=self.tasks_config['task_plan_activities'],
+            agent=self.weather_agent(),
         )
 
     # ── Crew ────────────────────────────────────────────
 
     @crew
     def crew(self) -> Crew:
-        """Creates the MastraSystem"""
+        """Creates the UnnamedProject"""
         return Crew(
             agents=self.agents,
             tasks=self.tasks,

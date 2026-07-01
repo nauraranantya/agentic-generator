@@ -3,12 +3,14 @@ Auto-generated CrewAI Crew: UnnamedProject
 
 Source  : AgentO Knowledge Graph → SPARQL → Pydantic → Jinja2
 Pipeline: 3-Layer Conversion Pipeline
+Goals:
+  - : No explicit goal provided in source; placeholder goal.
+  - : No explicit goal provided in source; placeholder goal.
 Capabilities:
-  - : Ability to answer questions about cat species, their behavior, biology and taxonomy.
+  - : Execute workflow step code and perform system actions (e.g., logging).
 Resources:
-  - : Output produced by the agent for the generateMostPopularSpecies task. Expected shape: { "species": string } (the source's Zod schema). Example: { "species": "Maine Coon" }
-  - : Representation of the console runtime used as a resource during task execution.
-  - : Output of logCatName task. Example: 'Hello Fluffy'. Output schema in source: z.object({ rawText: z.string() }).
+  - : Schema-constrained output object with property 'species'.
+  - : Output of logCatName step (rawText value).
 """
 
 from crewai import Agent, Crew, Process, Task
@@ -19,12 +21,12 @@ from crewai.tools import tool
 # ===========================================================
 # Tool Instances
 # ===========================================================
-# TODO: console_tool — unknown tool class "consoleTool"
+# TODO: mastra_runtime — unknown tool class "mastraRuntime"
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-@tool("consoleTool")
-def console_tool(*args, **kwargs) -> str:
-    """Represents the runtime logging facility used by the step (the source prints to console via console.l"""
-    return "console_tool result"
+@tool("mastraRuntime")
+def mastra_runtime(*args, **kwargs) -> str:
+    """Runtime engine that executes workflow step code (non-LLM execution)."""
+    return "mastra_runtime result"
 
 
 
@@ -44,6 +46,12 @@ class UnnamedProject:
             config=self.agents_config['cat_one'],
         )
 
+    @agent
+    def agent_two(self) -> Agent:
+        return Agent(
+            config=self.agents_config['agent_two'],
+        )
+
     # ── Tasks ───────────────────────────────────────────
 
     @task
@@ -53,9 +61,9 @@ class UnnamedProject:
         )
 
     @task
-    def task_generate_most_popular_species(self) -> Task:
+    def task_generate_species(self) -> Task:
         return Task(
-            config=self.tasks_config['task_generate_most_popular_species'],
+            config=self.tasks_config['task_generate_species'],
             agent=self.cat_one(),
         )
 

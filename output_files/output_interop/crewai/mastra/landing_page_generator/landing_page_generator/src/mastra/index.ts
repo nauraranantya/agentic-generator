@@ -1,13 +1,13 @@
 /**
- * Mastra AI Instance - ExpandIdeaCrewteam
+ * Mastra AI Instance - UnnamedProject
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
  * Goals:
- *   - : Understand and expand the idea into a comprehensive idea report, detailing value proposition and features.
- *   - : Provide WHY, HOW, WHAT messaging and core message for the idea.
- *   - : Select a Tailwind template that fits the idea and copy it into the working folder; then update components.
- *   - : Produce content for components, update components, and QA them according to rules.
+ *   - : Understand and expand upon the essence of ideas, make sure they are great and focus on real pain points others could benefit from.
+ *   - : Craft compelling stories using the Golden Circle method to captivate and engage people around an idea.
+ *   - : Build an intuitive, aesthetically pleasing, and high-converting landing page.
+ *   - : Ensure the landing page content is clear, concise, and captivating.
  */
 
 import { Mastra } from '@mastra/core'
@@ -16,12 +16,11 @@ import { Mastra } from '@mastra/core'
 import { seniorIdeaAnalyst, seniorStrategist, seniorReactEngineer, seniorContentEditor } from './agents'
 
 // Import workflows
-import { expandIdeaWorkflowPattern, chooseTemplateWorkflowPattern, createContentWorkflowPattern, landingPageWorkflowPattern } from './workflows'
+import { patternExpandIdea, patternChooseTemplate, patternCreateContent } from './workflows'
 
 /**
  * Mastra instance with registered agents, workflows, and memory.
  *
- * Derived from src/landing_page_generator/crew.py ExpandIdeaCrew class. Process: sequential (expand_idea -> refine_idea).
  */
 export const mastra = new Mastra({
   agents: {
@@ -31,9 +30,8 @@ export const mastra = new Mastra({
     seniorContentEditor,
   },
   workflows: {
-    expandIdeaWorkflowPattern,
-    chooseTemplateWorkflowPattern,
-    createContentWorkflowPattern,
-    landingPageWorkflowPattern,
+    patternExpandIdea,
+    patternChooseTemplate,
+    patternCreateContent,
   },
 })

@@ -25,32 +25,25 @@ model_client = OpenAIChatCompletionClient(
 # ==================================================
 
 
-def mastra_engine_tool_impl(
-    query: str = ""
-) -> str:
-    """
-    AgentO Tool:
-    mastra_engine_tool
-
-    Description:
-    Represents the Mastra runtime/engine that executes workflow steps and tasks (mapped to :Tool for lack of a runtime class in ontology).
-    """
-    return (
-        "Tool 'mastra_engine_tool' "
-        "is a generated stub and "
-        "has not been implemented yet."
-    )
-
-
-mastra_engine_tool = FunctionTool(
-    mastra_engine_tool_impl,
-    description="""Represents the Mastra runtime/engine that executes workflow steps and tasks (mapped to :Tool for lack of a runtime class in ontology)."""
-)
-
-
 # ==================================================
 # Agents
 # ==================================================
+
+
+mastra_default_agent = AssistantAgent(
+    name="mastra_default_agent",
+    model_client=model_client,
+    system_message="""
+Role:
+workflow-executor
+
+Goal:
+workflow-executor
+
+Background:
+You are a workflow-executor.
+""",
+)
 
 
 

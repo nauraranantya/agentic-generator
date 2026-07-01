@@ -1,7 +1,7 @@
 import asyncio
 
 from team import (
-    open_code_agent_001,
+    langgraph_agent,
     human_user,
 )
 
@@ -18,24 +18,16 @@ async def main():
     try:
         # Step-by-step sequential execution
         # ==================================================
-        # Workflow Step: planner_task_produce_plan_tool_call
-        # Workflow Edge: planner_task_produce_plan_tool_call -> executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push
+        # Workflow Step: task_propose_change
+        # Workflow Edge: task_propose_change -> task_user_decision
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: planner_task_produce_plan_tool_call")
+        print("Executing step: task_propose_change")
         print("=" * 80)
 
-        task_prompt = """Generates a plan tool_call with args:
-- executedPlans: array of strings (items already executed)
-- rejectedPlans: array of strings (items rejected by user)
-- remainingPlans: array of strings (items still to execute)
-Default PLAN (remainingPlans initial value) is the 6-step plan to build the todo app (see PlanPrompt.promptInputData).
-Emits:
-- an AI message containing a short summary in content (either initial plan text or 'I've updated the plan list based on the last proposed change.')
-- a tool call named 'plan' with the args above
-Also produces a ToolMessage representing a simulated user approval ("User has approved the plan.") that the StateGraph uses to progress."""
-        # Execute via the assigned agent: open_code_agent_001
-        result = await open_code_agent_001.run(task=task_prompt)
+        task_prompt = """Render the proposed change (code diff / description) to the user and request an explicit accept or reject decision. """
+        # Execute via the assigned agent: langgraph_agent
+        result = await langgraph_agent.run(task=task_prompt)
 
         # Print step output
         if hasattr(result, "messages") and result.messages:
@@ -44,27 +36,51 @@ Also produces a ToolMessage representing a simulated user approval ("User has ap
             print(result)
 
         # ==================================================
-        # Workflow Step: executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push
-        # Workflow Edge: executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push -> planner_task_produce_plan_tool_call
+        # Workflow Step: task_user_decision
+        # Workflow Edge: task_user_decision -> task_handle_reject
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push")
+        print("Executing step: task_user_decision")
         print("=" * 80)
 
-        task_prompt = """Reads the last 'plan' tool_call to compute:
-- nextPlanItem: the first element of remainingPlans (if any)
-- numSeenPlans = executedPlans.length + rejectedPlans.length
-If no nextPlanItem: returns an AI message with content:
-"Successfully completed all the steps in the plan. Please let me know if you need anything else!"
-Otherwise:
-- Selects file update content based on numSeenPlans (maps 0..5 to step-1..step-6 file resources).
-- Builds a tool_call named 'update_file' with args:
-  - new_file_content (string): the file content to write
-  - executed_plan_item (string): the plan item description being executed
-- Generates an AI message containing the tool_call and pushes a UI item named 'proposed-change' with props { toolCallId, change, planItem, fullWriteAccess }.
-The UI push is intended to present the proposed change to the human for approval or rejection."""
-        # Execute via the assigned agent: open_code_agent_001
-        result = await open_code_agent_001.run(task=task_prompt)
+        task_prompt = """User evaluates the proposed change and selects accept or reject; the selection drives subsequent tool calls and UI state. """
+        # Execute via the assigned agent: agent
+        result = await agent.run(task=task_prompt)
+
+        # Print step output
+        if hasattr(result, "messages") and result.messages:
+            print(result.messages[-1].content)
+        else:
+            print(result)
+
+        # ==================================================
+        # Workflow Step: task_handle_reject
+        # Workflow Edge: task_handle_reject -> task_finalize_ui
+        # ==================================================
+        print("\n" + "=" * 80)
+        print("Executing step: task_handle_reject")
+        print("=" * 80)
+
+        task_prompt = """On reject: call the update_file tool with REJECTED_CHANGE_CONTENT (or do not apply change) and submit a human message 'Rejected change.'. """
+        # Execute via the assigned agent: langgraph_agent
+        result = await langgraph_agent.run(task=task_prompt)
+
+        # Print step output
+        if hasattr(result, "messages") and result.messages:
+            print(result.messages[-1].content)
+        else:
+            print(result)
+
+        # ==================================================
+        # Workflow Step: task_finalize_ui
+        # ==================================================
+        print("\n" + "=" * 80)
+        print("Executing step: task_finalize_ui")
+        print("=" * 80)
+
+        task_prompt = """Render final accepted or rejected status in the UI and present an artifact view of the proposed change. """
+        # Execute via the assigned agent: langgraph_agent
+        result = await langgraph_agent.run(task=task_prompt)
 
         # Print step output
         if hasattr(result, "messages") and result.messages:

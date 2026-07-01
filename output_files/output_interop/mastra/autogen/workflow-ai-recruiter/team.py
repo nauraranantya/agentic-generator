@@ -30,18 +30,18 @@ model_client = OpenAIChatCompletionClient(
 # ==================================================
 
 
-recruiter_agent = AssistantAgent(
-    name="recruiter_agent",
+mastra_llm = AssistantAgent(
+    name="mastra_llm",
     model_client=model_client,
     system_message="""
 Role:
-Recruiter Agent
+workflow-processor
 
 Goal:
-Recruiter Agent
+workflow-processor
 
 Background:
-Agent-level static instruction used as the recruiter's persona/instruction set for generation.
+You are a workflow-processor.
 """,
 )
 

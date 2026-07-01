@@ -1,7 +1,7 @@
 {
   "name": "bird-checker-with-nextjs-and-eval",
   "version": "0.1.0",
-  "description": "Deployment of the Bird Checker composed using Mastra: maps an agent id to a running LLM agent component.",
+  "description": "Mastra instance wrapping the birdAgent and application workflow.",
   "type": "module",
   "main": "src/mastra/index.ts",
   "scripts": {

@@ -3,18 +3,11 @@ Auto-generated CrewAI Crew: UnnamedProject
 
 Source  : AgentO Knowledge Graph → SPARQL → Pydantic → Jinja2
 Pipeline: 3-Layer Conversion Pipeline
-Resources:
-  - : External API resource used by the get-random-image tool. Requires UNSPLASH_ACCESS_KEY environment variable (UNSPLASH_ACCESS_KEY).
-  - : Runtime artifact produced by the image-fetch tool. Fields produced at runtime include:
-- imageUrl: raw image URL (string)
-- photographerName: first name of photographer (string)
-- photographerProfile: link to photographer profile (string)
-This instance represents the image resource passed between tasks.
-  - : Metadata produced by the image analysis task. Schema (expected):
-- bird: boolean
-- species: string
-- location: string
-This reflects the structured output schema provided to the agent in the code (zod object with fields bird, species, location).
+Goals:
+  - : Determine whether an image contains a bird, identify the species, and summarize the location.
+Capabilities:
+  - : Classify images as bird/non-bird, identify species, and summarize location.
+  - : Search Unsplash and return a random image matching a query (returns imageUrl, photographerName, photographerProfile).
 """
 
 from crewai import Agent, Crew, Process, Task
@@ -29,7 +22,7 @@ from crewai.tools import tool
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
 @tool("getRandomImageTool")
 def get_random_image_tool(*args, **kwargs) -> str:
-    """Gets a random image from Unsplash based on selected query option. Random page selection and order_by"""
+    """Gets a random image from Unsplash based on the selected option"""
     return "get_random_image_tool result"
 
 
@@ -48,22 +41,22 @@ class UnnamedProject:
     def bird_checker(self) -> Agent:
         return Agent(
             config=self.agents_config['bird_checker'],
+            tools=[get_random_image_tool],
         )
 
     # ── Tasks ───────────────────────────────────────────
 
     @task
-    def task_fetch_random_image(self) -> Task:
+    def get_random_image_task(self) -> Task:
         return Task(
-            config=self.tasks_config['task_fetch_random_image'],
+            config=self.tasks_config['get_random_image_task'],
         )
 
     @task
-    def task_analyze_image(self) -> Task:
+    def image_metadata_task(self) -> Task:
         return Task(
-            config=self.tasks_config['task_analyze_image'],
+            config=self.tasks_config['image_metadata_task'],
             agent=self.bird_checker(),
-            context=[self.task_fetch_random_image()],
         )
 
     # ── Crew ────────────────────────────────────────────

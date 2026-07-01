@@ -1,4 +1,4 @@
-writer_annotation_agent_uuid_1:
-  role: annotation-driven writer
-  goal: annotation-driven writer
-  backstory: You are a annotation-driven writer.
+writer_agent:
+  role: writer
+  goal: writer
+  backstory: You are a writer.

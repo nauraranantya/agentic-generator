@@ -19,38 +19,32 @@ model_client = OpenAIChatCompletionClient(
     model="gpt-4o-mini"
 )
 
-# ==================================================
-# Environment Configuration
-# ==================================================
-# Environment:  ()
-# 
-# Configs: {'logger.level': 'debug'}
 
 # ==================================================
 # Generated Tool Stubs
 # ==================================================
 
 
-def cat_fact_tool_impl(
+def tool_get_cat_facts_impl(
     query: str = ""
 ) -> str:
     """
     AgentO Tool:
-    cat_fact_tool
+    tool_get_cat_facts
 
     Description:
-    
+    Fetches cat facts
     """
     return (
-        "Tool 'cat_fact_tool' "
+        "Tool 'tool_get_cat_facts' "
         "is a generated stub and "
         "has not been implemented yet."
     )
 
 
-cat_fact_tool = FunctionTool(
-    cat_fact_tool_impl,
-    description=""""""
+tool_get_cat_facts = FunctionTool(
+    tool_get_cat_facts_impl,
+    description="""Fetches cat facts """
 )
 
 
@@ -64,13 +58,13 @@ cat_one = AssistantAgent(
     model_client=model_client,
     system_message="""
 Role:
-feline expert
+feline-expert
 
 Goal:
-feline expert
+feline-expert
 
 Background:
-Agent role and long-form instructions provided in Agent instantiation (instructions in source code).
+You are a feline-expert.
 """,
 )
 

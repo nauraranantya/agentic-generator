@@ -1,2 +1,2 @@
-export { mcpClient } from './mcpClient'
-export { mcpRegistryTool } from './mcpRegistryTool'
+export { toolRegistryList } from './toolRegistryList'
+export { toolRegistryServers } from './toolRegistryServers'

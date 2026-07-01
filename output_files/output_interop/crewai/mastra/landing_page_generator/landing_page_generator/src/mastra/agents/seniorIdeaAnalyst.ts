@@ -4,33 +4,33 @@
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Capabilities:
- *   - web search: Capability to search internet and return snippets.
- *   - web scraping and summarization: Capability to scrape a website and summarize content.
- *   - file write: Capability to write content safely to files in workdir.
- *   - learn templates listing: Capability to read templates configuration and list template options.
- *   - copy template folder: Capability to copy template folders into project workspace.
- *   - read file: Capability to read file content from the workspace.
- *   - list directory: Capability to list directories in the workspace.
+ *   - : Perform web search queries and return structured results.
+ *   - : Scrape website HTML and summarize content into concise summaries.
+ *   - : Inspect available landing page templates and surface options.
+ *   - : Copy a landing page template folder into the working project directory.
+ *   - : Write files to the workdir with validation and allowed extensions.
+ *   - : Read files from the workdir.
+ *   - : List directory contents under the workdir.
  */
 
 import { Agent } from '@mastra/core/agent'
 
 // Import tools
-import { searchInternetTool, scrapeWebsiteTool } from '../tools'
+import { toolSearchInternet, toolScrapeAndSummarizeWebsite } from '../tools'
 
 /**
  * Senior Idea Analyst
  * 
  * Instructions:
- * Understand and expand the idea into a comprehensive idea report, detailing value proposition and features.
+ * Understand and expand upon the essence of ideas, make sure they are great and focus on real pain points others could benefit from.
  */
 export const seniorIdeaAnalyst = new Agent({
   id: `senior_idea_analyst`,
   name: `Senior Idea Analyst`,
-  instructions: `Understand and expand the idea into a comprehensive idea report, detailing value proposition and features.`,
-  model: 'openai/gpt-4',
+  instructions: `Understand and expand upon the essence of ideas, make sure they are great and focus on real pain points others could benefit from.`,
+  model: 'openai/gpt-4o-mini',
   tools: {
-    searchInternetTool,
-    scrapeWebsiteTool,
+    toolSearchInternet,
+    toolScrapeAndSummarizeWebsite,
   },
 })

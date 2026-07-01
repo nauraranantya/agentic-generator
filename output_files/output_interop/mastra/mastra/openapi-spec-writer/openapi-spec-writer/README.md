@@ -1,6 +1,6 @@
-# MastraSystem
+# UnnamedProject
 
-The deployed Mastra system that coordinates agents, tools and workflows for generating OpenAPI specs and creating PRs.
+Mastra instance configured in src/mastra/index.ts (serviceName: mastra-vnext).
 
 **Auto-generated from AgentO Knowledge Graph**  
 Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
@@ -34,21 +34,19 @@ npm run dev
 ## 📦 Project Structure
 
 ```
-MastraSystem/
+UnnamedProject/
 ├── src/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
 │       ├── agents/            # Agent definitions
 │       │   └── openapiSpecGenAgent.ts
 │       ├── tools/             # Tool definitions
-│       │   └── siteCrawlTool.ts
-│       │   └── firecrawlIntegration.ts
-│       │   └── generateSpecTool.ts
-│       │   └── addToGitHubTool.ts
-│       │   └── gitHubIntegration.ts
+│       │   └── toolSiteCrawl.ts
+│       │   └── toolGenerateSpec.ts
+│       │   └── toolAddToGithub.ts
 │       └── workflows/         # Workflow definitions
-│           └── openApiSpecGenWorkflowPattern.ts
-│           └── makePrWorkflowPattern.ts
+│           └── wpOpenApiSpecGenWorkflow.ts
+│           └── wpMakePrToMastra.ts
 ├── package.json
 ├── tsconfig.json
 └── .env.example
@@ -58,67 +56,56 @@ MastraSystem/
 
 ## 🤖 Agents
 
-### OpenAPI spec writer agent
+### openapi-spec-writer
 
 - **ID:** `openapi-spec-gen-agent`
 - **Model:** `openai/gpt-3.5-turbo`
+- **Tools:** toolSiteCrawl, toolGenerateSpec, toolAddToGithub
 
-Produce a merged OpenAPI specification from website documentation and optionally open a PR with the spec in a repository....
+You are openapi-spec-writer....
 
 
 ---
 
 ## 🔧 Tools
 
-### Site Crawl
+### toolSiteCrawl
 
 Crawl a website and extract the markdown content...
 
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/siteCrawlTool.ts`)
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolSiteCrawl.ts`)
 
-### Firecrawl Integration
+### toolGenerateSpec
 
-Integration client used to crawl websites (Firecrawl API key supplied at runtime)....
+Generate a spec from a website...
 
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/firecrawlIntegration.ts`)
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolGenerateSpec.ts`)
 
-### Generate Spec
+### toolAddToGithub
 
-Generate an OpenAPI spec from crawled website markdown; uses the OpenAPI agent to convert pages and merge them....
+Commit the spec to GitHub and create a PR...
 
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/generateSpecTool.ts`)
-
-### Add to Git
-
-Commit the spec to GitHub: formats YAML via the agent, creates branch, commits files and opens a pull request....
-
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/addToGitHubTool.ts`)
-
-### GitHub Integration
-
-GitHub integration client that performs git ref, file write and pull request operations (requires PERSONAL_ACCESS_TOKEN)....
-
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/gitHubIntegration.ts`)
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolAddToGithub.ts`)
 
 
 ---
 
 ## 🔄 Workflows
 
-### openApiSpecGenWorkflow
+### wp_open_api_spec_gen_workflow
 
-Workflow that crawls a URL and generates an OpenAPI spec from crawled documentation.
+Workflow to crawl a site, generate OpenAPI fragments per page, then merge into a single spec.
 
 **Steps:** 2
-1. site-crawl-sync-step:task
-2. generate-spec:task
+1. task_site_crawl_sync
+2. task_generate_spec
 
-### makePRToMastra
+### wp_make_pr_to_mastra
 
-Workflow that creates a PR to the mastra repository given a YAML OpenAPI spec.
+Workflow to format YAML, add files to GitHub and create a PR for the integration.
 
 **Steps:** 1
-1. add-to-github:task
+1. task_add_to_github
 
 
 ---

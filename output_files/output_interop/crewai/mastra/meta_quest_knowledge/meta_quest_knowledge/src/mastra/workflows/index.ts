@@ -1,3 +1,3 @@
-export { metaQuestSequentialWorkflow } from './metaQuestSequentialWorkflow'
+export { sequentialPattern } from './sequentialPattern'
 export * from './ad_hoc_tasks'
 

@@ -1,18 +1,14 @@
 """
-Auto-generated AutoGen Team: StockAnalysisCrew
+Auto-generated AutoGen Team: UnnamedProject
 Goals:
-  - Stock analysis overall goal: Conduct stock and filings analysis pipeline that collects news, analyzes EDGAR filings, computes key financial metrics and produces investment recommendations.
+  - : Automate the process of analyzing a stock to produce a detailed report and investment recommendation.
 Capabilities:
-  - web scraping: Capability to fetch and extract textual content from web pages.
-  - website search: Capability to search web content and return links or content snippets (site-level search).
-  - mathematical calculation: Numeric computation capability (safe evaluation of arithmetic expressions).
-  - SEC 10-K semantic search: Semantic search over the latest 10-K filing content for a specified company ticker.
-  - SEC 10-Q semantic search: Semantic search over the latest 10-Q filing content for a specified company ticker.
-Resources:
-  - News summary resource: Resource representing aggregated news, press releases and market analysis text collected by the Research task using web search and scraping tools.
-  - Financial analysis report resource: Resource representing the final financial analysis report produced by financial_analysis task. Expected to include metrics and narrative assessment.
-  - Filings analysis report resource: Report summarizing important findings from EDGAR filings (10-K, 10-Q) including flagged items and extracted metrics.
-  - Investment recommendation report: Final recommendation report produced by recommend task, combining financial, news and filings analyses.
+  - : Performs arithmetic and mathematical calculations.
+  - : Scrapes and summarizes web page content.
+  - : Performs web searches and retrieves relevant results.
+  - : Searches textual sources or indexes.
+  - : Semantic search within a company's 10-K filing content.
+  - : Semantic search within a company's 10-Q filing content.
 """
 
 from autogen_agentchat.agents import AssistantAgent
@@ -41,199 +37,187 @@ model_client = OpenAIChatCompletionClient(
 # ==================================================
 
 
-def tool_calculator_impl(
+def tool_calculator_tool_impl(
     query: str = ""
 ) -> str:
     """
     AgentO Tool:
-    CalculatorTool
+    tool_calculator_tool
 
     Description:
-    Calculator tool (from src/stock_analysis/tools/calculator_tool.py).
-    Purpose: perform mathematical calculations expressed as arithmetic expressions (examples: '200*7', '5000/2*10').
-    Implementation notes summarized: safe AST evaluation allowing operators + - * / ** % and unary +/-. Filters allowed characters using regex '^[0-9+\-*/().% ]+$'. Raises ValueError on invalid input or errors (syntax, division by zero, unsupported nodes).
+    Performs safe mathematical expression evaluation (add, sub, mul, div, pow, mod).
     """
     return (
-        "Tool 'tool_calculator' "
+        "Tool 'tool_calculator_tool' "
         "is a generated stub and "
         "has not been implemented yet."
     )
 
 
-tool_calculator = FunctionTool(
-    tool_calculator_impl,
-    description="""Calculator tool (from src/stock_analysis/tools/calculator_tool.py).
-    Purpose: perform mathematical calculations expressed as arithmetic expressions (examples: '200*7', '5000/2*10').
-    Implementation notes summarized: safe AST evaluation allowing operators + - * / ** % and unary +/-. Filters allowed characters using regex '^[0-9+\-*/().% ]+$'. Raises ValueError on invalid input or errors (syntax, division by zero, unsupported nodes)."""
+tool_calculator_tool = FunctionTool(
+    tool_calculator_tool_impl,
+    description="""Performs safe mathematical expression evaluation (add, sub, mul, div, pow, mod). """
 )
 
 
-def tool_scrape_website_impl(
+def tool_scrape_website_tool_impl(
     query: str = ""
 ) -> str:
     """
     AgentO Tool:
-    ScrapeWebsiteTool
+    tool_scrape_website_tool
 
     Description:
-    Tool used to fetch and convert HTML pages into text for downstream processing. Referenced from crewai_tools usage in the crew.
+    Tool to scrape website content and convert to text for summarization.
     """
     return (
-        "Tool 'tool_scrape_website' "
+        "Tool 'tool_scrape_website_tool' "
         "is a generated stub and "
         "has not been implemented yet."
     )
 
 
-tool_scrape_website = FunctionTool(
-    tool_scrape_website_impl,
-    description="""Tool used to fetch and convert HTML pages into text for downstream processing. Referenced from crewai_tools usage in the crew."""
+tool_scrape_website_tool = FunctionTool(
+    tool_scrape_website_tool_impl,
+    description="""Tool to scrape website content and convert to text for summarization. """
 )
 
 
-def tool_website_search_impl(
+def tool_website_search_tool_impl(
     query: str = ""
 ) -> str:
     """
     AgentO Tool:
-    WebsiteSearchTool
+    tool_website_search_tool
 
     Description:
-    Tool used for general website search (referenced from crewai_tools in the crew).
+    Tool to search the web for relevant pages and summaries.
     """
     return (
-        "Tool 'tool_website_search' "
+        "Tool 'tool_website_search_tool' "
         "is a generated stub and "
         "has not been implemented yet."
     )
 
 
-tool_website_search = FunctionTool(
-    tool_website_search_impl,
-    description="""Tool used for general website search (referenced from crewai_tools in the crew)."""
+tool_website_search_tool = FunctionTool(
+    tool_website_search_tool_impl,
+    description="""Tool to search the web for relevant pages and summaries. """
 )
 
 
-def tool_txt_search_impl(
+def tool_txt_search_tool_impl(
     query: str = ""
 ) -> str:
     """
     AgentO Tool:
-    TXTSearchTool
+    tool_txt_search_tool
 
     Description:
-    Tool used for searching plaintext resources (referenced from crewai_tools in the crew).
+    Text search tool for searching indexed textual data.
     """
     return (
-        "Tool 'tool_txt_search' "
+        "Tool 'tool_txt_search_tool' "
         "is a generated stub and "
         "has not been implemented yet."
     )
 
 
-tool_txt_search = FunctionTool(
-    tool_txt_search_impl,
-    description="""Tool used for searching plaintext resources (referenced from crewai_tools in the crew)."""
+tool_txt_search_tool = FunctionTool(
+    tool_txt_search_tool_impl,
+    description="""Text search tool for searching indexed textual data. """
 )
 
 
-def sec10_k_tool_generic_impl(
+def tool_sec10_k_tool_generic_impl(
     query: str = ""
 ) -> str:
     """
     AgentO Tool:
-    SEC10KToolgeneric
+    tool_sec10_k_tool_generic
 
     Description:
-    A RAG-style tool for semantic search in 10-K filings (class src/stock_analysis/tools/sec_tools.py).
-    Default args_schema: requires search_query and stock_name.
-    Behavior: when initialized with a specific stock_name, it fetches the most recent 10-K filing via the SEC API (sec_api.QueryApi using environment variable SEC_API_API_KEY), requests the filing details URL, converts HTML to text using html2text, cleans non-alphanumeric characters with regex r'[^a-zA-Z$0-9\s\n]' and adds resulting text to its internal RAG index (DataType.TEXT).
+    A tool to semantically search a company's latest 10-K SEC filing content.
     """
     return (
-        "Tool 'sec10_k_tool_generic' "
+        "Tool 'tool_sec10_k_tool_generic' "
         "is a generated stub and "
         "has not been implemented yet."
     )
 
 
-sec10_k_tool_generic = FunctionTool(
-    sec10_k_tool_generic_impl,
-    description="""A RAG-style tool for semantic search in 10-K filings (class src/stock_analysis/tools/sec_tools.py).
-    Default args_schema: requires search_query and stock_name.
-    Behavior: when initialized with a specific stock_name, it fetches the most recent 10-K filing via the SEC API (sec_api.QueryApi using environment variable SEC_API_API_KEY), requests the filing details URL, converts HTML to text using html2text, cleans non-alphanumeric characters with regex r'[^a-zA-Z$0-9\s\n]' and adds resulting text to its internal RAG index (DataType.TEXT)."""
+tool_sec10_k_tool_generic = FunctionTool(
+    tool_sec10_k_tool_generic_impl,
+    description="""A tool to semantically search a company's latest 10-K SEC filing content. """
 )
 
 
-def sec10_k_tool_amzn_impl(
+def tool_sec10_q_tool_generic_impl(
     query: str = ""
 ) -> str:
     """
     AgentO Tool:
-    SEC10KToolAMZN
+    tool_sec10_q_tool_generic
 
     Description:
-    Instance of SEC10KTool initialized with stock_name='AMZN'. On init it attempted to fetch AMZN's latest 10-K, converted it to text, cleaned non-alphanumeric characters, and added the text to its internal index. Its args_schema becomes FixedSEC10KToolSchema (only search_query required subsequently).
+    A tool to semantically search a company's latest 10-Q SEC filing content.
     """
     return (
-        "Tool 'sec10_k_tool_amzn' "
+        "Tool 'tool_sec10_q_tool_generic' "
         "is a generated stub and "
         "has not been implemented yet."
     )
 
 
-sec10_k_tool_amzn = FunctionTool(
-    sec10_k_tool_amzn_impl,
-    description="""Instance of SEC10KTool initialized with stock_name='AMZN'. On init it attempted to fetch AMZN's latest 10-K, converted it to text, cleaned non-alphanumeric characters, and added the text to its internal index. Its args_schema becomes FixedSEC10KToolSchema (only search_query required subsequently)."""
+tool_sec10_q_tool_generic = FunctionTool(
+    tool_sec10_q_tool_generic_impl,
+    description="""A tool to semantically search a company's latest 10-Q SEC filing content. """
 )
 
 
-def sec10_q_tool_generic_impl(
+def tool_sec10_k_tool_amzn_impl(
     query: str = ""
 ) -> str:
     """
     AgentO Tool:
-    SEC10QToolgeneric
+    tool_sec10_k_tool_amzn
 
     Description:
-    A RAG-style tool for semantic search in 10-Q filings (class src/stock_analysis/tools/sec_tools.py).
-    Default args_schema: requires search_query and stock_name.
-    Behavior: when initialized with a specific stock_name, it fetches the most recent 10-Q filing via the SEC API, converts HTML to text using html2text, cleans non-alphanumeric characters with regex r'[^a-zA-Z$0-9\s\n]' and adds resulting text to its internal index (DataType.TEXT).
+    SEC10KTool initialized with stock_name=AMZN to pre-load AMZN latest 10-K content.
     """
     return (
-        "Tool 'sec10_q_tool_generic' "
+        "Tool 'tool_sec10_k_tool_amzn' "
         "is a generated stub and "
         "has not been implemented yet."
     )
 
 
-sec10_q_tool_generic = FunctionTool(
-    sec10_q_tool_generic_impl,
-    description="""A RAG-style tool for semantic search in 10-Q filings (class src/stock_analysis/tools/sec_tools.py).
-    Default args_schema: requires search_query and stock_name.
-    Behavior: when initialized with a specific stock_name, it fetches the most recent 10-Q filing via the SEC API, converts HTML to text using html2text, cleans non-alphanumeric characters with regex r'[^a-zA-Z$0-9\s\n]' and adds resulting text to its internal index (DataType.TEXT)."""
+tool_sec10_k_tool_amzn = FunctionTool(
+    tool_sec10_k_tool_amzn_impl,
+    description="""SEC10KTool initialized with stock_name=AMZN to pre-load AMZN latest 10-K content. """
 )
 
 
-def sec10_q_tool_amzn_impl(
+def tool_sec10_q_tool_amzn_impl(
     query: str = ""
 ) -> str:
     """
     AgentO Tool:
-    SEC10QToolAMZN
+    tool_sec10_q_tool_amzn
 
     Description:
-    Instance of SEC10QTool initialized with stock_name='AMZN'. On init it attempted to fetch AMZN's latest 10-Q, converted it to text, cleaned non-alphanumeric characters, and added the text to its internal index. Its args_schema becomes FixedSEC10QToolSchema (only search_query required subsequently).
+    SEC10QTool initialized with stock_name=AMZN to pre-load AMZN latest 10-Q content.
     """
     return (
-        "Tool 'sec10_q_tool_amzn' "
+        "Tool 'tool_sec10_q_tool_amzn' "
         "is a generated stub and "
         "has not been implemented yet."
     )
 
 
-sec10_q_tool_amzn = FunctionTool(
-    sec10_q_tool_amzn_impl,
-    description="""Instance of SEC10QTool initialized with stock_name='AMZN'. On init it attempted to fetch AMZN's latest 10-Q, converted it to text, cleaned non-alphanumeric characters, and added the text to its internal index. Its args_schema becomes FixedSEC10QToolSchema (only search_query required subsequently)."""
+tool_sec10_q_tool_amzn = FunctionTool(
+    tool_sec10_q_tool_amzn_impl,
+    description="""SEC10QTool initialized with stock_name=AMZN to pre-load AMZN latest 10-Q content. """
 )
 
 
@@ -253,23 +237,7 @@ Goal:
 The Best Financial Analyst
 
 Background:
-This prompt is used as the agent/system instruction for the financial agent to guide independent behaviour.
-""",
-)
-
-
-financial_analyst_agent = AssistantAgent(
-    name="financial_analyst_agent",
-    model_client=model_client,
-    system_message="""
-Role:
-The Best Financial Analyst
-
-Goal:
-The Best Financial Analyst
-
-Background:
-This prompt is produced from the second factory for financial_analyst_agent in the code (duplicate configuration).
+You are a The Best Financial Analyst.
 """,
 )
 
@@ -285,7 +253,23 @@ Goal:
 Staff Research Analyst
 
 Background:
-System prompt for the research analyst agent.
+You are a Staff Research Analyst.
+""",
+)
+
+
+financial_analyst_agent = AssistantAgent(
+    name="financial_analyst_agent",
+    model_client=model_client,
+    system_message="""
+Role:
+The Best Financial Analyst
+
+Goal:
+The Best Financial Analyst
+
+Background:
+You are a The Best Financial Analyst.
 """,
 )
 
@@ -301,7 +285,7 @@ Goal:
 Private Investment Advisor
 
 Background:
-System prompt for the investment advisor agent.
+You are a Private Investment Advisor.
 """,
 )
 

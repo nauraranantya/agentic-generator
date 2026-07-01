@@ -1,1 +1,1 @@
-export { catOneMemory } from './catOneMemory'
+export { pgMemoryInstance } from './pgMemoryInstance'

@@ -1,5 +1,5 @@
 /**
- * Workflow: Job Posting Workflow Pattern
+ * Workflow: job_posting_workflow
  *
  * Auto-generated from AgentO Knowledge Graph
  */
@@ -14,11 +14,11 @@ import { researchAgent, writerAgent, reviewAgent } from '../agents'
 
 const researchCompanyCultureTask = createStep({
   id: 'research_company_culture_task',
-  description: `Analyze the provided company website and the hiring manager's company's domain {company_domain},`,
-  inputSchema: z.object({company_domain: z.string(), company_description: z.string()}),
+  description: `Analyze the provided company website and the hiring manager's company's domain {company_domain}, description {company_description}. Focus on understanding the company's culture, values, and mission. Identify unique selling points and specific projects or achievements highlighted on the site. Compile a report summarizing these insights, specifically how they can be leveraged in a job posting to attract the right candidates.`,
+  inputSchema: z.object({}),
   outputSchema: z.object({}),
   execute: async ({ inputData }) => {
-    // Analyze the provided company website and the hiring manager's company's domain {company_domain},
+    // Analyze the provided company website and the hiring manager's company's domain {company_domain}, description {company_description}. Focus on understanding the company's culture, values, and mission. Identify unique selling points and specific projects or achievements highlighted on the site. Compile a report summarizing these insights, specifically how they can be leveraged in a job posting to attract the right candidates.
     // This step uses agent: researchAgent
     // const result = await researchAgent.generate('...')
     // TODO: Implement step logic
@@ -28,11 +28,11 @@ const researchCompanyCultureTask = createStep({
 
 const researchRoleRequirementsTask = createStep({
   id: 'research_role_requirements_task',
-  description: `Based on the hiring manager's needs: {hiring_needs}, identify the key skills, experiences,`,
-  inputSchema: z.object({hiring_needs: z.string(), company_description: z.string()}),
+  description: `Based on the hiring manager's needs: {hiring_needs}, identify the key skills, experiences, and qualities the ideal candidate should possess for the role. Consider the company's current projects, its competitive landscape, and industry trends. Prepare a list of recommended job requirements and qualifications that align with the company's needs and values.`,
+  inputSchema: z.object({}),
   outputSchema: z.object({}),
   execute: async ({ inputData }) => {
-    // Based on the hiring manager's needs: {hiring_needs}, identify the key skills, experiences,
+    // Based on the hiring manager's needs: {hiring_needs}, identify the key skills, experiences, and qualities the ideal candidate should possess for the role. Consider the company's current projects, its competitive landscape, and industry trends. Prepare a list of recommended job requirements and qualifications that align with the company's needs and values.
     // This step uses agent: researchAgent
     // const result = await researchAgent.generate('...')
     // TODO: Implement step logic
@@ -42,11 +42,11 @@ const researchRoleRequirementsTask = createStep({
 
 const draftJobPostingTask = createStep({
   id: 'draft_job_posting_task',
-  description: `Draft a job posting for the role described by the hiring manager: {hiring_needs}.`,
-  inputSchema: z.object({hiring_needs: z.string(), company_description: z.string(), specific_benefits: z.string()}),
+  description: `Draft a job posting for the role described by the hiring manager: {hiring_needs}. Use the insights on {company_description} to start with a compelling introduction, followed by a detailed role description, responsibilities, and required skills and qualifications. Ensure the tone aligns with the company's culture and incorporate any unique benefits or opportunities offered by the company. Specific benefits: {specific_benefits}.`,
+  inputSchema: z.object({}),
   outputSchema: z.object({}),
   execute: async ({ inputData }) => {
-    // Draft a job posting for the role described by the hiring manager: {hiring_needs}.
+    // Draft a job posting for the role described by the hiring manager: {hiring_needs}. Use the insights on {company_description} to start with a compelling introduction, followed by a detailed role description, responsibilities, and required skills and qualifications. Ensure the tone aligns with the company's culture and incorporate any unique benefits or opportunities offered by the company. Specific benefits: {specific_benefits}.
     // This step uses agent: writerAgent
     // const result = await writerAgent.generate('...')
     // TODO: Implement step logic
@@ -56,11 +56,11 @@ const draftJobPostingTask = createStep({
 
 const reviewAndEditJobPostingTask = createStep({
   id: 'review_and_edit_job_posting_task',
-  description: `Review the draft job posting for the role {hiring_needs}. Check for clarity, engagement, grammatical accuracy,`,
-  inputSchema: z.object({hiring_needs: z.string()}),
+  description: `Review the draft job posting for the role {hiring_needs}. Check for clarity, engagement, grammatical accuracy, and alignment with the company's culture and values. Edit and refine the content, ensuring it speaks directly to the desired candidates and accurately reflects the role's unique benefits and opportunities. Provide feedback for any necessary revisions.`,
+  inputSchema: z.object({}),
   outputSchema: z.object({error: z.string()}),
   execute: async ({ inputData }) => {
-    // Review the draft job posting for the role {hiring_needs}. Check for clarity, engagement, grammatical accuracy,
+    // Review the draft job posting for the role {hiring_needs}. Check for clarity, engagement, grammatical accuracy, and alignment with the company's culture and values. Edit and refine the content, ensuring it speaks directly to the desired candidates and accurately reflects the role's unique benefits and opportunities. Provide feedback for any necessary revisions.
     // This step uses agent: reviewAgent
     // const result = await reviewAgent.generate('...')
     // TODO: Implement step logic
@@ -70,11 +70,11 @@ const reviewAndEditJobPostingTask = createStep({
 
 const industryAnalysisTask = createStep({
   id: 'industry_analysis_task',
-  description: `Conduct an in-depth analysis of the industry related to the company's domain {company_domain}.`,
-  inputSchema: z.object({company_domain: z.string()}),
+  description: `Conduct an in-depth analysis of the industry related to the company's domain {company_domain}. Investigate current trends, challenges, and opportunities within the industry, utilizing market reports, recent developments, and expert opinions. Assess how these factors could impact the role being hired for and the overall attractiveness of the position to potential candidates.`,
+  inputSchema: z.object({}),
   outputSchema: z.object({}),
   execute: async ({ inputData }) => {
-    // Conduct an in-depth analysis of the industry related to the company's domain {company_domain}.
+    // Conduct an in-depth analysis of the industry related to the company's domain {company_domain}. Investigate current trends, challenges, and opportunities within the industry, utilizing market reports, recent developments, and expert opinions. Assess how these factors could impact the role being hired for and the overall attractiveness of the position to potential candidates.
     // This step uses agent: researchAgent
     // const result = await researchAgent.generate('...')
     // TODO: Implement step logic
@@ -85,13 +85,17 @@ const industryAnalysisTask = createStep({
 // ── Workflow Definition ──
 
 /**
- * Job Posting Workflow Pattern
+ * job_posting_workflow
  */
 export const jobPostingWorkflow = createWorkflow({
-  id: 'Job Posting Workflow Pattern',
-  inputSchema: z.object({company_domain: z.string(), company_description: z.string()}),
+  id: 'job_posting_workflow',
+  inputSchema: z.object({}),
   outputSchema: z.object({}),
   steps: [researchCompanyCultureTask, researchRoleRequirementsTask, draftJobPostingTask, reviewAndEditJobPostingTask, industryAnalysisTask],
 })
-  .parallel([researchCompanyCultureTask, researchRoleRequirementsTask, draftJobPostingTask, reviewAndEditJobPostingTask, industryAnalysisTask])
+  .then(researchCompanyCultureTask)
+  .then(researchRoleRequirementsTask)
+  .then(draftJobPostingTask)
+  .then(reviewAndEditJobPostingTask)
+  .then(industryAnalysisTask)
   .commit()

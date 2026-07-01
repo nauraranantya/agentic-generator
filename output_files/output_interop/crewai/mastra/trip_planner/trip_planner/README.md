@@ -1,6 +1,6 @@
 # UnnamedProject
 
-A crew composed of multiple LLM agents and tools to plan trips: city selection, local expertise gathering, and travel concierge planning.
+CrewAI-based team that coordinates city selection, local research, and itinerary planning.
 
 **Auto-generated from AgentO Knowledge Graph**  
 Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
@@ -43,11 +43,11 @@ UnnamedProject/
 │       │   └── localExpertAgent.ts
 │       │   └── travelConciergeAgent.ts
 │       ├── tools/             # Tool definitions
-│       │   └── searchTools.ts
-│       │   └── browserTools.ts
-│       │   └── calculatorTools.ts
+│       │   └── toolSearch.ts
+│       │   └── toolBrowser.ts
+│       │   └── toolCalculator.ts
 │       └── workflows/         # Workflow definitions
-│           └── tripPlanningPattern.ts
+│           └── patternTripPlanning.ts
 ├── package.json
 ├── tsconfig.json
 └── .env.example
@@ -60,63 +60,63 @@ UnnamedProject/
 ### City Selection Expert
 
 - **ID:** `city_selection_agent`
-- **Model:** `openai/gpt-4o-mini`
-- **Tools:** searchTools, browserTools
+- **Model:** `openai/gpt-4`
+- **Tools:** toolSearch, toolBrowser
 
-Role: City Selection Expert; purpose: select the best city based on weather, season, and prices....
+Select the best city based on weather, season, and prices...
 
 ### Local Expert at this city
 
 - **ID:** `local_expert_agent`
-- **Model:** `openai/gpt-4o-mini`
-- **Tools:** searchTools, browserTools
+- **Model:** `openai/gpt-4`
+- **Tools:** toolSearch, toolBrowser
 
-Role: Local Expert; purpose: compile an in-depth city guide with hidden gems and local insights....
+Provide the BEST insights about the selected city...
 
 ### Amazing Travel Concierge
 
 - **ID:** `travel_concierge_agent`
-- **Model:** `openai/gpt-4o-mini`
-- **Tools:** searchTools, browserTools, calculatorTools
+- **Model:** `openai/gpt-4`
+- **Tools:** toolSearch, toolBrowser, toolCalculator
 
-Role: Travel Concierge; purpose: produce a full 7-day itinerary, budget breakdown and packing suggestions....
+Create the most amazing travel itineraries with budget and packing suggestions for the city...
 
 
 ---
 
 ## 🔧 Tools
 
-### searchTools
+### toolSearch
 
-Toolset providing search_internet(query) which posts to Serper API and returns top organic results. Top results are returned in a formatted text with Title/Link/Snippet....
+Search the internet using Serper (google.serper.dev) and return top results....
 
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/searchTools.ts`)
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolSearch.ts`)
 
-### browserTools
+### toolBrowser
 
-Scrape website content using Browserless content API; partitions HTML and produces chunk summaries by running an internal summarization agent....
+Scrape website content via browserless and summarize chunks using an internal Agent/Task....
 
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/browserTools.ts`)
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolBrowser.ts`)
 
-### calculatorTools
+### toolCalculator
 
-Make a calculation(operation) evaluates basic arithmetic expressions safely using AST validation and a whitelist of allowed tokens....
+Safe mathematical expression evaluator implemented with ast and restricted operators....
 
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/calculatorTools.ts`)
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolCalculator.ts`)
 
 
 ---
 
 ## 🔄 Workflows
 
-### trip_planning_pattern
+### pattern_trip_planning
 
-Workflow pattern for trip planning: identify best city -> gather local expertise -> produce itinerary
+
 
 **Steps:** 3
-1. identify_task
-2. gather_task
-3. plan_task
+1. task_identify_city
+2. task_gather_city_info
+3. task_plan_itinerary
 
 
 ---

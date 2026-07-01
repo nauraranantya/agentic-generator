@@ -1,4 +1,3 @@
-export { matchToProposalWorkflowPattern } from './matchToProposalWorkflowPattern'
-export { nextPatternPlaceholder } from './nextPatternPlaceholder'
+export { workflowSequential } from './workflowSequential'
 export * from './ad_hoc_tasks'
 

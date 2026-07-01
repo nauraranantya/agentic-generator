@@ -3,37 +3,31 @@
  * ID: researcher
  * 
  * Auto-generated from AgentO Knowledge Graph
- * Objectives:
- *   - Find and report best candidates for a job opening: Coordinate research, matching/scoring, outreach strategy, and reporting to produce a ranked and actionable list of candidates for a given job requirement input.
  * Capabilities:
- *   - candidate_research: Search public data sources and extract candidate basic profile information.
- *   - candidate_matching_and_scoring: Evaluate candidates against job requirements and produce a numeric or ordinal score and justification.
- *   - outreach_strategy_development: Design outreach approaches and generate template messages for contacting candidates.
- *   - candidate_reporting: Compose recruiter-facing reports summarizing findings, scores and outreach strategies.
- *   - search_api: 
- *   - web_scraping: 
- *   - retrieve_linkedin_profiles: 
+ *   - : Capability to query search APIs and return structured search results.
+ *   - : Capability to extract information from web pages using DOM parsing.
+ *   - : Capability to query LinkedIn search results and format profile summaries.
  */
 
 import { Agent } from '@mastra/core/agent'
 
 // Import tools
-import { toolSerperdev, toolScrapewebsite, toolLinkedin } from '../tools'
+import { toolSerperdev, toolScrapeWebsite, toolLinkedin } from '../tools'
 
 /**
  * Job Candidate Researcher
  * 
  * Instructions:
- * Agent-level base instruction for researcher.
+ * Agent goal: find potential candidates matching provided job requirements.
  */
 export const researcher = new Agent({
   id: `researcher`,
   name: `Job Candidate Researcher`,
-  instructions: `Agent-level base instruction for researcher.`,
+  instructions: `Agent goal: find potential candidates matching provided job requirements.`,
   model: 'openai/gpt-4o-mini',
   tools: {
     toolSerperdev,
-    toolScrapewebsite,
+    toolScrapeWebsite,
     toolLinkedin,
   },
 })

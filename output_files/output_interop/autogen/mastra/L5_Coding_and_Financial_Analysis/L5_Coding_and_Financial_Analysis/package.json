@@ -1,7 +1,7 @@
 {
   "name": "L5_Coding_and_Financial_Analysis",
   "version": "0.1.0",
-  "description": "",
+  "description": "Team comprising a code writer and a code executor that collaborate to generate and run plotting code.",
   "type": "module",
   "main": "src/mastra/index.ts",
   "scripts": {

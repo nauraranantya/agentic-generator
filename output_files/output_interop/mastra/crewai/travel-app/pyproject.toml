@@ -1,5 +1,5 @@
 [project]
-name = "travel_ai_system_mastraexampleapp"
+name = "unnamed_project"
 version = "0.1.0"
 description = ""
 authors = [{name = "Your Name", email = "you@example.com"}]
@@ -10,15 +10,15 @@ dependencies = [
     "crewai[tools]>=0.152.0",
     "python-dotenv>=1.0.1",
     "pyyaml>=6.0.1",
-    # TODO: add PyPI package for custom tool "GetFlightInfosearchFlights"
-    # TODO: add PyPI package for custom tool "SearchHotelssearchHotels"
-    # TODO: add PyPI package for custom tool "SearchAttractionssearchAttractions"
-    # TODO: add PyPI package for custom tool "SearchAirbnbLocationsearchAirbnbLocation"
-    # TODO: add PyPI package for custom tool "SearchAirbnbsearchAirbnb"
+    # TODO: add PyPI package for custom tool "toolsearchFlights"
+    # TODO: add PyPI package for custom tool "toolsearchHotels"
+    # TODO: add PyPI package for custom tool "toolsearchAttractions"
+    # TODO: add PyPI package for custom tool "toolsearchAirbnbLocation"
+    # TODO: add PyPI package for custom tool "toolsearchAirbnb"
 ]
 
 [project.scripts]
-travel_ai_system_mastraexampleapp = "main:run"
+unnamed_project = "main:run"
 train      = "main:train"
 
 [tool.uv]

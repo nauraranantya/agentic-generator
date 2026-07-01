@@ -3,28 +3,28 @@
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
- * Objectives:
- *   - : Objective for the MCP Registry Agent and Team: enable searching and retrieving MCP registry information by ID, tag, or name.
+ * Goals:
+ *   - : Provide discovery and access to MCP registries and their servers; normalize heterogeneous registry responses into a standard ServerEntry format.
  */
 
 import { Mastra } from '@mastra/core'
 
 // Import agents
-import { mcpRegistryAgent } from './agents'
+import { registryRegistryServer } from './agents'
 
 // Import workflows
-import { mastraSimpleWorkflow } from './workflows'
+import { workflowRegistryServers } from './workflows'
 
 /**
  * Mastra instance with registered agents, workflows, and memory.
  *
- * Mastra configured with a single MCP Registry Agent and a Pino logger. This Team represents the runtime composition (agents, system configuration).
+ * An MCP server that provides a registry of MCP registries and exposes tools 'registryList' and 'registryServers'.
  */
 export const mastra = new Mastra({
   agents: {
-    mcpRegistryAgent,
+    registryRegistryServer,
   },
   workflows: {
-    mastraSimpleWorkflow,
+    workflowRegistryServers,
   },
 })

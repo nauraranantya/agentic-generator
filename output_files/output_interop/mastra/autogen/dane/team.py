@@ -25,107 +25,15 @@ model_client = OpenAIChatCompletionClient(
 # ==================================================
 
 
-def tool_execa_tool_impl(
-    query: str = ""
-) -> str:
-    """
-    AgentO Tool:
-    execaTool
-
-    Description:
-    Tool wrapping execa to run commands and stream output to console. Input: {command, args}. Output: {message}.
-    """
-    return (
-        "Tool 'tool_execa_tool' "
-        "is a generated stub and "
-        "has not been implemented yet."
-    )
-
-
-tool_execa_tool = FunctionTool(
-    tool_execa_tool_impl,
-    description="""Tool wrapping execa to run commands and stream output to console. Input: {command, args}. Output: {message}."""
-)
-
-
-def tool_fs_tool_impl(
-    query: str = ""
-) -> str:
-    """
-    AgentO Tool:
-    fsTool
-
-    Description:
-    File system tool to read/write/append files.
-    """
-    return (
-        "Tool 'tool_fs_tool' "
-        "is a generated stub and "
-        "has not been implemented yet."
-    )
-
-
-tool_fs_tool = FunctionTool(
-    tool_fs_tool_impl,
-    description="""File system tool to read/write/append files."""
-)
-
-
-def tool_slack_mcp_impl(
-    query: str = ""
-) -> str:
-    """
-    AgentO Tool:
-    mcpSlackClient
-
-    Description:
-    MCP client configured to run Slack container. Exposes tools for posting to Slack.
-    """
-    return (
-        "Tool 'tool_slack_mcp' "
-        "is a generated stub and "
-        "has not been implemented yet."
-    )
-
-
-tool_slack_mcp = FunctionTool(
-    tool_slack_mcp_impl,
-    description="""MCP client configured to run Slack container. Exposes tools for posting to Slack."""
-)
-
-
-def tool_list_events_impl(
-    query: str = ""
-) -> str:
-    """
-    AgentO Tool:
-    listEvents
-
-    Description:
-    Tool that lists calendar events by reading Mac Calendar via AppleScript and parsing into event objects.
-    """
-    return (
-        "Tool 'tool_list_events' "
-        "is a generated stub and "
-        "has not been implemented yet."
-    )
-
-
-tool_list_events = FunctionTool(
-    tool_list_events_impl,
-    description="""Tool that lists calendar events by reading Mac Calendar via AppleScript and parsing into event objects."""
-)
-
-
 def tool_browser_tool_impl(
     query: str = ""
 ) -> str:
     """
     AgentO Tool:
-    browserTool
+    tool_browser_tool
 
     Description:
-    Opens a headless chromium browser, retrieves page content and returns chunked textual document representation.
+    Opens a headless browser, navigates to a URL and captures content; chunks HTML into documents.
     """
     return (
         "Tool 'tool_browser_tool' "
@@ -136,7 +44,7 @@ def tool_browser_tool_impl(
 
 tool_browser_tool = FunctionTool(
     tool_browser_tool_impl,
-    description="""Opens a headless chromium browser, retrieves page content and returns chunked textual document representation."""
+    description="""Opens a headless browser, navigates to a URL and captures content; chunks HTML into documents. """
 )
 
 
@@ -145,10 +53,10 @@ def tool_google_search_impl(
 ) -> str:
     """
     AgentO Tool:
-    googleSearch
+    tool_google_search
 
     Description:
-    Performs a Google search and returns a list of result URLs.
+    Performs a Google search by opening search results and extracting links.
     """
     return (
         "Tool 'tool_google_search' "
@@ -159,7 +67,122 @@ def tool_google_search_impl(
 
 tool_google_search = FunctionTool(
     tool_google_search_impl,
-    description="""Performs a Google search and returns a list of result URLs."""
+    description="""Performs a Google search by opening search results and extracting links. """
+)
+
+
+def tool_list_events_impl(
+    query: str = ""
+) -> str:
+    """
+    AgentO Tool:
+    tool_list_events
+
+    Description:
+    Reads local (Mac) Calendar events via AppleScript and returns events.
+    """
+    return (
+        "Tool 'tool_list_events' "
+        "is a generated stub and "
+        "has not been implemented yet."
+    )
+
+
+tool_list_events = FunctionTool(
+    tool_list_events_impl,
+    description="""Reads local (Mac) Calendar events via AppleScript and returns events. """
+)
+
+
+def tool_crawl_impl(
+    query: str = ""
+) -> str:
+    """
+    AgentO Tool:
+    tool_crawl
+
+    Description:
+    Triggers Firecrawl integration to crawl and sync website content.
+    """
+    return (
+        "Tool 'tool_crawl' "
+        "is a generated stub and "
+        "has not been implemented yet."
+    )
+
+
+tool_crawl = FunctionTool(
+    tool_crawl_impl,
+    description="""Triggers Firecrawl integration to crawl and sync website content. """
+)
+
+
+def tool_execa_tool_impl(
+    query: str = ""
+) -> str:
+    """
+    AgentO Tool:
+    tool_execa_tool
+
+    Description:
+    Execute shell commands and stream output.
+    """
+    return (
+        "Tool 'tool_execa_tool' "
+        "is a generated stub and "
+        "has not been implemented yet."
+    )
+
+
+tool_execa_tool = FunctionTool(
+    tool_execa_tool_impl,
+    description="""Execute shell commands and stream output. """
+)
+
+
+def tool_fs_tool_impl(
+    query: str = ""
+) -> str:
+    """
+    AgentO Tool:
+    tool_fs_tool
+
+    Description:
+    Read, write, and append files on local filesystem.
+    """
+    return (
+        "Tool 'tool_fs_tool' "
+        "is a generated stub and "
+        "has not been implemented yet."
+    )
+
+
+tool_fs_tool = FunctionTool(
+    tool_fs_tool_impl,
+    description="""Read, write, and append files on local filesystem. """
+)
+
+
+def tool_image_tool_impl(
+    query: str = ""
+) -> str:
+    """
+    AgentO Tool:
+    tool_image_tool
+
+    Description:
+    Generate images using Stability AI integration and save to disk.
+    """
+    return (
+        "Tool 'tool_image_tool' "
+        "is a generated stub and "
+        "has not been implemented yet."
+    )
+
+
+tool_image_tool = FunctionTool(
+    tool_image_tool_impl,
+    description="""Generate images using Stability AI integration and save to disk. """
 )
 
 
@@ -168,10 +191,10 @@ def tool_read_pdf_impl(
 ) -> str:
     """
     AgentO Tool:
-    readPDF
+    tool_read_pdf
 
     Description:
-    Reads PDF file and extracts textual content; validates file path and type.
+    Parse PDF files and return extracted text.
     """
     return (
         "Tool 'tool_read_pdf' "
@@ -182,7 +205,7 @@ def tool_read_pdf_impl(
 
 tool_read_pdf = FunctionTool(
     tool_read_pdf_impl,
-    description="""Reads PDF file and extracts textual content; validates file path and type."""
+    description="""Parse PDF files and return extracted text. """
 )
 
 
@@ -191,10 +214,10 @@ def tool_pnpm_build_impl(
 ) -> str:
     """
     AgentO Tool:
-    pnpmBuild
+    tool_pnpm_build
 
     Description:
-    Build a package using pnpm run build at provided packagePath. Input: {name, packagePath}.
+    Runs pnpm build in package directories.
     """
     return (
         "Tool 'tool_pnpm_build' "
@@ -205,7 +228,7 @@ def tool_pnpm_build_impl(
 
 tool_pnpm_build = FunctionTool(
     tool_pnpm_build_impl,
-    description="""Build a package using pnpm run build at provided packagePath. Input: {name, packagePath}."""
+    description="""Runs pnpm build in package directories. """
 )
 
 
@@ -214,10 +237,10 @@ def tool_pnpm_changeset_status_impl(
 ) -> str:
     """
     AgentO Tool:
-    pnpmChangesetStatus
+    tool_pnpm_changeset_status
 
     Description:
-    Checks 'pnpm publish -r --dry-run --no-git-checks' to determine which packages need to be published. Returns array of package names.
+    Check which pnpm modules would be published via dry-run.
     """
     return (
         "Tool 'tool_pnpm_changeset_status' "
@@ -228,7 +251,7 @@ def tool_pnpm_changeset_status_impl(
 
 tool_pnpm_changeset_status = FunctionTool(
     tool_pnpm_changeset_status_impl,
-    description="""Checks 'pnpm publish -r --dry-run --no-git-checks' to determine which packages need to be published. Returns array of package names."""
+    description="""Check which pnpm modules would be published via dry-run. """
 )
 
 
@@ -237,10 +260,10 @@ def tool_pnpm_changeset_publish_impl(
 ) -> str:
     """
     AgentO Tool:
-    pnpmChangesetPublish
+    tool_pnpm_changeset_publish
 
     Description:
-    Publishes packages via pnpm changeset publish.
+    Publish pnpm changesets.
     """
     return (
         "Tool 'tool_pnpm_changeset_publish' "
@@ -251,7 +274,7 @@ def tool_pnpm_changeset_publish_impl(
 
 tool_pnpm_changeset_publish = FunctionTool(
     tool_pnpm_changeset_publish_impl,
-    description="""Publishes packages via pnpm changeset publish."""
+    description="""Publish pnpm changesets. """
 )
 
 
@@ -260,10 +283,10 @@ def tool_active_dist_tag_impl(
 ) -> str:
     """
     AgentO Tool:
-    activeDistTag
+    tool_active_dist_tag
 
     Description:
-    Sets an npm dist tag on a package using npm dist-tag add <pkg>@<version> latest.
+    Set npm dist-tag on published packages.
     """
     return (
         "Tool 'tool_active_dist_tag' "
@@ -274,7 +297,122 @@ def tool_active_dist_tag_impl(
 
 tool_active_dist_tag = FunctionTool(
     tool_active_dist_tag_impl,
-    description="""Sets an npm dist tag on a package using npm dist-tag add <pkg>@<version> latest."""
+    description="""Set npm dist-tag on published packages. """
+)
+
+
+def tool_slack_client_impl(
+    query: str = ""
+) -> str:
+    """
+    AgentO Tool:
+    tool_slack_client
+
+    Description:
+    Mastra MCP client for Slack, runs a docker command to post messages.
+    """
+    return (
+        "Tool 'tool_slack_client' "
+        "is a generated stub and "
+        "has not been implemented yet."
+    )
+
+
+tool_slack_client = FunctionTool(
+    tool_slack_client_impl,
+    description="""Mastra MCP client for Slack, runs a docker command to post messages. """
+)
+
+
+def tool_firecrawl_integration_impl(
+    query: str = ""
+) -> str:
+    """
+    AgentO Tool:
+    tool_firecrawl_integration
+
+    Description:
+    Integration to crawl and sync content using Firecrawl API.
+    """
+    return (
+        "Tool 'tool_firecrawl_integration' "
+        "is a generated stub and "
+        "has not been implemented yet."
+    )
+
+
+tool_firecrawl_integration = FunctionTool(
+    tool_firecrawl_integration_impl,
+    description="""Integration to crawl and sync content using Firecrawl API. """
+)
+
+
+def tool_github_integration_impl(
+    query: str = ""
+) -> str:
+    """
+    AgentO Tool:
+    tool_github_integration
+
+    Description:
+    GitHub API integration for retrieving PRs, issues and posting comments.
+    """
+    return (
+        "Tool 'tool_github_integration' "
+        "is a generated stub and "
+        "has not been implemented yet."
+    )
+
+
+tool_github_integration = FunctionTool(
+    tool_github_integration_impl,
+    description="""GitHub API integration for retrieving PRs, issues and posting comments. """
+)
+
+
+def tool_stabilityai_integration_impl(
+    query: str = ""
+) -> str:
+    """
+    AgentO Tool:
+    tool_stabilityai_integration
+
+    Description:
+    Integration to generate images using Stability AI API.
+    """
+    return (
+        "Tool 'tool_stabilityai_integration' "
+        "is a generated stub and "
+        "has not been implemented yet."
+    )
+
+
+tool_stabilityai_integration = FunctionTool(
+    tool_stabilityai_integration_impl,
+    description="""Integration to generate images using Stability AI API. """
+)
+
+
+def tool_upstash_store_impl(
+    query: str = ""
+) -> str:
+    """
+    AgentO Tool:
+    tool_upstash_store
+
+    Description:
+    Upstash HTTP store used by Memory; token-based auth.
+    """
+    return (
+        "Tool 'tool_upstash_store' "
+        "is a generated stub and "
+        "has not been implemented yet."
+    )
+
+
+tool_upstash_store = FunctionTool(
+    tool_upstash_store_impl,
+    description="""Upstash HTTP store used by Memory; token-based auth. """
 )
 
 
@@ -304,13 +442,13 @@ dane_commit_message = AssistantAgent(
     model_client=model_client,
     system_message="""
 Role:
-LLM Agent
+commit_message_generator
 
 Goal:
-LLM Agent
+commit_message_generator
 
 Background:
-You are a LLM Agent.
+You are a commit_message_generator.
 """,
 )
 
@@ -320,13 +458,13 @@ dane_issue_labeler = AssistantAgent(
     model_client=model_client,
     system_message="""
 Role:
-LLM Agent
+issue_labeler
 
 Goal:
-LLM Agent
+issue_labeler
 
 Background:
-You are a LLM Agent.
+You are a issue_labeler.
 """,
 )
 
@@ -336,29 +474,29 @@ dane_link_checker = AssistantAgent(
     model_client=model_client,
     system_message="""
 Role:
-LLM Agent
+link_checker
 
 Goal:
-LLM Agent
+link_checker
 
 Background:
-You are a LLM Agent.
+You are a link_checker.
 """,
 )
 
 
-dane_package_publisher = AssistantAgent(
-    name="dane_package_publisher",
+dane_change_log = AssistantAgent(
+    name="dane_change_log",
     model_client=model_client,
     system_message="""
 Role:
-LLM Agent
+changelog_writer
 
 Goal:
-LLM Agent
+changelog_writer
 
 Background:
-You are a LLM Agent.
+You are a changelog_writer.
 """,
 )
 
@@ -368,13 +506,29 @@ dane_new_contributor = AssistantAgent(
     model_client=model_client,
     system_message="""
 Role:
-LLM Agent
+new_contributor_messaging
 
 Goal:
-LLM Agent
+new_contributor_messaging
 
 Background:
-You are a LLM Agent.
+You are a new_contributor_messaging.
+""",
+)
+
+
+dane_package_publisher = AssistantAgent(
+    name="dane_package_publisher",
+    model_client=model_client,
+    system_message="""
+Role:
+package_publisher
+
+Goal:
+package_publisher
+
+Background:
+You are a package_publisher.
 """,
 )
 

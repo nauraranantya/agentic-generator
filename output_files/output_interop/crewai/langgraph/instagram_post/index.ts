@@ -3,51 +3,43 @@ import { Annotation, START, END, StateGraph } from "@langchain/langgraph";
 import { tool } from "@langchain/core/tools";
 import { z } from "zod";
 
-const CopyCrewAnnotation = Annotation.Root({
+const UnnamedProjectAnnotation = Annotation.Root({
   messages: Annotation<any[]>({
     reducer: (_, next) => next,
     default: () => [],
   }),
 });
 
-// Tool: tool_browser_tools_scrape_and_summarize
-const tool_browser_tools_scrape_and_summarize = tool(
+// Tool: tool_scrape_website
+const tool_scrape_website = tool(
   async () => {
-    return "Result of tool_browser_tools_scrape_and_summarize";
+    return "Result of tool_scrape_website";
   },
   {
-    name: "tool_browser_tools_scrape_and_summarize",
-    description: "Semantic purpose: Scrape a website and produce a long summary of its content or content chunks.
-Input: full URL string (e.g., https://example.com).
-Outputs: textual scrapped content and summaries (used as context for agents/tasks).
-Configuration: requires a Browserless API key (SERPER/BROWSERLESS keys are present in Config entries).
-Note: Implementation uses HTML partitioning into chunks and summary generation per chunk; we capture purpose and required config here.",
+    name: "tool_scrape_website",
+    description: "Scrapes a webpage via Browserless API and summarizes chunks using an LLM.",
     schema: z.object({}),
   }
 );
-// Tool: tool_search_tools_search_internet
-const tool_search_tools_search_internet = tool(
+// Tool: tool_search_internet
+const tool_search_internet = tool(
   async () => {
-    return "Result of tool_search_tools_search_internet";
+    return "Result of tool_search_internet";
   },
   {
-    name: "tool_search_tools_search_internet",
-    description: "Semantic purpose: Search the Internet (generic web search) and return top organic results, title, link, snippet.
-Input: query string.
-Configuration: uses SERPER_API_KEY (search service) as an API key.",
+    name: "tool_search_internet",
+    description: "Performs web searches using the Serper (google.serper.dev) API and returns top results.",
     schema: z.object({}),
   }
 );
-// Tool: tool_search_tools_search_instagram
-const tool_search_tools_search_instagram = tool(
+// Tool: tool_search_instagram
+const tool_search_instagram = tool(
   async () => {
-    return "Result of tool_search_tools_search_instagram";
+    return "Result of tool_search_instagram";
   },
   {
-    name: "tool_search_tools_search_instagram",
-    description: "Semantic purpose: Search Instagram via site-limited search (site:instagram.com) to find relevant posts.
-Input: query string.
-Configuration: uses SERPER_API_KEY (search service) as an API key.",
+    name: "tool_search_instagram",
+    description: "Performs targeted Instagram site searches (site:instagram.com ...) via Serper API.",
     schema: z.object({}),
   }
 );
@@ -58,14 +50,14 @@ Configuration: uses SERPER_API_KEY (search service) as an API key.",
  * Node: taskProductAnalysis
  * Agent: product_competitor_agent
  */
-async function taskProductAnalysis(state: typeof CopyCrewAnnotation.State) {
+async function taskProductAnalysis(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Agent backstory and role description for Lead Market Analyst" +
-        "\\nNode: taskProductAnalysis",
+        "You are a Lead Market Analyst." +
+        "\nNode: taskProductAnalysis",
     },
     ...state.messages,
   ]);
@@ -76,14 +68,14 @@ async function taskProductAnalysis(state: typeof CopyCrewAnnotation.State) {
  * Node: taskCompetitorAnalysis
  * Agent: product_competitor_agent
  */
-async function taskCompetitorAnalysis(state: typeof CopyCrewAnnotation.State) {
+async function taskCompetitorAnalysis(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Agent backstory and role description for Lead Market Analyst" +
-        "\\nNode: taskCompetitorAnalysis",
+        "You are a Lead Market Analyst." +
+        "\nNode: taskCompetitorAnalysis",
     },
     ...state.messages,
   ]);
@@ -94,14 +86,14 @@ async function taskCompetitorAnalysis(state: typeof CopyCrewAnnotation.State) {
  * Node: taskCampaignDevelopment
  * Agent: strategy_planner_agent
  */
-async function taskCampaignDevelopment(state: typeof CopyCrewAnnotation.State) {
+async function taskCampaignDevelopment(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Agent backstory and role description for Chief Marketing Strategist" +
-        "\\nNode: taskCampaignDevelopment",
+        "You are a Chief Marketing Strategist." +
+        "\nNode: taskCampaignDevelopment",
     },
     ...state.messages,
   ]);
@@ -112,14 +104,14 @@ async function taskCampaignDevelopment(state: typeof CopyCrewAnnotation.State) {
  * Node: taskInstagramAdCopy
  * Agent: creative_content_creator_agent
  */
-async function taskInstagramAdCopy(state: typeof CopyCrewAnnotation.State) {
+async function taskInstagramAdCopy(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Agent backstory and role description for Creative Content Creator" +
-        "\\nNode: taskInstagramAdCopy",
+        "You are a Creative Content Creator." +
+        "\nNode: taskInstagramAdCopy",
     },
     ...state.messages,
   ]);
@@ -130,14 +122,14 @@ async function taskInstagramAdCopy(state: typeof CopyCrewAnnotation.State) {
  * Node: taskTakePhotograph
  * Agent: senior_photographer_agent
  */
-async function taskTakePhotograph(state: typeof CopyCrewAnnotation.State) {
+async function taskTakePhotograph(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Agent backstory and role description for Senior Photographer" +
-        "\\nNode: taskTakePhotograph",
+        "You are a Senior Photographer." +
+        "\nNode: taskTakePhotograph",
     },
     ...state.messages,
   ]);
@@ -146,23 +138,23 @@ async function taskTakePhotograph(state: typeof CopyCrewAnnotation.State) {
 
 /**
  * Node: taskReviewPhoto
- * Agent: chief_creative_director_agent
+ * Agent: chief_creative_diretor_agent
  */
-async function taskReviewPhoto(state: typeof CopyCrewAnnotation.State) {
+async function taskReviewPhoto(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Agent backstory and role description for Chief Creative Director" +
-        "\\nNode: taskReviewPhoto",
+        "You are a Chief Creative Director." +
+        "\nNode: taskReviewPhoto",
     },
     ...state.messages,
   ]);
   return { messages: [response] };
 }
 
-const workflow = new StateGraph(CopyCrewAnnotation)
+const workflow = new StateGraph(UnnamedProjectAnnotation)
   .addNode("taskProductAnalysis", taskProductAnalysis)
   .addNode("taskCompetitorAnalysis", taskCompetitorAnalysis)
   .addNode("taskCampaignDevelopment", taskCampaignDevelopment)
@@ -173,14 +165,12 @@ const workflow = new StateGraph(CopyCrewAnnotation)
   .addEdge("taskProductAnalysis", "taskCompetitorAnalysis")
   .addEdge("taskCompetitorAnalysis", "taskCampaignDevelopment")
   .addEdge("taskCampaignDevelopment", "taskInstagramAdCopy")
-  .addEdge("taskInstagramAdCopy", "taskTakePhotograph")
   .addEdge("taskTakePhotograph", "taskReviewPhoto")
+  .addEdge("taskInstagramAdCopy", END)
   .addEdge("taskReviewPhoto", END)
 ;
 
 export const graph = workflow.compile();
-graph.name = "CopyCrew";
-// Workflow: wp_copy_crew
-// Workflow: Workflow Pattern - Copy Crew
-// Workflow: wp_image_crew
-// Workflow: Workflow Pattern - Image Crew
+graph.name = "UnnamedProject";
+// Workflow: workflow_copy_crew
+// Workflow: workflow_image_crew

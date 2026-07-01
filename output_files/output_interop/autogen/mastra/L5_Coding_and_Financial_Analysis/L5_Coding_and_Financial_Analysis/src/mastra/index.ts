@@ -4,29 +4,28 @@
  * Auto-generated from AgentO Knowledge Graph
  * Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
  * Goals:
- *   - Lesson 5: Coding and Financial Analysis Goal: 
- * Objectives:
- *   - Produce stock gain YTD plot objective: 
+ *   - : Produce and save plots (e.g., ytd_stock_gains.png, stock_prices_YTD_plot.png) showing year-to-date gains for requested tickers (NVDA and TSLA/TLSA).
  */
 
 import { Mastra } from '@mastra/core'
 
 // Import agents
-import { codeExecutorAgent, codeWriterAgent } from './agents'
+import { codeWriterAgent, codeExecutorAgent } from './agents'
 
 // Import workflows
-import { l5CodingFinancialAnalysisPattern } from './workflows'
+import { workflowL5CodingAndFinancialAnalysis } from './workflows'
 
 /**
  * Mastra instance with registered agents, workflows, and memory.
  *
+ * Team comprising a code writer and a code executor that collaborate to generate and run plotting code.
  */
 export const mastra = new Mastra({
   agents: {
-    codeExecutorAgent,
     codeWriterAgent,
+    codeExecutorAgent,
   },
   workflows: {
-    l5CodingFinancialAnalysisPattern,
+    workflowL5CodingAndFinancialAnalysis,
   },
 })

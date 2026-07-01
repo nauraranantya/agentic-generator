@@ -1,9 +1,7 @@
 task_log_cat_name:
-  description: |
-    Task that takes { name: string } as input, performs logging 'Hello, <name> 🐈' and returns { rawText: string } containing the greeting. Implemented in source as createStep with id 'logCatName' and executed by the workflow runtime/console.
-  expected_output: 'Completed: task_log_cat_name'
-task_generate_most_popular_species:
-  description: |
-    Task where the agent is asked 'What is the most popular cat species?' and expected to return a JSON object matching the output schema { species: string }.
-  expected_output: 'Expect output as a JSON object matching { species: string } —
-    e.g., { "species": "Maine Coon" }'
+  description: 'Log the cat name provided in the trigger: console.log(`Hello, ${name}
+    🐈`)'
+  expected_output: 'rawText: Hello {name}'
+task_generate_species:
+  description: What is the most popular cat species?
+  expected_output: expects object with property 'species' (string)

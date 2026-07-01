@@ -1,8 +1,6 @@
-# SurpriseTravelCrew
+# UnnamedProject
 
-SurpriseTravel crew coordinating agents to plan a surprise travel itinerary.
-    Agents: personalized_activity_planner, restaurant_scout, itinerary_compiler.
-    Process: sequential (represented in steps order).
+
 
 **Auto-generated from AgentO Knowledge Graph**  
 Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
@@ -36,7 +34,7 @@ npm run dev
 ## 📦 Project Structure
 
 ```
-SurpriseTravelCrew/
+UnnamedProject/
 ├── src/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
@@ -45,11 +43,10 @@ SurpriseTravelCrew/
 │       │   └── restaurantScout.ts
 │       │   └── itineraryCompiler.ts
 │       ├── tools/             # Tool definitions
-│       │   └── serperDevTool.ts
-│       │   └── scrapeWebsiteTool.ts
-│       │   └── myCustomTool.ts
+│       │   └── toolSerperDevTool.ts
+│       │   └── toolScrapeWebsiteTool.ts
 │       └── workflows/         # Workflow definitions
-│           └── surpriseTravelWorkflow.ts
+│           └── workflowSequential.ts
 ├── package.json
 ├── tsconfig.json
 └── .env.example
@@ -63,62 +60,56 @@ SurpriseTravelCrew/
 
 - **ID:** `personalized_activity_planner`
 - **Model:** `openai/gpt-4o-mini`
-- **Tools:** serperDevTool, scrapeWebsiteTool
+- **Tools:** toolSerperDevTool, toolScrapeWebsiteTool
 
-Use internet search tools and recommendation engines to gather information; produce day-by-day activities with name, location, description and suitability rationale....
+You are Activity Planner....
 
 ### Restaurant Scout
 
 - **ID:** `restaurant_scout`
 - **Model:** `openai/gpt-4o-mini`
-- **Tools:** serperDevTool, scrapeWebsiteTool
+- **Tools:** toolSerperDevTool, toolScrapeWebsiteTool
 
-Use internet search tools, restaurant review sites, and travel guides to find restaurants and scenic locations aligned with traveler preferences....
+You are Restaurant Scout....
 
 ### Itinerary Compiler
 
 - **ID:** `itinerary_compiler`
 - **Model:** `openai/gpt-4o-mini`
-- **Tools:** serperDevTool
+- **Tools:** toolSerperDevTool
 
-Compile all researched information into a comprehensive day-by-day itinerary for the trip; ensure integration of flights, hotel information, activities, and restaurants. Use text formatting and docume...
+You are Itinerary Compiler....
 
 
 ---
 
 ## 🔧 Tools
 
-### SerperDevTool
+### toolSerperDevTool
 
-Search / web tools used to query the web (as configured in the source crew)....
+Web search tool (Serper.dev) used to search the web for activities, restaurants, and general information....
 
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/serperDevTool.ts`)
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolSerperDevTool.ts`)
 
-### ScrapeWebsiteTool
+### toolScrapeWebsiteTool
 
-Tool to scrape website content; used by agents for gathering reviews and details....
+Tool used to scrape website content for details about venues, restaurants and events....
 
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/scrapeWebsiteTool.ts`)
-
-### MyCustomTool
-
-Example custom tool present in source (tools/custom_tool.py). This example tool is included in the repository but commented-out in crew agent configuration and not used by default....
-
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/myCustomTool.ts`)
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolScrapeWebsiteTool.ts`)
 
 
 ---
 
 ## 🔄 Workflows
 
-### SurpriseTravel Sequential Workflow
+### workflow_sequential
 
-Workflow pattern with three sequential steps: (1) personalized activity planning, (2) restaurant and scenic location scouting, (3) itinerary compilation.
+
 
 **Steps:** 3
-1. personalized_activity_planning_task
-2. restaurant_scenic_location_scout_task
-3. itinerary_compilation_task
+1. task_personalized_activity_planning_task
+2. task_restaurant_scenic_location_scout_task
+3. task_itinerary_compilation_task
 
 
 ---

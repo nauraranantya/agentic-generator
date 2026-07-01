@@ -39,15 +39,15 @@ UnnamedProject/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
 │       ├── agents/            # Agent definitions
-│       │   └── writer1.ts
-│       │   └── critic1.ts
-│       │   └── seoReviewer1.ts
-│       │   └── legalReviewer1.ts
-│       │   └── ethicsReviewer1.ts
-│       │   └── metaReviewer1.ts
+│       │   └── unnamed.ts
+│       │   └── unnamed.ts
+│       │   └── unnamed.ts
+│       │   └── unnamed.ts
+│       │   └── unnamed.ts
+│       │   └── unnamed.ts
 │       ├── tools/             # Tool definitions
 │       └── workflows/         # Workflow definitions
-│           └── workflowReflectionBlogpost.ts
+│           └── patternNested.ts
 ├── package.json
 ├── tsconfig.json
 └── .env.example
@@ -59,42 +59,42 @@ UnnamedProject/
 
 ### Writer
 
-- **ID:** `writer-1`
-- **Model:** `openai/gpt-4o-mini`
+- **ID:** `写手`
+- **Model:** `openai/gpt-3.5-turbo`
 
 You are Writer....
 
 ### Critic
 
-- **ID:** `critic-1`
-- **Model:** `openai/gpt-4o-mini`
+- **ID:** `评论家`
+- **Model:** `openai/gpt-3.5-turbo`
 
 You are Critic....
 
 ### SEO Reviewer
 
-- **ID:** `seo-reviewer-1`
+- **ID:** `搜索引擎优化审核员`
 - **Model:** `openai/gpt-3.5-turbo`
 
 You are SEO Reviewer....
 
 ### Legal Reviewer
 
-- **ID:** `legal-reviewer-1`
+- **ID:** `法律审核员`
 - **Model:** `openai/gpt-3.5-turbo`
 
 You are Legal Reviewer....
 
 ### Ethics Reviewer
 
-- **ID:** `ethics-reviewer-1`
+- **ID:** `道德审查员`
 - **Model:** `openai/gpt-3.5-turbo`
 
 You are Ethics Reviewer....
 
 ### Meta Reviewer
 
-- **ID:** `meta-reviewer-1`
+- **ID:** `审核员主管`
 - **Model:** `openai/gpt-3.5-turbo`
 
 You are Meta Reviewer....
@@ -110,14 +110,18 @@ No tools defined in this project.
 
 ## 🔄 Workflows
 
-### Reflection and Blogpost Writing Workflow Pattern
+### pattern_nested
 
-Workflow that generates a blogpost draft, then uses a critic and nested reviewers (SEO, Legal, Ethics) with a meta reviewer to aggregate suggestions and refine the draft.
+Workflow pattern representing writer generation, critic initiation, sequential reviewers, and meta aggregation.
 
-**Steps:** 3
-1. Blogpost generation task
-2. Ethics review task
-3. Meta aggregation task
+**Steps:** 7
+1. task_write_blog
+2. task_critic_initiate_1
+3. task_nested_seo_review
+4. task_nested_legal_review
+5. task_nested_ethics_review
+6. task_meta_aggregate
+7. task_critic_initiate_2
 
 
 ---

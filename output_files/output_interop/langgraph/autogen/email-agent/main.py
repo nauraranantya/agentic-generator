@@ -2,7 +2,7 @@ import asyncio
 
 from team import (
     email_assistant_agent,
-    user_human,
+    human_user,
 )
 
 from autogen_agentchat.conditions import (
@@ -18,14 +18,14 @@ async def main():
     try:
         # Step-by-step sequential execution
         # ==================================================
-        # Workflow Step: write_email_generate_draft
-        # Workflow Edge: write_email_generate_draft -> ignore
+        # Workflow Step: task_write_email
+        # Workflow Edge: task_write_email -> task_write_email
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: write_email_generate_draft")
+        print("Executing step: task_write_email")
         print("=" * 80)
 
-        task_prompt = """Generates a draft email (subject, body, to) by invoking the LLM with the Write Email Prompt and a tool named "write_email" implementing the sendEmailSchema. If insufficient information, prompts the user for missing information. Produces Draft Email resource and a model response message."""
+        task_prompt = """LLM task that generates an initial email draft from conversation history. """
         # Execute via the assigned agent: email_assistant_agent
         result = await email_assistant_agent.run(task=task_prompt)
 
@@ -36,14 +36,15 @@ async def main():
             print(result)
 
         # ==================================================
-        # Workflow Step: ignore
-        # Workflow Edge: ignore -> rewrite_email_apply_user_s_requested_changes
+        # Workflow Step: task_interrupt
+        # Workflow Edge: task_interrupt -> task_send_email
+        # Workflow Edge: task_interrupt -> task_rewrite_email
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: ignore")
+        print("Executing step: task_interrupt")
         print("=" * 80)
 
-        task_prompt = """Presents the current draft email to a human actor with allowed actions: ignore, response, edit, accept. If 'ignore' or no response -> ends conversation. If 'response' -> passes human text to rewriteEmail. If 'accept' or 'edit' (with structured args) -> may send or update the draft depending on edit content. Implementation validates edits contain subject, body, to when edit action used."""
+        task_prompt = """Human-in-the-loop interruption UI which can edit, accept, ignore, or request a rewrite. """
         # Execute via the assigned agent: agent
         result = await agent.run(task=task_prompt)
 
@@ -54,14 +55,14 @@ async def main():
             print(result)
 
         # ==================================================
-        # Workflow Step: rewrite_email_apply_user_s_requested_changes
-        # Workflow Edge: rewrite_email_apply_user_s_requested_changes -> ignore
+        # Workflow Step: task_rewrite_email
+        # Workflow Edge: task_rewrite_email -> task_interrupt
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: rewrite_email_apply_user_s_requested_changes")
+        print("Executing step: task_rewrite_email")
         print("=" * 80)
 
-        task_prompt = """Rewrites a previously generated draft email in response to a human 'response' action. It uses the Rewrite Email Prompt with substitution of the current draft and the human response text; it calls the same structured tool (write_email) and returns a new Draft Email resource. Implementation enforces: only proceed if humanResponse.args is a string and an existing email exists; otherwise error."""
+        task_prompt = """LLM task that rewrites the email according to user edits or responses. """
         # Execute via the assigned agent: email_assistant_agent
         result = await email_assistant_agent.run(task=task_prompt)
 
@@ -72,13 +73,13 @@ async def main():
             print(result)
 
         # ==================================================
-        # Workflow Step: send_email_finalize_send
+        # Workflow Step: task_send_email
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: send_email_finalize_send")
+        print("Executing step: task_send_email")
         print("=" * 80)
 
-        task_prompt = """Finalizes and sends the email. In the implementation this yields a confirmation AI message 'Successfully sent email.' and produces a SentEmailRecord resource. This task is reached when the human accepts or when routing logic selects sending directly."""
+        task_prompt = """Finalization step that sends/renders the sent email confirmation. """
         # Execute via the assigned agent: email_assistant_agent
         result = await email_assistant_agent.run(task=task_prompt)
 

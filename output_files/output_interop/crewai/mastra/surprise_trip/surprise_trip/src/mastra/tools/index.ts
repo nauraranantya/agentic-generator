@@ -1,3 +1,2 @@
-export { serperDevTool } from './serperDevTool'
-export { scrapeWebsiteTool } from './scrapeWebsiteTool'
-export { myCustomTool } from './myCustomTool'
+export { toolSerperDevTool } from './toolSerperDevTool'
+export { toolScrapeWebsiteTool } from './toolScrapeWebsiteTool'

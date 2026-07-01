@@ -1,22 +1,10 @@
-find_pizza_shop_task:
+find_store_task:
   description: |
-    Source semantics captured from node 'findStore':
-    - Uses a structured model output with schema 'find_pizza_shop' to extract:
-      { location: string, pizza_company?: string }
-    - System instruction: 'You are a helpful AI assistant, tasked with extracting information from the conversation between you, and the user, in order to find a pizza shop for them.'
-    - After model invocation, a ToolMessage is created with content:
-      'I've found a pizza shop at 1119 19th St, San Francisco, CA 94107. The phone number for the shop is 415-555-1234.'
-    - The code includes an artificial delay (sleep) following the model call.
-  expected_output: 'Structured output named ''find_pizza_shop'' with fields: location,
-    pizza_company. includeRaw: true'
-place_pizza_order_task:
-  description: |
-    Source semantics captured from node 'orderPizza':
-    - Uses a structured model output with schema 'place_pizza_order' to extract:
-      { address: string, phone_number: string, order: string }
-    - System instruction: 'You are a helpful AI assistant, tasked with placing an order for a pizza for the user.'
-    - After model invocation, a ToolMessage is created with content:
-      'Pizza order successfully placed.'
-    - The code includes an artificial delay (sleep) prior to execution.
-  expected_output: |
-    Structured output named 'place_pizza_order' with fields: address, phone_number, order. includeRaw: true
+    You are a helpful AI assistant, tasked with extracting information from the conversation between you, and the user, in order to find a pizza shop for them.
+  expected_output: 'Structured output: { location: string, pizza_company: string (optional)
+    }'
+order_pizza_task:
+  description: You are a helpful AI assistant, tasked with placing an order for a
+    pizza for the user.
+  expected_output: 'Structured output: { address: string, phone_number: string, order:
+    string }'

@@ -1,7 +1,7 @@
 {
   "name": "match_profile_to_positions",
   "version": "0.1.0",
-  "description": "A Crew that coordinates reading CVs and matching them to job opportunities. Constructed with two agents (cv_reader, matcher) and two tasks run sequentially.",
+  "description": "CrewAI Team that coordinates cv_reader and matcher agents to match CVs to job proposals.",
   "type": "module",
   "main": "src/mastra/index.ts",
   "scripts": {

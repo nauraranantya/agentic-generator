@@ -1,97 +1,91 @@
-get_git_diff_task:
-  description: Reads staged changes from a git repository at repoPath. Produces 'diff'
-    string resource.
-  expected_output: 'diff: string'
-read_conventional_commit_spec:
+task_changelog_step_a1:
+  description: Get a git diff and connect to slack; runs git diff via execa
+  expected_output: 'Completed: task_changelog_step_a1'
+task_entry_message_input:
+  description: Prompt user to input a message (inquirer prompt)
+  expected_output: 'Completed: task_entry_message_input'
+task_commit_get_diff:
+  description: Compute git diff of staged changes via git command
+  expected_output: 'Completed: task_commit_get_diff'
+task_first_get_pull_request:
+  description: Retrieve pull request data from GitHub integration and fetch diff
+  expected_output: 'Completed: task_first_get_pull_request'
+task_issue_get_issue:
+  description: Retrieve issue and repository labels using GitHub integration
+  expected_output: 'Completed: task_issue_get_issue'
+task_link_get_broken_links:
+  description: Run linkinator via shell to collect links; parse JSON output
+  expected_output: 'Completed: task_link_get_broken_links'
+task_pkg_get_pacakges_to_publish:
+  description: Use DanePackagePublisher agent to analyze repo and list packages requiring
+    publish
+  expected_output: 'Completed: task_pkg_get_pacakges_to_publish'
+task_tel_step_a1:
+  description: Create starting message for telephone game
+  expected_output: 'Completed: task_tel_step_a1'
+task_changelog_step_a2:
+  description: Generate changelog using the daneChangeLog agent and post to Slack
+  expected_output: 'Completed: task_changelog_step_a2'
+task_entry_message_output:
+  description: Send user message to Dane agent and stream/generate response
+  expected_output: 'Completed: task_entry_message_output'
+task_commit_read_conventional_commit_spec:
+  description: Read conventional commit spec using fsTool
+  expected_output: 'Completed: task_commit_read_conventional_commit_spec'
+task_first_message_generator:
   description: |
-    Read file data/crawl/conventional-commit.json using fsTool action 'read'. If not present, fallback to built-in guidelines.
-  expected_output: 'fileData: any (JSON content)'
-generate_commit_message:
+    Generate contributor welcome message using DaneNewContributor agent using PR title/body/diff and Mastra docs
+  expected_output: 'Completed: task_first_message_generator'
+task_issue_label_issue:
+  description: Use DaneIssueLabeler agent to decide labels for an issue
+  expected_output: 'Completed: task_issue_label_issue'
+task_link_report_broken_links:
+  description: Report broken links by generating a message with DaneLinkChecker and
+    posting to Slack
+  expected_output: 'Completed: task_link_report_broken_links'
+task_pkg_assemble_packages:
+  description: Assemble file system paths for the packages reported by the agent and
+    prepare build sets
+  expected_output: 'Completed: task_pkg_assemble_packages'
+task_tel_step_a2:
+  description: Prompt user for a message (inquirer input)
+  expected_output: 'Completed: task_tel_step_a2'
+task_commit_generate_message:
+  description: Generate commit message using DaneCommitMessage agent
+  expected_output: 'Completed: task_commit_generate_message'
+task_first_create_message:
+  description: Post generated message as GitHub issue comment using github integration
+  expected_output: 'Completed: task_first_create_message'
+task_issue_apply_labels:
+  description: Add labels to GitHub issue using integrations client
+  expected_output: 'Completed: task_issue_apply_labels'
+task_pkg_build_packages:
+  description: Build packages using pnpmBuild tool for each package path (sequential
+    and parallel phases)
+  expected_output: 'Completed: task_pkg_build_packages'
+task_tel_step_b2:
+  description: Validate that the input message exists and pass through
+  expected_output: 'Completed: task_tel_step_b2'
+task_commit_confirmation:
+  description: Prompt human user to confirm commit message via inquirer confirm
+  expected_output: 'Completed: task_commit_confirmation'
+task_pkg_verify_build:
+  description: Verify dist artifacts exist for all built packages
+  expected_output: 'Completed: task_pkg_verify_build'
+task_tel_step_c2:
   description: |
-    Agent is asked to produce commit message and meta information. If diff empty return 'No staged changes found' and generated=false; otherwise return generated=true and commit message string.
-  expected_output: 'JSON: { commitMessage: string, generated: boolean, guidelines:
-    string[] }'
-user_confirmation:
+    Optionally suspend and ask user to confirm modification; if confirmed, call inline LLM (claude-3-5-haiku) to modify message
+  expected_output: 'Completed: task_tel_step_c2'
+task_commit_commit:
+  description: Perform git commit with generated message (execSync git commit)
+  expected_output: 'Completed: task_commit_commit'
+task_pkg_publish_changeset:
   description: |
-    Interactive confirmation step; modeled as a task that expects boolean response. Implementation uses inquirer.prompt confirm.
-  expected_output: 'Completed: user_confirmation'
-create_git_commit_task:
-  description: Performs git commit using execaTool after confirmation. Produces commit
-    status.
-  expected_output: 'Completed: create_git_commit_task'
-start_message:
-  description: Initial step produces a message string 'Test'.
-  expected_output: 'Completed: start_message'
-pass_message_through_user_input:
-  description: Prompts user to enter a message; ensures non-empty.
-  expected_output: 'Completed: pass_message_through_user_input'
-check_message_exists:
-  description: Verifies the message exists in workflow state and returns it; may throw
-    if not found.
-  expected_output: 'Completed: check_message_exists'
-ask_modify_message:
-  description: |
-    If resumeData.confirm is true, agent.generate is called to change the message; otherwise workflow suspends.
-  expected_output: Single message string (no extra text)
-pass_final_message:
-  description: Returns message from stepC2.output to finish the workflow.
-  expected_output: 'Completed: pass_final_message'
-generate_per_module_changelog:
-  description: |
-    For each module with changes, agent.generate is invoked with: Time window, Module path, Git diff, and tasks to create structured narrative changelog grouped by categories (New features, Improvements, Notable bug fixes, Build/deployment improvements, Performance optimizations).
-  expected_output: Textual changelog for module; agent usage metadata (usage.promptTokens)
-    may be returned.
-get_broken_links_task:
-  description: |
-    Runs linkinator, parse results and outputs array of broken link objects: { url, status, state, parent? }.
-  expected_output: Array of link objects { url, status, state, parent? }
-report_broken_links_to_slack:
-  description: |
-    Agent asked to format the broken link list as Slack-friendly markdown and to send to specified channel using Slack toolset returned by MCP.
-  expected_output: Markdown message string suitable for posting to Slack
-compile_changelog_and_post_to_slack:
-  description: |
-    Combines module summaries and requests agent to format full changelog message then uses Slack toolset to post to channel.
-  expected_output: Final changelog markdown text to send to Slack
-build_all_packages:
-  description: |
-    Build monorepo packages; may call pnpmBuild per-package or run root-level pnpm run build as implementation.
-  expected_output: No structured output; success or failure logged.
-publish_all_packages:
-  description: Executes publish step and expects success; on error reporting, stop
-    workflow.
-  expected_output: 'Completed: publish_all_packages'
-set_dist_tags:
-  description: |
-    Iterates package.json files under package directories and runs npm dist-tag add <pkg>@<version> latest.
-  expected_output: 'Completed: set_dist_tags'
-user_chat_input:
-  description: 'Prompt user with ''\n You:'' and validate non-empty input; returns
-    {message: string}.'
-  expected_output: 'message: string'
-agent_response_generation:
-  description: |
-    Agent receives message, optional context: resourceId/threadId, and produces textual response. Supports streaming of text.
-  expected_output: Free-text response; streaming possible
-fetch_issue_from_git_hub:
-  description: 'Uses GitHub integration to get issue and labels. Output: title, body,
-    labelNames[]'
-  expected_output: 'title: string, body: string, labelNames: string[]'
-generate_labels_task:
-  description: Agent is prompted with issue title/body and available labels; returns
-    labels array.
-  expected_output: 'JSON: { labels: string[] }'
-apply_labels_to_git_hub_issue:
-  description: Uses GitHub integration to add labels to issue.
-  expected_output: 'Completed: apply_labels_to_git_hub_issue'
-get_pull_request:
-  description: Fetch PR via GitHub client and fetch diff URL to retrieve diff text.
-  expected_output: 'Completed: get_pull_request'
-generate_new_contributor_message:
-  description: |
-    Agent provided PR title/body/diff and Mastra docs; generate intro, checklist entries based on guidelines, and outro.
-  expected_output: 'JSON: { intro: string, checklist: string[], outro: string }'
-create_pr_comment:
-  description: Uses GitHub API to create a comment with intro, checklist as - [ ]
-    items, and outro.
-  expected_output: 'Completed: create_pr_comment'
+    Use DanePackagePublisher agent to publish changeset (agent generates instructions) and then call pnpmChangesetPublish
+  expected_output: 'Completed: task_pkg_publish_changeset'
+task_tel_step_d2:
+  description: Pass the final message to the next participant or output
+  expected_output: 'Completed: task_tel_step_d2'
+task_pkg_set_latest_dist_tag:
+  description: Update npm dist-tag for published packages (agent assisted)
+  expected_output: 'Completed: task_pkg_set_latest_dist_tag'

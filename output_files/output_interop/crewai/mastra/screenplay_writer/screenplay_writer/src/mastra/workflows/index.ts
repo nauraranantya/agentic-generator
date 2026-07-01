@@ -1,3 +1,3 @@
-export { workflowPatternScreenplay } from './workflowPatternScreenplay'
+export { crewSequentialWorkflow } from './crewSequentialWorkflow'
 export * from './ad_hoc_tasks'
 

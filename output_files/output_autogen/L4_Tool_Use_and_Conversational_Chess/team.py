@@ -49,7 +49,7 @@ def board_proxy_impl(
 
 board_proxy = FunctionTool(
     board_proxy_impl,
-    description="""A conversational proxy agent that executes board-related tools (get_legal_moves, make_move). Created with llm_config=False in code; it receives tool execution requests and applies them to the ChessBoard resource."""
+    description="""A conversational proxy agent that executes board-related tools (get_legal_moves, make_move). Created with llm_config=False in code; it receives tool execution requests and applies them to the ChessBoard resource. """
 )
 
 
@@ -72,7 +72,7 @@ def tool_get_legal_moves_impl(
 
 tool_get_legal_moves = FunctionTool(
     tool_get_legal_moves_impl,
-    description="""Registered tool name: 'get_legal_moves'. Description: Get legal moves. Returns a comma-separated list of legal moves in UCI format. In code, returns: 'Possible moves are: ' + ','.join([str(move) for move in board.legal_moves]). This tool reads the ChessBoard resource and produces a LegalMovesList resource."""
+    description="""Registered tool name: 'get_legal_moves'. Description: Get legal moves. Returns a comma-separated list of legal moves in UCI format. In code, returns: 'Possible moves are: ' + ','.join([str(move) for move in board.legal_moves]). This tool reads the ChessBoard resource and produces a LegalMovesList resource. """
 )
 
 
@@ -95,7 +95,7 @@ def tool_make_move_impl(
 
 tool_make_move = FunctionTool(
     tool_make_move_impl,
-    description="""Registered tool name: 'make_move'. Description: apply a move in UCI format to the ChessBoard. Parameters: move (string, UCI). Behavior summary preserved: (1) convert the provided string to a chess.Move, push the move to the board state, set a made_move flag to True, display the board (SVG), identify the moved piece and return a human-readable message 'Moved <PieceName> (<PieceSymbol>) from <from_square> to <to_square>.' This tool reads and updates the ChessBoard resource and causes a termination predicate (is_termination_msg) to become true for nested chat closing."""
+    description="""Registered tool name: 'make_move'. Description: apply a move in UCI format to the ChessBoard. Parameters: move (string, UCI). Behavior summary preserved: (1) convert the provided string to a chess.Move, push the move to the board state, set a made_move flag to True, display the board (SVG), identify the moved piece and return a human-readable message 'Moved <PieceName> (<PieceSymbol>) from <from_square> to <to_square>.' This tool reads and updates the ChessBoard resource and causes a termination predicate (is_termination_msg) to become true for nested chat closing. """
 )
 
 

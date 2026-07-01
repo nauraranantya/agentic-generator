@@ -3,30 +3,13 @@ Auto-generated CrewAI Crew: UnnamedProject
 
 Source  : AgentO Knowledge Graph → SPARQL → Pydantic → Jinja2
 Pipeline: 3-Layer Conversion Pipeline
-Goals:
-  - Provide assistance to user: 
-Objectives:
-  - Handle user query: 
-  - Route selection: 
 Capabilities:
-  - fetch ticker price: Fetch the price of a stock ticker.
-  - trade ticker: Purchase or sell a ticker (trade operation).
-  - get portfolio: Retrieve the user's portfolio.
-  - suggest restaurants: Suggest restaurants for a given location.
-  - suggest accommodations: Suggest places to stay for a trip.
-  - write React TODO app: Generate a React TODO application when requested.
-  - order pizza: Order a pizza on behalf of the user.
-  - write document: Produce a text document for the user.
-  - route selection: Analyze conversation and select appropriate tool route.
-  - general assistant: Generic assistant capabilities to answer queries, summarize tool results, and follow up.
-Resources:
-  - Router tool call result: Result of router tool indicating chosen route, e.g., { 'route': 'stockbroker' }.
-  - Stockbroker result: Resource representing the output(s) of stockbroker tasks such as price data, trade confirmations, or portfolio summaries.
-  - TripPlanner result: Trip planning suggestions (restaurants, accommodations, itinerary).
-  - OpenCode result: Generated code artifact: a React TODO app (source files, instructions).
-  - OrderPizza result: Confirmation and details of pizza order (order receipt, status).
-  - GeneralInput response: Text response from the general assistant (answers, summaries, follow-ups).
-  - WriterAgent document: Text document created by writerAgent (full content of the requested document).
+  - : Fetch price, buy/sell tickers, retrieve user portfolio.
+  - : Suggest restaurants, hotels, and itineraries for locations.
+  - : Generate project code (React TODO app) and related files.
+  - : Place pizza orders and return confirmation details.
+  - : Generate long-form text documents or writing deliverables.
+  - : Select the appropriate target route/tool based on user input.
 """
 
 from crewai import Agent, Crew, Process, Task
@@ -37,54 +20,47 @@ from crewai.tools import tool
 # ===========================================================
 # Tool Instances
 # ===========================================================
-# TODO: tool_stockbroker — unknown tool class "stockbroker"
+# TODO: tool_stockbroker — unknown tool class "toolstockbroker"
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-@tool("stockbroker")
+@tool("toolstockbroker")
 def tool_stockbroker(*args, **kwargs) -> str:
-    """Can fetch the price of a ticker, purchase/sell a ticker, or get the user's portfolio."""
+    """can fetch the price of a ticker, purchase/sell a ticker, or get the user's portfolio"""
     return "tool_stockbroker result"
 
-# TODO: tool_trip_planner — unknown tool class "tripPlanner"
+# TODO: tool_trip_planner — unknown tool class "tooltripPlanner"
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-@tool("tripPlanner")
+@tool("tooltripPlanner")
 def tool_trip_planner(*args, **kwargs) -> str:
-    """Helps the user plan their trip. It can suggest restaurants and places to stay in any given location."""
+    """helps the user plan their trip; can suggest restaurants and places to stay in any given location."""
     return "tool_trip_planner result"
 
-# TODO: tool_open_code — unknown tool class "openCode"
+# TODO: tool_open_code — unknown tool class "toolopenCode"
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-@tool("openCode")
+@tool("toolopenCode")
 def tool_open_code(*args, **kwargs) -> str:
-    """Can write a React TODO app for the user. Only call this tool if the user requests a TODO app."""
+    """can write a React TODO app for the user. Only call this tool if they request a TODO app."""
     return "tool_open_code result"
 
-# TODO: tool_order_pizza — unknown tool class "orderPizza"
+# TODO: tool_order_pizza — unknown tool class "toolorderPizza"
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-@tool("orderPizza")
+@tool("toolorderPizza")
 def tool_order_pizza(*args, **kwargs) -> str:
-    """Can order a pizza for the user."""
+    """can order a pizza for the user"""
     return "tool_order_pizza result"
 
-# TODO: tool_writer_agent — unknown tool class "writerAgent"
+# TODO: tool_writer_agent — unknown tool class "toolwriterAgent"
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-@tool("writerAgent")
+@tool("toolwriterAgent")
 def tool_writer_agent(*args, **kwargs) -> str:
-    """Can write a text document for the user. Only call this tool if they request a text document."""
+    """can write a text document for the user. Only call this tool if they request a text document."""
     return "tool_writer_agent result"
 
-# TODO: tool_router — unknown tool class "router"
+# TODO: tool_router — unknown tool class "toolrouter"
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-@tool("router")
+@tool("toolrouter")
 def tool_router(*args, **kwargs) -> str:
-    """A tool used by the router node to select which tool should handle the user's query (routes: stockbro"""
+    """A tool to route the user's query to the appropriate tool. (Used as a tool schema bound to the routin"""
     return "tool_router result"
-
-# TODO: tool_general_input — unknown tool class "generalInput"
-#   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-@tool("generalInput")
-def tool_general_input(*args, **kwargs) -> str:
-    """Tool/node that responds to general user inputs and summarizes or follows up on tool results."""
-    return "tool_general_input result"
 
 
 
@@ -99,54 +75,124 @@ class UnnamedProject:
     # ── Agents ──────────────────────────────────────────
 
     @agent
-    def generative_ui_supervisor(self) -> Agent:
+    def supervisor(self) -> Agent:
         return Agent(
-            config=self.agents_config['generative_ui_supervisor'],
-            tools=[tool_stockbroker, tool_trip_planner, tool_open_code, tool_order_pizza, tool_writer_agent, tool_router, tool_general_input],
+            config=self.agents_config['supervisor'],
+            tools=[tool_stockbroker, tool_trip_planner, tool_open_code, tool_order_pizza, tool_writer_agent, tool_router],
+        )
+
+    @agent
+    def router(self) -> Agent:
+        return Agent(
+            config=self.agents_config['router'],
+            tools=[tool_router],
+        )
+
+    @agent
+    def general_input(self) -> Agent:
+        return Agent(
+            config=self.agents_config['general_input'],
+            tools=[tool_stockbroker, tool_trip_planner, tool_open_code, tool_order_pizza, tool_writer_agent],
+        )
+
+    @agent
+    def stockbroker(self) -> Agent:
+        return Agent(
+            config=self.agents_config['stockbroker'],
+            tools=[tool_stockbroker],
+        )
+
+    @agent
+    def trip_planner(self) -> Agent:
+        return Agent(
+            config=self.agents_config['trip_planner'],
+            tools=[tool_trip_planner],
+        )
+
+    @agent
+    def open_code(self) -> Agent:
+        return Agent(
+            config=self.agents_config['open_code'],
+            tools=[tool_open_code],
+        )
+
+    @agent
+    def order_pizza(self) -> Agent:
+        return Agent(
+            config=self.agents_config['order_pizza'],
+            tools=[tool_order_pizza],
+        )
+
+    @agent
+    def writer_agent(self) -> Agent:
+        return Agent(
+            config=self.agents_config['writer_agent'],
+            tools=[tool_writer_agent],
         )
 
     # ── Tasks ───────────────────────────────────────────
 
     @task
-    def router_task(self) -> Task:
+    def task_start(self) -> Task:
         return Task(
-            config=self.tasks_config['router_task'],
+            config=self.tasks_config['task_start'],
+            agent=self.supervisor(),
         )
 
     @task
-    def stockbroker_task(self) -> Task:
+    def task_router(self) -> Task:
         return Task(
-            config=self.tasks_config['stockbroker_task'],
+            config=self.tasks_config['task_router'],
+            agent=self.router(),
         )
 
     @task
-    def trip_planner_task(self) -> Task:
+    def task_general_input(self) -> Task:
         return Task(
-            config=self.tasks_config['trip_planner_task'],
+            config=self.tasks_config['task_general_input'],
+            agent=self.general_input(),
         )
 
     @task
-    def open_code_task(self) -> Task:
+    def task_stockbroker(self) -> Task:
         return Task(
-            config=self.tasks_config['open_code_task'],
+            config=self.tasks_config['task_stockbroker'],
+            agent=self.stockbroker(),
         )
 
     @task
-    def order_pizza_task(self) -> Task:
+    def task_trip_planner(self) -> Task:
         return Task(
-            config=self.tasks_config['order_pizza_task'],
+            config=self.tasks_config['task_trip_planner'],
+            agent=self.trip_planner(),
         )
 
     @task
-    def general_input_task(self) -> Task:
+    def task_open_code(self) -> Task:
         return Task(
-            config=self.tasks_config['general_input_task'],
+            config=self.tasks_config['task_open_code'],
+            agent=self.open_code(),
         )
 
     @task
-    def writer_agent_task(self) -> Task:
+    def task_order_pizza(self) -> Task:
         return Task(
-            config=self.tasks_config['writer_agent_task'],
+            config=self.tasks_config['task_order_pizza'],
+            agent=self.order_pizza(),
+        )
+
+    @task
+    def task_writer_agent(self) -> Task:
+        return Task(
+            config=self.tasks_config['task_writer_agent'],
+            agent=self.writer_agent(),
+        )
+
+    @task
+    def task_end(self) -> Task:
+        return Task(
+            config=self.tasks_config['task_end'],
+            agent=self.supervisor(),
         )
 
     # ── Crew ────────────────────────────────────────────

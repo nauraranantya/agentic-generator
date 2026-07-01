@@ -1,54 +1,55 @@
 """
-Auto-generated CrewAI Crew: RecruitmentCrew
+Auto-generated CrewAI Crew: UnnamedProject
 
 Source  : AgentO Knowledge Graph → SPARQL → Pydantic → Jinja2
 Pipeline: 3-Layer Conversion Pipeline
 Goals:
-  - Find potential candidates for the job: Find potential candidates for the job specified in inputs (job_requirements). Use multiple public resources to assemble candidate brief profiles and contact info.
-  - Match the candidates to the best jobs and score them: Evaluate candidates relative to the job_requirements, compute scores and rank candidates with justifications.
-  - Develop outreach strategies for the selected candidates: Produce outreach methods and message templates tailored to prioritized candidates.
-  - Report the best candidates to the recruiters: Assemble a concise report for recruiters with profiles, scores, and outreach plan; follow output formatting instruction from tasks configuration.
-Objectives:
-  - Find and report best candidates for a job opening: Coordinate research, matching/scoring, outreach strategy, and reporting to produce a ranked and actionable list of candidates for a given job requirement input.
+  - : Agent goal: find potential candidates matching provided job requirements.
+  - : Agent goal: evaluate and rank candidates against job requirements.
+  - : Agent goal: create outreach templates and communication plans.
+  - : Agent goal: compile findings and recommend top candidates.
+  - : Team-level objective to orchestrate agent collaboration for recruitment.
 Capabilities:
-  - candidate_research: Search public data sources and extract candidate basic profile information.
-  - candidate_matching_and_scoring: Evaluate candidates against job requirements and produce a numeric or ordinal score and justification.
-  - outreach_strategy_development: Design outreach approaches and generate template messages for contacting candidates.
-  - candidate_reporting: Compose recruiter-facing reports summarizing findings, scores and outreach strategies.
-  - search_api: 
-  - web_scraping: 
-  - retrieve_linkedin_profiles: 
-Resources:
-  - candidates_raw_list: Raw list of found candidate profiles and their basic contact/profile information produced by research_candidates_task.
-  - candidates_scored: Candidates evaluated and scored by match_and_score_candidates_task; contains scores and justifications.
-  - outreach_plan: Outreach methods and message templates produced by outreach_strategy_task.
-  - final_report_for_recruiters: Compiled report produced by report_candidates_task with recommended candidates, scores, and outreach templates.
+  - : Capability to query search APIs and return structured search results.
+  - : Capability to extract information from web pages using DOM parsing.
+  - : Capability to query LinkedIn search results and format profile summaries.
 """
 
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 from crewai.tools import tool
 
-from crewai_tools import SerperDevTool, ScrapeWebsiteTool
 
 # ===========================================================
 # Tool Instances
 # ===========================================================
-tool_serperdev = SerperDevTool(name="Search API tool, configuration may include API key and search parameters (not included here).", note="Search API tool, configuration may include API key and search parameters (not included here).")
-tool_scrapewebsite = ScrapeWebsiteTool(name="Generic HTML scraping tool used to extract elements by CSS selectors.", note="Generic HTML scraping tool used to extract elements by CSS selectors.")
-# TODO: tool_linkedin — unknown tool class "RetrieveLinkedInprofiles"
+# TODO: tool_serperdev — unknown tool class "toolserperdev"
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-@tool("RetrieveLinkedInprofiles")
+@tool("toolserperdev")
+def tool_serperdev(*args, **kwargs) -> str:
+    """Search API tool for retrieving web search results."""
+    return "tool_serperdev result"
+
+# TODO: tool_scrape_website — unknown tool class "toolscrapewebsite"
+#   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
+@tool("toolscrapewebsite")
+def tool_scrape_website(*args, **kwargs) -> str:
+    """Tool for scraping and extracting structured information from websites."""
+    return "tool_scrape_website result"
+
+# TODO: tool_linkedin — unknown tool class "toollinkedin"
+#   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
+@tool("toollinkedin")
 def tool_linkedin(*args, **kwargs) -> str:
-    """Retrieve LinkedIn profiles given a list of skills. Input is a comma-separated list of skills. Return"""
+    """Custom LinkedIn retrieval tool that uses an authenticated browser session to find candidate profiles"""
     return "tool_linkedin result"
 
 
 
 
 @CrewBase
-class RecruitmentCrew:
-    """RecruitmentCrew crew"""
+class UnnamedProject:
+    """UnnamedProject crew"""
 
     agents_config = 'config/agents.yaml'
     tasks_config = 'config/tasks.yaml'
@@ -59,8 +60,8 @@ class RecruitmentCrew:
     def researcher(self) -> Agent:
         return Agent(
             config=self.agents_config['researcher'],
-            tools=[tool_serperdev, tool_scrapewebsite, tool_linkedin],
-            allow_delegation=True,
+            tools=[tool_serperdev, tool_scrape_website, tool_linkedin],
+            allow_delegation=False,
             verbose=True,
         )
 
@@ -68,8 +69,8 @@ class RecruitmentCrew:
     def matcher(self) -> Agent:
         return Agent(
             config=self.agents_config['matcher'],
-            tools=[tool_serperdev, tool_scrapewebsite],
-            allow_delegation=True,
+            tools=[tool_serperdev, tool_scrape_website],
+            allow_delegation=False,
             verbose=True,
         )
 
@@ -77,8 +78,8 @@ class RecruitmentCrew:
     def communicator(self) -> Agent:
         return Agent(
             config=self.agents_config['communicator'],
-            tools=[tool_serperdev, tool_scrapewebsite],
-            allow_delegation=True,
+            tools=[tool_serperdev, tool_scrape_website],
+            allow_delegation=False,
             verbose=True,
         )
 
@@ -86,37 +87,37 @@ class RecruitmentCrew:
     def reporter(self) -> Agent:
         return Agent(
             config=self.agents_config['reporter'],
-            allow_delegation=True,
+            allow_delegation=False,
             verbose=True,
         )
 
     # ── Tasks ───────────────────────────────────────────
 
     @task
-    def research_candidates_task(self) -> Task:
+    def task_research_candidates(self) -> Task:
         return Task(
-            config=self.tasks_config['research_candidates_task'],
+            config=self.tasks_config['task_research_candidates'],
             agent=self.researcher(),
         )
 
     @task
-    def match_and_score_candidates_task(self) -> Task:
+    def task_match_and_score_candidates(self) -> Task:
         return Task(
-            config=self.tasks_config['match_and_score_candidates_task'],
+            config=self.tasks_config['task_match_and_score_candidates'],
             agent=self.matcher(),
         )
 
     @task
-    def outreach_strategy_task(self) -> Task:
+    def task_outreach_strategy(self) -> Task:
         return Task(
-            config=self.tasks_config['outreach_strategy_task'],
+            config=self.tasks_config['task_outreach_strategy'],
             agent=self.communicator(),
         )
 
     @task
-    def report_candidates_task(self) -> Task:
+    def task_report_candidates(self) -> Task:
         return Task(
-            config=self.tasks_config['report_candidates_task'],
+            config=self.tasks_config['task_report_candidates'],
             agent=self.reporter(),
         )
 
@@ -124,7 +125,7 @@ class RecruitmentCrew:
 
     @crew
     def crew(self) -> Crew:
-        """Creates the RecruitmentCrew"""
+        """Creates the UnnamedProject"""
         return Crew(
             agents=self.agents,
             tasks=self.tasks,

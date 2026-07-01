@@ -1,7 +1,7 @@
 {
   "name": "stockbroker",
   "version": "0.1.0",
-  "description": "",
+  "description": "Frontend trading system that displays portfolio data and enables trade execution.",
   "type": "module",
   "main": "src/mastra/index.ts",
   "scripts": {

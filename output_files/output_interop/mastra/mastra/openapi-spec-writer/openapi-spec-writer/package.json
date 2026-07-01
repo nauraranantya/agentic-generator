@@ -1,7 +1,7 @@
 {
   "name": "openapi-spec-writer",
   "version": "0.1.0",
-  "description": "The deployed Mastra system that coordinates agents, tools and workflows for generating OpenAPI specs and creating PRs.",
+  "description": "Mastra instance configured in src/mastra/index.ts (serviceName: mastra-vnext).",
   "type": "module",
   "main": "src/mastra/index.ts",
   "scripts": {
@@ -11,9 +11,7 @@
   },
   "dependencies": {
     "@mastra/core": "latest",
-    "zod": "^3.23.0",
-    "@mastra/memory": "latest",
-    "@mastra/libsql": "latest"
+    "zod": "^3.23.0"
   },
   "devDependencies": {
     "typescript": "^5.0.0",

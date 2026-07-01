@@ -1,3 +1,3 @@
 export { toolSerperdev } from './toolSerperdev'
-export { toolScrapewebsite } from './toolScrapewebsite'
+export { toolScrapeWebsite } from './toolScrapeWebsite'
 export { toolLinkedin } from './toolLinkedin'

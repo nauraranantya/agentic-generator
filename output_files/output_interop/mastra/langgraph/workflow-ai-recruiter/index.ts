@@ -12,17 +12,17 @@ const UnnamedProjectAnnotation = Annotation.Root({
 
 
 /**
- * Node: gatherCandidateInfo
- * Agent: recruiter_agent
+ * Node: gatherCandidateInfoTask
+ * Agent: mastra_llm
  */
-async function gatherCandidateInfo(state: typeof UnnamedProjectAnnotation.State) {
-  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
+async function gatherCandidateInfoTask(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Agent-level static instruction used as the recruiter's persona/instruction set for generation." +
-        "\nNode: gatherCandidateInfo",
+        "You are a workflow-processor." +
+        "\nNode: gatherCandidateInfoTask",
     },
     ...state.messages,
   ]);
@@ -30,17 +30,17 @@ async function gatherCandidateInfo(state: typeof UnnamedProjectAnnotation.State)
 }
 
 /**
- * Node: askAboutSpecialty
- * Agent: recruiter_agent
+ * Node: askAboutSpecialtyTask
+ * Agent: mastra_llm
  */
-async function askAboutSpecialty(state: typeof UnnamedProjectAnnotation.State) {
-  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
+async function askAboutSpecialtyTask(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Agent-level static instruction used as the recruiter's persona/instruction set for generation." +
-        "\nNode: askAboutSpecialty",
+        "You are a workflow-processor." +
+        "\nNode: askAboutSpecialtyTask",
     },
     ...state.messages,
   ]);
@@ -48,17 +48,17 @@ async function askAboutSpecialty(state: typeof UnnamedProjectAnnotation.State) {
 }
 
 /**
- * Node: askAboutRole
- * Agent: recruiter_agent
+ * Node: askAboutRoleTask
+ * Agent: mastra_llm
  */
-async function askAboutRole(state: typeof UnnamedProjectAnnotation.State) {
-  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
+async function askAboutRoleTask(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Agent-level static instruction used as the recruiter's persona/instruction set for generation." +
-        "\nNode: askAboutRole",
+        "You are a workflow-processor." +
+        "\nNode: askAboutRoleTask",
     },
     ...state.messages,
   ]);
@@ -66,17 +66,16 @@ async function askAboutRole(state: typeof UnnamedProjectAnnotation.State) {
 }
 
 const workflow = new StateGraph(UnnamedProjectAnnotation)
-  .addNode("gatherCandidateInfo", gatherCandidateInfo)
-  .addNode("askAboutSpecialty", askAboutSpecialty)
-  .addNode("askAboutRole", askAboutRole)
-  .addEdge(START, "gatherCandidateInfo")
-  .addEdge("gatherCandidateInfo", "askAboutSpecialty")
-  .addEdge("gatherCandidateInfo", "askAboutRole")
-  .addEdge("askAboutSpecialty", END)
-  .addEdge("askAboutRole", END)
+  .addNode("gatherCandidateInfoTask", gatherCandidateInfoTask)
+  .addNode("askAboutSpecialtyTask", askAboutSpecialtyTask)
+  .addNode("askAboutRoleTask", askAboutRoleTask)
+  .addEdge(START, "gatherCandidateInfoTask")
+  .addEdge("gatherCandidateInfoTask", "askAboutSpecialtyTask")
+  .addEdge("gatherCandidateInfoTask", "askAboutRoleTask")
+  .addEdge("askAboutSpecialtyTask", END)
+  .addEdge("askAboutRoleTask", END)
 ;
 
 export const graph = workflow.compile();
 graph.name = "UnnamedProject";
-// Workflow: candidate_workflow
-// Workflow: candidate-workflow
+// Workflow: candidate_workflow_pattern

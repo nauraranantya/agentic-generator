@@ -1,4 +1,4 @@
-# TravelAiSystemMastraexampleapp
+# UnnamedProject
 
 
 
@@ -34,7 +34,7 @@ npm run dev
 ## 📦 Project Structure
 
 ```
-TravelAiSystemMastraexampleapp/
+UnnamedProject/
 ├── src/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
@@ -42,15 +42,14 @@ TravelAiSystemMastraexampleapp/
 │       │   └── travelAgent.ts
 │       │   └── travelAnalyzer.ts
 │       ├── tools/             # Tool definitions
-│       │   └── searchFlightsTool.ts
-│       │   └── searchHotelsTool.ts
-│       │   └── searchAttractionsTool.ts
-│       │   └── searchAirbnbLocationTool.ts
-│       │   └── searchAirbnbTool.ts
+│       │   └── toolSearchFlights.ts
+│       │   └── toolSearchHotels.ts
+│       │   └── toolSearchAttractions.ts
+│       │   └── toolSearchAirbnbLocation.ts
+│       │   └── toolSearchAirbnb.ts
 │       └── workflows/         # Workflow definitions
-│           └── travelSubmissionWorkflow.ts
-│           └── airbnbFlowPattern.ts
-│           └── syncCsvWorkflow.ts
+│           └── workflowTravelSubmission.ts
+│           └── workflowSyncCsvData.ts
 ├── package.json
 ├── tsconfig.json
 └── .env.example
@@ -60,84 +59,79 @@ TravelAiSystemMastraexampleapp/
 
 ## 🤖 Agents
 
-### LLM Agent
+### travel agent
 
-- **ID:** `travel-agent`
-- **Model:** `openai/gpt-4.1`
-- **Tools:** searchFlightsTool, searchHotelsTool, searchAttractionsTool, searchAirbnbLocationTool, searchAirbnbTool
+- **ID:** `travelAgent`
+- **Model:** `openai/gpt-4o-mini`
+- **Tools:** toolSearchFlights, toolSearchHotels, toolSearchAttractions, toolSearchAirbnbLocation, toolSearchAirbnb
 
-Agent-level instruction used on agent initialization...
+You are travel agent....
 
-### LLM Agent
+### travel analyzer
 
 - **ID:** `travel-analyzer`
-- **Model:** `openai/gpt-4.1`
+- **Model:** `openai/gpt-4o-mini`
 
-Analyzer agent base instructions....
+You are travel analyzer....
 
 
 ---
 
 ## 🔧 Tools
 
-### Get Flight Info (searchFlights)
+### toolSearchFlights
 
 Fetches flight information for a given date range, origin and destination. Origin and Destination are Airport codes like DFW.AIRPORT or SEA.AIRPORT...
 
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/searchFlightsTool.ts`)
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolSearchFlights.ts`)
 
-### Search Hotels (searchHotels)
+### toolSearchHotels
 
 Searches for hotels in a specified location. Destination is a cityId like 20015732 for 20015733...
 
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/searchHotelsTool.ts`)
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolSearchHotels.ts`)
 
-### Search Attractions (searchAttractions)
+### toolSearchAttractions
 
 Searches for attractions in a specified location. Destination is a cityId like 20015732 for 20015733...
 
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/searchAttractionsTool.ts`)
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolSearchAttractions.ts`)
 
-### Search Airbnb Location (searchAirbnbLocation)
+### toolSearchAirbnbLocation
 
 Searches for Airbnb places in a specified location. Place is a city name like New York, NY...
 
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/searchAirbnbLocationTool.ts`)
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolSearchAirbnbLocation.ts`)
 
-### Search Airbnb (searchAirbnb)
+### toolSearchAirbnb
 
 Searches for Airbnb in a specified location. Place is a cityId like 20015732 for 20015733...
 
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/searchAirbnbTool.ts`)
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolSearchAirbnb.ts`)
 
 
 ---
 
 ## 🔄 Workflows
 
-### travel-submission
+### workflow_travel_submission
 
 
 
-**Steps:** 4
-1. Find Outbound Flight
-2. Find Return Flight
-3. Find Accommodation (Hotel or Airbnb)
-4. Find Attractions
+**Steps:** 6
+1. task_outbound_flight
+2. task_return_flight
+3. task_accommodation_hotels
+4. task_attraction
+5. task_airbnb_location
+6. task_accommodation_airbnb
 
-### airbnb-flow
-
-
-
-**Steps:** 1
-1. Find Accommodation (Hotel or Airbnb)
-
-### syncCsvData
+### workflow_sync_csv_data
 
 
 
 **Steps:** 1
-1. Sync CSV Data Task
+1. task_sync_csv_data
 
 
 ---

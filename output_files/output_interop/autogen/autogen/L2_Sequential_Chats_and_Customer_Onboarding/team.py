@@ -1,9 +1,11 @@
 """
 Auto-generated AutoGen Team: UnnamedProject
+Goals:
+  - : Gather customer's name and location.
+  - : Collect customer's preferences on news topics.
+  - : Provide engaging and fun content based on customer's info and topic preferences.
 Human Agents:
-  - customer_proxy_agent (customer_proxy)
-Resources:
-  - : Structured output expected from summary: JSON object of the form {'name': '', 'location': ''}.
+  - agent_customer_proxy_agent (customer_proxy)
 """
 
 from autogen_agentchat.agents import AssistantAgent
@@ -43,13 +45,13 @@ onboarding_personal_information_agent = AssistantAgent(
     model_client=model_client,
     system_message="""
 Role:
-personal_information_collector
+onboarding_personal_information
 
 Goal:
-personal_information_collector
+Gather customer's name and location.
 
 Background:
-You are a personal_information_collector.
+You are a onboarding_personal_information.
 """,
 )
 
@@ -59,13 +61,13 @@ onboarding_topic_preference_agent = AssistantAgent(
     model_client=model_client,
     system_message="""
 Role:
-topic_preference_collector
+onboarding_topic_preference
 
 Goal:
-topic_preference_collector
+Collect customer's preferences on news topics.
 
 Background:
-You are a topic_preference_collector.
+You are a onboarding_topic_preference.
 """,
 )
 
@@ -75,13 +77,13 @@ customer_engagement_agent = AssistantAgent(
     model_client=model_client,
     system_message="""
 Role:
-engagement_generator
+customer_engagement
 
 Goal:
-engagement_generator
+Provide engaging and fun content based on customer's info and topic preferences.
 
 Background:
-You are a engagement_generator.
+You are a customer_engagement.
 """,
 )
 
@@ -90,8 +92,8 @@ You are a engagement_generator.
 # Human Agents (UserProxy)
 # ==================================================
 
-customer_proxy_agent = UserProxyAgent(
-    name="customer_proxy_agent",
-    description="""customer_proxy""",
+agent_customer_proxy_agent = UserProxyAgent(
+    name="agent_customer_proxy_agent",
+    description="""customer_proxy """,
 )
 

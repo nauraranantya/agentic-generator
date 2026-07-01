@@ -1,4 +1,4 @@
-import { ChatAnthropic } from "@langchain/anthropic";
+import { ChatOpenAI } from "@langchain/openai";
 import { Annotation, START, END, StateGraph } from "@langchain/langgraph";
 import { tool } from "@langchain/core/tools";
 import { z } from "zod";
@@ -17,7 +17,7 @@ const get_random_image_tool = tool(
   },
   {
     name: "get_random_image_tool",
-    description: "Tool that queries Unsplash and returns a single image object selected from search results. Implemented in the code using a GET to https://api.unsplash.com/search/photos with a query param and optional paging/randomization.",
+    description: "Gets a random image from unsplash based on the selected option",
     schema: z.object({}),
   }
 );
@@ -25,17 +25,17 @@ const get_random_image_tool = tool(
 
 
 /**
- * Node: fetchRandomImageTask
- * Agent: bird_checker
+ * Node: getImageTask
+ * Agent: bird_agent
  */
-async function fetchRandomImageTask(state: typeof UnnamedProjectAnnotation.State) {
-  const model = new ChatAnthropic({ model: "claude-3-haiku-20240307" });
+async function getImageTask(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Agent instruction and purpose" +
-        "\nNode: fetchRandomImageTask",
+        "You are a Bird checker." +
+        "\nNode: getImageTask",
     },
     ...state.messages,
   ]);
@@ -43,17 +43,17 @@ async function fetchRandomImageTask(state: typeof UnnamedProjectAnnotation.State
 }
 
 /**
- * Node: analyzeImageAndProduceBirdMetadata
- * Agent: bird_checker
+ * Node: birdCheckTask
+ * Agent: bird_agent
  */
-async function analyzeImageAndProduceBirdMetadata(state: typeof UnnamedProjectAnnotation.State) {
-  const model = new ChatAnthropic({ model: "claude-3-haiku-20240307" });
+async function birdCheckTask(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Agent instruction and purpose" +
-        "\nNode: analyzeImageAndProduceBirdMetadata",
+        "You are a Bird checker." +
+        "\nNode: birdCheckTask",
     },
     ...state.messages,
   ]);
@@ -61,14 +61,12 @@ async function analyzeImageAndProduceBirdMetadata(state: typeof UnnamedProjectAn
 }
 
 const workflow = new StateGraph(UnnamedProjectAnnotation)
-  .addNode("fetchRandomImageTask", fetchRandomImageTask)
-  .addNode("analyzeImageAndProduceBirdMetadata", analyzeImageAndProduceBirdMetadata)
-  .addEdge(START, "fetchRandomImageTask")
-  .addEdge("fetchRandomImageTask", "analyzeImageAndProduceBirdMetadata")
-  .addEdge("analyzeImageAndProduceBirdMetadata", END)
+  .addNode("getImageTask", getImageTask)
+  .addNode("birdCheckTask", birdCheckTask)
+  .addEdge(START, "getImageTask")
+  .addEdge("getImageTask", "birdCheckTask")
 ;
 
 export const graph = workflow.compile();
 graph.name = "UnnamedProject";
 // Workflow: bird_checker_workflow
-// Workflow: Bird Checker workflow pattern

@@ -3,22 +3,26 @@ dane:
   goal: assistant
   backstory: You are a assistant.
 dane_commit_message:
-  role: LLM Agent
-  goal: LLM Agent
-  backstory: You are a LLM Agent.
+  role: commit_message_generator
+  goal: commit_message_generator
+  backstory: You are a commit_message_generator.
 dane_issue_labeler:
-  role: LLM Agent
-  goal: LLM Agent
-  backstory: You are a LLM Agent.
+  role: issue_labeler
+  goal: issue_labeler
+  backstory: You are a issue_labeler.
 dane_link_checker:
-  role: LLM Agent
-  goal: LLM Agent
-  backstory: You are a LLM Agent.
-dane_package_publisher:
-  role: LLM Agent
-  goal: LLM Agent
-  backstory: You are a LLM Agent.
+  role: link_checker
+  goal: link_checker
+  backstory: You are a link_checker.
+dane_change_log:
+  role: changelog_writer
+  goal: changelog_writer
+  backstory: You are a changelog_writer.
 dane_new_contributor:
-  role: LLM Agent
-  goal: LLM Agent
-  backstory: You are a LLM Agent.
+  role: new_contributor_messaging
+  goal: new_contributor_messaging
+  backstory: You are a new_contributor_messaging.
+dane_package_publisher:
+  role: package_publisher
+  goal: package_publisher
+  backstory: You are a package_publisher.

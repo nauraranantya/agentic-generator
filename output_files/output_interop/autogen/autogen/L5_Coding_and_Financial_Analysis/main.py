@@ -1,8 +1,8 @@
 import asyncio
 
 from team import (
-    code_executor_agent,
     code_writer_agent,
+    code_executor_agent,
 )
 
 from autogen_agentchat.conditions import (
@@ -11,10 +11,6 @@ from autogen_agentchat.conditions import (
 
 INPUTS = {
 
-
-    "today":
-        "",
-
 }
 
 
@@ -22,16 +18,33 @@ async def main():
     try:
         # Step-by-step sequential execution
         # ==================================================
-        # Workflow Step: stock_analysis_ytd_stock_gain_plot
-        # Workflow Edge: stock_analysis_ytd_stock_gain_plot -> stock_analysis_ytd_stock_gain_plot
+        # Workflow Step: task_plot_ytd_v1
+        # Workflow Edge: task_plot_ytd_v1 -> task_plot_ytd_v2
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: stock_analysis_ytd_stock_gain_plot")
+        print("Executing step: task_plot_ytd_v1")
         print("=" * 80)
 
-        task_prompt = """Today is {today}. Create a plot showing stock gain YTD for NVDA and TLSA. Make sure the code is in markdown code block and save the figure to a file ytd_stock_gains.png."""
-        # Execute via the assigned agent: code_writer_agent
-        result = await code_writer_agent.run(task=task_prompt)
+        task_prompt = """Initiated by code_executor_agent to request code from code_writer_agent (Chinese message). """
+        # Execute via the assigned agent: code_executor_agent
+        result = await code_executor_agent.run(task=task_prompt)
+
+        # Print step output
+        if hasattr(result, "messages") and result.messages:
+            print(result.messages[-1].content)
+        else:
+            print(result)
+
+        # ==================================================
+        # Workflow Step: task_plot_ytd_v2
+        # ==================================================
+        print("\n" + "=" * 80)
+        print("Executing step: task_plot_ytd_v2")
+        print("=" * 80)
+
+        task_prompt = """Initiated by code_executor_agent to request code from code_writer_agent (English message about downloading and plotting YTD stock prices). """
+        # Execute via the assigned agent: code_executor_agent
+        result = await code_executor_agent.run(task=task_prompt)
 
         # Print step output
         if hasattr(result, "messages") and result.messages:

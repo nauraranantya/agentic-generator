@@ -1,7 +1,7 @@
 [project]
 name = "unnamed_project"
 version = "0.1.0"
-description = "The Mastra system instance created in src/mastra/index.ts that composes agents a"
+description = "Mastra instance constructed in src/mastra/index.ts with a single agent 'ycAgent'"
 authors = [{name = "Your Name", email = "you@example.com"}]
 readme = "README.md"
 requires-python = ">=3.10,<=3.13"
@@ -11,8 +11,7 @@ dependencies = [
     "python-dotenv>=1.0.1",
     "pyyaml>=6.0.1",
     "anthropic>=0.60.0",
-    # TODO: add PyPI package for custom tool "ycdirectorytool"
-    # TODO: add PyPI package for custom tool "mastraevalsrunner"
+    # TODO: add PyPI package for custom tool "YCDirectoryTool"
 ]
 
 [project.scripts]

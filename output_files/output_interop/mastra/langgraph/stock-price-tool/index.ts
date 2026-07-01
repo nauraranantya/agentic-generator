@@ -17,7 +17,7 @@ const stock_prices_tool = tool(
   },
   {
     name: "stock_prices_tool",
-    description: "Fetches the last day's closing stock price for a given symbol. Source tool implementation uses an HTTP fetch to https://mastra-stock-data.vercel.app/api/stock-data?symbol={symbol} and returns { symbol, currentPrice } with currentPrice mapped from data.prices['4. close'].",
+    description: "Fetches the last day's closing stock price for a given symbol",
     schema: z.object({}),
   }
 );
@@ -25,17 +25,71 @@ const stock_prices_tool = tool(
 
 
 /**
- * Node: fetchStockPriceForSymbolAaplExample
+ * Node: taskInit
  * Agent: stock_agent
  */
-async function fetchStockPriceForSymbolAaplExample(state: typeof UnnamedProjectAnnotation.State) {
-  const model = new ChatOpenAI({ model: "gpt-4o" });
+async function taskInit(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Agent-level instruction used as the LLM system prompt / persona." +
-        "\nNode: fetchStockPriceForSymbolAaplExample",
+        "You are a assistant." +
+        "\nNode: taskInit",
+    },
+    ...state.messages,
+  ]);
+  return { messages: [response] };
+}
+
+/**
+ * Node: taskQuery
+ * Agent: stock_agent
+ */
+async function taskQuery(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
+  const response = await model.invoke([
+    {
+      role: "system",
+      content:
+        "You are a assistant." +
+        "\nNode: taskQuery",
+    },
+    ...state.messages,
+  ]);
+  return { messages: [response] };
+}
+
+/**
+ * Node: taskToolCall
+ * Agent: stock_agent
+ */
+async function taskToolCall(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
+  const response = await model.invoke([
+    {
+      role: "system",
+      content:
+        "You are a assistant." +
+        "\nNode: taskToolCall",
+    },
+    ...state.messages,
+  ]);
+  return { messages: [response] };
+}
+
+/**
+ * Node: taskEnd
+ * Agent: stock_agent
+ */
+async function taskEnd(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
+  const response = await model.invoke([
+    {
+      role: "system",
+      content:
+        "You are a assistant." +
+        "\nNode: taskEnd",
     },
     ...state.messages,
   ]);
@@ -43,11 +97,17 @@ async function fetchStockPriceForSymbolAaplExample(state: typeof UnnamedProjectA
 }
 
 const workflow = new StateGraph(UnnamedProjectAnnotation)
-  .addNode("fetchStockPriceForSymbolAaplExample", fetchStockPriceForSymbolAaplExample)
-  .addEdge(START, "fetchStockPriceForSymbolAaplExample")
+  .addNode("taskInit", taskInit)
+  .addNode("taskQuery", taskQuery)
+  .addNode("taskToolCall", taskToolCall)
+  .addNode("taskEnd", taskEnd)
+  .addEdge(START, "taskInit")
+  .addEdge("taskInit", "taskQuery")
+  .addEdge("taskQuery", "taskToolCall")
+  .addEdge("taskToolCall", "taskEnd")
+  .addEdge("taskEnd", END)
 ;
 
 export const graph = workflow.compile();
 graph.name = "UnnamedProject";
-// Workflow: fetch_stock_price_pattern
-// Workflow: Fetch Stock Price Pattern
+// Workflow: stock_workflow

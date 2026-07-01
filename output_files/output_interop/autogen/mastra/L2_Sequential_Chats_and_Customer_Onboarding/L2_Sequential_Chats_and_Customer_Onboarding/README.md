@@ -44,7 +44,7 @@ UnnamedProject/
 │       │   └── customerEngagementAgent.ts
 │       ├── tools/             # Tool definitions
 │       └── workflows/         # Workflow definitions
-│           └── customerOnboardingWorkflow.ts
+│           └── onboardingWorkflow.ts
 ├── package.json
 ├── tsconfig.json
 └── .env.example
@@ -54,26 +54,26 @@ UnnamedProject/
 
 ## 🤖 Agents
 
-### personal_information_collector
+### onboarding_personal_information
 
-- **ID:** `onboarding_personal_information_agent`
-- **Model:** `openai/gpt-3.5-turbo`
+- **ID:** `Onboarding Personal Information Agent`
+- **Model:** `openai/gpt-4o-mini`
 
-You are personal_information_collector....
+Gather customer's name and location....
 
-### topic_preference_collector
+### onboarding_topic_preference
 
-- **ID:** `onboarding_topic_preference_agent`
-- **Model:** `openai/gpt-3.5-turbo`
+- **ID:** `Onboarding Topic preference Agent`
+- **Model:** `openai/gpt-4o-mini`
 
-You are topic_preference_collector....
+Collect customer's preferences on news topics....
 
-### engagement_generator
+### customer_engagement
 
-- **ID:** `customer_engagement_agent`
-- **Model:** `openai/gpt-3.5-turbo`
+- **ID:** `Customer Engagement Agent`
+- **Model:** `openai/gpt-4o-mini`
 
-You are engagement_generator....
+Provide engaging and fun content based on customer's info and topic preferences....
 
 
 ---
@@ -86,14 +86,14 @@ No tools defined in this project.
 
 ## 🔄 Workflows
 
-### customer_onboarding_workflow
+### onboarding_workflow
 
-A workflow pattern composed of three sequential chat steps to onboard a customer: (1) collect personal info, (2) collect topic preferences, (3) request engagement content.
+
 
 **Steps:** 3
-1. task_collect_personal_info
-2. task_collect_topic_preferences
-3. task_customer_proxy_to_engagement
+1. task_onboarding_personal_info
+2. task_onboarding_topic_preference
+3. task_customer_engagement_request
 
 
 ---

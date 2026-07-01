@@ -1,17 +1,13 @@
 """
-Auto-generated CrewAI Crew: Chessplayersteam
+Auto-generated CrewAI Crew: UnnamedProject
 
 Source  : AgentO Knowledge Graph → SPARQL → Pydantic → Jinja2
 Pipeline: 3-Layer Conversion Pipeline
-Environments:
-  - Chess Environment (): 
+Goals:
+  - : Team-level goal: have the agents play a game of chess via conversational tool calls.
 Capabilities:
-  - Play chess: General capability to select and execute chess moves.
-  - Request legal moves: Capability to request the current legal moves from the board.
-  - Make move: Capability to request the board to apply a move in UCI format and update the board state.
-Resources:
-  - Chess board (initial state): 
-  - Legal moves list (UCI format): 
+  - : Provides legal moves for the current chess position.
+  - : Apply a move to the board and update board state; produce descriptive move result.
 """
 
 from crewai import Agent, Crew, Process, Task
@@ -22,33 +18,26 @@ from crewai.tools import tool
 # ===========================================================
 # Tool Instances
 # ===========================================================
-# TODO: board_proxy — unknown tool class "BoardProxyexecutoragenttool"
+# TODO: tool_get_legal_moves — unknown tool class "toolgetlegalmoves"
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-@tool("BoardProxyexecutoragenttool")
-def board_proxy(*args, **kwargs) -> str:
-    """A conversational proxy agent that executes board-related tools (get_legal_moves, make_move). Created"""
-    return "board_proxy result"
-
-# TODO: tool_get_legal_moves — unknown tool class "getlegalmovestool"
-#   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-@tool("getlegalmovestool")
+@tool("toolgetlegalmoves")
 def tool_get_legal_moves(*args, **kwargs) -> str:
-    """Registered tool name: 'get_legal_moves'. Description: Get legal moves. Returns a comma-separated lis"""
+    """Returns a list of legal moves in UCI format for the current chess board state."""
     return "tool_get_legal_moves result"
 
-# TODO: tool_make_move — unknown tool class "makemovetool"
+# TODO: tool_make_move — unknown tool class "toolmakemove"
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-@tool("makemovetool")
+@tool("toolmakemove")
 def tool_make_move(*args, **kwargs) -> str:
-    """Registered tool name: 'make_move'. Description: apply a move in UCI format to the ChessBoard. Parame"""
+    """Executes a move on the chess board in UCI format and returns a human-readable result string."""
     return "tool_make_move result"
 
 
 
 
 @CrewBase
-class Chessplayersteam:
-    """Chessplayersteam crew"""
+class UnnamedProject:
+    """UnnamedProject crew"""
 
     agents_config = 'config/agents.yaml'
     tasks_config = 'config/tasks.yaml'
@@ -59,40 +48,64 @@ class Chessplayersteam:
     def player_white(self) -> Agent:
         return Agent(
             config=self.agents_config['player_white'],
+            tools=[tool_get_legal_moves, tool_make_move],
         )
 
     @agent
     def player_black(self) -> Agent:
         return Agent(
             config=self.agents_config['player_black'],
+            tools=[tool_get_legal_moves, tool_make_move],
+        )
+
+    @agent
+    def board_proxy(self) -> Agent:
+        return Agent(
+            config=self.agents_config['board_proxy'],
         )
 
     # ── Tasks ───────────────────────────────────────────
 
     @task
-    def task_initiate_chat_black_white(self) -> Task:
+    def task_initiate_chat(self) -> Task:
         return Task(
-            config=self.tasks_config['task_initiate_chat_black_white'],
+            config=self.tasks_config['task_initiate_chat'],
+            agent=self.player_black(),
         )
 
     @task
-    def task_make_move(self) -> Task:
+    def task_board_proxy_summary_to_white(self) -> Task:
         return Task(
-            config=self.tasks_config['task_make_move'],
+            config=self.tasks_config['task_board_proxy_summary_to_white'],
+            agent=self.board_proxy(),
         )
 
     @task
     def task_get_legal_moves(self) -> Task:
         return Task(
             config=self.tasks_config['task_get_legal_moves'],
-            context=[self.task_make_move()],
+            agent=self.player_white(),
+        )
+
+    @task
+    def task_make_move(self) -> Task:
+        return Task(
+            config=self.tasks_config['task_make_move'],
+            agent=self.player_white(),
+        )
+
+    @task
+    def task_check_made_move(self) -> Task:
+        return Task(
+            config=self.tasks_config['task_check_made_move'],
+            agent=self.board_proxy(),
         )
 
     # ── Crew ────────────────────────────────────────────
 
     @crew
     def crew(self) -> Crew:
-        """Creates the Chessplayersteam"""
+        """Creates the UnnamedProject"""
         return Crew(
             agents=self.agents,
             tasks=self.tasks,

@@ -54,7 +54,7 @@ def local_cmd_executor_tool_impl(
 
 local_cmd_executor_tool = FunctionTool(
     local_cmd_executor_tool_impl,
-    description="""Local command-line code executor used to run code with timeout and working directory."""
+    description="""Local command-line code executor used to run code with timeout and working directory. """
 )
 
 

@@ -1,6 +1,6 @@
-# AiCrewforscreenwriting
+# UnnamedProject
 
-Team that orchestrates the sequence of agents to convert a newsgroup post into a formatted screenplay.
+Crew.ai based crew that analyses a discussion, turns it into screenplay dialogue and formats it.
 
 **Auto-generated from AgentO Knowledge Graph**  
 Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
@@ -34,7 +34,7 @@ npm run dev
 ## 📦 Project Structure
 
 ```
-AiCrewforscreenwriting/
+UnnamedProject/
 ├── src/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
@@ -45,8 +45,11 @@ AiCrewforscreenwriting/
 │       │   └── formatter.ts
 │       │   └── scorer.ts
 │       ├── tools/             # Tool definitions
+│       │   └── mistralTool.ts
+│       │   └── togetherTool.ts
+│       │   └── anyscaleTool.ts
 │       └── workflows/         # Workflow definitions
-│           └── workflowPatternScreenplay.ts
+│           └── crewSequentialWorkflow.ts
 ├── package.json
 ├── tsconfig.json
 └── .env.example
@@ -60,56 +63,78 @@ AiCrewforscreenwriting/
 
 - **ID:** `spamfilter`
 - **Model:** `openai/gpt-4o-mini`
+- **Tools:** mistralTool, togetherTool, anyscaleTool
 
-role: spamfilter; goal: Decide whether a text is spam or not.; backstory: You are an expert spam filter with years of experience. You DETEST advertisements, newsletters and vulgar language....
+You are spamfilter....
 
 ### analyse
 
 - **ID:** `analyst`
 - **Model:** `openai/gpt-4o-mini`
+- **Tools:** mistralTool, togetherTool, anyscaleTool
 
-role: analyse; goal: Distill arguments and identify who said what; backstory: Expert discussion analyst....
+You are analyse....
 
 ### scriptwriter
 
 - **ID:** `scriptwriter`
 - **Model:** `openai/gpt-4o-mini`
+- **Tools:** mistralTool, togetherTool, anyscaleTool
 
-role: scriptwriter; goal: Produce dialogue-only screenplay; backstory: hates directional notes...
+You are scriptwriter....
 
 ### formatter
 
 - **ID:** `formatter`
 - **Model:** `openai/gpt-4o-mini`
+- **Tools:** mistralTool, togetherTool, anyscaleTool
 
-role: formatter; goal: Format text and remove bracketed actions; backstory: expert text formatter....
+You are formatter....
 
 ### scorer
 
 - **ID:** `scorer`
 - **Model:** `openai/gpt-4o-mini`
+- **Tools:** mistralTool, togetherTool, anyscaleTool
 
-role: scorer; goal: Score dialogue 1-10; backstory: scoring expert...
+You are scorer....
 
 
 ---
 
 ## 🔧 Tools
 
-No tools defined in this project.
+### mistralTool
+
+Official Mistral LLM API endpoint (optional selection in script)....
+
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/mistralTool.ts`)
+
+### togetherTool
+
+Together.ai models endpoint (optional selection in script)....
+
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/togetherTool.ts`)
+
+### anyscaleTool
+
+Anyscale models endpoint (optional selection in script)....
+
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/anyscaleTool.ts`)
+
 
 ---
 
 ## 🔄 Workflows
 
-### screenplay_creation_sequential
+### crew_sequential_workflow
 
-Workflow pattern that sequentially runs analysis, scriptwriting, and formatting tasks, passing output to the next step.
+Sequential process executing tasks in order: analysis -> scriptwriting -> formatting.
 
 **Steps:** 3
-1. task1: analysis
-2. task2: scriptwriting
-3. task3: formatting
+1. task1
+2. task2
+3. task3
 
 
 ---

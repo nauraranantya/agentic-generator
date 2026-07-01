@@ -1,6 +1,6 @@
 /**
- * Agent: personal_information_collector
- * ID: onboarding_personal_information_agent
+ * Agent: onboarding_personal_information
+ * ID: Onboarding Personal Information Agent
  * 
  * Auto-generated from AgentO Knowledge Graph
  */
@@ -8,14 +8,14 @@
 import { Agent } from '@mastra/core/agent'
 
 /**
- * personal_information_collector
+ * onboarding_personal_information
  * 
  * Instructions:
- * You are personal_information_collector.
+ * Gather customer's name and location.
  */
 export const onboardingPersonalInformationAgent = new Agent({
-  id: `onboarding_personal_information_agent`,
-  name: `personal_information_collector`,
-  instructions: `You are personal_information_collector.`,
-  model: 'openai/gpt-3.5-turbo',
+  id: `Onboarding Personal Information Agent`,
+  name: `onboarding_personal_information`,
+  instructions: `Gather customer's name and location.`,
+  model: 'openai/gpt-4o-mini',
 })

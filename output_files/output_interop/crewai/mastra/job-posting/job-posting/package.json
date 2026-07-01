@@ -1,7 +1,7 @@
 {
   "name": "job-posting",
   "version": "0.1.0",
-  "description": "",
+  "description": "CrewAI crew that orchestrates agents to create job postings",
   "type": "module",
   "main": "src/mastra/index.ts",
   "scripts": {

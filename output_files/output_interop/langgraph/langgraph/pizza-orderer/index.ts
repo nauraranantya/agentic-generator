@@ -10,25 +10,25 @@ const UnnamedProjectAnnotation = Annotation.Root({
   }),
 });
 
-// Tool: tool_pizza_finder
-const tool_pizza_finder = tool(
+// Tool: find_pizza_tool
+const find_pizza_tool = tool(
   async () => {
-    return "Result of tool_pizza_finder";
+    return "Result of find_pizza_tool";
   },
   {
-    name: "tool_pizza_finder",
-    description: "Represents the external lookup mechanism that returns store contact information. In code this is emulated by constructing a ToolMessage with found shop details.",
+    name: "find_pizza_tool",
+    description: "Tool invoked to search for a pizza shop and return address and phone number.",
     schema: z.object({}),
   }
 );
-// Tool: tool_pizza_ordering_system
-const tool_pizza_ordering_system = tool(
+// Tool: place_order_tool
+const place_order_tool = tool(
   async () => {
-    return "Result of tool_pizza_ordering_system";
+    return "Result of place_order_tool";
   },
   {
-    name: "tool_pizza_ordering_system",
-    description: "Represents the external ordering mechanism that places the pizza order and returns confirmation. In code this is emulated by constructing a ToolMessage 'Pizza order successfully placed.'.",
+    name: "place_order_tool",
+    description: "Tool invoked to place a pizza order and confirm success.",
     schema: z.object({}),
   }
 );
@@ -36,17 +36,17 @@ const tool_pizza_ordering_system = tool(
 
 
 /**
- * Node: findPizzaShopTask
- * Agent: pizza_orderer_v1
+ * Node: findStoreTask
+ * Agent: langgraph_anthropic_agent
  */
-async function findPizzaShopTask(state: typeof UnnamedProjectAnnotation.State) {
+async function findStoreTask(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatAnthropic({ model: "claude-3-5-sonnet-latest" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "General system role description used by both nodes as the system message." +
-        "\nNode: findPizzaShopTask",
+        "You are a assistant." +
+        "\nNode: findStoreTask",
     },
     ...state.messages,
   ]);
@@ -54,17 +54,17 @@ async function findPizzaShopTask(state: typeof UnnamedProjectAnnotation.State) {
 }
 
 /**
- * Node: placePizzaOrderTask
- * Agent: pizza_orderer_v1
+ * Node: orderPizzaTask
+ * Agent: langgraph_anthropic_agent
  */
-async function placePizzaOrderTask(state: typeof UnnamedProjectAnnotation.State) {
+async function orderPizzaTask(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatAnthropic({ model: "claude-3-5-sonnet-latest" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "General system role description used by both nodes as the system message." +
-        "\nNode: placePizzaOrderTask",
+        "You are a assistant." +
+        "\nNode: orderPizzaTask",
     },
     ...state.messages,
   ]);
@@ -72,14 +72,13 @@ async function placePizzaOrderTask(state: typeof UnnamedProjectAnnotation.State)
 }
 
 const workflow = new StateGraph(UnnamedProjectAnnotation)
-  .addNode("findPizzaShopTask", findPizzaShopTask)
-  .addNode("placePizzaOrderTask", placePizzaOrderTask)
-  .addEdge(START, "findPizzaShopTask")
-  .addEdge("findPizzaShopTask", "placePizzaOrderTask")
-  .addEdge("placePizzaOrderTask", END)
+  .addNode("findStoreTask", findStoreTask)
+  .addNode("orderPizzaTask", orderPizzaTask)
+  .addEdge(START, "findStoreTask")
+  .addEdge("findStoreTask", "orderPizzaTask")
+  .addEdge("orderPizzaTask", END)
 ;
 
 export const graph = workflow.compile();
 graph.name = "UnnamedProject";
-// Workflow: order_pizza_graph
-// Workflow: Order Pizza Graph
+// Workflow: order_pizza_state_graph

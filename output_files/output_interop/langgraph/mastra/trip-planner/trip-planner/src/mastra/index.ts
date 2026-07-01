@@ -16,6 +16,7 @@ import { tripPlannerWorkflow } from './workflows'
 /**
  * Mastra instance with registered agents, workflows, and memory.
  *
+ * Team representing the LangGraph-backed trip planner UI and backend flows.
  */
 export const mastra = new Mastra({
   agents: {

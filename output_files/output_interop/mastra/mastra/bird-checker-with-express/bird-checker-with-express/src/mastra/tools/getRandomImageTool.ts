@@ -3,7 +3,7 @@
  * 
  * Auto-generated from AgentO Knowledge Graph
  * 
- * Gets a random image from Unsplash based on selected query option. Random page selection and order_by ('relevant' or 'latest') logic is applied at runtime.
+ * Gets a random image from Unsplash based on the selected option
  */
 
 import { createTool } from '@mastra/core/tools'
@@ -12,19 +12,19 @@ import { z } from 'zod'
 /**
  * getRandomImageTool
  * 
- * Implementation: Gets a random image from Unsplash based on selected query option. Random page selection and order_by ('relevant' or 'latest') logic is applied at runtime.
+ * Implementation: Gets a random image from Unsplash based on the selected option
  */
 export const getRandomImageTool = createTool({
   id: 'getRandomImageTool',
-  description: `Gets a random image from Unsplash based on selected query option. Random page selection and order_by ('relevant' or 'latest') logic is applied at runtime.`,
-  inputSchema: z.object({type: z.string(), values: z.array(z.string())}),
+  description: `Gets a random image from Unsplash based on the selected option`,
+  inputSchema: z.object({}),  // TODO: Define input schema
   outputSchema: z.object({}),  // TODO: Define output schema
   execute: async ({ inputData }) => {
     // TODO: Implement tool logic
     // 
-    // Description: Gets a random image from Unsplash based on selected query option. Random page selection and order_by ('relevant' or 'latest') logic is applied at runtime.
+    // Description: Gets a random image from Unsplash based on the selected option
     // Configurations:
-    //   - inputSchema: {"type":"enum","values":["wildlife","feathers","flying","birds"]}
+    //   - UNSPLASH_ACCESS_KEY: ENV_UNSPLASH_ACCESS_KEY (placeholder)
     // 
     // Implementation should:
     // 1. Use inputData according to inputSchema

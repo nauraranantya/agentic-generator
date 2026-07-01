@@ -1,15 +1,12 @@
 """
 Auto-generated AutoGen Team: UnnamedProject
 Goals:
-  - : Top-level goal: identify and rank job opportunities for a given CV.
-Objectives:
-  - : Objective for producing a structured summary of the given CV.
-  - : Objective for producing a ranked list of job matches for the candidate.
-Resources:
-  - : CV markdown file provided as input
-  - : CSV file listing job opportunities
-  - : Structured summary of the CV produced by read_cv_task; includes Professional Summary, Technical Skills, Work History, Education, Key Achievements.
-  - : A ranked list of job opportunities that best match the CV, produced by match_cv_task; includes Job Title, Match Score, Key Matching Points.
+  - : Extract relevant information from the CV, such as skills, experience, and education.
+  - : Match the CV to the job opportunities based on skills, experience, and key achievements.
+  - : Overall objective for the crew: automate the matching of candidate CVs to job proposals.
+Capabilities:
+  - : Capability to read file contents from disk.
+  - : Capability to search and query CSV-formatted job listings.
 """
 
 from autogen_agentchat.agents import AssistantAgent
@@ -38,72 +35,49 @@ model_client = OpenAIChatCompletionClient(
 # ==================================================
 
 
-def file_read_tool_impl(
+def tool_file_read_impl(
     query: str = ""
 ) -> str:
     """
     AgentO Tool:
-    file_read_tool
+    tool_file_read
 
     Description:
-    Tool used to read file contents (used by cv_reader and matcher).
+    Tool to read file contents (used to read CV and other files).
     """
     return (
-        "Tool 'file_read_tool' "
+        "Tool 'tool_file_read' "
         "is a generated stub and "
         "has not been implemented yet."
     )
 
 
-file_read_tool = FunctionTool(
-    file_read_tool_impl,
-    description="""Tool used to read file contents (used by cv_reader and matcher)."""
+tool_file_read = FunctionTool(
+    tool_file_read_impl,
+    description="""Tool to read file contents (used to read CV and other files). """
 )
 
 
-def csv_search_tool_impl(
+def tool_csv_search_impl(
     query: str = ""
 ) -> str:
     """
     AgentO Tool:
-    csv_search_tool
+    tool_csv_search
 
     Description:
-    Tool used to search and parse CSV job listings (used by matcher).
+    Tool to search and query CSV files for matching job opportunities.
     """
     return (
-        "Tool 'csv_search_tool' "
+        "Tool 'tool_csv_search' "
         "is a generated stub and "
         "has not been implemented yet."
     )
 
 
-csv_search_tool = FunctionTool(
-    csv_search_tool_impl,
-    description="""Tool used to search and parse CSV job listings (used by matcher)."""
-)
-
-
-def my_custom_tool_impl(
-    query: str = ""
-) -> str:
-    """
-    AgentO Tool:
-    my_custom_tool
-
-    Description:
-    Custom tool implemented at src/match_to_proposal/tools/job_db_connect.py. Placeholder for an external DB connector. Implementation-specific behavior not modeled.
-    """
-    return (
-        "Tool 'my_custom_tool' "
-        "is a generated stub and "
-        "has not been implemented yet."
-    )
-
-
-my_custom_tool = FunctionTool(
-    my_custom_tool_impl,
-    description="""Custom tool implemented at src/match_to_proposal/tools/job_db_connect.py. Placeholder for an external DB connector. Implementation-specific behavior not modeled."""
+tool_csv_search = FunctionTool(
+    tool_csv_search_impl,
+    description="""Tool to search and query CSV files for matching job opportunities. """
 )
 
 
@@ -120,10 +94,10 @@ Role:
 CV Reader
 
 Goal:
-CV Reader
+Extract relevant information from the CV, such as skills, experience, and education.
 
 Background:
-Agent-level prompt to orient behavior. Use FileReadTool to access CV file. Produce a structured CV summary.
+You are a CV Reader.
 """,
 )
 
@@ -136,10 +110,10 @@ Role:
 Matcher
 
 Goal:
-Matcher
+Match the CV to the job opportunities based on skills, experience, and key achievements.
 
 Background:
-Agent-level prompt to orient behavior. Use CSVSearchTool and FileReadTool to access jobs CSV and CV summary.
+You are a Matcher.
 """,
 )
 

@@ -1,6 +1,6 @@
 # UnnamedProject
 
-The runtime/host system that registers and exposes agents (in source: new Mastra({ agents: { stockAgent } })). This representation models the system logically as a Team that contains agent members and workflow patterns.
+
 
 **Auto-generated from AgentO Knowledge Graph**  
 Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
@@ -43,7 +43,7 @@ UnnamedProject/
 │       ├── tools/             # Tool definitions
 │       │   └── stockPricesTool.ts
 │       └── workflows/         # Workflow definitions
-│           └── fetchStockPricePattern.ts
+│           └── stockWorkflow.ts
 ├── package.json
 ├── tsconfig.json
 └── .env.example
@@ -53,22 +53,22 @@ UnnamedProject/
 
 ## 🤖 Agents
 
-### price_provider
+### assistant
 
-- **ID:** `stock-agent`
-- **Model:** `openai/gpt-4o`
+- **ID:** `Stock Agent`
+- **Model:** `openai/gpt-4o-mini`
 - **Tools:** stockPricesTool
 
-Agent-level instruction used as the LLM system prompt / persona....
+You are assistant....
 
 
 ---
 
 ## 🔧 Tools
 
-### Get Stock Price (stockPrices)
+### stockPricesTool
 
-Fetches the last day's closing stock price for a given symbol. Source tool implementation uses an HTTP fetch to https://mastra-stock-data.vercel.app/api/stock-data?symbol={symbol} and returns { symbol...
+Fetches the last day's closing stock price for a given symbol...
 
 **Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/stockPricesTool.ts`)
 
@@ -77,12 +77,15 @@ Fetches the last day's closing stock price for a given symbol. Source tool imple
 
 ## 🔄 Workflows
 
-### Fetch Stock Price Pattern
+### stock_workflow
 
-A simple workflow pattern that accepts a stock-symbol query, has the agent generate and delegate to the stockPrices tool, and produces a numeric price as output.
 
-**Steps:** 1
-1. Fetch stock price for symbol (AAPL example)
+
+**Steps:** 4
+1. task_init
+2. task_query
+3. task_tool_call
+4. task_end
 
 
 ---

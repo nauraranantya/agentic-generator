@@ -27,9 +27,10 @@ async def main():
         print("Executing step: answer_question_task")
         print("=" * 80)
 
-        task_prompt = """Answer the user question with the most relevant information from the context and available knowledge sources. Question: {question}
+        task_prompt = """Answer the user question with the most relevant information from the context and available knowledge sources.
+Question: {question}
 
-Do not answer questions that are not related to the context or knowledge sources."""
+Do not answer questions that are not related to the context or knowledge sources. """
         # Execute via the assigned agent: meta_quest_expert
         result = await meta_quest_expert.run(task=task_prompt)
 

@@ -12,17 +12,17 @@ const UnnamedProjectAnnotation = Annotation.Root({
 
 
 /**
- * Node: blogpostGenerationTask
- * Agent: writer_1
+ * Node: taskWriteBlog
+ * Agent: unnamed
  */
-async function blogpostGenerationTask(state: typeof UnnamedProjectAnnotation.State) {
-  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
+async function taskWriteBlog(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-3.5-turbo" });
   const response = await model.invoke([
     {
       role: "system",
       content:
         "You are a Writer." +
-        "\nNode: blogpostGenerationTask",
+        "\nNode: taskWriteBlog",
     },
     ...state.messages,
   ]);
@@ -30,17 +30,71 @@ async function blogpostGenerationTask(state: typeof UnnamedProjectAnnotation.Sta
 }
 
 /**
- * Node: ethicsReviewTask
- * Agent: ethics_reviewer_1
+ * Node: taskCriticInitiate1
+ * Agent: unnamed
  */
-async function ethicsReviewTask(state: typeof UnnamedProjectAnnotation.State) {
+async function taskCriticInitiate1(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-3.5-turbo" });
+  const response = await model.invoke([
+    {
+      role: "system",
+      content:
+        "You are a Critic." +
+        "\nNode: taskCriticInitiate1",
+    },
+    ...state.messages,
+  ]);
+  return { messages: [response] };
+}
+
+/**
+ * Node: taskNestedSeoReview
+ * Agent: unnamed
+ */
+async function taskNestedSeoReview(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-3.5-turbo" });
+  const response = await model.invoke([
+    {
+      role: "system",
+      content:
+        "You are a SEO Reviewer." +
+        "\nNode: taskNestedSeoReview",
+    },
+    ...state.messages,
+  ]);
+  return { messages: [response] };
+}
+
+/**
+ * Node: taskNestedLegalReview
+ * Agent: unnamed
+ */
+async function taskNestedLegalReview(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-3.5-turbo" });
+  const response = await model.invoke([
+    {
+      role: "system",
+      content:
+        "You are a Legal Reviewer." +
+        "\nNode: taskNestedLegalReview",
+    },
+    ...state.messages,
+  ]);
+  return { messages: [response] };
+}
+
+/**
+ * Node: taskNestedEthicsReview
+ * Agent: unnamed
+ */
+async function taskNestedEthicsReview(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-3.5-turbo" });
   const response = await model.invoke([
     {
       role: "system",
       content:
         "You are a Ethics Reviewer." +
-        "\nNode: ethicsReviewTask",
+        "\nNode: taskNestedEthicsReview",
     },
     ...state.messages,
   ]);
@@ -48,17 +102,17 @@ async function ethicsReviewTask(state: typeof UnnamedProjectAnnotation.State) {
 }
 
 /**
- * Node: metaAggregationTask
- * Agent: meta_reviewer_1
+ * Node: taskMetaAggregate
+ * Agent: unnamed
  */
-async function metaAggregationTask(state: typeof UnnamedProjectAnnotation.State) {
+async function taskMetaAggregate(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-3.5-turbo" });
   const response = await model.invoke([
     {
       role: "system",
       content:
         "You are a Meta Reviewer." +
-        "\nNode: metaAggregationTask",
+        "\nNode: taskMetaAggregate",
     },
     ...state.messages,
   ]);
@@ -66,17 +120,17 @@ async function metaAggregationTask(state: typeof UnnamedProjectAnnotation.State)
 }
 
 /**
- * Node: blogpostGenerationTask
- * Agent: writer_1
+ * Node: taskCriticInitiate2
+ * Agent: unnamed
  */
-async function blogpostGenerationTask(state: typeof UnnamedProjectAnnotation.State) {
-  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
+async function taskCriticInitiate2(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-3.5-turbo" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "You are a Writer." +
-        "\nNode: blogpostGenerationTask",
+        "You are a Critic." +
+        "\nNode: taskCriticInitiate2",
     },
     ...state.messages,
   ]);
@@ -84,18 +138,23 @@ async function blogpostGenerationTask(state: typeof UnnamedProjectAnnotation.Sta
 }
 
 const workflow = new StateGraph(UnnamedProjectAnnotation)
-  .addNode("blogpostGenerationTask", blogpostGenerationTask)
-  .addNode("ethicsReviewTask", ethicsReviewTask)
-  .addNode("metaAggregationTask", metaAggregationTask)
-  .addNode("blogpostGenerationTask", blogpostGenerationTask)
-  .addEdge(START, "blogpostGenerationTask")
-  .addEdge("blogpostGenerationTask", "ethicsReviewTask")
-  .addEdge("ethicsReviewTask", "metaAggregationTask")
-  .addEdge("metaAggregationTask", "blogpostGenerationTask")
-  .addEdge("blogpostGenerationTask", END)
+  .addNode("taskWriteBlog", taskWriteBlog)
+  .addNode("taskCriticInitiate1", taskCriticInitiate1)
+  .addNode("taskNestedSeoReview", taskNestedSeoReview)
+  .addNode("taskNestedLegalReview", taskNestedLegalReview)
+  .addNode("taskNestedEthicsReview", taskNestedEthicsReview)
+  .addNode("taskMetaAggregate", taskMetaAggregate)
+  .addNode("taskCriticInitiate2", taskCriticInitiate2)
+  .addEdge(START, "taskWriteBlog")
+  .addEdge("taskWriteBlog", "taskCriticInitiate1")
+  .addEdge("taskCriticInitiate1", "taskNestedSeoReview")
+  .addEdge("taskNestedSeoReview", "taskNestedLegalReview")
+  .addEdge("taskNestedLegalReview", "taskNestedEthicsReview")
+  .addEdge("taskNestedEthicsReview", "taskMetaAggregate")
+  .addEdge("taskMetaAggregate", "taskCriticInitiate2")
+  .addEdge("taskCriticInitiate2", END)
 ;
 
 export const graph = workflow.compile();
 graph.name = "UnnamedProject";
-// Workflow: workflow_reflection_blogpost
-// Workflow: Reflection and Blogpost Writing Workflow Pattern
+// Workflow: pattern_nested

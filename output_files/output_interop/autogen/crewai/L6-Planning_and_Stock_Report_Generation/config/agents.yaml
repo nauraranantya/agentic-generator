@@ -1,18 +1,24 @@
-planner_agent:
+admin:
+  role: Admin
+  goal: Admin
+  backstory: You are a Admin.
+planner:
   role: Planner
   goal: Planner
-  backstory: |
-    Planner. Given a task, determine what information is needed to complete the task. After each step is done by others, check the progress and instruct the remaining steps
-engineer_agent:
+  backstory: You are a Planner.
+engineer:
   role: Engineer
   goal: Engineer
-  backstory: 'Engineer: writes code per planner''s plan'
-executor_agent:
+  backstory: You are a Engineer.
+executor:
   role: Executor
   goal: Executor
-  backstory: 'Executor: execute code and return execution results (no human input).'
-writer_agent:
+  backstory: You are a Executor.
+writer:
   role: Writer
   goal: Writer
-  backstory: |
-    Writer: write blogs based on the code execution results and take feedback from the admin to refine the blog.
+  backstory: You are a Writer.
+group_chat_manager:
+  role: GroupChatManager
+  goal: GroupChatManager
+  backstory: You are a GroupChatManager.

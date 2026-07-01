@@ -1,7 +1,5 @@
 import { ChatOpenAI } from "@langchain/openai";
 import { Annotation, START, END, StateGraph } from "@langchain/langgraph";
-import { tool } from "@langchain/core/tools";
-import { z } from "zod";
 
 const UnnamedProjectAnnotation = Annotation.Root({
   messages: Annotation<any[]>({
@@ -10,23 +8,12 @@ const UnnamedProjectAnnotation = Annotation.Root({
   }),
 });
 
-// Tool: mastra_engine_tool
-const mastra_engine_tool = tool(
-  async () => {
-    return "Result of mastra_engine_tool";
-  },
-  {
-    name: "mastra_engine_tool",
-    description: "Represents the Mastra runtime/engine that executes workflow steps and tasks (mapped to :Tool for lack of a runtime class in ontology).",
-    schema: z.object({}),
-  }
-);
 
 
 
 /**
  * Node: taskStepOne
- * Agent: defaultAgent
+ * Agent: mastra_default_agent
  */
 async function taskStepOne(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o-mini" });
@@ -34,8 +21,8 @@ async function taskStepOne(state: typeof UnnamedProjectAnnotation.State) {
     {
       role: "system",
       content:
-        "You are a helpful assistant." +
-        "\\nNode: taskStepOne",
+        "You are a workflow-executor." +
+        "\nNode: taskStepOne",
     },
     ...state.messages,
   ]);
@@ -44,7 +31,7 @@ async function taskStepOne(state: typeof UnnamedProjectAnnotation.State) {
 
 /**
  * Node: taskStepTwo
- * Agent: defaultAgent
+ * Agent: mastra_default_agent
  */
 async function taskStepTwo(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o-mini" });
@@ -52,26 +39,8 @@ async function taskStepTwo(state: typeof UnnamedProjectAnnotation.State) {
     {
       role: "system",
       content:
-        "You are a helpful assistant." +
-        "\\nNode: taskStepTwo",
-    },
-    ...state.messages,
-  ]);
-  return { messages: [response] };
-}
-
-/**
- * Node: taskStepThree
- * Agent: defaultAgent
- */
-async function taskStepThree(state: typeof UnnamedProjectAnnotation.State) {
-  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
-  const response = await model.invoke([
-    {
-      role: "system",
-      content:
-        "You are a helpful assistant." +
-        "\\nNode: taskStepThree",
+        "You are a workflow-executor." +
+        "\nNode: taskStepTwo",
     },
     ...state.messages,
   ]);
@@ -81,13 +50,11 @@ async function taskStepThree(state: typeof UnnamedProjectAnnotation.State) {
 const workflow = new StateGraph(UnnamedProjectAnnotation)
   .addNode("taskStepOne", taskStepOne)
   .addNode("taskStepTwo", taskStepTwo)
-  .addNode("taskStepThree", taskStepThree)
   .addEdge(START, "taskStepOne")
   .addEdge("taskStepOne", "taskStepTwo")
-  .addEdge("taskStepTwo", "taskStepThree")
-  .addEdge("taskStepThree", END)
+  .addEdge("taskStepTwo", END)
 ;
 
 export const graph = workflow.compile();
 graph.name = "UnnamedProject";
-// Workflow: my_workflow_pattern
+// Workflow: my_workflow

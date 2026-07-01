@@ -4,18 +4,13 @@
  * Auto-generated from AgentO Knowledge Graph
  * Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
  * Goals:
- *   - Primary goal: Identify birds and contextual metadata: 
- * Objectives:
- *   - Acquire representative image for inspection: 
- *   - Identify bird presence/species and summarize location: 
- * Environments:
- *   - Web runtime environment (Next.js / browser + server (application) environment; uses Unsplash API via server-side call and LLM via configured model.): 
+ *   - : Identify if an image depicts a bird, provide the scientific name if it is a bird, and summarize the image location in one or two short sentences.
  */
 
 import { Mastra } from '@mastra/core'
 
 // Import agents
-import { birdChecker } from './agents'
+import { birdAgent } from './agents'
 
 // Import workflows
 import { birdCheckerWorkflow } from './workflows'
@@ -26,7 +21,7 @@ import { birdCheckerWorkflow } from './workflows'
  */
 export const mastra = new Mastra({
   agents: {
-    birdChecker,
+    birdAgent,
   },
   workflows: {
     birdCheckerWorkflow,

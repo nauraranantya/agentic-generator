@@ -27,7 +27,7 @@ async def main():
         print("Executing step: task_collect_personal_info")
         print("=" * 80)
 
-        task_prompt = """sender: onboarding_personal_information_agent; recipient: customer_proxy_agent; summary_method: reflection_with_llm; summary_args: { 'summary_prompt': "Return the customer information into as JSON object only: {'name': '', 'location': ''}" }; max_turns: 2; clear_history: True"""
+        task_prompt = """sender: onboarding_personal_information_agent; recipient: customer_proxy_agent; summary_method: reflection_with_llm; summary_args: { 'summary_prompt': "Return the customer information into as JSON object only: {'name': '', 'location': ''}" }; max_turns: 2; clear_history: True """
         # Execute via the assigned agent: onboarding_personal_information_agent
         result = await onboarding_personal_information_agent.run(task=task_prompt)
 
@@ -45,7 +45,7 @@ async def main():
         print("Executing step: task_collect_topic_preferences")
         print("=" * 80)
 
-        task_prompt = """sender: onboarding_topic_preference_agent; recipient: customer_proxy_agent; summary_method: reflection_with_llm; max_turns: 1; clear_history: False"""
+        task_prompt = """sender: onboarding_topic_preference_agent; recipient: customer_proxy_agent; summary_method: reflection_with_llm; max_turns: 1; clear_history: False """
         # Execute via the assigned agent: onboarding_topic_preference_agent
         result = await onboarding_topic_preference_agent.run(task=task_prompt)
 
@@ -62,7 +62,7 @@ async def main():
         print("Executing step: task_customer_proxy_to_engagement")
         print("=" * 80)
 
-        task_prompt = """sender: customer_proxy_agent; recipient: customer_engagement_agent; message: "Let's find something fun to read."; summary_method: reflection_with_llm; max_turns: 1"""
+        task_prompt = """sender: customer_proxy_agent; recipient: customer_engagement_agent; message: "Let's find something fun to read."; summary_method: reflection_with_llm; max_turns: 1 """
         # Execute via the assigned agent: customer_proxy_agent
         result = await customer_proxy_agent.run(task=task_prompt)
 

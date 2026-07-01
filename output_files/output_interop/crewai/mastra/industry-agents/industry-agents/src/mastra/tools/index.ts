@@ -1,2 +1,2 @@
-export { weaviateVectorSearchTool } from './weaviateVectorSearchTool'
-export { serperDevTool } from './serperDevTool'
+export { toolWeaviateVectorSearchTool } from './toolWeaviateVectorSearchTool'
+export { toolSerperDevTool } from './toolSerperDevTool'

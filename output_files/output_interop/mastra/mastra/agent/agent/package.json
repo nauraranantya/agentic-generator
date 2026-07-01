@@ -1,7 +1,7 @@
 {
   "name": "agent",
   "version": "0.1.0",
-  "description": "The system instance that contains agents, workflows, processors, MCP servers, and tools as configured in the source.",
+  "description": "Mastra instance created in src/mastra/index.ts containing Chef Agent",
   "type": "module",
   "main": "src/mastra/index.ts",
   "scripts": {
@@ -11,9 +11,7 @@
   },
   "dependencies": {
     "@mastra/core": "latest",
-    "zod": "^3.23.0",
-    "@mastra/memory": "latest",
-    "@mastra/libsql": "latest"
+    "zod": "^3.23.0"
   },
   "devDependencies": {
     "typescript": "^5.0.0",

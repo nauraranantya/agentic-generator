@@ -1,3 +1,3 @@
-export { generativeUiWorkflow } from './generativeUiWorkflow'
+export { stategraphWorkflow } from './stategraphWorkflow'
 export * from './ad_hoc_tasks'
 

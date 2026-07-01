@@ -1,28 +1,17 @@
 """
-Auto-generated AutoGen Team: CopyCrew
+Auto-generated AutoGen Team: UnnamedProject
 Goals:
-  - Marketing Campaign Objective: Overarching objective: produce Instagram post copy and photograph concepts that highlight the product, its unique selling points, and create a high-impact campaign.
-Objectives:
-  - Copy Crew Objective: Generate analysis-informed ad copy and campaign strategy to drive engagement.
-  - Image Crew Objective: Create photograph concepts aligned with ad copy and campaign to produce visuals for Instagram.
+  - : Produce thorough product and competitor analysis to inform marketing strategy.
+  - : Formulate marketing strategies and creative ideas based on product and competitor analysis.
+  - : Produce multiple Instagram ad copy options aligned with campaign strategy.
+  - : Generate three photographic concepts that best represent the campaign and product without showing the actual product.
+  - : Ensure final creative outputs are aligned with product goals; review and approve imagery.
+  - : Produce marketing analysis and 3 Instagram ad copy options for the product.
+  - : Produce three photograph concepts and a reviewed final selection aligned with campaign copy.
 Capabilities:
-  - web scraping: Capability to scrape and summarize website content.
-  - internet search: Capability to search the internet and summarize results.
-  - instagram search: Capability to search Instagram posts (site:instagram.com queries).
-  - strategy planning: Capability to synthesize analysis into marketing strategies.
-  - copywriting: Capability to craft punchy Instagram ad copy.
-  - photography review: Capability to evaluate and revise photograph concepts.
-  - review & approval: Capability to review outputs, approve, and delegate follow-ups.
-Resources:
-  - Product Analysis Report: Textual report produced by product_analysis task: detailed product features, market appeal, recommendations.
-  - Competitor Analysis Report: Textual competitor analysis with top-3 competitor comparisons produced by competitor_analysis task.
-  - Campaign Strategy & Ideas: Marketing strategy and creative content ideas produced by campaign_development task. Used by creative and photography agents.
-  - Ad Copy Options (3 variations): Three Instagram ad copy options produced by instagram_ad_copy task.
-  - Photograph Descriptions (3 options): Three photograph concept descriptions produced by take_photograph_task.
-  - Approved Photograph Descriptions: Reviewed and approved (or delegated) photograph descriptions produced by review_photo task.
-  - tasks.py (semantic summary): Contains prompt texts (task descriptions) for product_analysis, competitor_analysis, campaign_development, instagram_ad_copy, take_photograph_task, review_photo. Task prompts preserved as Prompt individuals and Task dct:description values.
-  - agents.py (semantic summary): Defines agents (roles, goals, backstories), their tool sets, and association to the Ollama language model. Represented as LLMAgent individuals with agent prompts and useLanguageModel links.
-  - main.py (semantic summary): Orchestrates two Crews (Copy Crew and Image Crew). Copy Crew runs tasks: product_analysis, competitor_analysis, campaign_development, instagram_ad_copy. Image Crew runs tasks: take_photograph_task, review_photo. Crew orchestration and kickoff semantics not directly modeled; outputs represented as produced Resources.
+  - : Extract and summarize HTML content from websites.
+  - : Query web search API and return ranked result snippets.
+  - : Search Instagram content via web search for post examples and snippets.
 """
 
 from autogen_agentchat.agents import AssistantAgent
@@ -51,88 +40,72 @@ model_client = OpenAIChatCompletionClient(
 # ==================================================
 
 
-def tool_browser_tools_scrape_and_summarize_impl(
+def tool_scrape_website_impl(
     query: str = ""
 ) -> str:
     """
     AgentO Tool:
-    BrowserToolsscrapeandsummarizewebsite
+    tool_scrape_website
 
     Description:
-    Semantic purpose: Scrape a website and produce a long summary of its content or content chunks.
-Input: full URL string (e.g., https://example.com).
-Outputs: textual scrapped content and summaries (used as context for agents/tasks).
-Configuration: requires a Browserless API key (SERPER/BROWSERLESS keys are present in Config entries).
-Note: Implementation uses HTML partitioning into chunks and summary generation per chunk; we capture purpose and required config here.
+    Scrapes a webpage via Browserless API and summarizes chunks using an LLM.
     """
     return (
-        "Tool 'tool_browser_tools_scrape_and_summarize' "
+        "Tool 'tool_scrape_website' "
         "is a generated stub and "
         "has not been implemented yet."
     )
 
 
-tool_browser_tools_scrape_and_summarize = FunctionTool(
-    tool_browser_tools_scrape_and_summarize_impl,
-    description="""Semantic purpose: Scrape a website and produce a long summary of its content or content chunks.
-Input: full URL string (e.g., https://example.com).
-Outputs: textual scrapped content and summaries (used as context for agents/tasks).
-Configuration: requires a Browserless API key (SERPER/BROWSERLESS keys are present in Config entries).
-Note: Implementation uses HTML partitioning into chunks and summary generation per chunk; we capture purpose and required config here."""
+tool_scrape_website = FunctionTool(
+    tool_scrape_website_impl,
+    description="""Scrapes a webpage via Browserless API and summarizes chunks using an LLM. """
 )
 
 
-def tool_search_tools_search_internet_impl(
+def tool_search_internet_impl(
     query: str = ""
 ) -> str:
     """
     AgentO Tool:
-    SearchToolssearchinternet
+    tool_search_internet
 
     Description:
-    Semantic purpose: Search the Internet (generic web search) and return top organic results, title, link, snippet.
-Input: query string.
-Configuration: uses SERPER_API_KEY (search service) as an API key.
+    Performs web searches using the Serper (google.serper.dev) API and returns top results.
     """
     return (
-        "Tool 'tool_search_tools_search_internet' "
+        "Tool 'tool_search_internet' "
         "is a generated stub and "
         "has not been implemented yet."
     )
 
 
-tool_search_tools_search_internet = FunctionTool(
-    tool_search_tools_search_internet_impl,
-    description="""Semantic purpose: Search the Internet (generic web search) and return top organic results, title, link, snippet.
-Input: query string.
-Configuration: uses SERPER_API_KEY (search service) as an API key."""
+tool_search_internet = FunctionTool(
+    tool_search_internet_impl,
+    description="""Performs web searches using the Serper (google.serper.dev) API and returns top results. """
 )
 
 
-def tool_search_tools_search_instagram_impl(
+def tool_search_instagram_impl(
     query: str = ""
 ) -> str:
     """
     AgentO Tool:
-    SearchToolssearchinstagram
+    tool_search_instagram
 
     Description:
-    Semantic purpose: Search Instagram via site-limited search (site:instagram.com) to find relevant posts.
-Input: query string.
-Configuration: uses SERPER_API_KEY (search service) as an API key.
+    Performs targeted Instagram site searches (site:instagram.com ...) via Serper API.
     """
     return (
-        "Tool 'tool_search_tools_search_instagram' "
+        "Tool 'tool_search_instagram' "
         "is a generated stub and "
         "has not been implemented yet."
     )
 
 
-tool_search_tools_search_instagram = FunctionTool(
-    tool_search_tools_search_instagram_impl,
-    description="""Semantic purpose: Search Instagram via site-limited search (site:instagram.com) to find relevant posts.
-Input: query string.
-Configuration: uses SERPER_API_KEY (search service) as an API key."""
+tool_search_instagram = FunctionTool(
+    tool_search_instagram_impl,
+    description="""Performs targeted Instagram site searches (site:instagram.com ...) via Serper API. """
 )
 
 
@@ -149,10 +122,10 @@ Role:
 Lead Market Analyst
 
 Goal:
-Lead Market Analyst
+Produce thorough product and competitor analysis to inform marketing strategy.
 
 Background:
-Agent backstory and role description for Lead Market Analyst
+You are a Lead Market Analyst.
 """,
 )
 
@@ -165,10 +138,10 @@ Role:
 Chief Marketing Strategist
 
 Goal:
-Chief Marketing Strategist
+Formulate marketing strategies and creative ideas based on product and competitor analysis.
 
 Background:
-Agent backstory and role description for Chief Marketing Strategist
+You are a Chief Marketing Strategist.
 """,
 )
 
@@ -181,10 +154,10 @@ Role:
 Creative Content Creator
 
 Goal:
-Creative Content Creator
+Produce multiple Instagram ad copy options aligned with campaign strategy.
 
 Background:
-Agent backstory and role description for Creative Content Creator
+You are a Creative Content Creator.
 """,
 )
 
@@ -197,26 +170,26 @@ Role:
 Senior Photographer
 
 Goal:
-Senior Photographer
+Generate three photographic concepts that best represent the campaign and product without showing the actual product.
 
 Background:
-Agent backstory and role description for Senior Photographer
+You are a Senior Photographer.
 """,
 )
 
 
-chief_creative_director_agent = AssistantAgent(
-    name="chief_creative_director_agent",
+chief_creative_diretor_agent = AssistantAgent(
+    name="chief_creative_diretor_agent",
     model_client=model_client,
     system_message="""
 Role:
 Chief Creative Director
 
 Goal:
-Chief Creative Director
+Ensure final creative outputs are aligned with product goals; review and approve imagery.
 
 Background:
-Agent backstory and role description for Chief Creative Director
+You are a Chief Creative Director.
 """,
 )
 

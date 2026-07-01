@@ -25,26 +25,26 @@ model_client = OpenAIChatCompletionClient(
 # ==================================================
 
 
-def draft_text_document_tool_impl(
+def tool_draft_text_document_impl(
     query: str = ""
 ) -> str:
     """
     AgentO Tool:
-    drafttextdocument
+    tool_draft_text_document
 
     Description:
     Prepare a text document for the user with a short title and short description for browsing purposes. Can be also used when creating a new version of the document.
     """
     return (
-        "Tool 'draft_text_document_tool' "
+        "Tool 'tool_draft_text_document' "
         "is a generated stub and "
         "has not been implemented yet."
     )
 
 
-draft_text_document_tool = FunctionTool(
-    draft_text_document_tool_impl,
-    description="""Prepare a text document for the user with a short title and short description for browsing purposes. Can be also used when creating a new version of the document."""
+tool_draft_text_document = FunctionTool(
+    tool_draft_text_document_impl,
+    description="""Prepare a text document for the user with a short title and short description for browsing purposes. Can be also used when creating a new version of the document. """
 )
 
 
@@ -53,18 +53,18 @@ draft_text_document_tool = FunctionTool(
 # ==================================================
 
 
-writer_annotation_agent_uuid_1 = AssistantAgent(
-    name="writer_annotation_agent_uuid_1",
+writer_agent = AssistantAgent(
+    name="writer_agent",
     model_client=model_client,
     system_message="""
 Role:
-annotation-driven writer
+writer
 
 Goal:
-annotation-driven writer
+writer
 
 Background:
-You are a annotation-driven writer.
+You are a writer.
 """,
 )
 

@@ -1,1 +1,1 @@
-export { mcpRegistryAgent } from './mcpRegistryAgent'
+export { registryRegistryServer } from './registryRegistryServer'

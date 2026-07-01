@@ -1,25 +1,31 @@
 /**
- * Agent: black
+ * Agent: Chess Player (Black)
  * ID: player_black
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Capabilities:
- *   - Play chess: General capability to select and execute chess moves.
- *   - Request legal moves: Capability to request the current legal moves from the board.
- *   - Make move: Capability to request the board to apply a move in UCI format and update the board state.
+ *   - : Provides legal moves for the current chess position.
+ *   - : Apply a move to the board and update board state; produce descriptive move result.
  */
 
 import { Agent } from '@mastra/core/agent'
 
+// Import tools
+import { toolGetLegalMoves, toolMakeMove } from '../tools'
+
 /**
- * black
+ * Chess Player (Black)
  * 
  * Instructions:
- * You are black.
+ * You are Chess Player (Black).
  */
 export const playerBlack = new Agent({
   id: `player_black`,
-  name: `black`,
-  instructions: `You are black.`,
+  name: `Chess Player (Black)`,
+  instructions: `You are Chess Player (Black).`,
   model: 'openai/gpt-4o-mini',
+  tools: {
+    toolGetLegalMoves,
+    toolMakeMove,
+  },
 })

@@ -1,1 +1,1 @@
-export { duckDuckGoTool } from './duckDuckGoTool'
+export { toolDuckDuckGoSearchRun } from './toolDuckDuckGoSearchRun'

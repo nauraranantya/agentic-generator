@@ -1,4 +1,4 @@
-export { openApiSpecGenWorkflowPattern } from './openApiSpecGenWorkflowPattern'
-export { makePrWorkflowPattern } from './makePrWorkflowPattern'
+export { wpOpenApiSpecGenWorkflow } from './wpOpenApiSpecGenWorkflow'
+export { wpMakePrToMastra } from './wpMakePrToMastra'
 export * from './ad_hoc_tasks'
 

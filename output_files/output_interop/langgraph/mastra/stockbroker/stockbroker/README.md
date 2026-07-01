@@ -1,6 +1,6 @@
 # UnnamedProject
 
-
+Frontend trading system that displays portfolio data and enables trade execution.
 
 **Auto-generated from AgentO Knowledge Graph**  
 Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
@@ -39,13 +39,11 @@ UnnamedProject/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
 │       ├── agents/            # Agent definitions
-│       │   └── stockbroker01.ts
+│       │   └── tradeAgent.ts
 │       ├── tools/             # Tool definitions
-│       │   └── toolStockPrice.ts
-│       │   └── toolPortfolio.ts
-│       │   └── toolBuyStock.ts
+│       │   └── buyStockTool.ts
 │       └── workflows/         # Workflow definitions
-│           └── stockbrokerWorkflow.ts
+│           └── buyStockWorkflow.ts
 ├── package.json
 ├── tsconfig.json
 └── .env.example
@@ -55,48 +53,38 @@ UnnamedProject/
 
 ## 🤖 Agents
 
-### stockbroker
+### trading_assistant
 
-- **ID:** `stockbroker_01`
+- **ID:** `trade_agent`
 - **Model:** `openai/gpt-4o-mini`
-- **Tools:** toolStockPrice, toolPortfolio, toolBuyStock
+- **Tools:** buyStockTool
 
-System-level instruction provided to the LLM on each invocation. Used with the conversation messages array state.messages....
+You are trading_assistant....
 
 
 ---
 
 ## 🔧 Tools
 
-### stock-price
+### buyStockTool
 
-A tool to get the stock price of a company. Invoked with argument { ticker: string }. When called, the agent fetches one-day and thirty-day price collections from https://api.financialdatasets.ai/pric...
+Executes stock purchase orders when invoked by the UI. Expects a JSON content with purchaseDetails { ticker, quantity, price }....
 
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolStockPrice.ts`)
-
-### portfolio
-
-A tool to get the user's portfolio details. Only called when the user explicitly requests portfolio details. Invoked with argument { get_portfolio: true }....
-
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolPortfolio.ts`)
-
-### buy-stock
-
-A tool to buy a stock. Invoked with arguments { ticker: string, quantity: number }. When called, the agent requests a price snapshot from https://api.financialdatasets.ai/prices/snapshot and includes ...
-
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolBuyStock.ts`)
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/buyStockTool.ts`)
 
 
 ---
 
 ## 🔄 Workflows
 
-### Stockbroker
+### buy_stock_workflow
 
-Top-level workflow pattern representing the Stockbroker StateGraph. The compiled graph contains a single 'agent' node which calls external tools and returns UI items.
+A simple three-step flow: open UI, execute purchase, confirm purchase.
 
-**Steps:** 1
-1. Call tools
+**Steps:** 3
+1. open_buy_ui_task
+2. execute_purchase_task
+3. confirm_purchase_task
 
 
 ---

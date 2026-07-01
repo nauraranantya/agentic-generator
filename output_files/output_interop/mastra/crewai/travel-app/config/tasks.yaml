@@ -1,26 +1,28 @@
-sync_csv_data_task:
-  description: Sync Csv Data Task
-  expected_output: 'Completed: sync_csv_data_task'
-find_outbound_flight:
+task_outbound_flight:
   description: |
-    Select 1 outbound flight for the given departureLocation -> arrivalLocation and date range. Return entire flight object including legs and timestamps. Consider flightPriority to trade off price vs convenience.
-  expected_output: 'Completed: find_outbound_flight'
-find_return_flight:
+    Available outboundFlight items will be provided. Select a single outbound flight based on travelForm (departureLocation, arrivalLocation, startDate, endDate) and flightPriority. ALWAYS pass entire date timestamps for departureTime and arrivalTime. Return ids (or flightNumber) and a short reasoning.
+  expected_output: 'ids: [string], reasoning: string'
+task_sync_csv_data:
   description: |
-    Select 1 return flight for the given arrivalLocation -> departureLocation and date range. Return entire flight object including legs and timestamps.
-  expected_output: 'Completed: find_return_flight'
-find_accommodation_hotel_or_airbnb:
+    Sync data from City CSV (src/data/city-data.csv). Read CSV rows, map columns to CityData, and call mastra.engine.syncRecords to sync City records. This step is executed by the Mastra engine runtime.
+  expected_output: 'status: success | failure'
+task_return_flight:
   description: |
-    If accommodationType is 'hotel' call Search Hotels tool using arrivalCityId. If accommodationType is 'airbnb', first call Search Airbnb Location tool to get place id and then call Search Airbnb tool using that id, typeOfPlace, startDate, endDate. Do NOT call Airbnb tools if accommodationType is hotel. Do NOT call searchHotels if accommodationType is airbnb.
-  expected_output: 'Completed: find_accommodation_hotel_or_airbnb'
-find_attractions:
+    Available returnFlight items will be provided. Select a single return flight based on travelForm and flightPriority. ALWAYS return full flight objects for outbound and return flights and timestamps.
+  expected_output: 'ids: [string], reasoning: string'
+task_accommodation_hotels:
   description: |
-    Find three activities and attractions for the customer based on interests and arrivalAttractionId; return id, name, description, rating, price, imageUrl, location.
-  expected_output: 'Completed: find_attractions'
-analyze_and_format_results:
+    Given available hotels and the travelForm (arrivalCityId, hotelPriceRange), select up to 3 hotel options. Ignore 'reviewScore' and extract numeric rating from description/accessibility fields. Provide ids and reasoning.
+  expected_output: 'ids: [string], reasoning: string'
+task_attraction:
   description: |
-    Take the travel agent's research outputs and format them precisely into the travelSchema: flights {outbound, return}, accommodation, attractions. Extract numeric hotel ratings from description text; replace '<UNKNOWN>' with empty strings; include layover legs. Return JSON matching schema.
-  expected_output: 'Completed: analyze_and_format_results'
-travel_agent_participates_in_planning_tasks:
-  description: Travel Agent Participates In Planning Tasks
-  expected_output: 'Completed: travel_agent_participates_in_planning_tasks'
+    Given a set of attractions for the arrival city and the user's interests, select three attractions, provide brief reasoning, and include price, duration, and rating where available.
+  expected_output: 'ids: [string], reasoning: string'
+task_airbnb_location:
+  description: |
+    Search for Airbnb location matches for the arrival city and select up to 3 unique place ids to be used in the subsequent Airbnb search. Provide ids and reasoning.
+  expected_output: 'ids: [string], reasoning: string'
+task_accommodation_airbnb:
+  description: |
+    Given Airbnb search results and travelForm (typeOfPlace, startDate, endDate), select up to 3 Airbnb options, then pick the top result to return. Provide ids and reasoning.
+  expected_output: 'ids: [string], reasoning: string'

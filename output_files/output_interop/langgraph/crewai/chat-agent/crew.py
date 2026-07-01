@@ -3,8 +3,6 @@ Auto-generated CrewAI Crew: UnnamedProject
 
 Source  : AgentO Knowledge Graph → SPARQL → Pydantic → Jinja2
 Pipeline: 3-Layer Conversion Pipeline
-Resources:
-  - : The output messages (array/object) returned by the Language Model invocation for the chat task. In the source this is the 'response' object assigned to { messages: response } and returned by the node.
 """
 
 from crewai import Agent, Crew, Process, Task
@@ -23,18 +21,18 @@ class UnnamedProject:
     # ── Agents ──────────────────────────────────────────
 
     @agent
-    def chat_agent_1(self) -> Agent:
+    def chat_agent(self) -> Agent:
         return Agent(
-            config=self.agents_config['chat_agent_1'],
+            config=self.agents_config['chat_agent'],
         )
 
     # ── Tasks ───────────────────────────────────────────
 
     @task
-    def chat_task(self) -> Task:
+    def task_chat(self) -> Task:
         return Task(
-            config=self.tasks_config['chat_task'],
-            agent=self.chat_agent_1(),
+            config=self.tasks_config['task_chat'],
+            agent=self.chat_agent(),
         )
 
     # ── Crew ────────────────────────────────────────────

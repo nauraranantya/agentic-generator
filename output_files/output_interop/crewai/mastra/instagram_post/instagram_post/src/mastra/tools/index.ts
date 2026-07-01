@@ -1,3 +1,3 @@
-export { toolBrowserToolsScrapeAndSummarize } from './toolBrowserToolsScrapeAndSummarize'
-export { toolSearchToolsSearchInternet } from './toolSearchToolsSearchInternet'
-export { toolSearchToolsSearchInstagram } from './toolSearchToolsSearchInstagram'
+export { toolScrapeWebsite } from './toolScrapeWebsite'
+export { toolSearchInternet } from './toolSearchInternet'
+export { toolSearchInstagram } from './toolSearchInstagram'

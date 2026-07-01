@@ -1,6 +1,6 @@
-# MastraSystem
+# UnnamedProject
 
-System coordinating weather agents, tools and workflows (Mastra instance configured with LibSQL storage and multiple workflows).
+
 
 **Auto-generated from AgentO Knowledge Graph**  
 Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
@@ -34,18 +34,16 @@ npm run dev
 ## 📦 Project Structure
 
 ```
-MastraSystem/
+UnnamedProject/
 ├── src/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
 │       ├── agents/            # Agent definitions
 │       │   └── weatherAgent.ts
-│       │   └── weatherExplainerAgent.ts
 │       ├── tools/             # Tool definitions
-│       │   └── weatherTool.ts
+│       │   └── toolGetWeather.ts
 │       └── workflows/         # Workflow definitions
-│           └── wfWeatherWorkflow.ts
-│           └── wfWeatherWorkflowWithToolAndAgent.ts
+│           └── workflowWeatherWorkflow.ts
 ├── package.json
 ├── tsconfig.json
 └── .env.example
@@ -57,51 +55,35 @@ MastraSystem/
 
 ### weather assistant
 
-- **ID:** `weather-agent`
-- **Model:** `openai/gpt-4o-mini`
-- **Tools:** weatherTool
+- **ID:** `Weather Agent`
+- **Model:** `openai/gpt-4o`
+- **Tools:** toolGetWeather
 
 You are weather assistant....
-
-### LLM Agent
-
-- **ID:** `weatherExplainerAgent`
-- **Model:** `openai/gpt-4o`
-
-You are LLM Agent....
 
 
 ---
 
 ## 🔧 Tools
 
-### get-weather
+### toolGetWeather
 
-Tool to get current weather for a location. Wraps geocoding and open-meteo APIs and returns a simplified weather object (temperature, feelsLike, humidity, windSpeed, windGust, conditions, location)....
+Get current weather for a location...
 
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/weatherTool.ts`)
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolGetWeather.ts`)
 
 
 ---
 
 ## 🔄 Workflows
 
-### weather-workflow
+### workflow_weather_workflow
 
-Workflow that fetches weather for a city and plans activities. Input schema: { city: string }. Produces activities text.
+
 
 **Steps:** 2
-1. fetch-weather task
-2. plan-activities
-
-### weather-workflow-with-tool-and-agent
-
-Workflow that uses the weather tool to get forecast and then delegates planning to a reporting agent. Input schema: { location: string }
-
-**Steps:** 3
-1. weather tool call task
-2. map forecast to prompt task
-3. plan activities / explain weather task
+1. task_fetch_weather
+2. task_plan_activities
 
 
 ---

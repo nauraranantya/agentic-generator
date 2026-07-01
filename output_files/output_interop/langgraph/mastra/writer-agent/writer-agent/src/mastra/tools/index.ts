@@ -1,1 +1,1 @@
-export { draftTextDocumentTool } from './draftTextDocumentTool'
+export { toolDraftTextDocument } from './toolDraftTextDocument'

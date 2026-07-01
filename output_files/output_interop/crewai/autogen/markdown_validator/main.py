@@ -37,11 +37,11 @@ Action Input: {filename}
 Get the validation results from the tool and then summarize it into a list of changes
 the developer should make to the document.
 DO NOT recommend ways to update the document.
-DO NOT change any of the content of the document or add content to it. 
+DO NOT change any of the content of the document or add content to it.
 It is critical to your task to only respond with a list of changes.
 
-If you already know the answer or if you do not need to use a tool, 
-return it as your Final Answer."""
+If you already know the answer or if you do not need to use a tool,
+return it as your Final Answer. """
         # Execute via the assigned agent: requirements_manager
         result = await requirements_manager.run(task=task_prompt)
 

@@ -1,7 +1,7 @@
 [project]
 name = "unnamed_project"
 version = "0.1.0"
-description = ""
+description = "Mastra instance hosting the candidate-workflow"
 authors = [{name = "Your Name", email = "you@example.com"}]
 readme = "README.md"
 requires-python = ">=3.10,<=3.13"

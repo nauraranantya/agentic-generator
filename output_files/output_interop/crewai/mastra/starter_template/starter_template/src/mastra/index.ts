@@ -14,12 +14,12 @@ import { Mastra } from '@mastra/core'
 import { agent1Name, agent2Name } from './agents'
 
 // Import workflows
-import { customCrewWorkflow } from './workflows'
+import { workflowCustomCrew } from './workflows'
 
 /**
  * Mastra instance with registered agents, workflows, and memory.
  *
- * A Crew defined in main.py that composes two custom agents and two custom tasks. Verbose=True, debug default False.
+ * Crew created in main.CustomCrew with agents [custom_agent_1, custom_agent_2] and tasks [custom_task_1, custom_task_2].
  */
 export const mastra = new Mastra({
   agents: {
@@ -27,6 +27,6 @@ export const mastra = new Mastra({
     agent2Name,
   },
   workflows: {
-    customCrewWorkflow,
+    workflowCustomCrew,
   },
 })

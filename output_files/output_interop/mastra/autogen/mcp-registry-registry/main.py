@@ -1,7 +1,7 @@
 import asyncio
 
 from team import (
-    mcp_registry_agent,
+    registry_registry_server,
 )
 
 from autogen_agentchat.conditions import (
@@ -17,16 +17,16 @@ async def main():
     try:
         # Step-by-step sequential execution
         # ==================================================
-        # Workflow Step: initialize_agent_task
-        # Workflow Edge: initialize_agent_task -> search_mcp_registries_task
+        # Workflow Step: task_fetch_servers_from_registry
+        # Workflow Edge: task_fetch_servers_from_registry -> task_post_process_servers
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: initialize_agent_task")
+        print("Executing step: task_fetch_servers_from_registry")
         print("=" * 80)
 
-        task_prompt = """Initialization task where the MCP client is queried (listTools()) and the agent's tools collection is populated."""
-        # Execute via the assigned agent: mcp_registry_agent
-        result = await mcp_registry_agent.run(task=task_prompt)
+        task_prompt = """Locate registry entry, validate servers_url, fetch raw registry data, and hand off to post-processor. """
+        # Execute via the assigned agent: registry_registry_server
+        result = await registry_registry_server.run(task=task_prompt)
 
         # Print step output
         if hasattr(result, "messages") and result.messages:
@@ -35,16 +35,16 @@ async def main():
             print(result)
 
         # ==================================================
-        # Workflow Step: search_mcp_registries_task
-        # Workflow Edge: search_mcp_registries_task -> finalize_task
+        # Workflow Step: task_post_process_servers
+        # Workflow Edge: task_post_process_servers -> task_filter_servers
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: search_mcp_registries_task")
+        print("Executing step: task_post_process_servers")
         print("=" * 80)
 
-        task_prompt = """Task performed by the MCP Registry Agent: search for registries by ID, tag, or name. This task uses the agent prompt (instructions) and the MCP Registry Tool / MCP Client to obtain information about registries."""
-        # Execute via the assigned agent: mcp_registry_agent
-        result = await mcp_registry_agent.run(task=task_prompt)
+        task_prompt = """Apply registry-specific post-processing function (e.g., processApifyServers, processDockerServers) to normalize server entries into standard ServerEntry shape. """
+        # Execute via the assigned agent: registry_registry_server
+        result = await registry_registry_server.run(task=task_prompt)
 
         # Print step output
         if hasattr(result, "messages") and result.messages:
@@ -53,15 +53,33 @@ async def main():
             print(result)
 
         # ==================================================
-        # Workflow Step: finalize_task
+        # Workflow Step: task_filter_servers
+        # Workflow Edge: task_filter_servers -> task_get_servers_from_registry
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: finalize_task")
+        print("Executing step: task_filter_servers")
         print("=" * 80)
 
-        task_prompt = """Task to finalize the search operation and present results (formatting, references)."""
-        # Execute via the assigned agent: mcp_registry_agent
-        result = await mcp_registry_agent.run(task=task_prompt)
+        task_prompt = """Filter ServerEntry results by search term or tag (if implemented), returning matched servers. """
+        # Execute via the assigned agent: registry_registry_server
+        result = await registry_registry_server.run(task=task_prompt)
+
+        # Print step output
+        if hasattr(result, "messages") and result.messages:
+            print(result.messages[-1].content)
+        else:
+            print(result)
+
+        # ==================================================
+        # Workflow Step: task_get_servers_from_registry
+        # ==================================================
+        print("\n" + "=" * 80)
+        print("Executing step: task_get_servers_from_registry")
+        print("=" * 80)
+
+        task_prompt = """High-level function orchestrating fetchServersFromRegistry and filterServers, providing the external API used by tools and tests. """
+        # Execute via the assigned agent: registry_registry_server
+        result = await registry_registry_server.run(task=task_prompt)
 
         # Print step output
         if hasattr(result, "messages") and result.messages:

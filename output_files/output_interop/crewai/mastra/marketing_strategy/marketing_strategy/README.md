@@ -1,6 +1,6 @@
-# MarketingPostsCrewTeam
+# UnnamedProject
 
-Team that coordinates agents and tasks for the marketing_posts solution. Process executed: sequential. Agents and tasks declared in crew definition.
+
 
 **Auto-generated from AgentO Knowledge Graph**  
 Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
@@ -34,7 +34,7 @@ npm run dev
 ## 📦 Project Structure
 
 ```
-MarketingPostsCrewTeam/
+UnnamedProject/
 ├── src/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
@@ -43,10 +43,10 @@ MarketingPostsCrewTeam/
 │       │   └── chiefMarketingStrategist.ts
 │       │   └── creativeContentCreator.ts
 │       ├── tools/             # Tool definitions
-│       │   └── serperDevTool.ts
-│       │   └── scrapeWebsiteTool.ts
+│       │   └── toolSerperDevTool.ts
+│       │   └── toolScrapeWebsiteTool.ts
 │       └── workflows/         # Workflow definitions
-│           └── marketingPostsWorkflow.ts
+│           └── wpSequential.ts
 ├── package.json
 ├── tsconfig.json
 └── .env.example
@@ -60,57 +60,57 @@ MarketingPostsCrewTeam/
 
 - **ID:** `lead_market_analyst`
 - **Model:** `openai/gpt-4o-mini`
-- **Tools:** serperDevTool, scrapeWebsiteTool
+- **Tools:** toolSerperDevTool, toolScrapeWebsiteTool
 
-Role and backstory for agent...
+Conduct amazing analysis of the products and competitors, providing in-depth insights to guide marketing strategies....
 
 ### Chief Marketing Strategist
 
 - **ID:** `chief_marketing_strategist`
 - **Model:** `openai/gpt-4o-mini`
-- **Tools:** serperDevTool, scrapeWebsiteTool
+- **Tools:** toolSerperDevTool, toolScrapeWebsiteTool
 
-Role and backstory for agent...
+Synthesize amazing insights from product analysis to formulate incredible marketing strategies....
 
 ### Creative Content Creator
 
 - **ID:** `creative_content_creator`
 - **Model:** `openai/gpt-4o-mini`
 
-Role and backstory for agent...
+Develop compelling and innovative content for social media campaigns, with a focus on creating high-impact ad copies....
 
 
 ---
 
 ## 🔧 Tools
 
-### SerperDevTool
+### toolSerperDevTool
 
-Third-party web search / SERP tool used by agents for lookups. Instantiated in code as SerperDevTool()....
+Tool for performing web/search queries via Serper.dev (used to find up-to-date information)....
 
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/serperDevTool.ts`)
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolSerperDevTool.ts`)
 
-### ScrapeWebsiteTool
+### toolScrapeWebsiteTool
 
-Tool for scraping website contents; used by agents to gather site-specific information. Instantiated in code as ScrapeWebsiteTool()....
+Tool to scrape website content for extracting information about customers and competitors....
 
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/scrapeWebsiteTool.ts`)
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolScrapeWebsiteTool.ts`)
 
 
 ---
 
 ## 🔄 Workflows
 
-### MarketingPosts Workflow Pattern
+### wp_sequential
 
-Workflow pattern representing the sequential process of tasks defined in the MarketingPosts crew.
+
 
 **Steps:** 5
-1. research_task
-2. project_understanding_task
-3. marketing_strategy_task
-4. campaign_idea_task
-5. copy_creation_task
+1. task_research
+2. task_project_understanding
+3. task_marketing_strategy
+4. task_campaign_idea
+5. task_copy_creation
 
 
 ---

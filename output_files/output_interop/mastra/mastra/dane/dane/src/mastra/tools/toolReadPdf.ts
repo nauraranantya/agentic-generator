@@ -1,36 +1,36 @@
 /**
- * Tool: readPDF
+ * Tool: toolReadPdf
  * 
  * Auto-generated from AgentO Knowledge Graph
  * 
- * Reads PDF file and extracts textual content; validates file path and type.
+ * Parse PDF files and return extracted text.
  */
 
 import { createTool } from '@mastra/core/tools'
 import { z } from 'zod'
 
 /**
- * readPDF
+ * toolReadPdf
  * 
- * Implementation: Reads PDF file and extracts textual content; validates file path and type.
+ * Implementation: Parse PDF files and return extracted text.
  */
 export const toolReadPdf = createTool({
-  id: 'readPDF',
-  description: `Reads PDF file and extracts textual content; validates file path and type.`,
-  inputSchema: z.object({pdfPath: z.string()}),
+  id: 'toolReadPdf',
+  description: `Parse PDF files and return extracted text.`,
+  inputSchema: z.object({}),  // TODO: Define input schema
   outputSchema: z.object({}),  // TODO: Define output schema
   execute: async ({ inputData }) => {
     // TODO: Implement tool logic
     // 
-    // Description: Reads PDF file and extracts textual content; validates file path and type.
+    // Description: Parse PDF files and return extracted text.
     // Configurations:
-    //   - inputSchema: { "pdfPath": "string" }
+    //   - PDF_PARSER: pdf-parse
     // 
     // Implementation should:
     // 1. Use inputData according to inputSchema
     // 2. Perform the tool's logic
     // 3. Return result matching outputSchema
     
-    throw new Error('Tool readPDF not implemented yet')
+    throw new Error('Tool toolReadPdf not implemented yet')
   },
 })

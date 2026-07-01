@@ -36,24 +36,20 @@ async def main():
     try:
         # Step-by-step sequential execution
         # ==================================================
-        # Workflow Step: expand_idea_task
-        # Workflow Edge: expand_idea_task -> refine_idea_task
+        # Workflow Step: task_expand_idea
+        # Workflow Edge: task_expand_idea -> task_refine_idea
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: expand_idea_task")
+        print("Executing step: task_expand_idea")
         print("=" * 80)
 
-        task_prompt = """THIS IS A GREAT IDEA! Analyze and expand it 
-by conducting a comprehensive research.
+        task_prompt = """THIS IS A GREAT IDEA! Analyze and expand it by conducting a comprehensive research.
 
-Final answer MUST be a comprehensive idea report 
-detailing why this is a great idea, the value 
-proposition, unique selling points, why people should 
-care about it and distinguishing features. 
+Final answer MUST be a comprehensive idea report detailing why this is a great idea, the value proposition, unique selling points, why people should care about it and distinguishing features.
 
 IDEA:
 # ----------
-{idea}"""
+{idea} """
         # Execute via the assigned agent: senior_idea_analyst
         result = await senior_idea_analyst.run(task=task_prompt)
 
@@ -64,23 +60,17 @@ IDEA:
             print(result)
 
         # ==================================================
-        # Workflow Step: refine_idea_task
-        # Workflow Edge: refine_idea_task -> refine_idea_task
+        # Workflow Step: task_refine_idea
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: refine_idea_task")
+        print("Executing step: task_refine_idea")
         print("=" * 80)
 
-        task_prompt = """Expand idea report with a Why, How, and What 
-messaging strategy using the Golden Circle 
-Communication technique, based on the idea report.
+        task_prompt = """Expand idea report with a Why, How, and What messaging strategy using the Golden Circle Communication technique, based on the idea report.
 
-Your final answer MUST be the updated complete 
-comprehensive idea report with WHY, HOW, WHAT, 
-a core message, key features and supporting arguments.
+Your final answer MUST be the updated complete comprehensive idea report with WHY, HOW, WHAT, a core message, key features and supporting arguments.
 
-YOU MUST RETURN THE COMPLETE IDEA REPORT AND 
-THE DETAILS, You'll get a $100 tip if you do your best work!"""
+YOU MUST RETURN THE COMPLETE IDEA REPORT AND THE DETAILS, You'll get a $100 tip if you do your best work! """
         # Execute via the assigned agent: senior_strategist
         result = await senior_strategist.run(task=task_prompt)
 
@@ -91,30 +81,24 @@ THE DETAILS, You'll get a $100 tip if you do your best work!"""
             print(result)
 
         # ==================================================
-        # Workflow Step: choose_template_task
-        # Workflow Edge: choose_template_task -> update_page_task
+        # Workflow Step: task_choose_template
+        # Workflow Edge: task_choose_template -> task_update_page
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: choose_template_task")
+        print("Executing step: task_choose_template")
         print("=" * 80)
 
-        task_prompt = """Learn the templates options choose and copy 
-the one that suits the idea below the best, 
-YOU MUST COPY, and then YOU MUST read the src/component 
-in the directory you just copied, to decide what 
-component files should be updated to make the 
-landing page about the idea below.
+        task_prompt = """Learn the templates options choose and copy the one that suits the idea below the best, YOU MUST COPY, and then YOU MUST read the src/component in the directory you just copied, to decide what component files should be updated to make the landing page about the idea below.
 
-- YOU MUST READ THE DIRECTORY BEFORE CHOOSING THE FILES.      
+- YOU MUST READ THE DIRECTORY BEFORE CHOOSING THE FILES.
 - YOU MUST NOT UPDATE any Pricing components.
 - YOU MUST UPDATE ONLY the 4 most important components.
 
-Your final answer MUST be ONLY a JSON array of 
-components full file paths that need to be updated.
+Your final answer MUST be ONLY a JSON array of components full file paths that need to be updated.
 
 IDEA
 # ----------
-{idea}"""
+{idea} """
         # Execute via the assigned agent: senior_react_engineer
         result = await senior_react_engineer.run(task=task_prompt)
 
@@ -125,22 +109,15 @@ IDEA
             print(result)
 
         # ==================================================
-        # Workflow Step: update_page_task
+        # Workflow Step: task_update_page
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: update_page_task")
+        print("Executing step: task_update_page")
         print("=" * 80)
 
-        task_prompt = """READ the ./[chosen_template]/src/app/page.jsx OR
-./[chosen_template]/src/app/(main)/page.jsx (main with the parenthesis) 
-to learn its content and then write an updated 
-version to the filesystem that removes any 
-section related components that are not in our 
-list from the returns. Keep the imports.
+        task_prompt = """READ the ./[chosen_template]/src/app/page.jsx OR ./[chosen_template]/src/app/(main)/page.jsx to learn its content and then write an updated version to the filesystem that removes any section related components that are not in our list from the returns. Keep the imports.
 
-Final answer MUST BE ONLY a valid json list with 
-the full path of each of the components we will be 
-using, the same way you got them.
+Final answer MUST BE ONLY a valid json list with the full path of each of the components we will be using, the same way you got them.
 
 RULES
 # -----
@@ -152,12 +129,13 @@ RULES
 - Save the file as with `.jsx` extension.
 - Return the same valid JSON list of the components your got.
 
-Also update any necessary text to reflect this landing page
-is about the idea below.
+You'll get a $100 tip if you follow all the rules!
 
-IDEA 
+Also update any necessary text to reflect this landing page is about the idea below.
+
+IDEA
 # ----------
-{idea}"""
+{idea} """
         # Execute via the assigned agent: senior_react_engineer
         result = await senior_react_engineer.run(task=task_prompt)
 
@@ -168,30 +146,24 @@ IDEA
             print(result)
 
         # ==================================================
-        # Workflow Step: component_content_task
-        # Workflow Edge: component_content_task -> update_component_task
+        # Workflow Step: task_component_content
+        # Workflow Edge: task_component_content -> task_update_component
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: component_content_task")
+        print("Executing step: task_component_content")
         print("=" * 80)
 
-        task_prompt = """A engineer will update the {component} (code below),
-return a list of good options of texts to replace 
-EACH INDIVIDUAL existing text on the component, 
-the suggestion MUST be based on the idea below, 
-and also MUST be similar in length with the original 
-text, we need to replace ALL TEXT.
+        task_prompt = """A engineer will update the {component} (code below), return a list of good options of texts to replace EACH INDIVIDUAL existing text on the component, the suggestion MUST be based on the idea below, and also MUST be similar in length with the original text, we need to replace ALL TEXT.
 
-NEVER USE Apostrophes for contraction! You'll get a $100 
-tip if you do your best work!
+NEVER USE Apostrophes for contraction! You'll get a $100 tip if you do your best work!
 
-IDEA 
+IDEA
 # -----
 {expanded_idea}
 
 REACT COMPONENT CONTENT
 # -----
-{file_content}"""
+{file_content} """
         # Execute via the assigned agent: senior_content_editor
         result = await senior_content_editor.run(task=task_prompt)
 
@@ -202,21 +174,16 @@ REACT COMPONENT CONTENT
             print(result)
 
         # ==================================================
-        # Workflow Step: update_component_task
-        # Workflow Edge: update_component_task -> qa_component_task
+        # Workflow Step: task_update_component
+        # Workflow Edge: task_update_component -> task_qa_component
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: update_component_task")
+        print("Executing step: task_update_component")
         print("=" * 80)
 
-        task_prompt = """YOU MUST USE the tool to write an updated 
-version of the react component to the file 
-system in the following path: {component} 
-replacing the text content with the suggestions 
-provided.
+        task_prompt = """YOU MUST USE the tool to write an updated version of the react component to the file system in the following path: {component} replacing the text content with the suggestions provided.
 
-You only modify the text content, you don't add 
-or remove any components.
+You only modify the text content, you don't add or remove any components.
 
 RULES
 # -----
@@ -232,12 +199,11 @@ RULES
 - ALL COMPONENTS USED SHOULD BE IMPORTED, don't make up components.
 - Save the file as with `.jsx` extension.
 
-If you follow the rules I'll give you a $100 tip!!! 
-MY LIFE DEPEND ON YOU FOLLOWING IT!
+If you follow the rules I'll give you a $100 tip!!! MY LIFE DEPEND ON YOU FOLLOWING IT!
 
 CONTENT TO BE UPDATED
 # -----
-{file_content}"""
+{file_content} """
         # Execute via the assigned agent: senior_content_editor
         result = await senior_content_editor.run(task=task_prompt)
 
@@ -248,21 +214,15 @@ CONTENT TO BE UPDATED
             print(result)
 
         # ==================================================
-        # Workflow Step: qa_component_task
+        # Workflow Step: task_qa_component
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: qa_component_task")
+        print("Executing step: task_qa_component")
         print("=" * 80)
 
-        task_prompt = """Check the React component code to make sure 
-it's valid and abide by the rules below, 
-if it doesn't then write the correct version to 
-the file system using the write file tool into 
-the following path: {component}.
+        task_prompt = """Check the React component code to make sure it's valid and abide by the rules below, if it doesn't then write the correct version to the file system using the write file tool into the following path: {component}.
 
-Your final answer should be a confirmation that 
-the component is valid and abides by the rules and if
-you had to write an updated version to the file system.
+Your final answer should be a confirmation that the component is valid and abides by the rules and if you had to write an updated version to the file system.
 
 RULES
 # -----
@@ -273,10 +233,10 @@ RULES
 - NEVER WRITE \n (newlines as string) on the file, just the code.
 - NEVER FORGET TO CLOSE THE FINAL BRACKET (}}) in the file.
 - NEVER USE COMPONENTS THAT ARE NOT IMPORTED.
-- ALL COMPONENTS USED SHOULD BE IMPORTED.
+- ALL COMPONENTS USED SHOULD BE IMPORTED, don't make up components.
 - Always use `export function` for the component class.
 
-You'll get a $100 tip if you follow all the rules!"""
+You'll get a $100 tip if you follow all the rules! """
         # Execute via the assigned agent: senior_content_editor
         result = await senior_content_editor.run(task=task_prompt)
 

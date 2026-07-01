@@ -1,6 +1,6 @@
-# Mastraagentsystem
+# UnnamedProject
 
-Collection of agents and tools composing the CLI assistant 'Dane' and associated workflows.
+Mastra instance bundling agents, tools, memory and workflows for the Dane assistant CLI project.
 
 **Auto-generated from AgentO Knowledge Graph**  
 Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
@@ -34,7 +34,7 @@ npm run dev
 ## 📦 Project Structure
 
 ```
-Mastraagentsystem/
+UnnamedProject/
 ├── src/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
@@ -43,29 +43,36 @@ Mastraagentsystem/
 │       │   └── daneCommitMessage.ts
 │       │   └── daneIssueLabeler.ts
 │       │   └── daneLinkChecker.ts
-│       │   └── danePackagePublisher.ts
+│       │   └── daneChangeLog.ts
 │       │   └── daneNewContributor.ts
+│       │   └── danePackagePublisher.ts
 │       ├── tools/             # Tool definitions
-│       │   └── toolExecaTool.ts
-│       │   └── toolFsTool.ts
-│       │   └── toolSlackMcp.ts
-│       │   └── toolListEvents.ts
 │       │   └── toolBrowserTool.ts
 │       │   └── toolGoogleSearch.ts
+│       │   └── toolListEvents.ts
+│       │   └── toolCrawl.ts
+│       │   └── toolExecaTool.ts
+│       │   └── toolFsTool.ts
+│       │   └── toolImageTool.ts
 │       │   └── toolReadPdf.ts
 │       │   └── toolPnpmBuild.ts
 │       │   └── toolPnpmChangesetStatus.ts
 │       │   └── toolPnpmChangesetPublish.ts
 │       │   └── toolActiveDistTag.ts
+│       │   └── toolSlackClient.ts
+│       │   └── toolFirecrawlIntegration.ts
+│       │   └── toolGithubIntegration.ts
+│       │   └── toolStabilityaiIntegration.ts
+│       │   └── toolUpstashStore.ts
 │       └── workflows/         # Workflow definitions
-│           └── workflowCommitMessage.ts
-│           └── workflowTelephoneGame.ts
-│           └── workflowLinkChecker.ts
 │           └── workflowChangelog.ts
-│           └── workflowPackagePublisher.ts
-│           └── workflowMessage.ts
+│           └── workflowEntry.ts
+│           └── workflowCommitMessage.ts
+│           └── workflowGithubFirstContributorMessage.ts
 │           └── workflowGithubIssueLabeler.ts
-│           └── workflowGithubFirstContributor.ts
+│           └── workflowLinkChecker.ts
+│           └── workflowPnpmChangsetPublisher.ts
+│           └── workflowTelephoneGame.ts
 ├── package.json
 ├── tsconfig.json
 └── .env.example
@@ -77,173 +84,247 @@ Mastraagentsystem/
 
 ### assistant
 
-- **ID:** `dane`
-- **Model:** `anthropic/claude-3-5-sonnet-20241022`
-- **Tools:** toolExecaTool, toolFsTool, toolListEvents, toolBrowserTool, toolGoogleSearch, toolReadPdf
+- **ID:** `Dane`
+- **Model:** `openai/gpt-4o-mini`
+- **Tools:** toolBrowserTool, toolGoogleSearch, toolListEvents, toolCrawl, toolExecaTool, toolFsTool, toolImageTool, toolReadPdf
 
 You are assistant....
 
-### LLM Agent
+### commit_message_generator
 
-- **ID:** `dane-commit-message`
-- **Model:** `anthropic/claude-3-5-sonnet-20241022`
+- **ID:** `DaneCommitMessage`
+- **Model:** `openai/gpt-4o-mini`
 - **Tools:** toolFsTool
 
-You are LLM Agent....
+You are commit_message_generator....
 
-### LLM Agent
+### issue_labeler
 
-- **ID:** `dane-issue-labeler`
-- **Model:** `anthropic/claude-3-5-sonnet-20241022`
+- **ID:** `DaneIssueLabeler`
+- **Model:** `openai/gpt-4o-mini`
+- **Tools:** toolGithubIntegration
 
-You are LLM Agent....
+You are issue_labeler....
 
-### LLM Agent
+### link_checker
 
-- **ID:** `dane-link-checker`
-- **Model:** `anthropic/claude-3-5-sonnet-20241022`
-- **Tools:** toolSlackMcp
+- **ID:** `DaneLinkChecker`
+- **Model:** `openai/gpt-4o-mini`
+- **Tools:** toolSlackClient
 
-You are LLM Agent....
+You are link_checker....
 
-### LLM Agent
+### changelog_writer
 
-- **ID:** `dane-package-publisher`
-- **Model:** `anthropic/claude-3-5-sonnet-20241022`
+- **ID:** `DaneChangeLog`
+- **Model:** `openai/gpt-4o-mini`
+- **Tools:** toolSlackClient
+
+You are changelog_writer....
+
+### new_contributor_messaging
+
+- **ID:** `DaneNewContributor`
+- **Model:** `openai/gpt-4o-mini`
+- **Tools:** toolGithubIntegration
+
+You are new_contributor_messaging....
+
+### package_publisher
+
+- **ID:** `DanePackagePublisher`
+- **Model:** `openai/gpt-4o-mini`
 - **Tools:** toolPnpmBuild, toolPnpmChangesetStatus, toolPnpmChangesetPublish, toolActiveDistTag
 
-You are LLM Agent....
-
-### LLM Agent
-
-- **ID:** `dane-new-contributor`
-- **Model:** `anthropic/claude-3-5-sonnet-20241022`
-
-You are LLM Agent....
+You are package_publisher....
 
 
 ---
 
 ## 🔧 Tools
 
-### execaTool
+### toolBrowserTool
 
-Tool wrapping execa to run commands and stream output to console. Input: {command, args}. Output: {message}....
-
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolExecaTool.ts`)
-
-### fsTool
-
-File system tool to read/write/append files....
-
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolFsTool.ts`)
-
-### mcpSlackClient
-
-MCP client configured to run Slack container. Exposes tools for posting to Slack....
-
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolSlackMcp.ts`)
-
-### listEvents
-
-Tool that lists calendar events by reading Mac Calendar via AppleScript and parsing into event objects....
-
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolListEvents.ts`)
-
-### browserTool
-
-Opens a headless chromium browser, retrieves page content and returns chunked textual document representation....
+Opens a headless browser, navigates to a URL and captures content; chunks HTML into documents....
 
 **Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolBrowserTool.ts`)
 
-### googleSearch
+### toolGoogleSearch
 
-Performs a Google search and returns a list of result URLs....
+Performs a Google search by opening search results and extracting links....
 
 **Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolGoogleSearch.ts`)
 
-### readPDF
+### toolListEvents
 
-Reads PDF file and extracts textual content; validates file path and type....
+Reads local (Mac) Calendar events via AppleScript and returns events....
+
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolListEvents.ts`)
+
+### toolCrawl
+
+Triggers Firecrawl integration to crawl and sync website content....
+
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolCrawl.ts`)
+
+### toolExecaTool
+
+Execute shell commands and stream output....
+
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolExecaTool.ts`)
+
+### toolFsTool
+
+Read, write, and append files on local filesystem....
+
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolFsTool.ts`)
+
+### toolImageTool
+
+Generate images using Stability AI integration and save to disk....
+
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolImageTool.ts`)
+
+### toolReadPdf
+
+Parse PDF files and return extracted text....
 
 **Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolReadPdf.ts`)
 
-### pnpmBuild
+### toolPnpmBuild
 
-Build a package using pnpm run build at provided packagePath. Input: {name, packagePath}....
+Runs pnpm build in package directories....
 
 **Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolPnpmBuild.ts`)
 
-### pnpmChangesetStatus
+### toolPnpmChangesetStatus
 
-Checks 'pnpm publish -r --dry-run --no-git-checks' to determine which packages need to be published. Returns array of package names....
+Check which pnpm modules would be published via dry-run....
 
 **Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolPnpmChangesetStatus.ts`)
 
-### pnpmChangesetPublish
+### toolPnpmChangesetPublish
 
-Publishes packages via pnpm changeset publish....
+Publish pnpm changesets....
 
 **Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolPnpmChangesetPublish.ts`)
 
-### activeDistTag
+### toolActiveDistTag
 
-Sets an npm dist tag on a package using npm dist-tag add <pkg>@<version> latest....
+Set npm dist-tag on published packages....
 
 **Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolActiveDistTag.ts`)
+
+### toolSlackClient
+
+Mastra MCP client for Slack, runs a docker command to post messages....
+
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolSlackClient.ts`)
+
+### toolFirecrawlIntegration
+
+Integration to crawl and sync content using Firecrawl API....
+
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolFirecrawlIntegration.ts`)
+
+### toolGithubIntegration
+
+GitHub API integration for retrieving PRs, issues and posting comments....
+
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolGithubIntegration.ts`)
+
+### toolStabilityaiIntegration
+
+Integration to generate images using Stability AI API....
+
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolStabilityaiIntegration.ts`)
+
+### toolUpstashStore
+
+Upstash HTTP store used by Memory; token-based auth....
+
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolUpstashStore.ts`)
 
 
 ---
 
 ## 🔄 Workflows
 
-### commit-message workflow
+### workflow_changelog
 
-Workflow to generate and optionally commit a sensible git commit message for staged changes.
 
-**Steps:** 0
 
-### telephoneGame workflow
+**Steps:** 2
+1. task_changelog_step_a1
+2. task_changelog_step_a2
 
-Play a game of telephone: starts a message, passes it through participants with optional modification by an agent and supports suspension/resume awaiting user confirmation.
+### workflow_entry
 
-**Steps:** 0
 
-### link-checker workflow
 
-Checks a target URL for broken links using linkinator and posts results to Slack via MCP.
+**Steps:** 2
+1. task_entry_message_input
+2. task_entry_message_output
 
-**Steps:** 0
+### workflow_commit_message
 
-### changelog workflow
 
-Generates weekly changelogs by scanning a predefined list of module paths, computing diffs between two dates, and asking an agent to summarize per-module changes; posts combined changelog to Slack.
 
-**Steps:** 0
+**Steps:** 5
+1. task_commit_get_diff
+2. task_commit_read_conventional_commit_spec
+3. task_commit_generate_message
+4. task_commit_confirmation
+5. task_commit_commit
 
-### pnpm-changset-publisher
+### workflow_github_first_contributor_message
 
-Builds all packages, publishes changesets and sets dist-tags for monorepo packages.
 
-**Steps:** 0
 
-### message (entry) workflow
+**Steps:** 3
+1. task_first_get_pull_request
+2. task_first_message_generator
+3. task_first_create_message
 
-Interactive chat workflow: prompt user for message and then have dane agent respond (streaming or non-streaming).
+### workflow_github_issue_labeler
 
-**Steps:** 0
 
-### github-issue-labeler workflow
 
-Fetch GitHub issue contents, obtain available labels, ask agent to select labels and apply them via GitHub integration.
+**Steps:** 3
+1. task_issue_get_issue
+2. task_issue_label_issue
+3. task_issue_apply_labels
 
-**Steps:** 0
+### workflow_link_checker
 
-### github-first-contributor-message workflow
 
-On first contributor PR, generate welcoming message combining PR title, body, diff and Mastra docs; post as PR comment.
 
-**Steps:** 0
+**Steps:** 2
+1. task_link_get_broken_links
+2. task_link_report_broken_links
+
+### workflow_pnpm_changset_publisher
+
+
+
+**Steps:** 6
+1. task_pkg_get_pacakges_to_publish
+2. task_pkg_assemble_packages
+3. task_pkg_build_packages
+4. task_pkg_verify_build
+5. task_pkg_publish_changeset
+6. task_pkg_set_latest_dist_tag
+
+### workflow_telephone_game
+
+
+
+**Steps:** 5
+1. task_tel_step_a1
+2. task_tel_step_a2
+3. task_tel_step_b2
+4. task_tel_step_c2
+5. task_tel_step_d2
 
 
 ---

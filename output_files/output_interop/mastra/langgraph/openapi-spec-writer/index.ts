@@ -3,65 +3,43 @@ import { Annotation, START, END, StateGraph } from "@langchain/langgraph";
 import { tool } from "@langchain/core/tools";
 import { z } from "zod";
 
-const MastraSystemAnnotation = Annotation.Root({
+const UnnamedProjectAnnotation = Annotation.Root({
   messages: Annotation<any[]>({
     reducer: (_, next) => next,
     default: () => [],
   }),
 });
 
-// Tool: site_crawl_tool
-const site_crawl_tool = tool(
+// Tool: tool_site_crawl
+const tool_site_crawl = tool(
   async () => {
-    return "Result of site_crawl_tool";
+    return "Result of tool_site_crawl";
   },
   {
-    name: "site_crawl_tool",
+    name: "tool_site_crawl",
     description: "Crawl a website and extract the markdown content",
     schema: z.object({}),
   }
 );
-// Tool: firecrawl_integration
-const firecrawl_integration = tool(
+// Tool: tool_generate_spec
+const tool_generate_spec = tool(
   async () => {
-    return "Result of firecrawl_integration";
+    return "Result of tool_generate_spec";
   },
   {
-    name: "firecrawl_integration",
-    description: "Integration client used to crawl websites (Firecrawl API key supplied at runtime).",
+    name: "tool_generate_spec",
+    description: "Generate a spec from a website",
     schema: z.object({}),
   }
 );
-// Tool: generate_spec_tool
-const generate_spec_tool = tool(
+// Tool: tool_add_to_github
+const tool_add_to_github = tool(
   async () => {
-    return "Result of generate_spec_tool";
+    return "Result of tool_add_to_github";
   },
   {
-    name: "generate_spec_tool",
-    description: "Generate an OpenAPI spec from crawled website markdown; uses the OpenAPI agent to convert pages and merge them.",
-    schema: z.object({}),
-  }
-);
-// Tool: add_to_git_hub_tool
-const add_to_git_hub_tool = tool(
-  async () => {
-    return "Result of add_to_git_hub_tool";
-  },
-  {
-    name: "add_to_git_hub_tool",
-    description: "Commit the spec to GitHub: formats YAML via the agent, creates branch, commits files and opens a pull request.",
-    schema: z.object({}),
-  }
-);
-// Tool: git_hub_integration
-const git_hub_integration = tool(
-  async () => {
-    return "Result of git_hub_integration";
-  },
-  {
-    name: "git_hub_integration",
-    description: "GitHub integration client that performs git ref, file write and pull request operations (requires PERSONAL_ACCESS_TOKEN).",
+    name: "tool_add_to_github",
+    description: "Commit the spec to GitHub and create a PR",
     schema: z.object({}),
   }
 );
@@ -69,17 +47,17 @@ const git_hub_integration = tool(
 
 
 /**
- * Node: siteCrawlSyncStepTask
+ * Node: taskSiteCrawlSync
  * Agent: openapi_spec_gen_agent
  */
-async function siteCrawlSyncStepTask(state: typeof MastraSystemAnnotation.State) {
+async function taskSiteCrawlSync(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-3.5-turbo" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "You are a OpenAPI spec writer agent." +
-        "\\nNode: siteCrawlSyncStepTask",
+        "You are a openapi-spec-writer." +
+        "\nNode: taskSiteCrawlSync",
     },
     ...state.messages,
   ]);
@@ -87,17 +65,17 @@ async function siteCrawlSyncStepTask(state: typeof MastraSystemAnnotation.State)
 }
 
 /**
- * Node: generateSpecTask
+ * Node: taskGenerateSpec
  * Agent: openapi_spec_gen_agent
  */
-async function generateSpecTask(state: typeof MastraSystemAnnotation.State) {
+async function taskGenerateSpec(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-3.5-turbo" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "You are a OpenAPI spec writer agent." +
-        "\\nNode: generateSpecTask",
+        "You are a openapi-spec-writer." +
+        "\nNode: taskGenerateSpec",
     },
     ...state.messages,
   ]);
@@ -105,36 +83,34 @@ async function generateSpecTask(state: typeof MastraSystemAnnotation.State) {
 }
 
 /**
- * Node: addToGithubTask
+ * Node: taskAddToGithub
  * Agent: openapi_spec_gen_agent
  */
-async function addToGithubTask(state: typeof MastraSystemAnnotation.State) {
+async function taskAddToGithub(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-3.5-turbo" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "You are a OpenAPI spec writer agent." +
-        "\\nNode: addToGithubTask",
+        "You are a openapi-spec-writer." +
+        "\nNode: taskAddToGithub",
     },
     ...state.messages,
   ]);
   return { messages: [response] };
 }
 
-const workflow = new StateGraph(MastraSystemAnnotation)
-  .addNode("siteCrawlSyncStepTask", siteCrawlSyncStepTask)
-  .addNode("generateSpecTask", generateSpecTask)
-  .addNode("addToGithubTask", addToGithubTask)
-  .addEdge(START, "siteCrawlSyncStepTask")
-  .addEdge("siteCrawlSyncStepTask", "generateSpecTask")
-  .addEdge("generateSpecTask", "addToGithubTask")
-  .addEdge("addToGithubTask", END)
+const workflow = new StateGraph(UnnamedProjectAnnotation)
+  .addNode("taskSiteCrawlSync", taskSiteCrawlSync)
+  .addNode("taskGenerateSpec", taskGenerateSpec)
+  .addNode("taskAddToGithub", taskAddToGithub)
+  .addEdge(START, "taskSiteCrawlSync")
+  .addEdge("taskSiteCrawlSync", "taskGenerateSpec")
+  .addEdge("taskGenerateSpec", END)
+  .addEdge("taskAddToGithub", END)
 ;
 
 export const graph = workflow.compile();
-graph.name = "MastraSystem";
-// Workflow: open_api_spec_gen_workflow_pattern
-// Workflow: openApiSpecGenWorkflow
-// Workflow: make_pr_workflow_pattern
-// Workflow: makePRToMastra
+graph.name = "UnnamedProject";
+// Workflow: wp_open_api_spec_gen_workflow
+// Workflow: wp_make_pr_to_mastra

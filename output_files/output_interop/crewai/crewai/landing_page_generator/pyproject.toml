@@ -1,7 +1,7 @@
 [project]
-name = "expand_idea_crewteam"
+name = "unnamed_project"
 version = "0.1.0"
-description = "Derived from src/landing_page_generator/crew.py ExpandIdeaCrew class. Process: s"
+description = ""
 authors = [{name = "Your Name", email = "you@example.com"}]
 readme = "README.md"
 requires-python = ">=3.10,<=3.13"
@@ -10,18 +10,17 @@ dependencies = [
     "crewai[tools]>=0.152.0",
     "python-dotenv>=1.0.1",
     "pyyaml>=6.0.1",
-    # TODO: add PyPI package for custom tool "SearchtheinternetSearchToolssearchinternet"
-    # TODO: add PyPI package for custom tool "ScrapewebsitecontentBrowserToolsscrapeandsummarizewebsite"
-    # TODO: add PyPI package for custom tool "WritefiletoworkdirFileToolswritefile"
-    # TODO: add PyPI package for custom tool "LearnlandingpageoptionsTemplateToolslearnlandingpageoptions"
-    # TODO: add PyPI package for custom tool "CopylandingpagetemplatetoprojectfolderTemplateToolscopylandingpagetemplatetoprojectfolder"
-    # TODO: add PyPI package for custom tool "Readfilefilemanagementtoolkitreadfile"
-    # TODO: add PyPI package for custom tool "Listdirectoryfilemanagementtoolkitlistdirectory"
-    # TODO: add PyPI package for custom tool "Filemanagementtoolkitcontainerprovidesreadfilelistdirectorytools"
+    # TODO: add PyPI package for custom tool "toolsearchinternet"
+    # TODO: add PyPI package for custom tool "toolscrapeandsummarizewebsite"
+    # TODO: add PyPI package for custom tool "toollearnlandingpageoptions"
+    # TODO: add PyPI package for custom tool "toolcopylandingpagetemplate"
+    # TODO: add PyPI package for custom tool "toolwritefile"
+    # TODO: add PyPI package for custom tool "toolreadfile"
+    # TODO: add PyPI package for custom tool "toollistdirectory"
 ]
 
 [project.scripts]
-expand_idea_crewteam = "main:run"
+unnamed_project = "main:run"
 train      = "main:train"
 
 [tool.uv]

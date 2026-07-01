@@ -1,11 +1,18 @@
-task_initiate_chat_black_white:
-  description: Let's play chess! Your move.
-  expected_output: 'Completed: task_initiate_chat_black_white'
-task_make_move:
-  description: |
-    Call make_move(move) with a single move argument in UCI format when selecting a move to apply. Expect a textual confirmation describing the moved piece and board update.
-  expected_output: 'Completed: task_make_move'
+task_initiate_chat:
+  description: player_black initiates the game chat to start a move sequence.
+  expected_output: Agent should start by calling get_legal_moves() or propose a move.
+task_board_proxy_summary_to_white:
+  description: Board proxy provides last message summary to the white player before
+    the player's turn.
+  expected_output: A short summary that helps the player decide the next move.
 task_get_legal_moves:
-  description: |
-    Call get_legal_moves() to obtain the legal moves in UCI format; parse or present the returned comma-separated list to decide on the next move.
-  expected_output: 'Completed: task_get_legal_moves'
+  description: Player requests the list of legal moves for selection.
+  expected_output: List of UCI moves (comma-separated) e.g., e2e4,g1f3,...
+task_make_move:
+  description: Player makes a selected move by calling make_move(move).
+  expected_output: Confirmation string describing the move and piece moved.
+task_check_made_move:
+  description: Board proxy evaluates the made_move flag to determine if the nested
+    chat should terminate.
+  expected_output: Boolean-like indicator (True when a move was made) in code; used
+    as termination condition.

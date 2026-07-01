@@ -1,39 +1,36 @@
 /**
- * Tool: ScrapeWebsiteTool
+ * Tool: toolScrapeWebsite
  * 
  * Auto-generated from AgentO Knowledge Graph
  * 
- * General web scraping tool used to extract structured information from web pages.
+ * Tool for scraping and extracting structured information from websites.
  */
 
 import { createTool } from '@mastra/core/tools'
 import { z } from 'zod'
 
 /**
- * ScrapeWebsiteTool
+ * toolScrapeWebsite
  * 
- * Implementation: General web scraping tool used to extract structured information from web pages.
+ * Implementation: Tool for scraping and extracting structured information from websites.
  */
-export const toolScrapewebsite = createTool({
-  id: 'ScrapeWebsiteTool',
-  description: `General web scraping tool used to extract structured information from web pages.`,
+export const toolScrapeWebsite = createTool({
+  id: 'toolScrapeWebsite',
+  description: `Tool for scraping and extracting structured information from websites.`,
   inputSchema: z.object({}),  // TODO: Define input schema
   outputSchema: z.object({}),  // TODO: Define output schema
   execute: async ({ inputData }) => {
     // TODO: Implement tool logic
     // 
-    // Description: General web scraping tool used to extract structured information from web pages.
+    // Description: Tool for scraping and extracting structured information from websites.
     // Configurations:
-    //   - name: ScrapeWebsiteTool
-    //   - name: Generic HTML scraping tool used to extract elements by CSS selectors.
-    //   - note: ScrapeWebsiteTool
-    //   - note: Generic HTML scraping tool used to extract elements by CSS selectors.
+    //   - SCRAPE_TOOL_CONFIG: default
     // 
     // Implementation should:
     // 1. Use inputData according to inputSchema
     // 2. Perform the tool's logic
     // 3. Return result matching outputSchema
     
-    throw new Error('Tool ScrapeWebsiteTool not implemented yet')
+    throw new Error('Tool toolScrapeWebsite not implemented yet')
   },
 })

@@ -3,23 +3,43 @@ import { Annotation, START, END, StateGraph } from "@langchain/langgraph";
 import { tool } from "@langchain/core/tools";
 import { z } from "zod";
 
-const MeetingPreparationCrewAnnotation = Annotation.Root({
+const UnnamedProjectAnnotation = Annotation.Root({
   messages: Annotation<any[]>({
     reducer: (_, next) => next,
     default: () => [],
   }),
 });
 
-// Tool: exa_search_tool
-const exa_search_tool = tool(
+// Tool: exa_search_tool_search
+const exa_search_tool_search = tool(
   async () => {
-    return "Result of exa_search_tool";
+    return "Result of exa_search_tool_search";
   },
   {
-    name: "exa_search_tool",
-    description: "Tool wrapping Exa (exa_py) search capabilities used by agents.
-Provides three main operations: search(query), find_similar(url), and get_contents(ids).
-The tool requires an EXA_API_KEY configuration value to access Exa APIs.",
+    name: "exa_search_tool_search",
+    description: "Search for a webpage based on the query (returns a list of result IDs).",
+    schema: z.object({}),
+  }
+);
+// Tool: exa_search_tool_find_similar
+const exa_search_tool_find_similar = tool(
+  async () => {
+    return "Result of exa_search_tool_find_similar";
+  },
+  {
+    name: "exa_search_tool_find_similar",
+    description: "Search for webpages similar to a given URL.",
+    schema: z.object({}),
+  }
+);
+// Tool: exa_search_tool_get_contents
+const exa_search_tool_get_contents = tool(
+  async () => {
+    return "Result of exa_search_tool_get_contents";
+  },
+  {
+    name: "exa_search_tool_get_contents",
+    description: "Get the contents of webpages given a list of IDs.",
     schema: z.object({}),
   }
 );
@@ -28,15 +48,15 @@ The tool requires an EXA_API_KEY configuration value to access Exa APIs.",
 
 /**
  * Node: researchTask
- * Agent: researcher_agent_1
+ * Agent: researcher_agent
  */
-async function researchTask(state: typeof MeetingPreparationCrewAnnotation.State) {
+async function researchTask(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Role: Research Specialist; Goal: Conduct thorough research on people and companies involved in the meeting" +
+        "You are a Research Specialist." +
         "\nNode: researchTask",
     },
     ...state.messages,
@@ -46,15 +66,15 @@ async function researchTask(state: typeof MeetingPreparationCrewAnnotation.State
 
 /**
  * Node: industryAnalysisTask
- * Agent: industry_analyst_agent_1
+ * Agent: industry_analyst_agent
  */
-async function industryAnalysisTask(state: typeof MeetingPreparationCrewAnnotation.State) {
+async function industryAnalysisTask(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Role: Industry Analyst; Goal: Analyze industry trends and opportunities" +
+        "You are a Industry Analyst." +
         "\nNode: industryAnalysisTask",
     },
     ...state.messages,
@@ -64,15 +84,15 @@ async function industryAnalysisTask(state: typeof MeetingPreparationCrewAnnotati
 
 /**
  * Node: meetingStrategyTask
- * Agent: meeting_strategy_agent_1
+ * Agent: meeting_strategy_agent
  */
-async function meetingStrategyTask(state: typeof MeetingPreparationCrewAnnotation.State) {
+async function meetingStrategyTask(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Role: Meeting Strategy Advisor; Goal: Develop talking points and strategies" +
+        "You are a Meeting Strategy Advisor." +
         "\nNode: meetingStrategyTask",
     },
     ...state.messages,
@@ -82,15 +102,15 @@ async function meetingStrategyTask(state: typeof MeetingPreparationCrewAnnotatio
 
 /**
  * Node: summaryAndBriefingTask
- * Agent: briefing_coordinator_agent_1
+ * Agent: summary_and_briefing_agent
  */
-async function summaryAndBriefingTask(state: typeof MeetingPreparationCrewAnnotation.State) {
+async function summaryAndBriefingTask(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Role: Briefing Coordinator; Goal: Compile information into briefing document" +
+        "You are a Briefing Coordinator." +
         "\nNode: summaryAndBriefingTask",
     },
     ...state.messages,
@@ -98,7 +118,7 @@ async function summaryAndBriefingTask(state: typeof MeetingPreparationCrewAnnota
   return { messages: [response] };
 }
 
-const workflow = new StateGraph(MeetingPreparationCrewAnnotation)
+const workflow = new StateGraph(UnnamedProjectAnnotation)
   .addNode("researchTask", researchTask)
   .addNode("industryAnalysisTask", industryAnalysisTask)
   .addNode("meetingStrategyTask", meetingStrategyTask)
@@ -111,6 +131,5 @@ const workflow = new StateGraph(MeetingPreparationCrewAnnotation)
 ;
 
 export const graph = workflow.compile();
-graph.name = "MeetingPreparationCrew";
+graph.name = "UnnamedProject";
 // Workflow: meeting_preparation_pattern
-// Workflow: Meeting Preparation Workflow Pattern

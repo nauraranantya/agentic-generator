@@ -4,9 +4,10 @@
  * Auto-generated from AgentO Knowledge Graph
  * Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
  * Goals:
- *   - : Select the best city based on weather patterns, seasonal events, and travel costs
- *   - : Provide in-depth local guide content, hidden gems, and practical tips.
- *   - : Create a 7-day travel itinerary with detailed daily plans, budgets, packing suggestions, and logistics.
+ *   - : Select the best city based on weather, season, and prices
+ *   - : Provide the BEST insights about the selected city
+ *   - : Create the most amazing travel itineraries with budget and packing suggestions for the city
+ *   - : Automate the process of choosing among city options and producing a full trip itinerary based on traveler preferences.
  */
 
 import { Mastra } from '@mastra/core'
@@ -15,15 +16,12 @@ import { Mastra } from '@mastra/core'
 import { citySelectionAgent, localExpertAgent, travelConciergeAgent } from './agents'
 
 // Import workflows
-import { tripPlanningPattern } from './workflows'
-
-// Import memory instances
-import { tripMemory } from './memory'
+import { patternTripPlanning } from './workflows'
 
 /**
  * Mastra instance with registered agents, workflows, and memory.
  *
- * A crew composed of multiple LLM agents and tools to plan trips: city selection, local expertise gathering, and travel concierge planning.
+ * CrewAI-based team that coordinates city selection, local research, and itinerary planning.
  */
 export const mastra = new Mastra({
   agents: {
@@ -32,9 +30,6 @@ export const mastra = new Mastra({
     travelConciergeAgent,
   },
   workflows: {
-    tripPlanningPattern,
-  },
-  memory: {
-    tripMemory,
+    patternTripPlanning,
   },
 })

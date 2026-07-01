@@ -1,41 +1,13 @@
 """
-Auto-generated AutoGen Team: SurpriseTravelCrew
+Auto-generated AutoGen Team: UnnamedProject
 Goals:
-  - Goal: personalized activity planner: Research and find cool things to do at the destination, including activities and events that match the traveler's interests and age group
-  - Goal: restaurant scout: Find highly-rated restaurants and dining experiences at the destination, and recommend scenic locations and fun activities
-  - Goal: itinerary compiler: Compile all researched information into a comprehensive day-by-day itinerary, ensuring the integration of flights and hotel information
-Objectives:
-  - : Produce a per-day list of recommended activities and events including details and suitability rationale.
-  - : Produce recommended restaurants and scenic locations with ratings and descriptions for each relevant day.
-  - : Produce a single integrated itinerary document that schedules flights, hotel, day plans, activities and restaurants.
-Resources:
-  - Itinerary_Instance: Pydantic output schema named Itinerary:
-- name: string (funny name for itinerary)
-- day_plans: List[DayPlan], each DayPlan:
-    - date: string
-    - activities: List[Activity], each Activity:
-        - name: string
-        - location: string
-        - description: string
-        - date: string
-        - cousine: string
-        - why_its_suitable: string
-        - reviews: Optional[List[str]]
-        - rating: Optional[float]
-    - restaurants: List[str]
-    - flight: Optional[str]
-- hotel: string
-This resource is the output_json schema referenced by itinerary_compilation_task.
-  - ExampleRunInputs: Example runtime inputs used in main.run and train():
-    {
-      'origin': 'São Paulo, GRU',
-      'destination': 'New York, JFK',
-      'age': 31,
-      'hotel_location': 'Brooklyn',
-      'flight_information': 'GOL 1234, leaving at June 30th, 2024, 10:00',
-      'trip_duration': '14 days'
-    }
-    This is a sample input bundle used for kickoff/train in the repository.
+  - : Create a comprehensive surprise travel plan for the traveler covering activities, restaurants, and a day-by-day itinerary.
+Capabilities:
+  - : Performs web searches for information such as events, activities, and restaurant listings.
+  - : Extracts structured information from web pages (addresses, ratings, descriptions).
+  - : Research and recommend activities suitable to traveler preferences.
+  - : Find and recommend restaurants and scenic dining locations.
+  - : Compile research into a day-by-day itinerary document.
 """
 
 from autogen_agentchat.agents import AssistantAgent
@@ -64,72 +36,49 @@ model_client = OpenAIChatCompletionClient(
 # ==================================================
 
 
-def serper_dev_tool_impl(
+def tool_serper_dev_tool_impl(
     query: str = ""
 ) -> str:
     """
     AgentO Tool:
-    SerperDevTool
+    tool_serper_dev_tool
 
     Description:
-    Search / web tools used to query the web (as configured in the source crew).
+    Web search tool (Serper.dev) used to search the web for activities, restaurants, and general information.
     """
     return (
-        "Tool 'serper_dev_tool' "
+        "Tool 'tool_serper_dev_tool' "
         "is a generated stub and "
         "has not been implemented yet."
     )
 
 
-serper_dev_tool = FunctionTool(
-    serper_dev_tool_impl,
-    description="""Search / web tools used to query the web (as configured in the source crew)."""
+tool_serper_dev_tool = FunctionTool(
+    tool_serper_dev_tool_impl,
+    description="""Web search tool (Serper.dev) used to search the web for activities, restaurants, and general information. """
 )
 
 
-def scrape_website_tool_impl(
+def tool_scrape_website_tool_impl(
     query: str = ""
 ) -> str:
     """
     AgentO Tool:
-    ScrapeWebsiteTool
+    tool_scrape_website_tool
 
     Description:
-    Tool to scrape website content; used by agents for gathering reviews and details.
+    Tool used to scrape website content for details about venues, restaurants and events.
     """
     return (
-        "Tool 'scrape_website_tool' "
+        "Tool 'tool_scrape_website_tool' "
         "is a generated stub and "
         "has not been implemented yet."
     )
 
 
-scrape_website_tool = FunctionTool(
-    scrape_website_tool_impl,
-    description="""Tool to scrape website content; used by agents for gathering reviews and details."""
-)
-
-
-def my_custom_tool_impl(
-    query: str = ""
-) -> str:
-    """
-    AgentO Tool:
-    MyCustomTool
-
-    Description:
-    Example custom tool present in source (tools/custom_tool.py). This example tool is included in the repository but commented-out in crew agent configuration and not used by default.
-    """
-    return (
-        "Tool 'my_custom_tool' "
-        "is a generated stub and "
-        "has not been implemented yet."
-    )
-
-
-my_custom_tool = FunctionTool(
-    my_custom_tool_impl,
-    description="""Example custom tool present in source (tools/custom_tool.py). This example tool is included in the repository but commented-out in crew agent configuration and not used by default."""
+tool_scrape_website_tool = FunctionTool(
+    tool_scrape_website_tool_impl,
+    description="""Tool used to scrape website content for details about venues, restaurants and events. """
 )
 
 
@@ -146,10 +95,10 @@ Role:
 Activity Planner
 
 Goal:
-Research and find cool things to do at the destination, including activities and events that match the traveler's interests and age group
+Activity Planner
 
 Background:
-Use internet search tools and recommendation engines to gather information; produce day-by-day activities with name, location, description and suitability rationale.
+You are a Activity Planner.
 """,
 )
 
@@ -162,10 +111,10 @@ Role:
 Restaurant Scout
 
 Goal:
-Find highly-rated restaurants and dining experiences at the destination, and recommend scenic locations and fun activities
+Restaurant Scout
 
 Background:
-Use internet search tools, restaurant review sites, and travel guides to find restaurants and scenic locations aligned with traveler preferences.
+You are a Restaurant Scout.
 """,
 )
 
@@ -178,10 +127,10 @@ Role:
 Itinerary Compiler
 
 Goal:
-Compile all researched information into a comprehensive day-by-day itinerary, ensuring the integration of flights and hotel information
+Itinerary Compiler
 
 Background:
-Compile all researched information into a comprehensive day-by-day itinerary for the trip; ensure integration of flights, hotel information, activities, and restaurants. Use text formatting and document creation tools.
+You are a Itinerary Compiler.
 """,
 )
 

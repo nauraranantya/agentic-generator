@@ -1,6 +1,6 @@
 # UnnamedProject
 
-
+Team representing the UI/system where a language agent presents proposed changes to a human and may call tools to apply accepted changes.
 
 **Auto-generated from AgentO Knowledge Graph**  
 Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
@@ -39,12 +39,11 @@ UnnamedProject/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
 │       ├── agents/            # Agent definitions
-│       │   └── openCodeAgent001.ts
+│       │   └── langgraphAgent.ts
 │       ├── tools/             # Tool definitions
-│       │   └── toolPlan.ts
 │       │   └── toolUpdateFile.ts
 │       └── workflows/         # Workflow definitions
-│           └── openCodeGraphPattern.ts
+│           └── workflowProposedChange.ts
 ├── package.json
 ├── tsconfig.json
 └── .env.example
@@ -54,27 +53,22 @@ UnnamedProject/
 
 ## 🤖 Agents
 
-### planner-executor LLM agent (coordinates planning and performs file updates via tools and UI prompts)
+### assistant
 
-- **ID:** `open-code-agent-001`
+- **ID:** `langgraph_agent`
 - **Model:** `openai/gpt-4o-mini`
+- **Tools:** toolUpdateFile
 
-You are planner-executor LLM agent (coordinates planning and performs file updates via tools and UI prompts)....
+You are assistant....
 
 
 ---
 
 ## 🔧 Tools
 
-### plan tool
+### toolUpdateFile
 
-Represents the logical tool 'plan' that is invoked by the planner node to expose executed/rejected/remaining plan lists as tool_call args....
-
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolPlan.ts`)
-
-### update_file tool
-
-Tool invoked by executor to apply a code/file update. It accepts args { new_file_content, executed_plan_item } and returns a tool message used to indicate acceptance or rejection....
+Tool used to apply an accepted proposed change to files (invoked via tool call messages)....
 
 **Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolUpdateFile.ts`)
 
@@ -83,13 +77,15 @@ Tool invoked by executor to apply a code/file update. It accepts args { new_file
 
 ## 🔄 Workflows
 
-### Open Code Graph
+### workflow_proposed_change
 
+Workflow capturing the lifecycle of a proposed code change: display, user decision, tool call, finalize.
 
-
-**Steps:** 2
-1. Planner Task (produce plan tool call)
-2. Executor Task (apply next plan item via update_file tool call and UI push)
+**Steps:** 4
+1. task_propose_change
+2. task_user_decision
+3. task_handle_reject
+4. task_finalize_ui
 
 
 ---

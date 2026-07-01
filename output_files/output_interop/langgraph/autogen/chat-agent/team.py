@@ -30,18 +30,18 @@ model_client = OpenAIChatCompletionClient(
 # ==================================================
 
 
-chat_agent_1 = AssistantAgent(
-    name="chat_agent_1",
+chat_agent = AssistantAgent(
+    name="chat_agent",
     model_client=model_client,
     system_message="""
 Role:
-conversational assistant
+assistant
 
 Goal:
-conversational assistant
+assistant
 
 Background:
-This system role message is prepended to every model invocation in the chat node.
+You are a assistant.
 """,
 )
 

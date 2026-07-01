@@ -1,12 +1,16 @@
-initialize_agent_task:
+task_fetch_servers_from_registry:
   description: |
-    Initialization task where the MCP client is queried (listTools()) and the agent's tools collection is populated.
-  expected_output: 'Completed: initialize_agent_task'
-search_mcp_registries_task:
+    Locate registry entry, validate servers_url, fetch raw registry data, and hand off to post-processor.
+  expected_output: 'Completed: task_fetch_servers_from_registry'
+task_post_process_servers:
   description: |
-    Task performed by the MCP Registry Agent: search for registries by ID, tag, or name. This task uses the agent prompt (instructions) and the MCP Registry Tool / MCP Client to obtain information about registries.
-  expected_output: 'Completed: search_mcp_registries_task'
-finalize_task:
-  description: Task to finalize the search operation and present results (formatting,
-    references).
-  expected_output: 'Completed: finalize_task'
+    Apply registry-specific post-processing function (e.g., processApifyServers, processDockerServers) to normalize server entries into standard ServerEntry shape.
+  expected_output: 'Completed: task_post_process_servers'
+task_filter_servers:
+  description: Filter ServerEntry results by search term or tag (if implemented),
+    returning matched servers.
+  expected_output: 'Completed: task_filter_servers'
+task_get_servers_from_registry:
+  description: |
+    High-level function orchestrating fetchServersFromRegistry and filterServers, providing the external API used by tools and tests.
+  expected_output: 'Completed: task_get_servers_from_registry'

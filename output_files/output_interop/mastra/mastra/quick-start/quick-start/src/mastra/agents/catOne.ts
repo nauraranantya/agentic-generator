@@ -4,7 +4,7 @@
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Capabilities:
- *   - : Ability to answer questions about cat species, their behavior, biology and taxonomy.
+ *   - : Execute workflow step code and perform system actions (e.g., logging).
  */
 
 import { Agent } from '@mastra/core/agent'
@@ -13,11 +13,11 @@ import { Agent } from '@mastra/core/agent'
  * feline expert
  * 
  * Instructions:
- * Default agent-level instructions to guide behavior when the agent is asked about cat species. This prompt is intended to be used by the agent as its core persona/instructions.
+ * No explicit goal provided in source; placeholder goal.
  */
 export const catOne = new Agent({
   id: `cat-one`,
   name: `feline expert`,
-  instructions: `Default agent-level instructions to guide behavior when the agent is asked about cat species. This prompt is intended to be used by the agent as its core persona/instructions.`,
-  model: 'openai/gpt-4o',
+  instructions: `No explicit goal provided in source; placeholder goal.`,
+  model: 'openai/gpt-4o-mini',
 })

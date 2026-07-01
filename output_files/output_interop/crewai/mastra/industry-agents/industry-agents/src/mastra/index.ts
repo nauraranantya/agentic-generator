@@ -1,30 +1,33 @@
 /**
- * Mastra AI Instance - BlogCrewIndustryspecializedagentsexample
+ * Mastra AI Instance - UnnamedProject
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
+ * Goals:
+ *   - : Continuously track the latest biomedical advancements and identify how Weaviate’s features can support AI applications in biomedical research, diagnostics, and personalized medicine.
+ *   - : Stay updated on healthcare policy shifts, digital health trends, and explore how Weaviate’s features can optimize workflows in hospital systems, EHR integration, and health communication.
+ *   - : Monitor financial sector trends including AI in trading, compliance automation, and client advisory, and assess how Weaviate’s tools can enable cutting-edge financial applications.
  */
 
 import { Mastra } from '@mastra/core'
 
 // Import agents
-import { biomedAgent1, healthcareAgent1, financialAgent1 } from './agents'
+import { biomedicalMarketingAgent, healthcareMarketingAgent, financialMarketingAgent } from './agents'
 
 // Import workflows
-import { blogCrewWorkflowPattern } from './workflows'
+import { workflowBlogCrew } from './workflows'
 
 /**
  * Mastra instance with registered agents, workflows, and memory.
  *
- * Crew assembled to produce industry-specific analyses of Weaviate features. Agents: BiomedicalMarketingAgent, HealthcareMarketingAgent, FinancialMarketingAgent. Tasks: one task per agent describing investigation of a given {weaviate_feature} and producing an industry-specific analysis. The Crew kickoff_for_each iterates inputs (weaviate_features) for each task; iteration is represented via feature Resource individuals (see Issues/Assumptions).
  */
 export const mastra = new Mastra({
   agents: {
-    biomedAgent1,
-    healthcareAgent1,
-    financialAgent1,
+    biomedicalMarketingAgent,
+    healthcareMarketingAgent,
+    financialMarketingAgent,
   },
   workflows: {
-    blogCrewWorkflowPattern,
+    workflowBlogCrew,
   },
 })

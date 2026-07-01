@@ -10,25 +10,25 @@ const UnnamedProjectAnnotation = Annotation.Root({
   }),
 });
 
-// Tool: mcp_client
-const mcp_client = tool(
+// Tool: tool_registry_list
+const tool_registry_list = tool(
   async () => {
-    return "Result of mcp_client";
+    return "Result of tool_registry_list";
   },
   {
-    name: "mcp_client",
-    description: "Client used by the Mastra configuration to enumerate available MCP tool endpoints. In the source it is an MCPClient instance with server configuration; provides a listTools() capability.",
+    name: "tool_registry_list",
+    description: "List available MCP registries. Can filter by ID, tag, or name and provide detailed or summary views.",
     schema: z.object({}),
   }
 );
-// Tool: mcp_registry_tool
-const mcp_registry_tool = tool(
+// Tool: tool_registry_servers
+const tool_registry_servers = tool(
   async () => {
-    return "Result of mcp_registry_tool";
+    return "Result of tool_registry_servers";
   },
   {
-    name: "mcp_registry_tool",
-    description: "Tool instance representing the MCP registry server process launched via the configured command. In the source the agent's tools are populated by await mcp.listTools(); the registry server is configured to run as a node process and communicate over stdio (path: ../../packages/mcp-registry-registry/dist/stdio.js).",
+    name: "tool_registry_servers",
+    description: "Get servers from a specific MCP registry. Can filter by tag or search term. Internally fetches registry data, invokes post-processing, and filters results.",
     schema: z.object({}),
   }
 );
@@ -36,17 +36,17 @@ const mcp_registry_tool = tool(
 
 
 /**
- * Node: initializeAgentTask
- * Agent: mcp_registry_agent
+ * Node: taskFetchServersFromRegistry
+ * Agent: registry_registry_server
  */
-async function initializeAgentTask(state: typeof UnnamedProjectAnnotation.State) {
-  const model = new ChatOpenAI({ model: "gpt-4o" });
+async function taskFetchServersFromRegistry(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Agent bootstrap prompt / instruction used to guide agent behavior independent of a specific task." +
-        "\\nNode: initializeAgentTask",
+        "You are a mcp-server." +
+        "\nNode: taskFetchServersFromRegistry",
     },
     ...state.messages,
   ]);
@@ -54,17 +54,17 @@ async function initializeAgentTask(state: typeof UnnamedProjectAnnotation.State)
 }
 
 /**
- * Node: searchMcpRegistriesTask
- * Agent: mcp_registry_agent
+ * Node: taskPostProcessServers
+ * Agent: registry_registry_server
  */
-async function searchMcpRegistriesTask(state: typeof UnnamedProjectAnnotation.State) {
-  const model = new ChatOpenAI({ model: "gpt-4o" });
+async function taskPostProcessServers(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Agent bootstrap prompt / instruction used to guide agent behavior independent of a specific task." +
-        "\\nNode: searchMcpRegistriesTask",
+        "You are a mcp-server." +
+        "\nNode: taskPostProcessServers",
     },
     ...state.messages,
   ]);
@@ -72,17 +72,35 @@ async function searchMcpRegistriesTask(state: typeof UnnamedProjectAnnotation.St
 }
 
 /**
- * Node: finalizeTask
- * Agent: mcp_registry_agent
+ * Node: taskFilterServers
+ * Agent: registry_registry_server
  */
-async function finalizeTask(state: typeof UnnamedProjectAnnotation.State) {
-  const model = new ChatOpenAI({ model: "gpt-4o" });
+async function taskFilterServers(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Agent bootstrap prompt / instruction used to guide agent behavior independent of a specific task." +
-        "\\nNode: finalizeTask",
+        "You are a mcp-server." +
+        "\nNode: taskFilterServers",
+    },
+    ...state.messages,
+  ]);
+  return { messages: [response] };
+}
+
+/**
+ * Node: taskGetServersFromRegistry
+ * Agent: registry_registry_server
+ */
+async function taskGetServersFromRegistry(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
+  const response = await model.invoke([
+    {
+      role: "system",
+      content:
+        "You are a mcp-server." +
+        "\nNode: taskGetServersFromRegistry",
     },
     ...state.messages,
   ]);
@@ -90,15 +108,17 @@ async function finalizeTask(state: typeof UnnamedProjectAnnotation.State) {
 }
 
 const workflow = new StateGraph(UnnamedProjectAnnotation)
-  .addNode("initializeAgentTask", initializeAgentTask)
-  .addNode("searchMcpRegistriesTask", searchMcpRegistriesTask)
-  .addNode("finalizeTask", finalizeTask)
-  .addEdge(START, "initializeAgentTask")
-  .addEdge("initializeAgentTask", "searchMcpRegistriesTask")
-  .addEdge("searchMcpRegistriesTask", "finalizeTask")
-  .addEdge("finalizeTask", END)
+  .addNode("taskFetchServersFromRegistry", taskFetchServersFromRegistry)
+  .addNode("taskPostProcessServers", taskPostProcessServers)
+  .addNode("taskFilterServers", taskFilterServers)
+  .addNode("taskGetServersFromRegistry", taskGetServersFromRegistry)
+  .addEdge(START, "taskFetchServersFromRegistry")
+  .addEdge("taskFetchServersFromRegistry", "taskPostProcessServers")
+  .addEdge("taskPostProcessServers", "taskFilterServers")
+  .addEdge("taskFilterServers", "taskGetServersFromRegistry")
+  .addEdge("taskGetServersFromRegistry", END)
 ;
 
 export const graph = workflow.compile();
 graph.name = "UnnamedProject";
-// Workflow: mastra_simple_workflow
+// Workflow: workflow_registry_servers

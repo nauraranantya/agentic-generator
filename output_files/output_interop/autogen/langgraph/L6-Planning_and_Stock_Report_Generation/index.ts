@@ -1,7 +1,5 @@
 import { ChatOpenAI } from "@langchain/openai";
 import { Annotation, START, END, StateGraph } from "@langchain/langgraph";
-import { tool } from "@langchain/core/tools";
-import { z } from "zod";
 
 const UnnamedProjectAnnotation = Annotation.Root({
   messages: Annotation<any[]>({
@@ -10,32 +8,21 @@ const UnnamedProjectAnnotation = Annotation.Root({
   }),
 });
 
-// Tool: coding_environment_tool
-const coding_environment_tool = tool(
-  async () => {
-    return "Result of coding_environment_tool";
-  },
-  {
-    name: "coding_environment_tool",
-    description: "Conceptual tool representing the environment used by Executor to run code. Config captured as key/value on Config individual.",
-    schema: z.object({}),
-  }
-);
 
 
 
 /**
- * Node: mainTask
- * Agent: planner_agent
+ * Node: taskInitiateWriteBlog
+ * Agent: admin
  */
-async function mainTask(state: typeof UnnamedProjectAnnotation.State) {
-  const model = new ChatOpenAI({ model: "gpt-4" });
+async function taskInitiateWriteBlog(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Planner. Given a task, determine what information is needed to complete the task. After each step is done by others, check the progress and instruct the remaining steps" +
-        "\\nNode: mainTask",
+        "You are a Admin." +
+        "\nNode: taskInitiateWriteBlog",
     },
     ...state.messages,
   ]);
@@ -43,17 +30,17 @@ async function mainTask(state: typeof UnnamedProjectAnnotation.State) {
 }
 
 /**
- * Node: planInformationTask
- * Agent: planner_agent
+ * Node: taskPlannerPlan
+ * Agent: planner
  */
-async function planInformationTask(state: typeof UnnamedProjectAnnotation.State) {
-  const model = new ChatOpenAI({ model: "gpt-4" });
+async function taskPlannerPlan(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Planner. Given a task, determine what information is needed to complete the task. After each step is done by others, check the progress and instruct the remaining steps" +
-        "\\nNode: planInformationTask",
+        "You are a Planner." +
+        "\nNode: taskPlannerPlan",
     },
     ...state.messages,
   ]);
@@ -61,17 +48,17 @@ async function planInformationTask(state: typeof UnnamedProjectAnnotation.State)
 }
 
 /**
- * Node: writeCodeTask
- * Agent: engineer_agent
+ * Node: taskEngineerWriteCode
+ * Agent: engineer
  */
-async function writeCodeTask(state: typeof UnnamedProjectAnnotation.State) {
-  const model = new ChatOpenAI({ model: "gpt-4" });
+async function taskEngineerWriteCode(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Engineer: writes code per planner's plan" +
-        "\\nNode: writeCodeTask",
+        "You are a Engineer." +
+        "\nNode: taskEngineerWriteCode",
     },
     ...state.messages,
   ]);
@@ -79,17 +66,17 @@ async function writeCodeTask(state: typeof UnnamedProjectAnnotation.State) {
 }
 
 /**
- * Node: executeCodeTask
- * Agent: executor_agent
+ * Node: taskExecutorRunCode
+ * Agent: executor
  */
-async function executeCodeTask(state: typeof UnnamedProjectAnnotation.State) {
-  const model = new ChatOpenAI({ model: "gpt-4" });
+async function taskExecutorRunCode(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Executor: execute code and return execution results (no human input)." +
-        "\\nNode: executeCodeTask",
+        "You are a Executor." +
+        "\nNode: taskExecutorRunCode",
     },
     ...state.messages,
   ]);
@@ -97,35 +84,17 @@ async function executeCodeTask(state: typeof UnnamedProjectAnnotation.State) {
 }
 
 /**
- * Node: writeReportTask
- * Agent: writer_agent
+ * Node: taskWriterProduceBlog
+ * Agent: writer
  */
-async function writeReportTask(state: typeof UnnamedProjectAnnotation.State) {
-  const model = new ChatOpenAI({ model: "gpt-4" });
+async function taskWriterProduceBlog(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Writer: write blogs based on the code execution results and take feedback from the admin to refine the blog." +
-        "\\nNode: writeReportTask",
-    },
-    ...state.messages,
-  ]);
-  return { messages: [response] };
-}
-
-/**
- * Node: adminFeedbackTask
- * Agent: planner_agent
- */
-async function adminFeedbackTask(state: typeof UnnamedProjectAnnotation.State) {
-  const model = new ChatOpenAI({ model: "gpt-4" });
-  const response = await model.invoke([
-    {
-      role: "system",
-      content:
-        "Planner. Given a task, determine what information is needed to complete the task. After each step is done by others, check the progress and instruct the remaining steps" +
-        "\\nNode: adminFeedbackTask",
+        "You are a Writer." +
+        "\nNode: taskWriterProduceBlog",
     },
     ...state.messages,
   ]);
@@ -133,21 +102,18 @@ async function adminFeedbackTask(state: typeof UnnamedProjectAnnotation.State) {
 }
 
 const workflow = new StateGraph(UnnamedProjectAnnotation)
-  .addNode("mainTask", mainTask)
-  .addNode("planInformationTask", planInformationTask)
-  .addNode("writeCodeTask", writeCodeTask)
-  .addNode("executeCodeTask", executeCodeTask)
-  .addNode("writeReportTask", writeReportTask)
-  .addNode("adminFeedbackTask", adminFeedbackTask)
-  .addEdge(START, "mainTask")
-  .addEdge("mainTask", "planInformationTask")
-  .addEdge("planInformationTask", "writeCodeTask")
-  .addEdge("writeCodeTask", "executeCodeTask")
-  .addEdge("executeCodeTask", "writeReportTask")
-  .addEdge("writeReportTask", "adminFeedbackTask")
-  .addEdge("adminFeedbackTask", END)
+  .addNode("taskInitiateWriteBlog", taskInitiateWriteBlog)
+  .addNode("taskPlannerPlan", taskPlannerPlan)
+  .addNode("taskEngineerWriteCode", taskEngineerWriteCode)
+  .addNode("taskExecutorRunCode", taskExecutorRunCode)
+  .addNode("taskWriterProduceBlog", taskWriterProduceBlog)
+  .addEdge(START, "taskInitiateWriteBlog")
+  .addEdge("taskInitiateWriteBlog", "taskPlannerPlan")
+  .addEdge("taskPlannerPlan", "taskEngineerWriteCode")
+  .addEdge("taskEngineerWriteCode", "taskExecutorRunCode")
+  .addEdge("taskExecutorRunCode", "taskWriterProduceBlog")
 ;
 
 export const graph = workflow.compile();
 graph.name = "UnnamedProject";
-// Workflow: stock_report_generation_pattern
+// Workflow: wp_group_chat1

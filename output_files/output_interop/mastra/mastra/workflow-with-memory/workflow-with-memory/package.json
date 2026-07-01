@@ -1,7 +1,7 @@
 {
   "name": "workflow-with-memory",
   "version": "0.1.0",
-  "description": "",
+  "description": "Mastra instance configured in src/mastra/index.ts with one agent and four workflows.",
   "type": "module",
   "main": "src/mastra/index.ts",
   "scripts": {

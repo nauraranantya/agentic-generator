@@ -1,1 +1,1 @@
-export { consoleTool } from './consoleTool'
+export { mastraRuntime } from './mastraRuntime'

@@ -1,5 +1,5 @@
 bird_agent:
-  role: analyze images to detect birds, identify species and location
+  role: bird classifier
   goal: |
-    Primary goal: determine whether images contain birds, identify species when present, and summarize the location.
-  backstory: agent instructions (default context for agent)
+    System should determine whether a provided image contains a bird, identify its scientific name if present, and summarize location.
+  backstory: You are a bird classifier.

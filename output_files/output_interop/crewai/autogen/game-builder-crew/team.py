@@ -1,14 +1,13 @@
 """
-Auto-generated AutoGen Team: GameBuilderCrew
+Auto-generated AutoGen Team: UnnamedProject
 Goals:
-  - Create Game (Team Goal): Produce a working python game implementation given a textual game description input. The system assembles agents and tasks to generate, review, and evaluate final python code for a game (examples include Pac-Man and Snake).
-  - Create software as needed: Create software as needed
-  - Create Perfect code: Create Perfect code, by analyzing the code that is given for errors
-  - Ensure the code does the job that it is supposed to do: Ensure that the code fulfills the functional requirements of the game description and is complete.
-Resources:
-  - initial_game_code: Python code produced by senior_engineer_agent in response to the game description input.
-  - reviewed_game_code: Code after QA review by qa_engineer_agent; errors fixed and issues annotated in code response (final output is the corrected python code).
-  - final_game_code: Final python code for the requested game after generation, review, and evaluation steps. Example inputs available in src/game_builder_crew/config/gamedesign.yaml (example1_pacman, example2_pacman, example3_snake).
+  - : Create software as needed
+  - : Create Perfect code, by analyzing the code that is given for errors
+  - : Ensure that the code does the job that it is supposed to do
+  - : Automate the creation of a Python-based game using autonomous agents orchestrated by the CrewAI framework.
+Capabilities:
+  - : Web search and retrieval capability (e.g., Serper).
+  - : Access to OpenAI language model API.
 """
 
 from autogen_agentchat.agents import AssistantAgent
@@ -37,6 +36,52 @@ model_client = OpenAIChatCompletionClient(
 # ==================================================
 
 
+def tool_serper_impl(
+    query: str = ""
+) -> str:
+    """
+    AgentO Tool:
+    tool_serper
+
+    Description:
+    Serper search API used for web search (mentioned in README).
+    """
+    return (
+        "Tool 'tool_serper' "
+        "is a generated stub and "
+        "has not been implemented yet."
+    )
+
+
+tool_serper = FunctionTool(
+    tool_serper_impl,
+    description="""Serper search API used for web search (mentioned in README). """
+)
+
+
+def tool_openai_api_impl(
+    query: str = ""
+) -> str:
+    """
+    AgentO Tool:
+    tool_openai_api
+
+    Description:
+    OpenAI API access used by CrewAI to call LLMs (configured via environment variables).
+    """
+    return (
+        "Tool 'tool_openai_api' "
+        "is a generated stub and "
+        "has not been implemented yet."
+    )
+
+
+tool_openai_api = FunctionTool(
+    tool_openai_api_impl,
+    description="""OpenAI API access used by CrewAI to call LLMs (configured via environment variables). """
+)
+
+
 # ==================================================
 # Agents
 # ==================================================
@@ -53,7 +98,7 @@ Goal:
 Create software as needed
 
 Background:
-Role: Senior Software Engineer
+You are a Senior Software Engineer.
 """,
 )
 
@@ -69,7 +114,7 @@ Goal:
 Create Perfect code, by analyzing the code that is given for errors
 
 Background:
-Role: Software Quality Control Engineer
+You are a Software Quality Control Engineer.
 """,
 )
 
@@ -82,10 +127,10 @@ Role:
 Chief Software Quality Control Engineer
 
 Goal:
-Ensure that the code fulfills the functional requirements of the game description and is complete.
+Ensure that the code does the job that it is supposed to do
 
 Background:
-Role: Chief Software Quality Control Engineer
+You are a Chief Software Quality Control Engineer.
 """,
 )
 

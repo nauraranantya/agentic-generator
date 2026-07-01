@@ -1,16 +1,14 @@
 """
-Auto-generated AutoGen Team: MeetingPreparationCrew
+Auto-generated AutoGen Team: UnnamedProject
 Goals:
-  - Prepare meeting briefing and strategy: Prepare comprehensive research, industry analysis, strategic talking points, and a concise briefing document to support an upcoming meeting. This goal represents the overall purpose of the Meeting Preparation Crew created in main.py.
-  - : Conduct thorough research on people and companies involved in the meeting
-  - : Analyze the current industry trends, challenges, and opportunities relevant to the meeting context
-  - : Develop talking points, questions, and strategic angles for the meeting
-  - : Compile research, analysis, and strategy into a concise briefing document
+  - : Conduct thorough research on people and companies involved in the meeting.
+  - : Analyze the current industry trends, challenges, and opportunities.
+  - : Develop talking points, questions, and strategic angles for the meeting.
+  - : Compile all gathered information into a concise, informative briefing document.
 Capabilities:
-  - Exa.search: Search for webpages using a query and return top results (num_results=3).
-  - Exa.find_similar: Find webpages similar to a given URL (num_results=3).
-  - Exa.get_contents: Retrieve page contents for a list of ids. Handles JSON or Python literal lists input;
-validates input is a list of string ids; returns extracted contents (first ~1000 chars per segment).
+  - : Performs web searches and returns search result identifiers.
+  - : Finds webpages similar to a given URL.
+  - : Retrieves and returns contents of webpages by IDs.
 """
 
 from autogen_agentchat.agents import AssistantAgent
@@ -39,30 +37,72 @@ model_client = OpenAIChatCompletionClient(
 # ==================================================
 
 
-def exa_search_tool_impl(
+def exa_search_tool_search_impl(
     query: str = ""
 ) -> str:
     """
     AgentO Tool:
-    ExaSearchTool
+    exa_search_tool_search
 
     Description:
-    Tool wrapping Exa (exa_py) search capabilities used by agents.
-Provides three main operations: search(query), find_similar(url), and get_contents(ids).
-The tool requires an EXA_API_KEY configuration value to access Exa APIs.
+    Search for a webpage based on the query (returns a list of result IDs).
     """
     return (
-        "Tool 'exa_search_tool' "
+        "Tool 'exa_search_tool_search' "
         "is a generated stub and "
         "has not been implemented yet."
     )
 
 
-exa_search_tool = FunctionTool(
-    exa_search_tool_impl,
-    description="""Tool wrapping Exa (exa_py) search capabilities used by agents.
-Provides three main operations: search(query), find_similar(url), and get_contents(ids).
-The tool requires an EXA_API_KEY configuration value to access Exa APIs."""
+exa_search_tool_search = FunctionTool(
+    exa_search_tool_search_impl,
+    description="""Search for a webpage based on the query (returns a list of result IDs). """
+)
+
+
+def exa_search_tool_find_similar_impl(
+    query: str = ""
+) -> str:
+    """
+    AgentO Tool:
+    exa_search_tool_find_similar
+
+    Description:
+    Search for webpages similar to a given URL.
+    """
+    return (
+        "Tool 'exa_search_tool_find_similar' "
+        "is a generated stub and "
+        "has not been implemented yet."
+    )
+
+
+exa_search_tool_find_similar = FunctionTool(
+    exa_search_tool_find_similar_impl,
+    description="""Search for webpages similar to a given URL. """
+)
+
+
+def exa_search_tool_get_contents_impl(
+    query: str = ""
+) -> str:
+    """
+    AgentO Tool:
+    exa_search_tool_get_contents
+
+    Description:
+    Get the contents of webpages given a list of IDs.
+    """
+    return (
+        "Tool 'exa_search_tool_get_contents' "
+        "is a generated stub and "
+        "has not been implemented yet."
+    )
+
+
+exa_search_tool_get_contents = FunctionTool(
+    exa_search_tool_get_contents_impl,
+    description="""Get the contents of webpages given a list of IDs. """
 )
 
 
@@ -71,66 +111,66 @@ The tool requires an EXA_API_KEY configuration value to access Exa APIs."""
 # ==================================================
 
 
-researcher_agent_1 = AssistantAgent(
-    name="researcher_agent_1",
+researcher_agent = AssistantAgent(
+    name="researcher_agent",
     model_client=model_client,
     system_message="""
 Role:
 Research Specialist
 
 Goal:
-Conduct thorough research on people and companies involved in the meeting
+Conduct thorough research on people and companies involved in the meeting.
 
 Background:
-Role: Research Specialist; Goal: Conduct thorough research on people and companies involved in the meeting
+You are a Research Specialist.
 """,
 )
 
 
-industry_analyst_agent_1 = AssistantAgent(
-    name="industry_analyst_agent_1",
+industry_analyst_agent = AssistantAgent(
+    name="industry_analyst_agent",
     model_client=model_client,
     system_message="""
 Role:
 Industry Analyst
 
 Goal:
-Analyze the current industry trends, challenges, and opportunities relevant to the meeting context
+Analyze the current industry trends, challenges, and opportunities.
 
 Background:
-Role: Industry Analyst; Goal: Analyze industry trends and opportunities
+You are a Industry Analyst.
 """,
 )
 
 
-meeting_strategy_agent_1 = AssistantAgent(
-    name="meeting_strategy_agent_1",
+meeting_strategy_agent = AssistantAgent(
+    name="meeting_strategy_agent",
     model_client=model_client,
     system_message="""
 Role:
 Meeting Strategy Advisor
 
 Goal:
-Develop talking points, questions, and strategic angles for the meeting
+Develop talking points, questions, and strategic angles for the meeting.
 
 Background:
-Role: Meeting Strategy Advisor; Goal: Develop talking points and strategies
+You are a Meeting Strategy Advisor.
 """,
 )
 
 
-briefing_coordinator_agent_1 = AssistantAgent(
-    name="briefing_coordinator_agent_1",
+summary_and_briefing_agent = AssistantAgent(
+    name="summary_and_briefing_agent",
     model_client=model_client,
     system_message="""
 Role:
 Briefing Coordinator
 
 Goal:
-Compile research, analysis, and strategy into a concise briefing document
+Compile all gathered information into a concise, informative briefing document.
 
 Background:
-Role: Briefing Coordinator; Goal: Compile information into briefing document
+You are a Briefing Coordinator.
 """,
 )
 

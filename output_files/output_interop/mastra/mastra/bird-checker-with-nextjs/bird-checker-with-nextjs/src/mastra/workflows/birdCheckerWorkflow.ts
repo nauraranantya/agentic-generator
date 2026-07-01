@@ -1,5 +1,5 @@
 /**
- * Workflow: Bird Checker workflow pattern
+ * Workflow: bird_checker_workflow
  *
  * Auto-generated from AgentO Knowledge Graph
  */
@@ -8,51 +8,51 @@ import { createWorkflow, createStep } from '@mastra/core/workflows'
 import { z } from 'zod'
 
 // Import agents used by workflow steps
-import { birdChecker } from '../agents'
+import { birdAgent } from '../agents'
 
 // Import tools used by workflow steps
 import { getRandomImageTool } from '../tools'
 
 // ── Workflow Steps ──
 
-const fetchRandomImageTask = createStep({
-  id: 'Fetch random image task',
-  description: `Get a random image from Unsplash using a selected query option`,
-  inputSchema: z.object({}),
-  outputSchema: z.object({}),
+const getImageTask = createStep({
+  id: 'get_image_task',
+  description: `Fetch a random image from Unsplash matching the provided query (wildlife | feathers | flying | birds).`,
+  inputSchema: z.object({query: z.string()}),
+  outputSchema: z.object({Image_object_with_fields: z.string()}),
   execute: async ({ inputData }) => {
-    // Get a random image from Unsplash using a selected query option
+    // Fetch a random image from Unsplash matching the provided query (wildlife | feathers | flying | birds).
     // This step uses tool: getRandomImageTool
     // TODO: Implement step logic
-    throw new Error('Fetch random image task not implemented yet')
+    throw new Error('get_image_task not implemented yet')
   },
 })
 
-const analyzeImageAndProduceBirdMetadata = createStep({
-  id: 'Analyze image and produce bird metadata',
+const birdCheckTask = createStep({
+  id: 'bird_check_task',
   description: `view this image and let me know if it's a bird or not, and the scientific name of the bird without any explanation. Also summarize the location for this picture in one or two short sentences understandable by a high school student`,
   inputSchema: z.object({image: z.string()}),
   outputSchema: z.object({bird: z.boolean()}),
   execute: async ({ inputData }) => {
     // view this image and let me know if it's a bird or not, and the scientific name of the bird without any explanation. Also summarize the location for this picture in one or two short sentences understandable by a high school student
-    // This step uses agent: birdChecker
-    // const result = await birdChecker.generate('...')
+    // This step uses agent: birdAgent
+    // const result = await birdAgent.generate('...')
     // TODO: Implement step logic
-    throw new Error('Analyze image and produce bird metadata not implemented yet')
+    throw new Error('bird_check_task not implemented yet')
   },
 })
 
 // ── Workflow Definition ──
 
 /**
- * Bird Checker workflow pattern
+ * bird_checker_workflow
  */
 export const birdCheckerWorkflow = createWorkflow({
-  id: 'Bird Checker workflow pattern',
-  inputSchema: z.object({}),
+  id: 'bird_checker_workflow',
+  inputSchema: z.object({query: z.string()}),
   outputSchema: z.object({bird: z.boolean()}),
-  steps: [fetchRandomImageTask, analyzeImageAndProduceBirdMetadata],
+  steps: [getImageTask, birdCheckTask],
 })
-  .then(fetchRandomImageTask)
-  .then(analyzeImageAndProduceBirdMetadata)
+  .then(getImageTask)
+  .then(birdCheckTask)
   .commit()

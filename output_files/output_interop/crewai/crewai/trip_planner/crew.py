@@ -4,23 +4,17 @@ Auto-generated CrewAI Crew: UnnamedProject
 Source  : AgentO Knowledge Graph → SPARQL → Pydantic → Jinja2
 Pipeline: 3-Layer Conversion Pipeline
 Goals:
-  - : Select the best city based on weather patterns, seasonal events, and travel costs
-  - : Provide in-depth local guide content, hidden gems, and practical tips.
-  - : Create a 7-day travel itinerary with detailed daily plans, budgets, packing suggestions, and logistics.
+  - : Select the best city based on weather, season, and prices
+  - : Provide the BEST insights about the selected city
+  - : Create the most amazing travel itineraries with budget and packing suggestions for the city
+  - : Automate the process of choosing among city options and producing a full trip itinerary based on traveler preferences.
 Capabilities:
-  - : Analyze and compare cities by weather conditions, events, and travel costs; deliver a detailed city selection report.
-  - : Collect and synthesize local cultural, tourism and attraction information into a comprehensive guide.
-  - : Generate optimized daily travel itineraries with logistics, budget calculations, and packing recommendations.
-  - : Search the internet for relevant results and return structured snippets with title, link, and snippet text.
-  - : Scrape raw HTML of a website, partition and summarize content with an internal summarization agent; returns concise summaries for each chunk.
-  - : Perform safe arithmetic evaluation of mathematical expressions (supports + - * / % ** and parentheses). Returns numeric result or error message.
-Resources:
-  - : Used by SearchTools.search_internet to obtain organic search results.
-  - : Used by BrowserTools.scrape_and_summarize_website to fetch HTML content.
-  - : API key used by the language model client OpenAI (langchain_openai.OpenAI).
-  - : The final produced travel plan (7-day itinerary), including hotels, restaurants, per-day schedule, weather forecast, packing suggestions, and budget breakdown.
-  - : Comprehensive city guide including hidden gems, cultural hotspots and practical tips.
-  - : Detailed report on chosen city including flight costs, weather forecast, and attractions.
+  - : Search the internet for relevant results using Serper API.
+  - : Scrape and summarize website content using browserless and HTML partitioning.
+  - : Perform safe mathematical calculations.
+  - : Analyze travel data to select an optimal city based on weather, season, and prices.
+  - : Provide deep local insights, attractions, cultural context, and practical tips.
+  - : Create detailed itineraries, budgets, packing suggestions, and logistics.
 """
 
 from crewai import Agent, Crew, Process, Task
@@ -31,26 +25,26 @@ from crewai.tools import tool
 # ===========================================================
 # Tool Instances
 # ===========================================================
-# TODO: search_tools — unknown tool class "SearchTools"
+# TODO: tool_search — unknown tool class "toolsearch"
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-@tool("SearchTools")
-def search_tools(*args, **kwargs) -> str:
-    """Toolset providing search_internet(query) which posts to Serper API and returns top organic results. """
-    return "search_tools result"
+@tool("toolsearch")
+def tool_search(*args, **kwargs) -> str:
+    """Search the internet using Serper (google.serper.dev) and return top results."""
+    return "tool_search result"
 
-# TODO: browser_tools — unknown tool class "BrowserTools"
+# TODO: tool_browser — unknown tool class "toolbrowser"
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-@tool("BrowserTools")
-def browser_tools(*args, **kwargs) -> str:
-    """Scrape website content using Browserless content API; partitions HTML and produces chunk summaries b"""
-    return "browser_tools result"
+@tool("toolbrowser")
+def tool_browser(*args, **kwargs) -> str:
+    """Scrape website content via browserless and summarize chunks using an internal Agent/Task."""
+    return "tool_browser result"
 
-# TODO: calculator_tools — unknown tool class "CalculatorTools"
+# TODO: tool_calculator — unknown tool class "toolcalculator"
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-@tool("CalculatorTools")
-def calculator_tools(*args, **kwargs) -> str:
-    """Make a calculation(operation) evaluates basic arithmetic expressions safely using AST validation and"""
-    return "calculator_tools result"
+@tool("toolcalculator")
+def tool_calculator(*args, **kwargs) -> str:
+    """Safe mathematical expression evaluator implemented with ast and restricted operators."""
+    return "tool_calculator result"
 
 
 
@@ -68,43 +62,46 @@ class UnnamedProject:
     def city_selection_agent(self) -> Agent:
         return Agent(
             config=self.agents_config['city_selection_agent'],
-            tools=[search_tools, browser_tools],
+            tools=[tool_search, tool_browser],
+            verbose=True,
         )
 
     @agent
     def local_expert_agent(self) -> Agent:
         return Agent(
             config=self.agents_config['local_expert_agent'],
-            tools=[search_tools, browser_tools],
+            tools=[tool_search, tool_browser],
+            verbose=True,
         )
 
     @agent
     def travel_concierge_agent(self) -> Agent:
         return Agent(
             config=self.agents_config['travel_concierge_agent'],
-            tools=[search_tools, browser_tools, calculator_tools],
+            tools=[tool_search, tool_browser, tool_calculator],
+            verbose=True,
         )
 
     # ── Tasks ───────────────────────────────────────────
 
     @task
-    def identify_task(self) -> Task:
+    def task_identify_city(self) -> Task:
         return Task(
-            config=self.tasks_config['identify_task'],
+            config=self.tasks_config['task_identify_city'],
             agent=self.city_selection_agent(),
         )
 
     @task
-    def gather_task(self) -> Task:
+    def task_gather_city_info(self) -> Task:
         return Task(
-            config=self.tasks_config['gather_task'],
+            config=self.tasks_config['task_gather_city_info'],
             agent=self.local_expert_agent(),
         )
 
     @task
-    def plan_task(self) -> Task:
+    def task_plan_itinerary(self) -> Task:
         return Task(
-            config=self.tasks_config['plan_task'],
+            config=self.tasks_config['task_plan_itinerary'],
             agent=self.travel_concierge_agent(),
         )
 

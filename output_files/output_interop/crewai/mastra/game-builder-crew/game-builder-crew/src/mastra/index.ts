@@ -1,13 +1,13 @@
 /**
- * Mastra AI Instance - GameBuilderCrew
+ * Mastra AI Instance - UnnamedProject
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
  * Goals:
- *   - Create Game (Team Goal): Produce a working python game implementation given a textual game description input. The system assembles agents and tasks to generate, review, and evaluate final python code for a game (examples include Pac-Man and Snake).
- *   - Create software as needed: Create software as needed
- *   - Create Perfect code: Create Perfect code, by analyzing the code that is given for errors
- *   - Ensure the code does the job that it is supposed to do: Ensure that the code fulfills the functional requirements of the game description and is complete.
+ *   - : Create software as needed
+ *   - : Create Perfect code, by analyzing the code that is given for errors
+ *   - : Ensure that the code does the job that it is supposed to do
+ *   - : Automate the creation of a Python-based game using autonomous agents orchestrated by the CrewAI framework.
  */
 
 import { Mastra } from '@mastra/core'
@@ -16,11 +16,12 @@ import { Mastra } from '@mastra/core'
 import { seniorEngineerAgent, qaEngineerAgent, chiefQaEngineerAgent } from './agents'
 
 // Import workflows
-import { gameBuilderWorkflow } from './workflows'
+import { wpSequential } from './workflows'
 
 /**
  * Mastra instance with registered agents, workflows, and memory.
  *
+ * CrewAI crew defined in GameBuilderCrew class (src/game_builder_crew/crew.py)
  */
 export const mastra = new Mastra({
   agents: {
@@ -29,6 +30,6 @@ export const mastra = new Mastra({
     chiefQaEngineerAgent,
   },
   workflows: {
-    gameBuilderWorkflow,
+    wpSequential,
   },
 })

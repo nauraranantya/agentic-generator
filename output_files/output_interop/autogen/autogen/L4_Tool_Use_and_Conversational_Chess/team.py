@@ -1,3 +1,11 @@
+"""
+Auto-generated AutoGen Team: UnnamedProject
+Goals:
+  - : Team-level goal: have the agents play a game of chess via conversational tool calls.
+Capabilities:
+  - : Provides legal moves for the current chess position.
+  - : Apply a move to the board and update board state; produce descriptive move result.
+"""
 
 from autogen_agentchat.agents import AssistantAgent
 
@@ -19,38 +27,10 @@ model_client = OpenAIChatCompletionClient(
     model="gpt-4o-mini"
 )
 
-# ==================================================
-# Environment Configuration
-# ==================================================
-# Environment: Chess Environment ()
-# 
 
 # ==================================================
 # Generated Tool Stubs
 # ==================================================
-
-
-def board_proxy_impl(
-    query: str = ""
-) -> str:
-    """
-    AgentO Tool:
-    BoardProxyexecutoragenttool
-
-    Description:
-    A conversational proxy agent that executes board-related tools (get_legal_moves, make_move). Created with llm_config=False in code; it receives tool execution requests and applies them to the ChessBoard resource.
-    """
-    return (
-        "Tool 'board_proxy' "
-        "is a generated stub and "
-        "has not been implemented yet."
-    )
-
-
-board_proxy = FunctionTool(
-    board_proxy_impl,
-    description="""A conversational proxy agent that executes board-related tools (get_legal_moves, make_move). Created with llm_config=False in code; it receives tool execution requests and applies them to the ChessBoard resource."""
-)
 
 
 def tool_get_legal_moves_impl(
@@ -58,10 +38,10 @@ def tool_get_legal_moves_impl(
 ) -> str:
     """
     AgentO Tool:
-    getlegalmovestool
+    tool_get_legal_moves
 
     Description:
-    Registered tool name: 'get_legal_moves'. Description: Get legal moves. Returns a comma-separated list of legal moves in UCI format. In code, returns: 'Possible moves are: ' + ','.join([str(move) for move in board.legal_moves]). This tool reads the ChessBoard resource and produces a LegalMovesList resource.
+    Returns a list of legal moves in UCI format for the current chess board state.
     """
     return (
         "Tool 'tool_get_legal_moves' "
@@ -72,7 +52,7 @@ def tool_get_legal_moves_impl(
 
 tool_get_legal_moves = FunctionTool(
     tool_get_legal_moves_impl,
-    description="""Registered tool name: 'get_legal_moves'. Description: Get legal moves. Returns a comma-separated list of legal moves in UCI format. In code, returns: 'Possible moves are: ' + ','.join([str(move) for move in board.legal_moves]). This tool reads the ChessBoard resource and produces a LegalMovesList resource."""
+    description="""Returns a list of legal moves in UCI format for the current chess board state. """
 )
 
 
@@ -81,10 +61,10 @@ def tool_make_move_impl(
 ) -> str:
     """
     AgentO Tool:
-    makemovetool
+    tool_make_move
 
     Description:
-    Registered tool name: 'make_move'. Description: apply a move in UCI format to the ChessBoard. Parameters: move (string, UCI). Behavior summary preserved: (1) convert the provided string to a chess.Move, push the move to the board state, set a made_move flag to True, display the board (SVG), identify the moved piece and return a human-readable message 'Moved <PieceName> (<PieceSymbol>) from <from_square> to <to_square>.' This tool reads and updates the ChessBoard resource and causes a termination predicate (is_termination_msg) to become true for nested chat closing.
+    Executes a move on the chess board in UCI format and returns a human-readable result string.
     """
     return (
         "Tool 'tool_make_move' "
@@ -95,7 +75,7 @@ def tool_make_move_impl(
 
 tool_make_move = FunctionTool(
     tool_make_move_impl,
-    description="""Registered tool name: 'make_move'. Description: apply a move in UCI format to the ChessBoard. Parameters: move (string, UCI). Behavior summary preserved: (1) convert the provided string to a chess.Move, push the move to the board state, set a made_move flag to True, display the board (SVG), identify the moved piece and return a human-readable message 'Moved <PieceName> (<PieceSymbol>) from <from_square> to <to_square>.' This tool reads and updates the ChessBoard resource and causes a termination predicate (is_termination_msg) to become true for nested chat closing."""
+    description="""Executes a move on the chess board in UCI format and returns a human-readable result string. """
 )
 
 
@@ -109,13 +89,13 @@ player_white = AssistantAgent(
     model_client=model_client,
     system_message="""
 Role:
-white
+Chess Player (White)
 
 Goal:
-white
+Chess Player (White)
 
 Background:
-You are a white.
+You are a Chess Player (White).
 """,
 )
 
@@ -125,13 +105,29 @@ player_black = AssistantAgent(
     model_client=model_client,
     system_message="""
 Role:
-black
+Chess Player (Black)
 
 Goal:
-black
+Chess Player (Black)
 
 Background:
-You are a black.
+You are a Chess Player (Black).
+""",
+)
+
+
+board_proxy = AssistantAgent(
+    name="board_proxy",
+    model_client=model_client,
+    system_message="""
+Role:
+Board Proxy / Referee
+
+Goal:
+Board Proxy / Referee
+
+Background:
+You are a Board Proxy / Referee.
 """,
 )
 

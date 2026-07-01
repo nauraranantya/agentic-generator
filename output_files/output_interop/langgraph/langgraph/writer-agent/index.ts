@@ -1,4 +1,4 @@
-import { ChatAnthropic } from "@langchain/anthropic";
+import { ChatOpenAI } from "@langchain/openai";
 import { Annotation, START, END, StateGraph } from "@langchain/langgraph";
 import { tool } from "@langchain/core/tools";
 import { z } from "zod";
@@ -10,13 +10,13 @@ const UnnamedProjectAnnotation = Annotation.Root({
   }),
 });
 
-// Tool: draft_text_document_tool
-const draft_text_document_tool = tool(
+// Tool: tool_draft_text_document
+const tool_draft_text_document = tool(
   async () => {
-    return "Result of draft_text_document_tool";
+    return "Result of tool_draft_text_document";
   },
   {
-    name: "draft_text_document_tool",
+    name: "tool_draft_text_document",
     description: "Prepare a text document for the user with a short title and short description for browsing purposes. Can be also used when creating a new version of the document.",
     schema: z.object({}),
   }
@@ -25,17 +25,17 @@ const draft_text_document_tool = tool(
 
 
 /**
- * Node: prepareTask
- * Agent: writer_annotation_agent_uuid_1
+ * Node: taskPrepare
+ * Agent: writer_agent
  */
-async function prepareTask(state: typeof UnnamedProjectAnnotation.State) {
-  const model = new ChatAnthropic({ model: "claude-3-5-sonnet-latest" });
+async function taskPrepare(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "You are a annotation-driven writer." +
-        "\\nNode: prepareTask",
+        "You are a writer." +
+        "\nNode: taskPrepare",
     },
     ...state.messages,
   ]);
@@ -43,17 +43,17 @@ async function prepareTask(state: typeof UnnamedProjectAnnotation.State) {
 }
 
 /**
- * Node: writeTask
- * Agent: writer_annotation_agent_uuid_1
+ * Node: taskWriter
+ * Agent: writer_agent
  */
-async function writeTask(state: typeof UnnamedProjectAnnotation.State) {
-  const model = new ChatAnthropic({ model: "claude-3-5-sonnet-latest" });
+async function taskWriter(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "You are a annotation-driven writer." +
-        "\\nNode: writeTask",
+        "You are a writer." +
+        "\nNode: taskWriter",
     },
     ...state.messages,
   ]);
@@ -61,17 +61,17 @@ async function writeTask(state: typeof UnnamedProjectAnnotation.State) {
 }
 
 /**
- * Node: suggestionsTask
- * Agent: writer_annotation_agent_uuid_1
+ * Node: taskSuggestions
+ * Agent: writer_agent
  */
-async function suggestionsTask(state: typeof UnnamedProjectAnnotation.State) {
-  const model = new ChatAnthropic({ model: "claude-3-5-sonnet-latest" });
+async function taskSuggestions(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "You are a annotation-driven writer." +
-        "\\nNode: suggestionsTask",
+        "You are a writer." +
+        "\nNode: taskSuggestions",
     },
     ...state.messages,
   ]);
@@ -79,15 +79,15 @@ async function suggestionsTask(state: typeof UnnamedProjectAnnotation.State) {
 }
 
 const workflow = new StateGraph(UnnamedProjectAnnotation)
-  .addNode("prepareTask", prepareTask)
-  .addNode("writeTask", writeTask)
-  .addNode("suggestionsTask", suggestionsTask)
-  .addEdge(START, "prepareTask")
-  .addEdge("prepareTask", "writeTask")
-  .addEdge("writeTask", "suggestionsTask")
-  .addEdge("suggestionsTask", END)
+  .addNode("taskPrepare", taskPrepare)
+  .addNode("taskWriter", taskWriter)
+  .addNode("taskSuggestions", taskSuggestions)
+  .addEdge(START, "taskPrepare")
+  .addEdge("taskPrepare", "taskWriter")
+  .addEdge("taskWriter", "taskSuggestions")
+  .addEdge("taskSuggestions", END)
 ;
 
 export const graph = workflow.compile();
 graph.name = "UnnamedProject";
-// Workflow: writer_workflow
+// Workflow: writer_state_graph_pattern

@@ -55,6 +55,5 @@ export const conversationWithMemoryPattern = createWorkflow({
   outputSchema: z.object({}),
   steps: [taskChatStartConversation, taskChatInteractiveMessage],
 })
-  .then(taskChatStartConversation)
-  .then(taskChatInteractiveMessage)
+  .parallel([taskChatStartConversation, taskChatInteractiveMessage])
   .commit()

@@ -1,5 +1,4 @@
-mcp_registry_agent:
-  role: registry
-  goal: registry
-  backstory: Agent bootstrap prompt / instruction used to guide agent behavior independent
-    of a specific task.
+registry_registry_server:
+  role: mcp-server
+  goal: mcp-server
+  backstory: You are a mcp-server.

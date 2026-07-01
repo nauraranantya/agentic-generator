@@ -1,1 +1,1 @@
-export { stockbroker01 } from './stockbroker01'
+export { tradeAgent } from './tradeAgent'

@@ -26,14 +26,14 @@ async def main():
     try:
         # Step-by-step sequential execution
         # ==================================================
-        # Workflow Step: read_cv_task
-        # Workflow Edge: read_cv_task -> match_cv_task
+        # Workflow Step: task_read_cv
+        # Workflow Edge: task_read_cv -> task_match_cv
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: read_cv_task")
+        print("Executing step: task_read_cv")
         print("=" * 80)
 
-        task_prompt = """Task: extract structured summary from input CV file."""
+        task_prompt = """Extract relevant information from the given CV: professional summary, technical skills, work history, education, key achievements. """
         # Execute via the assigned agent: cv_reader
         result = await cv_reader.run(task=task_prompt)
 
@@ -44,13 +44,13 @@ async def main():
             print(result)
 
         # ==================================================
-        # Workflow Step: match_cv_task
+        # Workflow Step: task_match_cv
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: match_cv_task")
+        print("Executing step: task_match_cv")
         print("=" * 80)
 
-        task_prompt = """Task: match structured CV summary against job opportunities CSV and produce ranked list."""
+        task_prompt = """Match the CV to the job opportunities based on skills, experience, and key achievements; produce a ranked list. """
         # Execute via the assigned agent: matcher
         result = await matcher.run(task=task_prompt)
 

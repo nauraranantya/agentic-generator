@@ -39,11 +39,11 @@ UnnamedProject/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
 │       ├── agents/            # Agent definitions
-│       │   └── writerAnnotationAgentUuid1.ts
+│       │   └── writerAgent.ts
 │       ├── tools/             # Tool definitions
-│       │   └── draftTextDocumentTool.ts
+│       │   └── toolDraftTextDocument.ts
 │       └── workflows/         # Workflow definitions
-│           └── writerWorkflow.ts
+│           └── writerStateGraphPattern.ts
 ├── package.json
 ├── tsconfig.json
 └── .env.example
@@ -53,38 +53,38 @@ UnnamedProject/
 
 ## 🤖 Agents
 
-### annotation-driven writer
+### writer
 
-- **ID:** `writer-annotation-agent-uuid-1`
-- **Model:** `anthropic/claude-3-5-sonnet-latest`
-- **Tools:** draftTextDocumentTool
+- **ID:** `writer_agent`
+- **Model:** `openai/gpt-4o-mini`
+- **Tools:** toolDraftTextDocument
 
-You are annotation-driven writer....
+You are writer....
 
 
 ---
 
 ## 🔧 Tools
 
-### draft_text_document
+### toolDraftTextDocument
 
 Prepare a text document for the user with a short title and short description for browsing purposes. Can be also used when creating a new version of the document....
 
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/draftTextDocumentTool.ts`)
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolDraftTextDocument.ts`)
 
 
 ---
 
 ## 🔄 Workflows
 
-### writer_workflow
+### writer_state_graph_pattern
 
-Workflow representing the StateGraph: START -> prepare -> writer -> suggestions.
+
 
 **Steps:** 3
-1. prepare_task
-2. write_task
-3. suggestions_task
+1. task_prepare
+2. task_writer
+3. task_suggestions
 
 
 ---

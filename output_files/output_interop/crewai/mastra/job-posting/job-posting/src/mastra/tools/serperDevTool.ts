@@ -1,34 +1,36 @@
 /**
- * Tool: SerperDevTool
+ * Tool: serperDevTool
  * 
  * Auto-generated from AgentO Knowledge Graph
  * 
- * Tool used for developer-oriented web search or SERP querying (instantiated as SerperDevTool in the code).
+ * Serper.dev integration tool for advanced search queries.
  */
 
 import { createTool } from '@mastra/core/tools'
 import { z } from 'zod'
 
 /**
- * SerperDevTool
+ * serperDevTool
  * 
- * Implementation: Tool used for developer-oriented web search or SERP querying (instantiated as SerperDevTool in the code).
+ * Implementation: Serper.dev integration tool for advanced search queries.
  */
 export const serperDevTool = createTool({
-  id: 'SerperDevTool',
-  description: `Tool used for developer-oriented web search or SERP querying (instantiated as SerperDevTool in the code).`,
-  inputSchema: z.object({Tool_used_for_developer: z.string()}),
+  id: 'serperDevTool',
+  description: `Serper.dev integration tool for advanced search queries.`,
+  inputSchema: z.object({}),  // TODO: Define input schema
   outputSchema: z.object({}),  // TODO: Define output schema
   execute: async ({ inputData }) => {
     // TODO: Implement tool logic
     // 
-    // Description: Tool used for developer-oriented web search or SERP querying (instantiated as SerperDevTool in the code).
+    // Description: Serper.dev integration tool for advanced search queries.
+    // Configurations:
+    //   - api_key: unspecified
     // 
     // Implementation should:
     // 1. Use inputData according to inputSchema
     // 2. Perform the tool's logic
     // 3. Return result matching outputSchema
     
-    throw new Error('Tool SerperDevTool not implemented yet')
+    throw new Error('Tool serperDevTool not implemented yet')
   },
 })

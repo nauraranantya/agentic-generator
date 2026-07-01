@@ -1,37 +1,36 @@
 /**
- * Tool: Get a random image from Unsplash (tool)
+ * Tool: getRandomImageTool
  * 
  * Auto-generated from AgentO Knowledge Graph
  * 
- * Tool that queries Unsplash and returns a single image object selected from search results. Implemented in the code using a GET to https://api.unsplash.com/search/photos with a query param and optional paging/randomization.
+ * Gets a random image from unsplash based on the selected option
  */
 
 import { createTool } from '@mastra/core/tools'
 import { z } from 'zod'
 
 /**
- * Get a random image from Unsplash (tool)
+ * getRandomImageTool
  * 
- * Implementation: Tool that queries Unsplash and returns a single image object selected from search results. Implemented in the code using a GET to https://api.unsplash.com/search/photos with a query param and optional paging/randomization.
+ * Implementation: Gets a random image from unsplash based on the selected option
  */
 export const getRandomImageTool = createTool({
-  id: 'Get a random image from Unsplash (tool)',
-  description: `Tool that queries Unsplash and returns a single image object selected from search results. Implemented in the code using a GET to https://api.unsplash.com/search/photos with a query param and optional paging/randomization.`,
-  inputSchema: z.object({type: z.string(), properties: z.object({}), required: z.array(z.string())}),
-  outputSchema: z.object({}),  // TODO: Define output schema
+  id: 'getRandomImageTool',
+  description: `Gets a random image from unsplash based on the selected option`,
+  inputSchema: z.object({query: z.string()}),
+  outputSchema: z.object({Image_object_with_fields: z.string()}),
   execute: async ({ inputData }) => {
     // TODO: Implement tool logic
     // 
-    // Description: Tool that queries Unsplash and returns a single image object selected from search results. Implemented in the code using a GET to https://api.unsplash.com/search/photos with a query param and optional paging/randomization.
+    // Description: Gets a random image from unsplash based on the selected option
     // Configurations:
-    //   - inputSchema: { "type": "object", "properties": { "query": { "type": "string", "enum": ["wildlife","feathers","flying","birds"] } }, "required": ["query"] }
-    //   - description: Gets a random image from Unsplash based on the selected option. Uses a random page and order_by toggled between 'relevant' and 'latest'.
+    //   - NEXT_PUBLIC_UNSPLASH_ACCESS_KEY: env:NEXT_PUBLIC_UNSPLASH_ACCESS_KEY
     // 
     // Implementation should:
     // 1. Use inputData according to inputSchema
     // 2. Perform the tool's logic
     // 3. Return result matching outputSchema
     
-    throw new Error('Tool Get a random image from Unsplash (tool) not implemented yet')
+    throw new Error('Tool getRandomImageTool not implemented yet')
   },
 })

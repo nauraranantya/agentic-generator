@@ -3,20 +3,15 @@
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
- * Goals:
- *   - Provide assistance to user: 
- * Objectives:
- *   - Handle user query: 
- *   - Route selection: 
  */
 
 import { Mastra } from '@mastra/core'
 
 // Import agents
-import { generativeUiSupervisor } from './agents'
+import { supervisor, router, generalInput, stockbroker, tripPlanner, openCode, orderPizza, writerAgent } from './agents'
 
 // Import workflows
-import { generativeUiWorkflow } from './workflows'
+import { stategraphWorkflow } from './workflows'
 
 /**
  * Mastra instance with registered agents, workflows, and memory.
@@ -24,9 +19,16 @@ import { generativeUiWorkflow } from './workflows'
  */
 export const mastra = new Mastra({
   agents: {
-    generativeUiSupervisor,
+    supervisor,
+    router,
+    generalInput,
+    stockbroker,
+    tripPlanner,
+    openCode,
+    orderPizza,
+    writerAgent,
   },
   workflows: {
-    generativeUiWorkflow,
+    stategraphWorkflow,
   },
 })

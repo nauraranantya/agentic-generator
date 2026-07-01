@@ -8,10 +8,10 @@
 import { Mastra } from '@mastra/core'
 
 // Import agents
-import { writerAnnotationAgentUuid1 } from './agents'
+import { writerAgent } from './agents'
 
 // Import workflows
-import { writerWorkflow } from './workflows'
+import { writerStateGraphPattern } from './workflows'
 
 /**
  * Mastra instance with registered agents, workflows, and memory.
@@ -19,9 +19,9 @@ import { writerWorkflow } from './workflows'
  */
 export const mastra = new Mastra({
   agents: {
-    writerAnnotationAgentUuid1,
+    writerAgent,
   },
   workflows: {
-    writerWorkflow,
+    writerStateGraphPattern,
   },
 })

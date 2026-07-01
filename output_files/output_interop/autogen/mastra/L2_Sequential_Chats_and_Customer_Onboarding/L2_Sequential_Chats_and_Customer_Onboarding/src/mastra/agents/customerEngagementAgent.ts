@@ -1,6 +1,6 @@
 /**
- * Agent: engagement_generator
- * ID: customer_engagement_agent
+ * Agent: customer_engagement
+ * ID: Customer Engagement Agent
  * 
  * Auto-generated from AgentO Knowledge Graph
  */
@@ -8,14 +8,14 @@
 import { Agent } from '@mastra/core/agent'
 
 /**
- * engagement_generator
+ * customer_engagement
  * 
  * Instructions:
- * You are engagement_generator.
+ * Provide engaging and fun content based on customer's info and topic preferences.
  */
 export const customerEngagementAgent = new Agent({
-  id: `customer_engagement_agent`,
-  name: `engagement_generator`,
-  instructions: `You are engagement_generator.`,
-  model: 'openai/gpt-3.5-turbo',
+  id: `Customer Engagement Agent`,
+  name: `customer_engagement`,
+  instructions: `Provide engaging and fun content based on customer's info and topic preferences.`,
+  model: 'openai/gpt-4o-mini',
 })

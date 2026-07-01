@@ -13,7 +13,7 @@ const tool_stockbroker = tool(
   },
   {
     name: "tool_stockbroker",
-    description: "Can fetch the price of a ticker, purchase/sell a ticker, or get the user's portfolio.",
+    description: "can fetch the price of a ticker, purchase/sell a ticker, or get the user's portfolio",
     schema: z.object({}),
   }
 );
@@ -24,7 +24,7 @@ const tool_trip_planner = tool(
   },
   {
     name: "tool_trip_planner",
-    description: "Helps the user plan their trip. It can suggest restaurants and places to stay in any given location.",
+    description: "helps the user plan their trip; can suggest restaurants and places to stay in any given location.",
     schema: z.object({}),
   }
 );
@@ -35,7 +35,7 @@ const tool_open_code = tool(
   },
   {
     name: "tool_open_code",
-    description: "Can write a React TODO app for the user. Only call this tool if the user requests a TODO app.",
+    description: "can write a React TODO app for the user. Only call this tool if they request a TODO app.",
     schema: z.object({}),
   }
 );
@@ -46,7 +46,7 @@ const tool_order_pizza = tool(
   },
   {
     name: "tool_order_pizza",
-    description: "Can order a pizza for the user.",
+    description: "can order a pizza for the user",
     schema: z.object({}),
   }
 );
@@ -57,7 +57,7 @@ const tool_writer_agent = tool(
   },
   {
     name: "tool_writer_agent",
-    description: "Can write a text document for the user. Only call this tool if they request a text document.",
+    description: "can write a text document for the user. Only call this tool if they request a text document.",
     schema: z.object({}),
   }
 );
@@ -68,132 +68,120 @@ const tool_router = tool(
   },
   {
     name: "tool_router",
-    description: "A tool used by the router node to select which tool should handle the user's query (routes: stockbroker, tripPlanner, openCode, orderPizza, generalInput, writerAgent).",
-    schema: z.object({}),
-  }
-);
-// Tool: tool_general_input
-const tool_general_input = tool(
-  async () => {
-    return "Result of tool_general_input";
-  },
-  {
-    name: "tool_general_input",
-    description: "Tool/node that responds to general user inputs and summarizes or follows up on tool results.",
+    description: "A tool to route the user's query to the appropriate tool. (Used as a tool schema bound to the routing model)",
     schema: z.object({}),
   }
 );
 
 
 /**
- * Route Target Node: stockbrokerTask
- * Agent: generative_ui_supervisor
+ * Route Target Node: taskStockbroker
+ * Agent: supervisor
  */
-async function stockbrokerTask(state: SupervisorState) {
+async function taskStockbroker(state: SupervisorState) {
   const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
-    { role: "system", content: "Route: stockbrokerTask. You are a supervisor." },
+    { role: "system", content: "Route: taskStockbroker. You are a supervisor." },
     ...state.messages,
   ]);
   return { messages: [response] };
 }
 
 /**
- * Route Target Node: tripPlannerTask
- * Agent: generative_ui_supervisor
+ * Route Target Node: taskTripPlanner
+ * Agent: supervisor
  */
-async function tripPlannerTask(state: SupervisorState) {
+async function taskTripPlanner(state: SupervisorState) {
   const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
-    { role: "system", content: "Route: tripPlannerTask. You are a supervisor." },
+    { role: "system", content: "Route: taskTripPlanner. You are a supervisor." },
     ...state.messages,
   ]);
   return { messages: [response] };
 }
 
 /**
- * Route Target Node: openCodeTask
- * Agent: generative_ui_supervisor
+ * Route Target Node: taskOpenCode
+ * Agent: supervisor
  */
-async function openCodeTask(state: SupervisorState) {
+async function taskOpenCode(state: SupervisorState) {
   const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
-    { role: "system", content: "Route: openCodeTask. You are a supervisor." },
+    { role: "system", content: "Route: taskOpenCode. You are a supervisor." },
     ...state.messages,
   ]);
   return { messages: [response] };
 }
 
 /**
- * Route Target Node: orderPizzaTask
- * Agent: generative_ui_supervisor
+ * Route Target Node: taskOrderPizza
+ * Agent: supervisor
  */
-async function orderPizzaTask(state: SupervisorState) {
+async function taskOrderPizza(state: SupervisorState) {
   const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
-    { role: "system", content: "Route: orderPizzaTask. You are a supervisor." },
+    { role: "system", content: "Route: taskOrderPizza. You are a supervisor." },
     ...state.messages,
   ]);
   return { messages: [response] };
 }
 
 /**
- * Route Target Node: writerAgentTask
- * Agent: generative_ui_supervisor
+ * Route Target Node: taskWriterAgent
+ * Agent: supervisor
  */
-async function writerAgentTask(state: SupervisorState) {
+async function taskWriterAgent(state: SupervisorState) {
   const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
-    { role: "system", content: "Route: writerAgentTask. You are a supervisor." },
+    { role: "system", content: "Route: taskWriterAgent. You are a supervisor." },
     ...state.messages,
   ]);
   return { messages: [response] };
 }
 
 function handleRoute(state: SupervisorState):
-  | "stockbrokerTask"
-  | "tripPlannerTask"
-  | "openCodeTask"
-  | "orderPizzaTask"
-  | "generalInputTask"
-  | "writerAgentTask"
+  | "taskStockbroker"
+  | "taskTripPlanner"
+  | "taskOpenCode"
+  | "taskOrderPizza"
+  | "taskGeneralInput"
+  | "taskWriterAgent"
 {
   return state.next as
-    | "stockbrokerTask"
-    | "tripPlannerTask"
-    | "openCodeTask"
-    | "orderPizzaTask"
-    | "generalInputTask"
-    | "writerAgentTask"
+    | "taskStockbroker"
+    | "taskTripPlanner"
+    | "taskOpenCode"
+    | "taskOrderPizza"
+    | "taskGeneralInput"
+    | "taskWriterAgent"
   ;
 }
 
 const builder = new StateGraph(SupervisorAnnotation)
-  .addNode("routerTask", router)
-  .addNode("stockbrokerTask", stockbrokerTask)
-  .addNode("tripPlannerTask", tripPlannerTask)
-  .addNode("openCodeTask", openCodeTask)
-  .addNode("orderPizzaTask", orderPizzaTask)
-  .addNode("generalInputTask", generalInput)
-  .addNode("writerAgentTask", writerAgentTask)
-  .addConditionalEdges("routerTask", handleRoute, [
-    "stockbrokerTask",
-    "tripPlannerTask",
-    "openCodeTask",
-    "orderPizzaTask",
-    "generalInputTask",
-    "writerAgentTask",
+  .addNode("taskRouter", router)
+  .addNode("taskStockbroker", taskStockbroker)
+  .addNode("taskTripPlanner", taskTripPlanner)
+  .addNode("taskOpenCode", taskOpenCode)
+  .addNode("taskOrderPizza", taskOrderPizza)
+  .addNode("taskGeneralInput", generalInput)
+  .addNode("taskWriterAgent", taskWriterAgent)
+  .addConditionalEdges("taskRouter", handleRoute, [
+    "taskStockbroker",
+    "taskTripPlanner",
+    "taskOpenCode",
+    "taskOrderPizza",
+    "taskGeneralInput",
+    "taskWriterAgent",
   ])
-  .addEdge(START, "routerTask")
-  .addEdge("stockbrokerTask", END)
-  .addEdge("tripPlannerTask", END)
-  .addEdge("openCodeTask", END)
-  .addEdge("orderPizzaTask", END)
-  .addEdge("generalInputTask", END)
-  .addEdge("writerAgentTask", END)
+  .addEdge(START, "taskRouter")
+  .addEdge("taskStockbroker", END)
+  .addEdge("taskTripPlanner", END)
+  .addEdge("taskOpenCode", END)
+  .addEdge("taskOrderPizza", END)
+  .addEdge("taskGeneralInput", END)
+  .addEdge("taskWriterAgent", END)
 ;
 
 export const graph = builder.compile();
 graph.name = "UnnamedProject";
-// Workflow: generative_ui_workflow
-// Workflow: Generative UI Agent Workflow
+// Workflow: stategraph_workflow

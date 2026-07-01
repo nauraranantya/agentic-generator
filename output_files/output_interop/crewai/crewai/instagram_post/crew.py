@@ -1,31 +1,20 @@
 """
-Auto-generated CrewAI Crew: CopyCrew
+Auto-generated CrewAI Crew: UnnamedProject
 
 Source  : AgentO Knowledge Graph → SPARQL → Pydantic → Jinja2
 Pipeline: 3-Layer Conversion Pipeline
 Goals:
-  - Marketing Campaign Objective: Overarching objective: produce Instagram post copy and photograph concepts that highlight the product, its unique selling points, and create a high-impact campaign.
-Objectives:
-  - Copy Crew Objective: Generate analysis-informed ad copy and campaign strategy to drive engagement.
-  - Image Crew Objective: Create photograph concepts aligned with ad copy and campaign to produce visuals for Instagram.
+  - : Produce thorough product and competitor analysis to inform marketing strategy.
+  - : Formulate marketing strategies and creative ideas based on product and competitor analysis.
+  - : Produce multiple Instagram ad copy options aligned with campaign strategy.
+  - : Generate three photographic concepts that best represent the campaign and product without showing the actual product.
+  - : Ensure final creative outputs are aligned with product goals; review and approve imagery.
+  - : Produce marketing analysis and 3 Instagram ad copy options for the product.
+  - : Produce three photograph concepts and a reviewed final selection aligned with campaign copy.
 Capabilities:
-  - web scraping: Capability to scrape and summarize website content.
-  - internet search: Capability to search the internet and summarize results.
-  - instagram search: Capability to search Instagram posts (site:instagram.com queries).
-  - strategy planning: Capability to synthesize analysis into marketing strategies.
-  - copywriting: Capability to craft punchy Instagram ad copy.
-  - photography review: Capability to evaluate and revise photograph concepts.
-  - review & approval: Capability to review outputs, approve, and delegate follow-ups.
-Resources:
-  - Product Analysis Report: Textual report produced by product_analysis task: detailed product features, market appeal, recommendations.
-  - Competitor Analysis Report: Textual competitor analysis with top-3 competitor comparisons produced by competitor_analysis task.
-  - Campaign Strategy & Ideas: Marketing strategy and creative content ideas produced by campaign_development task. Used by creative and photography agents.
-  - Ad Copy Options (3 variations): Three Instagram ad copy options produced by instagram_ad_copy task.
-  - Photograph Descriptions (3 options): Three photograph concept descriptions produced by take_photograph_task.
-  - Approved Photograph Descriptions: Reviewed and approved (or delegated) photograph descriptions produced by review_photo task.
-  - tasks.py (semantic summary): Contains prompt texts (task descriptions) for product_analysis, competitor_analysis, campaign_development, instagram_ad_copy, take_photograph_task, review_photo. Task prompts preserved as Prompt individuals and Task dct:description values.
-  - agents.py (semantic summary): Defines agents (roles, goals, backstories), their tool sets, and association to the Ollama language model. Represented as LLMAgent individuals with agent prompts and useLanguageModel links.
-  - main.py (semantic summary): Orchestrates two Crews (Copy Crew and Image Crew). Copy Crew runs tasks: product_analysis, competitor_analysis, campaign_development, instagram_ad_copy. Image Crew runs tasks: take_photograph_task, review_photo. Crew orchestration and kickoff semantics not directly modeled; outputs represented as produced Resources.
+  - : Extract and summarize HTML content from websites.
+  - : Query web search API and return ranked result snippets.
+  - : Search Instagram content via web search for post examples and snippets.
 """
 
 from crewai import Agent, Crew, Process, Task, LLM
@@ -36,41 +25,41 @@ from crewai.tools import tool
 # ===========================================================
 # Tool Instances
 # ===========================================================
-# TODO: tool_browser_tools_scrape_and_summarize — unknown tool class "BrowserToolsscrapeandsummarizewebsite"
+# TODO: tool_scrape_website — unknown tool class "ToolScrapeWebsite"
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-@tool("BrowserToolsscrapeandsummarizewebsite")
-def tool_browser_tools_scrape_and_summarize(*args, **kwargs) -> str:
-    """Semantic purpose: Scrape a website and produce a long summary of its content or content chunks. Inpu"""
-    return "tool_browser_tools_scrape_and_summarize result"
+@tool("ToolScrapeWebsite")
+def tool_scrape_website(*args, **kwargs) -> str:
+    """Scrapes a webpage via Browserless API and summarizes chunks using an LLM."""
+    return "tool_scrape_website result"
 
-# TODO: tool_search_tools_search_internet — unknown tool class "SearchToolssearchinternet"
+# TODO: tool_search_internet — unknown tool class "ToolSearchInternet"
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-@tool("SearchToolssearchinternet")
-def tool_search_tools_search_internet(*args, **kwargs) -> str:
-    """Semantic purpose: Search the Internet (generic web search) and return top organic results, title, li"""
-    return "tool_search_tools_search_internet result"
+@tool("ToolSearchInternet")
+def tool_search_internet(*args, **kwargs) -> str:
+    """Performs web searches using the Serper (google.serper.dev) API and returns top results."""
+    return "tool_search_internet result"
 
-# TODO: tool_search_tools_search_instagram — unknown tool class "SearchToolssearchinstagram"
+# TODO: tool_search_instagram — unknown tool class "ToolSearchInstagram"
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-@tool("SearchToolssearchinstagram")
-def tool_search_tools_search_instagram(*args, **kwargs) -> str:
-    """Semantic purpose: Search Instagram via site-limited search (site:instagram.com) to find relevant pos"""
-    return "tool_search_tools_search_instagram result"
+@tool("ToolSearchInstagram")
+def tool_search_instagram(*args, **kwargs) -> str:
+    """Performs targeted Instagram site searches (site:instagram.com ...) via Serper API."""
+    return "tool_search_instagram result"
 
 
 # ===========================================================
 # Custom LLM
 # ===========================================================
-product_competitor_agent_llm = LLM(model="ollama/local")
-strategy_planner_agent_llm = LLM(model="ollama/local")
-creative_content_creator_agent_llm = LLM(model="ollama/local")
-senior_photographer_agent_llm = LLM(model="ollama/local")
-chief_creative_director_agent_llm = LLM(model="ollama/local")
+product_competitor_agent_llm = LLM(model="ollama/model")
+strategy_planner_agent_llm = LLM(model="ollama/model")
+creative_content_creator_agent_llm = LLM(model="ollama/model")
+senior_photographer_agent_llm = LLM(model="ollama/model")
+chief_creative_diretor_agent_llm = LLM(model="ollama/model")
 
 
 @CrewBase
-class CopyCrew:
-    """CopyCrew crew"""
+class UnnamedProject:
+    """UnnamedProject crew"""
 
     agents_config = 'config/agents.yaml'
     tasks_config = 'config/tasks.yaml'
@@ -81,35 +70,47 @@ class CopyCrew:
     def product_competitor_agent(self) -> Agent:
         return Agent(
             config=self.agents_config['product_competitor_agent'],
+            tools=[tool_scrape_website, tool_search_internet],
             llm=product_competitor_agent_llm,
+            allow_delegation=False,
+            verbose=True,
         )
 
     @agent
     def strategy_planner_agent(self) -> Agent:
         return Agent(
             config=self.agents_config['strategy_planner_agent'],
+            tools=[tool_scrape_website, tool_search_internet, tool_search_instagram],
             llm=strategy_planner_agent_llm,
+            verbose=True,
         )
 
     @agent
     def creative_content_creator_agent(self) -> Agent:
         return Agent(
             config=self.agents_config['creative_content_creator_agent'],
+            tools=[tool_scrape_website, tool_search_internet, tool_search_instagram],
             llm=creative_content_creator_agent_llm,
+            verbose=True,
         )
 
     @agent
     def senior_photographer_agent(self) -> Agent:
         return Agent(
             config=self.agents_config['senior_photographer_agent'],
+            tools=[tool_scrape_website, tool_search_internet, tool_search_instagram],
             llm=senior_photographer_agent_llm,
+            allow_delegation=False,
+            verbose=True,
         )
 
     @agent
-    def chief_creative_director_agent(self) -> Agent:
+    def chief_creative_diretor_agent(self) -> Agent:
         return Agent(
-            config=self.agents_config['chief_creative_director_agent'],
-            llm=chief_creative_director_agent_llm,
+            config=self.agents_config['chief_creative_diretor_agent'],
+            tools=[tool_scrape_website, tool_search_internet, tool_search_instagram],
+            llm=chief_creative_diretor_agent_llm,
+            verbose=True,
         )
 
     # ── Tasks ───────────────────────────────────────────
@@ -122,6 +123,13 @@ class CopyCrew:
         )
 
     @task
+    def task_take_photograph(self) -> Task:
+        return Task(
+            config=self.tasks_config['task_take_photograph'],
+            agent=self.senior_photographer_agent(),
+        )
+
+    @task
     def task_competitor_analysis(self) -> Task:
         return Task(
             config=self.tasks_config['task_competitor_analysis'],
@@ -129,11 +137,17 @@ class CopyCrew:
         )
 
     @task
+    def task_review_photo(self) -> Task:
+        return Task(
+            config=self.tasks_config['task_review_photo'],
+            agent=self.chief_creative_diretor_agent(),
+        )
+
+    @task
     def task_campaign_development(self) -> Task:
         return Task(
             config=self.tasks_config['task_campaign_development'],
             agent=self.strategy_planner_agent(),
-            context=[self.task_product_analysis(), self.task_competitor_analysis()],
         )
 
     @task
@@ -141,30 +155,13 @@ class CopyCrew:
         return Task(
             config=self.tasks_config['task_instagram_ad_copy'],
             agent=self.creative_content_creator_agent(),
-            context=[self.task_campaign_development()],
-        )
-
-    @task
-    def task_take_photograph(self) -> Task:
-        return Task(
-            config=self.tasks_config['task_take_photograph'],
-            agent=self.senior_photographer_agent(),
-            context=[self.task_instagram_ad_copy(), self.task_product_analysis()],
-        )
-
-    @task
-    def task_review_photo(self) -> Task:
-        return Task(
-            config=self.tasks_config['task_review_photo'],
-            agent=self.chief_creative_director_agent(),
-            context=[self.task_take_photograph(), self.task_product_analysis()],
         )
 
     # ── Crew ────────────────────────────────────────────
 
     @crew
     def crew(self) -> Crew:
-        """Creates the CopyCrew"""
+        """Creates the UnnamedProject"""
         return Crew(
             agents=self.agents,
             tasks=self.tasks,

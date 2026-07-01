@@ -10,13 +10,13 @@ dependencies = [
     "crewai[tools]>=0.152.0",
     "python-dotenv>=1.0.1",
     "pyyaml>=6.0.1",
-    # TODO: add PyPI package for custom tool "stockbroker"
-    # TODO: add PyPI package for custom tool "tripPlanner"
-    # TODO: add PyPI package for custom tool "openCode"
-    # TODO: add PyPI package for custom tool "orderPizza"
-    # TODO: add PyPI package for custom tool "writerAgent"
-    # TODO: add PyPI package for custom tool "router"
-    # TODO: add PyPI package for custom tool "generalInput"
+    "google-generativeai>=0.8.0",
+    # TODO: add PyPI package for custom tool "toolstockbroker"
+    # TODO: add PyPI package for custom tool "tooltripPlanner"
+    # TODO: add PyPI package for custom tool "toolopenCode"
+    # TODO: add PyPI package for custom tool "toolorderPizza"
+    # TODO: add PyPI package for custom tool "toolwriterAgent"
+    # TODO: add PyPI package for custom tool "toolrouter"
 ]
 
 [project.scripts]

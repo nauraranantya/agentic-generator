@@ -1,5 +1,5 @@
 [project]
-name = "copy"
+name = "unnamed_project"
 version = "0.1.0"
 description = ""
 authors = [{name = "Your Name", email = "you@example.com"}]
@@ -11,13 +11,13 @@ dependencies = [
     "python-dotenv>=1.0.1",
     "pyyaml>=6.0.1",
     "langchain-community>=0.3.0",
-    # TODO: add PyPI package for custom tool "BrowserToolsscrapeandsummarizewebsite"
-    # TODO: add PyPI package for custom tool "SearchToolssearchinternet"
-    # TODO: add PyPI package for custom tool "SearchToolssearchinstagram"
+    # TODO: add PyPI package for custom tool "ToolScrapeWebsite"
+    # TODO: add PyPI package for custom tool "ToolSearchInternet"
+    # TODO: add PyPI package for custom tool "ToolSearchInstagram"
 ]
 
 [project.scripts]
-copy = "main:run"
+unnamed_project = "main:run"
 train      = "main:train"
 
 [tool.uv]

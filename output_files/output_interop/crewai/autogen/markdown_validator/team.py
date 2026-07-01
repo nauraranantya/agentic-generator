@@ -1,12 +1,12 @@
 """
-Auto-generated AutoGen Team: MarkDownValidatorCrew
+Auto-generated AutoGen Team: UnnamedProject
 Goals:
-  - Markdown validation crew goal: Provide a detailed list of the markdown linting results. Give a summary with actionable tasks to address the validation results. Write your response as if you were handing it to a developer to fix the issues. DO NOT provide examples of how to fix the issues or recommend other tools to use.
-  - Requirements Manager goal: Provide a detailed list of the markdown linting results. Give a summary with actionable tasks to address the validation results. Write your response as if you were handing it to a developer to fix the issues. DO NOT provide examples of how to fix the issues or recommend other tools to use.
-Resources:
-  - Markdown validation report (tool output): Formatted string of validation results returned by markdown_validation_tool. Example output forms: 'No markdown validation issues found.' or a newline-separated list of detected rule violations with file, line, rule id, rule name and description.
-  - PyMarkdownApi: The PyMarkdownApi library instance invoked by the tool implementation. The tool calls PyMarkdownApi().scan_path(file_path) to perform the scan and returns a formatted summary.
-  - Input markdown file (CLI filename): The file path provided via command-line to the CLI (sys.argv[1] when running). The task expects only the file path string (filename) to be passed to the markdown_validation_tool.
+  - : Provide a detailed list of the markdown linting results.
+Give a summary with actionable tasks to address the validation results.
+Write your response as if you were handing it to a developer to fix the issues.
+DO NOT provide examples of how to fix the issues or recommend other tools to use.
+Capabilities:
+  - : Identify markdown syntax issues using pymarkdown, returning formatted scan failures (file, line, rule, description).
 """
 
 from autogen_agentchat.agents import AssistantAgent
@@ -40,23 +40,10 @@ def markdown_validation_tool_impl(
 ) -> str:
     """
     AgentO Tool:
-    markdownvalidationtool
+    markdown_validation_tool
 
     Description:
-    Tool definition (from src/markdown_validator/tools/markdownTools.py):
-- Tool name registered as 'markdown_validation_tool'
-- Signature (conceptual): input: file_path (string) -> output: validation_results (string)
-- Behavior:
-    * Checks whether file_path exists on filesystem; returns error string if not found.
-    * Calls PyMarkdownApi().scan_path(file_path.strip()) to perform the markdown scan.
-    * Uses format_scan_result to transform the scan result to a formatted string.
-    * On PyMarkdownApiException returns 'API Exception: <exception message>'.
-- Output format:
-    * If no failures: 'No markdown validation issues found.'
-    * If failures: one line per failure with: File, Line, Rule, Rule name, Rule description
-- Constraints and usage note:
-    * The tool expects only the path (filename) as input.
-    * The task instructs the agent to pass only the filename to this tool.
+    A tool to review files for markdown syntax errors. Uses PyMarkdownApi to scan a file path and returns formatted scan results.
     """
     return (
         "Tool 'markdown_validation_tool' "
@@ -67,20 +54,7 @@ def markdown_validation_tool_impl(
 
 markdown_validation_tool = FunctionTool(
     markdown_validation_tool_impl,
-    description="""Tool definition (from src/markdown_validator/tools/markdownTools.py):
-- Tool name registered as 'markdown_validation_tool'
-- Signature (conceptual): input: file_path (string) -> output: validation_results (string)
-- Behavior:
-    * Checks whether file_path exists on filesystem; returns error string if not found.
-    * Calls PyMarkdownApi().scan_path(file_path.strip()) to perform the markdown scan.
-    * Uses format_scan_result to transform the scan result to a formatted string.
-    * On PyMarkdownApiException returns 'API Exception: <exception message>'.
-- Output format:
-    * If no failures: 'No markdown validation issues found.'
-    * If failures: one line per failure with: File, Line, Rule, Rule name, Rule description
-- Constraints and usage note:
-    * The tool expects only the path (filename) as input.
-    * The task instructs the agent to pass only the filename to this tool."""
+    description="""A tool to review files for markdown syntax errors. Uses PyMarkdownApi to scan a file path and returns formatted scan results. """
 )
 
 
@@ -97,10 +71,13 @@ Role:
 Requirements Manager
 
 Goal:
-Provide a detailed list of the markdown linting results. Give a summary with actionable tasks to address the validation results. Write your response as if you were handing it to a developer to fix the issues. DO NOT provide examples of how to fix the issues or recommend other tools to use.
+Provide a detailed list of the markdown linting results.
+Give a summary with actionable tasks to address the validation results.
+Write your response as if you were handing it to a developer to fix the issues.
+DO NOT provide examples of how to fix the issues or recommend other tools to use.
 
 Background:
-Agent backstory: expert business analyst and software QA specialist.
+You are a Requirements Manager.
 """,
 )
 

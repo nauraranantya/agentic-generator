@@ -7,9 +7,7 @@ Goals:
   - : Define agent 1 goal here
   - : Define agent 2 goal here
 Capabilities:
-  - web search: Capability to run web searches and return search results.
-Resources:
-  - : Represents the output produced by task_1_name; used as input to task_2_name. Created by Task_1.
+  - : Performs web searches and returns results
 """
 
 from crewai import Agent, Crew, Process, Task
@@ -20,12 +18,12 @@ from crewai.tools import tool
 # ===========================================================
 # Tool Instances
 # ===========================================================
-# TODO: duck_duck_go_tool — unknown tool class "DuckDuckGoTool"
+# TODO: tool_duck_duck_go_search_run — unknown tool class "ToolDuckDuckGoSearchRun"
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-@tool("DuckDuckGoTool")
-def duck_duck_go_tool(*args, **kwargs) -> str:
-    """An instance of DuckDuckGoSearchRun created in main.py and intended for web search functionality. (No"""
-    return "duck_duck_go_tool result"
+@tool("ToolDuckDuckGoSearchRun")
+def tool_duck_duck_go_search_run(*args, **kwargs) -> str:
+    """LangChain DuckDuckGo search tool used for web search"""
+    return "tool_duck_duck_go_search_run result"
 
 
 
@@ -43,8 +41,8 @@ class UnnamedProject:
     def agent_1_name(self) -> Agent:
         return Agent(
             config=self.agents_config['agent_1_name'],
-            tools=[duck_duck_go_tool],
-            allow_delegation=True,
+            tools=[tool_duck_duck_go_search_run],
+            allow_delegation=False,
             verbose=True,
         )
 
@@ -52,8 +50,8 @@ class UnnamedProject:
     def agent_2_name(self) -> Agent:
         return Agent(
             config=self.agents_config['agent_2_name'],
-            tools=[duck_duck_go_tool],
-            allow_delegation=True,
+            tools=[tool_duck_duck_go_search_run],
+            allow_delegation=False,
             verbose=True,
         )
 
@@ -71,7 +69,6 @@ class UnnamedProject:
         return Task(
             config=self.tasks_config['task_2'],
             agent=self.agent_2_name(),
-            context=[self.task_1()],
         )
 
     # ── Crew ────────────────────────────────────────────

@@ -1,59 +1,15 @@
-import { ChatAnthropic } from "@langchain/anthropic";
+import { ChatOpenAI } from "@langchain/openai";
 import { Annotation, START, END, StateGraph } from "@langchain/langgraph";
 import { tool } from "@langchain/core/tools";
 import { z } from "zod";
 
-const MastraagentsystemAnnotation = Annotation.Root({
+const UnnamedProjectAnnotation = Annotation.Root({
   messages: Annotation<any[]>({
     reducer: (_, next) => next,
     default: () => [],
   }),
 });
 
-// Tool: tool_execa_tool
-const tool_execa_tool = tool(
-  async () => {
-    return "Result of tool_execa_tool";
-  },
-  {
-    name: "tool_execa_tool",
-    description: "Tool wrapping execa to run commands and stream output to console. Input: {command, args}. Output: {message}.",
-    schema: z.object({}),
-  }
-);
-// Tool: tool_fs_tool
-const tool_fs_tool = tool(
-  async () => {
-    return "Result of tool_fs_tool";
-  },
-  {
-    name: "tool_fs_tool",
-    description: "File system tool to read/write/append files.",
-    schema: z.object({}),
-  }
-);
-// Tool: tool_slack_mcp
-const tool_slack_mcp = tool(
-  async () => {
-    return "Result of tool_slack_mcp";
-  },
-  {
-    name: "tool_slack_mcp",
-    description: "MCP client configured to run Slack container. Exposes tools for posting to Slack.",
-    schema: z.object({}),
-  }
-);
-// Tool: tool_list_events
-const tool_list_events = tool(
-  async () => {
-    return "Result of tool_list_events";
-  },
-  {
-    name: "tool_list_events",
-    description: "Tool that lists calendar events by reading Mac Calendar via AppleScript and parsing into event objects.",
-    schema: z.object({}),
-  }
-);
 // Tool: tool_browser_tool
 const tool_browser_tool = tool(
   async () => {
@@ -61,7 +17,7 @@ const tool_browser_tool = tool(
   },
   {
     name: "tool_browser_tool",
-    description: "Opens a headless chromium browser, retrieves page content and returns chunked textual document representation.",
+    description: "Opens a headless browser, navigates to a URL and captures content; chunks HTML into documents.",
     schema: z.object({}),
   }
 );
@@ -72,7 +28,62 @@ const tool_google_search = tool(
   },
   {
     name: "tool_google_search",
-    description: "Performs a Google search and returns a list of result URLs.",
+    description: "Performs a Google search by opening search results and extracting links.",
+    schema: z.object({}),
+  }
+);
+// Tool: tool_list_events
+const tool_list_events = tool(
+  async () => {
+    return "Result of tool_list_events";
+  },
+  {
+    name: "tool_list_events",
+    description: "Reads local (Mac) Calendar events via AppleScript and returns events.",
+    schema: z.object({}),
+  }
+);
+// Tool: tool_crawl
+const tool_crawl = tool(
+  async () => {
+    return "Result of tool_crawl";
+  },
+  {
+    name: "tool_crawl",
+    description: "Triggers Firecrawl integration to crawl and sync website content.",
+    schema: z.object({}),
+  }
+);
+// Tool: tool_execa_tool
+const tool_execa_tool = tool(
+  async () => {
+    return "Result of tool_execa_tool";
+  },
+  {
+    name: "tool_execa_tool",
+    description: "Execute shell commands and stream output.",
+    schema: z.object({}),
+  }
+);
+// Tool: tool_fs_tool
+const tool_fs_tool = tool(
+  async () => {
+    return "Result of tool_fs_tool";
+  },
+  {
+    name: "tool_fs_tool",
+    description: "Read, write, and append files on local filesystem.",
+    schema: z.object({}),
+  }
+);
+// Tool: tool_image_tool
+const tool_image_tool = tool(
+  async () => {
+    return "Result of tool_image_tool";
+  },
+  {
+    name: "tool_image_tool",
+    description: "Generate images using Stability AI integration and save to disk.",
     schema: z.object({}),
   }
 );
@@ -83,7 +94,7 @@ const tool_read_pdf = tool(
   },
   {
     name: "tool_read_pdf",
-    description: "Reads PDF file and extracts textual content; validates file path and type.",
+    description: "Parse PDF files and return extracted text.",
     schema: z.object({}),
   }
 );
@@ -94,7 +105,7 @@ const tool_pnpm_build = tool(
   },
   {
     name: "tool_pnpm_build",
-    description: "Build a package using pnpm run build at provided packagePath. Input: {name, packagePath}.",
+    description: "Runs pnpm build in package directories.",
     schema: z.object({}),
   }
 );
@@ -105,7 +116,7 @@ const tool_pnpm_changeset_status = tool(
   },
   {
     name: "tool_pnpm_changeset_status",
-    description: "Checks 'pnpm publish -r --dry-run --no-git-checks' to determine which packages need to be published. Returns array of package names.",
+    description: "Check which pnpm modules would be published via dry-run.",
     schema: z.object({}),
   }
 );
@@ -116,7 +127,7 @@ const tool_pnpm_changeset_publish = tool(
   },
   {
     name: "tool_pnpm_changeset_publish",
-    description: "Publishes packages via pnpm changeset publish.",
+    description: "Publish pnpm changesets.",
     schema: z.object({}),
   }
 );
@@ -127,7 +138,62 @@ const tool_active_dist_tag = tool(
   },
   {
     name: "tool_active_dist_tag",
-    description: "Sets an npm dist tag on a package using npm dist-tag add <pkg>@<version> latest.",
+    description: "Set npm dist-tag on published packages.",
+    schema: z.object({}),
+  }
+);
+// Tool: tool_slack_client
+const tool_slack_client = tool(
+  async () => {
+    return "Result of tool_slack_client";
+  },
+  {
+    name: "tool_slack_client",
+    description: "Mastra MCP client for Slack, runs a docker command to post messages.",
+    schema: z.object({}),
+  }
+);
+// Tool: tool_firecrawl_integration
+const tool_firecrawl_integration = tool(
+  async () => {
+    return "Result of tool_firecrawl_integration";
+  },
+  {
+    name: "tool_firecrawl_integration",
+    description: "Integration to crawl and sync content using Firecrawl API.",
+    schema: z.object({}),
+  }
+);
+// Tool: tool_github_integration
+const tool_github_integration = tool(
+  async () => {
+    return "Result of tool_github_integration";
+  },
+  {
+    name: "tool_github_integration",
+    description: "GitHub API integration for retrieving PRs, issues and posting comments.",
+    schema: z.object({}),
+  }
+);
+// Tool: tool_stabilityai_integration
+const tool_stabilityai_integration = tool(
+  async () => {
+    return "Result of tool_stabilityai_integration";
+  },
+  {
+    name: "tool_stabilityai_integration",
+    description: "Integration to generate images using Stability AI API.",
+    schema: z.object({}),
+  }
+);
+// Tool: tool_upstash_store
+const tool_upstash_store = tool(
+  async () => {
+    return "Result of tool_upstash_store";
+  },
+  {
+    name: "tool_upstash_store",
+    description: "Upstash HTTP store used by Memory; token-based auth.",
     schema: z.object({}),
   }
 );
@@ -135,17 +201,17 @@ const tool_active_dist_tag = tool(
 
 
 /**
- * Node: getGitDiffTask
+ * Node: taskChangelogStepA1
  * Agent: dane
  */
-async function getGitDiffTask(state: typeof MastraagentsystemAnnotation.State) {
-  const model = new ChatAnthropic({ model: "claude-3-5-sonnet-20241022" });
+async function taskChangelogStepA1(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
         "You are a assistant." +
-        "\nNode: getGitDiffTask",
+        "\nNode: taskChangelogStepA1",
     },
     ...state.messages,
   ]);
@@ -153,17 +219,17 @@ async function getGitDiffTask(state: typeof MastraagentsystemAnnotation.State) {
 }
 
 /**
- * Node: readConventionalCommitSpec
- * Agent: dane
+ * Node: taskChangelogStepA2
+ * Agent: dane_change_log
  */
-async function readConventionalCommitSpec(state: typeof MastraagentsystemAnnotation.State) {
-  const model = new ChatAnthropic({ model: "claude-3-5-sonnet-20241022" });
+async function taskChangelogStepA2(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "You are a assistant." +
-        "\nNode: readConventionalCommitSpec",
+        "You are a changelog_writer." +
+        "\nNode: taskChangelogStepA2",
     },
     ...state.messages,
   ]);
@@ -171,17 +237,89 @@ async function readConventionalCommitSpec(state: typeof MastraagentsystemAnnotat
 }
 
 /**
- * Node: generateCommitMessage
+ * Node: taskEntryMessageInput
+ * Agent: dane
+ */
+async function taskEntryMessageInput(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
+  const response = await model.invoke([
+    {
+      role: "system",
+      content:
+        "You are a assistant." +
+        "\nNode: taskEntryMessageInput",
+    },
+    ...state.messages,
+  ]);
+  return { messages: [response] };
+}
+
+/**
+ * Node: taskEntryMessageOutput
+ * Agent: dane
+ */
+async function taskEntryMessageOutput(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
+  const response = await model.invoke([
+    {
+      role: "system",
+      content:
+        "You are a assistant." +
+        "\nNode: taskEntryMessageOutput",
+    },
+    ...state.messages,
+  ]);
+  return { messages: [response] };
+}
+
+/**
+ * Node: taskCommitGetDiff
+ * Agent: dane
+ */
+async function taskCommitGetDiff(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
+  const response = await model.invoke([
+    {
+      role: "system",
+      content:
+        "You are a assistant." +
+        "\nNode: taskCommitGetDiff",
+    },
+    ...state.messages,
+  ]);
+  return { messages: [response] };
+}
+
+/**
+ * Node: taskCommitReadConventionalCommitSpec
+ * Agent: dane
+ */
+async function taskCommitReadConventionalCommitSpec(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
+  const response = await model.invoke([
+    {
+      role: "system",
+      content:
+        "You are a assistant." +
+        "\nNode: taskCommitReadConventionalCommitSpec",
+    },
+    ...state.messages,
+  ]);
+  return { messages: [response] };
+}
+
+/**
+ * Node: taskCommitGenerateMessage
  * Agent: dane_commit_message
  */
-async function generateCommitMessage(state: typeof MastraagentsystemAnnotation.State) {
-  const model = new ChatAnthropic({ model: "claude-3-5-sonnet-20241022" });
+async function taskCommitGenerateMessage(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "You are a LLM Agent." +
-        "\nNode: generateCommitMessage",
+        "You are a commit_message_generator." +
+        "\nNode: taskCommitGenerateMessage",
     },
     ...state.messages,
   ]);
@@ -189,17 +327,17 @@ async function generateCommitMessage(state: typeof MastraagentsystemAnnotation.S
 }
 
 /**
- * Node: userConfirmation
+ * Node: taskCommitConfirmation
  * Agent: dane
  */
-async function userConfirmation(state: typeof MastraagentsystemAnnotation.State) {
-  const model = new ChatAnthropic({ model: "claude-3-5-sonnet-20241022" });
+async function taskCommitConfirmation(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
         "You are a assistant." +
-        "\nNode: userConfirmation",
+        "\nNode: taskCommitConfirmation",
     },
     ...state.messages,
   ]);
@@ -207,17 +345,17 @@ async function userConfirmation(state: typeof MastraagentsystemAnnotation.State)
 }
 
 /**
- * Node: createGitCommitTask
+ * Node: taskCommitCommit
  * Agent: dane
  */
-async function createGitCommitTask(state: typeof MastraagentsystemAnnotation.State) {
-  const model = new ChatAnthropic({ model: "claude-3-5-sonnet-20241022" });
+async function taskCommitCommit(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
         "You are a assistant." +
-        "\nNode: createGitCommitTask",
+        "\nNode: taskCommitCommit",
     },
     ...state.messages,
   ]);
@@ -225,17 +363,17 @@ async function createGitCommitTask(state: typeof MastraagentsystemAnnotation.Sta
 }
 
 /**
- * Node: startMessage
+ * Node: taskFirstGetPullRequest
  * Agent: dane
  */
-async function startMessage(state: typeof MastraagentsystemAnnotation.State) {
-  const model = new ChatAnthropic({ model: "claude-3-5-sonnet-20241022" });
+async function taskFirstGetPullRequest(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
         "You are a assistant." +
-        "\nNode: startMessage",
+        "\nNode: taskFirstGetPullRequest",
     },
     ...state.messages,
   ]);
@@ -243,323 +381,17 @@ async function startMessage(state: typeof MastraagentsystemAnnotation.State) {
 }
 
 /**
- * Node: passMessageThroughUserInput
- * Agent: dane
- */
-async function passMessageThroughUserInput(state: typeof MastraagentsystemAnnotation.State) {
-  const model = new ChatAnthropic({ model: "claude-3-5-sonnet-20241022" });
-  const response = await model.invoke([
-    {
-      role: "system",
-      content:
-        "You are a assistant." +
-        "\nNode: passMessageThroughUserInput",
-    },
-    ...state.messages,
-  ]);
-  return { messages: [response] };
-}
-
-/**
- * Node: checkMessageExists
- * Agent: dane
- */
-async function checkMessageExists(state: typeof MastraagentsystemAnnotation.State) {
-  const model = new ChatAnthropic({ model: "claude-3-5-sonnet-20241022" });
-  const response = await model.invoke([
-    {
-      role: "system",
-      content:
-        "You are a assistant." +
-        "\nNode: checkMessageExists",
-    },
-    ...state.messages,
-  ]);
-  return { messages: [response] };
-}
-
-/**
- * Node: askModifyMessage
- * Agent: dane
- */
-async function askModifyMessage(state: typeof MastraagentsystemAnnotation.State) {
-  const model = new ChatAnthropic({ model: "claude-3-5-sonnet-20241022" });
-  const response = await model.invoke([
-    {
-      role: "system",
-      content:
-        "You are a assistant." +
-        "\nNode: askModifyMessage",
-    },
-    ...state.messages,
-  ]);
-  return { messages: [response] };
-}
-
-/**
- * Node: passFinalMessage
- * Agent: dane
- */
-async function passFinalMessage(state: typeof MastraagentsystemAnnotation.State) {
-  const model = new ChatAnthropic({ model: "claude-3-5-sonnet-20241022" });
-  const response = await model.invoke([
-    {
-      role: "system",
-      content:
-        "You are a assistant." +
-        "\nNode: passFinalMessage",
-    },
-    ...state.messages,
-  ]);
-  return { messages: [response] };
-}
-
-/**
- * Node: getBrokenLinksTask
- * Agent: dane
- */
-async function getBrokenLinksTask(state: typeof MastraagentsystemAnnotation.State) {
-  const model = new ChatAnthropic({ model: "claude-3-5-sonnet-20241022" });
-  const response = await model.invoke([
-    {
-      role: "system",
-      content:
-        "You are a assistant." +
-        "\nNode: getBrokenLinksTask",
-    },
-    ...state.messages,
-  ]);
-  return { messages: [response] };
-}
-
-/**
- * Node: reportBrokenLinksToSlack
- * Agent: dane_link_checker
- */
-async function reportBrokenLinksToSlack(state: typeof MastraagentsystemAnnotation.State) {
-  const model = new ChatAnthropic({ model: "claude-3-5-sonnet-20241022" });
-  const response = await model.invoke([
-    {
-      role: "system",
-      content:
-        "You are a LLM Agent." +
-        "\nNode: reportBrokenLinksToSlack",
-    },
-    ...state.messages,
-  ]);
-  return { messages: [response] };
-}
-
-/**
- * Node: generatePerModuleChangelog
- * Agent: dane_package_publisher
- */
-async function generatePerModuleChangelog(state: typeof MastraagentsystemAnnotation.State) {
-  const model = new ChatAnthropic({ model: "claude-3-5-sonnet-20241022" });
-  const response = await model.invoke([
-    {
-      role: "system",
-      content:
-        "You are a LLM Agent." +
-        "\nNode: generatePerModuleChangelog",
-    },
-    ...state.messages,
-  ]);
-  return { messages: [response] };
-}
-
-/**
- * Node: compileChangelogAndPostToSlack
- * Agent: dane_package_publisher
- */
-async function compileChangelogAndPostToSlack(state: typeof MastraagentsystemAnnotation.State) {
-  const model = new ChatAnthropic({ model: "claude-3-5-sonnet-20241022" });
-  const response = await model.invoke([
-    {
-      role: "system",
-      content:
-        "You are a LLM Agent." +
-        "\nNode: compileChangelogAndPostToSlack",
-    },
-    ...state.messages,
-  ]);
-  return { messages: [response] };
-}
-
-/**
- * Node: buildAllPackages
- * Agent: dane
- */
-async function buildAllPackages(state: typeof MastraagentsystemAnnotation.State) {
-  const model = new ChatAnthropic({ model: "claude-3-5-sonnet-20241022" });
-  const response = await model.invoke([
-    {
-      role: "system",
-      content:
-        "You are a assistant." +
-        "\nNode: buildAllPackages",
-    },
-    ...state.messages,
-  ]);
-  return { messages: [response] };
-}
-
-/**
- * Node: publishAllPackages
- * Agent: dane
- */
-async function publishAllPackages(state: typeof MastraagentsystemAnnotation.State) {
-  const model = new ChatAnthropic({ model: "claude-3-5-sonnet-20241022" });
-  const response = await model.invoke([
-    {
-      role: "system",
-      content:
-        "You are a assistant." +
-        "\nNode: publishAllPackages",
-    },
-    ...state.messages,
-  ]);
-  return { messages: [response] };
-}
-
-/**
- * Node: setDistTags
- * Agent: dane
- */
-async function setDistTags(state: typeof MastraagentsystemAnnotation.State) {
-  const model = new ChatAnthropic({ model: "claude-3-5-sonnet-20241022" });
-  const response = await model.invoke([
-    {
-      role: "system",
-      content:
-        "You are a assistant." +
-        "\nNode: setDistTags",
-    },
-    ...state.messages,
-  ]);
-  return { messages: [response] };
-}
-
-/**
- * Node: userChatInput
- * Agent: dane
- */
-async function userChatInput(state: typeof MastraagentsystemAnnotation.State) {
-  const model = new ChatAnthropic({ model: "claude-3-5-sonnet-20241022" });
-  const response = await model.invoke([
-    {
-      role: "system",
-      content:
-        "You are a assistant." +
-        "\nNode: userChatInput",
-    },
-    ...state.messages,
-  ]);
-  return { messages: [response] };
-}
-
-/**
- * Node: agentResponseGeneration
- * Agent: dane
- */
-async function agentResponseGeneration(state: typeof MastraagentsystemAnnotation.State) {
-  const model = new ChatAnthropic({ model: "claude-3-5-sonnet-20241022" });
-  const response = await model.invoke([
-    {
-      role: "system",
-      content:
-        "You are a assistant." +
-        "\nNode: agentResponseGeneration",
-    },
-    ...state.messages,
-  ]);
-  return { messages: [response] };
-}
-
-/**
- * Node: fetchIssueFromGitHub
- * Agent: dane
- */
-async function fetchIssueFromGitHub(state: typeof MastraagentsystemAnnotation.State) {
-  const model = new ChatAnthropic({ model: "claude-3-5-sonnet-20241022" });
-  const response = await model.invoke([
-    {
-      role: "system",
-      content:
-        "You are a assistant." +
-        "\nNode: fetchIssueFromGitHub",
-    },
-    ...state.messages,
-  ]);
-  return { messages: [response] };
-}
-
-/**
- * Node: generateLabelsTask
- * Agent: dane_issue_labeler
- */
-async function generateLabelsTask(state: typeof MastraagentsystemAnnotation.State) {
-  const model = new ChatAnthropic({ model: "claude-3-5-sonnet-20241022" });
-  const response = await model.invoke([
-    {
-      role: "system",
-      content:
-        "You are a LLM Agent." +
-        "\nNode: generateLabelsTask",
-    },
-    ...state.messages,
-  ]);
-  return { messages: [response] };
-}
-
-/**
- * Node: applyLabelsToGitHubIssue
- * Agent: dane
- */
-async function applyLabelsToGitHubIssue(state: typeof MastraagentsystemAnnotation.State) {
-  const model = new ChatAnthropic({ model: "claude-3-5-sonnet-20241022" });
-  const response = await model.invoke([
-    {
-      role: "system",
-      content:
-        "You are a assistant." +
-        "\nNode: applyLabelsToGitHubIssue",
-    },
-    ...state.messages,
-  ]);
-  return { messages: [response] };
-}
-
-/**
- * Node: getPullRequest
- * Agent: dane
- */
-async function getPullRequest(state: typeof MastraagentsystemAnnotation.State) {
-  const model = new ChatAnthropic({ model: "claude-3-5-sonnet-20241022" });
-  const response = await model.invoke([
-    {
-      role: "system",
-      content:
-        "You are a assistant." +
-        "\nNode: getPullRequest",
-    },
-    ...state.messages,
-  ]);
-  return { messages: [response] };
-}
-
-/**
- * Node: generateNewContributorMessage
+ * Node: taskFirstMessageGenerator
  * Agent: dane_new_contributor
  */
-async function generateNewContributorMessage(state: typeof MastraagentsystemAnnotation.State) {
-  const model = new ChatAnthropic({ model: "claude-3-5-sonnet-20241022" });
+async function taskFirstMessageGenerator(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "You are a LLM Agent." +
-        "\nNode: generateNewContributorMessage",
+        "You are a new_contributor_messaging." +
+        "\nNode: taskFirstMessageGenerator",
     },
     ...state.messages,
   ]);
@@ -567,92 +399,377 @@ async function generateNewContributorMessage(state: typeof MastraagentsystemAnno
 }
 
 /**
- * Node: createPrComment
+ * Node: taskFirstCreateMessage
  * Agent: dane
  */
-async function createPrComment(state: typeof MastraagentsystemAnnotation.State) {
-  const model = new ChatAnthropic({ model: "claude-3-5-sonnet-20241022" });
+async function taskFirstCreateMessage(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
         "You are a assistant." +
-        "\nNode: createPrComment",
+        "\nNode: taskFirstCreateMessage",
     },
     ...state.messages,
   ]);
   return { messages: [response] };
 }
 
-const workflow = new StateGraph(MastraagentsystemAnnotation)
-  .addNode("getGitDiffTask", getGitDiffTask)
-  .addNode("readConventionalCommitSpec", readConventionalCommitSpec)
-  .addNode("generateCommitMessage", generateCommitMessage)
-  .addNode("userConfirmation", userConfirmation)
-  .addNode("createGitCommitTask", createGitCommitTask)
-  .addNode("startMessage", startMessage)
-  .addNode("passMessageThroughUserInput", passMessageThroughUserInput)
-  .addNode("checkMessageExists", checkMessageExists)
-  .addNode("askModifyMessage", askModifyMessage)
-  .addNode("passFinalMessage", passFinalMessage)
-  .addNode("getBrokenLinksTask", getBrokenLinksTask)
-  .addNode("reportBrokenLinksToSlack", reportBrokenLinksToSlack)
-  .addNode("generatePerModuleChangelog", generatePerModuleChangelog)
-  .addNode("compileChangelogAndPostToSlack", compileChangelogAndPostToSlack)
-  .addNode("buildAllPackages", buildAllPackages)
-  .addNode("publishAllPackages", publishAllPackages)
-  .addNode("setDistTags", setDistTags)
-  .addNode("userChatInput", userChatInput)
-  .addNode("agentResponseGeneration", agentResponseGeneration)
-  .addNode("fetchIssueFromGitHub", fetchIssueFromGitHub)
-  .addNode("generateLabelsTask", generateLabelsTask)
-  .addNode("applyLabelsToGitHubIssue", applyLabelsToGitHubIssue)
-  .addNode("getPullRequest", getPullRequest)
-  .addNode("generateNewContributorMessage", generateNewContributorMessage)
-  .addNode("createPrComment", createPrComment)
-  .addEdge(START, "getGitDiffTask")
-  .addEdge("getGitDiffTask", "readConventionalCommitSpec")
-  .addEdge("readConventionalCommitSpec", "generateCommitMessage")
-  .addEdge("generateCommitMessage", "userConfirmation")
-  .addEdge("userConfirmation", "createGitCommitTask")
-  .addEdge("createGitCommitTask", "startMessage")
-  .addEdge("startMessage", "passMessageThroughUserInput")
-  .addEdge("passMessageThroughUserInput", "checkMessageExists")
-  .addEdge("checkMessageExists", "askModifyMessage")
-  .addEdge("askModifyMessage", "passFinalMessage")
-  .addEdge("passFinalMessage", "getBrokenLinksTask")
-  .addEdge("getBrokenLinksTask", "reportBrokenLinksToSlack")
-  .addEdge("reportBrokenLinksToSlack", "generatePerModuleChangelog")
-  .addEdge("generatePerModuleChangelog", "compileChangelogAndPostToSlack")
-  .addEdge("compileChangelogAndPostToSlack", "buildAllPackages")
-  .addEdge("buildAllPackages", "publishAllPackages")
-  .addEdge("publishAllPackages", "setDistTags")
-  .addEdge("setDistTags", "userChatInput")
-  .addEdge("userChatInput", "agentResponseGeneration")
-  .addEdge("agentResponseGeneration", "fetchIssueFromGitHub")
-  .addEdge("fetchIssueFromGitHub", "generateLabelsTask")
-  .addEdge("generateLabelsTask", "applyLabelsToGitHubIssue")
-  .addEdge("applyLabelsToGitHubIssue", "getPullRequest")
-  .addEdge("getPullRequest", "generateNewContributorMessage")
-  .addEdge("generateNewContributorMessage", "createPrComment")
-  .addEdge("createPrComment", END)
+/**
+ * Node: taskIssueGetIssue
+ * Agent: dane
+ */
+async function taskIssueGetIssue(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
+  const response = await model.invoke([
+    {
+      role: "system",
+      content:
+        "You are a assistant." +
+        "\nNode: taskIssueGetIssue",
+    },
+    ...state.messages,
+  ]);
+  return { messages: [response] };
+}
+
+/**
+ * Node: taskIssueLabelIssue
+ * Agent: dane_issue_labeler
+ */
+async function taskIssueLabelIssue(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
+  const response = await model.invoke([
+    {
+      role: "system",
+      content:
+        "You are a issue_labeler." +
+        "\nNode: taskIssueLabelIssue",
+    },
+    ...state.messages,
+  ]);
+  return { messages: [response] };
+}
+
+/**
+ * Node: taskIssueApplyLabels
+ * Agent: dane
+ */
+async function taskIssueApplyLabels(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
+  const response = await model.invoke([
+    {
+      role: "system",
+      content:
+        "You are a assistant." +
+        "\nNode: taskIssueApplyLabels",
+    },
+    ...state.messages,
+  ]);
+  return { messages: [response] };
+}
+
+/**
+ * Node: taskLinkGetBrokenLinks
+ * Agent: dane
+ */
+async function taskLinkGetBrokenLinks(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
+  const response = await model.invoke([
+    {
+      role: "system",
+      content:
+        "You are a assistant." +
+        "\nNode: taskLinkGetBrokenLinks",
+    },
+    ...state.messages,
+  ]);
+  return { messages: [response] };
+}
+
+/**
+ * Node: taskLinkReportBrokenLinks
+ * Agent: dane_link_checker
+ */
+async function taskLinkReportBrokenLinks(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
+  const response = await model.invoke([
+    {
+      role: "system",
+      content:
+        "You are a link_checker." +
+        "\nNode: taskLinkReportBrokenLinks",
+    },
+    ...state.messages,
+  ]);
+  return { messages: [response] };
+}
+
+/**
+ * Node: taskPkgGetPacakgesToPublish
+ * Agent: dane_package_publisher
+ */
+async function taskPkgGetPacakgesToPublish(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
+  const response = await model.invoke([
+    {
+      role: "system",
+      content:
+        "You are a package_publisher." +
+        "\nNode: taskPkgGetPacakgesToPublish",
+    },
+    ...state.messages,
+  ]);
+  return { messages: [response] };
+}
+
+/**
+ * Node: taskPkgAssemblePackages
+ * Agent: dane
+ */
+async function taskPkgAssemblePackages(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
+  const response = await model.invoke([
+    {
+      role: "system",
+      content:
+        "You are a assistant." +
+        "\nNode: taskPkgAssemblePackages",
+    },
+    ...state.messages,
+  ]);
+  return { messages: [response] };
+}
+
+/**
+ * Node: taskPkgBuildPackages
+ * Agent: dane
+ */
+async function taskPkgBuildPackages(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
+  const response = await model.invoke([
+    {
+      role: "system",
+      content:
+        "You are a assistant." +
+        "\nNode: taskPkgBuildPackages",
+    },
+    ...state.messages,
+  ]);
+  return { messages: [response] };
+}
+
+/**
+ * Node: taskPkgVerifyBuild
+ * Agent: dane
+ */
+async function taskPkgVerifyBuild(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
+  const response = await model.invoke([
+    {
+      role: "system",
+      content:
+        "You are a assistant." +
+        "\nNode: taskPkgVerifyBuild",
+    },
+    ...state.messages,
+  ]);
+  return { messages: [response] };
+}
+
+/**
+ * Node: taskPkgPublishChangeset
+ * Agent: dane_package_publisher
+ */
+async function taskPkgPublishChangeset(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
+  const response = await model.invoke([
+    {
+      role: "system",
+      content:
+        "You are a package_publisher." +
+        "\nNode: taskPkgPublishChangeset",
+    },
+    ...state.messages,
+  ]);
+  return { messages: [response] };
+}
+
+/**
+ * Node: taskPkgSetLatestDistTag
+ * Agent: dane_package_publisher
+ */
+async function taskPkgSetLatestDistTag(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
+  const response = await model.invoke([
+    {
+      role: "system",
+      content:
+        "You are a package_publisher." +
+        "\nNode: taskPkgSetLatestDistTag",
+    },
+    ...state.messages,
+  ]);
+  return { messages: [response] };
+}
+
+/**
+ * Node: taskTelStepA1
+ * Agent: dane
+ */
+async function taskTelStepA1(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
+  const response = await model.invoke([
+    {
+      role: "system",
+      content:
+        "You are a assistant." +
+        "\nNode: taskTelStepA1",
+    },
+    ...state.messages,
+  ]);
+  return { messages: [response] };
+}
+
+/**
+ * Node: taskTelStepA2
+ * Agent: dane
+ */
+async function taskTelStepA2(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
+  const response = await model.invoke([
+    {
+      role: "system",
+      content:
+        "You are a assistant." +
+        "\nNode: taskTelStepA2",
+    },
+    ...state.messages,
+  ]);
+  return { messages: [response] };
+}
+
+/**
+ * Node: taskTelStepB2
+ * Agent: dane
+ */
+async function taskTelStepB2(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
+  const response = await model.invoke([
+    {
+      role: "system",
+      content:
+        "You are a assistant." +
+        "\nNode: taskTelStepB2",
+    },
+    ...state.messages,
+  ]);
+  return { messages: [response] };
+}
+
+/**
+ * Node: taskTelStepC2
+ * Agent: dane
+ */
+async function taskTelStepC2(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
+  const response = await model.invoke([
+    {
+      role: "system",
+      content:
+        "You are a assistant." +
+        "\nNode: taskTelStepC2",
+    },
+    ...state.messages,
+  ]);
+  return { messages: [response] };
+}
+
+/**
+ * Node: taskTelStepD2
+ * Agent: dane
+ */
+async function taskTelStepD2(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
+  const response = await model.invoke([
+    {
+      role: "system",
+      content:
+        "You are a assistant." +
+        "\nNode: taskTelStepD2",
+    },
+    ...state.messages,
+  ]);
+  return { messages: [response] };
+}
+
+const workflow = new StateGraph(UnnamedProjectAnnotation)
+  .addNode("taskChangelogStepA1", taskChangelogStepA1)
+  .addNode("taskChangelogStepA2", taskChangelogStepA2)
+  .addNode("taskEntryMessageInput", taskEntryMessageInput)
+  .addNode("taskEntryMessageOutput", taskEntryMessageOutput)
+  .addNode("taskCommitGetDiff", taskCommitGetDiff)
+  .addNode("taskCommitReadConventionalCommitSpec", taskCommitReadConventionalCommitSpec)
+  .addNode("taskCommitGenerateMessage", taskCommitGenerateMessage)
+  .addNode("taskCommitConfirmation", taskCommitConfirmation)
+  .addNode("taskCommitCommit", taskCommitCommit)
+  .addNode("taskFirstGetPullRequest", taskFirstGetPullRequest)
+  .addNode("taskFirstMessageGenerator", taskFirstMessageGenerator)
+  .addNode("taskFirstCreateMessage", taskFirstCreateMessage)
+  .addNode("taskIssueGetIssue", taskIssueGetIssue)
+  .addNode("taskIssueLabelIssue", taskIssueLabelIssue)
+  .addNode("taskIssueApplyLabels", taskIssueApplyLabels)
+  .addNode("taskLinkGetBrokenLinks", taskLinkGetBrokenLinks)
+  .addNode("taskLinkReportBrokenLinks", taskLinkReportBrokenLinks)
+  .addNode("taskPkgGetPacakgesToPublish", taskPkgGetPacakgesToPublish)
+  .addNode("taskPkgAssemblePackages", taskPkgAssemblePackages)
+  .addNode("taskPkgBuildPackages", taskPkgBuildPackages)
+  .addNode("taskPkgVerifyBuild", taskPkgVerifyBuild)
+  .addNode("taskPkgPublishChangeset", taskPkgPublishChangeset)
+  .addNode("taskPkgSetLatestDistTag", taskPkgSetLatestDistTag)
+  .addNode("taskTelStepA1", taskTelStepA1)
+  .addNode("taskTelStepA2", taskTelStepA2)
+  .addNode("taskTelStepB2", taskTelStepB2)
+  .addNode("taskTelStepC2", taskTelStepC2)
+  .addNode("taskTelStepD2", taskTelStepD2)
+  .addEdge(START, "taskChangelogStepA1")
+  .addEdge("taskEntryMessageInput", "taskEntryMessageOutput")
+  .addEdge("taskCommitGetDiff", "taskCommitReadConventionalCommitSpec")
+  .addEdge("taskCommitReadConventionalCommitSpec", "taskCommitGenerateMessage")
+  .addEdge("taskCommitGenerateMessage", "taskCommitConfirmation")
+  .addEdge("taskCommitConfirmation", "taskCommitCommit")
+  .addEdge("taskFirstGetPullRequest", "taskFirstMessageGenerator")
+  .addEdge("taskFirstMessageGenerator", "taskFirstCreateMessage")
+  .addEdge("taskIssueGetIssue", "taskIssueLabelIssue")
+  .addEdge("taskIssueLabelIssue", "taskIssueApplyLabels")
+  .addEdge("taskLinkGetBrokenLinks", "taskLinkReportBrokenLinks")
+  .addEdge("taskPkgGetPacakgesToPublish", "taskPkgAssemblePackages")
+  .addEdge("taskPkgAssemblePackages", "taskPkgBuildPackages")
+  .addEdge("taskPkgBuildPackages", "taskPkgVerifyBuild")
+  .addEdge("taskPkgVerifyBuild", "taskPkgPublishChangeset")
+  .addEdge("taskPkgPublishChangeset", "taskPkgSetLatestDistTag")
+  .addEdge("taskTelStepA1", "taskTelStepA2")
+  .addEdge("taskTelStepA2", "taskTelStepB2")
+  .addEdge("taskTelStepB2", "taskTelStepC2")
+  .addEdge("taskTelStepC2", "taskTelStepD2")
+  .addEdge("taskChangelogStepA1", END)
+  .addEdge("taskEntryMessageOutput", END)
+  .addEdge("taskCommitCommit", END)
+  .addEdge("taskFirstCreateMessage", END)
+  .addEdge("taskIssueApplyLabels", END)
+  .addEdge("taskLinkReportBrokenLinks", END)
+  .addEdge("taskPkgSetLatestDistTag", END)
+  .addEdge("taskTelStepD2", END)
 ;
 
 export const graph = workflow.compile();
-graph.name = "Mastraagentsystem";
-// Workflow: workflow_commit_message
-// Workflow: commit-message workflow
-// Workflow: workflow_telephone_game
-// Workflow: telephoneGame workflow
-// Workflow: workflow_link_checker
-// Workflow: link-checker workflow
+graph.name = "UnnamedProject";
 // Workflow: workflow_changelog
-// Workflow: changelog workflow
-// Workflow: workflow_package_publisher
-// Workflow: pnpm-changset-publisher
-// Workflow: workflow_message
-// Workflow: message (entry) workflow
+// Workflow: workflow_entry
+// Workflow: workflow_commit_message
+// Workflow: workflow_github_first_contributor_message
 // Workflow: workflow_github_issue_labeler
-// Workflow: github-issue-labeler workflow
-// Workflow: workflow_github_first_contributor
-// Workflow: github-first-contributor-message workflow
+// Workflow: workflow_link_checker
+// Workflow: workflow_pnpm_changset_publisher
+// Workflow: workflow_telephone_game

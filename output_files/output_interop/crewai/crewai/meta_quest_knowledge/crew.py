@@ -4,9 +4,7 @@ Auto-generated CrewAI Crew: UnnamedProject
 Source  : AgentO Knowledge Graph → SPARQL → Pydantic → Jinja2
 Pipeline: 3-Layer Conversion Pipeline
 Goals:
-  - : Goal expressed in agents configuration to provide best answers to questions about Meta Quest.
-Objectives:
-  - : Objective assigned to the crew: answer user questions by using available knowledge sources (PDF manual) and agent capabilities.
+  - : Agent-level goal extracted from agents.yaml.
 """
 
 from crewai import Agent, Crew, Process, Task

@@ -1,9 +1,9 @@
-import { ChatAnthropic } from "@langchain/anthropic";
+import { ChatOpenAI } from "@langchain/openai";
 import { Annotation, START, END, StateGraph } from "@langchain/langgraph";
 import { tool } from "@langchain/core/tools";
 import { z } from "zod";
 
-const MastraDeploymentBirdCheckerAnnotation = Annotation.Root({
+const UnnamedProjectAnnotation = Annotation.Root({
   messages: Annotation<any[]>({
     reducer: (_, next) => next,
     default: () => [],
@@ -17,7 +17,7 @@ const get_random_image_tool = tool(
   },
   {
     name: "get_random_image_tool",
-    description: "Gets a random image from Unsplash based on the selected option (query enum). Declared as a tool in src/mastra/tools.",
+    description: "Gets a random image from unsplash based on the selected option",
     schema: z.object({}),
   }
 );
@@ -25,17 +25,17 @@ const get_random_image_tool = tool(
 
 
 /**
- * Node: getRandomImageTask
+ * Node: getImageTask
  * Agent: bird_agent
  */
-async function getRandomImageTask(state: typeof MastraDeploymentBirdCheckerAnnotation.State) {
-  const model = new ChatAnthropic({ model: "claude-3-haiku-20240307" });
+async function getImageTask(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "agent instructions (default context for agent)" +
-        "\nNode: getRandomImageTask",
+        "You are a bird classifier." +
+        "\nNode: getImageTask",
     },
     ...state.messages,
   ]);
@@ -43,31 +43,31 @@ async function getRandomImageTask(state: typeof MastraDeploymentBirdCheckerAnnot
 }
 
 /**
- * Node: analyzeImageTask
+ * Node: classifyImageTask
  * Agent: bird_agent
  */
-async function analyzeImageTask(state: typeof MastraDeploymentBirdCheckerAnnotation.State) {
-  const model = new ChatAnthropic({ model: "claude-3-haiku-20240307" });
+async function classifyImageTask(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "agent instructions (default context for agent)" +
-        "\nNode: analyzeImageTask",
+        "You are a bird classifier." +
+        "\nNode: classifyImageTask",
     },
     ...state.messages,
   ]);
   return { messages: [response] };
 }
 
-const workflow = new StateGraph(MastraDeploymentBirdCheckerAnnotation)
-  .addNode("getRandomImageTask", getRandomImageTask)
-  .addNode("analyzeImageTask", analyzeImageTask)
-  .addEdge(START, "getRandomImageTask")
-  .addEdge("getRandomImageTask", "analyzeImageTask")
+const workflow = new StateGraph(UnnamedProjectAnnotation)
+  .addNode("getImageTask", getImageTask)
+  .addNode("classifyImageTask", classifyImageTask)
+  .addEdge(START, "getImageTask")
+  .addEdge("getImageTask", "classifyImageTask")
+  .addEdge("classifyImageTask", END)
 ;
 
 export const graph = workflow.compile();
-graph.name = "MastraDeploymentBirdChecker";
+graph.name = "UnnamedProject";
 // Workflow: bird_checker_workflow
-// Workflow: Bird Checker Workflow Pattern

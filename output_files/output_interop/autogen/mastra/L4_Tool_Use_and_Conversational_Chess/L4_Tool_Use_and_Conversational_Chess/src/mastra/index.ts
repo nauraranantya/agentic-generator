@@ -1,30 +1,32 @@
 /**
- * Mastra AI Instance - Chessplayersteam
+ * Mastra AI Instance - UnnamedProject
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
- * Environments:
- *   - Chess Environment (): 
+ * Goals:
+ *   - : Team-level goal: have the agents play a game of chess via conversational tool calls.
  */
 
 import { Mastra } from '@mastra/core'
 
 // Import agents
-import { playerWhite, playerBlack } from './agents'
+import { playerWhite, playerBlack, boardProxy } from './agents'
 
 // Import workflows
-import { workflowPatternConversationalChess } from './workflows'
+import { wpChessNested } from './workflows'
 
 /**
  * Mastra instance with registered agents, workflows, and memory.
  *
+ * A small team consisting of two player agents and a board proxy orchestrating the game.
  */
 export const mastra = new Mastra({
   agents: {
     playerWhite,
     playerBlack,
+    boardProxy,
   },
   workflows: {
-    workflowPatternConversationalChess,
+    wpChessNested,
   },
 })

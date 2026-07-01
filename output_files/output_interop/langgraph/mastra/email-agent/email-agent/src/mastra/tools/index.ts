@@ -1,1 +1,1 @@
-export { writeEmailTool } from './writeEmailTool'
+export { toolWriteEmail } from './toolWriteEmail'

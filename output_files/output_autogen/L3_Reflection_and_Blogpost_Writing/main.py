@@ -29,7 +29,7 @@ async def main():
         print("Executing step: blogpost_generation_task")
         print("=" * 80)
 
-        task_prompt = """Task instructs the Writer to produce a concise but engaging blogpost about DeepLearning.AI within 100 words."""
+        task_prompt = """Task instructs the Writer to produce a concise but engaging blogpost about DeepLearning.AI within 100 words. """
         # Execute via the assigned agent: writer_1
         result = await writer_1.run(task=task_prompt)
 
@@ -47,7 +47,7 @@ async def main():
         print("Executing step: ethics_review_task")
         print("=" * 80)
 
-        task_prompt = """Review the following content. Return review into as JSON object only: {'reviewer': '', 'review': ''}."""
+        task_prompt = """Review the following content. Return review into as JSON object only: {'reviewer': '', 'review': ''}. """
         # Execute via the assigned agent: ethics_reviewer_1
         result = await ethics_reviewer_1.run(task=task_prompt)
 
@@ -65,7 +65,7 @@ async def main():
         print("Executing step: meta_aggregation_task")
         print("=" * 80)
 
-        task_prompt = """This task consumes JSON outputs from SEO, Legal, and Ethics reviewers and produces a consolidated suggestion object (the notebook orchestrates this via the Critic.register_nested_chats and nested chat flow)."""
+        task_prompt = """This task consumes JSON outputs from SEO, Legal, and Ethics reviewers and produces a consolidated suggestion object (the notebook orchestrates this via the Critic.register_nested_chats and nested chat flow). """
         # Execute via the assigned agent: meta_reviewer_1
         result = await meta_reviewer_1.run(task=task_prompt)
 

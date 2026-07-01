@@ -10,17 +10,6 @@ const UnnamedProjectAnnotation = Annotation.Root({
   }),
 });
 
-// Tool: tool_plan
-const tool_plan = tool(
-  async () => {
-    return "Result of tool_plan";
-  },
-  {
-    name: "tool_plan",
-    description: "Represents the logical tool 'plan' that is invoked by the planner node to expose executed/rejected/remaining plan lists as tool_call args.",
-    schema: z.object({}),
-  }
-);
 // Tool: tool_update_file
 const tool_update_file = tool(
   async () => {
@@ -28,7 +17,7 @@ const tool_update_file = tool(
   },
   {
     name: "tool_update_file",
-    description: "Tool invoked by executor to apply a code/file update. It accepts args { new_file_content, executed_plan_item } and returns a tool message used to indicate acceptance or rejection.",
+    description: "Tool used to apply an accepted proposed change to files (invoked via tool call messages).",
     schema: z.object({}),
   }
 );
@@ -36,17 +25,17 @@ const tool_update_file = tool(
 
 
 /**
- * Node: plannerTaskProducePlanToolCall
- * Agent: open_code_agent_001
+ * Node: taskProposeChange
+ * Agent: langgraph_agent
  */
-async function plannerTaskProducePlanToolCall(state: typeof UnnamedProjectAnnotation.State) {
+async function taskProposeChange(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "You are a planner-executor LLM agent (coordinates planning and performs file updates via tools and UI prompts)." +
-        "\nNode: plannerTaskProducePlanToolCall",
+        "You are a assistant." +
+        "\nNode: taskProposeChange",
     },
     ...state.messages,
   ]);
@@ -54,17 +43,53 @@ async function plannerTaskProducePlanToolCall(state: typeof UnnamedProjectAnnota
 }
 
 /**
- * Node: executorTaskApplyNextPlanItemViaUpdateFileToolCallAndUiPush
- * Agent: open_code_agent_001
+ * Node: taskUserDecision
+ * Agent: langgraph_agent
  */
-async function executorTaskApplyNextPlanItemViaUpdateFileToolCallAndUiPush(state: typeof UnnamedProjectAnnotation.State) {
+async function taskUserDecision(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "You are a planner-executor LLM agent (coordinates planning and performs file updates via tools and UI prompts)." +
-        "\nNode: executorTaskApplyNextPlanItemViaUpdateFileToolCallAndUiPush",
+        "You are a assistant." +
+        "\nNode: taskUserDecision",
+    },
+    ...state.messages,
+  ]);
+  return { messages: [response] };
+}
+
+/**
+ * Node: taskHandleReject
+ * Agent: langgraph_agent
+ */
+async function taskHandleReject(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
+  const response = await model.invoke([
+    {
+      role: "system",
+      content:
+        "You are a assistant." +
+        "\nNode: taskHandleReject",
+    },
+    ...state.messages,
+  ]);
+  return { messages: [response] };
+}
+
+/**
+ * Node: taskFinalizeUi
+ * Agent: langgraph_agent
+ */
+async function taskFinalizeUi(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
+  const response = await model.invoke([
+    {
+      role: "system",
+      content:
+        "You are a assistant." +
+        "\nNode: taskFinalizeUi",
     },
     ...state.messages,
   ]);
@@ -72,14 +97,17 @@ async function executorTaskApplyNextPlanItemViaUpdateFileToolCallAndUiPush(state
 }
 
 const workflow = new StateGraph(UnnamedProjectAnnotation)
-  .addNode("plannerTaskProducePlanToolCall", plannerTaskProducePlanToolCall)
-  .addNode("executorTaskApplyNextPlanItemViaUpdateFileToolCallAndUiPush", executorTaskApplyNextPlanItemViaUpdateFileToolCallAndUiPush)
-  .addEdge(START, "plannerTaskProducePlanToolCall")
-  .addEdge("plannerTaskProducePlanToolCall", "executorTaskApplyNextPlanItemViaUpdateFileToolCallAndUiPush")
-  .addEdge("executorTaskApplyNextPlanItemViaUpdateFileToolCallAndUiPush", "plannerTaskProducePlanToolCall")
+  .addNode("taskProposeChange", taskProposeChange)
+  .addNode("taskUserDecision", taskUserDecision)
+  .addNode("taskHandleReject", taskHandleReject)
+  .addNode("taskFinalizeUi", taskFinalizeUi)
+  .addEdge(START, "taskProposeChange")
+  .addEdge("taskProposeChange", "taskUserDecision")
+  .addEdge("taskUserDecision", "taskHandleReject")
+  .addEdge("taskHandleReject", "taskFinalizeUi")
+  .addEdge("taskFinalizeUi", END)
 ;
 
 export const graph = workflow.compile();
 graph.name = "UnnamedProject";
-// Workflow: open_code_graph_pattern
-// Workflow: Open Code Graph
+// Workflow: workflow_proposed_change

@@ -4,37 +4,33 @@
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Capabilities:
- *   - : Analyze and compare cities by weather conditions, events, and travel costs; deliver a detailed city selection report.
- *   - : Collect and synthesize local cultural, tourism and attraction information into a comprehensive guide.
- *   - : Generate optimized daily travel itineraries with logistics, budget calculations, and packing recommendations.
- *   - : Search the internet for relevant results and return structured snippets with title, link, and snippet text.
- *   - : Scrape raw HTML of a website, partition and summarize content with an internal summarization agent; returns concise summaries for each chunk.
- *   - : Perform safe arithmetic evaluation of mathematical expressions (supports + - * / % ** and parentheses). Returns numeric result or error message.
+ *   - : Search the internet for relevant results using Serper API.
+ *   - : Scrape and summarize website content using browserless and HTML partitioning.
+ *   - : Perform safe mathematical calculations.
+ *   - : Analyze travel data to select an optimal city based on weather, season, and prices.
+ *   - : Provide deep local insights, attractions, cultural context, and practical tips.
+ *   - : Create detailed itineraries, budgets, packing suggestions, and logistics.
  */
 
 import { Agent } from '@mastra/core/agent'
 
 // Import tools
-import { searchTools, browserTools, calculatorTools } from '../tools'
-
-// Import memory
-import { tripMemory } from '../memory'
+import { toolSearch, toolBrowser, toolCalculator } from '../tools'
 
 /**
  * Amazing Travel Concierge
  * 
  * Instructions:
- * Role: Travel Concierge; purpose: produce a full 7-day itinerary, budget breakdown and packing suggestions.
+ * Create the most amazing travel itineraries with budget and packing suggestions for the city
  */
 export const travelConciergeAgent = new Agent({
   id: `travel_concierge_agent`,
   name: `Amazing Travel Concierge`,
-  instructions: `Role: Travel Concierge; purpose: produce a full 7-day itinerary, budget breakdown and packing suggestions.`,
-  model: 'openai/gpt-4o-mini',
+  instructions: `Create the most amazing travel itineraries with budget and packing suggestions for the city`,
+  model: 'openai/gpt-4',
   tools: {
-    searchTools,
-    browserTools,
-    calculatorTools,
+    toolSearch,
+    toolBrowser,
+    toolCalculator,
   },
-  memory: tripMemory,
 })

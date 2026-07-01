@@ -1,33 +1,23 @@
 """
-Auto-generated CrewAI Crew: ExpandIdeaCrewteam
+Auto-generated CrewAI Crew: UnnamedProject
 
 Source  : AgentO Knowledge Graph → SPARQL → Pydantic → Jinja2
 Pipeline: 3-Layer Conversion Pipeline
 Goals:
-  - : Understand and expand the idea into a comprehensive idea report, detailing value proposition and features.
-  - : Provide WHY, HOW, WHAT messaging and core message for the idea.
-  - : Select a Tailwind template that fits the idea and copy it into the working folder; then update components.
-  - : Produce content for components, update components, and QA them according to rules.
+  - : Understand and expand upon the essence of ideas, make sure they are great and focus on real pain points others could benefit from.
+  - : Craft compelling stories using the Golden Circle method to captivate and engage people around an idea.
+  - : Build an intuitive, aesthetically pleasing, and high-converting landing page.
+  - : Ensure the landing page content is clear, concise, and captivating.
 Capabilities:
-  - web search: Capability to search internet and return snippets.
-  - web scraping and summarization: Capability to scrape a website and summarize content.
-  - file write: Capability to write content safely to files in workdir.
-  - learn templates listing: Capability to read templates configuration and list template options.
-  - copy template folder: Capability to copy template folders into project workspace.
-  - read file: Capability to read file content from the workspace.
-  - list directory: Capability to list directories in the workspace.
+  - : Perform web search queries and return structured results.
+  - : Scrape website HTML and summarize content into concise summaries.
+  - : Inspect available landing page templates and surface options.
+  - : Copy a landing page template folder into the working project directory.
+  - : Write files to the workdir with validation and allowed extensions.
+  - : Read files from the workdir.
+  - : List directory contents under the workdir.
 Resources:
-  - templates/ (folder of Tailwind templates): Local templates base folder. The code expects user to place individual template folders here. Referenced by TemplateTools.copy_landing_page_template_to_project_folder.
-  - workdir.zip (final packaged project archive): At the end of execution the system compresses ./workdir into a zip and returns it to the user.
-  - Expanded idea report (text): Output of expand_idea_task. The code uses this expanded idea as input to the next crews.
-  - Refined idea report (text): Output of refine_idea_task. Used by other tasks to craft landing page content.
-  - Copied template folder in workdir: Result of copying a template folder into ./workdir. The copy is executed by TemplateTools.copy_landing_page_template_to_project_folder.
-  - List of component paths used in main page.jsx: Produced by update_page_task: the set of component file paths that will be used on the final single page.
-  - Component text suggestions (structured text): Produced by component_content_task and used by update_component_task.
-  - Updated React component files (on disk): Files written to ./workdir by update_component_task using WriteFileTool. Filenames correspond to the components list.
-  - QA confirmation / corrections applied: Confirmation that updated components pass QA rules. If not, corrected files are written to disk.
-  - Copied template folder (workdir/<template>): A template folder copied from ./templates into ./workdir. Expected structure includes src/components and src/app/page.jsx.
-  - Components full path list (JSON array): The JSON array that choose_template_task must return listing the most important 4 components' full paths to update; later used by CreateContentCrew.
+  - : Extraction created LLMAgent, Tool, Task, WorkflowPattern, WorkflowStep, Prompt, Goal, Config, and LanguageModel individuals per CrewAI mapping. Assumed default model 'gpt-4'.
 """
 
 from crewai import Agent, Crew, Process, Task
@@ -38,68 +28,61 @@ from crewai.tools import tool
 # ===========================================================
 # Tool Instances
 # ===========================================================
-# TODO: search_internet_tool — unknown tool class "SearchtheinternetSearchToolssearchinternet"
+# TODO: tool_search_internet — unknown tool class "toolsearchinternet"
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-@tool("SearchtheinternetSearchToolssearchinternet")
-def search_internet_tool(*args, **kwargs) -> str:
-    """Performs internet search using an external search API (serper.dev). Requires SERPER_API_KEY environm"""
-    return "search_internet_tool result"
+@tool("toolsearchinternet")
+def tool_search_internet(*args, **kwargs) -> str:
+    """Search the internet using Serper Dev API and return organic results."""
+    return "tool_search_internet result"
 
-# TODO: scrape_website_tool — unknown tool class "ScrapewebsitecontentBrowserToolsscrapeandsummarizewebsite"
+# TODO: tool_scrape_and_summarize_website — unknown tool class "toolscrapeandsummarizewebsite"
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-@tool("ScrapewebsitecontentBrowserToolsscrapeandsummarizewebsite")
-def scrape_website_tool(*args, **kwargs) -> str:
-    """Scrapes website HTML via browserless API and summarizes content using an internal summarization Task"""
-    return "scrape_website_tool result"
+@tool("toolscrapeandsummarizewebsite")
+def tool_scrape_and_summarize_website(*args, **kwargs) -> str:
+    """Scrape website content via Browserless and summarize chunks using internal agent tasks."""
+    return "tool_scrape_and_summarize_website result"
 
-# TODO: write_file_tool — unknown tool class "WritefiletoworkdirFileToolswritefile"
+# TODO: tool_learn_landing_page_options — unknown tool class "toollearnlandingpageoptions"
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-@tool("WritefiletoworkdirFileToolswritefile")
-def write_file_tool(*args, **kwargs) -> str:
-    """Writes files into ./workdir with path sanitization and allowed extensions."""
-    return "write_file_tool result"
+@tool("toollearnlandingpageoptions")
+def tool_learn_landing_page_options(*args, **kwargs) -> str:
+    """Read templates configuration and surface available landing page templates."""
+    return "tool_learn_landing_page_options result"
 
-# TODO: learn_templates_tool — unknown tool class "LearnlandingpageoptionsTemplateToolslearnlandingpageoptions"
+# TODO: tool_copy_landing_page_template — unknown tool class "toolcopylandingpagetemplate"
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-@tool("LearnlandingpageoptionsTemplateToolslearnlandingpageoptions")
-def learn_templates_tool(*args, **kwargs) -> str:
-    """Reads config/templates.json to list available templates."""
-    return "learn_templates_tool result"
+@tool("toolcopylandingpagetemplate")
+def tool_copy_landing_page_template(*args, **kwargs) -> str:
+    """Copy a selected landing page template folder from templates/ into workdir/."""
+    return "tool_copy_landing_page_template result"
 
-# TODO: copy_template_tool — unknown tool class "CopylandingpagetemplatetoprojectfolderTemplateToolscopylandingpagetemplatetoprojectfolder"
+# TODO: tool_write_file — unknown tool class "toolwritefile"
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-@tool("CopylandingpagetemplatetoprojectfolderTemplateToolscopylandingpagetemplatetoprojectfolder")
-def copy_template_tool(*args, **kwargs) -> str:
-    """Copies a template folder from ./templates to ./workdir with safety checks."""
-    return "copy_template_tool result"
+@tool("toolwritefile")
+def tool_write_file(*args, **kwargs) -> str:
+    """Validated write file tool that writes React component and other files into workdir."""
+    return "tool_write_file result"
 
-# TODO: read_file_tool — unknown tool class "Readfilefilemanagementtoolkitreadfile"
+# TODO: tool_read_file — unknown tool class "toolreadfile"
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-@tool("Readfilefilemanagementtoolkitreadfile")
-def read_file_tool(*args, **kwargs) -> str:
-    """Read file contents from workdir (used by agent toolkits)."""
-    return "read_file_tool result"
+@tool("toolreadfile")
+def tool_read_file(*args, **kwargs) -> str:
+    """Read file from the toolkit root_dir (workdir)."""
+    return "tool_read_file result"
 
-# TODO: list_directory_tool — unknown tool class "Listdirectoryfilemanagementtoolkitlistdirectory"
+# TODO: tool_list_directory — unknown tool class "toollistdirectory"
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-@tool("Listdirectoryfilemanagementtoolkitlistdirectory")
-def list_directory_tool(*args, **kwargs) -> str:
-    """List directories in workdir (used by agent toolkits)."""
-    return "list_directory_tool result"
-
-# TODO: file_management_toolkit — unknown tool class "Filemanagementtoolkitcontainerprovidesreadfilelistdirectorytools"
-#   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-@tool("Filemanagementtoolkitcontainerprovidesreadfilelistdirectorytools")
-def file_management_toolkit(*args, **kwargs) -> str:
-    """In the code this is an instantiation of FileManagementToolkit(root_dir='workdir', selected_tools=['r"""
-    return "file_management_toolkit result"
+@tool("toollistdirectory")
+def tool_list_directory(*args, **kwargs) -> str:
+    """List directory contents from the toolkit root_dir (workdir)."""
+    return "tool_list_directory result"
 
 
 
 
 @CrewBase
-class ExpandIdeaCrewteam:
-    """ExpandIdeaCrewteam crew"""
+class UnnamedProject:
+    """UnnamedProject crew"""
 
     agents_config = 'config/agents.yaml'
     tasks_config = 'config/tasks.yaml'
@@ -110,92 +93,94 @@ class ExpandIdeaCrewteam:
     def senior_idea_analyst(self) -> Agent:
         return Agent(
             config=self.agents_config['senior_idea_analyst'],
-            tools=[search_internet_tool, scrape_website_tool],
+            tools=[tool_search_internet, tool_scrape_and_summarize_website],
+            allow_delegation=False,
+            verbose=True,
         )
 
     @agent
     def senior_strategist(self) -> Agent:
         return Agent(
             config=self.agents_config['senior_strategist'],
-            tools=[search_internet_tool, scrape_website_tool],
+            tools=[tool_search_internet, tool_scrape_and_summarize_website],
+            allow_delegation=False,
+            verbose=True,
         )
 
     @agent
     def senior_react_engineer(self) -> Agent:
         return Agent(
             config=self.agents_config['senior_react_engineer'],
-            tools=[search_internet_tool, scrape_website_tool, write_file_tool, learn_templates_tool, copy_template_tool, read_file_tool, list_directory_tool],
+            tools=[tool_search_internet, tool_scrape_and_summarize_website, tool_learn_landing_page_options, tool_copy_landing_page_template, tool_write_file, tool_read_file, tool_list_directory],
+            allow_delegation=False,
+            verbose=True,
         )
 
     @agent
     def senior_content_editor(self) -> Agent:
         return Agent(
             config=self.agents_config['senior_content_editor'],
-            tools=[write_file_tool, read_file_tool, list_directory_tool],
+            tools=[tool_write_file],
+            allow_delegation=False,
+            verbose=True,
         )
 
     # ── Tasks ───────────────────────────────────────────
 
     @task
-    def expand_idea_task(self) -> Task:
+    def task_expand_idea(self) -> Task:
         return Task(
-            config=self.tasks_config['expand_idea_task'],
+            config=self.tasks_config['task_expand_idea'],
             agent=self.senior_idea_analyst(),
         )
 
     @task
-    def refine_idea_task(self) -> Task:
+    def task_choose_template(self) -> Task:
         return Task(
-            config=self.tasks_config['refine_idea_task'],
+            config=self.tasks_config['task_choose_template'],
+            agent=self.senior_react_engineer(),
+        )
+
+    @task
+    def task_component_content(self) -> Task:
+        return Task(
+            config=self.tasks_config['task_component_content'],
+            agent=self.senior_content_editor(),
+        )
+
+    @task
+    def task_refine_idea(self) -> Task:
+        return Task(
+            config=self.tasks_config['task_refine_idea'],
             agent=self.senior_strategist(),
-            context=[self.expand_idea_task()],
         )
 
     @task
-    def choose_template_task(self) -> Task:
+    def task_update_page(self) -> Task:
         return Task(
-            config=self.tasks_config['choose_template_task'],
+            config=self.tasks_config['task_update_page'],
             agent=self.senior_react_engineer(),
-            context=[self.refine_idea_task()],
         )
 
     @task
-    def update_page_task(self) -> Task:
+    def task_update_component(self) -> Task:
         return Task(
-            config=self.tasks_config['update_page_task'],
-            agent=self.senior_react_engineer(),
-            context=[self.choose_template_task()],
-        )
-
-    @task
-    def component_content_task(self) -> Task:
-        return Task(
-            config=self.tasks_config['component_content_task'],
+            config=self.tasks_config['task_update_component'],
             agent=self.senior_content_editor(),
-            context=[self.refine_idea_task(), self.update_page_task()],
         )
 
     @task
-    def update_component_task(self) -> Task:
+    def task_qa_component(self) -> Task:
         return Task(
-            config=self.tasks_config['update_component_task'],
+            config=self.tasks_config['task_qa_component'],
             agent=self.senior_content_editor(),
-            context=[self.component_content_task(), self.update_page_task()],
-        )
-
-    @task
-    def qa_component_task(self) -> Task:
-        return Task(
-            config=self.tasks_config['qa_component_task'],
-            agent=self.senior_content_editor(),
-            context=[self.update_component_task()],
         )
 
     # ── Crew ────────────────────────────────────────────
 
     @crew
     def crew(self) -> Crew:
-        """Creates the ExpandIdeaCrewteam"""
+        """Creates the UnnamedProject"""
         return Crew(
             agents=self.agents,
             tasks=self.tasks,

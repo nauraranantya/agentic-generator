@@ -1,6 +1,6 @@
-# StockAnalysisCrew
+# UnnamedProject
 
-Team that coordinates a set of LLM agents and tasks to perform stock/filings/research analysis for a given company ticker (example: AMZN).
+CrewAI-based team coordinating multiple analyst agents to produce stock analysis and recommendations.
 
 **Auto-generated from AgentO Knowledge Graph**  
 Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
@@ -34,26 +34,26 @@ npm run dev
 ## 📦 Project Structure
 
 ```
-StockAnalysisCrew/
+UnnamedProject/
 ├── src/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
 │       ├── agents/            # Agent definitions
 │       │   └── financialAgent.ts
-│       │   └── financialAnalystAgent.ts
 │       │   └── researchAnalystAgent.ts
+│       │   └── financialAnalystAgent.ts
 │       │   └── investmentAdvisorAgent.ts
 │       ├── tools/             # Tool definitions
-│       │   └── toolCalculator.ts
-│       │   └── toolScrapeWebsite.ts
-│       │   └── toolWebsiteSearch.ts
-│       │   └── toolTxtSearch.ts
-│       │   └── sec10KToolGeneric.ts
-│       │   └── sec10KToolAmzn.ts
-│       │   └── sec10QToolGeneric.ts
-│       │   └── sec10QToolAmzn.ts
+│       │   └── toolCalculatorTool.ts
+│       │   └── toolScrapeWebsiteTool.ts
+│       │   └── toolWebsiteSearchTool.ts
+│       │   └── toolTxtSearchTool.ts
+│       │   └── toolSec10KToolGeneric.ts
+│       │   └── toolSec10QToolGeneric.ts
+│       │   └── toolSec10KToolAmzn.ts
+│       │   └── toolSec10QToolAmzn.ts
 │       └── workflows/         # Workflow definitions
-│           └── stockAnalysisWorkflow.ts
+│           └── workflowStockAnalysis.ts
 ├── package.json
 ├── tsconfig.json
 └── .env.example
@@ -67,107 +67,101 @@ StockAnalysisCrew/
 
 - **ID:** `financial_agent`
 - **Model:** `openai/gpt-4o-mini`
-- **Tools:** toolCalculator, toolScrapeWebsite, toolWebsiteSearch, sec10KToolAmzn, sec10QToolAmzn
+- **Tools:** toolCalculatorTool, toolScrapeWebsiteTool, toolWebsiteSearchTool, toolSec10KToolAmzn, toolSec10QToolAmzn
 
-This prompt is used as the agent/system instruction for the financial agent to guide independent behaviour....
-
-### The Best Financial Analyst
-
-- **ID:** `financial_analyst_agent`
-- **Model:** `openai/gpt-4o-mini`
-- **Tools:** toolCalculator, toolScrapeWebsite, toolWebsiteSearch, sec10KToolGeneric, sec10QToolGeneric
-
-This prompt is produced from the second factory for financial_analyst_agent in the code (duplicate configuration)....
+You are The Best Financial Analyst....
 
 ### Staff Research Analyst
 
 - **ID:** `research_analyst_agent`
 - **Model:** `openai/gpt-4o-mini`
-- **Tools:** toolScrapeWebsite, sec10KToolAmzn, sec10QToolAmzn
+- **Tools:** toolScrapeWebsiteTool, toolSec10KToolAmzn, toolSec10QToolAmzn
 
-System prompt for the research analyst agent....
+You are Staff Research Analyst....
+
+### The Best Financial Analyst
+
+- **ID:** `financial_analyst_agent`
+- **Model:** `openai/gpt-4o-mini`
+- **Tools:** toolCalculatorTool, toolScrapeWebsiteTool, toolWebsiteSearchTool, toolSec10KToolGeneric, toolSec10QToolGeneric
+
+You are The Best Financial Analyst....
 
 ### Private Investment Advisor
 
 - **ID:** `investment_advisor_agent`
 - **Model:** `openai/gpt-4o-mini`
-- **Tools:** toolCalculator, toolScrapeWebsite, toolWebsiteSearch
+- **Tools:** toolCalculatorTool, toolScrapeWebsiteTool, toolWebsiteSearchTool
 
-System prompt for the investment advisor agent....
+You are Private Investment Advisor....
 
 
 ---
 
 ## 🔧 Tools
 
-### CalculatorTool
+### toolCalculatorTool
 
-Calculator tool (from src/stock_analysis/tools/calculator_tool.py).
-    Purpose: perform mathematical calculations expressed as arithmetic expressions (examples: '200*7', '5000/2*10').
-    Implementat...
+Performs safe mathematical expression evaluation (add, sub, mul, div, pow, mod)....
 
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolCalculator.ts`)
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolCalculatorTool.ts`)
 
-### ScrapeWebsiteTool
+### toolScrapeWebsiteTool
 
-Tool used to fetch and convert HTML pages into text for downstream processing. Referenced from crewai_tools usage in the crew....
+Tool to scrape website content and convert to text for summarization....
 
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolScrapeWebsite.ts`)
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolScrapeWebsiteTool.ts`)
 
-### WebsiteSearchTool
+### toolWebsiteSearchTool
 
-Tool used for general website search (referenced from crewai_tools in the crew)....
+Tool to search the web for relevant pages and summaries....
 
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolWebsiteSearch.ts`)
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolWebsiteSearchTool.ts`)
 
-### TXTSearchTool
+### toolTxtSearchTool
 
-Tool used for searching plaintext resources (referenced from crewai_tools in the crew)....
+Text search tool for searching indexed textual data....
 
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolTxtSearch.ts`)
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolTxtSearchTool.ts`)
 
-### SEC10KTool (generic)
+### toolSec10KToolGeneric
 
-A RAG-style tool for semantic search in 10-K filings (class src/stock_analysis/tools/sec_tools.py).
-    Default args_schema: requires search_query and stock_name.
-    Behavior: when initialized with a...
+A tool to semantically search a company's latest 10-K SEC filing content....
 
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/sec10KToolGeneric.ts`)
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolSec10KToolGeneric.ts`)
 
-### SEC10KTool(AMZN)
+### toolSec10QToolGeneric
 
-Instance of SEC10KTool initialized with stock_name='AMZN'. On init it attempted to fetch AMZN's latest 10-K, converted it to text, cleaned non-alphanumeric characters, and added the text to its intern...
+A tool to semantically search a company's latest 10-Q SEC filing content....
 
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/sec10KToolAmzn.ts`)
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolSec10QToolGeneric.ts`)
 
-### SEC10QTool (generic)
+### toolSec10KToolAmzn
 
-A RAG-style tool for semantic search in 10-Q filings (class src/stock_analysis/tools/sec_tools.py).
-    Default args_schema: requires search_query and stock_name.
-    Behavior: when initialized with a...
+SEC10KTool initialized with stock_name=AMZN to pre-load AMZN latest 10-K content....
 
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/sec10QToolGeneric.ts`)
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolSec10KToolAmzn.ts`)
 
-### SEC10QTool(AMZN)
+### toolSec10QToolAmzn
 
-Instance of SEC10QTool initialized with stock_name='AMZN'. On init it attempted to fetch AMZN's latest 10-Q, converted it to text, cleaned non-alphanumeric characters, and added the text to its intern...
+SEC10QTool initialized with stock_name=AMZN to pre-load AMZN latest 10-Q content....
 
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/sec10QToolAmzn.ts`)
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolSec10QToolAmzn.ts`)
 
 
 ---
 
 ## 🔄 Workflows
 
-### Stock Analysis Sequential Workflow
+### workflow_stock_analysis
 
-Workflow pattern representing the crew's intended sequential pipeline: research -> filings_analysis -> financial_analysis -> recommend
+Sequential workflow for the Stock Analysis Crew.
 
 **Steps:** 4
-1. research
-2. filings_analysis
-3. financial_analysis
-4. recommend
+1. task_financial_analysis
+2. task_research
+3. task_filings_analysis
+4. task_recommend
 
 
 ---

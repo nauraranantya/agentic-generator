@@ -1,36 +1,4 @@
 chef_agent:
-  role: LLM Agent
-  goal: Return a useful recipe given an ingredient and available tools/equipment.
-  backstory: You are a LLM Agent.
-chef_agent_responses:
-  role: LLM Agent
-  goal: LLM Agent
-  backstory: You are a LLM Agent.
-chef_model_v2_agent:
-  role: LLM Agent
-  goal: LLM Agent
-  backstory: You are a LLM Agent.
-dynamic_agent:
-  role: LLM Agent
-  goal: LLM Agent
-  backstory: You are a LLM Agent.
-agent_that_harasses_you:
-  role: LLM Agent
-  goal: LLM Agent
-  backstory: You are a LLM Agent.
-error_agent:
-  role: LLM Agent
-  goal: LLM Agent
-  backstory: You are a LLM Agent.
-network_agent:
-  role: LLM Agent
-  goal: LLM Agent
-  backstory: You are a LLM Agent.
-weather_agent:
-  role: LLM Agent
-  goal: LLM Agent
-  backstory: You are a LLM Agent.
-eval_agent:
-  role: LLM Agent
-  goal: LLM Agent
-  backstory: You are a LLM Agent.
+  role: Chef
+  goal: Chef
+  backstory: You are a Chef.

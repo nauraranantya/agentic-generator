@@ -1,7 +1,7 @@
 [project]
-name = "mastra_deployment_bird_checker"
+name = "unnamed_project"
 version = "0.1.0"
-description = "Deployment of the Bird Checker composed using Mastra: maps an agent id to a runn"
+description = "Mastra instance wrapping the birdAgent and application workflow."
 authors = [{name = "Your Name", email = "you@example.com"}]
 readme = "README.md"
 requires-python = ">=3.10,<=3.13"
@@ -11,11 +11,11 @@ dependencies = [
     "python-dotenv>=1.0.1",
     "pyyaml>=6.0.1",
     "anthropic>=0.60.0",
-    # TODO: add PyPI package for custom tool "Getarandomimagefromunsplash"
+    # TODO: add PyPI package for custom tool "GetRandomImageTool"
 ]
 
 [project.scripts]
-mastra_deployment_bird_checker = "main:run"
+unnamed_project = "main:run"
 train      = "main:train"
 
 [tool.uv]

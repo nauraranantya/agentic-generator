@@ -1,7 +1,7 @@
 {
   "name": "trip-planner",
   "version": "0.1.0",
-  "description": "",
+  "description": "Team representing the LangGraph-backed trip planner UI and backend flows.",
   "type": "module",
   "main": "src/mastra/index.ts",
   "scripts": {

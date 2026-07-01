@@ -1,10 +1,8 @@
 /**
- * Mastra AI Instance - MastraSystem
+ * Mastra AI Instance - UnnamedProject
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
- * Environments:
- *   -  (): 
  */
 
 import { Mastra } from '@mastra/core'
@@ -13,26 +11,27 @@ import { Mastra } from '@mastra/core'
 import { catOne } from './agents'
 
 // Import workflows
-import { sequentialWorkflowPattern, parallelWorkflowPattern, branchedWorkflowPattern, cyclicalWorkflowPattern } from './workflows'
+import { wfSequential, wfParallel, wfBranched, wfCyclical } from './workflows'
 
 // Import memory instances
-import { catOneMemory } from './memory'
+import { pgMemoryInstance } from './memory'
 
 /**
  * Mastra instance with registered agents, workflows, and memory.
  *
+ * Mastra instance configured in src/mastra/index.ts with one agent and four workflows.
  */
 export const mastra = new Mastra({
   agents: {
     catOne,
   },
   workflows: {
-    sequentialWorkflowPattern,
-    parallelWorkflowPattern,
-    branchedWorkflowPattern,
-    cyclicalWorkflowPattern,
+    wfSequential,
+    wfParallel,
+    wfBranched,
+    wfCyclical,
   },
   memory: {
-    catOneMemory,
+    pgMemoryInstance,
   },
 })

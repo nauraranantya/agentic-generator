@@ -1,7 +1,7 @@
 import asyncio
 
 from team import (
-    writer_annotation_agent_uuid_1,
+    writer_agent,
 )
 
 from autogen_agentchat.conditions import (
@@ -17,16 +17,16 @@ async def main():
     try:
         # Step-by-step sequential execution
         # ==================================================
-        # Workflow Step: prepare_task
-        # Workflow Edge: prepare_task -> write_task
+        # Workflow Step: task_prepare
+        # Workflow Edge: task_prepare -> task_writer
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: prepare_task")
+        print("Executing step: task_prepare")
         print("=" * 80)
 
-        task_prompt = """Binds the tool 'draft_text_document' with the model and streams its output (initStream). If state.context.writer.selected is present, a system message of 'Selected text in question: <selected>' is prepended. As model stream chunks arrive, tool call arguments (title, description) are extracted and a UI 'writer' component is populated with these arguments and isGenerating=true. Produces a draft candidate resource representing the tool call output."""
-        # Execute via the assigned agent: writer_annotation_agent_uuid_1
-        result = await writer_annotation_agent_uuid_1.run(task=task_prompt)
+        task_prompt = """Create an initial draft of the document by invoking the bound tool and streaming response to the UI. """
+        # Execute via the assigned agent: writer_agent
+        result = await writer_agent.run(task=task_prompt)
 
         # Print step output
         if hasattr(result, "messages") and result.messages:
@@ -35,16 +35,16 @@ async def main():
             print(result)
 
         # ==================================================
-        # Workflow Step: write_task
-        # Workflow Edge: write_task -> suggestions_task
+        # Workflow Step: task_writer
+        # Workflow Edge: task_writer -> task_suggestions
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: write_task")
+        print("Executing step: task_writer")
         print("=" * 80)
 
-        task_prompt = """Generates the final text document content. Uses a non-streaming model invocation (tags ['nostream']) in implementation to get full content; however the code also uses a streaming invocation to update UI content progressively. System instruction: 'Write a text document based on the user's request. Only output the content, do not ask any additional questions.' If state.context.writer.selected is present the selected text is appended to the system instruction. Consumes conversation history and tool outputs; produces the final document content resource (FinalTextDocument)."""
-        # Execute via the assigned agent: writer_annotation_agent_uuid_1
-        result = await writer_annotation_agent_uuid_1.run(task=task_prompt)
+        task_prompt = """Generate the full document content based on the user's request and earlier messages; stream to UI, then finalise. """
+        # Execute via the assigned agent: writer_agent
+        result = await writer_agent.run(task=task_prompt)
 
         # Print step output
         if hasattr(result, "messages") and result.messages:
@@ -53,15 +53,15 @@ async def main():
             print(result)
 
         # ==================================================
-        # Workflow Step: suggestions_task
+        # Workflow Step: task_suggestions
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: suggestions_task")
+        print("Executing step: task_suggestions")
         print("=" * 80)
 
-        task_prompt = """Takes the last AI message; for each tool call in the message, emits a tool-type message 'Finished' referencing the tool_call id. Then invokes the model with the updated messages and appends the model's finish message to the conversation. This step does non-streaming invocation in the implementation (model.invoke)."""
-        # Execute via the assigned agent: writer_annotation_agent_uuid_1
-        result = await writer_annotation_agent_uuid_1.run(task=task_prompt)
+        task_prompt = """Call the model to produce a finishing/suggestions message based on collected messages and tool call completions. """
+        # Execute via the assigned agent: writer_agent
+        result = await writer_agent.run(task=task_prompt)
 
         # Print step output
         if hasattr(result, "messages") and result.messages:

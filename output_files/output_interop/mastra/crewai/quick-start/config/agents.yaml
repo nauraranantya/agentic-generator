@@ -1,5 +1,8 @@
 cat_one:
   role: feline expert
-  goal: feline expert
-  backstory: |
-    Default agent-level instructions to guide behavior when the agent is asked about cat species. This prompt is intended to be used by the agent as its core persona/instructions.
+  goal: No explicit goal provided in source; placeholder goal.
+  backstory: You are a feline expert.
+agent_two:
+  role: assistant
+  goal: No explicit goal provided in source; placeholder goal.
+  backstory: You are a assistant.

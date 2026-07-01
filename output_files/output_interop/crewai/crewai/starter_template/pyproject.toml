@@ -1,7 +1,7 @@
 [project]
 name = "unnamed_project"
 version = "0.1.0"
-description = "A Crew defined in main.py that composes two custom agents and two custom tasks. "
+description = "Crew created in main.CustomCrew with agents [custom_agent_1, custom_agent_2] and"
 authors = [{name = "Your Name", email = "you@example.com"}]
 readme = "README.md"
 requires-python = ">=3.10,<=3.13"
@@ -10,7 +10,7 @@ dependencies = [
     "crewai[tools]>=0.152.0",
     "python-dotenv>=1.0.1",
     "pyyaml>=6.0.1",
-    # TODO: add PyPI package for custom tool "DuckDuckGoTool"
+    # TODO: add PyPI package for custom tool "ToolDuckDuckGoSearchRun"
 ]
 
 [project.scripts]

@@ -1,33 +1,16 @@
 task_step_one:
-  description: "Semantic algorithm (no code): \n- Read inputValue (numeric).\n- Compute\
-    \ doubledValue = inputValue * 2.\n- Compute isOriginalOdd = true if inputValue\
-    \ modulo 2 equals 1, otherwise false.\n- Return an object containing doubledValue\
-    \ (number) and isOriginalOdd (boolean).\n"
-  expected_output: |
-    {"type": "object", "properties": { "doubledValue": { "type": "number" }, "isOriginalOdd": { "type": "boolean" } }, "required": ["doubledValue","isOriginalOdd"] }
+  description: Doubles triggerData.inputValue and returns an object with { doubledValue
+    }.
+  expected_output: doubledValue
+task_step_three:
+  description: Triples triggerData.inputValue and returns an object with { tripledValue
+    }.
+  expected_output: tripledValue
 task_step_two:
   description: |
-    Semantic algorithm (no code):
-    - Receive doubledValue (numeric) and isOriginalOdd (boolean).
-    - If isOriginalOdd is true, set incrementedValue = doubledValue + 1; otherwise set incrementedValue = doubledValue.
-    - Return an object containing incrementedValue (number).
-  expected_output: |
-    {"type": "object", "properties": { "incrementedValue": { "type": "number" } }, "required": ["incrementedValue"] }
-task_step_three:
-  description: |
-    Semantic algorithm (no code):
-    - Ensure that stepTwo produced a valid incrementedValue (numeric). If not available or invalid, the step should fail with an explanatory error.
-    - Compute tripledValue = incrementedValue * 3.
-    - Return an object containing tripledValue (number).
-    Note: This step semantically depends on stepTwo; in the implementation getStepResult(stepTwo) is used to access the prior output. The dependency is represented in the workflow as a relatedStep and nextStep (stepTwo -> stepThree).
-  expected_output: |
-    {"type": "object", "properties": { "tripledValue": { "type": "number" } }, "required": ["tripledValue"] }
+    Reads the payload from stepOne (doubledValue) and returns an object with { incrementedValue } which is doubledValue + 1.
+  expected_output: incrementedValue
 task_step_four:
   description: |
-    Semantic algorithm (no code):
-    - Ensure that stepThree produced a valid tripledValue (numeric). If not available or invalid, the step should fail with an explanatory error.
-    - Compute isEven = (tripledValue modulo 2 === 0).
-    - Return an object containing isEven (boolean).
-    Note: This step semantically depends on stepThree; the implementation accesses prior step results for validation. Represented in the workflow graph via relatedStep and nextStep relations.
-  expected_output: '{"type": "object", "properties": { "isEven": { "type": "boolean"
-    } }, "required": ["isEven"] }'
+    Reads the payload from stepThree (tripledValue) and returns an object with { isEven } indicating whether tripledValue is even.
+  expected_output: isEven

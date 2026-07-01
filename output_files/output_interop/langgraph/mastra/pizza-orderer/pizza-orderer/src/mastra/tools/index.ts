@@ -1,2 +1,2 @@
-export { toolPizzaFinder } from './toolPizzaFinder'
-export { toolPizzaOrderingSystem } from './toolPizzaOrderingSystem'
+export { findPizzaTool } from './findPizzaTool'
+export { placeOrderTool } from './placeOrderTool'

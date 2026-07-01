@@ -3,16 +3,6 @@ Auto-generated CrewAI Crew: UnnamedProject
 
 Source  : AgentO Knowledge Graph → SPARQL → Pydantic → Jinja2
 Pipeline: 3-Layer Conversion Pipeline
-Goals:
-  - : Goal: create a concise (within 100 words) blogpost about DeepLearning.AI and refine it via a reflection process with multiple reviewers.
-Objectives:
-  - : Objective: produce initial blogpost draft to be reviewed and refined.
-Resources:
-  - Blogpost Draft (resource): Expected output: concise engaging blogpost (with title) about DeepLearning.AI, within 100 words.
-  - SEO Review (resource): JSON object with reviewer role and review text (as requested by summary prompt).
-  - Legal Review (resource): JSON object with reviewer role and review text.
-  - Ethics Review (resource): JSON object with reviewer role and review text.
-  - Meta Reviewer Suggestion (resource): Aggregate review and final suggestion to improve the blogpost.
 """
 
 from crewai import Agent, Crew, Process, Task
@@ -31,76 +21,90 @@ class UnnamedProject:
     # ── Agents ──────────────────────────────────────────
 
     @agent
-    def writer_1(self) -> Agent:
+    def unnamed(self) -> Agent:
         return Agent(
-            config=self.agents_config['writer_1'],
+            config=self.agents_config['unnamed'],
         )
 
     @agent
-    def critic_1(self) -> Agent:
+    def unnamed(self) -> Agent:
         return Agent(
-            config=self.agents_config['critic_1'],
+            config=self.agents_config['unnamed'],
         )
 
     @agent
-    def seo_reviewer_1(self) -> Agent:
+    def unnamed(self) -> Agent:
         return Agent(
-            config=self.agents_config['seo_reviewer_1'],
+            config=self.agents_config['unnamed'],
         )
 
     @agent
-    def legal_reviewer_1(self) -> Agent:
+    def unnamed(self) -> Agent:
         return Agent(
-            config=self.agents_config['legal_reviewer_1'],
+            config=self.agents_config['unnamed'],
         )
 
     @agent
-    def ethics_reviewer_1(self) -> Agent:
+    def unnamed(self) -> Agent:
         return Agent(
-            config=self.agents_config['ethics_reviewer_1'],
+            config=self.agents_config['unnamed'],
         )
 
     @agent
-    def meta_reviewer_1(self) -> Agent:
+    def unnamed(self) -> Agent:
         return Agent(
-            config=self.agents_config['meta_reviewer_1'],
+            config=self.agents_config['unnamed'],
         )
 
     # ── Tasks ───────────────────────────────────────────
 
     @task
-    def seo_review_task(self) -> Task:
+    def task_write_blog(self) -> Task:
         return Task(
-            config=self.tasks_config['seo_review_task'],
-            agent=self.seo_reviewer_1(),
+            config=self.tasks_config['task_write_blog'],
+            agent=self.unnamed(),
         )
 
     @task
-    def legal_review_task(self) -> Task:
+    def task_critic_initiate_1(self) -> Task:
         return Task(
-            config=self.tasks_config['legal_review_task'],
-            agent=self.legal_reviewer_1(),
+            config=self.tasks_config['task_critic_initiate_1'],
+            agent=self.unnamed(),
         )
 
     @task
-    def ethics_review_task(self) -> Task:
+    def task_nested_seo_review(self) -> Task:
         return Task(
-            config=self.tasks_config['ethics_review_task'],
-            agent=self.ethics_reviewer_1(),
+            config=self.tasks_config['task_nested_seo_review'],
+            agent=self.unnamed(),
         )
 
     @task
-    def meta_aggregation_task(self) -> Task:
+    def task_nested_legal_review(self) -> Task:
         return Task(
-            config=self.tasks_config['meta_aggregation_task'],
-            agent=self.meta_reviewer_1(),
+            config=self.tasks_config['task_nested_legal_review'],
+            agent=self.unnamed(),
         )
 
     @task
-    def blogpost_generation_task(self) -> Task:
+    def task_nested_ethics_review(self) -> Task:
         return Task(
-            config=self.tasks_config['blogpost_generation_task'],
-            agent=self.writer_1(),
+            config=self.tasks_config['task_nested_ethics_review'],
+            agent=self.unnamed(),
+        )
+
+    @task
+    def task_meta_aggregate(self) -> Task:
+        return Task(
+            config=self.tasks_config['task_meta_aggregate'],
+            agent=self.unnamed(),
+        )
+
+    @task
+    def task_critic_initiate_2(self) -> Task:
+        return Task(
+            config=self.tasks_config['task_critic_initiate_2'],
+            agent=self.unnamed(),
         )
 
     # ── Crew ────────────────────────────────────────────

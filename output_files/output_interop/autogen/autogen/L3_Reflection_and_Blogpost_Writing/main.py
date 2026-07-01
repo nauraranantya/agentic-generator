@@ -1,12 +1,12 @@
 import asyncio
 
 from team import (
-    writer_1,
-    critic_1,
-    seo_reviewer_1,
-    legal_reviewer_1,
-    ethics_reviewer_1,
-    meta_reviewer_1,
+    unnamed,
+    unnamed,
+    unnamed,
+    unnamed,
+    unnamed,
+    unnamed,
 )
 
 from autogen_agentchat.conditions import (
@@ -22,16 +22,16 @@ async def main():
     try:
         # Step-by-step sequential execution
         # ==================================================
-        # Workflow Step: blogpost_generation_task
-        # Workflow Edge: blogpost_generation_task -> ethics_review_task
+        # Workflow Step: task_write_blog
+        # Workflow Edge: task_write_blog -> task_critic_initiate_1
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: blogpost_generation_task")
+        print("Executing step: task_write_blog")
         print("=" * 80)
 
-        task_prompt = """Task instructs the Writer to produce a concise but engaging blogpost about DeepLearning.AI within 100 words."""
-        # Execute via the assigned agent: writer_1
-        result = await writer_1.run(task=task_prompt)
+        task_prompt = """Writer generates a concise blogpost about DeepLearning.AI. """
+        # Execute via the assigned agent: unnamed
+        result = await unnamed.run(task=task_prompt)
 
         # Print step output
         if hasattr(result, "messages") and result.messages:
@@ -40,16 +40,16 @@ async def main():
             print(result)
 
         # ==================================================
-        # Workflow Step: ethics_review_task
-        # Workflow Edge: ethics_review_task -> meta_aggregation_task
+        # Workflow Step: task_critic_initiate_1
+        # Workflow Edge: task_critic_initiate_1 -> task_nested_seo_review
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: ethics_review_task")
+        print("Executing step: task_critic_initiate_1")
         print("=" * 80)
 
-        task_prompt = """Review the following content. Return review into as JSON object only: {'reviewer': '', 'review': ''}."""
-        # Execute via the assigned agent: ethics_reviewer_1
-        result = await ethics_reviewer_1.run(task=task_prompt)
+        task_prompt = """Critic initiates chat with Writer (first initiate_chat call, max_turns=3). """
+        # Execute via the assigned agent: unnamed
+        result = await unnamed.run(task=task_prompt)
 
         # Print step output
         if hasattr(result, "messages") and result.messages:
@@ -58,16 +58,87 @@ async def main():
             print(result)
 
         # ==================================================
-        # Workflow Step: meta_aggregation_task
-        # Workflow Edge: meta_aggregation_task -> blogpost_generation_task
+        # Workflow Step: task_nested_seo_review
+        # Workflow Edge: task_nested_seo_review -> task_nested_legal_review
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: meta_aggregation_task")
+        print("Executing step: task_nested_seo_review")
         print("=" * 80)
 
-        task_prompt = """This task consumes JSON outputs from SEO, Legal, and Ethics reviewers and produces a consolidated suggestion object (the notebook orchestrates this via the Critic.register_nested_chats and nested chat flow)."""
-        # Execute via the assigned agent: meta_reviewer_1
-        result = await meta_reviewer_1.run(task=task_prompt)
+        task_prompt = """SEO reviewer performs one-turn review using reflection_with_llm summary_prompt. """
+        # Execute via the assigned agent: unnamed
+        result = await unnamed.run(task=task_prompt)
+
+        # Print step output
+        if hasattr(result, "messages") and result.messages:
+            print(result.messages[-1].content)
+        else:
+            print(result)
+
+        # ==================================================
+        # Workflow Step: task_nested_legal_review
+        # Workflow Edge: task_nested_legal_review -> task_nested_ethics_review
+        # ==================================================
+        print("\n" + "=" * 80)
+        print("Executing step: task_nested_legal_review")
+        print("=" * 80)
+
+        task_prompt = """Legal reviewer performs one-turn review using reflection_with_llm summary_prompt. """
+        # Execute via the assigned agent: unnamed
+        result = await unnamed.run(task=task_prompt)
+
+        # Print step output
+        if hasattr(result, "messages") and result.messages:
+            print(result.messages[-1].content)
+        else:
+            print(result)
+
+        # ==================================================
+        # Workflow Step: task_nested_ethics_review
+        # Workflow Edge: task_nested_ethics_review -> task_meta_aggregate
+        # ==================================================
+        print("\n" + "=" * 80)
+        print("Executing step: task_nested_ethics_review")
+        print("=" * 80)
+
+        task_prompt = """Ethics reviewer performs one-turn review using reflection_with_llm summary_prompt. """
+        # Execute via the assigned agent: unnamed
+        result = await unnamed.run(task=task_prompt)
+
+        # Print step output
+        if hasattr(result, "messages") and result.messages:
+            print(result.messages[-1].content)
+        else:
+            print(result)
+
+        # ==================================================
+        # Workflow Step: task_meta_aggregate
+        # Workflow Edge: task_meta_aggregate -> task_critic_initiate_2
+        # ==================================================
+        print("\n" + "=" * 80)
+        print("Executing step: task_meta_aggregate")
+        print("=" * 80)
+
+        task_prompt = """Meta reviewer aggregates feedback and provides final suggestion. """
+        # Execute via the assigned agent: unnamed
+        result = await unnamed.run(task=task_prompt)
+
+        # Print step output
+        if hasattr(result, "messages") and result.messages:
+            print(result.messages[-1].content)
+        else:
+            print(result)
+
+        # ==================================================
+        # Workflow Step: task_critic_initiate_2
+        # ==================================================
+        print("\n" + "=" * 80)
+        print("Executing step: task_critic_initiate_2")
+        print("=" * 80)
+
+        task_prompt = """Critic initiates chat with Writer (second initiate_chat call, max_turns=2) which triggers nested reviews. """
+        # Execute via the assigned agent: unnamed
+        result = await unnamed.run(task=task_prompt)
 
         # Print step output
         if hasattr(result, "messages") and result.messages:

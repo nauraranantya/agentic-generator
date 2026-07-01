@@ -25,26 +25,26 @@ model_client = OpenAIChatCompletionClient(
 # ==================================================
 
 
-def weather_tool_impl(
+def tool_get_weather_impl(
     query: str = ""
 ) -> str:
     """
     AgentO Tool:
-    getweather
+    tool_get_weather
 
     Description:
-    Tool to get current weather for a location. Wraps geocoding and open-meteo APIs and returns a simplified weather object (temperature, feelsLike, humidity, windSpeed, windGust, conditions, location).
+    Get current weather for a location
     """
     return (
-        "Tool 'weather_tool' "
+        "Tool 'tool_get_weather' "
         "is a generated stub and "
         "has not been implemented yet."
     )
 
 
-weather_tool = FunctionTool(
-    weather_tool_impl,
-    description="""Tool to get current weather for a location. Wraps geocoding and open-meteo APIs and returns a simplified weather object (temperature, feelsLike, humidity, windSpeed, windGust, conditions, location)."""
+tool_get_weather = FunctionTool(
+    tool_get_weather_impl,
+    description="""Get current weather for a location """
 )
 
 
@@ -65,22 +65,6 @@ weather assistant
 
 Background:
 You are a weather assistant.
-""",
-)
-
-
-weather_explainer_agent = AssistantAgent(
-    name="weather_explainer_agent",
-    model_client=model_client,
-    system_message="""
-Role:
-LLM Agent
-
-Goal:
-LLM Agent
-
-Background:
-You are a LLM Agent.
 """,
 )
 

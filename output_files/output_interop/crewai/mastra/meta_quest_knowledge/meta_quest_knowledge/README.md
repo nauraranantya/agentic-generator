@@ -1,6 +1,6 @@
 # UnnamedProject
 
-Crew coordinating agents and tasks to answer Meta Quest questions using available knowledge sources (PDF).
+
 
 **Auto-generated from AgentO Knowledge Graph**  
 Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
@@ -42,7 +42,7 @@ UnnamedProject/
 │       │   └── metaQuestExpert.ts
 │       ├── tools/             # Tool definitions
 │       └── workflows/         # Workflow definitions
-│           └── metaQuestSequentialWorkflow.ts
+│           └── sequentialPattern.ts
 ├── package.json
 ├── tsconfig.json
 └── .env.example
@@ -57,7 +57,7 @@ UnnamedProject/
 - **ID:** `meta_quest_expert`
 - **Model:** `openai/gpt-4o-mini`
 
-Agent-level instruction/backstory used to guide the agent's independent reasoning and responses....
+Agent-level goal extracted from agents.yaml....
 
 
 ---
@@ -70,9 +70,9 @@ No tools defined in this project.
 
 ## 🔄 Workflows
 
-### meta_quest_sequential_workflow
+### sequential_pattern
 
-A sequential workflow: start -> answer question -> end. Process type: sequential (Process.sequential in source code).
+
 
 **Steps:** 1
 1. answer_question_task

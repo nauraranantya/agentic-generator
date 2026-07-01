@@ -1,7 +1,7 @@
 {
   "name": "mcp-registry-registry",
   "version": "0.1.0",
-  "description": "Mastra configured with a single MCP Registry Agent and a Pino logger. This Team represents the runtime composition (agents, system configuration).",
+  "description": "An MCP server that provides a registry of MCP registries and exposes tools 'registryList' and 'registryServers'.",
   "type": "module",
   "main": "src/mastra/index.ts",
   "scripts": {

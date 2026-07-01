@@ -1,6 +1,6 @@
-# BlogCrewIndustryspecializedagentsexample
+# UnnamedProject
 
-Crew assembled to produce industry-specific analyses of Weaviate features. Agents: BiomedicalMarketingAgent, HealthcareMarketingAgent, FinancialMarketingAgent. Tasks: one task per agent describing investigation of a given {weaviate_feature} and producing an industry-specific analysis. The Crew kickoff_for_each iterates inputs (weaviate_features) for each task; iteration is represented via feature Resource individuals (see Issues/Assumptions).
+
 
 **Auto-generated from AgentO Knowledge Graph**  
 Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
@@ -34,19 +34,19 @@ npm run dev
 ## 📦 Project Structure
 
 ```
-BlogCrewIndustryspecializedagentsexample/
+UnnamedProject/
 ├── src/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
 │       ├── agents/            # Agent definitions
-│       │   └── biomedAgent1.ts
-│       │   └── healthcareAgent1.ts
-│       │   └── financialAgent1.ts
+│       │   └── biomedicalMarketingAgent.ts
+│       │   └── healthcareMarketingAgent.ts
+│       │   └── financialMarketingAgent.ts
 │       ├── tools/             # Tool definitions
-│       │   └── weaviateVectorSearchTool.ts
-│       │   └── serperDevTool.ts
+│       │   └── toolWeaviateVectorSearchTool.ts
+│       │   └── toolSerperDevTool.ts
 │       └── workflows/         # Workflow definitions
-│           └── blogCrewWorkflowPattern.ts
+│           └── workflowBlogCrew.ts
 ├── package.json
 ├── tsconfig.json
 └── .env.example
@@ -58,55 +58,58 @@ BlogCrewIndustryspecializedagentsexample/
 
 ### Industry researcher focused on biomedical trends and their applications in AI
 
-- **ID:** `biomed_agent_1`
+- **ID:** `BiomedicalMarketingAgent`
 - **Model:** `openai/gpt-4o-mini`
+- **Tools:** toolWeaviateVectorSearchTool, toolSerperDevTool
 
-You are Industry researcher focused on biomedical trends and their applications in AI....
+Continuously track the latest biomedical advancements and identify how Weaviate’s features can support AI applications in biomedical research, diagnostics, and personalized medicine....
 
 ### AI-savvy marketer specializing in healthcare systems, digital health, and patient engagement.
 
-- **ID:** `healthcare_agent_1`
+- **ID:** `HealthcareMarketingAgent`
 - **Model:** `openai/gpt-4o-mini`
+- **Tools:** toolWeaviateVectorSearchTool, toolSerperDevTool
 
-You are AI-savvy marketer specializing in healthcare systems, digital health, and patient engagement.....
+Stay updated on healthcare policy shifts, digital health trends, and explore how Weaviate’s features can optimize workflows in hospital systems, EHR integration, and health communication....
 
 ### Insight analyst exploring innovations in finance, wealth tech, and regulatory tech
 
-- **ID:** `financial_agent_1`
+- **ID:** `FinancialMarketingAgent`
 - **Model:** `openai/gpt-4o-mini`
+- **Tools:** toolWeaviateVectorSearchTool, toolSerperDevTool
 
-You are Insight analyst exploring innovations in finance, wealth tech, and regulatory tech....
+Monitor financial sector trends including AI in trading, compliance automation, and client advisory, and assess how Weaviate’s tools can enable cutting-edge financial applications....
 
 
 ---
 
 ## 🔧 Tools
 
-### Weaviate Vector Search Tool
+### toolWeaviateVectorSearchTool
 
-Vector search tool configured to query a Weaviate collection (WeaviateBlogChunk)....
+Vector search tool using Weaviate for semantic retrieval from collection 'WeaviateBlogChunk'....
 
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/weaviateVectorSearchTool.ts`)
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolWeaviateVectorSearchTool.ts`)
 
-### SerperDev Web Search Tool
+### toolSerperDevTool
 
-Web search tool (SerperDev) used to retrieve web search results for background research....
+Web search tool backed by Serper.dev....
 
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/serperDevTool.ts`)
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolSerperDevTool.ts`)
 
 
 ---
 
 ## 🔄 Workflows
 
-### Blog Crew Workflow Pattern
+### workflow_blog_crew
 
-Workflow pattern that assigns one research/analysis Task to each member agent. Intended to be executed for each input feature in the list of weaviate_features (MUVERA, Multi-tenancy, Compliance, Hybrid Search).
+
 
 **Steps:** 3
-1. Biomedical Agent Task: research a Weaviate feature
-2. Healthcare Agent Task: research a Weaviate feature
-3. Financial Agent Task: research a Weaviate feature
+1. task_biomedical_research
+2. task_healthcare_research
+3. task_financial_research
 
 
 ---

@@ -25,7 +25,7 @@ async def main():
         print("Executing step: task_initiate_chat_black_white")
         print("=" * 80)
 
-        task_prompt = """Let's play chess! Your move."""
+        task_prompt = """Let's play chess! Your move. """
         # Execute via the assigned agent: agent
         result = await agent.run(task=task_prompt)
 
@@ -43,7 +43,7 @@ async def main():
         print("Executing step: task_make_move")
         print("=" * 80)
 
-        task_prompt = """Call make_move(move) with a single move argument in UCI format when selecting a move to apply. Expect a textual confirmation describing the moved piece and board update."""
+        task_prompt = """Call make_move(move) with a single move argument in UCI format when selecting a move to apply. Expect a textual confirmation describing the moved piece and board update. """
         # Execute via the assigned agent: agent
         result = await agent.run(task=task_prompt)
 

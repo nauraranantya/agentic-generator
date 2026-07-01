@@ -1,5 +1,5 @@
 [project]
-name = "meeting_preparation"
+name = "unnamed_project"
 version = "0.1.0"
 description = ""
 authors = [{name = "Your Name", email = "you@example.com"}]
@@ -10,11 +10,13 @@ dependencies = [
     "crewai[tools]>=0.152.0",
     "python-dotenv>=1.0.1",
     "pyyaml>=6.0.1",
-    # TODO: add PyPI package for custom tool "ExaSearchTool"
+    # TODO: add PyPI package for custom tool "ExaSearchToolsearch"
+    # TODO: add PyPI package for custom tool "ExaSearchToolfindsimilar"
+    # TODO: add PyPI package for custom tool "ExaSearchToolgetcontents"
 ]
 
 [project.scripts]
-meeting_preparation = "main:run"
+unnamed_project = "main:run"
 train      = "main:train"
 
 [tool.uv]

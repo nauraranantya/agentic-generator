@@ -2,6 +2,7 @@ import asyncio
 
 from team import (
     cat_one,
+    agent_two,
 )
 
 from autogen_agentchat.conditions import (
@@ -9,6 +10,10 @@ from autogen_agentchat.conditions import (
 )
 
 INPUTS = {
+
+
+    "name":
+        "",
 
 }
 
@@ -23,7 +28,7 @@ async def main():
         print("Executing step: task_log_cat_name")
         print("=" * 80)
 
-        task_prompt = """Task that takes { name: string } as input, performs logging 'Hello, <name> 🐈' and returns { rawText: string } containing the greeting. Implemented in source as createStep with id 'logCatName' and executed by the workflow runtime/console."""
+        task_prompt = """Log the cat name provided in the trigger: console.log(`Hello, ${name} 🐈`) """
         # Execute via the assigned agent: agent
         result = await agent.run(task=task_prompt)
 

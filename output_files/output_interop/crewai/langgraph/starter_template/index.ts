@@ -10,14 +10,14 @@ const UnnamedProjectAnnotation = Annotation.Root({
   }),
 });
 
-// Tool: duck_duck_go_tool
-const duck_duck_go_tool = tool(
+// Tool: tool_duck_duck_go_search_run
+const tool_duck_duck_go_search_run = tool(
   async () => {
-    return "Result of duck_duck_go_tool";
+    return "Result of tool_duck_duck_go_search_run";
   },
   {
-    name: "duck_duck_go_tool",
-    description: "An instance of DuckDuckGoSearchRun created in main.py and intended for web search functionality. (Note: installed via 'duckduckgo-search' if used.)",
+    name: "tool_duck_duck_go_search_run",
+    description: "LangChain DuckDuckGo search tool used for web search",
     schema: z.object({}),
   }
 );
@@ -34,8 +34,8 @@ async function task1(state: typeof UnnamedProjectAnnotation.State) {
     {
       role: "system",
       content:
-        "agent settings: allow_delegation=False; verbose=True; llm=ChatOpenAI(gpt-3.5-turbo)" +
-        "\\nNode: task1",
+        "You are a Define agent 1 role here." +
+        "\nNode: task1",
     },
     ...state.messages,
   ]);
@@ -52,8 +52,8 @@ async function task2(state: typeof UnnamedProjectAnnotation.State) {
     {
       role: "system",
       content:
-        "agent settings: allow_delegation=False; verbose=True; llm=ChatOpenAI(gpt-3.5-turbo)" +
-        "\\nNode: task2",
+        "You are a Define agent 2 role here." +
+        "\nNode: task2",
     },
     ...state.messages,
   ]);
@@ -70,4 +70,4 @@ const workflow = new StateGraph(UnnamedProjectAnnotation)
 
 export const graph = workflow.compile();
 graph.name = "UnnamedProject";
-// Workflow: custom_crew_workflow
+// Workflow: workflow_custom_crew

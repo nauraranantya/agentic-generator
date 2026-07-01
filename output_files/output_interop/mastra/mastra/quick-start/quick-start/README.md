@@ -1,6 +1,6 @@
 # UnnamedProject
 
-Agent orchestration system instance containing agents, workflows and logger configuration as defined in the source repository.
+
 
 **Auto-generated from AgentO Knowledge Graph**  
 Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
@@ -40,11 +40,11 @@ UnnamedProject/
 │       ├── index.ts           # Mastra instance + registrations
 │       ├── agents/            # Agent definitions
 │       │   └── catOne.ts
+│       │   └── agentTwo.ts
 │       ├── tools/             # Tool definitions
-│       │   └── consoleTool.ts
+│       │   └── mastraRuntime.ts
 │       └── workflows/         # Workflow definitions
-│           └── logCatWorkflowPattern.ts
-│           └── legacyLogCatWorkflowPattern.ts
+│           └── logCatWorkflow.ts
 ├── package.json
 ├── tsconfig.json
 └── .env.example
@@ -57,38 +57,39 @@ UnnamedProject/
 ### feline expert
 
 - **ID:** `cat-one`
-- **Model:** `openai/gpt-4o`
+- **Model:** `openai/gpt-4o-mini`
 
-Default agent-level instructions to guide behavior when the agent is asked about cat species. This prompt is intended to be used by the agent as its core persona/instructions....
+No explicit goal provided in source; placeholder goal....
+
+### assistant
+
+- **ID:** `Agent Two`
+- **Model:** `openai/gpt-4o-mini`
+
+No explicit goal provided in source; placeholder goal....
 
 
 ---
 
 ## 🔧 Tools
 
-### consoleTool
+### mastraRuntime
 
-Represents the runtime logging facility used by the step (the source prints to console via console.log). Modeled as a Tool to indicate the step uses an execution tool....
+Runtime engine that executes workflow step code (non-LLM execution)....
 
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/consoleTool.ts`)
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/mastraRuntime.ts`)
 
 
 ---
 
 ## 🔄 Workflows
 
-### log_cat_workflow_pattern
+### log_cat_workflow
 
-Workflow that accepts an input { name: string } and runs a step to log the cat name, returning rawText. This corresponds to createWorkflow with id 'log-cat-workflow' in the source.
+
 
 **Steps:** 1
 1. task_log_cat_name
-
-### legacy_log_cat_workflow_pattern
-
-Legacy workflow mapping preserved from repository (legacy_workflows.legacy_catWorkflow). Semantic mapping preserved but implementation differences are not represented.
-
-**Steps:** 0
 
 
 ---

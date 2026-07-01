@@ -1,8 +1,8 @@
-cathy:
-  role: stand-up comedian
-  goal: stand-up comedian
-  backstory: System message as provided at ConversableAgent creation in the notebook.
-joe:
-  role: stand-up comedian
-  goal: stand-up comedian
-  backstory: System message as provided at ConversableAgent creation in the notebook.
+chatbot:
+  role: conversable agent
+  goal: conversable agent
+  backstory: You are a conversable agent.
+unnamed:
+  role: 捧哏 / stand-up partner (support)
+  goal: 捧哏 / stand-up partner (support)
+  backstory: You are a 捧哏 / stand-up partner (support).

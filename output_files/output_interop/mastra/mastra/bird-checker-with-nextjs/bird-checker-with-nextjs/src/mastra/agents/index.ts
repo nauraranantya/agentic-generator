@@ -1,1 +1,1 @@
-export { birdChecker } from './birdChecker'
+export { birdAgent } from './birdAgent'

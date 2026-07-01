@@ -1,5 +1,4 @@
-export { travelSubmissionWorkflow } from './travelSubmissionWorkflow'
-export { airbnbFlowPattern } from './airbnbFlowPattern'
-export { syncCsvWorkflow } from './syncCsvWorkflow'
+export { workflowTravelSubmission } from './workflowTravelSubmission'
+export { workflowSyncCsvData } from './workflowSyncCsvData'
 export * from './ad_hoc_tasks'
 

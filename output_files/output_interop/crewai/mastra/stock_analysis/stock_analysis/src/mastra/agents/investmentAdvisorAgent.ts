@@ -4,32 +4,33 @@
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Capabilities:
- *   - web scraping: Capability to fetch and extract textual content from web pages.
- *   - website search: Capability to search web content and return links or content snippets (site-level search).
- *   - mathematical calculation: Numeric computation capability (safe evaluation of arithmetic expressions).
- *   - SEC 10-K semantic search: Semantic search over the latest 10-K filing content for a specified company ticker.
- *   - SEC 10-Q semantic search: Semantic search over the latest 10-Q filing content for a specified company ticker.
+ *   - : Performs arithmetic and mathematical calculations.
+ *   - : Scrapes and summarizes web page content.
+ *   - : Performs web searches and retrieves relevant results.
+ *   - : Searches textual sources or indexes.
+ *   - : Semantic search within a company's 10-K filing content.
+ *   - : Semantic search within a company's 10-Q filing content.
  */
 
 import { Agent } from '@mastra/core/agent'
 
 // Import tools
-import { toolCalculator, toolScrapeWebsite, toolWebsiteSearch } from '../tools'
+import { toolCalculatorTool, toolScrapeWebsiteTool, toolWebsiteSearchTool } from '../tools'
 
 /**
  * Private Investment Advisor
  * 
  * Instructions:
- * System prompt for the investment advisor agent.
+ * You are Private Investment Advisor.
  */
 export const investmentAdvisorAgent = new Agent({
   id: `investment_advisor_agent`,
   name: `Private Investment Advisor`,
-  instructions: `System prompt for the investment advisor agent.`,
+  instructions: `You are Private Investment Advisor.`,
   model: 'openai/gpt-4o-mini',
   tools: {
-    toolCalculator,
-    toolScrapeWebsite,
-    toolWebsiteSearch,
+    toolCalculatorTool,
+    toolScrapeWebsiteTool,
+    toolWebsiteSearchTool,
   },
 })

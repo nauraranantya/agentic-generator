@@ -1,7 +1,7 @@
 {
   "name": "meta_quest_knowledge",
   "version": "0.1.0",
-  "description": "Crew coordinating agents and tasks to answer Meta Quest questions using available knowledge sources (PDF).",
+  "description": "",
   "type": "module",
   "main": "src/mastra/index.ts",
   "scripts": {

@@ -14,6 +14,14 @@ from autogen_agentchat.conditions import (
 
 INPUTS = {
 
+
+    "discussion":
+        "",
+
+
+    "script":
+        "",
+
 }
 
 
@@ -21,16 +29,14 @@ async def main():
     try:
         # Step-by-step sequential execution
         # ==================================================
-        # Workflow Step: task1_analysis
-        # Workflow Edge: task1_analysis -> task2_scriptwriting
+        # Workflow Step: task1
+        # Workflow Edge: task1 -> task2
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: task1_analysis")
+        print("Executing step: task1")
         print("=" * 80)
 
-        task_prompt = """Analyse in much detail the following discussion:
-### DISCUSSION:
-(see :discussion_newsgroup_01)"""
+        task_prompt = """Analyse in much detail the following discussion: ### DISCUSSION: {{discussion}} """
         # Execute via the assigned agent: analyst
         result = await analyst.run(task=task_prompt)
 
@@ -41,14 +47,14 @@ async def main():
             print(result)
 
         # ==================================================
-        # Workflow Step: task2_scriptwriting
-        # Workflow Edge: task2_scriptwriting -> task3_formatting
+        # Workflow Step: task2
+        # Workflow Edge: task2 -> task3
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: task2_scriptwriting")
+        print("Executing step: task2")
         print("=" * 80)
 
-        task_prompt = """Create a dialogue heavy screenplay from the discussion, between two persons. Do NOT write parentheticals. Leave out wrylies. You MUST SKIP directional notes."""
+        task_prompt = """Create a dialogue heavy screenplay from the discussion, between two persons. Do NOT write parentheticals. Leave out wrylies. You MUST SKIP directional notes. """
         # Execute via the assigned agent: scriptwriter
         result = await scriptwriter.run(task=task_prompt)
 
@@ -59,24 +65,13 @@ async def main():
             print(result)
 
         # ==================================================
-        # Workflow Step: task3_formatting
+        # Workflow Step: task3
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: task3_formatting")
+        print("Executing step: task3")
         print("=" * 80)
 
-        task_prompt = """Format the script exactly like this:
-  ## (person 1):
-  (first text line from person 1)
-         
-  ## (person 2):
-  (first text line from person 2)
-         
-  ## (person 1):
-  (second text line from person 1)
-         
-  ## (person 2):
-  (second text line from person 2)"""
+        task_prompt = """Format the script exactly like this:   ## (person 1): (first text line from person 1) ... """
         # Execute via the assigned agent: formatter
         result = await formatter.run(task=task_prompt)
 

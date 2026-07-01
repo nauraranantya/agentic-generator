@@ -1,8 +1,7 @@
 [project]
-name = "surprise_travel"
+name = "unnamed_project"
 version = "0.1.0"
-description = "SurpriseTravel crew coordinating agents to plan a surprise travel itinerary.
-   "
+description = ""
 authors = [{name = "Your Name", email = "you@example.com"}]
 readme = "README.md"
 requires-python = ">=3.10,<=3.13"
@@ -11,11 +10,12 @@ dependencies = [
     "crewai[tools]>=0.152.0",
     "python-dotenv>=1.0.1",
     "pyyaml>=6.0.1",
-    # TODO: add PyPI package for custom tool "MyCustomTool"
+    # TODO: add PyPI package for custom tool "ToolSerperDevTool"
+    # TODO: add PyPI package for custom tool "ToolScrapeWebsiteTool"
 ]
 
 [project.scripts]
-surprise_travel = "main:run"
+unnamed_project = "main:run"
 train      = "main:train"
 
 [tool.uv]

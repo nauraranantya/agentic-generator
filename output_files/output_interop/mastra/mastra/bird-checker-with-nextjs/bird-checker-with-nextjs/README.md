@@ -39,7 +39,7 @@ UnnamedProject/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
 │       ├── agents/            # Agent definitions
-│       │   └── birdChecker.ts
+│       │   └── birdAgent.ts
 │       ├── tools/             # Tool definitions
 │       │   └── getRandomImageTool.ts
 │       └── workflows/         # Workflow definitions
@@ -53,22 +53,22 @@ UnnamedProject/
 
 ## 🤖 Agents
 
-### image analyst / bird identifier
+### Bird checker
 
-- **ID:** `bird-checker`
-- **Model:** `anthropic/claude-3-haiku-20240307`
+- **ID:** `birdAgent`
+- **Model:** `anthropic/claude-3-5-sonnet-latest`
 - **Tools:** getRandomImageTool
 
-Agent instruction and purpose...
+Identify if an image depicts a bird, provide the scientific name if it is a bird, and summarize the image location in one or two short sentences....
 
 
 ---
 
 ## 🔧 Tools
 
-### Get a random image from Unsplash (tool)
+### getRandomImageTool
 
-Tool that queries Unsplash and returns a single image object selected from search results. Implemented in the code using a GET to https://api.unsplash.com/search/photos with a query param and optional...
+Gets a random image from unsplash based on the selected option...
 
 **Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/getRandomImageTool.ts`)
 
@@ -77,13 +77,13 @@ Tool that queries Unsplash and returns a single image object selected from searc
 
 ## 🔄 Workflows
 
-### Bird Checker workflow pattern
+### bird_checker_workflow
 
 
 
 **Steps:** 2
-1. Fetch random image task
-2. Analyze image and produce bird metadata
+1. get_image_task
+2. bird_check_task
 
 
 ---

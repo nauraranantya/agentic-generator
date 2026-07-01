@@ -1,14 +1,14 @@
 cv_reader:
   role: CV Reader
-  goal: CV Reader
-  backstory: |
-    Agent-level prompt to orient behavior. Use FileReadTool to access CV file. Produce a structured CV summary.
+  goal: Extract relevant information from the CV, such as skills, experience, and
+    education.
+  backstory: You are a CV Reader.
   allow_delegation: false
-  verbose: false
+  verbose: true
 matcher:
   role: Matcher
-  goal: Matcher
-  backstory: |
-    Agent-level prompt to orient behavior. Use CSVSearchTool and FileReadTool to access jobs CSV and CV summary.
+  goal: Match the CV to the job opportunities based on skills, experience, and key
+    achievements.
+  backstory: You are a Matcher.
   allow_delegation: false
-  verbose: false
+  verbose: true

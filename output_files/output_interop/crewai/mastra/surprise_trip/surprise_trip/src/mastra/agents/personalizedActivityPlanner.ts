@@ -3,30 +3,32 @@
  * ID: personalized_activity_planner
  * 
  * Auto-generated from AgentO Knowledge Graph
- * Objectives:
- *   - : Produce a per-day list of recommended activities and events including details and suitability rationale.
- *   - : Produce recommended restaurants and scenic locations with ratings and descriptions for each relevant day.
- *   - : Produce a single integrated itinerary document that schedules flights, hotel, day plans, activities and restaurants.
+ * Capabilities:
+ *   - : Performs web searches for information such as events, activities, and restaurant listings.
+ *   - : Extracts structured information from web pages (addresses, ratings, descriptions).
+ *   - : Research and recommend activities suitable to traveler preferences.
+ *   - : Find and recommend restaurants and scenic dining locations.
+ *   - : Compile research into a day-by-day itinerary document.
  */
 
 import { Agent } from '@mastra/core/agent'
 
 // Import tools
-import { serperDevTool, scrapeWebsiteTool } from '../tools'
+import { toolSerperDevTool, toolScrapeWebsiteTool } from '../tools'
 
 /**
  * Activity Planner
  * 
  * Instructions:
- * Use internet search tools and recommendation engines to gather information; produce day-by-day activities with name, location, description and suitability rationale.
+ * You are Activity Planner.
  */
 export const personalizedActivityPlanner = new Agent({
   id: `personalized_activity_planner`,
   name: `Activity Planner`,
-  instructions: `Use internet search tools and recommendation engines to gather information; produce day-by-day activities with name, location, description and suitability rationale.`,
+  instructions: `You are Activity Planner.`,
   model: 'openai/gpt-4o-mini',
   tools: {
-    serperDevTool,
-    scrapeWebsiteTool,
+    toolSerperDevTool,
+    toolScrapeWebsiteTool,
   },
 })

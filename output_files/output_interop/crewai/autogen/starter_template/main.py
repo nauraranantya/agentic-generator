@@ -39,8 +39,8 @@ If you do your BEST WORK, I'll give you a $10,000 commission!
 
 Make sure to use the most recent data as possible.
 
-Use this variable: {{var1}}
-And also this variable: {{var2}}"""
+Use this variable: {var1}
+And also this variable: {var2} """
         # Execute via the assigned agent: agent_1_name
         result = await agent_1_name.run(task=task_prompt)
 
@@ -58,10 +58,10 @@ And also this variable: {{var2}}"""
         print("=" * 80)
 
         task_prompt = """Take the input from task 1 and do something with it.
-                                       
+
 If you do your BEST WORK, I'll give you a $10,000 commission!
 
-Make sure to do something else."""
+Make sure to do something else. """
         # Execute via the assigned agent: agent_2_name
         result = await agent_2_name.run(task=task_prompt)
 

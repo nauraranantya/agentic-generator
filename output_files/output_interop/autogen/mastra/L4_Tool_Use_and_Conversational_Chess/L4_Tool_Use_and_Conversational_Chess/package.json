@@ -1,7 +1,7 @@
 {
   "name": "L4_Tool_Use_and_Conversational_Chess",
   "version": "0.1.0",
-  "description": "",
+  "description": "A small team consisting of two player agents and a board proxy orchestrating the game.",
   "type": "module",
   "main": "src/mastra/index.ts",
   "scripts": {

@@ -3,32 +3,32 @@ import { Annotation, START, END, StateGraph } from "@langchain/langgraph";
 import { tool } from "@langchain/core/tools";
 import { z } from "zod";
 
-const MarketingPostsCrewTeamAnnotation = Annotation.Root({
+const UnnamedProjectAnnotation = Annotation.Root({
   messages: Annotation<any[]>({
     reducer: (_, next) => next,
     default: () => [],
   }),
 });
 
-// Tool: serper_dev_tool
-const serper_dev_tool = tool(
+// Tool: tool_serper_dev_tool
+const tool_serper_dev_tool = tool(
   async () => {
-    return "Result of serper_dev_tool";
+    return "Result of tool_serper_dev_tool";
   },
   {
-    name: "serper_dev_tool",
-    description: "Third-party web search / SERP tool used by agents for lookups. Instantiated in code as SerperDevTool().",
+    name: "tool_serper_dev_tool",
+    description: "Tool for performing web/search queries via Serper.dev (used to find up-to-date information).",
     schema: z.object({}),
   }
 );
-// Tool: scrape_website_tool
-const scrape_website_tool = tool(
+// Tool: tool_scrape_website_tool
+const tool_scrape_website_tool = tool(
   async () => {
-    return "Result of scrape_website_tool";
+    return "Result of tool_scrape_website_tool";
   },
   {
-    name: "scrape_website_tool",
-    description: "Tool for scraping website contents; used by agents to gather site-specific information. Instantiated in code as ScrapeWebsiteTool().",
+    name: "tool_scrape_website_tool",
+    description: "Tool to scrape website content for extracting information about customers and competitors.",
     schema: z.object({}),
   }
 );
@@ -36,17 +36,17 @@ const scrape_website_tool = tool(
 
 
 /**
- * Node: researchTask
+ * Node: taskResearch
  * Agent: lead_market_analyst
  */
-async function researchTask(state: typeof MarketingPostsCrewTeamAnnotation.State) {
+async function taskResearch(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Role and backstory for agent" +
-        "\\nNode: researchTask",
+        "You are a Lead Market Analyst." +
+        "\nNode: taskResearch",
     },
     ...state.messages,
   ]);
@@ -54,17 +54,17 @@ async function researchTask(state: typeof MarketingPostsCrewTeamAnnotation.State
 }
 
 /**
- * Node: projectUnderstandingTask
+ * Node: taskProjectUnderstanding
  * Agent: chief_marketing_strategist
  */
-async function projectUnderstandingTask(state: typeof MarketingPostsCrewTeamAnnotation.State) {
+async function taskProjectUnderstanding(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Role and backstory for agent" +
-        "\\nNode: projectUnderstandingTask",
+        "You are a Chief Marketing Strategist." +
+        "\nNode: taskProjectUnderstanding",
     },
     ...state.messages,
   ]);
@@ -72,17 +72,17 @@ async function projectUnderstandingTask(state: typeof MarketingPostsCrewTeamAnno
 }
 
 /**
- * Node: marketingStrategyTask
+ * Node: taskMarketingStrategy
  * Agent: chief_marketing_strategist
  */
-async function marketingStrategyTask(state: typeof MarketingPostsCrewTeamAnnotation.State) {
+async function taskMarketingStrategy(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Role and backstory for agent" +
-        "\\nNode: marketingStrategyTask",
+        "You are a Chief Marketing Strategist." +
+        "\nNode: taskMarketingStrategy",
     },
     ...state.messages,
   ]);
@@ -90,17 +90,17 @@ async function marketingStrategyTask(state: typeof MarketingPostsCrewTeamAnnotat
 }
 
 /**
- * Node: campaignIdeaTask
+ * Node: taskCampaignIdea
  * Agent: creative_content_creator
  */
-async function campaignIdeaTask(state: typeof MarketingPostsCrewTeamAnnotation.State) {
+async function taskCampaignIdea(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Role and backstory for agent" +
-        "\\nNode: campaignIdeaTask",
+        "You are a Creative Content Creator." +
+        "\nNode: taskCampaignIdea",
     },
     ...state.messages,
   ]);
@@ -108,38 +108,37 @@ async function campaignIdeaTask(state: typeof MarketingPostsCrewTeamAnnotation.S
 }
 
 /**
- * Node: copyCreationTask
+ * Node: taskCopyCreation
  * Agent: creative_content_creator
  */
-async function copyCreationTask(state: typeof MarketingPostsCrewTeamAnnotation.State) {
+async function taskCopyCreation(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Role and backstory for agent" +
-        "\\nNode: copyCreationTask",
+        "You are a Creative Content Creator." +
+        "\nNode: taskCopyCreation",
     },
     ...state.messages,
   ]);
   return { messages: [response] };
 }
 
-const workflow = new StateGraph(MarketingPostsCrewTeamAnnotation)
-  .addNode("researchTask", researchTask)
-  .addNode("projectUnderstandingTask", projectUnderstandingTask)
-  .addNode("marketingStrategyTask", marketingStrategyTask)
-  .addNode("campaignIdeaTask", campaignIdeaTask)
-  .addNode("copyCreationTask", copyCreationTask)
-  .addEdge(START, "researchTask")
-  .addEdge("researchTask", "projectUnderstandingTask")
-  .addEdge("projectUnderstandingTask", "marketingStrategyTask")
-  .addEdge("marketingStrategyTask", "campaignIdeaTask")
-  .addEdge("campaignIdeaTask", "copyCreationTask")
-  .addEdge("copyCreationTask", END)
+const workflow = new StateGraph(UnnamedProjectAnnotation)
+  .addNode("taskResearch", taskResearch)
+  .addNode("taskProjectUnderstanding", taskProjectUnderstanding)
+  .addNode("taskMarketingStrategy", taskMarketingStrategy)
+  .addNode("taskCampaignIdea", taskCampaignIdea)
+  .addNode("taskCopyCreation", taskCopyCreation)
+  .addEdge(START, "taskResearch")
+  .addEdge("taskResearch", "taskProjectUnderstanding")
+  .addEdge("taskProjectUnderstanding", "taskMarketingStrategy")
+  .addEdge("taskMarketingStrategy", "taskCampaignIdea")
+  .addEdge("taskCampaignIdea", "taskCopyCreation")
+  .addEdge("taskCopyCreation", END)
 ;
 
 export const graph = workflow.compile();
-graph.name = "MarketingPostsCrewTeam";
-// Workflow: marketing_posts_workflow
-// Workflow: MarketingPosts Workflow Pattern
+graph.name = "UnnamedProject";
+// Workflow: wp_sequential

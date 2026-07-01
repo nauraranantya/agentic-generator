@@ -17,16 +17,16 @@ async def main():
     try:
         # Step-by-step sequential execution
         # ==================================================
-        # Workflow Step: run_evals_task
-        # Workflow Edge: run_evals_task -> fetch_yc_data_task
+        # Workflow Step: fetch_yc_directory_task
+        # Workflow Edge: fetch_yc_directory_task -> process_yc_data_task
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: run_evals_task")
+        print("Executing step: fetch_yc_directory_task")
         print("=" * 80)
 
-        task_prompt = """Task representing the tests/runEvals invocation that evaluates ycAgent using the AnswerRelevancyScorer with a small input dataset."""
-        # Execute via the assigned agent: agent
-        result = await agent.run(task=task_prompt)
+        task_prompt = """Task to retrieve the YC directory dataset using the yc-directory tool. """
+        # Execute via the assigned agent: yc_directory_agent
+        result = await yc_directory_agent.run(task=task_prompt)
 
         # Print step output
         if hasattr(result, "messages") and result.messages:
@@ -35,31 +35,13 @@ async def main():
             print(result)
 
         # ==================================================
-        # Workflow Step: fetch_yc_data_task
-        # Workflow Edge: fetch_yc_data_task -> answer_yc_directory_query
+        # Workflow Step: process_yc_data_task
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: fetch_yc_data_task")
+        print("Executing step: process_yc_data_task")
         print("=" * 80)
 
-        task_prompt = """Task that represents the operation of the yc-directory tool's execute function returning YC data."""
-        # Execute via the assigned agent: agent
-        result = await agent.run(task=task_prompt)
-
-        # Print step output
-        if hasattr(result, "messages") and result.messages:
-            print(result.messages[-1].content)
-        else:
-            print(result)
-
-        # ==================================================
-        # Workflow Step: answer_yc_directory_query
-        # ==================================================
-        print("\n" + "=" * 80)
-        print("Executing step: answer_yc_directory_query")
-        print("=" * 80)
-
-        task_prompt = """Primary task the ycDirectoryAgent performs: accept a natural language query about the YC 2024 directory and produce an answer exclusively using the yc-directory tool's dataset. Must include batch numbers when referencing companies and must not hallucinate beyond the available fields."""
+        task_prompt = """Task to process/format the YC directory data for consumption by downstream callers (e.g., filtering, adding batch metadata). """
         # Execute via the assigned agent: yc_directory_agent
         result = await yc_directory_agent.run(task=task_prompt)
 

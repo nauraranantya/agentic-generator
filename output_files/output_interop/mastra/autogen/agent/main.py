@@ -2,14 +2,6 @@ import asyncio
 
 from team import (
     chef_agent,
-    chef_agent_responses,
-    chef_model_v2_agent,
-    dynamic_agent,
-    agent_that_harasses_you,
-    error_agent,
-    network_agent,
-    weather_agent,
-    eval_agent,
 )
 
 from autogen_agentchat.conditions import (
@@ -25,14 +17,14 @@ async def main():
     try:
         # Step-by-step sequential execution
         # ==================================================
-        # Workflow Step: task_my_step
-        # Workflow Edge: task_my_step -> task_my_step_2
+        # Workflow Step: task_query_pantry
+        # Workflow Edge: task_query_pantry -> task_generate_text
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: task_my_step")
+        print("Executing step: task_query_pantry")
         print("=" * 80)
 
-        task_prompt = """Task backing my-step. Performs the core recipe extraction (echo ingredient back) and returns result string."""
+        task_prompt = """User asks what they can make given pantry ingredients (pasta, canned tomatoes, garlic, olive oil, dried herbs). """
         # Execute via the assigned agent: chef_agent
         result = await chef_agent.run(task=task_prompt)
 
@@ -43,13 +35,14 @@ async def main():
             print(result)
 
         # ==================================================
-        # Workflow Step: task_my_step_2
+        # Workflow Step: task_generate_text
+        # Workflow Edge: task_generate_text -> task_text_stream
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: task_my_step_2")
+        print("Executing step: task_generate_text")
         print("=" * 80)
 
-        task_prompt = """Second step in recipe-maker that finalizes the output; returns static placeholder 'suh' in the source."""
+        task_prompt = """Alternate/duplicate generate usage with same pantry query. """
         # Execute via the assigned agent: chef_agent
         result = await chef_agent.run(task=task_prompt)
 
@@ -60,86 +53,14 @@ async def main():
             print(result)
 
         # ==================================================
-        # Workflow Step: task_add_letter
-        # Workflow Edge: task_add_letter -> task_add_letter_b
+        # Workflow Step: task_text_stream
+        # Workflow Edge: task_text_stream -> task_generate_stream
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: task_add_letter")
+        print("Executing step: task_text_stream")
         print("=" * 80)
 
-        task_prompt = """Execution: returns { text: text + 'A' } after ~500ms."""
-        # Execute via the assigned agent: chef_model_v2_agent
-        result = await chef_model_v2_agent.run(task=task_prompt)
-
-        # Print step output
-        if hasattr(result, "messages") and result.messages:
-            print(result.messages[-1].content)
-        else:
-            print(result)
-
-        # ==================================================
-        # Workflow Step: task_add_letter_b
-        # Workflow Edge: task_add_letter_b -> task_add_letter_c
-        # ==================================================
-        print("\n" + "=" * 80)
-        print("Executing step: task_add_letter_b")
-        print("=" * 80)
-
-        task_prompt = """Execution: returns { text: text + 'B' }."""
-        # Execute via the assigned agent: chef_model_v2_agent
-        result = await chef_model_v2_agent.run(task=task_prompt)
-
-        # Print step output
-        if hasattr(result, "messages") and result.messages:
-            print(result.messages[-1].content)
-        else:
-            print(result)
-
-        # ==================================================
-        # Workflow Step: task_add_letter_c
-        # Workflow Edge: task_add_letter_c -> task_add_letter_with_count
-        # ==================================================
-        print("\n" + "=" * 80)
-        print("Executing step: task_add_letter_c")
-        print("=" * 80)
-
-        task_prompt = """Execution: returns { text: text + 'C' }."""
-        # Execute via the assigned agent: chef_model_v2_agent
-        result = await chef_model_v2_agent.run(task=task_prompt)
-
-        # Print step output
-        if hasattr(result, "messages") and result.messages:
-            print(result.messages[-1].content)
-        else:
-            print(result)
-
-        # ==================================================
-        # Workflow Step: task_add_letter_with_count
-        # Workflow Edge: task_add_letter_with_count -> task_suspend_resume
-        # ==================================================
-        print("\n" + "=" * 80)
-        print("Executing step: task_add_letter_with_count")
-        print("=" * 80)
-
-        task_prompt = """Execution: returns text + 'D' and iterationCount+1."""
-        # Execute via the assigned agent: chef_model_v2_agent
-        result = await chef_model_v2_agent.run(task=task_prompt)
-
-        # Print step output
-        if hasattr(result, "messages") and result.messages:
-            print(result.messages[-1].content)
-        else:
-            print(result)
-
-        # ==================================================
-        # Workflow Step: task_suspend_resume
-        # Workflow Edge: task_suspend_resume -> task_short_text
-        # ==================================================
-        print("\n" + "=" * 80)
-        print("Executing step: task_suspend_resume")
-        print("=" * 80)
-
-        task_prompt = """Requires user input to resume. Modeled as a suspend/resume interactive step."""
+        task_prompt = """Streamed response for chicken/coconut/sweet potatoes/curry powder scenario. """
         # Execute via the assigned agent: chef_agent
         result = await chef_agent.run(task=task_prompt)
 
@@ -150,67 +71,14 @@ async def main():
             print(result)
 
         # ==================================================
-        # Workflow Step: task_short_text
-        # Workflow Edge: task_short_text -> task_long_text
+        # Workflow Step: task_generate_stream
+        # Workflow Edge: task_generate_stream -> task_text_object
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: task_short_text")
+        print("Executing step: task_generate_stream")
         print("=" * 80)
 
-        task_prompt = """Branch step executed when text length <= 10."""
-        # Execute via the assigned agent: chef_model_v2_agent
-        result = await chef_model_v2_agent.run(task=task_prompt)
-
-        # Print step output
-        if hasattr(result, "messages") and result.messages:
-            print(result.messages[-1].content)
-        else:
-            print(result)
-
-        # ==================================================
-        # Workflow Step: task_long_text
-        # Workflow Edge: task_long_text -> task_nested_text_processor
-        # ==================================================
-        print("\n" + "=" * 80)
-        print("Executing step: task_long_text")
-        print("=" * 80)
-
-        task_prompt = """Branch step executed when text length > 10."""
-        # Execute via the assigned agent: chef_model_v2_agent
-        result = await chef_model_v2_agent.run(task=task_prompt)
-
-        # Print step output
-        if hasattr(result, "messages") and result.messages:
-            print(result.messages[-1].content)
-        else:
-            print(result)
-
-        # ==================================================
-        # Workflow Step: task_nested_text_processor
-        # Workflow Edge: task_nested_text_processor -> task_final_step
-        # ==================================================
-        print("\n" + "=" * 80)
-        print("Executing step: task_nested_text_processor")
-        print("=" * 80)
-
-        task_prompt = """Executes nested sub-workflow that appends letters A then B."""
-        # Execute via the assigned agent: chef_model_v2_agent
-        result = await chef_model_v2_agent.run(task=task_prompt)
-
-        # Print step output
-        if hasattr(result, "messages") and result.messages:
-            print(result.messages[-1].content)
-        else:
-            print(result)
-
-        # ==================================================
-        # Workflow Step: task_final_step
-        # ==================================================
-        print("\n" + "=" * 80)
-        print("Executing step: task_final_step")
-        print("=" * 80)
-
-        task_prompt = """Finalization operation adding '-ENDED'."""
+        task_prompt = """Streaming variant with array input; yields streamed recipe. """
         # Execute via the assigned agent: chef_agent
         result = await chef_agent.run(task=task_prompt)
 
@@ -221,16 +89,16 @@ async def main():
             print(result)
 
         # ==================================================
-        # Workflow Step: task_step_one
-        # Workflow Edge: task_step_one -> task_step_two
+        # Workflow Step: task_text_object
+        # Workflow Edge: task_text_object -> task_text_object_jsonschema
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: task_step_one")
+        print("Executing step: task_text_object")
         print("=" * 80)
 
-        task_prompt = """Takes { inputValue }, returns { doubledValue: inputValue*2 }."""
-        # Execute via the assigned agent: dynamic_agent
-        result = await dynamic_agent.run(task=task_prompt)
+        task_prompt = """Generate a lasagna recipe structured as an object with ingredients and steps. """
+        # Execute via the assigned agent: chef_agent
+        result = await chef_agent.run(task=task_prompt)
 
         # Print step output
         if hasattr(result, "messages") and result.messages:
@@ -239,16 +107,16 @@ async def main():
             print(result)
 
         # ==================================================
-        # Workflow Step: task_step_two
-        # Workflow Edge: task_step_two -> task_step_three
+        # Workflow Step: task_text_object_jsonschema
+        # Workflow Edge: task_text_object_jsonschema -> task_generate_object
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: task_step_two")
+        print("Executing step: task_text_object_jsonschema")
         print("=" * 80)
 
-        task_prompt = """If resumeData.extraNumber absent => suspend({}) and return interim; else compute incrementedValue."""
-        # Execute via the assigned agent: dynamic_agent
-        result = await dynamic_agent.run(task=task_prompt)
+        task_prompt = """Generate lasagna recipe constrained by provided JSON Schema. """
+        # Execute via the assigned agent: chef_agent
+        result = await chef_agent.run(task=task_prompt)
 
         # Print step output
         if hasattr(result, "messages") and result.messages:
@@ -257,16 +125,16 @@ async def main():
             print(result)
 
         # ==================================================
-        # Workflow Step: task_step_three
-        # Workflow Edge: task_step_three -> task_step_four
+        # Workflow Step: task_generate_object
+        # Workflow Edge: task_generate_object -> task_stream_object
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: task_step_three")
+        print("Executing step: task_generate_object")
         print("=" * 80)
 
-        task_prompt = """Returns { tripledValue: incrementedValue * 3 }."""
-        # Execute via the assigned agent: dynamic_agent
-        result = await dynamic_agent.run(task=task_prompt)
+        task_prompt = """Generate lasagna recipe with structured output (array input variant). """
+        # Execute via the assigned agent: chef_agent
+        result = await chef_agent.run(task=task_prompt)
 
         # Print step output
         if hasattr(result, "messages") and result.messages:
@@ -275,15 +143,33 @@ async def main():
             print(result)
 
         # ==================================================
-        # Workflow Step: task_step_four
+        # Workflow Step: task_stream_object
+        # Workflow Edge: task_stream_object -> task_generate_stream_object
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: task_step_four")
+        print("Executing step: task_stream_object")
         print("=" * 80)
 
-        task_prompt = """Returns { isEven: tripledValue % 2 === 0 }."""
-        # Execute via the assigned agent: dynamic_agent
-        result = await dynamic_agent.run(task=task_prompt)
+        task_prompt = """Streamed generation of a lasagna recipe as structured object. """
+        # Execute via the assigned agent: chef_agent
+        result = await chef_agent.run(task=task_prompt)
+
+        # Print step output
+        if hasattr(result, "messages") and result.messages:
+            print(result.messages[-1].content)
+        else:
+            print(result)
+
+        # ==================================================
+        # Workflow Step: task_generate_stream_object
+        # ==================================================
+        print("\n" + "=" * 80)
+        print("Executing step: task_generate_stream_object")
+        print("=" * 80)
+
+        task_prompt = """Final streaming structured generation variant. """
+        # Execute via the assigned agent: chef_agent
+        result = await chef_agent.run(task=task_prompt)
 
         # Print step output
         if hasattr(result, "messages") and result.messages:

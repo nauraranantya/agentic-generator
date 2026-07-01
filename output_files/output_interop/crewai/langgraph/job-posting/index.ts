@@ -3,7 +3,7 @@ import { Annotation, START, END, StateGraph } from "@langchain/langgraph";
 import { tool } from "@langchain/core/tools";
 import { z } from "zod";
 
-const JobPostingCrewTeamAnnotation = Annotation.Root({
+const UnnamedProjectAnnotation = Annotation.Root({
   messages: Annotation<any[]>({
     reducer: (_, next) => next,
     default: () => [],
@@ -17,7 +17,7 @@ const website_search_tool = tool(
   },
   {
     name: "website_search_tool",
-    description: "Tool used for general website search queries (instantiated in the solution as a web search tool).",
+    description: "A generic website search tool used to look up pages and content.",
     schema: z.object({}),
   }
 );
@@ -28,7 +28,7 @@ const serper_dev_tool = tool(
   },
   {
     name: "serper_dev_tool",
-    description: "Tool used for developer-oriented web search or SERP querying (instantiated as SerperDevTool in the code).",
+    description: "Serper.dev integration tool for advanced search queries.",
     schema: z.object({}),
   }
 );
@@ -39,7 +39,7 @@ const file_read_tool = tool(
   },
   {
     name: "file_read_tool",
-    description: "Tool to read local files; configured to read job_description_example.md",
+    description: "A tool to read a local job description example file.",
     schema: z.object({}),
   }
 );
@@ -50,14 +50,14 @@ const file_read_tool = tool(
  * Node: researchCompanyCultureTask
  * Agent: research_agent
  */
-async function researchCompanyCultureTask(state: typeof JobPostingCrewTeamAnnotation.State) {
+async function researchCompanyCultureTask(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Role: Research Analyst" +
-        "\\nNode: researchCompanyCultureTask",
+        "You are a Research Analyst." +
+        "\nNode: researchCompanyCultureTask",
     },
     ...state.messages,
   ]);
@@ -68,14 +68,14 @@ async function researchCompanyCultureTask(state: typeof JobPostingCrewTeamAnnota
  * Node: researchRoleRequirementsTask
  * Agent: research_agent
  */
-async function researchRoleRequirementsTask(state: typeof JobPostingCrewTeamAnnotation.State) {
+async function researchRoleRequirementsTask(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Role: Research Analyst" +
-        "\\nNode: researchRoleRequirementsTask",
+        "You are a Research Analyst." +
+        "\nNode: researchRoleRequirementsTask",
     },
     ...state.messages,
   ]);
@@ -86,14 +86,14 @@ async function researchRoleRequirementsTask(state: typeof JobPostingCrewTeamAnno
  * Node: draftJobPostingTask
  * Agent: writer_agent
  */
-async function draftJobPostingTask(state: typeof JobPostingCrewTeamAnnotation.State) {
+async function draftJobPostingTask(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Role: Job Description Writer" +
-        "\\nNode: draftJobPostingTask",
+        "You are a Job Description Writer." +
+        "\nNode: draftJobPostingTask",
     },
     ...state.messages,
   ]);
@@ -104,14 +104,14 @@ async function draftJobPostingTask(state: typeof JobPostingCrewTeamAnnotation.St
  * Node: reviewAndEditJobPostingTask
  * Agent: review_agent
  */
-async function reviewAndEditJobPostingTask(state: typeof JobPostingCrewTeamAnnotation.State) {
+async function reviewAndEditJobPostingTask(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Role: Review and Editing Specialist" +
-        "\\nNode: reviewAndEditJobPostingTask",
+        "You are a Review and Editing Specialist." +
+        "\nNode: reviewAndEditJobPostingTask",
     },
     ...state.messages,
   ]);
@@ -122,21 +122,21 @@ async function reviewAndEditJobPostingTask(state: typeof JobPostingCrewTeamAnnot
  * Node: industryAnalysisTask
  * Agent: research_agent
  */
-async function industryAnalysisTask(state: typeof JobPostingCrewTeamAnnotation.State) {
+async function industryAnalysisTask(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Role: Research Analyst" +
-        "\\nNode: industryAnalysisTask",
+        "You are a Research Analyst." +
+        "\nNode: industryAnalysisTask",
     },
     ...state.messages,
   ]);
   return { messages: [response] };
 }
 
-const workflow = new StateGraph(JobPostingCrewTeamAnnotation)
+const workflow = new StateGraph(UnnamedProjectAnnotation)
   .addNode("researchCompanyCultureTask", researchCompanyCultureTask)
   .addNode("researchRoleRequirementsTask", researchRoleRequirementsTask)
   .addNode("draftJobPostingTask", draftJobPostingTask)
@@ -151,6 +151,5 @@ const workflow = new StateGraph(JobPostingCrewTeamAnnotation)
 ;
 
 export const graph = workflow.compile();
-graph.name = "JobPostingCrewTeam";
+graph.name = "UnnamedProject";
 // Workflow: job_posting_workflow
-// Workflow: Job Posting Workflow Pattern

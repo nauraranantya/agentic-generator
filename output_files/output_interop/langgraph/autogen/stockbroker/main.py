@@ -1,7 +1,7 @@
 import asyncio
 
 from team import (
-    stockbroker_01,
+    trade_agent,
 )
 
 from autogen_agentchat.conditions import (
@@ -17,15 +17,51 @@ async def main():
     try:
         # Step-by-step sequential execution
         # ==================================================
-        # Workflow Step: call_tools
+        # Workflow Step: open_buy_ui_task
+        # Workflow Edge: open_buy_ui_task -> execute_purchase_task
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: call_tools")
+        print("Executing step: open_buy_ui_task")
         print("=" * 80)
 
-        task_prompt = """Task executed by the Stockbroker agent to call the language model with bound tools and to route resulting tool calls to tool-specific handlers. Uses the system prompt and conversation messages as input to the LLM."""
-        # Execute via the assigned agent: stockbroker_01
-        result = await stockbroker_01.run(task=task_prompt)
+        task_prompt = """Prepare and present the buy stock UI to the user. """
+        # Execute via the assigned agent: trade_agent
+        result = await trade_agent.run(task=task_prompt)
+
+        # Print step output
+        if hasattr(result, "messages") and result.messages:
+            print(result.messages[-1].content)
+        else:
+            print(result)
+
+        # ==================================================
+        # Workflow Step: execute_purchase_task
+        # Workflow Edge: execute_purchase_task -> confirm_purchase_task
+        # ==================================================
+        print("\n" + "=" * 80)
+        print("Executing step: execute_purchase_task")
+        print("=" * 80)
+
+        task_prompt = """Execute the purchase by invoking the buy-stock tool with purchaseDetails. """
+        # Execute via the assigned agent: trade_agent
+        result = await trade_agent.run(task=task_prompt)
+
+        # Print step output
+        if hasattr(result, "messages") and result.messages:
+            print(result.messages[-1].content)
+        else:
+            print(result)
+
+        # ==================================================
+        # Workflow Step: confirm_purchase_task
+        # ==================================================
+        print("\n" + "=" * 80)
+        print("Executing step: confirm_purchase_task")
+        print("=" * 80)
+
+        task_prompt = """Display purchase confirmation to the user including executed quantity and price. """
+        # Execute via the assigned agent: trade_agent
+        result = await trade_agent.run(task=task_prompt)
 
         # Print step output
         if hasattr(result, "messages") and result.messages:

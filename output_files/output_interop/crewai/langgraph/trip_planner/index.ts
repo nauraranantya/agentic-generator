@@ -10,36 +10,36 @@ const UnnamedProjectAnnotation = Annotation.Root({
   }),
 });
 
-// Tool: search_tools
-const search_tools = tool(
+// Tool: tool_search
+const tool_search = tool(
   async () => {
-    return "Result of search_tools";
+    return "Result of tool_search";
   },
   {
-    name: "search_tools",
-    description: "Toolset providing search_internet(query) which posts to Serper API and returns top organic results. Top results are returned in a formatted text with Title/Link/Snippet.",
+    name: "tool_search",
+    description: "Search the internet using Serper (google.serper.dev) and return top results.",
     schema: z.object({}),
   }
 );
-// Tool: browser_tools
-const browser_tools = tool(
+// Tool: tool_browser
+const tool_browser = tool(
   async () => {
-    return "Result of browser_tools";
+    return "Result of tool_browser";
   },
   {
-    name: "browser_tools",
-    description: "Scrape website content using Browserless content API; partitions HTML and produces chunk summaries by running an internal summarization agent.",
+    name: "tool_browser",
+    description: "Scrape website content via browserless and summarize chunks using an internal Agent/Task.",
     schema: z.object({}),
   }
 );
-// Tool: calculator_tools
-const calculator_tools = tool(
+// Tool: tool_calculator
+const tool_calculator = tool(
   async () => {
-    return "Result of calculator_tools";
+    return "Result of tool_calculator";
   },
   {
-    name: "calculator_tools",
-    description: "Make a calculation(operation) evaluates basic arithmetic expressions safely using AST validation and a whitelist of allowed tokens.",
+    name: "tool_calculator",
+    description: "Safe mathematical expression evaluator implemented with ast and restricted operators.",
     schema: z.object({}),
   }
 );
@@ -47,17 +47,17 @@ const calculator_tools = tool(
 
 
 /**
- * Node: identifyTask
+ * Node: taskIdentifyCity
  * Agent: city_selection_agent
  */
-async function identifyTask(state: typeof UnnamedProjectAnnotation.State) {
-  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
+async function taskIdentifyCity(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Role: City Selection Expert; purpose: select the best city based on weather, season, and prices." +
-        "\\nNode: identifyTask",
+        "You are a City Selection Expert." +
+        "\nNode: taskIdentifyCity",
     },
     ...state.messages,
   ]);
@@ -65,17 +65,17 @@ async function identifyTask(state: typeof UnnamedProjectAnnotation.State) {
 }
 
 /**
- * Node: gatherTask
+ * Node: taskGatherCityInfo
  * Agent: local_expert_agent
  */
-async function gatherTask(state: typeof UnnamedProjectAnnotation.State) {
-  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
+async function taskGatherCityInfo(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Role: Local Expert; purpose: compile an in-depth city guide with hidden gems and local insights." +
-        "\\nNode: gatherTask",
+        "You are a Local Expert at this city." +
+        "\nNode: taskGatherCityInfo",
     },
     ...state.messages,
   ]);
@@ -83,17 +83,17 @@ async function gatherTask(state: typeof UnnamedProjectAnnotation.State) {
 }
 
 /**
- * Node: planTask
+ * Node: taskPlanItinerary
  * Agent: travel_concierge_agent
  */
-async function planTask(state: typeof UnnamedProjectAnnotation.State) {
-  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
+async function taskPlanItinerary(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Role: Travel Concierge; purpose: produce a full 7-day itinerary, budget breakdown and packing suggestions." +
-        "\\nNode: planTask",
+        "You are a Amazing Travel Concierge." +
+        "\nNode: taskPlanItinerary",
     },
     ...state.messages,
   ]);
@@ -101,15 +101,15 @@ async function planTask(state: typeof UnnamedProjectAnnotation.State) {
 }
 
 const workflow = new StateGraph(UnnamedProjectAnnotation)
-  .addNode("identifyTask", identifyTask)
-  .addNode("gatherTask", gatherTask)
-  .addNode("planTask", planTask)
-  .addEdge(START, "identifyTask")
-  .addEdge("identifyTask", "gatherTask")
-  .addEdge("gatherTask", "planTask")
-  .addEdge("planTask", END)
+  .addNode("taskIdentifyCity", taskIdentifyCity)
+  .addNode("taskGatherCityInfo", taskGatherCityInfo)
+  .addNode("taskPlanItinerary", taskPlanItinerary)
+  .addEdge(START, "taskIdentifyCity")
+  .addEdge("taskIdentifyCity", "taskGatherCityInfo")
+  .addEdge("taskGatherCityInfo", "taskPlanItinerary")
+  .addEdge("taskPlanItinerary", END)
 ;
 
 export const graph = workflow.compile();
 graph.name = "UnnamedProject";
-// Workflow: trip_planning_pattern
+// Workflow: pattern_trip_planning

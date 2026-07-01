@@ -1,26 +1,54 @@
 /**
- * Workflow: changelog workflow
+ * Workflow: workflow_changelog
  *
  * Auto-generated from AgentO Knowledge Graph
- *
- * Generates weekly changelogs by scanning a predefined list of module paths, computing diffs between two dates, and asking an agent to summarize per-module changes; posts combined changelog to Slack.
  */
 
 import { createWorkflow, createStep } from '@mastra/core/workflows'
 import { z } from 'zod'
 
+// Import agents used by workflow steps
+import { daneChangeLog } from '../agents'
+
+// ── Workflow Steps ──
+
+const taskChangelogStepA1 = createStep({
+  id: 'task_changelog_step_a1',
+  description: `Get a git diff and connect to slack; runs git diff via execa`,
+  inputSchema: z.object({}),
+  outputSchema: z.object({}),
+  execute: async ({ inputData }) => {
+    // Get a git diff and connect to slack; runs git diff via execa
+    // TODO: Implement step logic
+    throw new Error('task_changelog_step_a1 not implemented yet')
+  },
+})
+
+const taskChangelogStepA2 = createStep({
+  id: 'task_changelog_step_a2',
+  description: `Generate changelog using the daneChangeLog agent and post to Slack`,
+  inputSchema: z.object({}),
+  outputSchema: z.object({}),
+  execute: async ({ inputData }) => {
+    // Time: recent week
+    // This step uses agent: daneChangeLog
+    // const result = await daneChangeLog.generate('...')
+    // TODO: Implement step logic
+    throw new Error('task_changelog_step_a2 not implemented yet')
+  },
+})
 
 // ── Workflow Definition ──
 
 /**
- * changelog workflow
- *
- * Generates weekly changelogs by scanning a predefined list of module paths, computing diffs between two dates, and asking an agent to summarize per-module changes; posts combined changelog to Slack.
+ * workflow_changelog
  */
 export const workflowChangelog = createWorkflow({
-  id: 'changelog workflow',
-  inputSchema: z.object({and_asking_an_agent_to_summarize_per: z.string()}),
+  id: 'workflow_changelog',
+  inputSchema: z.object({}),
   outputSchema: z.object({}),
-  steps: [],
+  steps: [taskChangelogStepA1, taskChangelogStepA2],
 })
+  .then(taskChangelogStepA1)
+  .then(taskChangelogStepA2)
   .commit()

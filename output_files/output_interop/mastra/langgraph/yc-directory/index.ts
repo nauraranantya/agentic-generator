@@ -1,4 +1,4 @@
-import { ChatAnthropic } from "@langchain/anthropic";
+import { ChatOpenAI } from "@langchain/openai";
 import { Annotation, START, END, StateGraph } from "@langchain/langgraph";
 import { tool } from "@langchain/core/tools";
 import { z } from "zod";
@@ -17,18 +17,7 @@ const yc_directory_tool = tool(
   },
   {
     name: "yc_directory_tool",
-    description: "Tool that returns the Y Combinator 2024 directory data. Created in src/mastra/tools/index.ts. Exposes an execute action that returns the dataset.",
-    schema: z.object({}),
-  }
-);
-// Tool: mastra_evals_runner
-const mastra_evals_runner = tool(
-  async () => {
-    return "Result of mastra_evals_runner";
-  },
-  {
-    name: "mastra_evals_runner",
-    description: "Represents the runEvals invocation in src/mastra/tests/index.ts. Executes an evaluation run on a target agent using a set of scorer capabilities and data inputs.",
+    description: "Get data from the 2024 YC directory",
     schema: z.object({}),
   }
 );
@@ -36,17 +25,17 @@ const mastra_evals_runner = tool(
 
 
 /**
- * Node: runEvalsTask
+ * Node: fetchYcDirectoryTask
  * Agent: yc_directory_agent
  */
-async function runEvalsTask(state: typeof UnnamedProjectAnnotation.State) {
-  const model = new ChatAnthropic({ model: "claude-3-5-sonnet-20241022" });
+async function fetchYcDirectoryTask(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Used as agent-level instructions for ycDirectoryAgent (src/mastra/agents/index.ts)." +
-        "\\nNode: runEvalsTask",
+        "You are a directory." +
+        "\nNode: fetchYcDirectoryTask",
     },
     ...state.messages,
   ]);
@@ -54,35 +43,17 @@ async function runEvalsTask(state: typeof UnnamedProjectAnnotation.State) {
 }
 
 /**
- * Node: fetchYcDataTask
+ * Node: processYcDataTask
  * Agent: yc_directory_agent
  */
-async function fetchYcDataTask(state: typeof UnnamedProjectAnnotation.State) {
-  const model = new ChatAnthropic({ model: "claude-3-5-sonnet-20241022" });
+async function processYcDataTask(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Used as agent-level instructions for ycDirectoryAgent (src/mastra/agents/index.ts)." +
-        "\\nNode: fetchYcDataTask",
-    },
-    ...state.messages,
-  ]);
-  return { messages: [response] };
-}
-
-/**
- * Node: answerYcDirectoryQuery
- * Agent: yc_directory_agent
- */
-async function answerYcDirectoryQuery(state: typeof UnnamedProjectAnnotation.State) {
-  const model = new ChatAnthropic({ model: "claude-3-5-sonnet-20241022" });
-  const response = await model.invoke([
-    {
-      role: "system",
-      content:
-        "Used as agent-level instructions for ycDirectoryAgent (src/mastra/agents/index.ts)." +
-        "\\nNode: answerYcDirectoryQuery",
+        "You are a directory." +
+        "\nNode: processYcDataTask",
     },
     ...state.messages,
   ]);
@@ -90,15 +61,13 @@ async function answerYcDirectoryQuery(state: typeof UnnamedProjectAnnotation.Sta
 }
 
 const workflow = new StateGraph(UnnamedProjectAnnotation)
-  .addNode("runEvalsTask", runEvalsTask)
-  .addNode("fetchYcDataTask", fetchYcDataTask)
-  .addNode("answerYcDirectoryQuery", answerYcDirectoryQuery)
-  .addEdge(START, "runEvalsTask")
-  .addEdge("runEvalsTask", "fetchYcDataTask")
-  .addEdge("fetchYcDataTask", "answerYcDirectoryQuery")
-  .addEdge("answerYcDirectoryQuery", END)
+  .addNode("fetchYcDirectoryTask", fetchYcDirectoryTask)
+  .addNode("processYcDataTask", processYcDataTask)
+  .addEdge(START, "fetchYcDirectoryTask")
+  .addEdge("fetchYcDirectoryTask", "processYcDataTask")
+  .addEdge("processYcDataTask", END)
 ;
 
 export const graph = workflow.compile();
 graph.name = "UnnamedProject";
-// Workflow: yc_query_workflow
+// Workflow: yc_directory_workflow

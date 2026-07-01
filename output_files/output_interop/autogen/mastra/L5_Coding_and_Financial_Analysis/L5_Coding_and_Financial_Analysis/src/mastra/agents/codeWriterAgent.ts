@@ -1,23 +1,25 @@
 /**
- * Agent: assistant code writer
+ * Agent: Assistant / Code Writer
  * ID: code_writer_agent
  * 
  * Auto-generated from AgentO Knowledge Graph
- * Objectives:
- *   - Produce stock gain YTD plot objective: 
+ * Capabilities:
+ *   - : Ability to execute arbitrary code snippets in a sandboxed local environment.
+ *   - : Download historical stock close prices for given symbols and date range.
+ *   - : Render time series plots for stock price data and save to image files.
  */
 
 import { Agent } from '@mastra/core/agent'
 
 /**
- * assistant code writer
+ * Assistant / Code Writer
  * 
  * Instructions:
- * The source obtains code_writer_agent.system_message and prints it; exact content is not available in the provided artifact.
+ * You are Assistant / Code Writer.
  */
 export const codeWriterAgent = new Agent({
   id: `code_writer_agent`,
-  name: `assistant code writer`,
-  instructions: `The source obtains code_writer_agent.system_message and prints it; exact content is not available in the provided artifact.`,
+  name: `Assistant / Code Writer`,
+  instructions: `You are Assistant / Code Writer.`,
   model: 'openai/gpt-4-turbo',
 })

@@ -1,3 +1,3 @@
-export { searchTools } from './searchTools'
-export { browserTools } from './browserTools'
-export { calculatorTools } from './calculatorTools'
+export { toolSearch } from './toolSearch'
+export { toolBrowser } from './toolBrowser'
+export { toolCalculator } from './toolCalculator'

@@ -1,7 +1,7 @@
 {
   "name": "dane",
   "version": "0.1.0",
-  "description": "Collection of agents and tools composing the CLI assistant 'Dane' and associated workflows.",
+  "description": "Mastra instance bundling agents, tools, memory and workflows for the Dane assistant CLI project.",
   "type": "module",
   "main": "src/mastra/index.ts",
   "scripts": {
@@ -11,9 +11,7 @@
   },
   "dependencies": {
     "@mastra/core": "latest",
-    "zod": "^3.23.0",
-    "@mastra/memory": "latest",
-    "@mastra/libsql": "latest"
+    "zod": "^3.23.0"
   },
   "devDependencies": {
     "typescript": "^5.0.0",

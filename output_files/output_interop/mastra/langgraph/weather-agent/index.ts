@@ -3,21 +3,21 @@ import { Annotation, START, END, StateGraph } from "@langchain/langgraph";
 import { tool } from "@langchain/core/tools";
 import { z } from "zod";
 
-const MastraSystemAnnotation = Annotation.Root({
+const UnnamedProjectAnnotation = Annotation.Root({
   messages: Annotation<any[]>({
     reducer: (_, next) => next,
     default: () => [],
   }),
 });
 
-// Tool: weather_tool
-const weather_tool = tool(
+// Tool: tool_get_weather
+const tool_get_weather = tool(
   async () => {
-    return "Result of weather_tool";
+    return "Result of tool_get_weather";
   },
   {
-    name: "weather_tool",
-    description: "Tool to get current weather for a location. Wraps geocoding and open-meteo APIs and returns a simplified weather object (temperature, feelsLike, humidity, windSpeed, windGust, conditions, location).",
+    name: "tool_get_weather",
+    description: "Get current weather for a location",
     schema: z.object({}),
   }
 );
@@ -25,17 +25,17 @@ const weather_tool = tool(
 
 
 /**
- * Node: fetchWeatherTask
+ * Node: taskFetchWeather
  * Agent: weather_agent
  */
-async function fetchWeatherTask(state: typeof MastraSystemAnnotation.State) {
-  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
+async function taskFetchWeather(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o" });
   const response = await model.invoke([
     {
       role: "system",
       content:
         "You are a weather assistant." +
-        "\\nNode: fetchWeatherTask",
+        "\nNode: taskFetchWeather",
     },
     ...state.messages,
   ]);
@@ -43,94 +43,31 @@ async function fetchWeatherTask(state: typeof MastraSystemAnnotation.State) {
 }
 
 /**
- * Node: planActivities
+ * Node: taskPlanActivities
  * Agent: weather_agent
  */
-async function planActivities(state: typeof MastraSystemAnnotation.State) {
-  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
+async function taskPlanActivities(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o" });
   const response = await model.invoke([
     {
       role: "system",
       content:
         "You are a weather assistant." +
-        "\\nNode: planActivities",
+        "\nNode: taskPlanActivities",
     },
     ...state.messages,
   ]);
   return { messages: [response] };
 }
 
-/**
- * Node: weatherToolCallTask
- * Agent: weather_agent
- */
-async function weatherToolCallTask(state: typeof MastraSystemAnnotation.State) {
-  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
-  const response = await model.invoke([
-    {
-      role: "system",
-      content:
-        "You are a weather assistant." +
-        "\\nNode: weatherToolCallTask",
-    },
-    ...state.messages,
-  ]);
-  return { messages: [response] };
-}
-
-/**
- * Node: mapForecastToPromptTask
- * Agent: weather_agent
- */
-async function mapForecastToPromptTask(state: typeof MastraSystemAnnotation.State) {
-  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
-  const response = await model.invoke([
-    {
-      role: "system",
-      content:
-        "You are a weather assistant." +
-        "\\nNode: mapForecastToPromptTask",
-    },
-    ...state.messages,
-  ]);
-  return { messages: [response] };
-}
-
-/**
- * Node: explainWeatherTask
- * Agent: weather_agent
- */
-async function explainWeatherTask(state: typeof MastraSystemAnnotation.State) {
-  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
-  const response = await model.invoke([
-    {
-      role: "system",
-      content:
-        "You are a weather assistant." +
-        "\\nNode: explainWeatherTask",
-    },
-    ...state.messages,
-  ]);
-  return { messages: [response] };
-}
-
-const workflow = new StateGraph(MastraSystemAnnotation)
-  .addNode("fetchWeatherTask", fetchWeatherTask)
-  .addNode("planActivities", planActivities)
-  .addNode("weatherToolCallTask", weatherToolCallTask)
-  .addNode("mapForecastToPromptTask", mapForecastToPromptTask)
-  .addNode("explainWeatherTask", explainWeatherTask)
-  .addEdge(START, "fetchWeatherTask")
-  .addEdge("fetchWeatherTask", "planActivities")
-  .addEdge("planActivities", "weatherToolCallTask")
-  .addEdge("weatherToolCallTask", "mapForecastToPromptTask")
-  .addEdge("mapForecastToPromptTask", "explainWeatherTask")
-  .addEdge("explainWeatherTask", END)
+const workflow = new StateGraph(UnnamedProjectAnnotation)
+  .addNode("taskFetchWeather", taskFetchWeather)
+  .addNode("taskPlanActivities", taskPlanActivities)
+  .addEdge(START, "taskFetchWeather")
+  .addEdge("taskFetchWeather", "taskPlanActivities")
+  .addEdge("taskPlanActivities", END)
 ;
 
 export const graph = workflow.compile();
-graph.name = "MastraSystem";
-// Workflow: wf_weather_workflow
-// Workflow: weather-workflow
-// Workflow: wf_weather_workflow_with_tool_and_agent
-// Workflow: weather-workflow-with-tool-and-agent
+graph.name = "UnnamedProject";
+// Workflow: workflow_weather_workflow

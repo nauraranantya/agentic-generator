@@ -1,64 +1,46 @@
 """
-Auto-generated CrewAI Crew: MarketingPostsCrewTeam
+Auto-generated CrewAI Crew: UnnamedProject
 
 Source  : AgentO Knowledge Graph → SPARQL → Pydantic → Jinja2
 Pipeline: 3-Layer Conversion Pipeline
 Goals:
-  - Marketing project goal: Boost awareness and adoption of CrewAI's services among enterprise clients. Create a comprehensive marketing campaign focusing on ease of use, scalability, and integration capabilities.
-  - Lead Market Analyst personal goal: Conduct amazing analysis of the products and competitors, providing in-depth insights to guide marketing strategies.
-  - Chief Marketing Strategist personal goal: Synthesize amazing insights from product analysis to formulate incredible marketing strategies.
-  - Creative Content Creator personal goal: Develop compelling and innovative content for social media campaigns, with a focus on creating high-impact ad copies.
-Objectives:
-  - Produce campaign ideas: Objective: generate creative campaign ideas for the marketing project.
+  - : Create a comprehensive marketing strategy to showcase CrewAI's AI-driven solutions, emphasizing ease of use, scalability, and integration capabilities, targeting enterprise decision-makers.
+  - : Conduct amazing analysis of the products and competitors, providing in-depth insights to guide marketing strategies.
+  - : Synthesize amazing insights from product analysis to formulate incredible marketing strategies.
+  - : Develop compelling and innovative content for social media campaigns, with a focus on creating high-impact ad copies.
 Capabilities:
-  - web search capability: Capability to perform web searches and retrieve online information (used by SerperDevTool).
-  - web scraping capability: Capability to scrape website content and extract structured information.
-  - analyze market: Capability to research and analyze markets, competitors, and customers.
-  - formulate strategy: Capability to synthesize analysis into strategic plans and marketing strategies.
-  - create content: Capability to produce creative campaign ideas and marketing copy.
-Resources:
-  - Research Report (resource): Output of research_task: A complete report on the customer and their customers and competitors, including demographics, preferences, market positioning and audience engagement.
-  - Project Summary (resource): Output of project_understanding_task: A detailed summary of the project and a profile of the target audience.
-  - MarketStrategy (resource): Represents the MarketStrategy output (pydantic model):
-Fields:
-- name: str
-- tatics: List[str]
-- channels: List[str]
-- KPIs: List[str]
-From campaign: expected output: a detailed marketing strategy including name, tactics, channels, and KPIs.
-  - CampaignIdea (resource): Represents campaign idea outputs (pydantic model):
-Fields:
-- name: str
-- description: str
-- audience: str
-- channel: str
-Expected: 5 campaign ideas with brief descriptions and expected impact.
-  - Copy (resource): Represents copy outputs (pydantic model):
-Fields:
-- title: str
-- body: str
-Marketing copies for each campaign idea.
-  - marketing_posts source: Original source code and configuration files (crew.py, main.py, config/agents.yaml, config/tasks.yaml) used to define the crew, agents, tasks, tools, and inputs. This ontology encodes semantic representation of that solution.
-  - participation example: Example: lead_market_analyst_agent participated in research_task.
-  - participation example: Example: chief_marketing_strategist_agent participated in marketing_strategy_task and project_understanding_task.
+  - : Perform web search queries and return relevant search results.
+  - : Retrieve and parse website content for analysis.
 """
 
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
+from crewai.tools import tool
 
-from crewai_tools import SerperDevTool, ScrapeWebsiteTool
 
 # ===========================================================
 # Tool Instances
 # ===========================================================
-serper_dev_tool = SerperDevTool(instantiated_in="crew.py: SerperDevTool()")
-scrape_website_tool = ScrapeWebsiteTool(instantiated_in="crew.py: ScrapeWebsiteTool()")
+# TODO: tool_serper_dev_tool — unknown tool class "toolSerperDevTool"
+#   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
+@tool("toolSerperDevTool")
+def tool_serper_dev_tool(*args, **kwargs) -> str:
+    """Tool for performing web/search queries via Serper.dev (used to find up-to-date information)."""
+    return "tool_serper_dev_tool result"
+
+# TODO: tool_scrape_website_tool — unknown tool class "toolScrapeWebsiteTool"
+#   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
+@tool("toolScrapeWebsiteTool")
+def tool_scrape_website_tool(*args, **kwargs) -> str:
+    """Tool to scrape website content for extracting information about customers and competitors."""
+    return "tool_scrape_website_tool result"
+
 
 
 
 @CrewBase
-class MarketingPostsCrewTeam:
-    """MarketingPostsCrewTeam crew"""
+class UnnamedProject:
+    """UnnamedProject crew"""
 
     agents_config = 'config/agents.yaml'
     tasks_config = 'config/tasks.yaml'
@@ -69,69 +51,67 @@ class MarketingPostsCrewTeam:
     def lead_market_analyst(self) -> Agent:
         return Agent(
             config=self.agents_config['lead_market_analyst'],
-            tools=[serper_dev_tool, scrape_website_tool],
-            verbose=False,
+            tools=[tool_serper_dev_tool, tool_scrape_website_tool],
+            verbose=True,
         )
 
     @agent
     def chief_marketing_strategist(self) -> Agent:
         return Agent(
             config=self.agents_config['chief_marketing_strategist'],
-            tools=[serper_dev_tool, scrape_website_tool],
-            verbose=False,
+            tools=[tool_serper_dev_tool, tool_scrape_website_tool],
+            verbose=True,
         )
 
     @agent
     def creative_content_creator(self) -> Agent:
         return Agent(
             config=self.agents_config['creative_content_creator'],
-            verbose=False,
+            verbose=True,
         )
 
     # ── Tasks ───────────────────────────────────────────
 
     @task
-    def research_task(self) -> Task:
+    def task_research(self) -> Task:
         return Task(
-            config=self.tasks_config['research_task'],
+            config=self.tasks_config['task_research'],
             agent=self.lead_market_analyst(),
         )
 
     @task
-    def project_understanding_task(self) -> Task:
+    def task_project_understanding(self) -> Task:
         return Task(
-            config=self.tasks_config['project_understanding_task'],
+            config=self.tasks_config['task_project_understanding'],
             agent=self.chief_marketing_strategist(),
         )
 
     @task
-    def marketing_strategy_task(self) -> Task:
+    def task_marketing_strategy(self) -> Task:
         return Task(
-            config=self.tasks_config['marketing_strategy_task'],
+            config=self.tasks_config['task_marketing_strategy'],
             agent=self.chief_marketing_strategist(),
-            context=[self.research_task(), self.project_understanding_task()],
         )
 
     @task
-    def campaign_idea_task(self) -> Task:
+    def task_campaign_idea(self) -> Task:
         return Task(
-            config=self.tasks_config['campaign_idea_task'],
+            config=self.tasks_config['task_campaign_idea'],
             agent=self.creative_content_creator(),
         )
 
     @task
-    def copy_creation_task(self) -> Task:
+    def task_copy_creation(self) -> Task:
         return Task(
-            config=self.tasks_config['copy_creation_task'],
+            config=self.tasks_config['task_copy_creation'],
             agent=self.creative_content_creator(),
-            context=[self.marketing_strategy_task(), self.campaign_idea_task()],
         )
 
     # ── Crew ────────────────────────────────────────────
 
     @crew
     def crew(self) -> Crew:
-        """Creates the MarketingPostsCrewTeam"""
+        """Creates the UnnamedProject"""
         return Crew(
             agents=self.agents,
             tasks=self.tasks,

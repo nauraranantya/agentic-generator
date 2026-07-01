@@ -1,6 +1,6 @@
-# GameBuilderCrew
+# UnnamedProject
 
-
+CrewAI crew defined in GameBuilderCrew class (src/game_builder_crew/crew.py)
 
 **Auto-generated from AgentO Knowledge Graph**  
 Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
@@ -34,7 +34,7 @@ npm run dev
 ## 📦 Project Structure
 
 ```
-GameBuilderCrew/
+UnnamedProject/
 ├── src/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
@@ -43,8 +43,10 @@ GameBuilderCrew/
 │       │   └── qaEngineerAgent.ts
 │       │   └── chiefQaEngineerAgent.ts
 │       ├── tools/             # Tool definitions
+│       │   └── toolSerper.ts
+│       │   └── toolOpenaiApi.ts
 │       └── workflows/         # Workflow definitions
-│           └── gameBuilderWorkflow.ts
+│           └── wpSequential.ts
 ├── package.json
 ├── tsconfig.json
 └── .env.example
@@ -58,42 +60,56 @@ GameBuilderCrew/
 
 - **ID:** `senior_engineer_agent`
 - **Model:** `openai/gpt-4o-mini`
+- **Tools:** toolSerper, toolOpenaiApi
 
-Role: Senior Software Engineer...
+Create software as needed...
 
 ### Software Quality Control Engineer
 
 - **ID:** `qa_engineer_agent`
 - **Model:** `openai/gpt-4o-mini`
+- **Tools:** toolSerper, toolOpenaiApi
 
-Role: Software Quality Control Engineer...
+Create Perfect code, by analyzing the code that is given for errors...
 
 ### Chief Software Quality Control Engineer
 
 - **ID:** `chief_qa_engineer_agent`
 - **Model:** `openai/gpt-4o-mini`
+- **Tools:** toolSerper, toolOpenaiApi
 
-Role: Chief Software Quality Control Engineer...
+Ensure that the code does the job that it is supposed to do...
 
 
 ---
 
 ## 🔧 Tools
 
-No tools defined in this project.
+### toolSerper
+
+Serper search API used for web search (mentioned in README)....
+
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolSerper.ts`)
+
+### toolOpenaiApi
+
+OpenAI API access used by CrewAI to call LLMs (configured via environment variables)....
+
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolOpenaiApi.ts`)
+
 
 ---
 
 ## 🔄 Workflows
 
-### Game Builder Sequential Workflow
+### wp_sequential
 
-A sequential workflow where code is produced, reviewed, and evaluated to produce final game code.
+Sequential Crew process as configured in crew.Crew(process=Process.sequential)
 
 **Steps:** 3
-1. code_task
-2. review_task
-3. evaluate_task
+1. task_code
+2. task_review
+3. task_evaluate
 
 
 ---

@@ -1,3 +1,13 @@
+"""
+Auto-generated AutoGen Team: UnnamedProject
+Goals:
+  - : Continuously track the latest biomedical advancements and identify how Weaviate’s features can support AI applications in biomedical research, diagnostics, and personalized medicine.
+  - : Stay updated on healthcare policy shifts, digital health trends, and explore how Weaviate’s features can optimize workflows in hospital systems, EHR integration, and health communication.
+  - : Monitor financial sector trends including AI in trading, compliance automation, and client advisory, and assess how Weaviate’s tools can enable cutting-edge financial applications.
+Capabilities:
+  - : Performs semantic vector search over document chunks in Weaviate.
+  - : Performs web search via Serper.dev.
+"""
 
 from autogen_agentchat.agents import AssistantAgent
 
@@ -25,49 +35,49 @@ model_client = OpenAIChatCompletionClient(
 # ==================================================
 
 
-def weaviate_vector_search_tool_impl(
+def tool_weaviate_vector_search_tool_impl(
     query: str = ""
 ) -> str:
     """
     AgentO Tool:
-    WeaviateVectorSearchTool
+    tool_weaviate_vector_search_tool
 
     Description:
-    Vector search tool configured to query a Weaviate collection (WeaviateBlogChunk).
+    Vector search tool using Weaviate for semantic retrieval from collection 'WeaviateBlogChunk'.
     """
     return (
-        "Tool 'weaviate_vector_search_tool' "
+        "Tool 'tool_weaviate_vector_search_tool' "
         "is a generated stub and "
         "has not been implemented yet."
     )
 
 
-weaviate_vector_search_tool = FunctionTool(
-    weaviate_vector_search_tool_impl,
-    description="""Vector search tool configured to query a Weaviate collection (WeaviateBlogChunk)."""
+tool_weaviate_vector_search_tool = FunctionTool(
+    tool_weaviate_vector_search_tool_impl,
+    description="""Vector search tool using Weaviate for semantic retrieval from collection 'WeaviateBlogChunk'. """
 )
 
 
-def serper_dev_tool_impl(
+def tool_serper_dev_tool_impl(
     query: str = ""
 ) -> str:
     """
     AgentO Tool:
-    SerperDevWebSearchTool
+    tool_serper_dev_tool
 
     Description:
-    Web search tool (SerperDev) used to retrieve web search results for background research.
+    Web search tool backed by Serper.dev.
     """
     return (
-        "Tool 'serper_dev_tool' "
+        "Tool 'tool_serper_dev_tool' "
         "is a generated stub and "
         "has not been implemented yet."
     )
 
 
-serper_dev_tool = FunctionTool(
-    serper_dev_tool_impl,
-    description="""Web search tool (SerperDev) used to retrieve web search results for background research."""
+tool_serper_dev_tool = FunctionTool(
+    tool_serper_dev_tool_impl,
+    description="""Web search tool backed by Serper.dev. """
 )
 
 
@@ -76,15 +86,15 @@ serper_dev_tool = FunctionTool(
 # ==================================================
 
 
-biomed_agent_1 = AssistantAgent(
-    name="biomed_agent_1",
+biomedical_marketing_agent = AssistantAgent(
+    name="biomedical_marketing_agent",
     model_client=model_client,
     system_message="""
 Role:
 Industry researcher focused on biomedical trends and their applications in AI
 
 Goal:
-Industry researcher focused on biomedical trends and their applications in AI
+Continuously track the latest biomedical advancements and identify how Weaviate’s features can support AI applications in biomedical research, diagnostics, and personalized medicine.
 
 Background:
 You are a Industry researcher focused on biomedical trends and their applications in AI.
@@ -92,15 +102,15 @@ You are a Industry researcher focused on biomedical trends and their application
 )
 
 
-healthcare_agent_1 = AssistantAgent(
-    name="healthcare_agent_1",
+healthcare_marketing_agent = AssistantAgent(
+    name="healthcare_marketing_agent",
     model_client=model_client,
     system_message="""
 Role:
 AI-savvy marketer specializing in healthcare systems, digital health, and patient engagement.
 
 Goal:
-AI-savvy marketer specializing in healthcare systems, digital health, and patient engagement.
+Stay updated on healthcare policy shifts, digital health trends, and explore how Weaviate’s features can optimize workflows in hospital systems, EHR integration, and health communication.
 
 Background:
 You are a AI-savvy marketer specializing in healthcare systems, digital health, and patient engagement..
@@ -108,15 +118,15 @@ You are a AI-savvy marketer specializing in healthcare systems, digital health, 
 )
 
 
-financial_agent_1 = AssistantAgent(
-    name="financial_agent_1",
+financial_marketing_agent = AssistantAgent(
+    name="financial_marketing_agent",
     model_client=model_client,
     system_message="""
 Role:
 Insight analyst exploring innovations in finance, wealth tech, and regulatory tech
 
 Goal:
-Insight analyst exploring innovations in finance, wealth tech, and regulatory tech
+Monitor financial sector trends including AI in trading, compliance automation, and client advisory, and assess how Weaviate’s tools can enable cutting-edge financial applications.
 
 Background:
 You are a Insight analyst exploring innovations in finance, wealth tech, and regulatory tech.

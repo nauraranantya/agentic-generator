@@ -39,7 +39,14 @@ UnnamedProject/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
 │       ├── agents/            # Agent definitions
-│       │   └── generativeUiSupervisor.ts
+│       │   └── supervisor.ts
+│       │   └── router.ts
+│       │   └── generalInput.ts
+│       │   └── stockbroker.ts
+│       │   └── tripPlanner.ts
+│       │   └── openCode.ts
+│       │   └── orderPizza.ts
+│       │   └── writerAgent.ts
 │       ├── tools/             # Tool definitions
 │       │   └── toolStockbroker.ts
 │       │   └── toolTripPlanner.ts
@@ -47,9 +54,8 @@ UnnamedProject/
 │       │   └── toolOrderPizza.ts
 │       │   └── toolWriterAgent.ts
 │       │   └── toolRouter.ts
-│       │   └── toolGeneralInput.ts
 │       └── workflows/         # Workflow definitions
-│           └── generativeUiWorkflow.ts
+│           └── stategraphWorkflow.ts
 ├── package.json
 ├── tsconfig.json
 └── .env.example
@@ -61,76 +67,128 @@ UnnamedProject/
 
 ### supervisor
 
-- **ID:** `generative-ui-supervisor`
+- **ID:** `supervisor`
 - **Model:** `openai/gpt-4o-mini`
-- **Tools:** toolStockbroker, toolTripPlanner, toolOpenCode, toolOrderPizza, toolWriterAgent, toolRouter, toolGeneralInput
+- **Tools:** toolStockbroker, toolTripPlanner, toolOpenCode, toolOrderPizza, toolWriterAgent, toolRouter
 
 You are supervisor....
+
+### router
+
+- **ID:** `router`
+- **Model:** `google/gemini-2.0-flash`
+- **Tools:** toolRouter
+
+You are router....
+
+### general_input_handler
+
+- **ID:** `generalInput`
+- **Model:** `openai/gpt-4o-mini`
+- **Tools:** toolStockbroker, toolTripPlanner, toolOpenCode, toolOrderPizza, toolWriterAgent
+
+You are general_input_handler....
+
+### stockbroker_tool_agent
+
+- **ID:** `stockbroker`
+- **Model:** `openai/gpt-4o-mini`
+- **Tools:** toolStockbroker
+
+You are stockbroker_tool_agent....
+
+### trip_planner_tool_agent
+
+- **ID:** `tripPlanner`
+- **Model:** `openai/gpt-4o-mini`
+- **Tools:** toolTripPlanner
+
+You are trip_planner_tool_agent....
+
+### open_code_tool_agent
+
+- **ID:** `openCode`
+- **Model:** `openai/gpt-4o-mini`
+- **Tools:** toolOpenCode
+
+You are open_code_tool_agent....
+
+### order_pizza_tool_agent
+
+- **ID:** `orderPizza`
+- **Model:** `openai/gpt-4o-mini`
+- **Tools:** toolOrderPizza
+
+You are order_pizza_tool_agent....
+
+### writer_agent_tool
+
+- **ID:** `writerAgent`
+- **Model:** `openai/gpt-4o-mini`
+- **Tools:** toolWriterAgent
+
+You are writer_agent_tool....
 
 
 ---
 
 ## 🔧 Tools
 
-### stockbroker
+### toolStockbroker
 
-Can fetch the price of a ticker, purchase/sell a ticker, or get the user's portfolio....
+can fetch the price of a ticker, purchase/sell a ticker, or get the user's portfolio...
 
 **Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolStockbroker.ts`)
 
-### tripPlanner
+### toolTripPlanner
 
-Helps the user plan their trip. It can suggest restaurants and places to stay in any given location....
+helps the user plan their trip; can suggest restaurants and places to stay in any given location....
 
 **Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolTripPlanner.ts`)
 
-### openCode
+### toolOpenCode
 
-Can write a React TODO app for the user. Only call this tool if the user requests a TODO app....
+can write a React TODO app for the user. Only call this tool if they request a TODO app....
 
 **Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolOpenCode.ts`)
 
-### orderPizza
+### toolOrderPizza
 
-Can order a pizza for the user....
+can order a pizza for the user...
 
 **Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolOrderPizza.ts`)
 
-### writerAgent
+### toolWriterAgent
 
-Can write a text document for the user. Only call this tool if they request a text document....
+can write a text document for the user. Only call this tool if they request a text document....
 
 **Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolWriterAgent.ts`)
 
-### router
+### toolRouter
 
-A tool used by the router node to select which tool should handle the user's query (routes: stockbroker, tripPlanner, openCode, orderPizza, generalInput, writerAgent)....
+A tool to route the user's query to the appropriate tool. (Used as a tool schema bound to the routing model)...
 
 **Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolRouter.ts`)
-
-### generalInput
-
-Tool/node that responds to general user inputs and summarizes or follows up on tool results....
-
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolGeneralInput.ts`)
 
 
 ---
 
 ## 🔄 Workflows
 
-### Generative UI Agent Workflow
+### stategraph_workflow
 
 
 
-**Steps:** 7
-1. Router Task
-2. Stockbroker Task
-3. Trip Planner Task
-4. Open Code Task
-5. Order Pizza Task
-6. General Input Task
-7. Writer Agent Task
+**Steps:** 9
+1. task_start
+2. task_router
+3. task_stockbroker
+4. task_trip_planner
+5. task_open_code
+6. task_order_pizza
+7. task_general_input
+8. task_writer_agent
+9. task_end
 
 
 ---

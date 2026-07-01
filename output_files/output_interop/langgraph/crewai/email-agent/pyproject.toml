@@ -10,7 +10,7 @@ dependencies = [
     "crewai[tools]>=0.152.0",
     "python-dotenv>=1.0.1",
     "pyyaml>=6.0.1",
-    # TODO: add PyPI package for custom tool "writeemailtoolschemabound"
+    # TODO: add PyPI package for custom tool "Toolwriteemail"
 ]
 
 [project.scripts]

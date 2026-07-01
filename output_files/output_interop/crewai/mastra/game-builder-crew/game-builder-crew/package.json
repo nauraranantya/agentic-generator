@@ -1,7 +1,7 @@
 {
   "name": "game-builder-crew",
   "version": "0.1.0",
-  "description": "",
+  "description": "CrewAI crew defined in GameBuilderCrew class (src/game_builder_crew/crew.py)",
   "type": "module",
   "main": "src/mastra/index.ts",
   "scripts": {

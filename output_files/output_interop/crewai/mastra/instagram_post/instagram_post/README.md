@@ -1,4 +1,4 @@
-# CopyCrew
+# UnnamedProject
 
 
 
@@ -34,7 +34,7 @@ npm run dev
 ## 📦 Project Structure
 
 ```
-CopyCrew/
+UnnamedProject/
 ├── src/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
@@ -43,14 +43,14 @@ CopyCrew/
 │       │   └── strategyPlannerAgent.ts
 │       │   └── creativeContentCreatorAgent.ts
 │       │   └── seniorPhotographerAgent.ts
-│       │   └── chiefCreativeDirectorAgent.ts
+│       │   └── chiefCreativeDiretorAgent.ts
 │       ├── tools/             # Tool definitions
-│       │   └── toolBrowserToolsScrapeAndSummarize.ts
-│       │   └── toolSearchToolsSearchInternet.ts
-│       │   └── toolSearchToolsSearchInstagram.ts
+│       │   └── toolScrapeWebsite.ts
+│       │   └── toolSearchInternet.ts
+│       │   └── toolSearchInstagram.ts
 │       └── workflows/         # Workflow definitions
-│           └── wpCopyCrew.ts
-│           └── wpImageCrew.ts
+│           └── workflowCopyCrew.ts
+│           └── workflowImageCrew.ts
 ├── package.json
 ├── tsconfig.json
 └── .env.example
@@ -64,72 +64,71 @@ CopyCrew/
 
 - **ID:** `product_competitor_agent`
 - **Model:** `openai/gpt-4o-mini`
+- **Tools:** toolScrapeWebsite, toolSearchInternet
 
-Agent backstory and role description for Lead Market Analyst...
+Produce thorough product and competitor analysis to inform marketing strategy....
 
 ### Chief Marketing Strategist
 
 - **ID:** `strategy_planner_agent`
 - **Model:** `openai/gpt-4o-mini`
+- **Tools:** toolScrapeWebsite, toolSearchInternet, toolSearchInstagram
 
-Agent backstory and role description for Chief Marketing Strategist...
+Formulate marketing strategies and creative ideas based on product and competitor analysis....
 
 ### Creative Content Creator
 
 - **ID:** `creative_content_creator_agent`
 - **Model:** `openai/gpt-4o-mini`
+- **Tools:** toolScrapeWebsite, toolSearchInternet, toolSearchInstagram
 
-Agent backstory and role description for Creative Content Creator...
+Produce multiple Instagram ad copy options aligned with campaign strategy....
 
 ### Senior Photographer
 
 - **ID:** `senior_photographer_agent`
 - **Model:** `openai/gpt-4o-mini`
+- **Tools:** toolScrapeWebsite, toolSearchInternet, toolSearchInstagram
 
-Agent backstory and role description for Senior Photographer...
+Generate three photographic concepts that best represent the campaign and product without showing the actual product....
 
 ### Chief Creative Director
 
-- **ID:** `chief_creative_director_agent`
+- **ID:** `chief_creative_diretor_agent`
 - **Model:** `openai/gpt-4o-mini`
+- **Tools:** toolScrapeWebsite, toolSearchInternet, toolSearchInstagram
 
-Agent backstory and role description for Chief Creative Director...
+Ensure final creative outputs are aligned with product goals; review and approve imagery....
 
 
 ---
 
 ## 🔧 Tools
 
-### BrowserTools.scrape_and_summarize_website
+### toolScrapeWebsite
 
-Semantic purpose: Scrape a website and produce a long summary of its content or content chunks.
-Input: full URL string (e.g., https://example.com).
-Outputs: textual scrapped content and summaries (use...
+Scrapes a webpage via Browserless API and summarizes chunks using an LLM....
 
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolBrowserToolsScrapeAndSummarize.ts`)
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolScrapeWebsite.ts`)
 
-### SearchTools.search_internet
+### toolSearchInternet
 
-Semantic purpose: Search the Internet (generic web search) and return top organic results, title, link, snippet.
-Input: query string.
-Configuration: uses SERPER_API_KEY (search service) as an API key....
+Performs web searches using the Serper (google.serper.dev) API and returns top results....
 
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolSearchToolsSearchInternet.ts`)
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolSearchInternet.ts`)
 
-### SearchTools.search_instagram
+### toolSearchInstagram
 
-Semantic purpose: Search Instagram via site-limited search (site:instagram.com) to find relevant posts.
-Input: query string.
-Configuration: uses SERPER_API_KEY (search service) as an API key....
+Performs targeted Instagram site searches (site:instagram.com ...) via Serper API....
 
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolSearchToolsSearchInstagram.ts`)
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolSearchInstagram.ts`)
 
 
 ---
 
 ## 🔄 Workflows
 
-### Workflow Pattern - Copy Crew
+### workflow_copy_crew
 
 
 
@@ -139,7 +138,7 @@ Configuration: uses SERPER_API_KEY (search service) as an API key....
 3. task_campaign_development
 4. task_instagram_ad_copy
 
-### Workflow Pattern - Image Crew
+### workflow_image_crew
 
 
 

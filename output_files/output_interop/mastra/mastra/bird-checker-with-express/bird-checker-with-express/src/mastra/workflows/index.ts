@@ -1,3 +1,3 @@
-export { imageMetadataWorkflow } from './imageMetadataWorkflow'
+export { birdCheckWorkflow } from './birdCheckWorkflow'
 export * from './ad_hoc_tasks'
 

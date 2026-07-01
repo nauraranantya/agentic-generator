@@ -7,6 +7,9 @@
 
 import { Mastra } from '@mastra/core'
 
+// Import agents
+import { mastraAgent } from './agents'
+
 // Import workflows
 import { myWorkflowPattern } from './workflows'
 
@@ -15,6 +18,9 @@ import { myWorkflowPattern } from './workflows'
  *
  */
 export const mastra = new Mastra({
+  agents: {
+    mastraAgent,
+  },
   workflows: {
     myWorkflowPattern,
   },

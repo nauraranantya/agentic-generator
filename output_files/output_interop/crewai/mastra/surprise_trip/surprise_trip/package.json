@@ -1,7 +1,7 @@
 {
   "name": "surprise_trip",
   "version": "0.1.0",
-  "description": "SurpriseTravel crew coordinating agents to plan a surprise travel itinerary.\n    Agents: personalized_activity_planner, restaurant_scout, itinerary_compiler.\n    Process: sequential (represented in steps order).",
+  "description": "",
   "type": "module",
   "main": "src/mastra/index.ts",
   "scripts": {

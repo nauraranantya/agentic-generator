@@ -1,3 +1,3 @@
-export { stockbrokerWorkflow } from './stockbrokerWorkflow'
+export { buyStockWorkflow } from './buyStockWorkflow'
 export * from './ad_hoc_tasks'
 

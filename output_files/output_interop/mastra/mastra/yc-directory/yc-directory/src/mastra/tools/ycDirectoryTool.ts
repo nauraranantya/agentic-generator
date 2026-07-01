@@ -3,7 +3,7 @@
  * 
  * Auto-generated from AgentO Knowledge Graph
  * 
- * Tool that returns the Y Combinator 2024 directory data. Created in src/mastra/tools/index.ts. Exposes an execute action that returns the dataset.
+ * Get data from the 2024 YC directory
  */
 
 import { createTool } from '@mastra/core/tools'
@@ -12,20 +12,17 @@ import { z } from 'zod'
 /**
  * ycDirectoryTool
  * 
- * Implementation: Tool that returns the Y Combinator 2024 directory data. Created in src/mastra/tools/index.ts. Exposes an execute action that returns the dataset.
+ * Implementation: Get data from the 2024 YC directory
  */
 export const ycDirectoryTool = createTool({
   id: 'ycDirectoryTool',
-  description: `Tool that returns the Y Combinator 2024 directory data. Created in src/mastra/tools/index.ts. Exposes an execute action that returns the dataset.`,
+  description: `Get data from the 2024 YC directory`,
   inputSchema: z.object({}),  // TODO: Define input schema
-  outputSchema: z.object({name: z.string()}),
+  outputSchema: z.object({}),  // TODO: Define output schema
   execute: async ({ inputData }) => {
     // TODO: Implement tool logic
     // 
-    // Description: Tool that returns the Y Combinator 2024 directory data. Created in src/mastra/tools/index.ts. Exposes an execute action that returns the dataset.
-    // Configurations:
-    //   - inputSchema: { }
-    //   - outputSchema: Array<{ name: string, longDescription: string, tags: string, industries: string, batch: string }>
+    // Description: Get data from the 2024 YC directory
     // 
     // Implementation should:
     // 1. Use inputData according to inputSchema

@@ -1,3 +1,3 @@
-export { markdownValidationWorkflowPattern } from './markdownValidationWorkflowPattern'
+export { markdownValidationWorkflow } from './markdownValidationWorkflow'
 export * from './ad_hoc_tasks'
 

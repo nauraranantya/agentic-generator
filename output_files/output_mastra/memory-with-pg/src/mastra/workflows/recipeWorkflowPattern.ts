@@ -69,7 +69,5 @@ export const recipeWorkflowPattern = createWorkflow({
   outputSchema: z.object({}),
   steps: [taskRecipeSuggestInitialQuery, taskRecipeSuggestFriendsHouseQuery, taskRecipeSuggestRecallPrevious],
 })
-  .then(taskRecipeSuggestInitialQuery)
-  .then(taskRecipeSuggestFriendsHouseQuery)
-  .then(taskRecipeSuggestRecallPrevious)
+  .parallel([taskRecipeSuggestInitialQuery, taskRecipeSuggestFriendsHouseQuery, taskRecipeSuggestRecallPrevious])
   .commit()

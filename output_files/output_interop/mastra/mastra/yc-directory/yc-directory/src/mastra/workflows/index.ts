@@ -1,3 +1,3 @@
-export { ycQueryWorkflow } from './ycQueryWorkflow'
+export { ycDirectoryWorkflow } from './ycDirectoryWorkflow'
 export * from './ad_hoc_tasks'
 

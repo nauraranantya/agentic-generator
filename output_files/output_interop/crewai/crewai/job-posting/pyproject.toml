@@ -1,7 +1,7 @@
 [project]
-name = "job_posting_crew_team"
+name = "unnamed_project"
 version = "0.1.0"
-description = ""
+description = "CrewAI crew that orchestrates agents to create job postings"
 authors = [{name = "Your Name", email = "you@example.com"}]
 readme = "README.md"
 requires-python = ">=3.10,<=3.13"
@@ -13,7 +13,7 @@ dependencies = [
 ]
 
 [project.scripts]
-job_posting_crew_team = "main:run"
+unnamed_project = "main:run"
 train      = "main:train"
 
 [tool.uv]

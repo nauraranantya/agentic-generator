@@ -1,7 +1,4 @@
-open_code_agent_001:
-  role: planner-executor LLM agent (coordinates planning and performs file updates
-    via tools and UI prompts)
-  goal: planner-executor LLM agent (coordinates planning and performs file updates
-    via tools and UI prompts)
-  backstory: |
-    You are a planner-executor LLM agent (coordinates planning and performs file updates via tools and UI prompts).
+langgraph_agent:
+  role: assistant
+  goal: assistant
+  backstory: You are a assistant.

@@ -1,6 +1,6 @@
-# RecruitmentCrew
+# UnnamedProject
 
-
+CrewAI-based team coordinating agents to automate recruitment tasks.
 
 **Auto-generated from AgentO Knowledge Graph**  
 Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
@@ -34,7 +34,7 @@ npm run dev
 ## 📦 Project Structure
 
 ```
-RecruitmentCrew/
+UnnamedProject/
 ├── src/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
@@ -45,10 +45,10 @@ RecruitmentCrew/
 │       │   └── reporter.ts
 │       ├── tools/             # Tool definitions
 │       │   └── toolSerperdev.ts
-│       │   └── toolScrapewebsite.ts
+│       │   └── toolScrapeWebsite.ts
 │       │   └── toolLinkedin.ts
 │       └── workflows/         # Workflow definitions
-│           └── recruitmentWorkflow.ts
+│           └── workflowRecruitment.ts
 ├── package.json
 ├── tsconfig.json
 └── .env.example
@@ -62,53 +62,53 @@ RecruitmentCrew/
 
 - **ID:** `researcher`
 - **Model:** `openai/gpt-4o-mini`
-- **Tools:** toolSerperdev, toolScrapewebsite, toolLinkedin
+- **Tools:** toolSerperdev, toolScrapeWebsite, toolLinkedin
 
-Agent-level base instruction for researcher....
+Agent goal: find potential candidates matching provided job requirements....
 
 ### Candidate Matcher and Scorer
 
 - **ID:** `matcher`
 - **Model:** `openai/gpt-4o-mini`
-- **Tools:** toolSerperdev, toolScrapewebsite
+- **Tools:** toolSerperdev, toolScrapeWebsite
 
-Agent-level base instruction for matcher....
+Agent goal: evaluate and rank candidates against job requirements....
 
 ### Candidate Outreach Strategist
 
 - **ID:** `communicator`
 - **Model:** `openai/gpt-4o-mini`
-- **Tools:** toolSerperdev, toolScrapewebsite
+- **Tools:** toolSerperdev, toolScrapeWebsite
 
-Agent-level base instruction for communicator....
+Agent goal: create outreach templates and communication plans....
 
 ### Candidate Reporting Specialist
 
 - **ID:** `reporter`
 - **Model:** `openai/gpt-4o-mini`
 
-Agent-level base instruction for reporter....
+Agent goal: compile findings and recommend top candidates....
 
 
 ---
 
 ## 🔧 Tools
 
-### SerperDevTool
+### toolSerperdev
 
-Search / knowledge tool (SerperDev) used by agents for web search or knowledge lookups....
+Search API tool for retrieving web search results....
 
 **Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolSerperdev.ts`)
 
-### ScrapeWebsiteTool
+### toolScrapeWebsite
 
-General web scraping tool used to extract structured information from web pages....
+Tool for scraping and extracting structured information from websites....
 
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolScrapewebsite.ts`)
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolScrapeWebsite.ts`)
 
-### Retrieve LinkedIn profiles
+### toolLinkedin
 
-Retrieve LinkedIn profiles given a list of skills. Input is a comma-separated list of skills. Returns candidate name, position, location, and profile link. Implemented via a web client that navigates ...
+Custom LinkedIn retrieval tool that uses an authenticated browser session to find candidate profiles....
 
 **Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolLinkedin.ts`)
 
@@ -117,15 +117,15 @@ Retrieve LinkedIn profiles given a list of skills. Input is a comma-separated li
 
 ## 🔄 Workflows
 
-### Recruitment workflow pattern
+### workflow_recruitment
 
-
+Workflow pattern representing Crew.process=Process.sequential
 
 **Steps:** 4
-1. research_candidates_task
-2. match_and_score_candidates_task
-3. outreach_strategy_task
-4. report_candidates_task
+1. task_research_candidates
+2. task_match_and_score_candidates
+3. task_outreach_strategy
+4. task_report_candidates
 
 
 ---

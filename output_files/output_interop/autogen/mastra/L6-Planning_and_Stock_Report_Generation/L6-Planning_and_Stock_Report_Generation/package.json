@@ -1,7 +1,7 @@
 {
   "name": "L6-Planning_and_Stock_Report_Generation",
   "version": "0.1.0",
-  "description": "Represents the group chat coordinating agents: Admin (user proxy), Planner, Engineer, Executor, Writer. Modeled as a Team for lack of a dedicated GroupChat class in the ontology.",
+  "description": "Team instantiated by GroupChat(agents=[...]) with a max_round and allowed speaker transitions.",
   "type": "module",
   "main": "src/mastra/index.ts",
   "scripts": {

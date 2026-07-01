@@ -1,8 +1,8 @@
 travel_agent:
-  role: LLM Agent
-  goal: LLM Agent
-  backstory: Agent-level instruction used on agent initialization
+  role: travel agent
+  goal: travel agent
+  backstory: You are a travel agent.
 travel_analyzer:
-  role: LLM Agent
-  goal: LLM Agent
-  backstory: Analyzer agent base instructions.
+  role: travel analyzer
+  goal: travel analyzer
+  backstory: You are a travel analyzer.

@@ -1,7 +1,7 @@
 [project]
 name = "unnamed_project"
 version = "0.1.0"
-description = ""
+description = "Frontend trading system that displays portfolio data and enables trade execution"
 authors = [{name = "Your Name", email = "you@example.com"}]
 readme = "README.md"
 requires-python = ">=3.10,<=3.13"
@@ -10,9 +10,7 @@ dependencies = [
     "crewai[tools]>=0.152.0",
     "python-dotenv>=1.0.1",
     "pyyaml>=6.0.1",
-    # TODO: add PyPI package for custom tool "stockprice"
-    # TODO: add PyPI package for custom tool "portfolio"
-    # TODO: add PyPI package for custom tool "buystock"
+    # TODO: add PyPI package for custom tool "buyStockTool"
 ]
 
 [project.scripts]

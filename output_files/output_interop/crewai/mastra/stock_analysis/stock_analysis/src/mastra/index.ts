@@ -1,33 +1,33 @@
 /**
- * Mastra AI Instance - StockAnalysisCrew
+ * Mastra AI Instance - UnnamedProject
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
  * Goals:
- *   - Stock analysis overall goal: Conduct stock and filings analysis pipeline that collects news, analyzes EDGAR filings, computes key financial metrics and produces investment recommendations.
+ *   - : Automate the process of analyzing a stock to produce a detailed report and investment recommendation.
  */
 
 import { Mastra } from '@mastra/core'
 
 // Import agents
-import { financialAgent, financialAnalystAgent, researchAnalystAgent, investmentAdvisorAgent } from './agents'
+import { financialAgent, researchAnalystAgent, financialAnalystAgent, investmentAdvisorAgent } from './agents'
 
 // Import workflows
-import { stockAnalysisWorkflow } from './workflows'
+import { workflowStockAnalysis } from './workflows'
 
 /**
  * Mastra instance with registered agents, workflows, and memory.
  *
- * Team that coordinates a set of LLM agents and tasks to perform stock/filings/research analysis for a given company ticker (example: AMZN).
+ * CrewAI-based team coordinating multiple analyst agents to produce stock analysis and recommendations.
  */
 export const mastra = new Mastra({
   agents: {
     financialAgent,
-    financialAnalystAgent,
     researchAnalystAgent,
+    financialAnalystAgent,
     investmentAdvisorAgent,
   },
   workflows: {
-    stockAnalysisWorkflow,
+    workflowStockAnalysis,
   },
 })

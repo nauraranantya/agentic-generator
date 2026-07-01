@@ -103,9 +103,8 @@ const workflow = new StateGraph(UnnamedProjectAnnotation)
   .addNode("sendEmailFinalizeSend", sendEmailFinalizeSend)
   .addEdge(START, "writeEmailGenerateDraft")
   .addEdge("writeEmailGenerateDraft", "ignore")
-  .addEdge("ignore", "sendEmailFinalizeSend")
-  .addEdge("ignore", "rewriteEmailApplyUserSRequestedChanges")
   .addEdge("rewriteEmailApplyUserSRequestedChanges", "ignore")
+  .addEdge("ignore", END)
   .addEdge("sendEmailFinalizeSend", END)
 ;
 

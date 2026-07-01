@@ -1,35 +1,29 @@
 /**
- * Agent: assistant / trip-planner
+ * Agent: assistant
  * ID: trip-planner-agent
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Capabilities:
- *   - : 
- *   - : 
- *   - : 
- *   - : 
+ *   - : Creates and confirms accommodation bookings (receives accommodation and trip details, returns booking confirmation and details).
  */
 
 import { Agent } from '@mastra/core/agent'
 
 // Import tools
-import { toolExtract, toolClassify, toolListAccommodations, toolListRestaurants } from '../tools'
+import { bookAccommodationTool } from '../tools'
 
 /**
- * assistant / trip-planner
+ * assistant
  * 
  * Instructions:
- * You are assistant / trip-planner.
+ * Used by the trip planner LLM to format messages and construct tool calls for bookings.
  */
 export const tripPlannerAgent = new Agent({
   id: `trip-planner-agent`,
-  name: `assistant / trip-planner`,
-  instructions: `You are assistant / trip-planner.`,
-  model: 'openai/gpt-4o',
+  name: `assistant`,
+  instructions: `Used by the trip planner LLM to format messages and construct tool calls for bookings.`,
+  model: 'openai/gpt-4o-mini',
   tools: {
-    toolExtract,
-    toolClassify,
-    toolListAccommodations,
-    toolListRestaurants,
+    bookAccommodationTool,
   },
 })

@@ -1,7 +1,7 @@
 {
   "name": "workflow-with-inline-steps",
   "version": "0.1.0",
-  "description": "Represents the Mastra deployment that contains the defined workflows.",
+  "description": "Mastra instance created in src/mastra/index.ts with registered workflows.",
   "type": "module",
   "main": "src/mastra/index.ts",
   "scripts": {

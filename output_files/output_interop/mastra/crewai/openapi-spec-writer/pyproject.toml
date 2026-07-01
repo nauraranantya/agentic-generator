@@ -1,7 +1,7 @@
 [project]
-name = "mastra_system"
+name = "unnamed_project"
 version = "0.1.0"
-description = "The deployed Mastra system that coordinates agents, tools and workflows for gene"
+description = "Mastra instance configured in src/mastra/index.ts (serviceName: mastra-vnext)."
 authors = [{name = "Your Name", email = "you@example.com"}]
 readme = "README.md"
 requires-python = ">=3.10,<=3.13"
@@ -10,15 +10,13 @@ dependencies = [
     "crewai[tools]>=0.152.0",
     "python-dotenv>=1.0.1",
     "pyyaml>=6.0.1",
-    # TODO: add PyPI package for custom tool "SiteCrawl"
-    # TODO: add PyPI package for custom tool "FirecrawlIntegration"
-    # TODO: add PyPI package for custom tool "GenerateSpec"
-    # TODO: add PyPI package for custom tool "AddtoGit"
-    # TODO: add PyPI package for custom tool "GitHubIntegration"
+    # TODO: add PyPI package for custom tool "toolsitecrawl"
+    # TODO: add PyPI package for custom tool "toolgeneratespec"
+    # TODO: add PyPI package for custom tool "tooladdtogithub"
 ]
 
 [project.scripts]
-mastra_system = "main:run"
+unnamed_project = "main:run"
 train      = "main:train"
 
 [tool.uv]

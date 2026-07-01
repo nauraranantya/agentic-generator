@@ -1,26 +1,30 @@
 /**
  * Agent: assistant
- * ID: dane
+ * ID: Dane
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Capabilities:
- *   - Execute shell commands: Running external commands via execa or child_process (e.g., git, pnpm, npm).
- *   - Filesystem read/write: Read, write and append files on local filesystem.
- *   - Web browsing and scraping: Open a headless browser, navigate to pages, extract text.
- *   - Web search: Query Google search and extract result links.
- *   - Read PDF: Extract text and metadata from PDF files.
- *   - Read local calendar: Access MacOS Calendar via AppleScript and parse events.
- *   - Build and publish packages: Run pnpm build and changeset publish, set npm dist-tags.
- *   - Post messages to Slack via MCP: Send formatted messages to Slack channels using MCP client.
+ *   - : Browse and scrape web pages, return extracted text.
+ *   - : Run web search queries and return result links.
+ *   - : Read and list calendar events.
+ *   - : Crawl websites and sync content to a DB.
+ *   - : Execute system commands and capture output.
+ *   - : Filesystem read/write operations.
+ *   - : Generate images from text prompts and write files.
+ *   - : Extract text content from PDF files.
+ *   - : Build pnpm packages in given paths.
+ *   - : Detect packages that will be published.
+ *   - : Publish changesets to the registry.
+ *   - : Set active distribution tags for published packages.
+ *   - : Post messages to Slack channels via MCP client.
+ *   - : Query and post to GitHub (pull requests, issues, labels, comments).
+ *   - : Key-value storage for agent memory/context windows.
  */
 
 import { Agent } from '@mastra/core/agent'
 
 // Import tools
-import { toolExecaTool, toolFsTool, toolListEvents, toolBrowserTool, toolGoogleSearch, toolReadPdf } from '../tools'
-
-// Import memory
-import { memoryUpstash } from '../memory'
+import { toolBrowserTool, toolGoogleSearch, toolListEvents, toolCrawl, toolExecaTool, toolFsTool, toolImageTool, toolReadPdf } from '../tools'
 
 /**
  * assistant
@@ -29,17 +33,18 @@ import { memoryUpstash } from '../memory'
  * You are assistant.
  */
 export const dane = new Agent({
-  id: `dane`,
+  id: `Dane`,
   name: `assistant`,
   instructions: `You are assistant.`,
-  model: 'anthropic/claude-3-5-sonnet-20241022',
+  model: 'openai/gpt-4o-mini',
   tools: {
-    toolExecaTool,
-    toolFsTool,
-    toolListEvents,
     toolBrowserTool,
     toolGoogleSearch,
+    toolListEvents,
+    toolCrawl,
+    toolExecaTool,
+    toolFsTool,
+    toolImageTool,
     toolReadPdf,
   },
-  memory: memoryUpstash,
 })

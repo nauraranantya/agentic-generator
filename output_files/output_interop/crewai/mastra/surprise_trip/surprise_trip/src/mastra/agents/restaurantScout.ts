@@ -3,30 +3,32 @@
  * ID: restaurant_scout
  * 
  * Auto-generated from AgentO Knowledge Graph
- * Objectives:
- *   - : Produce a per-day list of recommended activities and events including details and suitability rationale.
- *   - : Produce recommended restaurants and scenic locations with ratings and descriptions for each relevant day.
- *   - : Produce a single integrated itinerary document that schedules flights, hotel, day plans, activities and restaurants.
+ * Capabilities:
+ *   - : Performs web searches for information such as events, activities, and restaurant listings.
+ *   - : Extracts structured information from web pages (addresses, ratings, descriptions).
+ *   - : Research and recommend activities suitable to traveler preferences.
+ *   - : Find and recommend restaurants and scenic dining locations.
+ *   - : Compile research into a day-by-day itinerary document.
  */
 
 import { Agent } from '@mastra/core/agent'
 
 // Import tools
-import { serperDevTool, scrapeWebsiteTool } from '../tools'
+import { toolSerperDevTool, toolScrapeWebsiteTool } from '../tools'
 
 /**
  * Restaurant Scout
  * 
  * Instructions:
- * Use internet search tools, restaurant review sites, and travel guides to find restaurants and scenic locations aligned with traveler preferences.
+ * You are Restaurant Scout.
  */
 export const restaurantScout = new Agent({
   id: `restaurant_scout`,
   name: `Restaurant Scout`,
-  instructions: `Use internet search tools, restaurant review sites, and travel guides to find restaurants and scenic locations aligned with traveler preferences.`,
+  instructions: `You are Restaurant Scout.`,
   model: 'openai/gpt-4o-mini',
   tools: {
-    serperDevTool,
-    scrapeWebsiteTool,
+    toolSerperDevTool,
+    toolScrapeWebsiteTool,
   },
 })

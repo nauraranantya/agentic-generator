@@ -1,38 +1,7 @@
 task_step_one:
-  description: |
-    Execution logic (preserved from source):
-        doubledValue = context?.workflow?.state?.triggerData.inputValue * 2
-
-        Notes:
-        - The task reads the workflow trigger value at path workflow.state.triggerData.inputValue and outputs doubledValue.
-        - Input schema (declared in code): { value: number } (this is the step input schema)
-        - Output schema (declared in code): { doubledValue: number }
-  expected_output: 'Completed: task_step_one'
+  description: Compute doubledValue from triggerData.inputValue.
+  expected_output: 'doubledValue: number'
 task_step_two:
-  description: |
-    Execution logic (preserved from source):
-        incrementedValue = inputData.valueToIncrement + 1
-
-        Notes:
-        - stepTwo's declared input schema: { valueToIncrement: number }
-        - stepTwo's declared output schema: { incrementedValue: number }
-        - Typical dataflow in this workflow: stepOne produces 'doubledValue'. The code's input name is 'valueToIncrement'; implementers should map stepOne.doubledValue -> stepTwo.valueToIncrement at runtime.
-  expected_output: 'Completed: task_step_two'
-task_step_three:
-  description: |
-    Execution logic (preserved from source):
-        if (context?.workflow?.resumeData?.confirm !== 'true') {
-          return context?.workflow?.suspend({
-            message: 'Do you accept?',
-          });
-        }
-
-        return {
-          message: 'Thank you for accepting',
-        };
-
-        Notes:
-        - This task implements a suspend/resume pattern: when resumeData.confirm !== 'true', it suspends and requests confirmation with message 'Do you accept?'.
-        - On resume with confirm === 'true' the task returns a message 'Thank you for accepting'.
-        - The ontology cannot represent runtime suspend/resume mechanics formally; this behavior is captured here as descriptive metadata.
-  expected_output: 'Completed: task_step_three'
+  description: If stepOne succeeded, compute incrementedValue = doubledValue + 1;
+    else return 0.
+  expected_output: 'incrementedValue: number'

@@ -1,6 +1,6 @@
 # UnnamedProject
 
-Represents the Mastra deployment that contains the defined workflows.
+Mastra instance created in src/mastra/index.ts with registered workflows.
 
 **Auto-generated from AgentO Knowledge Graph**  
 Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
@@ -39,10 +39,10 @@ UnnamedProject/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
 │       ├── agents/            # Agent definitions
+│       │   └── mastraDefaultAgent.ts
 │       ├── tools/             # Tool definitions
-│       │   └── mastraEngineTool.ts
 │       └── workflows/         # Workflow definitions
-│           └── myWorkflowPattern.ts
+│           └── myWorkflow.ts
 ├── package.json
 ├── tsconfig.json
 └── .env.example
@@ -52,31 +52,31 @@ UnnamedProject/
 
 ## 🤖 Agents
 
-No agents defined in this project.
+### workflow-executor
+
+- **ID:** `mastra_default_agent`
+- **Model:** `openai/gpt-4o-mini`
+
+You are workflow-executor....
+
 
 ---
 
 ## 🔧 Tools
 
-### mastraEngineTool
-
-Represents the Mastra runtime/engine that executes workflow steps and tasks (mapped to :Tool for lack of a runtime class in ontology)....
-
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/mastraEngineTool.ts`)
-
+No tools defined in this project.
 
 ---
 
 ## 🔄 Workflows
 
-### my_workflow_pattern
+### my_workflow
 
-Workflow defined in src/mastra/workflows/index.ts with a numeric trigger schema { inputValue: number }. Steps: stepOne -> stepTwo -> stepThree. Committed (myWorkflow.commit()).
+Workflow with triggerSchema { inputValue: number } and two sequential inline steps (stepOne -> stepTwo).
 
-**Steps:** 3
+**Steps:** 2
 1. task_step_one
 2. task_step_two
-3. task_step_three
 
 
 ---

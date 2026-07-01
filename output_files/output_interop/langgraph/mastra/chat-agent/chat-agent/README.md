@@ -1,6 +1,6 @@
 # UnnamedProject
 
-A logical grouping used here so the workflow pattern can be linked to the agent; the original source is a single compiled agent graph.
+
 
 **Auto-generated from AgentO Knowledge Graph**  
 Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
@@ -39,10 +39,10 @@ UnnamedProject/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
 │       ├── agents/            # Agent definitions
-│       │   └── chatAgent1.ts
+│       │   └── chatAgent.ts
 │       ├── tools/             # Tool definitions
 │       └── workflows/         # Workflow definitions
-│           └── chatAgentStateGraph.ts
+│           └── wpStategraph.ts
 ├── package.json
 ├── tsconfig.json
 └── .env.example
@@ -52,12 +52,12 @@ UnnamedProject/
 
 ## 🤖 Agents
 
-### conversational assistant
+### assistant
 
-- **ID:** `chat-agent-1`
+- **ID:** `Chat Agent`
 - **Model:** `openai/gpt-4o-mini`
 
-This system role message is prepended to every model invocation in the chat node....
+You are assistant....
 
 
 ---
@@ -70,12 +70,12 @@ No tools defined in this project.
 
 ## 🔄 Workflows
 
-### chat_agent_state_graph
+### wp_stategraph
 
-Represents the StateGraph with a single 'chat' node. The START edge points to this node; modeled here by making the step a StartStep and setting stepOrder=1.
+
 
 **Steps:** 1
-1. chat_task
+1. task_chat
 
 
 ---

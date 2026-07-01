@@ -3,7 +3,7 @@ import { Annotation, START, END, StateGraph } from "@langchain/langgraph";
 import { tool } from "@langchain/core/tools";
 import { z } from "zod";
 
-const RecruitmentCrewAnnotation = Annotation.Root({
+const UnnamedProjectAnnotation = Annotation.Root({
   messages: Annotation<any[]>({
     reducer: (_, next) => next,
     default: () => [],
@@ -17,18 +17,18 @@ const tool_serperdev = tool(
   },
   {
     name: "tool_serperdev",
-    description: "Search / knowledge tool (SerperDev) used by agents for web search or knowledge lookups.",
+    description: "Search API tool for retrieving web search results.",
     schema: z.object({}),
   }
 );
-// Tool: tool_scrapewebsite
-const tool_scrapewebsite = tool(
+// Tool: tool_scrape_website
+const tool_scrape_website = tool(
   async () => {
-    return "Result of tool_scrapewebsite";
+    return "Result of tool_scrape_website";
   },
   {
-    name: "tool_scrapewebsite",
-    description: "General web scraping tool used to extract structured information from web pages.",
+    name: "tool_scrape_website",
+    description: "Tool for scraping and extracting structured information from websites.",
     schema: z.object({}),
   }
 );
@@ -39,7 +39,7 @@ const tool_linkedin = tool(
   },
   {
     name: "tool_linkedin",
-    description: "Retrieve LinkedIn profiles given a list of skills. Input is a comma-separated list of skills. Returns candidate name, position, location, and profile link. Implemented via a web client that navigates LinkedIn search and extracts entries (requires a LinkedIn session cookie in environment).",
+    description: "Custom LinkedIn retrieval tool that uses an authenticated browser session to find candidate profiles.",
     schema: z.object({}),
   }
 );
@@ -47,17 +47,17 @@ const tool_linkedin = tool(
 
 
 /**
- * Node: researchCandidatesTask
+ * Node: taskResearchCandidates
  * Agent: researcher
  */
-async function researchCandidatesTask(state: typeof RecruitmentCrewAnnotation.State) {
+async function taskResearchCandidates(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Agent-level base instruction for researcher." +
-        "\\nNode: researchCandidatesTask",
+        "You are a Job Candidate Researcher." +
+        "\nNode: taskResearchCandidates",
     },
     ...state.messages,
   ]);
@@ -65,17 +65,17 @@ async function researchCandidatesTask(state: typeof RecruitmentCrewAnnotation.St
 }
 
 /**
- * Node: matchAndScoreCandidatesTask
+ * Node: taskMatchAndScoreCandidates
  * Agent: matcher
  */
-async function matchAndScoreCandidatesTask(state: typeof RecruitmentCrewAnnotation.State) {
+async function taskMatchAndScoreCandidates(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Agent-level base instruction for matcher." +
-        "\\nNode: matchAndScoreCandidatesTask",
+        "You are a Candidate Matcher and Scorer." +
+        "\nNode: taskMatchAndScoreCandidates",
     },
     ...state.messages,
   ]);
@@ -83,17 +83,17 @@ async function matchAndScoreCandidatesTask(state: typeof RecruitmentCrewAnnotati
 }
 
 /**
- * Node: outreachStrategyTask
+ * Node: taskOutreachStrategy
  * Agent: communicator
  */
-async function outreachStrategyTask(state: typeof RecruitmentCrewAnnotation.State) {
+async function taskOutreachStrategy(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Agent-level base instruction for communicator." +
-        "\\nNode: outreachStrategyTask",
+        "You are a Candidate Outreach Strategist." +
+        "\nNode: taskOutreachStrategy",
     },
     ...state.messages,
   ]);
@@ -101,36 +101,35 @@ async function outreachStrategyTask(state: typeof RecruitmentCrewAnnotation.Stat
 }
 
 /**
- * Node: reportCandidatesTask
+ * Node: taskReportCandidates
  * Agent: reporter
  */
-async function reportCandidatesTask(state: typeof RecruitmentCrewAnnotation.State) {
+async function taskReportCandidates(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Agent-level base instruction for reporter." +
-        "\\nNode: reportCandidatesTask",
+        "You are a Candidate Reporting Specialist." +
+        "\nNode: taskReportCandidates",
     },
     ...state.messages,
   ]);
   return { messages: [response] };
 }
 
-const workflow = new StateGraph(RecruitmentCrewAnnotation)
-  .addNode("researchCandidatesTask", researchCandidatesTask)
-  .addNode("matchAndScoreCandidatesTask", matchAndScoreCandidatesTask)
-  .addNode("outreachStrategyTask", outreachStrategyTask)
-  .addNode("reportCandidatesTask", reportCandidatesTask)
-  .addEdge(START, "researchCandidatesTask")
-  .addEdge("researchCandidatesTask", "matchAndScoreCandidatesTask")
-  .addEdge("matchAndScoreCandidatesTask", "outreachStrategyTask")
-  .addEdge("outreachStrategyTask", "reportCandidatesTask")
-  .addEdge("reportCandidatesTask", END)
+const workflow = new StateGraph(UnnamedProjectAnnotation)
+  .addNode("taskResearchCandidates", taskResearchCandidates)
+  .addNode("taskMatchAndScoreCandidates", taskMatchAndScoreCandidates)
+  .addNode("taskOutreachStrategy", taskOutreachStrategy)
+  .addNode("taskReportCandidates", taskReportCandidates)
+  .addEdge(START, "taskResearchCandidates")
+  .addEdge("taskResearchCandidates", "taskMatchAndScoreCandidates")
+  .addEdge("taskMatchAndScoreCandidates", "taskOutreachStrategy")
+  .addEdge("taskOutreachStrategy", "taskReportCandidates")
+  .addEdge("taskReportCandidates", END)
 ;
 
 export const graph = workflow.compile();
-graph.name = "RecruitmentCrew";
-// Workflow: recruitment_workflow
-// Workflow: Recruitment workflow pattern
+graph.name = "UnnamedProject";
+// Workflow: workflow_recruitment

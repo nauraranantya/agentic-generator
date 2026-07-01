@@ -7,8 +7,3 @@
 # Variables marked 'required' have no default — you must provide a value.
 
 destination: ""  # required — provide a value before running
-origin: ""  # required — provide a value before running
-age: ""  # required — provide a value before running
-hotel_location: ""  # required — provide a value before running
-flight_information: ""  # required — provide a value before running
-trip_duration: ""  # required — provide a value before running

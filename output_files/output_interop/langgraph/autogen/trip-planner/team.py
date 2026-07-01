@@ -25,137 +25,26 @@ model_client = OpenAIChatCompletionClient(
 # ==================================================
 
 
-def tool_extract_impl(
+def book_accommodation_tool_impl(
     query: str = ""
 ) -> str:
     """
     AgentO Tool:
-    tool_extract
+    book_accommodation_tool
 
     Description:
-    Tool name: "extract"
-Purpose: Extract TripDetails from conversation history. Bound to the agent's LLM.
-Schema (Zod, represented informally):
-{
-  location: string (describe: The location to plan the trip for. Can be a city, state, or country.),
-  startDate: string (optional, describe: The start date of the trip. YYYY-MM-DD),
-  endDate: string (optional, describe: The end date of the trip. YYYY-MM-DD),
-  numberOfGuests: number (describe: The number of guests. Defaults to 2 if unspecified.)
-}
-Behavior: the tool returns only fields specified by the user; do not make up values. If location is missing, a clarification message should be generated requesting the location.
+    Tool invoked to create an accommodation booking using provided order details (accommodation, tripDetails). Tool call originates from LangGraph thread.submit messages in the UI.
     """
     return (
-        "Tool 'tool_extract' "
+        "Tool 'book_accommodation_tool' "
         "is a generated stub and "
         "has not been implemented yet."
     )
 
 
-tool_extract = FunctionTool(
-    tool_extract_impl,
-    description="""Tool name: "extract"
-Purpose: Extract TripDetails from conversation history. Bound to the agent's LLM.
-Schema (Zod, represented informally):
-{
-  location: string (describe: The location to plan the trip for. Can be a city, state, or country.),
-  startDate: string (optional, describe: The start date of the trip. YYYY-MM-DD),
-  endDate: string (optional, describe: The end date of the trip. YYYY-MM-DD),
-  numberOfGuests: number (describe: The number of guests. Defaults to 2 if unspecified.)
-}
-Behavior: the tool returns only fields specified by the user; do not make up values. If location is missing, a clarification message should be generated requesting the location."""
-)
-
-
-def tool_classify_impl(
-    query: str = ""
-) -> str:
-    """
-    AgentO Tool:
-    tool_classify
-
-    Description:
-    Tool name: "classify"
-Purpose: Classify whether trip details remain relevant to the user's most recent request.
-Schema:
-{
-  isRelevant: boolean (describe: Whether the trip details are still relevant to the user's request.)
-}
-Notes: When invoked, tool_choice is set to "classify" in the implementation.
-    """
-    return (
-        "Tool 'tool_classify' "
-        "is a generated stub and "
-        "has not been implemented yet."
-    )
-
-
-tool_classify = FunctionTool(
-    tool_classify_impl,
-    description="""Tool name: "classify"
-Purpose: Classify whether trip details remain relevant to the user's most recent request.
-Schema:
-{
-  isRelevant: boolean (describe: Whether the trip details are still relevant to the user's request.)
-}
-Notes: When invoked, tool_choice is set to "classify" in the implementation."""
-)
-
-
-def tool_list_accommodations_impl(
-    query: str = ""
-) -> str:
-    """
-    AgentO Tool:
-    tool_list_accommodations
-
-    Description:
-    Tool name: "list-accommodations"
-Purpose: A tool to list accommodations for the user. Implementation populates an accommodations list (id, name, price, rating, city, image) using a data generator.
-Schema: {} (no input schema fields required in the implementation).
-Produces: An accommodations list resource used to populate UI.
-    """
-    return (
-        "Tool 'tool_list_accommodations' "
-        "is a generated stub and "
-        "has not been implemented yet."
-    )
-
-
-tool_list_accommodations = FunctionTool(
-    tool_list_accommodations_impl,
-    description="""Tool name: "list-accommodations"
-Purpose: A tool to list accommodations for the user. Implementation populates an accommodations list (id, name, price, rating, city, image) using a data generator.
-Schema: {} (no input schema fields required in the implementation).
-Produces: An accommodations list resource used to populate UI."""
-)
-
-
-def tool_list_restaurants_impl(
-    query: str = ""
-) -> str:
-    """
-    AgentO Tool:
-    tool_list_restaurants
-
-    Description:
-    Tool name: "list-restaurants"
-Purpose: A tool to list restaurants for the user. Implementation uses trip details to produce a restaurants list.
-Schema: {}.
-Produces: A restaurants list resource used to populate UI.
-    """
-    return (
-        "Tool 'tool_list_restaurants' "
-        "is a generated stub and "
-        "has not been implemented yet."
-    )
-
-
-tool_list_restaurants = FunctionTool(
-    tool_list_restaurants_impl,
-    description="""Tool name: "list-restaurants"
-Purpose: A tool to list restaurants for the user. Implementation uses trip details to produce a restaurants list.
-Schema: {}.
-Produces: A restaurants list resource used to populate UI."""
+book_accommodation_tool = FunctionTool(
+    book_accommodation_tool_impl,
+    description="""Tool invoked to create an accommodation booking using provided order details (accommodation, tripDetails). Tool call originates from LangGraph thread.submit messages in the UI. """
 )
 
 
@@ -169,13 +58,13 @@ trip_planner_agent = AssistantAgent(
     model_client=model_client,
     system_message="""
 Role:
-assistant / trip-planner
+assistant
 
 Goal:
-assistant / trip-planner
+assistant
 
 Background:
-You are a assistant / trip-planner.
+Used by the trip planner LLM to format messages and construct tool calls for bookings.
 """,
 )
 

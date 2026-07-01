@@ -1,1 +1,3 @@
-export { exaSearchTool } from './exaSearchTool'
+export { exaSearchToolSearch } from './exaSearchToolSearch'
+export { exaSearchToolFindSimilar } from './exaSearchToolFindSimilar'
+export { exaSearchToolGetContents } from './exaSearchToolGetContents'

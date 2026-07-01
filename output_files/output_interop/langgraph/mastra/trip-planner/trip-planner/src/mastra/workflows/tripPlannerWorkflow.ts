@@ -3,7 +3,7 @@
  *
  * Auto-generated from AgentO Knowledge Graph
  *
- * An agent workflow (StateGraph) named "Trip Planner". It contains three primary workflow steps (classify, extraction, callTools) with conditional branching:
+ * Inferred workflow representing the user flow in the accommodations and restaurants UI: view list -> select item -> confirm/book -> show booked confirmation.
  */
 
 import { createWorkflow, createStep } from '@mastra/core/workflows'
@@ -14,45 +14,59 @@ import { tripPlannerAgent } from '../agents'
 
 // ── Workflow Steps ──
 
-const taskExtraction = createStep({
-  id: 'task_extraction',
-  description: `Extraction task: given the entire conversation history, call a tool named "extract" with the following schema:`,
+const viewAccommodationsTask = createStep({
+  id: 'view_accommodations_task',
+  description: `Display available accommodations or restaurants to the user and allow selection.`,
   inputSchema: z.object({}),
-  outputSchema: z.object({JSON: z.string()}),
+  outputSchema: z.object({}),
   execute: async ({ inputData }) => {
-    // You're an AI assistant for planning trips. The user has requested information about a trip they want to go on.
+    // List available accommodations with images, ratings, price, and brief details. Allow the user to open details of an accommodation.
     // This step uses agent: tripPlannerAgent
     // const result = await tripPlannerAgent.generate('...')
     // TODO: Implement step logic
-    throw new Error('task_extraction not implemented yet')
+    throw new Error('view_accommodations_task not implemented yet')
   },
 })
 
-const taskClassify = createStep({
-  id: 'task_classify',
-  description: `Classification task: use a tool named "classify" with schema { isRelevant: boolean } to determine if previously extracted tripDetails remain relevant to the user's most recent message.`,
+const selectAccommodationTask = createStep({
+  id: 'select_accommodation_task',
+  description: `Handle user selection of an accommodation and present detailed view including price breakdown and booking option.`,
   inputSchema: z.object({}),
-  outputSchema: z.object({isRelevant: z.boolean()}),
+  outputSchema: z.object({Selected_accommodation_details_and_a_ready_to: z.string()}),
   execute: async ({ inputData }) => {
-    // You're an AI assistant for planning trips. The user has already specified the following details for their trip:
+    // When a user selects an accommodation, present full details (name, rating, price, dates, guests) and provide a booking action trigger.
     // This step uses agent: tripPlannerAgent
     // const result = await tripPlannerAgent.generate('...')
     // TODO: Implement step logic
-    throw new Error('task_classify not implemented yet')
+    throw new Error('select_accommodation_task not implemented yet')
   },
 })
 
-const taskCallTools = createStep({
-  id: 'task_call_tools',
-  description: `CallTools task: binds ACCOMMODATIONS_TOOLS (list-accommodations and list-restaurants), invokes the language model to decide which tool(s) to call, and pushes UI items for results. The LLM receives the system message:`,
+const confirmBookingTask = createStep({
+  id: 'confirm_booking_task',
+  description: `Prepare order details and invoke the booking tool using the 'book-accommodation' tool call.`,
   inputSchema: z.object({}),
-  outputSchema: z.object({list: z.string()}),
+  outputSchema: z.object({}),
   execute: async ({ inputData }) => {
-    // You are an AI assistant who helps users book trips. Use the user's most recent message(s) to contextually generate a response.
+    // Construct a JSON payload with fields { accommodation, tripDetails } and call the 'book-accommodation' tool. After tool invocation, provide a human-facing confirmation message describing the booked accommodation and trip summary.
     // This step uses agent: tripPlannerAgent
     // const result = await tripPlannerAgent.generate('...')
     // TODO: Implement step logic
-    throw new Error('task_call_tools not implemented yet')
+    throw new Error('confirm_booking_task not implemented yet')
+  },
+})
+
+const bookedConfirmationTask = createStep({
+  id: 'booked_confirmation_task',
+  description: `Display booking confirmation details returned by the booking tool or show success message if no details returned.`,
+  inputSchema: z.object({}),
+  outputSchema: z.object({}),
+  execute: async ({ inputData }) => {
+    // Show booked accommodation summary including dates, guest count, address/name, rating and total price. If tool response includes booking reference, display it.
+    // This step uses agent: tripPlannerAgent
+    // const result = await tripPlannerAgent.generate('...')
+    // TODO: Implement step logic
+    throw new Error('booked_confirmation_task not implemented yet')
   },
 })
 
@@ -61,17 +75,16 @@ const taskCallTools = createStep({
 /**
  * trip_planner_workflow
  *
- * An agent workflow (StateGraph) named "Trip Planner". It contains three primary workflow steps (classify, extraction, callTools) with conditional branching:
+ * Inferred workflow representing the user flow in the accommodations and restaurants UI: view list -> select item -> confirm/book -> show booked confirmation.
  */
 export const tripPlannerWorkflow = createWorkflow({
   id: 'trip_planner_workflow',
-  inputSchema: z.object({At_START: z.string()}),
-  outputSchema: z.object({list: z.string()}),
-  steps: [taskExtraction, taskClassify, taskCallTools],
+  inputSchema: z.object({Inferred_workflow_representing_the_user_flow_in_the_accommodations_and_restaurants_UI: z.array(z.string())}),
+  outputSchema: z.object({}),
+  steps: [viewAccommodationsTask, selectAccommodationTask, confirmBookingTask, bookedConfirmationTask],
 })
-  // NOTE: Branching workflow — simplified to sequential for type compatibility
-  // TODO: Implement conditional branching using .branch() API
-  .then(taskExtraction)
-  .then(taskClassify)
-  .then(taskCallTools)
+  .then(viewAccommodationsTask)
+  .then(selectAccommodationTask)
+  .then(confirmBookingTask)
+  .then(bookedConfirmationTask)
   .commit()

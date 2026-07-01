@@ -1,4 +1,3 @@
-export { logCatWorkflowPattern } from './logCatWorkflowPattern'
-export { legacyLogCatWorkflowPattern } from './legacyLogCatWorkflowPattern'
+export { logCatWorkflow } from './logCatWorkflow'
 export * from './ad_hoc_tasks'
 

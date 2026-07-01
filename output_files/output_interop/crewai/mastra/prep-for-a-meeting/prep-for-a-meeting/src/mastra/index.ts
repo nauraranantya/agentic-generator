@@ -1,20 +1,19 @@
 /**
- * Mastra AI Instance - MeetingPreparationCrew
+ * Mastra AI Instance - UnnamedProject
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
  * Goals:
- *   - Prepare meeting briefing and strategy: Prepare comprehensive research, industry analysis, strategic talking points, and a concise briefing document to support an upcoming meeting. This goal represents the overall purpose of the Meeting Preparation Crew created in main.py.
- *   - : Conduct thorough research on people and companies involved in the meeting
- *   - : Analyze the current industry trends, challenges, and opportunities relevant to the meeting context
- *   - : Develop talking points, questions, and strategic angles for the meeting
- *   - : Compile research, analysis, and strategy into a concise briefing document
+ *   - : Conduct thorough research on people and companies involved in the meeting.
+ *   - : Analyze the current industry trends, challenges, and opportunities.
+ *   - : Develop talking points, questions, and strategic angles for the meeting.
+ *   - : Compile all gathered information into a concise, informative briefing document.
  */
 
 import { Mastra } from '@mastra/core'
 
 // Import agents
-import { researcherAgent1, industryAnalystAgent1, meetingStrategyAgent1, briefingCoordinatorAgent1 } from './agents'
+import { researcherAgent, industryAnalystAgent, meetingStrategyAgent, summaryAndBriefingAgent } from './agents'
 
 // Import workflows
 import { meetingPreparationPattern } from './workflows'
@@ -25,10 +24,10 @@ import { meetingPreparationPattern } from './workflows'
  */
 export const mastra = new Mastra({
   agents: {
-    researcherAgent1,
-    industryAnalystAgent1,
-    meetingStrategyAgent1,
-    briefingCoordinatorAgent1,
+    researcherAgent,
+    industryAnalystAgent,
+    meetingStrategyAgent,
+    summaryAndBriefingAgent,
   },
   workflows: {
     meetingPreparationPattern,

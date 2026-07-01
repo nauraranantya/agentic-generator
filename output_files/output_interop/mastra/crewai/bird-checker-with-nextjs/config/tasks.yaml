@@ -1,9 +1,10 @@
-fetch_random_image_task:
-  description: Get a random image from Unsplash using a selected query option
-  expected_output: Returns an Unsplash image object with urls (regular/raw), alt_description,
-    and user metadata.
-analyze_image_and_produce_bird_metadata:
+get_image_task:
+  description: |
+    Fetch a random image from Unsplash matching the provided query (wildlife | feathers | flying | birds).
+  expected_output: |
+    Image object with fields: alt_description, urls { regular, raw }, user { first_name, links { html } }.
+bird_check_task:
   description: |
     view this image and let me know if it's a bird or not, and the scientific name of the bird without any explanation. Also summarize the location for this picture in one or two short sentences understandable by a high school student
-  expected_output: |
-    output: { bird: boolean, species: string, location: string } (structured object expected and validated in source by zod output schema)
+  expected_output: 'JSON object: { bird: boolean, species: string, location: string
+    }'

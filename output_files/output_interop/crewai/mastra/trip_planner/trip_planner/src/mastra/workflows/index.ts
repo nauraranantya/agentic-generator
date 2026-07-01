@@ -1,3 +1,3 @@
-export { tripPlanningPattern } from './tripPlanningPattern'
+export { patternTripPlanning } from './patternTripPlanning'
 export * from './ad_hoc_tasks'
 

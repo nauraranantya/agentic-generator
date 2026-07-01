@@ -1,3 +1,3 @@
-export { marketingPostsWorkflow } from './marketingPostsWorkflow'
+export { wpSequential } from './wpSequential'
 export * from './ad_hoc_tasks'
 

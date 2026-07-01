@@ -1,4 +1,4 @@
-pizza_orderer_v1:
-  role: pizza-ordering-assistant
-  goal: 'Top-level intent: find a pizza shop and place a pizza order for a user.'
-  backstory: General system role description used by both nodes as the system message.
+langgraph_anthropic_agent:
+  role: assistant
+  goal: assistant
+  backstory: You are a assistant.

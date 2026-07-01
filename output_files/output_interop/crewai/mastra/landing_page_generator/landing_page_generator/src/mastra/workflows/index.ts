@@ -1,6 +1,5 @@
-export { expandIdeaWorkflowPattern } from './expandIdeaWorkflowPattern'
-export { chooseTemplateWorkflowPattern } from './chooseTemplateWorkflowPattern'
-export { createContentWorkflowPattern } from './createContentWorkflowPattern'
-export { landingPageWorkflowPattern } from './landingPageWorkflowPattern'
+export { patternExpandIdea } from './patternExpandIdea'
+export { patternChooseTemplate } from './patternChooseTemplate'
+export { patternCreateContent } from './patternCreateContent'
 export * from './ad_hoc_tasks'
 

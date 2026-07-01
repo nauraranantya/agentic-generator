@@ -1,10 +1,10 @@
 /**
- * Agent: price_provider
- * ID: stock-agent
+ * Agent: assistant
+ * ID: Stock Agent
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Capabilities:
- *   - Fetch stock price capability: Capability to retrieve a last-close stock price for a given ticker symbol.
+ *   - : Fetch last day's closing stock price for a given symbol
  */
 
 import { Agent } from '@mastra/core/agent'
@@ -13,16 +13,16 @@ import { Agent } from '@mastra/core/agent'
 import { stockPricesTool } from '../tools'
 
 /**
- * price_provider
+ * assistant
  * 
  * Instructions:
- * Agent-level instruction used as the LLM system prompt / persona.
+ * You are assistant.
  */
 export const stockAgent = new Agent({
-  id: `stock-agent`,
-  name: `price_provider`,
-  instructions: `Agent-level instruction used as the LLM system prompt / persona.`,
-  model: 'openai/gpt-4o',
+  id: `Stock Agent`,
+  name: `assistant`,
+  instructions: `You are assistant.`,
+  model: 'openai/gpt-4o-mini',
   tools: {
     stockPricesTool,
   },

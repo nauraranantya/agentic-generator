@@ -3,12 +3,17 @@
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
+ * Goals:
+ *   - : Deliver a short comedic routine for the audience.
  */
 
 import { Mastra } from '@mastra/core'
 
 // Import agents
-import { cathy, joe } from './agents'
+import { chatbot, unnamed, unnamed } from './agents'
+
+// Import workflows
+import { workflowXiangsheng } from './workflows'
 
 /**
  * Mastra instance with registered agents, workflows, and memory.
@@ -16,7 +21,11 @@ import { cathy, joe } from './agents'
  */
 export const mastra = new Mastra({
   agents: {
-    cathy,
-    joe,
+    chatbot,
+    unnamed,
+    unnamed,
+  },
+  workflows: {
+    workflowXiangsheng,
   },
 })

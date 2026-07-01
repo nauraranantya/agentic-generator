@@ -41,9 +41,9 @@ UnnamedProject/
 │       ├── agents/            # Agent definitions
 │       │   └── emailAssistantAgent.ts
 │       ├── tools/             # Tool definitions
-│       │   └── writeEmailTool.ts
+│       │   └── toolWriteEmail.ts
 │       └── workflows/         # Workflow definitions
-│           └── emailAssistantWorkflow.ts
+│           └── emailAgentStateGraph.ts
 ├── package.json
 ├── tsconfig.json
 └── .env.example
@@ -53,47 +53,39 @@ UnnamedProject/
 
 ## 🤖 Agents
 
-### email_assistant
+### Email Assistant
 
 - **ID:** `email-assistant-agent`
 - **Model:** `openai/gpt-4o`
-- **Tools:** writeEmailTool
+- **Tools:** toolWriteEmail
 
-You are email_assistant....
+You are Email Assistant....
 
 
 ---
 
 ## 🔧 Tools
 
-### write_email tool (schema-bound)
+### toolWriteEmail
 
-Tool binding used by the LLM to produce structured email objects. Description: "Write an email based on the conversation history"....
+Write an email based on the conversation history...
 
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/writeEmailTool.ts`)
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolWriteEmail.ts`)
 
 
 ---
 
 ## 🔄 Workflows
 
-### Email Assistant Workflow Pattern
+### email_agent_state_graph
 
-Routing logic (semantic description from implementation):
-- Start at writeEmail.
-- After writeEmail: if no email produced -> END. Else -> interrupt (human review).
-- In interrupt:
-  - if human response type is missing or 'ignore' -> END.
-  - if human response type is 'response' -> rewriteEmail.
-  - if human response type is 'accept' or 'edit' (with edited email args) -> sendEmail (or update draft then send).
-- After rewriteEmail -> interrupt.
-- sendEmail -> END.
+WorkflowPattern generated from LangGraph StateGraph in index.ts
 
 **Steps:** 4
-1. writeEmail (generate draft)
-2. interrupt (human review/edit/accept/ignore)
-3. rewriteEmail (apply user's requested changes)
-4. sendEmail (finalize & send)
+1. task_write_email
+2. task_interrupt
+3. task_rewrite_email
+4. task_send_email
 
 
 ---

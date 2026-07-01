@@ -1,20 +1,23 @@
-seo_review_task:
+task_write_blog:
+  description: Writer generates a concise blogpost about DeepLearning.AI.
+  expected_output: 'Completed: task_write_blog'
+task_critic_initiate_1:
+  description: Critic initiates chat with Writer (first initiate_chat call, max_turns=3).
+  expected_output: 'Completed: task_critic_initiate_1'
+task_nested_seo_review:
+  description: SEO reviewer performs one-turn review using reflection_with_llm summary_prompt.
+  expected_output: 'Completed: task_nested_seo_review'
+task_nested_legal_review:
+  description: Legal reviewer performs one-turn review using reflection_with_llm summary_prompt.
+  expected_output: 'Completed: task_nested_legal_review'
+task_nested_ethics_review:
+  description: Ethics reviewer performs one-turn review using reflection_with_llm
+    summary_prompt.
+  expected_output: 'Completed: task_nested_ethics_review'
+task_meta_aggregate:
+  description: Meta reviewer aggregates feedback and provides final suggestion.
+  expected_output: 'Completed: task_meta_aggregate'
+task_critic_initiate_2:
   description: |
-    Review the following content. Return review into as JSON object only: {'Reviewer': '', 'Review': ''}. Here Reviewer should be your role.
-  expected_output: 'JSON object only. Fields: Reviewer, Review.'
-legal_review_task:
-  description: |
-    Review the following content. Return review into as JSON object only: {'Reviewer': '', 'Review': ''}.
-  expected_output: 'JSON object only. Fields: Reviewer, Review.'
-ethics_review_task:
-  description: |
-    Review the following content. Return review into as JSON object only: {'reviewer': '', 'review': ''}.
-  expected_output: 'JSON object only. Fields: reviewer, review.'
-meta_aggregation_task:
-  description: |
-    This task consumes JSON outputs from SEO, Legal, and Ethics reviewers and produces a consolidated suggestion object (the notebook orchestrates this via the Critic.register_nested_chats and nested chat flow).
-  expected_output: Consolidated suggestions and a final recommendation for the Writer.
-blogpost_generation_task:
-  description: |
-    Task instructs the Writer to produce a concise but engaging blogpost about DeepLearning.AI within 100 words.
-  expected_output: A concise blogpost (with title) within 100 words.
+    Critic initiates chat with Writer (second initiate_chat call, max_turns=2) which triggers nested reviews.
+  expected_output: 'Completed: task_critic_initiate_2'

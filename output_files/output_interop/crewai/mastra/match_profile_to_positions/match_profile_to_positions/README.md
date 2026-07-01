@@ -1,6 +1,6 @@
 # UnnamedProject
 
-A Crew that coordinates reading CVs and matching them to job opportunities. Constructed with two agents (cv_reader, matcher) and two tasks run sequentially.
+CrewAI Team that coordinates cv_reader and matcher agents to match CVs to job proposals.
 
 **Auto-generated from AgentO Knowledge Graph**  
 Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
@@ -42,12 +42,10 @@ UnnamedProject/
 │       │   └── cvReader.ts
 │       │   └── matcher.ts
 │       ├── tools/             # Tool definitions
-│       │   └── fileReadTool.ts
-│       │   └── csvSearchTool.ts
-│       │   └── myCustomTool.ts
+│       │   └── toolFileRead.ts
+│       │   └── toolCsvSearch.ts
 │       └── workflows/         # Workflow definitions
-│           └── matchToProposalWorkflowPattern.ts
-│           └── nextPatternPlaceholder.ts
+│           └── workflowSequential.ts
 ├── package.json
 ├── tsconfig.json
 └── .env.example
@@ -61,59 +59,47 @@ UnnamedProject/
 
 - **ID:** `cv_reader`
 - **Model:** `openai/gpt-4o-mini`
-- **Tools:** fileReadTool
+- **Tools:** toolFileRead
 
-Agent-level prompt to orient behavior. Use FileReadTool to access CV file. Produce a structured CV summary....
+Extract relevant information from the CV, such as skills, experience, and education....
 
 ### Matcher
 
 - **ID:** `matcher`
 - **Model:** `openai/gpt-4o-mini`
-- **Tools:** fileReadTool, csvSearchTool
+- **Tools:** toolFileRead, toolCsvSearch
 
-Agent-level prompt to orient behavior. Use CSVSearchTool and FileReadTool to access jobs CSV and CV summary....
+Match the CV to the job opportunities based on skills, experience, and key achievements....
 
 
 ---
 
 ## 🔧 Tools
 
-### fileReadTool
+### toolFileRead
 
-Tool used to read file contents (used by cv_reader and matcher)....
+Tool to read file contents (used to read CV and other files)....
 
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/fileReadTool.ts`)
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolFileRead.ts`)
 
-### csvSearchTool
+### toolCsvSearch
 
-Tool used to search and parse CSV job listings (used by matcher)....
+Tool to search and query CSV files for matching job opportunities....
 
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/csvSearchTool.ts`)
-
-### myCustomTool
-
-Custom tool implemented at src/match_to_proposal/tools/job_db_connect.py. Placeholder for an external DB connector. Implementation-specific behavior not modeled....
-
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/myCustomTool.ts`)
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolCsvSearch.ts`)
 
 
 ---
 
 ## 🔄 Workflows
 
-### match_to_proposal_workflow_pattern
+### workflow_sequential
 
-Sequential workflow: 1) read CV -> 2) match CV to jobs
+Sequential workflow pattern corresponding to Crew Process.sequential with two steps: read CV then match CV.
 
 **Steps:** 2
-1. read_cv_task
-2. match_cv_task
-
-### next_pattern_placeholder
-
-Placeholder used to indicate there is no explicitly chained workflow pattern in source code.
-
-**Steps:** 0
+1. task_read_cv
+2. task_match_cv
 
 
 ---

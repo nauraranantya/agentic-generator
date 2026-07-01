@@ -1,6 +1,6 @@
 # UnnamedProject
 
-
+Team representing the LangGraph-backed trip planner UI and backend flows.
 
 **Auto-generated from AgentO Knowledge Graph**  
 Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
@@ -41,10 +41,7 @@ UnnamedProject/
 │       ├── agents/            # Agent definitions
 │       │   └── tripPlannerAgent.ts
 │       ├── tools/             # Tool definitions
-│       │   └── toolExtract.ts
-│       │   └── toolClassify.ts
-│       │   └── toolListAccommodations.ts
-│       │   └── toolListRestaurants.ts
+│       │   └── bookAccommodationTool.ts
 │       └── workflows/         # Workflow definitions
 │           └── tripPlannerWorkflow.ts
 ├── package.json
@@ -56,55 +53,24 @@ UnnamedProject/
 
 ## 🤖 Agents
 
-### assistant / trip-planner
+### assistant
 
 - **ID:** `trip-planner-agent`
-- **Model:** `openai/gpt-4o`
-- **Tools:** toolExtract, toolClassify, toolListAccommodations, toolListRestaurants
+- **Model:** `openai/gpt-4o-mini`
+- **Tools:** bookAccommodationTool
 
-You are assistant / trip-planner....
+Used by the trip planner LLM to format messages and construct tool calls for bookings....
 
 
 ---
 
 ## 🔧 Tools
 
-### toolExtract
+### bookAccommodationTool
 
-Tool name: "extract"
-Purpose: Extract TripDetails from conversation history. Bound to the agent's LLM.
-Schema (Zod, represented informally):
-{
-  location: string (describe: The location to plan the tr...
+Tool invoked to create an accommodation booking using provided order details (accommodation, tripDetails). Tool call originates from LangGraph thread.submit messages in the UI....
 
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolExtract.ts`)
-
-### toolClassify
-
-Tool name: "classify"
-Purpose: Classify whether trip details remain relevant to the user's most recent request.
-Schema:
-{
-  isRelevant: boolean (describe: Whether the trip details are still relevant t...
-
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolClassify.ts`)
-
-### toolListAccommodations
-
-Tool name: "list-accommodations"
-Purpose: A tool to list accommodations for the user. Implementation populates an accommodations list (id, name, price, rating, city, image) using a data generator.
-Sch...
-
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolListAccommodations.ts`)
-
-### toolListRestaurants
-
-Tool name: "list-restaurants"
-Purpose: A tool to list restaurants for the user. Implementation uses trip details to produce a restaurants list.
-Schema: {}.
-Produces: A restaurants list resource used t...
-
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolListRestaurants.ts`)
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/bookAccommodationTool.ts`)
 
 
 ---
@@ -113,16 +79,13 @@ Produces: A restaurants list resource used t...
 
 ### trip_planner_workflow
 
-An agent workflow (StateGraph) named "Trip Planner". It contains three primary workflow steps (classify, extraction, callTools) with conditional branching:
-- At START: routeStart(state) chooses "extraction" when tripDetails is missing, otherwise "classify".
-- After "classify": routeAfterClassifying(state) chooses "callTools" when tripDetails remain relevant, otherwise "extraction".
-- After "extraction": routeAfterExtraction(state) returns END if tripDetails remain undefined (missing fields), otherwise "callTools".
-These conditional functions are documented on step individuals below.
+Inferred workflow representing the user flow in the accommodations and restaurants UI: view list -> select item -> confirm/book -> show booked confirmation.
 
-**Steps:** 3
-1. task_extraction
-2. task_classify
-3. task_call_tools
+**Steps:** 4
+1. view_accommodations_task
+2. select_accommodation_task
+3. confirm_booking_task
+4. booked_confirmation_task
 
 
 ---

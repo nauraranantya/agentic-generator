@@ -1,7 +1,7 @@
 [project]
 name = "unnamed_project"
 version = "0.1.0"
-description = "Represents the group chat coordinating agents: Admin (user proxy), Planner, Engi"
+description = "Team instantiated by GroupChat(agents=[...]) with a max_round and allowed speake"
 authors = [{name = "Your Name", email = "you@example.com"}]
 readme = "README.md"
 requires-python = ">=3.10,<=3.13"
@@ -10,7 +10,6 @@ dependencies = [
     "crewai[tools]>=0.152.0",
     "python-dotenv>=1.0.1",
     "pyyaml>=6.0.1",
-    # TODO: add PyPI package for custom tool "CodingEnvironmentTool"
 ]
 
 [project.scripts]

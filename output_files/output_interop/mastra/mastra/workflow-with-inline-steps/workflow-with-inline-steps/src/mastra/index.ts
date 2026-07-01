@@ -7,16 +7,22 @@
 
 import { Mastra } from '@mastra/core'
 
+// Import agents
+import { mastraDefaultAgent } from './agents'
+
 // Import workflows
-import { myWorkflowPattern } from './workflows'
+import { myWorkflow } from './workflows'
 
 /**
  * Mastra instance with registered agents, workflows, and memory.
  *
- * Represents the Mastra deployment that contains the defined workflows.
+ * Mastra instance created in src/mastra/index.ts with registered workflows.
  */
 export const mastra = new Mastra({
+  agents: {
+    mastraDefaultAgent,
+  },
   workflows: {
-    myWorkflowPattern,
+    myWorkflow,
   },
 })

@@ -3,10 +3,12 @@ Auto-generated CrewAI Crew: UnnamedProject
 
 Source  : AgentO Knowledge Graph → SPARQL → Pydantic → Jinja2
 Pipeline: 3-Layer Conversion Pipeline
+Goals:
+  - : Gather customer's name and location.
+  - : Collect customer's preferences on news topics.
+  - : Provide engaging and fun content based on customer's info and topic preferences.
 Human Agents:
-  - customer_proxy_agent (customer_proxy)
-Resources:
-  - : Structured output expected from summary: JSON object of the form {'name': '', 'location': ''}.
+  - agent_customer_proxy_agent (customer_proxy)
 """
 
 from crewai import Agent, Crew, Process, Task
@@ -45,24 +47,24 @@ class UnnamedProject:
     # ── Tasks ───────────────────────────────────────────
 
     @task
-    def task_collect_personal_info(self) -> Task:
+    def task_onboarding_personal_info(self) -> Task:
         return Task(
-            config=self.tasks_config['task_collect_personal_info'],
-            human_input=True,
+            config=self.tasks_config['task_onboarding_personal_info'],
+            agent=self.onboarding_personal_information_agent(),
         )
 
     @task
-    def task_collect_topic_preferences(self) -> Task:
+    def task_onboarding_topic_preference(self) -> Task:
         return Task(
-            config=self.tasks_config['task_collect_topic_preferences'],
-            human_input=True,
+            config=self.tasks_config['task_onboarding_topic_preference'],
+            agent=self.onboarding_topic_preference_agent(),
         )
 
     @task
-    def task_customer_proxy_to_engagement(self) -> Task:
+    def task_customer_engagement_request(self) -> Task:
         return Task(
-            config=self.tasks_config['task_customer_proxy_to_engagement'],
-            human_input=True,
+            config=self.tasks_config['task_customer_engagement_request'],
+            agent=self.customer_engagement_agent(),
         )
 
     # ── Crew ────────────────────────────────────────────

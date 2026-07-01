@@ -1,6 +1,6 @@
-# MastraSystem
+# UnnamedProject
 
-
+Mastra instance configured in src/mastra/index.ts with one agent and four workflows.
 
 **Auto-generated from AgentO Knowledge Graph**  
 Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
@@ -34,19 +34,19 @@ npm run dev
 ## 📦 Project Structure
 
 ```
-MastraSystem/
+UnnamedProject/
 ├── src/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
 │       ├── agents/            # Agent definitions
 │       │   └── catOne.ts
 │       ├── tools/             # Tool definitions
-│       │   └── catFactTool.ts
+│       │   └── toolGetCatFacts.ts
 │       └── workflows/         # Workflow definitions
-│           └── sequentialWorkflowPattern.ts
-│           └── parallelWorkflowPattern.ts
-│           └── branchedWorkflowPattern.ts
-│           └── cyclicalWorkflowPattern.ts
+│           └── wfSequential.ts
+│           └── wfParallel.ts
+│           └── wfBranched.ts
+│           └── wfCyclical.ts
 ├── package.json
 ├── tsconfig.json
 └── .env.example
@@ -56,70 +56,71 @@ MastraSystem/
 
 ## 🤖 Agents
 
-### feline expert
+### feline-expert
 
 - **ID:** `cat-one`
 - **Model:** `openai/gpt-4o`
-- **Tools:** catFactTool
+- **Tools:** toolGetCatFacts
 
-Agent role and long-form instructions provided in Agent instantiation (instructions in source code)....
+You are feline-expert....
 
 
 ---
 
 ## 🔧 Tools
 
-### catFactTool
+### toolGetCatFacts
 
-...
+Fetches cat facts...
 
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/catFactTool.ts`)
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolGetCatFacts.ts`)
 
 
 ---
 
 ## 🔄 Workflows
 
-### sequential-workflow pattern
+### wf_sequential
 
-
+Workflow defined in src/mastra/workflows/index.ts (sequential)
 
 **Steps:** 5
-1. step_one_task
-2. step_two_task
-3. step_three_task
-4. step_four_task
-5. step_five_task
+1. task_step_one
+2. task_step_two
+3. task_step_three
+4. task_step_four
+5. task_step_five
 
-### parallel-workflow pattern
+### wf_parallel
 
-
+Workflow defined in src/mastra/workflows/index.ts (parallel branches)
 
 **Steps:** 4
-1. step_one_task
-2. step_six_task
-3. step_two_task
-4. step_three_task
+1. task_par_step_one
+2. task_par_step_six
+3. task_par_step_two
+4. task_par_step_three
 
-### branched-workflow pattern
+### wf_branched
 
-
+Workflow with branching (after and parallel branch) defined in src/mastra/workflows/index.ts
 
 **Steps:** 5
-1. step_one_task
-2. step_two_task
-3. step_three_task
-4. step_four_task
-5. step_five_task
+1. task_br_step_one
+2. task_br_step_two
+3. task_br_step_four
+4. task_br_step_three
+5. task_br_step_five
 
-### cyclical-workflow pattern
+### wf_cyclical
 
+Workflow with conditional and cyclical step references defined in src/mastra/workflows/index.ts
 
-
-**Steps:** 3
-1. step_one_task
-2. step_two_task
-3. step_three_task
+**Steps:** 4
+1. task_cyc_step_one
+2. task_cyc_step_two
+3. task_cyc_step_three
+4. task_cyc_step_one_loop
 
 
 ---

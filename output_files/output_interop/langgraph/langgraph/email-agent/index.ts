@@ -10,14 +10,14 @@ const UnnamedProjectAnnotation = Annotation.Root({
   }),
 });
 
-// Tool: write_email_tool
-const write_email_tool = tool(
+// Tool: tool_write_email
+const tool_write_email = tool(
   async () => {
-    return "Result of write_email_tool";
+    return "Result of tool_write_email";
   },
   {
-    name: "write_email_tool",
-    description: "Tool binding used by the LLM to produce structured email objects. Description: "Write an email based on the conversation history".",
+    name: "tool_write_email",
+    description: "Write an email based on the conversation history",
     schema: z.object({}),
   }
 );
@@ -25,17 +25,17 @@ const write_email_tool = tool(
 
 
 /**
- * Node: writeEmailGenerateDraft
+ * Node: taskWriteEmail
  * Agent: email_assistant_agent
  */
-async function writeEmailGenerateDraft(state: typeof UnnamedProjectAnnotation.State) {
+async function taskWriteEmail(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "You are a email_assistant." +
-        "\nNode: writeEmailGenerateDraft",
+        "You are a Email Assistant." +
+        "\nNode: taskWriteEmail",
     },
     ...state.messages,
   ]);
@@ -43,17 +43,17 @@ async function writeEmailGenerateDraft(state: typeof UnnamedProjectAnnotation.St
 }
 
 /**
- * Node: ignore
+ * Node: taskWriteEmail
  * Agent: email_assistant_agent
  */
-async function ignore(state: typeof UnnamedProjectAnnotation.State) {
+async function taskWriteEmail(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "You are a email_assistant." +
-        "\nNode: ignore",
+        "You are a Email Assistant." +
+        "\nNode: taskWriteEmail",
     },
     ...state.messages,
   ]);
@@ -61,17 +61,17 @@ async function ignore(state: typeof UnnamedProjectAnnotation.State) {
 }
 
 /**
- * Node: rewriteEmailApplyUserSRequestedChanges
+ * Node: taskInterrupt
  * Agent: email_assistant_agent
  */
-async function rewriteEmailApplyUserSRequestedChanges(state: typeof UnnamedProjectAnnotation.State) {
+async function taskInterrupt(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "You are a email_assistant." +
-        "\nNode: rewriteEmailApplyUserSRequestedChanges",
+        "You are a Email Assistant." +
+        "\nNode: taskInterrupt",
     },
     ...state.messages,
   ]);
@@ -79,17 +79,35 @@ async function rewriteEmailApplyUserSRequestedChanges(state: typeof UnnamedProje
 }
 
 /**
- * Node: sendEmailFinalizeSend
+ * Node: taskRewriteEmail
  * Agent: email_assistant_agent
  */
-async function sendEmailFinalizeSend(state: typeof UnnamedProjectAnnotation.State) {
+async function taskRewriteEmail(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "You are a email_assistant." +
-        "\nNode: sendEmailFinalizeSend",
+        "You are a Email Assistant." +
+        "\nNode: taskRewriteEmail",
+    },
+    ...state.messages,
+  ]);
+  return { messages: [response] };
+}
+
+/**
+ * Node: taskSendEmail
+ * Agent: email_assistant_agent
+ */
+async function taskSendEmail(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o" });
+  const response = await model.invoke([
+    {
+      role: "system",
+      content:
+        "You are a Email Assistant." +
+        "\nNode: taskSendEmail",
     },
     ...state.messages,
   ]);
@@ -97,18 +115,19 @@ async function sendEmailFinalizeSend(state: typeof UnnamedProjectAnnotation.Stat
 }
 
 const workflow = new StateGraph(UnnamedProjectAnnotation)
-  .addNode("writeEmailGenerateDraft", writeEmailGenerateDraft)
-  .addNode("ignore", ignore)
-  .addNode("rewriteEmailApplyUserSRequestedChanges", rewriteEmailApplyUserSRequestedChanges)
-  .addNode("sendEmailFinalizeSend", sendEmailFinalizeSend)
-  .addEdge(START, "writeEmailGenerateDraft")
-  .addEdge("writeEmailGenerateDraft", "ignore")
-  .addEdge("rewriteEmailApplyUserSRequestedChanges", "ignore")
-  .addEdge("ignore", END)
-  .addEdge("sendEmailFinalizeSend", END)
+  .addNode("taskWriteEmail", taskWriteEmail)
+  .addNode("taskWriteEmail", taskWriteEmail)
+  .addNode("taskInterrupt", taskInterrupt)
+  .addNode("taskRewriteEmail", taskRewriteEmail)
+  .addNode("taskSendEmail", taskSendEmail)
+  .addEdge(START, "taskWriteEmail")
+  .addEdge("taskWriteEmail", "taskWriteEmail")
+  .addEdge("taskWriteEmail", "taskInterrupt")
+  .addEdge("taskInterrupt", "taskSendEmail")
+  .addEdge("taskInterrupt", "taskRewriteEmail")
+  .addEdge("taskRewriteEmail", "taskInterrupt")
 ;
 
 export const graph = workflow.compile();
 graph.name = "UnnamedProject";
-// Workflow: email_assistant_workflow
-// Workflow: Email Assistant Workflow Pattern
+// Workflow: email_agent_state_graph

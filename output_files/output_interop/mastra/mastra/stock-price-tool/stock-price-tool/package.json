@@ -1,7 +1,7 @@
 {
   "name": "stock-price-tool",
   "version": "0.1.0",
-  "description": "The runtime/host system that registers and exposes agents (in source: new Mastra({ agents: { stockAgent } })). This representation models the system logically as a Team that contains agent members and workflow patterns.",
+  "description": "",
   "type": "module",
   "main": "src/mastra/index.ts",
   "scripts": {

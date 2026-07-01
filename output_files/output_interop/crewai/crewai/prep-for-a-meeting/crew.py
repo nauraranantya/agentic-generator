@@ -1,19 +1,17 @@
 """
-Auto-generated CrewAI Crew: MeetingPreparationCrew
+Auto-generated CrewAI Crew: UnnamedProject
 
 Source  : AgentO Knowledge Graph → SPARQL → Pydantic → Jinja2
 Pipeline: 3-Layer Conversion Pipeline
 Goals:
-  - Prepare meeting briefing and strategy: Prepare comprehensive research, industry analysis, strategic talking points, and a concise briefing document to support an upcoming meeting. This goal represents the overall purpose of the Meeting Preparation Crew created in main.py.
-  - : Conduct thorough research on people and companies involved in the meeting
-  - : Analyze the current industry trends, challenges, and opportunities relevant to the meeting context
-  - : Develop talking points, questions, and strategic angles for the meeting
-  - : Compile research, analysis, and strategy into a concise briefing document
+  - : Conduct thorough research on people and companies involved in the meeting.
+  - : Analyze the current industry trends, challenges, and opportunities.
+  - : Develop talking points, questions, and strategic angles for the meeting.
+  - : Compile all gathered information into a concise, informative briefing document.
 Capabilities:
-  - Exa.search: Search for webpages using a query and return top results (num_results=3).
-  - Exa.find_similar: Find webpages similar to a given URL (num_results=3).
-  - Exa.get_contents: Retrieve page contents for a list of ids. Handles JSON or Python literal lists input;
-validates input is a list of string ids; returns extracted contents (first ~1000 chars per segment).
+  - : Performs web searches and returns search result identifiers.
+  - : Finds webpages similar to a given URL.
+  - : Retrieves and returns contents of webpages by IDs.
 """
 
 from crewai import Agent, Crew, Process, Task
@@ -24,19 +22,33 @@ from crewai.tools import tool
 # ===========================================================
 # Tool Instances
 # ===========================================================
-# TODO: exa_search_tool — unknown tool class "ExaSearchTool"
+# TODO: exa_search_tool_search — unknown tool class "ExaSearchToolsearch"
 #   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
-@tool("ExaSearchTool")
-def exa_search_tool(*args, **kwargs) -> str:
-    """Tool wrapping Exa (exa_py) search capabilities used by agents. Provides three main operations: searc"""
-    return "exa_search_tool result"
+@tool("ExaSearchToolsearch")
+def exa_search_tool_search(*args, **kwargs) -> str:
+    """Search for a webpage based on the query (returns a list of result IDs)."""
+    return "exa_search_tool_search result"
+
+# TODO: exa_search_tool_find_similar — unknown tool class "ExaSearchToolfindsimilar"
+#   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
+@tool("ExaSearchToolfindsimilar")
+def exa_search_tool_find_similar(*args, **kwargs) -> str:
+    """Search for webpages similar to a given URL."""
+    return "exa_search_tool_find_similar result"
+
+# TODO: exa_search_tool_get_contents — unknown tool class "ExaSearchToolgetcontents"
+#   Implement as a custom BaseTool or replace with a crewai_tools equivalent.
+@tool("ExaSearchToolgetcontents")
+def exa_search_tool_get_contents(*args, **kwargs) -> str:
+    """Get the contents of webpages given a list of IDs."""
+    return "exa_search_tool_get_contents result"
 
 
 
 
 @CrewBase
-class MeetingPreparationCrew:
-    """MeetingPreparationCrew crew"""
+class UnnamedProject:
+    """UnnamedProject crew"""
 
     agents_config = 'config/agents.yaml'
     tasks_config = 'config/tasks.yaml'
@@ -44,31 +56,35 @@ class MeetingPreparationCrew:
     # ── Agents ──────────────────────────────────────────
 
     @agent
-    def researcher_agent_1(self) -> Agent:
+    def researcher_agent(self) -> Agent:
         return Agent(
-            config=self.agents_config['researcher_agent_1'],
-            tools=[exa_search_tool],
+            config=self.agents_config['researcher_agent'],
+            tools=[exa_search_tool_search, exa_search_tool_find_similar, exa_search_tool_get_contents],
+            verbose=True,
         )
 
     @agent
-    def industry_analyst_agent_1(self) -> Agent:
+    def industry_analyst_agent(self) -> Agent:
         return Agent(
-            config=self.agents_config['industry_analyst_agent_1'],
-            tools=[exa_search_tool],
+            config=self.agents_config['industry_analyst_agent'],
+            tools=[exa_search_tool_search, exa_search_tool_find_similar, exa_search_tool_get_contents],
+            verbose=True,
         )
 
     @agent
-    def meeting_strategy_agent_1(self) -> Agent:
+    def meeting_strategy_agent(self) -> Agent:
         return Agent(
-            config=self.agents_config['meeting_strategy_agent_1'],
-            tools=[exa_search_tool],
+            config=self.agents_config['meeting_strategy_agent'],
+            tools=[exa_search_tool_search, exa_search_tool_find_similar, exa_search_tool_get_contents],
+            verbose=True,
         )
 
     @agent
-    def briefing_coordinator_agent_1(self) -> Agent:
+    def summary_and_briefing_agent(self) -> Agent:
         return Agent(
-            config=self.agents_config['briefing_coordinator_agent_1'],
-            tools=[exa_search_tool],
+            config=self.agents_config['summary_and_briefing_agent'],
+            tools=[exa_search_tool_search, exa_search_tool_find_similar, exa_search_tool_get_contents],
+            verbose=True,
         )
 
     # ── Tasks ───────────────────────────────────────────
@@ -77,35 +93,35 @@ class MeetingPreparationCrew:
     def research_task(self) -> Task:
         return Task(
             config=self.tasks_config['research_task'],
-            agent=self.researcher_agent_1(),
+            agent=self.researcher_agent(),
         )
 
     @task
     def industry_analysis_task(self) -> Task:
         return Task(
             config=self.tasks_config['industry_analysis_task'],
-            agent=self.industry_analyst_agent_1(),
+            agent=self.industry_analyst_agent(),
         )
 
     @task
     def meeting_strategy_task(self) -> Task:
         return Task(
             config=self.tasks_config['meeting_strategy_task'],
-            agent=self.meeting_strategy_agent_1(),
+            agent=self.meeting_strategy_agent(),
         )
 
     @task
     def summary_and_briefing_task(self) -> Task:
         return Task(
             config=self.tasks_config['summary_and_briefing_task'],
-            agent=self.briefing_coordinator_agent_1(),
+            agent=self.summary_and_briefing_agent(),
         )
 
     # ── Crew ────────────────────────────────────────────
 
     @crew
     def crew(self) -> Crew:
-        """Creates the MeetingPreparationCrew"""
+        """Creates the UnnamedProject"""
         return Crew(
             agents=self.agents,
             tasks=self.tasks,

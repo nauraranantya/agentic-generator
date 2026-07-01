@@ -3,98 +3,87 @@ import { Annotation, START, END, StateGraph } from "@langchain/langgraph";
 import { tool } from "@langchain/core/tools";
 import { z } from "zod";
 
-const ExpandIdeaCrewteamAnnotation = Annotation.Root({
+const UnnamedProjectAnnotation = Annotation.Root({
   messages: Annotation<any[]>({
     reducer: (_, next) => next,
     default: () => [],
   }),
 });
 
-// Tool: search_internet_tool
-const search_internet_tool = tool(
+// Tool: tool_search_internet
+const tool_search_internet = tool(
   async () => {
-    return "Result of search_internet_tool";
+    return "Result of tool_search_internet";
   },
   {
-    name: "search_internet_tool",
-    description: "Performs internet search using an external search API (serper.dev). Requires SERPER_API_KEY environment variable.",
+    name: "tool_search_internet",
+    description: "Search the internet using Serper Dev API and return organic results.",
     schema: z.object({}),
   }
 );
-// Tool: scrape_website_tool
-const scrape_website_tool = tool(
+// Tool: tool_scrape_and_summarize_website
+const tool_scrape_and_summarize_website = tool(
   async () => {
-    return "Result of scrape_website_tool";
+    return "Result of tool_scrape_and_summarize_website";
   },
   {
-    name: "scrape_website_tool",
-    description: "Scrapes website HTML via browserless API and summarizes content using an internal summarization Task. Requires BROWSERLESS_API_KEY environment variable.",
+    name: "tool_scrape_and_summarize_website",
+    description: "Scrape website content via Browserless and summarize chunks using internal agent tasks.",
     schema: z.object({}),
   }
 );
-// Tool: write_file_tool
-const write_file_tool = tool(
+// Tool: tool_learn_landing_page_options
+const tool_learn_landing_page_options = tool(
   async () => {
-    return "Result of write_file_tool";
+    return "Result of tool_learn_landing_page_options";
   },
   {
-    name: "write_file_tool",
-    description: "Writes files into ./workdir with path sanitization and allowed extensions.",
+    name: "tool_learn_landing_page_options",
+    description: "Read templates configuration and surface available landing page templates.",
     schema: z.object({}),
   }
 );
-// Tool: learn_templates_tool
-const learn_templates_tool = tool(
+// Tool: tool_copy_landing_page_template
+const tool_copy_landing_page_template = tool(
   async () => {
-    return "Result of learn_templates_tool";
+    return "Result of tool_copy_landing_page_template";
   },
   {
-    name: "learn_templates_tool",
-    description: "Reads config/templates.json to list available templates.",
+    name: "tool_copy_landing_page_template",
+    description: "Copy a selected landing page template folder from templates/ into workdir/.",
     schema: z.object({}),
   }
 );
-// Tool: copy_template_tool
-const copy_template_tool = tool(
+// Tool: tool_write_file
+const tool_write_file = tool(
   async () => {
-    return "Result of copy_template_tool";
+    return "Result of tool_write_file";
   },
   {
-    name: "copy_template_tool",
-    description: "Copies a template folder from ./templates to ./workdir with safety checks.",
+    name: "tool_write_file",
+    description: "Validated write file tool that writes React component and other files into workdir.",
     schema: z.object({}),
   }
 );
-// Tool: read_file_tool
-const read_file_tool = tool(
+// Tool: tool_read_file
+const tool_read_file = tool(
   async () => {
-    return "Result of read_file_tool";
+    return "Result of tool_read_file";
   },
   {
-    name: "read_file_tool",
-    description: "Read file contents from workdir (used by agent toolkits).",
+    name: "tool_read_file",
+    description: "Read file from the toolkit root_dir (workdir).",
     schema: z.object({}),
   }
 );
-// Tool: list_directory_tool
-const list_directory_tool = tool(
+// Tool: tool_list_directory
+const tool_list_directory = tool(
   async () => {
-    return "Result of list_directory_tool";
+    return "Result of tool_list_directory";
   },
   {
-    name: "list_directory_tool",
-    description: "List directories in workdir (used by agent toolkits).",
-    schema: z.object({}),
-  }
-);
-// Tool: file_management_toolkit
-const file_management_toolkit = tool(
-  async () => {
-    return "Result of file_management_toolkit";
-  },
-  {
-    name: "file_management_toolkit",
-    description: "In the code this is an instantiation of FileManagementToolkit(root_dir='workdir', selected_tools=['read_file','list_directory']). Modeled here as a Tool-like resource containing ReadFileTool and ListDirectoryTool.",
+    name: "tool_list_directory",
+    description: "List directory contents from the toolkit root_dir (workdir).",
     schema: z.object({}),
   }
 );
@@ -102,17 +91,17 @@ const file_management_toolkit = tool(
 
 
 /**
- * Node: expandIdeaTask
+ * Node: taskExpandIdea
  * Agent: senior_idea_analyst
  */
-async function expandIdeaTask(state: typeof ExpandIdeaCrewteamAnnotation.State) {
-  const model = new ChatOpenAI({ model: "gpt-4" });
+async function taskExpandIdea(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
         "You are a Senior Idea Analyst." +
-        "\nNode: expandIdeaTask",
+        "\nNode: taskExpandIdea",
     },
     ...state.messages,
   ]);
@@ -120,17 +109,17 @@ async function expandIdeaTask(state: typeof ExpandIdeaCrewteamAnnotation.State) 
 }
 
 /**
- * Node: refineIdeaTask
+ * Node: taskRefineIdea
  * Agent: senior_strategist
  */
-async function refineIdeaTask(state: typeof ExpandIdeaCrewteamAnnotation.State) {
-  const model = new ChatOpenAI({ model: "gpt-4" });
+async function taskRefineIdea(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
         "You are a Senior Communications Strategist." +
-        "\nNode: refineIdeaTask",
+        "\nNode: taskRefineIdea",
     },
     ...state.messages,
   ]);
@@ -138,17 +127,17 @@ async function refineIdeaTask(state: typeof ExpandIdeaCrewteamAnnotation.State) 
 }
 
 /**
- * Node: chooseTemplateTask
+ * Node: taskChooseTemplate
  * Agent: senior_react_engineer
  */
-async function chooseTemplateTask(state: typeof ExpandIdeaCrewteamAnnotation.State) {
-  const model = new ChatOpenAI({ model: "gpt-4" });
+async function taskChooseTemplate(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
         "You are a Senior React Engineer." +
-        "\nNode: chooseTemplateTask",
+        "\nNode: taskChooseTemplate",
     },
     ...state.messages,
   ]);
@@ -156,17 +145,17 @@ async function chooseTemplateTask(state: typeof ExpandIdeaCrewteamAnnotation.Sta
 }
 
 /**
- * Node: updatePageTask
+ * Node: taskUpdatePage
  * Agent: senior_react_engineer
  */
-async function updatePageTask(state: typeof ExpandIdeaCrewteamAnnotation.State) {
-  const model = new ChatOpenAI({ model: "gpt-4" });
+async function taskUpdatePage(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
         "You are a Senior React Engineer." +
-        "\nNode: updatePageTask",
+        "\nNode: taskUpdatePage",
     },
     ...state.messages,
   ]);
@@ -174,17 +163,17 @@ async function updatePageTask(state: typeof ExpandIdeaCrewteamAnnotation.State) 
 }
 
 /**
- * Node: componentContentTask
+ * Node: taskComponentContent
  * Agent: senior_content_editor
  */
-async function componentContentTask(state: typeof ExpandIdeaCrewteamAnnotation.State) {
-  const model = new ChatOpenAI({ model: "gpt-4" });
+async function taskComponentContent(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
         "You are a Senior Content Editor." +
-        "\nNode: componentContentTask",
+        "\nNode: taskComponentContent",
     },
     ...state.messages,
   ]);
@@ -192,17 +181,17 @@ async function componentContentTask(state: typeof ExpandIdeaCrewteamAnnotation.S
 }
 
 /**
- * Node: updateComponentTask
+ * Node: taskUpdateComponent
  * Agent: senior_content_editor
  */
-async function updateComponentTask(state: typeof ExpandIdeaCrewteamAnnotation.State) {
-  const model = new ChatOpenAI({ model: "gpt-4" });
+async function taskUpdateComponent(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
         "You are a Senior Content Editor." +
-        "\nNode: updateComponentTask",
+        "\nNode: taskUpdateComponent",
     },
     ...state.messages,
   ]);
@@ -210,48 +199,43 @@ async function updateComponentTask(state: typeof ExpandIdeaCrewteamAnnotation.St
 }
 
 /**
- * Node: qaComponentTask
+ * Node: taskQaComponent
  * Agent: senior_content_editor
  */
-async function qaComponentTask(state: typeof ExpandIdeaCrewteamAnnotation.State) {
-  const model = new ChatOpenAI({ model: "gpt-4" });
+async function taskQaComponent(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
         "You are a Senior Content Editor." +
-        "\nNode: qaComponentTask",
+        "\nNode: taskQaComponent",
     },
     ...state.messages,
   ]);
   return { messages: [response] };
 }
 
-const workflow = new StateGraph(ExpandIdeaCrewteamAnnotation)
-  .addNode("expandIdeaTask", expandIdeaTask)
-  .addNode("refineIdeaTask", refineIdeaTask)
-  .addNode("chooseTemplateTask", chooseTemplateTask)
-  .addNode("updatePageTask", updatePageTask)
-  .addNode("componentContentTask", componentContentTask)
-  .addNode("updateComponentTask", updateComponentTask)
-  .addNode("qaComponentTask", qaComponentTask)
-  .addEdge(START, "expandIdeaTask")
-  .addEdge("refineIdeaTask", "refineIdeaTask")
-  .addEdge("expandIdeaTask", END)
-  .addEdge("chooseTemplateTask", END)
-  .addEdge("updatePageTask", END)
-  .addEdge("componentContentTask", END)
-  .addEdge("updateComponentTask", END)
-  .addEdge("qaComponentTask", END)
+const workflow = new StateGraph(UnnamedProjectAnnotation)
+  .addNode("taskExpandIdea", taskExpandIdea)
+  .addNode("taskRefineIdea", taskRefineIdea)
+  .addNode("taskChooseTemplate", taskChooseTemplate)
+  .addNode("taskUpdatePage", taskUpdatePage)
+  .addNode("taskComponentContent", taskComponentContent)
+  .addNode("taskUpdateComponent", taskUpdateComponent)
+  .addNode("taskQaComponent", taskQaComponent)
+  .addEdge(START, "taskExpandIdea")
+  .addEdge("taskExpandIdea", "taskRefineIdea")
+  .addEdge("taskChooseTemplate", "taskUpdatePage")
+  .addEdge("taskComponentContent", "taskUpdateComponent")
+  .addEdge("taskUpdateComponent", "taskQaComponent")
+  .addEdge("taskRefineIdea", END)
+  .addEdge("taskUpdatePage", END)
+  .addEdge("taskQaComponent", END)
 ;
 
 export const graph = workflow.compile();
-graph.name = "ExpandIdeaCrewteam";
-// Workflow: expand_idea_workflow_pattern
-// Workflow: Expand Idea workflow pattern
-// Workflow: choose_template_workflow_pattern
-// Workflow: Choose Template workflow pattern
-// Workflow: create_content_workflow_pattern
-// Workflow: Create Content workflow pattern
-// Workflow: landing_page_workflow_pattern
-// Workflow: Landing page overall workflow
+graph.name = "UnnamedProject";
+// Workflow: pattern_expand_idea
+// Workflow: pattern_choose_template
+// Workflow: pattern_create_content

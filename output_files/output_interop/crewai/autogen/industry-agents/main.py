@@ -1,9 +1,9 @@
 import asyncio
 
 from team import (
-    biomed_agent_1,
-    healthcare_agent_1,
-    financial_agent_1,
+    biomedical_marketing_agent,
+    healthcare_marketing_agent,
+    financial_marketing_agent,
 )
 
 from autogen_agentchat.conditions import (
@@ -23,17 +23,16 @@ async def main():
     try:
         # Step-by-step sequential execution
         # ==================================================
-        # Workflow Step: biomedical_agent_task_research_a_weaviate_feature
-        # Workflow Edge: biomedical_agent_task_research_a_weaviate_feature -> healthcare_agent_task_research_a_weaviate_feature
+        # Workflow Step: task_biomedical_research
+        # Workflow Edge: task_biomedical_research -> task_healthcare_research
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: biomedical_agent_task_research_a_weaviate_feature")
+        print("Executing step: task_biomedical_research")
         print("=" * 80)
 
-        task_prompt = """Conduct a thorough research about {weaviate_feature}
-Make sure you find any interesting and relevant information using the web and Weaviate blogs."""
-        # Execute via the assigned agent: biomed_agent_1
-        result = await biomed_agent_1.run(task=task_prompt)
+        task_prompt = """Conduct a thorough research about {weaviate_feature}. Make sure you find any interesting and relevant information using the web and Weaviate blogs. """
+        # Execute via the assigned agent: biomedical_marketing_agent
+        result = await biomedical_marketing_agent.run(task=task_prompt)
 
         # Print step output
         if hasattr(result, "messages") and result.messages:
@@ -42,17 +41,16 @@ Make sure you find any interesting and relevant information using the web and We
             print(result)
 
         # ==================================================
-        # Workflow Step: healthcare_agent_task_research_a_weaviate_feature
-        # Workflow Edge: healthcare_agent_task_research_a_weaviate_feature -> financial_agent_task_research_a_weaviate_feature
+        # Workflow Step: task_healthcare_research
+        # Workflow Edge: task_healthcare_research -> task_financial_research
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: healthcare_agent_task_research_a_weaviate_feature")
+        print("Executing step: task_healthcare_research")
         print("=" * 80)
 
-        task_prompt = """Conduct a thorough research about {weaviate_feature}
-Make sure you find any interesting and relevant information using the web and Weaviate blogs."""
-        # Execute via the assigned agent: healthcare_agent_1
-        result = await healthcare_agent_1.run(task=task_prompt)
+        task_prompt = """Conduct a thorough research about {weaviate_feature}. Make sure you find any interesting and relevant information using the web and Weaviate blogs. """
+        # Execute via the assigned agent: healthcare_marketing_agent
+        result = await healthcare_marketing_agent.run(task=task_prompt)
 
         # Print step output
         if hasattr(result, "messages") and result.messages:
@@ -61,16 +59,15 @@ Make sure you find any interesting and relevant information using the web and We
             print(result)
 
         # ==================================================
-        # Workflow Step: financial_agent_task_research_a_weaviate_feature
+        # Workflow Step: task_financial_research
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: financial_agent_task_research_a_weaviate_feature")
+        print("Executing step: task_financial_research")
         print("=" * 80)
 
-        task_prompt = """Conduct a thorough research about {weaviate_feature}
-Make sure you find any interesting and relevant information using the web and Weaviate blogs."""
-        # Execute via the assigned agent: financial_agent_1
-        result = await financial_agent_1.run(task=task_prompt)
+        task_prompt = """Conduct a thorough research about {weaviate_feature}. Make sure you find any interesting and relevant information using the web and Weaviate blogs. """
+        # Execute via the assigned agent: financial_marketing_agent
+        result = await financial_marketing_agent.run(task=task_prompt)
 
         # Print step output
         if hasattr(result, "messages") and result.messages:

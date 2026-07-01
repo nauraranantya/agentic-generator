@@ -12,10 +12,6 @@ from autogen_agentchat.conditions import (
 
 INPUTS = {
 
-
-    "game":
-        "",
-
 }
 
 
@@ -23,18 +19,14 @@ async def main():
     try:
         # Step-by-step sequential execution
         # ==================================================
-        # Workflow Step: code_task
-        # Workflow Edge: code_task -> review_task
+        # Workflow Step: task_code
+        # Workflow Edge: task_code -> task_review
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: code_task")
+        print("Executing step: task_code")
         print("=" * 80)
 
-        task_prompt = """You will create a game using python, these are the instructions:
-
-Instructions
-# ------------
-{game}"""
+        task_prompt = """code_task from config/tasks.yaml """
         # Execute via the assigned agent: senior_engineer_agent
         result = await senior_engineer_agent.run(task=task_prompt)
 
@@ -45,22 +37,14 @@ Instructions
             print(result)
 
         # ==================================================
-        # Workflow Step: review_task
-        # Workflow Edge: review_task -> evaluate_task
+        # Workflow Step: task_review
+        # Workflow Edge: task_review -> task_evaluate
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: review_task")
+        print("Executing step: task_review")
         print("=" * 80)
 
-        task_prompt = """You will create a game using python, these are the instructions:
-
-Instructions
-# ------------
-{game}
-
-Using the code you got, check for errors. Check for logic errors,
-syntax errors, missing imports, variable declarations, mismatched brackets,
-and security vulnerabilities."""
+        task_prompt = """review_task from config/tasks.yaml """
         # Execute via the assigned agent: qa_engineer_agent
         result = await qa_engineer_agent.run(task=task_prompt)
 
@@ -71,20 +55,13 @@ and security vulnerabilities."""
             print(result)
 
         # ==================================================
-        # Workflow Step: evaluate_task
+        # Workflow Step: task_evaluate
         # ==================================================
         print("\n" + "=" * 80)
-        print("Executing step: evaluate_task")
+        print("Executing step: task_evaluate")
         print("=" * 80)
 
-        task_prompt = """You are helping create a game using python, these are the instructions:
-
-Instructions
-# ------------
-{game}
-
-You will look over the code to insure that it is complete and
-does the job that it is supposed to do."""
+        task_prompt = """evaluate_task from config/tasks.yaml """
         # Execute via the assigned agent: chief_qa_engineer_agent
         result = await chief_qa_engineer_agent.run(task=task_prompt)
 

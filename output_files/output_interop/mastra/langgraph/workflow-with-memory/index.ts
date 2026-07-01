@@ -3,21 +3,21 @@ import { Annotation, START, END, StateGraph } from "@langchain/langgraph";
 import { tool } from "@langchain/core/tools";
 import { z } from "zod";
 
-const MastraSystemAnnotation = Annotation.Root({
+const UnnamedProjectAnnotation = Annotation.Root({
   messages: Annotation<any[]>({
     reducer: (_, next) => next,
     default: () => [],
   }),
 });
 
-// Tool: cat_fact_tool
-const cat_fact_tool = tool(
+// Tool: tool_get_cat_facts
+const tool_get_cat_facts = tool(
   async () => {
-    return "Result of cat_fact_tool";
+    return "Result of tool_get_cat_facts";
   },
   {
-    name: "cat_fact_tool",
-    description: "A tool",
+    name: "tool_get_cat_facts",
+    description: "Fetches cat facts",
     schema: z.object({}),
   }
 );
@@ -25,17 +25,17 @@ const cat_fact_tool = tool(
 
 
 /**
- * Node: stepOneTask
+ * Node: taskStepOne
  * Agent: cat_one
  */
-async function stepOneTask(state: typeof MastraSystemAnnotation.State) {
+async function taskStepOne(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Agent role and long-form instructions provided in Agent instantiation (instructions in source code)." +
-        "\nNode: stepOneTask",
+        "You are a feline-expert." +
+        "\nNode: taskStepOne",
     },
     ...state.messages,
   ]);
@@ -43,17 +43,17 @@ async function stepOneTask(state: typeof MastraSystemAnnotation.State) {
 }
 
 /**
- * Node: stepTwoTask
+ * Node: taskStepTwo
  * Agent: cat_one
  */
-async function stepTwoTask(state: typeof MastraSystemAnnotation.State) {
+async function taskStepTwo(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Agent role and long-form instructions provided in Agent instantiation (instructions in source code)." +
-        "\nNode: stepTwoTask",
+        "You are a feline-expert." +
+        "\nNode: taskStepTwo",
     },
     ...state.messages,
   ]);
@@ -61,17 +61,17 @@ async function stepTwoTask(state: typeof MastraSystemAnnotation.State) {
 }
 
 /**
- * Node: stepThreeTask
+ * Node: taskStepThree
  * Agent: cat_one
  */
-async function stepThreeTask(state: typeof MastraSystemAnnotation.State) {
+async function taskStepThree(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Agent role and long-form instructions provided in Agent instantiation (instructions in source code)." +
-        "\nNode: stepThreeTask",
+        "You are a feline-expert." +
+        "\nNode: taskStepThree",
     },
     ...state.messages,
   ]);
@@ -79,17 +79,17 @@ async function stepThreeTask(state: typeof MastraSystemAnnotation.State) {
 }
 
 /**
- * Node: stepFourTask
+ * Node: taskStepFour
  * Agent: cat_one
  */
-async function stepFourTask(state: typeof MastraSystemAnnotation.State) {
+async function taskStepFour(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Agent role and long-form instructions provided in Agent instantiation (instructions in source code)." +
-        "\nNode: stepFourTask",
+        "You are a feline-expert." +
+        "\nNode: taskStepFour",
     },
     ...state.messages,
   ]);
@@ -97,17 +97,17 @@ async function stepFourTask(state: typeof MastraSystemAnnotation.State) {
 }
 
 /**
- * Node: stepFiveTask
+ * Node: taskStepFive
  * Agent: cat_one
  */
-async function stepFiveTask(state: typeof MastraSystemAnnotation.State) {
+async function taskStepFive(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Agent role and long-form instructions provided in Agent instantiation (instructions in source code)." +
-        "\nNode: stepFiveTask",
+        "You are a feline-expert." +
+        "\nNode: taskStepFive",
     },
     ...state.messages,
   ]);
@@ -115,17 +115,17 @@ async function stepFiveTask(state: typeof MastraSystemAnnotation.State) {
 }
 
 /**
- * Node: stepOneTask
+ * Node: taskParStepOne
  * Agent: cat_one
  */
-async function stepOneTask(state: typeof MastraSystemAnnotation.State) {
+async function taskParStepOne(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Agent role and long-form instructions provided in Agent instantiation (instructions in source code)." +
-        "\nNode: stepOneTask",
+        "You are a feline-expert." +
+        "\nNode: taskParStepOne",
     },
     ...state.messages,
   ]);
@@ -133,17 +133,17 @@ async function stepOneTask(state: typeof MastraSystemAnnotation.State) {
 }
 
 /**
- * Node: stepSixTask
+ * Node: taskParStepSix
  * Agent: cat_one
  */
-async function stepSixTask(state: typeof MastraSystemAnnotation.State) {
+async function taskParStepSix(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Agent role and long-form instructions provided in Agent instantiation (instructions in source code)." +
-        "\nNode: stepSixTask",
+        "You are a feline-expert." +
+        "\nNode: taskParStepSix",
     },
     ...state.messages,
   ]);
@@ -151,17 +151,17 @@ async function stepSixTask(state: typeof MastraSystemAnnotation.State) {
 }
 
 /**
- * Node: stepTwoTask
+ * Node: taskParStepTwo
  * Agent: cat_one
  */
-async function stepTwoTask(state: typeof MastraSystemAnnotation.State) {
+async function taskParStepTwo(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Agent role and long-form instructions provided in Agent instantiation (instructions in source code)." +
-        "\nNode: stepTwoTask",
+        "You are a feline-expert." +
+        "\nNode: taskParStepTwo",
     },
     ...state.messages,
   ]);
@@ -169,17 +169,17 @@ async function stepTwoTask(state: typeof MastraSystemAnnotation.State) {
 }
 
 /**
- * Node: stepThreeTask
+ * Node: taskParStepThree
  * Agent: cat_one
  */
-async function stepThreeTask(state: typeof MastraSystemAnnotation.State) {
+async function taskParStepThree(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Agent role and long-form instructions provided in Agent instantiation (instructions in source code)." +
-        "\nNode: stepThreeTask",
+        "You are a feline-expert." +
+        "\nNode: taskParStepThree",
     },
     ...state.messages,
   ]);
@@ -187,17 +187,17 @@ async function stepThreeTask(state: typeof MastraSystemAnnotation.State) {
 }
 
 /**
- * Node: stepOneTask
+ * Node: taskBrStepOne
  * Agent: cat_one
  */
-async function stepOneTask(state: typeof MastraSystemAnnotation.State) {
+async function taskBrStepOne(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Agent role and long-form instructions provided in Agent instantiation (instructions in source code)." +
-        "\nNode: stepOneTask",
+        "You are a feline-expert." +
+        "\nNode: taskBrStepOne",
     },
     ...state.messages,
   ]);
@@ -205,17 +205,17 @@ async function stepOneTask(state: typeof MastraSystemAnnotation.State) {
 }
 
 /**
- * Node: stepTwoTask
+ * Node: taskBrStepTwo
  * Agent: cat_one
  */
-async function stepTwoTask(state: typeof MastraSystemAnnotation.State) {
+async function taskBrStepTwo(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Agent role and long-form instructions provided in Agent instantiation (instructions in source code)." +
-        "\nNode: stepTwoTask",
+        "You are a feline-expert." +
+        "\nNode: taskBrStepTwo",
     },
     ...state.messages,
   ]);
@@ -223,17 +223,17 @@ async function stepTwoTask(state: typeof MastraSystemAnnotation.State) {
 }
 
 /**
- * Node: stepThreeTask
+ * Node: taskBrStepFour
  * Agent: cat_one
  */
-async function stepThreeTask(state: typeof MastraSystemAnnotation.State) {
+async function taskBrStepFour(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Agent role and long-form instructions provided in Agent instantiation (instructions in source code)." +
-        "\nNode: stepThreeTask",
+        "You are a feline-expert." +
+        "\nNode: taskBrStepFour",
     },
     ...state.messages,
   ]);
@@ -241,17 +241,17 @@ async function stepThreeTask(state: typeof MastraSystemAnnotation.State) {
 }
 
 /**
- * Node: stepFourTask
+ * Node: taskBrStepThree
  * Agent: cat_one
  */
-async function stepFourTask(state: typeof MastraSystemAnnotation.State) {
+async function taskBrStepThree(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Agent role and long-form instructions provided in Agent instantiation (instructions in source code)." +
-        "\nNode: stepFourTask",
+        "You are a feline-expert." +
+        "\nNode: taskBrStepThree",
     },
     ...state.messages,
   ]);
@@ -259,17 +259,17 @@ async function stepFourTask(state: typeof MastraSystemAnnotation.State) {
 }
 
 /**
- * Node: stepFiveTask
+ * Node: taskBrStepFive
  * Agent: cat_one
  */
-async function stepFiveTask(state: typeof MastraSystemAnnotation.State) {
+async function taskBrStepFive(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Agent role and long-form instructions provided in Agent instantiation (instructions in source code)." +
-        "\nNode: stepFiveTask",
+        "You are a feline-expert." +
+        "\nNode: taskBrStepFive",
     },
     ...state.messages,
   ]);
@@ -277,17 +277,17 @@ async function stepFiveTask(state: typeof MastraSystemAnnotation.State) {
 }
 
 /**
- * Node: stepOneTask
+ * Node: taskCycStepOne
  * Agent: cat_one
  */
-async function stepOneTask(state: typeof MastraSystemAnnotation.State) {
+async function taskCycStepOne(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Agent role and long-form instructions provided in Agent instantiation (instructions in source code)." +
-        "\nNode: stepOneTask",
+        "You are a feline-expert." +
+        "\nNode: taskCycStepOne",
     },
     ...state.messages,
   ]);
@@ -295,17 +295,17 @@ async function stepOneTask(state: typeof MastraSystemAnnotation.State) {
 }
 
 /**
- * Node: stepTwoTask
+ * Node: taskCycStepTwo
  * Agent: cat_one
  */
-async function stepTwoTask(state: typeof MastraSystemAnnotation.State) {
+async function taskCycStepTwo(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Agent role and long-form instructions provided in Agent instantiation (instructions in source code)." +
-        "\nNode: stepTwoTask",
+        "You are a feline-expert." +
+        "\nNode: taskCycStepTwo",
     },
     ...state.messages,
   ]);
@@ -313,17 +313,17 @@ async function stepTwoTask(state: typeof MastraSystemAnnotation.State) {
 }
 
 /**
- * Node: stepThreeTask
+ * Node: taskCycStepThree
  * Agent: cat_one
  */
-async function stepThreeTask(state: typeof MastraSystemAnnotation.State) {
+async function taskCycStepThree(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Agent role and long-form instructions provided in Agent instantiation (instructions in source code)." +
-        "\nNode: stepThreeTask",
+        "You are a feline-expert." +
+        "\nNode: taskCycStepThree",
     },
     ...state.messages,
   ]);
@@ -331,70 +331,68 @@ async function stepThreeTask(state: typeof MastraSystemAnnotation.State) {
 }
 
 /**
- * Node: stepOneTask
+ * Node: taskCycStepOneLoop
  * Agent: cat_one
  */
-async function stepOneTask(state: typeof MastraSystemAnnotation.State) {
+async function taskCycStepOneLoop(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "Agent role and long-form instructions provided in Agent instantiation (instructions in source code)." +
-        "\nNode: stepOneTask",
+        "You are a feline-expert." +
+        "\nNode: taskCycStepOneLoop",
     },
     ...state.messages,
   ]);
   return { messages: [response] };
 }
 
-const workflow = new StateGraph(MastraSystemAnnotation)
-  .addNode("stepOneTask", stepOneTask)
-  .addNode("stepTwoTask", stepTwoTask)
-  .addNode("stepThreeTask", stepThreeTask)
-  .addNode("stepFourTask", stepFourTask)
-  .addNode("stepFiveTask", stepFiveTask)
-  .addNode("stepOneTask", stepOneTask)
-  .addNode("stepSixTask", stepSixTask)
-  .addNode("stepTwoTask", stepTwoTask)
-  .addNode("stepThreeTask", stepThreeTask)
-  .addNode("stepOneTask", stepOneTask)
-  .addNode("stepTwoTask", stepTwoTask)
-  .addNode("stepThreeTask", stepThreeTask)
-  .addNode("stepFourTask", stepFourTask)
-  .addNode("stepFiveTask", stepFiveTask)
-  .addNode("stepOneTask", stepOneTask)
-  .addNode("stepTwoTask", stepTwoTask)
-  .addNode("stepThreeTask", stepThreeTask)
-  .addNode("stepOneTask", stepOneTask)
-  .addEdge(START, "stepOneTask")
-  .addEdge("stepOneTask", "stepTwoTask")
-  .addEdge("stepTwoTask", "stepThreeTask")
-  .addEdge("stepThreeTask", "stepFourTask")
-  .addEdge("stepFourTask", "stepFiveTask")
-  .addEdge("stepOneTask", "stepSixTask")
-  .addEdge("stepOneTask", "stepTwoTask")
-  .addEdge("stepTwoTask", "stepFourTask")
-  .addEdge("stepThreeTask", "stepFiveTask")
-  .addEdge("stepOneTask", "stepTwoTask")
-  .addEdge("stepTwoTask", "stepThreeTask")
-  .addEdge("stepThreeTask", "stepOneTask")
-  .addEdge("stepOneTask", "stepTwoTask")
-  .addEdge("stepFiveTask", END)
-  .addEdge("stepSixTask", END)
-  .addEdge("stepTwoTask", END)
-  .addEdge("stepThreeTask", END)
-  .addEdge("stepFourTask", END)
-  .addEdge("stepFiveTask", END)
+const workflow = new StateGraph(UnnamedProjectAnnotation)
+  .addNode("taskStepOne", taskStepOne)
+  .addNode("taskStepTwo", taskStepTwo)
+  .addNode("taskStepThree", taskStepThree)
+  .addNode("taskStepFour", taskStepFour)
+  .addNode("taskStepFive", taskStepFive)
+  .addNode("taskParStepOne", taskParStepOne)
+  .addNode("taskParStepSix", taskParStepSix)
+  .addNode("taskParStepTwo", taskParStepTwo)
+  .addNode("taskParStepThree", taskParStepThree)
+  .addNode("taskBrStepOne", taskBrStepOne)
+  .addNode("taskBrStepTwo", taskBrStepTwo)
+  .addNode("taskBrStepFour", taskBrStepFour)
+  .addNode("taskBrStepThree", taskBrStepThree)
+  .addNode("taskBrStepFive", taskBrStepFive)
+  .addNode("taskCycStepOne", taskCycStepOne)
+  .addNode("taskCycStepTwo", taskCycStepTwo)
+  .addNode("taskCycStepThree", taskCycStepThree)
+  .addNode("taskCycStepOneLoop", taskCycStepOneLoop)
+  .addEdge(START, "taskStepOne")
+  .addEdge("taskStepOne", "taskStepTwo")
+  .addEdge("taskStepTwo", "taskStepThree")
+  .addEdge("taskStepThree", "taskStepFour")
+  .addEdge("taskStepFour", "taskStepFive")
+  .addEdge("taskParStepOne", "taskParStepSix")
+  .addEdge("taskParStepOne", "taskParStepTwo")
+  .addEdge("taskBrStepOne", "taskBrStepTwo")
+  .addEdge("taskBrStepOne", "taskBrStepThree")
+  .addEdge("taskBrStepTwo", "taskBrStepFour")
+  .addEdge("taskBrStepThree", "taskBrStepFive")
+  .addEdge("taskCycStepOne", "taskCycStepTwo")
+  .addEdge("taskCycStepTwo", "taskCycStepThree")
+  .addEdge("taskCycStepThree", "taskCycStepOneLoop")
+  .addEdge("taskStepFive", END)
+  .addEdge("taskParStepSix", END)
+  .addEdge("taskParStepTwo", END)
+  .addEdge("taskParStepThree", END)
+  .addEdge("taskBrStepFour", END)
+  .addEdge("taskBrStepFive", END)
+  .addEdge("taskCycStepOneLoop", END)
 ;
 
 export const graph = workflow.compile();
-graph.name = "MastraSystem";
-// Workflow: sequential_workflow_pattern
-// Workflow: sequential-workflow pattern
-// Workflow: parallel_workflow_pattern
-// Workflow: parallel-workflow pattern
-// Workflow: branched_workflow_pattern
-// Workflow: branched-workflow pattern
-// Workflow: cyclical_workflow_pattern
-// Workflow: cyclical-workflow pattern
+graph.name = "UnnamedProject";
+// Workflow: wf_sequential
+// Workflow: wf_parallel
+// Workflow: wf_branched
+// Workflow: wf_cyclical

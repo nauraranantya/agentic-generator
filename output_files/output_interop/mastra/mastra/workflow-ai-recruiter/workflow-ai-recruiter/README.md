@@ -1,6 +1,6 @@
 # UnnamedProject
 
-
+Mastra instance hosting the candidate-workflow
 
 **Auto-generated from AgentO Knowledge Graph**  
 Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
@@ -39,10 +39,10 @@ UnnamedProject/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
 │       ├── agents/            # Agent definitions
-│       │   └── recruiterAgent.ts
+│       │   └── mastraLlm.ts
 │       ├── tools/             # Tool definitions
 │       └── workflows/         # Workflow definitions
-│           └── candidateWorkflow.ts
+│           └── candidateWorkflowPattern.ts
 ├── package.json
 ├── tsconfig.json
 └── .env.example
@@ -52,12 +52,12 @@ UnnamedProject/
 
 ## 🤖 Agents
 
-### Recruiter Agent
+### workflow-processor
 
-- **ID:** `recruiter-agent`
-- **Model:** `openai/gpt-4o-mini`
+- **ID:** `mastra-llm`
+- **Model:** `openai/gpt-4o`
 
-Agent-level static instruction used as the recruiter's persona/instruction set for generation....
+You are workflow-processor....
 
 
 ---
@@ -70,21 +70,14 @@ No tools defined in this project.
 
 ## 🔄 Workflows
 
-### candidate-workflow
+### candidate_workflow_pattern
 
-Workflow triggered by a single trigger value 'resumeText'.
-Trigger schema (Zod): { resumeText: string }
-Behavior summary:
-- Step 1 (gatherCandidateInfo) extracts structured candidate information from the trigger resumeText.
-- Conditional branching:
-    - If gatherCandidateInfo.isTechnical == true then execute askAboutSpecialty.
-    - If gatherCandidateInfo.isTechnical == false then execute askAboutRole.
-The implementation example commits the workflow and demonstrates one run with triggerData: { resumeText: 'Simulated resume content...' }.
+Workflow to extract candidate information from a resume and generate follow-up questions
 
 **Steps:** 3
-1. gatherCandidateInfo
-2. askAboutSpecialty
-3. askAboutRole
+1. gather_candidate_info_task
+2. ask_about_specialty_task
+3. ask_about_role_task
 
 
 ---

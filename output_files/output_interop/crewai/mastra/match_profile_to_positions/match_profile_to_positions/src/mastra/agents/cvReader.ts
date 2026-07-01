@@ -3,28 +3,28 @@
  * ID: cv_reader
  * 
  * Auto-generated from AgentO Knowledge Graph
- * Objectives:
- *   - : Objective for producing a structured summary of the given CV.
- *   - : Objective for producing a ranked list of job matches for the candidate.
+ * Capabilities:
+ *   - : Capability to read file contents from disk.
+ *   - : Capability to search and query CSV-formatted job listings.
  */
 
 import { Agent } from '@mastra/core/agent'
 
 // Import tools
-import { fileReadTool } from '../tools'
+import { toolFileRead } from '../tools'
 
 /**
  * CV Reader
  * 
  * Instructions:
- * Agent-level prompt to orient behavior. Use FileReadTool to access CV file. Produce a structured CV summary.
+ * Extract relevant information from the CV, such as skills, experience, and education.
  */
 export const cvReader = new Agent({
   id: `cv_reader`,
   name: `CV Reader`,
-  instructions: `Agent-level prompt to orient behavior. Use FileReadTool to access CV file. Produce a structured CV summary.`,
+  instructions: `Extract relevant information from the CV, such as skills, experience, and education.`,
   model: 'openai/gpt-4o-mini',
   tools: {
-    fileReadTool,
+    toolFileRead,
   },
 })

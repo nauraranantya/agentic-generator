@@ -10,36 +10,14 @@ const UnnamedProjectAnnotation = Annotation.Root({
   }),
 });
 
-// Tool: tool_stock_price
-const tool_stock_price = tool(
+// Tool: buy_stock_tool
+const buy_stock_tool = tool(
   async () => {
-    return "Result of tool_stock_price";
+    return "Result of buy_stock_tool";
   },
   {
-    name: "tool_stock_price",
-    description: "A tool to get the stock price of a company. Invoked with argument { ticker: string }. When called, the agent fetches one-day and thirty-day price collections from https://api.financialdatasets.ai/prices with specified query parameters (interval, interval_multiplier, start_date, end_date, limit). The thirty-day retrieval may follow next_page_url to aggregate pages.",
-    schema: z.object({}),
-  }
-);
-// Tool: tool_portfolio
-const tool_portfolio = tool(
-  async () => {
-    return "Result of tool_portfolio";
-  },
-  {
-    name: "tool_portfolio",
-    description: "A tool to get the user's portfolio details. Only called when the user explicitly requests portfolio details. Invoked with argument { get_portfolio: true }.",
-    schema: z.object({}),
-  }
-);
-// Tool: tool_buy_stock
-const tool_buy_stock = tool(
-  async () => {
-    return "Result of tool_buy_stock";
-  },
-  {
-    name: "tool_buy_stock",
-    description: "A tool to buy a stock. Invoked with arguments { ticker: string, quantity: number }. When called, the agent requests a price snapshot from https://api.financialdatasets.ai/prices/snapshot and includes the snapshot and quantity in the UI output.",
+    name: "buy_stock_tool",
+    description: "Executes stock purchase orders when invoked by the UI. Expects a JSON content with purchaseDetails { ticker, quantity, price }.",
     schema: z.object({}),
   }
 );
@@ -47,17 +25,53 @@ const tool_buy_stock = tool(
 
 
 /**
- * Node: callTools
- * Agent: stockbroker_01
+ * Node: openBuyUiTask
+ * Agent: trade_agent
  */
-async function callTools(state: typeof UnnamedProjectAnnotation.State) {
+async function openBuyUiTask(state: typeof UnnamedProjectAnnotation.State) {
   const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "System-level instruction provided to the LLM on each invocation. Used with the conversation messages array state.messages." +
-        "\nNode: callTools",
+        "You are a trading_assistant." +
+        "\nNode: openBuyUiTask",
+    },
+    ...state.messages,
+  ]);
+  return { messages: [response] };
+}
+
+/**
+ * Node: executePurchaseTask
+ * Agent: trade_agent
+ */
+async function executePurchaseTask(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
+  const response = await model.invoke([
+    {
+      role: "system",
+      content:
+        "You are a trading_assistant." +
+        "\nNode: executePurchaseTask",
+    },
+    ...state.messages,
+  ]);
+  return { messages: [response] };
+}
+
+/**
+ * Node: confirmPurchaseTask
+ * Agent: trade_agent
+ */
+async function confirmPurchaseTask(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
+  const response = await model.invoke([
+    {
+      role: "system",
+      content:
+        "You are a trading_assistant." +
+        "\nNode: confirmPurchaseTask",
     },
     ...state.messages,
   ]);
@@ -65,11 +79,15 @@ async function callTools(state: typeof UnnamedProjectAnnotation.State) {
 }
 
 const workflow = new StateGraph(UnnamedProjectAnnotation)
-  .addNode("callTools", callTools)
-  .addEdge(START, "callTools")
+  .addNode("openBuyUiTask", openBuyUiTask)
+  .addNode("executePurchaseTask", executePurchaseTask)
+  .addNode("confirmPurchaseTask", confirmPurchaseTask)
+  .addEdge(START, "openBuyUiTask")
+  .addEdge("openBuyUiTask", "executePurchaseTask")
+  .addEdge("executePurchaseTask", "confirmPurchaseTask")
+  .addEdge("confirmPurchaseTask", END)
 ;
 
 export const graph = workflow.compile();
 graph.name = "UnnamedProject";
-// Workflow: stockbroker_workflow
-// Workflow: Stockbroker
+// Workflow: buy_stock_workflow

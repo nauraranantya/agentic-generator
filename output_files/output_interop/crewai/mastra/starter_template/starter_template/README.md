@@ -1,6 +1,6 @@
 # UnnamedProject
 
-A Crew defined in main.py that composes two custom agents and two custom tasks. Verbose=True, debug default False.
+Crew created in main.CustomCrew with agents [custom_agent_1, custom_agent_2] and tasks [custom_task_1, custom_task_2].
 
 **Auto-generated from AgentO Knowledge Graph**  
 Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
@@ -42,9 +42,9 @@ UnnamedProject/
 │       │   └── agent1Name.ts
 │       │   └── agent2Name.ts
 │       ├── tools/             # Tool definitions
-│       │   └── duckDuckGoTool.ts
+│       │   └── toolDuckDuckGoSearchRun.ts
 │       └── workflows/         # Workflow definitions
-│           └── customCrewWorkflow.ts
+│           └── workflowCustomCrew.ts
 ├── package.json
 ├── tsconfig.json
 └── .env.example
@@ -58,41 +58,41 @@ UnnamedProject/
 
 - **ID:** `agent_1_name`
 - **Model:** `openai/gpt-3.5-turbo`
-- **Tools:** duckDuckGoTool
+- **Tools:** toolDuckDuckGoSearchRun
 
-agent settings: allow_delegation=False; verbose=True; llm=ChatOpenAI(gpt-3.5-turbo)...
+Define agent 1 goal here...
 
 ### Define agent 2 role here
 
 - **ID:** `agent_2_name`
 - **Model:** `openai/gpt-3.5-turbo`
-- **Tools:** duckDuckGoTool
+- **Tools:** toolDuckDuckGoSearchRun
 
-agent settings: allow_delegation=False; verbose=True; llm=ChatOpenAI(gpt-3.5-turbo)...
+Define agent 2 goal here...
 
 
 ---
 
 ## 🔧 Tools
 
-### duckDuckGoTool
+### toolDuckDuckGoSearchRun
 
-An instance of DuckDuckGoSearchRun created in main.py and intended for web search functionality. (Note: installed via 'duckduckgo-search' if used.)...
+LangChain DuckDuckGo search tool used for web search...
 
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/duckDuckGoTool.ts`)
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolDuckDuckGoSearchRun.ts`)
 
 
 ---
 
 ## 🔄 Workflows
 
-### custom_crew_workflow
+### workflow_custom_crew
 
-A simple two-step workflow (StartStep -> EndStep) representing the Crew run in main.py.
+Workflow inferred from Crew(..., tasks=[task_1_name, task_2_name]) ordering.
 
 **Steps:** 2
-1. Task 1
-2. Task 2
+1. task_1
+2. task_2
 
 
 ---

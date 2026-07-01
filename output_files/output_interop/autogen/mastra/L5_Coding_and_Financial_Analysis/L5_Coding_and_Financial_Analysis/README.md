@@ -1,6 +1,6 @@
 # UnnamedProject
 
-
+Team comprising a code writer and a code executor that collaborate to generate and run plotting code.
 
 **Auto-generated from AgentO Knowledge Graph**  
 Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
@@ -39,12 +39,14 @@ UnnamedProject/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
 │       ├── agents/            # Agent definitions
-│       │   └── codeExecutorAgent.ts
 │       │   └── codeWriterAgent.ts
+│       │   └── codeExecutorAgent.ts
 │       ├── tools/             # Tool definitions
-│       │   └── localCmdExecutorTool.ts
+│       │   └── toolLocalCliExecutor.ts
+│       │   └── toolGetStockPrices.ts
+│       │   └── toolPlotStockPrices.ts
 │       └── workflows/         # Workflow definitions
-│           └── l5CodingFinancialAnalysisPattern.ts
+│           └── workflowL5CodingAndFinancialAnalysis.ts
 ├── package.json
 ├── tsconfig.json
 └── .env.example
@@ -54,43 +56,56 @@ UnnamedProject/
 
 ## 🤖 Agents
 
-### conversable code executor
-
-- **ID:** `code_executor_agent`
-- **Model:** `openai/gpt-4o-mini`
-- **Tools:** localCmdExecutorTool
-
-You are conversable code executor....
-
-### assistant code writer
+### Assistant / Code Writer
 
 - **ID:** `code_writer_agent`
 - **Model:** `openai/gpt-4-turbo`
 
-The source obtains code_writer_agent.system_message and prints it; exact content is not available in the provided artifact....
+You are Assistant / Code Writer....
+
+### Code Executor
+
+- **ID:** `code_executor_agent`
+- **Model:** `openai/gpt-4o-mini`
+- **Tools:** toolLocalCliExecutor, toolGetStockPrices, toolPlotStockPrices
+
+You are Code Executor....
 
 
 ---
 
 ## 🔧 Tools
 
-### LocalCommandLineCodeExecutor
+### toolLocalCliExecutor
 
-Local command-line code executor used to run code with timeout and working directory....
+Executor used to run code locally with a working directory and timeout; can register functions to be callable during execution....
 
-**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/localCmdExecutorTool.ts`)
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolLocalCliExecutor.ts`)
+
+### toolGetStockPrices
+
+Function that downloads stock prices using yfinance and returns closing prices for given symbols between start and end dates....
+
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolGetStockPrices.ts`)
+
+### toolPlotStockPrices
+
+Function that plots provided stock prices dataframe and saves the figure to a specified filename using matplotlib....
+
+**Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/toolPlotStockPrices.ts`)
 
 
 ---
 
 ## 🔄 Workflows
 
-### L5 Coding and Financial Analysis Pattern
+### workflow_l5_coding_and_financial_analysis
 
+Workflow representing the conversational code-writing and execution loop for producing YTD stock plots.
 
-
-**Steps:** 1
-1. Stock Analysis: YTD Stock Gain Plot
+**Steps:** 2
+1. task_plot_ytd_v1
+2. task_plot_ytd_v2
 
 
 ---

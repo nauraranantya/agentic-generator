@@ -1,13 +1,8 @@
 /**
- * Mastra AI Instance - TravelAiSystemMastraexampleapp
+ * Mastra AI Instance - UnnamedProject
  * 
  * Auto-generated from AgentO Knowledge Graph
  * Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
- * Goals:
- *   - Plan Trip: 
- *   - Format Output: 
- * Objectives:
- *   - Assemble trip components: 
  */
 
 import { Mastra } from '@mastra/core'
@@ -16,10 +11,7 @@ import { Mastra } from '@mastra/core'
 import { travelAgent, travelAnalyzer } from './agents'
 
 // Import workflows
-import { travelSubmissionWorkflow, airbnbFlowPattern, syncCsvWorkflow } from './workflows'
-
-// Import memory instances
-import { travelMemory } from './memory'
+import { workflowTravelSubmission, workflowSyncCsvData } from './workflows'
 
 /**
  * Mastra instance with registered agents, workflows, and memory.
@@ -31,11 +23,7 @@ export const mastra = new Mastra({
     travelAnalyzer,
   },
   workflows: {
-    travelSubmissionWorkflow,
-    airbnbFlowPattern,
-    syncCsvWorkflow,
-  },
-  memory: {
-    travelMemory,
+    workflowTravelSubmission,
+    workflowSyncCsvData,
   },
 })

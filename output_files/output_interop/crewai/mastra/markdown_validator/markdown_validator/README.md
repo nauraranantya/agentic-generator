@@ -1,4 +1,4 @@
-# MarkDownValidatorCrew
+# UnnamedProject
 
 
 
@@ -34,7 +34,7 @@ npm run dev
 ## 📦 Project Structure
 
 ```
-MarkDownValidatorCrew/
+UnnamedProject/
 ├── src/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
@@ -43,7 +43,7 @@ MarkDownValidatorCrew/
 │       ├── tools/             # Tool definitions
 │       │   └── markdownValidationTool.ts
 │       └── workflows/         # Workflow definitions
-│           └── markdownValidationWorkflowPattern.ts
+│           └── markdownValidationWorkflow.ts
 ├── package.json
 ├── tsconfig.json
 └── .env.example
@@ -59,18 +59,18 @@ MarkDownValidatorCrew/
 - **Model:** `openai/gpt-4o-mini`
 - **Tools:** markdownValidationTool
 
-Agent backstory: expert business analyst and software QA specialist....
+Provide a detailed list of the markdown linting results.
+Give a summary with actionable tasks to address the validation results.
+Write your response as if you were handing it to a developer to fix the...
 
 
 ---
 
 ## 🔧 Tools
 
-### markdown_validation_tool
+### markdownValidationTool
 
-Tool definition (from src/markdown_validator/tools/markdownTools.py):
-- Tool name registered as 'markdown_validation_tool'
-- Signature (conceptual): input: file_path (string) -> output: validation_res...
+A tool to review files for markdown syntax errors. Uses PyMarkdownApi to scan a file path and returns formatted scan results....
 
 **Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/markdownValidationTool.ts`)
 
@@ -79,9 +79,9 @@ Tool definition (from src/markdown_validator/tools/markdownTools.py):
 
 ## 🔄 Workflows
 
-### Markdown Validation Workflow (sequential)
+### markdown_validation_workflow
 
-Workflow pattern representing the crew's sequential process. Process in implementation: Process.sequential (the crew's Process enumeration is recorded here as descriptive text).
+Workflow pattern for the markdown validation crew (Process.sequential)
 
 **Steps:** 1
 1. syntax_review_task

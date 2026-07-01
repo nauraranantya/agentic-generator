@@ -1,6 +1,6 @@
-# MastraDeploymentBirdChecker
+# UnnamedProject
 
-Deployment of the Bird Checker composed using Mastra: maps an agent id to a running LLM agent component.
+Mastra instance wrapping the birdAgent and application workflow.
 
 **Auto-generated from AgentO Knowledge Graph**  
 Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
@@ -34,7 +34,7 @@ npm run dev
 ## 📦 Project Structure
 
 ```
-MastraDeploymentBirdChecker/
+UnnamedProject/
 ├── src/
 │   └── mastra/
 │       ├── index.ts           # Mastra instance + registrations
@@ -53,21 +53,21 @@ MastraDeploymentBirdChecker/
 
 ## 🤖 Agents
 
-### analyze images to detect birds, identify species and location
+### bird classifier
 
-- **ID:** `bird-agent`
-- **Model:** `anthropic/claude-3-haiku-20240307`
+- **ID:** `birdAgent`
+- **Model:** `anthropic/claude-3-5-sonnet-latest`
 
-agent instructions (default context for agent)...
+System should determine whether a provided image contains a bird, identify its scientific name if present, and summarize location....
 
 
 ---
 
 ## 🔧 Tools
 
-### Get a random image from unsplash
+### getRandomImageTool
 
-Gets a random image from Unsplash based on the selected option (query enum). Declared as a tool in src/mastra/tools....
+Gets a random image from unsplash based on the selected option...
 
 **Status:** ⚠️ Implementation required (see TODO in `src/mastra/tools/getRandomImageTool.ts`)
 
@@ -76,13 +76,13 @@ Gets a random image from Unsplash based on the selected option (query enum). Dec
 
 ## 🔄 Workflows
 
-### Bird Checker Workflow Pattern
+### bird_checker_workflow
 
-High-level workflow: Start -> Get Image -> Analyze Image -> End. Describes how UI tags trigger image fetch and analysis by the agent.
+Inferred two-step workflow: fetch an image, then classify it.
 
 **Steps:** 2
-1. Get Random Image Task
-2. Analyze Image Task
+1. get_image_task
+2. classify_image_task
 
 
 ---

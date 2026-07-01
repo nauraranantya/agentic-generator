@@ -10,14 +10,36 @@ const UnnamedProjectAnnotation = Annotation.Root({
   }),
 });
 
-// Tool: local_cmd_executor_tool
-const local_cmd_executor_tool = tool(
+// Tool: tool_local_cli_executor
+const tool_local_cli_executor = tool(
   async () => {
-    return "Result of local_cmd_executor_tool";
+    return "Result of tool_local_cli_executor";
   },
   {
-    name: "local_cmd_executor_tool",
-    description: "Local command-line code executor used to run code with timeout and working directory.",
+    name: "tool_local_cli_executor",
+    description: "Executor used to run code locally with a working directory and timeout; can register functions to be callable during execution.",
+    schema: z.object({}),
+  }
+);
+// Tool: tool_get_stock_prices
+const tool_get_stock_prices = tool(
+  async () => {
+    return "Result of tool_get_stock_prices";
+  },
+  {
+    name: "tool_get_stock_prices",
+    description: "Function that downloads stock prices using yfinance and returns closing prices for given symbols between start and end dates.",
+    schema: z.object({}),
+  }
+);
+// Tool: tool_plot_stock_prices
+const tool_plot_stock_prices = tool(
+  async () => {
+    return "Result of tool_plot_stock_prices";
+  },
+  {
+    name: "tool_plot_stock_prices",
+    description: "Function that plots provided stock prices dataframe and saves the figure to a specified filename using matplotlib.",
     schema: z.object({}),
   }
 );
@@ -25,17 +47,17 @@ const local_cmd_executor_tool = tool(
 
 
 /**
- * Node: stockAnalysisYtdStockGainPlot
- * Agent: code_writer_agent
+ * Node: taskPlotYtdV1
+ * Agent: code_executor_agent
  */
-async function stockAnalysisYtdStockGainPlot(state: typeof UnnamedProjectAnnotation.State) {
-  const model = new ChatOpenAI({ model: "gpt-4" });
+async function taskPlotYtdV1(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "The source obtains code_writer_agent.system_message and prints it; exact content is not available in the provided artifact." +
-        "\nNode: stockAnalysisYtdStockGainPlot",
+        "You are a Code Executor." +
+        "\nNode: taskPlotYtdV1",
     },
     ...state.messages,
   ]);
@@ -43,17 +65,17 @@ async function stockAnalysisYtdStockGainPlot(state: typeof UnnamedProjectAnnotat
 }
 
 /**
- * Node: stockAnalysisYtdStockGainPlot
- * Agent: code_writer_agent
+ * Node: taskPlotYtdV2
+ * Agent: code_executor_agent
  */
-async function stockAnalysisYtdStockGainPlot(state: typeof UnnamedProjectAnnotation.State) {
-  const model = new ChatOpenAI({ model: "gpt-4" });
+async function taskPlotYtdV2(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
   const response = await model.invoke([
     {
       role: "system",
       content:
-        "The source obtains code_writer_agent.system_message and prints it; exact content is not available in the provided artifact." +
-        "\nNode: stockAnalysisYtdStockGainPlot",
+        "You are a Code Executor." +
+        "\nNode: taskPlotYtdV2",
     },
     ...state.messages,
   ]);
@@ -61,14 +83,13 @@ async function stockAnalysisYtdStockGainPlot(state: typeof UnnamedProjectAnnotat
 }
 
 const workflow = new StateGraph(UnnamedProjectAnnotation)
-  .addNode("stockAnalysisYtdStockGainPlot", stockAnalysisYtdStockGainPlot)
-  .addNode("stockAnalysisYtdStockGainPlot", stockAnalysisYtdStockGainPlot)
-  .addEdge(START, "stockAnalysisYtdStockGainPlot")
-  .addEdge("stockAnalysisYtdStockGainPlot", "stockAnalysisYtdStockGainPlot")
-  .addEdge("stockAnalysisYtdStockGainPlot", END)
+  .addNode("taskPlotYtdV1", taskPlotYtdV1)
+  .addNode("taskPlotYtdV2", taskPlotYtdV2)
+  .addEdge(START, "taskPlotYtdV1")
+  .addEdge("taskPlotYtdV1", "taskPlotYtdV2")
+  .addEdge("taskPlotYtdV2", END)
 ;
 
 export const graph = workflow.compile();
 graph.name = "UnnamedProject";
-// Workflow: l5_coding_financial_analysis_pattern
-// Workflow: L5 Coding and Financial Analysis Pattern
+// Workflow: workflow_l5_coding_and_financial_analysis
