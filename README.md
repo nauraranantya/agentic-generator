@@ -157,7 +157,6 @@ Generative validity of the ontology is assessed through an automated five-metric
 ```
 .
 ├── agentO.ttl                            # AgentO ontology definition (OWL/RDF)
-├── _ESWC25__Ontology_for_Agentic_AI_Systems.pdf  # Base research paper (ESWC 2025)
 ├── legacy_reports/                       # Historical evaluation reports (reference only)
 │
 ├── script_to_kg/                         # Pipeline 1: Script → KG
@@ -313,8 +312,6 @@ If this work or the AgentO ontology is used in research, please cite the ESWC 20
 ---
 
 ## Developer Notes
-
-Refer to [AGENTS.md](AGENTS.md) for workspace policies, pipeline editing rules, and validation workflow guidance.
 
 Key invariants:
 - `script_to_kg/` and `kg_to_script/` are independently installable; do not introduce cross-imports.
