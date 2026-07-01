@@ -9,6 +9,7 @@ venv/
 output/*.py
 *.log
 *.md
+*.json
 !README.md
 *.txt
 
@@ -17,3 +18,4 @@ output/*.py
 .idea/
 
 # Big directories
+node_modules/
