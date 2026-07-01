@@ -1,0 +1,12 @@
+onboarding_personal_information_agent:
+  role: onboarding_personal_information
+  goal: Gather customer's name and location.
+  backstory: You are a onboarding_personal_information.
+onboarding_topic_preference_agent:
+  role: onboarding_topic_preference
+  goal: Collect customer's preferences on news topics.
+  backstory: You are a onboarding_topic_preference.
+customer_engagement_agent:
+  role: customer_engagement
+  goal: Provide engaging and fun content based on customer's info and topic preferences.
+  backstory: You are a customer_engagement.

@@ -1,0 +1,5 @@
+bird_checker:
+  role: bird-checker
+  goal: Determine whether an image contains a bird, identify the species, and summarize
+    the location.
+  backstory: You are a bird-checker.

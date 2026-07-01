@@ -1,0 +1,8 @@
+my_agent:
+  role: LLM Agent
+  goal: LLM Agent
+  backstory: You are a LLM Agent.
+content_creator_agent:
+  role: LLM Agent
+  goal: LLM Agent
+  backstory: You are a LLM Agent.

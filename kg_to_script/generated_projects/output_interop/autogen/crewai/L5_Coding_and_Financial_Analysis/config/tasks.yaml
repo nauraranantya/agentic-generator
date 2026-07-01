@@ -1,0 +1,10 @@
+task_plot_ytd_v1:
+  description: Initiated by code_executor_agent to request code from code_writer_agent
+    (Chinese message).
+  expected_output: A python script in a markdown code block that downloads prices
+    and saves ytd_stock_gains.png
+task_plot_ytd_v2:
+  description: |
+    Initiated by code_executor_agent to request code from code_writer_agent (English message about downloading and plotting YTD stock prices).
+  expected_output: A python script in a markdown code block that downloads prices
+    and saves stock_prices_YTD_plot.png

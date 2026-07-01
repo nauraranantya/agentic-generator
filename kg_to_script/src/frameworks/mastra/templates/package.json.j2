@@ -1,0 +1,26 @@
+{# ────────────────────────────────────────────────────────
+   Jinja2 Template: package.json
+   Generates npm package configuration with dependencies
+   ──────────────────────────────────────────────────────── #}
+{
+  "name": "{{ project_name }}",
+  "version": "0.1.0",
+  "description": "{{ project_description | json_escape }}",
+  "type": "module",
+  "main": "src/mastra/index.ts",
+  "scripts": {
+    "dev": "tsx src/mastra/index.ts",
+    "build": "tsc",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+{% for pkg, version in dependencies.items() %}
+    "{{ pkg }}": "{{ version }}"{{ "," if not loop.last else "" }}
+{% endfor %}
+  },
+  "devDependencies": {
+{% for pkg, version in dev_dependencies.items() %}
+    "{{ pkg }}": "{{ version }}"{{ "," if not loop.last else "" }}
+{% endfor %}
+  }
+}

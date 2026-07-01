@@ -1,0 +1,4 @@
+writer_agent:
+  role: writer
+  goal: writer
+  backstory: You are a writer.

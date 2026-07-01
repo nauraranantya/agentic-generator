@@ -1,0 +1,18 @@
+personalized_activity_planner:
+  role: Activity Planner
+  goal: Activity Planner
+  backstory: You are a Activity Planner.
+  allow_delegation: false
+  verbose: true
+restaurant_scout:
+  role: Restaurant Scout
+  goal: Restaurant Scout
+  backstory: You are a Restaurant Scout.
+  allow_delegation: false
+  verbose: true
+itinerary_compiler:
+  role: Itinerary Compiler
+  goal: Itinerary Compiler
+  backstory: You are a Itinerary Compiler.
+  allow_delegation: false
+  verbose: true

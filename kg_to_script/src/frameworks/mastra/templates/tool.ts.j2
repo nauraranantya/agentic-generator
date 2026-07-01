@@ -1,0 +1,58 @@
+{# ────────────────────────────────────────────────────────
+   Jinja2 Template: src/mastra/tools/{tool}.ts
+   Generates Tool definition with createTool()
+   ──────────────────────────────────────────────────────── #}
+/**
+ * Tool: {{ tool.tool_id }}
+ * 
+ * Auto-generated from AgentO Knowledge Graph
+{% if tool.description %}
+ * 
+ * {{ tool.description | ts_comment }}
+{% endif %}
+ */
+
+import { createTool } from '@mastra/core/tools'
+import { z } from 'zod'
+
+/**
+ * {{ tool.tool_id }}
+ * 
+{% if tool.execute_description %}
+ * Implementation: {{ tool.execute_description | ts_comment }}
+{% endif %}
+ */
+export const {{ tool.var_name }} = createTool({
+  id: '{{ tool.tool_id }}',
+  description: `{{ tool.description | ts_escape }}`,
+{% if tool.input_schema %}
+  inputSchema: {{ tool.input_schema }},
+{% else %}
+  inputSchema: z.object({}),  // TODO: Define input schema
+{% endif %}
+{% if tool.output_schema %}
+  outputSchema: {{ tool.output_schema }},
+{% else %}
+  outputSchema: z.object({}),  // TODO: Define output schema
+{% endif %}
+  execute: async ({ inputData }) => {
+    // TODO: Implement tool logic
+    // 
+{% if tool.execute_description %}
+    // Description: {{ tool.execute_description | ts_comment }}
+{% endif %}
+{% if tool.configs %}
+    // Configurations:
+{% for config in tool.configs %}
+    //   - {{ config.key }}: {{ config.value | ts_comment }}
+{% endfor %}
+{% endif %}
+    // 
+    // Implementation should:
+    // 1. Use inputData according to inputSchema
+    // 2. Perform the tool's logic
+    // 3. Return result matching outputSchema
+    
+    throw new Error('Tool {{ tool.tool_id }} not implemented yet')
+  },
+})

@@ -1,0 +1,10 @@
+get_image_task:
+  description: |
+    Fetch a random image from Unsplash matching the provided query (wildlife | feathers | flying | birds).
+  expected_output: |
+    Image object with fields: alt_description, urls { regular, raw }, user { first_name, links { html } }.
+bird_check_task:
+  description: |
+    view this image and let me know if it's a bird or not, and the scientific name of the bird without any explanation. Also summarize the location for this picture in one or two short sentences understandable by a high school student
+  expected_output: 'JSON object: { bird: boolean, species: string, location: string
+    }'

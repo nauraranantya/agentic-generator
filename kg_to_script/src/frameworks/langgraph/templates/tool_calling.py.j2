@@ -1,0 +1,135 @@
+{# ────────────────────────────────────────────────────────
+   Jinja2 Template: tool_calling.py
+   Pattern  : Tool-Calling (single agent with bound tools)
+   Generated: AgentO KG → SPARQL → Pydantic → Jinja2
+   ──────────────────────────────────────────────────────── #}
+"""
+Auto-generated LangGraph App: {{ graph_name }}
+
+Pattern : Tool-Calling (single agent with tools)
+Source  : AgentO Knowledge Graph → SPARQL → Pydantic → Jinja2
+Pipeline: 3-Layer Conversion Pipeline
+{% if goals %}
+Goals:
+{% for g in goals %}
+  - {{ g.label }}: {{ g.description }}
+{% endfor %}
+{% endif %}
+{% if objectives %}
+Objectives:
+{% for o in objectives %}
+  - {{ o.label }}: {{ o.description }}
+{% endfor %}
+{% endif %}
+{% if human_agents %}
+Human Agents:
+{% for h in human_agents %}
+  - {{ h.var_name }} ({{ h.role }})
+{% endfor %}
+{% endif %}
+{% if environments %}
+Environments:
+{% for e in environments %}
+  - {{ e.label }} ({{ e.env_type }}): {{ e.description }}
+{% endfor %}
+{% endif %}
+{% if capabilities %}
+Capabilities:
+{% for c in capabilities %}
+  - {{ c.label }}: {{ c.description }}
+{% endfor %}
+{% endif %}
+{% if resources %}
+Resources:
+{% for r in resources %}
+  - {{ r.label }}: {{ r.description }}
+{% endfor %}
+{% endif %}
+{% if constraints %}
+Constraints:
+{% for c in constraints %}
+  - {{ c.label }}: {{ c.description }}
+{% endfor %}
+{% endif %}
+"""
+
+import os
+from typing import Annotated, TypedDict
+from pathlib import Path
+from dotenv import load_dotenv
+
+_HERE = Path(__file__).parent
+load_dotenv(_HERE / ".env", override=True)
+
+from langgraph.graph import StateGraph, START, END
+from langgraph.graph.message import add_messages
+from langgraph.prebuilt import ToolNode, tools_condition
+from langchain_openai import ChatOpenAI
+from langchain_core.messages import SystemMessage
+from langchain_core.tools import tool
+
+LLM_MODEL = os.environ.get("LLM_MODEL", "{{ agents[0].model_name or 'gpt-4o-mini' }}")
+
+
+# ===========================================================
+# Tool Stubs
+# ===========================================================
+{% for t in tools %}
+
+@tool
+def {{ t.var_name }}(query: str) -> str:
+    """{{ t.description }}"""
+    # TODO: implement {{ t.var_name }}
+    return f"Stub result from '{{ t.var_name }}' for query: {query}"
+{% endfor %}
+
+tools_list = [{% for t in tools %}{{ t.var_name }}{% if not loop.last %}, {% endif %}{% endfor %}]
+
+
+# ===========================================================
+# State
+# ===========================================================
+
+class AgentState(TypedDict):
+    messages: Annotated[list, add_messages]
+
+
+# ===========================================================
+# LLM
+# ===========================================================
+
+llm = ChatOpenAI(model=LLM_MODEL)
+llm_with_tools = llm.bind_tools(tools_list)
+
+
+# ===========================================================
+# Agent Node
+# ===========================================================
+
+def {{ agents[0].var_name }}_node(state: AgentState) -> dict:
+    """{{ agents[0].role }} — invokes tools as needed and returns a response."""
+    sys_msg = SystemMessage(content="""{{ agents[0].prompt }}""")
+    messages = [sys_msg] + state["messages"]
+    response = llm_with_tools.invoke(messages)
+    return {"messages": [response]}
+
+
+# ===========================================================
+# Graph
+# ===========================================================
+
+workflow = StateGraph(AgentState)
+workflow.add_node("agent", {{ agents[0].var_name }}_node)
+workflow.add_node("tools", ToolNode(tools_list))
+
+workflow.add_edge(START, "agent")
+workflow.add_conditional_edges("agent", tools_condition)
+workflow.add_edge("tools", "agent")
+
+{% if tasks and tasks | selectattr("human_input") | list %}
+app = workflow.compile(
+    interrupt_before=[{% for t in tasks if t.human_input %}"{{ t.agent_var_name }}"{% if not loop.last %}, {% endif %}{% endfor %}]
+)
+{% else %}
+app = workflow.compile()
+{% endif %}

@@ -1,0 +1,107 @@
+import { StateGraph, START, END } from "@langchain/langgraph";
+import { SupervisorAnnotation, type SupervisorState } from "./types";
+import { router } from "./nodes/router";
+import { generalInput } from "./nodes/general-input";
+{% set ns = namespace(has_openai=false, has_anthropic=false) %}
+{% for agent in agents %}
+  {% if agent.provider == "anthropic" %}
+    {% set ns.has_anthropic = true %}
+  {% else %}
+    {% set ns.has_openai = true %}
+  {% endif %}
+{% endfor %}
+{% if not agents %}
+  {% set ns.has_openai = true %}
+{% endif %}
+{% if ns.has_openai %}
+import { ChatOpenAI } from "@langchain/openai";
+{% endif %}
+{% if ns.has_anthropic %}
+import { ChatAnthropic } from "@langchain/anthropic";
+{% endif %}
+{% if tools %}
+import { tool } from "@langchain/core/tools";
+import { z } from "zod";
+{% endif %}
+
+{% for tool in tools %}
+// Tool: {{ tool.var_name }}
+const {{ tool.var_name }} = tool(
+  async () => {
+    return "Result of {{ tool.var_name }}";
+  },
+  {
+    name: "{{ tool.var_name }}",
+    description: "{{ tool.description | ts_escape }}",
+    schema: z.object({}),
+  }
+);
+{% endfor %}
+
+{% for route in routes if not route.is_fallback %}
+{% set node_agent = none %}
+{% for node in nodes %}
+  {% if node.ts_name == route.target_node %}
+    {% set node_agent = agent_by_iri[node.agent_ref] if (node.agent_ref and agent_by_iri and node.agent_ref in agent_by_iri) else none %}
+  {% endif %}
+{% endfor %}
+{% if not node_agent %}
+  {% set node_agent = agents[0] if agents else none %}
+{% endif %}
+{% set node_provider = node_agent.provider if node_agent else "openai" %}
+{% set node_model_class = "ChatAnthropic" if node_provider == "anthropic" else "ChatOpenAI" %}
+{% set node_model_name = node_agent.model_name if node_agent else "gpt-4o-mini" %}
+{% set node_agent_prompt = node_agent.prompt if node_agent else "You are a helpful assistant." %}
+{% set node_agent_var = node_agent.var_name if node_agent else "defaultAgent" %}
+
+/**
+ * Route Target Node: {{ route.target_node }}
+ * Agent: {{ node_agent_var }}
+ */
+async function {{ route.target_node }}(state: SupervisorState) {
+  const model = new {{ node_model_class }}({ model: "{{ node_model_name | ts_escape }}" });
+  const response = await model.invoke([
+    { role: "system", content: "Route: {{ route.route_key }}. {{ node_agent_prompt | ts_escape }}" },
+    ...state.messages,
+  ]);
+  return { messages: [response] };
+}
+{% endfor %}
+
+function handleRoute(state: SupervisorState):
+{% for route in routes %}
+  | "{{ route.route_key }}"
+{% endfor %}
+{
+  return state.next as
+{% for route in routes %}
+    | "{{ route.route_key }}"
+{% endfor %}
+  ;
+}
+
+const builder = new StateGraph(SupervisorAnnotation)
+  .addNode("{{ router_node_name if router_node_name else 'router' }}", router)
+{% for route in routes %}
+{% if route.is_fallback %}
+  .addNode("{{ route.target_node }}", generalInput)
+{% else %}
+  .addNode("{{ route.target_node }}", {{ route.target_node }})
+{% endif %}
+{% endfor %}
+  .addConditionalEdges("{{ router_node_name if router_node_name else 'router' }}", handleRoute, [
+{% for route in routes %}
+    "{{ route.route_key }}",
+{% endfor %}
+  ])
+  .addEdge(START, "{{ router_node_name if router_node_name else 'router' }}")
+{% for route in routes %}
+  .addEdge("{{ route.target_node }}", END)
+{% endfor %}
+;
+
+export const graph = builder.compile();
+graph.name = "{{ graph_name | ts_escape }}";
+{% for wf_name in workflow_names %}
+// Workflow: {{ wf_name }}
+{% endfor %}

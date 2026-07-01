@@ -1,0 +1,4 @@
+registry_registry_server:
+  role: mcp-server
+  goal: mcp-server
+  backstory: You are a mcp-server.

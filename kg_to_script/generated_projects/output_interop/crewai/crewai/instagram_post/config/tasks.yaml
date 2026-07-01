@@ -1,0 +1,27 @@
+task_product_analysis:
+  description: |
+    Analyze the given product website, identify unique features, benefits, narrative, and recommendations.
+  expected_output: A comprehensive analysis report covering product key selling points,
+    market appeal, and suggestions.
+task_take_photograph:
+  description: |
+    Imagine and describe three photograph concepts for the Instagram post based on provided copy and product context.
+  expected_output: Provide 3 photographic options, each described in one paragraph
+    following the examples.
+task_competitor_analysis:
+  description: Identify top competitors and analyze their strategies and positioning
+    relative to the product.
+  expected_output: A ranked list of top 3 competitors with comparative analysis and
+    implications for strategy.
+task_review_photo:
+  description: |
+    Review photography drafts, approve or request clarifications or delegations; ensure alignment with product goals.
+  expected_output: Return 3 reviewed photograph options with approval status or delegation
+    instructions.
+task_campaign_development:
+  description: Create a targeted marketing campaign strategy and creative ideas.
+  expected_output: A detailed campaign strategy with creative content ideas and contextual
+    rationale.
+task_instagram_ad_copy:
+  description: Craft engaging Instagram post copy aligned with marketing strategy.
+  expected_output: Return 3 distinct Instagram ad copy options, each concise and attention-grabbing.

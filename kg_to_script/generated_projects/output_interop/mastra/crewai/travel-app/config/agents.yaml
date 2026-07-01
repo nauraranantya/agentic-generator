@@ -1,0 +1,8 @@
+travel_agent:
+  role: travel agent
+  goal: travel agent
+  backstory: You are a travel agent.
+travel_analyzer:
+  role: travel analyzer
+  goal: travel analyzer
+  backstory: You are a travel analyzer.

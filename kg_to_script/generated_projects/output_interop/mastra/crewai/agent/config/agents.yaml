@@ -1,0 +1,4 @@
+chef_agent:
+  role: Chef
+  goal: Chef
+  backstory: You are a Chef.

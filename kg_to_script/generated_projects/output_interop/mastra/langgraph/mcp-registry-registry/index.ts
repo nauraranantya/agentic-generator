@@ -1,0 +1,124 @@
+import { ChatOpenAI } from "@langchain/openai";
+import { Annotation, START, END, StateGraph } from "@langchain/langgraph";
+import { tool } from "@langchain/core/tools";
+import { z } from "zod";
+
+const UnnamedProjectAnnotation = Annotation.Root({
+  messages: Annotation<any[]>({
+    reducer: (_, next) => next,
+    default: () => [],
+  }),
+});
+
+// Tool: tool_registry_list
+const tool_registry_list = tool(
+  async () => {
+    return "Result of tool_registry_list";
+  },
+  {
+    name: "tool_registry_list",
+    description: "List available MCP registries. Can filter by ID, tag, or name and provide detailed or summary views.",
+    schema: z.object({}),
+  }
+);
+// Tool: tool_registry_servers
+const tool_registry_servers = tool(
+  async () => {
+    return "Result of tool_registry_servers";
+  },
+  {
+    name: "tool_registry_servers",
+    description: "Get servers from a specific MCP registry. Can filter by tag or search term. Internally fetches registry data, invokes post-processing, and filters results.",
+    schema: z.object({}),
+  }
+);
+
+
+
+/**
+ * Node: taskFetchServersFromRegistry
+ * Agent: registry_registry_server
+ */
+async function taskFetchServersFromRegistry(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
+  const response = await model.invoke([
+    {
+      role: "system",
+      content:
+        "You are a mcp-server." +
+        "\nNode: taskFetchServersFromRegistry",
+    },
+    ...state.messages,
+  ]);
+  return { messages: [response] };
+}
+
+/**
+ * Node: taskPostProcessServers
+ * Agent: registry_registry_server
+ */
+async function taskPostProcessServers(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
+  const response = await model.invoke([
+    {
+      role: "system",
+      content:
+        "You are a mcp-server." +
+        "\nNode: taskPostProcessServers",
+    },
+    ...state.messages,
+  ]);
+  return { messages: [response] };
+}
+
+/**
+ * Node: taskFilterServers
+ * Agent: registry_registry_server
+ */
+async function taskFilterServers(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
+  const response = await model.invoke([
+    {
+      role: "system",
+      content:
+        "You are a mcp-server." +
+        "\nNode: taskFilterServers",
+    },
+    ...state.messages,
+  ]);
+  return { messages: [response] };
+}
+
+/**
+ * Node: taskGetServersFromRegistry
+ * Agent: registry_registry_server
+ */
+async function taskGetServersFromRegistry(state: typeof UnnamedProjectAnnotation.State) {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
+  const response = await model.invoke([
+    {
+      role: "system",
+      content:
+        "You are a mcp-server." +
+        "\nNode: taskGetServersFromRegistry",
+    },
+    ...state.messages,
+  ]);
+  return { messages: [response] };
+}
+
+const workflow = new StateGraph(UnnamedProjectAnnotation)
+  .addNode("taskFetchServersFromRegistry", taskFetchServersFromRegistry)
+  .addNode("taskPostProcessServers", taskPostProcessServers)
+  .addNode("taskFilterServers", taskFilterServers)
+  .addNode("taskGetServersFromRegistry", taskGetServersFromRegistry)
+  .addEdge(START, "taskFetchServersFromRegistry")
+  .addEdge("taskFetchServersFromRegistry", "taskPostProcessServers")
+  .addEdge("taskPostProcessServers", "taskFilterServers")
+  .addEdge("taskFilterServers", "taskGetServersFromRegistry")
+  .addEdge("taskGetServersFromRegistry", END)
+;
+
+export const graph = workflow.compile();
+graph.name = "UnnamedProject";
+// Workflow: workflow_registry_servers

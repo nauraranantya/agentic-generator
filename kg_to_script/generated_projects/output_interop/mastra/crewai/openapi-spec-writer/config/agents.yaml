@@ -1,0 +1,4 @@
+openapi_spec_gen_agent:
+  role: openapi-spec-writer
+  goal: openapi-spec-writer
+  backstory: You are a openapi-spec-writer.

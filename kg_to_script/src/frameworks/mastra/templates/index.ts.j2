@@ -1,0 +1,82 @@
+{# ────────────────────────────────────────────────────────
+   Jinja2 Template: src/mastra/index.ts
+   Generates Mastra instance + agent/workflow/memory registration
+   ──────────────────────────────────────────────────────── #}
+/**
+ * Mastra AI Instance - {{ project.project_name }}
+ * 
+ * Auto-generated from AgentO Knowledge Graph
+ * Pipeline: KG (.ttl) → SPARQL → Pydantic IR → TypeScript
+{% if project.goals %}
+ * Goals:
+{% for g in project.goals %}
+ *   - {{ g.label }}: {{ g.description }}
+{% endfor %}
+{% endif %}
+{% if project.objectives %}
+ * Objectives:
+{% for o in project.objectives %}
+ *   - {{ o.label }}: {{ o.description }}
+{% endfor %}
+{% endif %}
+{% if project.human_agents %}
+ * Human Agents:
+{% for h in project.human_agents %}
+ *   - {{ h.var_name }} ({{ h.role }})
+{% endfor %}
+{% endif %}
+{% if project.environments %}
+ * Environments:
+{% for e in project.environments %}
+ *   - {{ e.label }} ({{ e.env_type }}): {{ e.description }}
+{% endfor %}
+{% endif %}
+ */
+
+import { Mastra } from '@mastra/core'
+{% if agents %}
+
+// Import agents
+import { {% for agent in agents %}{{ agent.var_name }}{% if not loop.last %}, {% endif %}{% endfor %} } from './agents'
+{% endif %}
+{% if workflows %}
+
+// Import workflows
+import { {% for workflow in workflows %}{{ workflow.var_name }}{% if not loop.last %}, {% endif %}{% endfor %} } from './workflows'
+{% endif %}
+{% if memory_configs %}
+
+// Import memory instances
+import { {% for mem in memory_configs %}{{ mem.var_name }}{% if not loop.last %}, {% endif %}{% endfor %} } from './memory'
+{% endif %}
+
+/**
+ * Mastra instance with registered agents, workflows, and memory.
+ *
+{% if project.description %}
+ * {{ project.description | ts_escape }}
+{% endif %}
+ */
+export const mastra = new Mastra({
+{% if agents %}
+  agents: {
+{% for agent in agents %}
+    {{ agent.var_name }},
+{% endfor %}
+  },
+{% endif %}
+{% if workflows %}
+  workflows: {
+{% for workflow in workflows %}
+    {{ workflow.var_name }},
+{% endfor %}
+  },
+{% endif %}
+{% if memory_configs %}
+  memory: {
+{% for mem in memory_configs %}
+    {{ mem.var_name }},
+{% endfor %}
+  },
+{% endif %}
+})

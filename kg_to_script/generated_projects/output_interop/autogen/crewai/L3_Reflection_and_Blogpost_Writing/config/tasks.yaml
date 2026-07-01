@@ -1,0 +1,23 @@
+task_write_blog:
+  description: Writer generates a concise blogpost about DeepLearning.AI.
+  expected_output: 'Completed: task_write_blog'
+task_critic_initiate_1:
+  description: Critic initiates chat with Writer (first initiate_chat call, max_turns=3).
+  expected_output: 'Completed: task_critic_initiate_1'
+task_nested_seo_review:
+  description: SEO reviewer performs one-turn review using reflection_with_llm summary_prompt.
+  expected_output: 'Completed: task_nested_seo_review'
+task_nested_legal_review:
+  description: Legal reviewer performs one-turn review using reflection_with_llm summary_prompt.
+  expected_output: 'Completed: task_nested_legal_review'
+task_nested_ethics_review:
+  description: Ethics reviewer performs one-turn review using reflection_with_llm
+    summary_prompt.
+  expected_output: 'Completed: task_nested_ethics_review'
+task_meta_aggregate:
+  description: Meta reviewer aggregates feedback and provides final suggestion.
+  expected_output: 'Completed: task_meta_aggregate'
+task_critic_initiate_2:
+  description: |
+    Critic initiates chat with Writer (second initiate_chat call, max_turns=2) which triggers nested reviews.
+  expected_output: 'Completed: task_critic_initiate_2'

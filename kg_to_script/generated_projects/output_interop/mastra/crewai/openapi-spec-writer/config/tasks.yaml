@@ -1,0 +1,12 @@
+task_site_crawl_sync:
+  description: Crawl a website and extract the markdown content and sync it to the
+    database.
+  expected_output: 'Completed: task_site_crawl_sync'
+task_add_to_github:
+  description: |
+    Take a YAML blob, ask the agent to format it, then create branch, commit files and open a PR via the GitHub client.
+  expected_output: Properly formatted OpenAPI YAML ready for commit
+task_generate_spec:
+  description: |
+    For each crawled markdown page, ask the agent to turn it into an OpenAPI spec fragment; then ask the agent to merge fragments into a single spec.
+  expected_output: OpenAPI spec fragment (YAML) for the provided documentation page.

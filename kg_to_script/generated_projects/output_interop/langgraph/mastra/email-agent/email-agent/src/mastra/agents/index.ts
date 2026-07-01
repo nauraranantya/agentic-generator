@@ -1,0 +1,1 @@
+export { emailAssistantAgent } from './emailAssistantAgent'

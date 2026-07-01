@@ -1,0 +1,16 @@
+task_guodegang_initiate_chat_1:
+  description: message="我是郭德纲，于谦呀，我们给观众讲一段相声怎么样？"; recipient=于谦; max_turns=6
+  expected_output: A multi-turn conversational performance between 郭德纲 and 于谦.
+task_guodegang_initiate_chat_2:
+  description: |
+    message="我是郭德纲，于谦呀，我们给观众讲一段相声怎么样？"; summary_method="reflection_with_llm"; summary_prompt="简洁的总结下这场相声表演。"
+  expected_output: Conversation with an appended LLM-generated summary.
+task_guodegang_send_followup:
+  description: message='我们刚才的相声在讲什么?'; recipient=于谦
+  expected_output: Clarifying question about previous performance.
+task_chatbot_reply_1:
+  description: 'messages=[{"content": "Tell me a joke.", "role": "user"}]'
+  expected_output: A generated joke.
+task_chatbot_reply_2:
+  description: 'messages=[{"content": "Repeat the joke.", "role": "user"}]'
+  expected_output: Repeat of the previously generated joke.

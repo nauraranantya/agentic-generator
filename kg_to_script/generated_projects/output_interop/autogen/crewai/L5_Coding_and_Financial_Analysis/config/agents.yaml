@@ -1,0 +1,8 @@
+code_writer_agent:
+  role: Assistant / Code Writer
+  goal: Assistant / Code Writer
+  backstory: You are a Assistant / Code Writer.
+code_executor_agent:
+  role: Code Executor
+  goal: Code Executor
+  backstory: You are a Code Executor.

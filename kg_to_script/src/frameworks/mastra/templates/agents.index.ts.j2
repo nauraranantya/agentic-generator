@@ -1,0 +1,3 @@
+{% for agent in agents %}
+export { {{ agent.var_name }} } from './{{ agent.var_name }}'
+{% endfor %}

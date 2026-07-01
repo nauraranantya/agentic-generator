@@ -1,0 +1,12 @@
+task_onboarding_personal_info:
+  description: Hello, I'm here to help you get started with our product. Could you
+    tell me your name and location?
+  expected_output: 'Return the customer information into as JSON object only: {''name'':
+    '''', ''location'': ''''}'
+task_onboarding_topic_preference:
+  description: Great! Could you tell me what topics you are interested in reading
+    about?
+  expected_output: 'Completed: task_onboarding_topic_preference'
+task_customer_engagement_request:
+  description: Let's find something fun to read.
+  expected_output: 'Completed: task_customer_engagement_request'

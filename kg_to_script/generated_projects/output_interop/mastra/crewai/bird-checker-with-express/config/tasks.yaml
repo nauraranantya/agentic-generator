@@ -1,0 +1,10 @@
+get_random_image_task:
+  description: Task that obtains an image (imageUrl, photographer info) from Unsplash
+    based on a query.
+  expected_output: JSON object with imageUrl (string), photographerName (string),
+    photographerProfile (string)
+image_metadata_task:
+  description: |
+    Task where the agent inspects an image and returns structured output indicating whether it is a bird, the species, and a short location summary.
+  expected_output: 'JSON object with keys: bird (boolean), species (string), location
+    (string)'

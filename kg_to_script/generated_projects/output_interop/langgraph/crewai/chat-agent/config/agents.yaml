@@ -1,0 +1,4 @@
+chat_agent:
+  role: assistant
+  goal: assistant
+  backstory: You are a assistant.

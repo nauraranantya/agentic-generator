@@ -1,0 +1,14 @@
+cv_reader:
+  role: CV Reader
+  goal: Extract relevant information from the CV, such as skills, experience, and
+    education.
+  backstory: You are a CV Reader.
+  allow_delegation: false
+  verbose: true
+matcher:
+  role: Matcher
+  goal: Match the CV to the job opportunities based on skills, experience, and key
+    achievements.
+  backstory: You are a Matcher.
+  allow_delegation: false
+  verbose: true

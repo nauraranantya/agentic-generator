@@ -1,0 +1,1 @@
+export { bookAccommodationTool } from './bookAccommodationTool'

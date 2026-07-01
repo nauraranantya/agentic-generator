@@ -1,0 +1,4 @@
+example_agent:
+  role: assistant
+  goal: assistant
+  backstory: System-level instruction (agent 'instructions' argument)

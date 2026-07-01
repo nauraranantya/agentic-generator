@@ -1,0 +1,1 @@
+export { getRandomImageTool } from './getRandomImageTool'

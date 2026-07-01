@@ -1,0 +1,8 @@
+cat_one:
+  role: feline expert
+  goal: No explicit goal provided in source; placeholder goal.
+  backstory: You are a feline expert.
+agent_two:
+  role: assistant
+  goal: No explicit goal provided in source; placeholder goal.
+  backstory: You are a assistant.

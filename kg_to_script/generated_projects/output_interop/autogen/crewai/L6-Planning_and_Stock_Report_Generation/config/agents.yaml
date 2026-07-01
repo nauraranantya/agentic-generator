@@ -1,0 +1,24 @@
+admin:
+  role: Admin
+  goal: Admin
+  backstory: You are a Admin.
+planner:
+  role: Planner
+  goal: Planner
+  backstory: You are a Planner.
+engineer:
+  role: Engineer
+  goal: Engineer
+  backstory: You are a Engineer.
+executor:
+  role: Executor
+  goal: Executor
+  backstory: You are a Executor.
+writer:
+  role: Writer
+  goal: Writer
+  backstory: You are a Writer.
+group_chat_manager:
+  role: GroupChatManager
+  goal: GroupChatManager
+  backstory: You are a GroupChatManager.

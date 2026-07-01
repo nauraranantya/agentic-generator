@@ -1,0 +1,25 @@
+{
+  "name": "workflow-ai-recruiter",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "mastra dev",
+    "start:dev": "npx bun src/mastra/index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "mastra": "workspace:^",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3",
+    "zod": "^3.24.1"
+  },
+  "dependencies": {
+    "@mastra/core": "workspace:^"
+  },
+  "version": "0.0.0"
+}

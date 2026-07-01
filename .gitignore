@@ -3,11 +3,20 @@ __pycache__/
 *.pyc
 venv/
 .env
+.agento-env/
 
 # Output / generated code
 output/*.py
 *.log
+*.md
+*.json
+!README.md
+*.txt
 
 # IDE settings
 .vscode/
 .idea/
+
+# Big directories
+node_modules/
+*.pdf

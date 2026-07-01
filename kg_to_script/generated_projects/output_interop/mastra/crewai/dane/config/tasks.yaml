@@ -1,0 +1,91 @@
+task_changelog_step_a1:
+  description: Get a git diff and connect to slack; runs git diff via execa
+  expected_output: 'Completed: task_changelog_step_a1'
+task_entry_message_input:
+  description: Prompt user to input a message (inquirer prompt)
+  expected_output: 'Completed: task_entry_message_input'
+task_commit_get_diff:
+  description: Compute git diff of staged changes via git command
+  expected_output: 'Completed: task_commit_get_diff'
+task_first_get_pull_request:
+  description: Retrieve pull request data from GitHub integration and fetch diff
+  expected_output: 'Completed: task_first_get_pull_request'
+task_issue_get_issue:
+  description: Retrieve issue and repository labels using GitHub integration
+  expected_output: 'Completed: task_issue_get_issue'
+task_link_get_broken_links:
+  description: Run linkinator via shell to collect links; parse JSON output
+  expected_output: 'Completed: task_link_get_broken_links'
+task_pkg_get_pacakges_to_publish:
+  description: Use DanePackagePublisher agent to analyze repo and list packages requiring
+    publish
+  expected_output: 'Completed: task_pkg_get_pacakges_to_publish'
+task_tel_step_a1:
+  description: Create starting message for telephone game
+  expected_output: 'Completed: task_tel_step_a1'
+task_changelog_step_a2:
+  description: Generate changelog using the daneChangeLog agent and post to Slack
+  expected_output: 'Completed: task_changelog_step_a2'
+task_entry_message_output:
+  description: Send user message to Dane agent and stream/generate response
+  expected_output: 'Completed: task_entry_message_output'
+task_commit_read_conventional_commit_spec:
+  description: Read conventional commit spec using fsTool
+  expected_output: 'Completed: task_commit_read_conventional_commit_spec'
+task_first_message_generator:
+  description: |
+    Generate contributor welcome message using DaneNewContributor agent using PR title/body/diff and Mastra docs
+  expected_output: 'Completed: task_first_message_generator'
+task_issue_label_issue:
+  description: Use DaneIssueLabeler agent to decide labels for an issue
+  expected_output: 'Completed: task_issue_label_issue'
+task_link_report_broken_links:
+  description: Report broken links by generating a message with DaneLinkChecker and
+    posting to Slack
+  expected_output: 'Completed: task_link_report_broken_links'
+task_pkg_assemble_packages:
+  description: Assemble file system paths for the packages reported by the agent and
+    prepare build sets
+  expected_output: 'Completed: task_pkg_assemble_packages'
+task_tel_step_a2:
+  description: Prompt user for a message (inquirer input)
+  expected_output: 'Completed: task_tel_step_a2'
+task_commit_generate_message:
+  description: Generate commit message using DaneCommitMessage agent
+  expected_output: 'Completed: task_commit_generate_message'
+task_first_create_message:
+  description: Post generated message as GitHub issue comment using github integration
+  expected_output: 'Completed: task_first_create_message'
+task_issue_apply_labels:
+  description: Add labels to GitHub issue using integrations client
+  expected_output: 'Completed: task_issue_apply_labels'
+task_pkg_build_packages:
+  description: Build packages using pnpmBuild tool for each package path (sequential
+    and parallel phases)
+  expected_output: 'Completed: task_pkg_build_packages'
+task_tel_step_b2:
+  description: Validate that the input message exists and pass through
+  expected_output: 'Completed: task_tel_step_b2'
+task_commit_confirmation:
+  description: Prompt human user to confirm commit message via inquirer confirm
+  expected_output: 'Completed: task_commit_confirmation'
+task_pkg_verify_build:
+  description: Verify dist artifacts exist for all built packages
+  expected_output: 'Completed: task_pkg_verify_build'
+task_tel_step_c2:
+  description: |
+    Optionally suspend and ask user to confirm modification; if confirmed, call inline LLM (claude-3-5-haiku) to modify message
+  expected_output: 'Completed: task_tel_step_c2'
+task_commit_commit:
+  description: Perform git commit with generated message (execSync git commit)
+  expected_output: 'Completed: task_commit_commit'
+task_pkg_publish_changeset:
+  description: |
+    Use DanePackagePublisher agent to publish changeset (agent generates instructions) and then call pnpmChangesetPublish
+  expected_output: 'Completed: task_pkg_publish_changeset'
+task_tel_step_d2:
+  description: Pass the final message to the next participant or output
+  expected_output: 'Completed: task_tel_step_d2'
+task_pkg_set_latest_dist_tag:
+  description: Update npm dist-tag for published packages (agent assisted)
+  expected_output: 'Completed: task_pkg_set_latest_dist_tag'

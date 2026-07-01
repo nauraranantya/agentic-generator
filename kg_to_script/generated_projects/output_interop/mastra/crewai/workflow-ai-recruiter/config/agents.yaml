@@ -1,0 +1,4 @@
+mastra_llm:
+  role: workflow-processor
+  goal: workflow-processor
+  backstory: You are a workflow-processor.

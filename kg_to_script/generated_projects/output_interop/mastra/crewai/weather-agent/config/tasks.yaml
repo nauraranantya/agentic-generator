@@ -1,0 +1,8 @@
+task_fetch_weather:
+  description: Fetches weather forecast for a given city
+  expected_output: |
+    Array of daily forecast objects with fields: date, maxTemp, minTemp, precipitationChance, condition, location
+task_plan_activities:
+  description: Suggests activities based on weather conditions
+  expected_output: Formatted activities string using the specified emoji headers and
+    sections

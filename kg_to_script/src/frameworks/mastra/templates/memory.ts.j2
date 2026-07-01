@@ -1,0 +1,91 @@
+{# ────────────────────────────────────────────────────────
+   Jinja2 Template: src/mastra/memory/{memvar}.ts
+   Generates a Mastra Memory instance with storage backend
+   ──────────────────────────────────────────────────────── #}
+/**
+ * Memory: {{ memory.label or memory.var_name }}
+{% if memory.description %}
+ *
+ * {{ memory.description | ts_escape }}
+{% endif %}
+ *
+ * Auto-generated from AgentO Knowledge Graph
+ * Storage backend: {{ memory.storage_type }}
+ */
+
+import { Memory } from '@mastra/memory'
+import { {{ storage_class }} } from '{{ storage_package }}'
+{% if vector_class %}
+import { {{ vector_class }} } from '{{ vector_package }}'
+{% endif %}
+
+{% set has_options = memory.last_messages is not none
+    or not memory.semantic_recall_enabled
+    or memory.semantic_recall_top_k is not none
+    or memory.semantic_recall_message_range is not none
+    or memory.working_memory_enabled
+    or memory.token_limit is not none %}
+
+export const {{ memory.var_name }} = new Memory({
+{% if memory.storage_type == 'libsql' %}
+  storage: new {{ storage_class }}({
+{% for entry in storage_config_entries %}
+    {{ entry.key }}: {{ entry.value }},
+{% endfor %}
+  }),
+{% else %}
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  storage: new {{ storage_class }}({
+{% for entry in storage_config_entries %}
+    {{ entry.key }}: {{ entry.value }},
+{% endfor %}
+  }) as any,
+{% endif %}
+{% if vector_class and vector_config_entries %}
+  vector: new {{ vector_class }}({
+{% for entry in vector_config_entries %}
+    {{ entry.key }}: {{ entry.value }},
+{% endfor %}
+  }),
+{% endif %}
+{% if memory.embedder_model %}
+  embedder: {{ memory.embedder_model }},
+{% endif %}
+{% if has_options %}
+  options: {
+{% if memory.last_messages is not none %}
+    lastMessages: {{ memory.last_messages }},
+{% endif %}
+{% if not memory.semantic_recall_enabled %}
+    semanticRecall: false,
+{% elif memory.semantic_recall_top_k is not none or memory.semantic_recall_message_range is not none %}
+    semanticRecall: {
+{% if memory.semantic_recall_top_k is not none %}
+      topK: {{ memory.semantic_recall_top_k }},
+{% endif %}
+{% if memory.semantic_recall_message_range is not none %}
+      messageRange: {{ memory.semantic_recall_message_range }},
+{% endif %}
+    },
+{% endif %}
+{% if memory.working_memory_enabled %}
+    workingMemory: {
+      enabled: true,
+{% if memory.working_memory_scope %}
+      scope: '{{ memory.working_memory_scope }}',
+{% endif %}
+{% if memory.working_memory_template %}
+      template: `{{ memory.working_memory_template | ts_escape }}`,
+{% endif %}
+    },
+{% endif %}
+{% if memory.token_limit is not none %}
+    processors: [
+      // TokenLimiter — trims large tool responses to stay within token budget
+      // TODO: import { TokenLimiter } from '@mastra/memory' and enable:
+      // new TokenLimiter({{ memory.token_limit }}),
+    ],
+{% endif %}
+  },
+{% endif %}
+})

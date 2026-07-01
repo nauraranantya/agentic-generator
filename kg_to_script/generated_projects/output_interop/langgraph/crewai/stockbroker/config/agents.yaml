@@ -1,0 +1,4 @@
+trade_agent:
+  role: trading_assistant
+  goal: trading_assistant
+  backstory: You are a trading_assistant.

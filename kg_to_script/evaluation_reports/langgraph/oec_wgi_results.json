@@ -1,0 +1,4958 @@
+{
+  "root": "/Users/ravie/dev/agento",
+  "frameworks": [
+    {
+      "key": "langgraph",
+      "name": "LangGraph",
+      "kg_dir": "/Users/ravie/dev/agento/kgs_original/LangGraph",
+      "output_dir": "/Users/ravie/dev/agento/output_files/output_langgraph",
+      "summary": {
+        "projects": 9,
+        "evaluated": 9,
+        "errors": 0,
+        "avg_oec_all": 0.49804725762311086,
+        "avg_oec_important": 0.9468116094536126,
+        "avg_wgi": 0.9333333333333333,
+        "avg_edge_f1": 0.925925925925926,
+        "avg_ast_sim": 0.4057011844169407,
+        "syntax_success_rate": 1.0,
+        "run_success_rate": 1.0
+      },
+      "projects": [
+        {
+          "project": "chat-agent",
+          "kg_path": "/Users/ravie/dev/agento/kgs_original/LangGraph/chat-agent_instances.ttl",
+          "output_dir": "/Users/ravie/dev/agento/output_files/output_langgraph/chat-agent",
+          "status": "ok",
+          "kg_element_count": 13,
+          "code_element_count": 4,
+          "oec": {
+            "all_extracted": {
+              "score": 0.7692307692307693,
+              "matched": 10,
+              "total": 13,
+              "missing": [
+                {
+                  "category": "task_produces",
+                  "name": "chat_task_chat_response_resource",
+                  "important": false,
+                  "aliases": [
+                    "chat_task_chat_response_resource",
+                    "chat_task",
+                    "chat_response_resource"
+                  ],
+                  "details": {
+                    "source": "chat_task",
+                    "target": "chat_response_resource"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "chat_task_messages_annotation_kb",
+                  "important": false,
+                  "aliases": [
+                    "chat_task_messages_annotation_kb",
+                    "chat_task",
+                    "messages_annotation_kb"
+                  ],
+                  "details": {
+                    "source": "chat_task",
+                    "target": "messages_annotation_kb"
+                  }
+                },
+                {
+                  "category": "resource",
+                  "name": "chat_response_resource",
+                  "important": false,
+                  "aliases": [
+                    "chat_response_resource"
+                  ],
+                  "details": {}
+                }
+              ],
+              "by_category": {
+                "agent": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "agent_llm": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "config": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "language_model": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "project": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "resource": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "step_task": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "task": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "task_agent": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "task_produces": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "task_requires": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "workflow": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "workflow_step": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                }
+              }
+            },
+            "important_subset": {
+              "score": 1.0,
+              "matched": 7,
+              "total": 7,
+              "missing": [],
+              "by_category": {
+                "agent": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "config": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "step_task": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "task": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "task_agent": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "workflow": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "workflow_step": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                }
+              }
+            }
+          },
+          "wgi": {
+            "score": 1.0,
+            "normalized_graph_edit_distance": 0.0,
+            "labeled_score": 1.0,
+            "topology_score": 1.0,
+            "labeled_normalized_graph_edit_distance": 0.0,
+            "topology_normalized_graph_edit_distance": 0.0,
+            "exact_isomorphic": true,
+            "topology_isomorphic": true,
+            "edge_precision": 1.0,
+            "edge_recall": 1.0,
+            "edge_f1": 1.0,
+            "kg_nodes": [
+              "chat_task"
+            ],
+            "code_nodes": [
+              "chat_task"
+            ],
+            "kg_edges": [],
+            "code_edges": [],
+            "missing_nodes": [],
+            "extra_nodes": [],
+            "missing_edges": [],
+            "extra_edges": []
+          },
+          "syntax_ok": true,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.8529411764705882
+        },
+        {
+          "project": "email-agent",
+          "kg_path": "/Users/ravie/dev/agento/kgs_original/LangGraph/email-agent_instances.ttl",
+          "output_dir": "/Users/ravie/dev/agento/output_files/output_langgraph/email-agent",
+          "status": "ok",
+          "kg_element_count": 53,
+          "code_element_count": 16,
+          "oec": {
+            "all_extracted": {
+              "score": 0.37735849056603776,
+              "matched": 20,
+              "total": 53,
+              "missing": [
+                {
+                  "category": "agent_llm",
+                  "name": "email_assistant_agent_gpt_4_o_chat_open_ai",
+                  "important": false,
+                  "aliases": [
+                    "email_assistant_agent_gpt_4_o_chat_open_ai",
+                    "email_assistant_agent",
+                    "gpt_4_o_chat_open_ai"
+                  ],
+                  "details": {
+                    "source": "email_assistant_agent",
+                    "target": "gpt_4_o_chat_open_ai"
+                  }
+                },
+                {
+                  "category": "agent_capability",
+                  "name": "email_assistant_agent_capability_compose_email",
+                  "important": false,
+                  "aliases": [
+                    "email_assistant_agent_capability_compose_email",
+                    "email_assistant_agent",
+                    "capability_compose_email"
+                  ],
+                  "details": {
+                    "source": "email_assistant_agent",
+                    "target": "capability_compose_email"
+                  }
+                },
+                {
+                  "category": "agent_capability",
+                  "name": "email_assistant_agent_capability_rewrite_email",
+                  "important": false,
+                  "aliases": [
+                    "email_assistant_agent_capability_rewrite_email",
+                    "email_assistant_agent",
+                    "capability_rewrite_email"
+                  ],
+                  "details": {
+                    "source": "email_assistant_agent",
+                    "target": "capability_rewrite_email"
+                  }
+                },
+                {
+                  "category": "agent_capability",
+                  "name": "email_assistant_agent_capability_send_email",
+                  "important": false,
+                  "aliases": [
+                    "email_assistant_agent_capability_send_email",
+                    "email_assistant_agent",
+                    "capability_send_email"
+                  ],
+                  "details": {
+                    "source": "email_assistant_agent",
+                    "target": "capability_send_email"
+                  }
+                },
+                {
+                  "category": "agent_capability",
+                  "name": "email_assistant_agent_capability_handle_human_interrupt",
+                  "important": false,
+                  "aliases": [
+                    "email_assistant_agent_capability_handle_human_interrupt",
+                    "email_assistant_agent",
+                    "capability_handle_human_interrupt"
+                  ],
+                  "details": {
+                    "source": "email_assistant_agent",
+                    "target": "capability_handle_human_interrupt"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "write_email_generate_draft_draft_email_resource",
+                  "important": false,
+                  "aliases": [
+                    "write_email_generate_draft_draft_email_resource",
+                    "write_email_generate_draft",
+                    "draft_email_resource"
+                  ],
+                  "details": {
+                    "source": "write_email_generate_draft",
+                    "target": "draft_email_resource"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "write_email_generate_draft_conversation_history",
+                  "important": false,
+                  "aliases": [
+                    "write_email_generate_draft_conversation_history",
+                    "write_email_generate_draft",
+                    "conversation_history"
+                  ],
+                  "details": {
+                    "source": "write_email_generate_draft",
+                    "target": "conversation_history"
+                  }
+                },
+                {
+                  "category": "task_capability",
+                  "name": "write_email_generate_draft_capability_compose_email",
+                  "important": false,
+                  "aliases": [
+                    "write_email_generate_draft_capability_compose_email",
+                    "write_email_generate_draft",
+                    "capability_compose_email"
+                  ],
+                  "details": {
+                    "source": "write_email_generate_draft",
+                    "target": "capability_compose_email"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "ignore_human_response_resource",
+                  "important": false,
+                  "aliases": [
+                    "ignore_human_response_resource",
+                    "ignore",
+                    "human_response_resource"
+                  ],
+                  "details": {
+                    "source": "ignore",
+                    "target": "human_response_resource"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "ignore_draft_email_resource",
+                  "important": false,
+                  "aliases": [
+                    "ignore_draft_email_resource",
+                    "ignore",
+                    "draft_email_resource"
+                  ],
+                  "details": {
+                    "source": "ignore",
+                    "target": "draft_email_resource"
+                  }
+                },
+                {
+                  "category": "task_capability",
+                  "name": "ignore_capability_handle_human_interrupt",
+                  "important": false,
+                  "aliases": [
+                    "ignore_capability_handle_human_interrupt",
+                    "ignore",
+                    "capability_handle_human_interrupt"
+                  ],
+                  "details": {
+                    "source": "ignore",
+                    "target": "capability_handle_human_interrupt"
+                  }
+                },
+                {
+                  "category": "task_context",
+                  "name": "ignore_rewrite_email_apply_user_s_requested_changes",
+                  "important": true,
+                  "aliases": [
+                    "ignore_rewrite_email_apply_user_s_requested_changes",
+                    "ignore",
+                    "rewrite_email_apply_user_s_requested_changes"
+                  ],
+                  "details": {
+                    "source": "ignore",
+                    "target": "rewrite_email_apply_user_s_requested_changes"
+                  }
+                },
+                {
+                  "category": "task",
+                  "name": "rewrite_email_apply_user_s_requested_changes",
+                  "important": true,
+                  "aliases": [
+                    "rewrite_email_apply_user_s_requested_changes",
+                    "rewrite_email_task"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_agent",
+                  "name": "rewrite_email_apply_user_s_requested_changes_email_assistant_agent",
+                  "important": true,
+                  "aliases": [
+                    "rewrite_email_apply_user_s_requested_changes_email_assistant_agent",
+                    "rewrite_email_apply_user_s_requested_changes",
+                    "email_assistant_agent"
+                  ],
+                  "details": {
+                    "source": "rewrite_email_apply_user_s_requested_changes",
+                    "target": "email_assistant_agent"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "rewrite_email_apply_user_s_requested_changes_draft_email_resource",
+                  "important": false,
+                  "aliases": [
+                    "rewrite_email_apply_user_s_requested_changes_draft_email_resource",
+                    "rewrite_email_apply_user_s_requested_changes",
+                    "draft_email_resource"
+                  ],
+                  "details": {
+                    "source": "rewrite_email_apply_user_s_requested_changes",
+                    "target": "draft_email_resource"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "rewrite_email_apply_user_s_requested_changes_draft_email_resource",
+                  "important": false,
+                  "aliases": [
+                    "rewrite_email_apply_user_s_requested_changes_draft_email_resource",
+                    "rewrite_email_apply_user_s_requested_changes",
+                    "draft_email_resource"
+                  ],
+                  "details": {
+                    "source": "rewrite_email_apply_user_s_requested_changes",
+                    "target": "draft_email_resource"
+                  }
+                },
+                {
+                  "category": "task_capability",
+                  "name": "rewrite_email_apply_user_s_requested_changes_capability_rewrite_email",
+                  "important": false,
+                  "aliases": [
+                    "rewrite_email_apply_user_s_requested_changes_capability_rewrite_email",
+                    "rewrite_email_apply_user_s_requested_changes",
+                    "capability_rewrite_email"
+                  ],
+                  "details": {
+                    "source": "rewrite_email_apply_user_s_requested_changes",
+                    "target": "capability_rewrite_email"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "send_email_finalize_send_sent_email_record",
+                  "important": false,
+                  "aliases": [
+                    "send_email_finalize_send_sent_email_record",
+                    "send_email_finalize_send",
+                    "sent_email_record"
+                  ],
+                  "details": {
+                    "source": "send_email_finalize_send",
+                    "target": "sent_email_record"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "send_email_finalize_send_draft_email_resource",
+                  "important": false,
+                  "aliases": [
+                    "send_email_finalize_send_draft_email_resource",
+                    "send_email_finalize_send",
+                    "draft_email_resource"
+                  ],
+                  "details": {
+                    "source": "send_email_finalize_send",
+                    "target": "draft_email_resource"
+                  }
+                },
+                {
+                  "category": "task_capability",
+                  "name": "send_email_finalize_send_capability_send_email",
+                  "important": false,
+                  "aliases": [
+                    "send_email_finalize_send_capability_send_email",
+                    "send_email_finalize_send",
+                    "capability_send_email"
+                  ],
+                  "details": {
+                    "source": "send_email_finalize_send",
+                    "target": "capability_send_email"
+                  }
+                },
+                {
+                  "category": "task_context",
+                  "name": "send_email_finalize_send_rewrite_email_apply_user_s_requested_changes",
+                  "important": true,
+                  "aliases": [
+                    "send_email_finalize_send_rewrite_email_apply_user_s_requested_changes",
+                    "send_email_finalize_send",
+                    "rewrite_email_apply_user_s_requested_changes"
+                  ],
+                  "details": {
+                    "source": "send_email_finalize_send",
+                    "target": "rewrite_email_apply_user_s_requested_changes"
+                  }
+                },
+                {
+                  "category": "tool_capability",
+                  "name": "write_email_tool_capability_compose_email",
+                  "important": false,
+                  "aliases": [
+                    "write_email_tool_capability_compose_email",
+                    "write_email_tool",
+                    "capability_compose_email"
+                  ],
+                  "details": {
+                    "source": "write_email_tool",
+                    "target": "capability_compose_email"
+                  }
+                },
+                {
+                  "category": "workflow_step",
+                  "name": "rewrite_email_apply_user_s_requested_changes",
+                  "important": true,
+                  "aliases": [
+                    "rewrite_email_apply_user_s_requested_changes",
+                    "rewrite_email_step"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "step_task",
+                  "name": "rewrite_email_apply_user_s_requested_changes_rewrite_email_apply_user_s_requested_changes",
+                  "important": true,
+                  "aliases": [
+                    "rewrite_email_apply_user_s_requested_changes_rewrite_email_apply_user_s_requested_changes",
+                    "rewrite_email_apply_user_s_requested_changes"
+                  ],
+                  "details": {
+                    "source": "rewrite_email_apply_user_s_requested_changes",
+                    "target": "rewrite_email_apply_user_s_requested_changes"
+                  }
+                },
+                {
+                  "category": "language_model",
+                  "name": "gpt_4_o_chat_open_ai",
+                  "important": false,
+                  "aliases": [
+                    "gpt_4_o_chat_open_ai",
+                    "gpt_4_o_model"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "capability",
+                  "name": "capability_compose_email",
+                  "important": false,
+                  "aliases": [
+                    "capability_compose_email",
+                    "compose_email"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "capability",
+                  "name": "capability_rewrite_email",
+                  "important": false,
+                  "aliases": [
+                    "capability_rewrite_email",
+                    "rewrite_email"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "capability",
+                  "name": "capability_send_email",
+                  "important": false,
+                  "aliases": [
+                    "capability_send_email",
+                    "send_email"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "capability",
+                  "name": "capability_handle_human_interrupt",
+                  "important": false,
+                  "aliases": [
+                    "capability_handle_human_interrupt",
+                    "handle_human_interrupt"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "human_agent",
+                  "name": "user_human",
+                  "important": false,
+                  "aliases": [
+                    "user_human"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "draft_email_resource",
+                  "important": false,
+                  "aliases": [
+                    "draft_email_resource",
+                    "draft_email"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "sent_email_record",
+                  "important": false,
+                  "aliases": [
+                    "sent_email_record"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "human_response_resource",
+                  "important": false,
+                  "aliases": [
+                    "human_response_resource",
+                    "human_response_interrupt_result"
+                  ],
+                  "details": {}
+                }
+              ],
+              "by_category": {
+                "agent": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "agent_capability": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 4
+                },
+                "agent_llm": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "agent_tool": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "capability": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 4
+                },
+                "config": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                },
+                "human_agent": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "language_model": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "project": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "resource": {
+                  "score": 0.25,
+                  "matched": 1,
+                  "total": 4
+                },
+                "step_task": {
+                  "score": 0.75,
+                  "matched": 3,
+                  "total": 4
+                },
+                "task": {
+                  "score": 0.75,
+                  "matched": 3,
+                  "total": 4
+                },
+                "task_agent": {
+                  "score": 0.6666666666666666,
+                  "matched": 2,
+                  "total": 3
+                },
+                "task_capability": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 4
+                },
+                "task_context": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 2
+                },
+                "task_produces": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 4
+                },
+                "task_requires": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 4
+                },
+                "tool": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "tool_capability": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "workflow": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "workflow_step": {
+                  "score": 0.75,
+                  "matched": 3,
+                  "total": 4
+                }
+              }
+            },
+            "important_subset": {
+              "score": 0.7391304347826086,
+              "matched": 17,
+              "total": 23,
+              "missing": [
+                {
+                  "category": "task_context",
+                  "name": "ignore_rewrite_email_apply_user_s_requested_changes",
+                  "important": true,
+                  "aliases": [
+                    "ignore_rewrite_email_apply_user_s_requested_changes",
+                    "ignore",
+                    "rewrite_email_apply_user_s_requested_changes"
+                  ],
+                  "details": {
+                    "source": "ignore",
+                    "target": "rewrite_email_apply_user_s_requested_changes"
+                  }
+                },
+                {
+                  "category": "task",
+                  "name": "rewrite_email_apply_user_s_requested_changes",
+                  "important": true,
+                  "aliases": [
+                    "rewrite_email_apply_user_s_requested_changes",
+                    "rewrite_email_task"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_agent",
+                  "name": "rewrite_email_apply_user_s_requested_changes_email_assistant_agent",
+                  "important": true,
+                  "aliases": [
+                    "rewrite_email_apply_user_s_requested_changes_email_assistant_agent",
+                    "rewrite_email_apply_user_s_requested_changes",
+                    "email_assistant_agent"
+                  ],
+                  "details": {
+                    "source": "rewrite_email_apply_user_s_requested_changes",
+                    "target": "email_assistant_agent"
+                  }
+                },
+                {
+                  "category": "task_context",
+                  "name": "send_email_finalize_send_rewrite_email_apply_user_s_requested_changes",
+                  "important": true,
+                  "aliases": [
+                    "send_email_finalize_send_rewrite_email_apply_user_s_requested_changes",
+                    "send_email_finalize_send",
+                    "rewrite_email_apply_user_s_requested_changes"
+                  ],
+                  "details": {
+                    "source": "send_email_finalize_send",
+                    "target": "rewrite_email_apply_user_s_requested_changes"
+                  }
+                },
+                {
+                  "category": "workflow_step",
+                  "name": "rewrite_email_apply_user_s_requested_changes",
+                  "important": true,
+                  "aliases": [
+                    "rewrite_email_apply_user_s_requested_changes",
+                    "rewrite_email_step"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "step_task",
+                  "name": "rewrite_email_apply_user_s_requested_changes_rewrite_email_apply_user_s_requested_changes",
+                  "important": true,
+                  "aliases": [
+                    "rewrite_email_apply_user_s_requested_changes_rewrite_email_apply_user_s_requested_changes",
+                    "rewrite_email_apply_user_s_requested_changes"
+                  ],
+                  "details": {
+                    "source": "rewrite_email_apply_user_s_requested_changes",
+                    "target": "rewrite_email_apply_user_s_requested_changes"
+                  }
+                }
+              ],
+              "by_category": {
+                "agent": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "agent_tool": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "config": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "step_task": {
+                  "score": 0.75,
+                  "matched": 3,
+                  "total": 4
+                },
+                "task": {
+                  "score": 0.75,
+                  "matched": 3,
+                  "total": 4
+                },
+                "task_agent": {
+                  "score": 0.6666666666666666,
+                  "matched": 2,
+                  "total": 3
+                },
+                "task_context": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 2
+                },
+                "tool": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "workflow": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "workflow_step": {
+                  "score": 0.75,
+                  "matched": 3,
+                  "total": 4
+                }
+              }
+            }
+          },
+          "wgi": {
+            "score": 0.4,
+            "normalized_graph_edit_distance": 0.6,
+            "labeled_score": 0.4,
+            "topology_score": 0.0,
+            "labeled_normalized_graph_edit_distance": 0.6,
+            "topology_normalized_graph_edit_distance": 1.0,
+            "exact_isomorphic": false,
+            "topology_isomorphic": false,
+            "edge_precision": 0.25,
+            "edge_recall": 0.5,
+            "edge_f1": 0.3333333333333333,
+            "kg_nodes": [
+              "ignore",
+              "rewrite_email_apply_user_s_requested_changes",
+              "send_email_finalize_send",
+              "write_email_generate_draft"
+            ],
+            "code_nodes": [
+              "ignore",
+              "rewrite_email_apply_user_srequested_changes",
+              "send_email_finalize_send",
+              "write_email_generate_draft"
+            ],
+            "kg_edges": [
+              {
+                "source": "rewrite_email_apply_user_s_requested_changes",
+                "target": "ignore"
+              },
+              {
+                "source": "write_email_generate_draft",
+                "target": "ignore"
+              }
+            ],
+            "code_edges": [
+              {
+                "source": "ignore",
+                "target": "rewrite_email_apply_user_srequested_changes"
+              },
+              {
+                "source": "ignore",
+                "target": "send_email_finalize_send"
+              },
+              {
+                "source": "rewrite_email_apply_user_srequested_changes",
+                "target": "ignore"
+              },
+              {
+                "source": "write_email_generate_draft",
+                "target": "ignore"
+              }
+            ],
+            "missing_nodes": [
+              "rewrite_email_apply_user_s_requested_changes"
+            ],
+            "extra_nodes": [
+              "rewrite_email_apply_user_srequested_changes"
+            ],
+            "missing_edges": [
+              {
+                "source": "rewrite_email_apply_user_s_requested_changes",
+                "target": "ignore"
+              }
+            ],
+            "extra_edges": [
+              {
+                "source": "ignore",
+                "target": "rewrite_email_apply_user_srequested_changes"
+              },
+              {
+                "source": "ignore",
+                "target": "send_email_finalize_send"
+              },
+              {
+                "source": "rewrite_email_apply_user_srequested_changes",
+                "target": "ignore"
+              }
+            ]
+          },
+          "syntax_ok": true,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.4626865671641791
+        },
+        {
+          "project": "open-code",
+          "kg_path": "/Users/ravie/dev/agento/kgs_original/LangGraph/open-code_instances.ttl",
+          "output_dir": "/Users/ravie/dev/agento/output_files/output_langgraph/open-code",
+          "status": "ok",
+          "kg_element_count": 51,
+          "code_element_count": 9,
+          "oec": {
+            "all_extracted": {
+              "score": 0.29411764705882354,
+              "matched": 15,
+              "total": 51,
+              "missing": [
+                {
+                  "category": "agent_llm",
+                  "name": "open_code_agent_001_open_code_language_model",
+                  "important": false,
+                  "aliases": [
+                    "open_code_agent_001_open_code_language_model",
+                    "open_code_agent_001",
+                    "open_code_language_model"
+                  ],
+                  "details": {
+                    "source": "open_code_agent_001",
+                    "target": "open_code_language_model"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_open_code_agent_001_permissions_full_write_access",
+                  "important": false,
+                  "aliases": [
+                    "agent_open_code_agent_001_permissions_full_write_access",
+                    "permissions_full_write_access",
+                    "runtime_boolean_when_true_the_executor_will_loop_back_to_the_planner_after_proposing_a_change_allowing_continued_automated_edits_when_false_the_workflow_ends_after_the_first_success_or_when_the_success_message_is_generated",
+                    "permissions_full_write_access_runtime_boolean_when_true_the_executor_will_loop_back_to_the_planner_after_proposing_a_change_allowing_continued_automated_edits_when_false_the_workflow_ends_after_the_first_success_or_when_the_success_message_is_generated"
+                  ],
+                  "details": {
+                    "key": "permissions_full_write_access",
+                    "owner": "open_code_agent_001",
+                    "owner_category": "agent",
+                    "value": "runtime boolean; when true the executor will loop back to the planner after proposing a change (allowing continued automated edits). When false, the workflow ends after the first success or when the success message is generated."
+                  }
+                },
+                {
+                  "category": "agent_interaction",
+                  "name": "open_code_agent_001_human_user",
+                  "important": true,
+                  "aliases": [
+                    "open_code_agent_001_human_user",
+                    "open_code_agent_001",
+                    "human_user"
+                  ],
+                  "details": {
+                    "source": "open_code_agent_001",
+                    "target": "human_user"
+                  }
+                },
+                {
+                  "category": "agent_capability",
+                  "name": "open_code_agent_001_capability_planning",
+                  "important": false,
+                  "aliases": [
+                    "open_code_agent_001_capability_planning",
+                    "open_code_agent_001",
+                    "capability_planning"
+                  ],
+                  "details": {
+                    "source": "open_code_agent_001",
+                    "target": "capability_planning"
+                  }
+                },
+                {
+                  "category": "agent_capability",
+                  "name": "open_code_agent_001_capability_update_file",
+                  "important": false,
+                  "aliases": [
+                    "open_code_agent_001_capability_update_file",
+                    "open_code_agent_001",
+                    "capability_update_file"
+                  ],
+                  "details": {
+                    "source": "open_code_agent_001",
+                    "target": "capability_update_file"
+                  }
+                },
+                {
+                  "category": "agent_capability",
+                  "name": "open_code_agent_001_capability_uiinteraction",
+                  "important": false,
+                  "aliases": [
+                    "open_code_agent_001_capability_uiinteraction",
+                    "open_code_agent_001",
+                    "capability_uiinteraction"
+                  ],
+                  "details": {
+                    "source": "open_code_agent_001",
+                    "target": "capability_uiinteraction"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "planner_task_produce_plan_tool_call_plan_artifact",
+                  "important": false,
+                  "aliases": [
+                    "planner_task_produce_plan_tool_call_plan_artifact",
+                    "planner_task_produce_plan_tool_call",
+                    "plan_artifact"
+                  ],
+                  "details": {
+                    "source": "planner_task_produce_plan_tool_call",
+                    "target": "plan_artifact"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "planner_task_produce_plan_tool_call_resource_plan_input",
+                  "important": false,
+                  "aliases": [
+                    "planner_task_produce_plan_tool_call_resource_plan_input",
+                    "planner_task_produce_plan_tool_call",
+                    "resource_plan_input"
+                  ],
+                  "details": {
+                    "source": "planner_task_produce_plan_tool_call",
+                    "target": "resource_plan_input"
+                  }
+                },
+                {
+                  "category": "task_capability",
+                  "name": "planner_task_produce_plan_tool_call_capability_planning",
+                  "important": false,
+                  "aliases": [
+                    "planner_task_produce_plan_tool_call_capability_planning",
+                    "planner_task_produce_plan_tool_call",
+                    "capability_planning"
+                  ],
+                  "details": {
+                    "source": "planner_task_produce_plan_tool_call",
+                    "target": "capability_planning"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step_1_file",
+                  "important": false,
+                  "aliases": [
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step_1_file",
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                    "resource_step_1_file"
+                  ],
+                  "details": {
+                    "source": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                    "target": "resource_step_1_file"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step_2_file",
+                  "important": false,
+                  "aliases": [
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step_2_file",
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                    "resource_step_2_file"
+                  ],
+                  "details": {
+                    "source": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                    "target": "resource_step_2_file"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step_3_file",
+                  "important": false,
+                  "aliases": [
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step_3_file",
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                    "resource_step_3_file"
+                  ],
+                  "details": {
+                    "source": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                    "target": "resource_step_3_file"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step_4_file",
+                  "important": false,
+                  "aliases": [
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step_4_file",
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                    "resource_step_4_file"
+                  ],
+                  "details": {
+                    "source": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                    "target": "resource_step_4_file"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step_5_file",
+                  "important": false,
+                  "aliases": [
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step_5_file",
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                    "resource_step_5_file"
+                  ],
+                  "details": {
+                    "source": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                    "target": "resource_step_5_file"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step_6_file",
+                  "important": false,
+                  "aliases": [
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_resource_step_6_file",
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                    "resource_step_6_file"
+                  ],
+                  "details": {
+                    "source": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                    "target": "resource_step_6_file"
+                  }
+                },
+                {
+                  "category": "task_capability",
+                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_capability_update_file",
+                  "important": false,
+                  "aliases": [
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_capability_update_file",
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                    "capability_update_file"
+                  ],
+                  "details": {
+                    "source": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                    "target": "capability_update_file"
+                  }
+                },
+                {
+                  "category": "task_capability",
+                  "name": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_capability_uiinteraction",
+                  "important": false,
+                  "aliases": [
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push_capability_uiinteraction",
+                    "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                    "capability_uiinteraction"
+                  ],
+                  "details": {
+                    "source": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                    "target": "capability_uiinteraction"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "tool_tool_plan_plan_args_format",
+                  "important": false,
+                  "aliases": [
+                    "tool_tool_plan_plan_args_format",
+                    "plan_args_format",
+                    "json_object_with_executed_plans_rejected_plans_remaining_plans_initial_remaining_plans_uses_plan_canonical_array_stored_in_plan_prompt_prompt_input_data",
+                    "plan_args_format_json_object_with_executed_plans_rejected_plans_remaining_plans_initial_remaining_plans_uses_plan_canonical_array_stored_in_plan_prompt_prompt_input_data"
+                  ],
+                  "details": {
+                    "key": "plan_args_format",
+                    "owner": "tool_plan",
+                    "owner_category": "tool",
+                    "value": "JSON object with executedPlans[], rejectedPlans[], remainingPlans[]; initial remainingPlans uses PLAN canonical array stored in PlanPrompt.promptInputData"
+                  }
+                },
+                {
+                  "category": "tool_capability",
+                  "name": "tool_plan_capability_planning",
+                  "important": false,
+                  "aliases": [
+                    "tool_plan_capability_planning",
+                    "tool_plan",
+                    "capability_planning"
+                  ],
+                  "details": {
+                    "source": "tool_plan",
+                    "target": "capability_planning"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "tool_tool_update_file_update_file_behaviour",
+                  "important": false,
+                  "aliases": [
+                    "tool_tool_update_file_update_file_behaviour",
+                    "update_file_behaviour",
+                    "takes_args_new_file_content_executed_plan_item_returns_a_tool_message_whose_content_includes_rejected_if_the_proposed_change_was_rejected_by_the_user_the_planner_inspects_tool_responses_for_rejected_to_move_items_into_rejected_plans",
+                    "update_file_behaviour_takes_args_new_file_content_executed_plan_item_returns_a_tool_message_whose_content_includes_rejected_if_the_proposed_change_was_rejected_by_the_user_the_planner_inspects_tool_responses_for_rejected_to_move_items_into_rejected_plans"
+                  ],
+                  "details": {
+                    "key": "update_file_behaviour",
+                    "owner": "tool_update_file",
+                    "owner_category": "tool",
+                    "value": "Takes args { new_file_content, executed_plan_item }; returns a tool message whose content includes 'rejected' if the proposed change was rejected by the user. The planner inspects tool responses for 'rejected' to move items into rejectedPlans."
+                  }
+                },
+                {
+                  "category": "tool_capability",
+                  "name": "tool_update_file_capability_update_file",
+                  "important": false,
+                  "aliases": [
+                    "tool_update_file_capability_update_file",
+                    "tool_update_file",
+                    "capability_update_file"
+                  ],
+                  "details": {
+                    "source": "tool_update_file",
+                    "target": "capability_update_file"
+                  }
+                },
+                {
+                  "category": "memory",
+                  "name": "open_code_memory",
+                  "important": false,
+                  "aliases": [
+                    "open_code_memory"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "language_model",
+                  "name": "open_code_language_model",
+                  "important": false,
+                  "aliases": [
+                    "open_code_language_model"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "goal",
+                  "name": "goal_build_todo_app",
+                  "important": false,
+                  "aliases": [
+                    "goal_build_todo_app",
+                    "build_a_todo_app"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "capability",
+                  "name": "capability_ui_interaction",
+                  "important": false,
+                  "aliases": [
+                    "capability_ui_interaction",
+                    "ui_interaction_propose_changes",
+                    "propose_changes",
+                    "capability_uiinteraction"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "environment",
+                  "name": "dev_environment",
+                  "important": false,
+                  "aliases": [
+                    "dev_environment",
+                    "development_environment"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "human_agent",
+                  "name": "human_user",
+                  "important": false,
+                  "aliases": [
+                    "human_user"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "resource_step_1_file",
+                  "important": false,
+                  "aliases": [
+                    "resource_step_1_file",
+                    "step_1_scaffold_commands"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "resource_step_2_file",
+                  "important": false,
+                  "aliases": [
+                    "resource_step_2_file",
+                    "step_2_todo_item_component"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "resource_step_3_file",
+                  "important": false,
+                  "aliases": [
+                    "resource_step_3_file",
+                    "step_3_todo_context_state_management"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "resource_step_4_file",
+                  "important": false,
+                  "aliases": [
+                    "resource_step_4_file",
+                    "step_4_add_todo_component_form_and_validation"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "resource_step_5_file",
+                  "important": false,
+                  "aliases": [
+                    "resource_step_5_file",
+                    "step_5_filters_and_sorting"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "resource_step_6_file",
+                  "important": false,
+                  "aliases": [
+                    "resource_step_6_file",
+                    "step_6_local_storage_utils"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "plan_artifact",
+                  "important": false,
+                  "aliases": [
+                    "plan_artifact",
+                    "plan_artifact_structured_plan_tool_call_args_snapshot"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "resource_plan_input",
+                  "important": false,
+                  "aliases": [
+                    "resource_plan_input",
+                    "plan_input_resource"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "tool_message_user_approved",
+                  "important": false,
+                  "aliases": [
+                    "tool_message_user_approved",
+                    "simulated_tool_message_user_approved_plan"
+                  ],
+                  "details": {}
+                }
+              ],
+              "by_category": {
+                "agent": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "agent_capability": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 3
+                },
+                "agent_interaction": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "agent_llm": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "capability": {
+                  "score": 0.6666666666666666,
+                  "matched": 2,
+                  "total": 3
+                },
+                "config": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 3
+                },
+                "environment": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "goal": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "human_agent": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "language_model": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "memory": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "project": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "resource": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 9
+                },
+                "step_task": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "task": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "task_agent": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "task_capability": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 3
+                },
+                "task_produces": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 7
+                },
+                "task_requires": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "tool": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "tool_capability": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 2
+                },
+                "workflow": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "workflow_step": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                }
+              }
+            },
+            "important_subset": {
+              "score": 0.9230769230769231,
+              "matched": 12,
+              "total": 13,
+              "missing": [
+                {
+                  "category": "agent_interaction",
+                  "name": "open_code_agent_001_human_user",
+                  "important": true,
+                  "aliases": [
+                    "open_code_agent_001_human_user",
+                    "open_code_agent_001",
+                    "human_user"
+                  ],
+                  "details": {
+                    "source": "open_code_agent_001",
+                    "target": "human_user"
+                  }
+                }
+              ],
+              "by_category": {
+                "agent": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "agent_interaction": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "step_task": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "task": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "task_agent": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "tool": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "workflow": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "workflow_step": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                }
+              }
+            }
+          },
+          "wgi": {
+            "score": 1.0,
+            "normalized_graph_edit_distance": 0.0,
+            "labeled_score": 1.0,
+            "topology_score": 1.0,
+            "labeled_normalized_graph_edit_distance": 0.0,
+            "topology_normalized_graph_edit_distance": 0.0,
+            "exact_isomorphic": true,
+            "topology_isomorphic": true,
+            "edge_precision": 1.0,
+            "edge_recall": 1.0,
+            "edge_f1": 1.0,
+            "kg_nodes": [
+              "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+              "planner_task_produce_plan_tool_call"
+            ],
+            "code_nodes": [
+              "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+              "planner_task_produce_plan_tool_call"
+            ],
+            "kg_edges": [
+              {
+                "source": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                "target": "planner_task_produce_plan_tool_call"
+              },
+              {
+                "source": "planner_task_produce_plan_tool_call",
+                "target": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push"
+              }
+            ],
+            "code_edges": [
+              {
+                "source": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push",
+                "target": "planner_task_produce_plan_tool_call"
+              },
+              {
+                "source": "planner_task_produce_plan_tool_call",
+                "target": "executor_task_apply_next_plan_item_via_update_file_tool_call_and_ui_push"
+              }
+            ],
+            "missing_nodes": [],
+            "extra_nodes": [],
+            "missing_edges": [],
+            "extra_edges": []
+          },
+          "syntax_ok": true,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.0
+        },
+        {
+          "project": "pizza-orderer",
+          "kg_path": "/Users/ravie/dev/agento/kgs_original/LangGraph/pizza-orderer_instances.ttl",
+          "output_dir": "/Users/ravie/dev/agento/output_files/output_langgraph/pizza-orderer",
+          "status": "ok",
+          "kg_element_count": 39,
+          "code_element_count": 9,
+          "oec": {
+            "all_extracted": {
+              "score": 0.5641025641025641,
+              "matched": 22,
+              "total": 39,
+              "missing": [
+                {
+                  "category": "agent_goal",
+                  "name": "pizza_orderer_v_1_order_pizza_goal",
+                  "important": false,
+                  "aliases": [
+                    "pizza_orderer_v_1_order_pizza_goal",
+                    "pizza_orderer_v_1",
+                    "order_pizza_goal"
+                  ],
+                  "details": {
+                    "source": "pizza_orderer_v_1",
+                    "target": "order_pizza_goal"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "find_pizza_shop_task_res_store_info",
+                  "important": false,
+                  "aliases": [
+                    "find_pizza_shop_task_res_store_info",
+                    "find_pizza_shop_task",
+                    "res_store_info"
+                  ],
+                  "details": {
+                    "source": "find_pizza_shop_task",
+                    "target": "res_store_info"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "find_pizza_shop_task_res_user_location",
+                  "important": false,
+                  "aliases": [
+                    "find_pizza_shop_task_res_user_location",
+                    "find_pizza_shop_task",
+                    "res_user_location"
+                  ],
+                  "details": {
+                    "source": "find_pizza_shop_task",
+                    "target": "res_user_location"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "find_pizza_shop_task_res_pizza_company_name",
+                  "important": false,
+                  "aliases": [
+                    "find_pizza_shop_task_res_pizza_company_name",
+                    "find_pizza_shop_task",
+                    "res_pizza_company_name"
+                  ],
+                  "details": {
+                    "source": "find_pizza_shop_task",
+                    "target": "res_pizza_company_name"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "place_pizza_order_task_res_order_confirmation",
+                  "important": false,
+                  "aliases": [
+                    "place_pizza_order_task_res_order_confirmation",
+                    "place_pizza_order_task",
+                    "res_order_confirmation"
+                  ],
+                  "details": {
+                    "source": "place_pizza_order_task",
+                    "target": "res_order_confirmation"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "place_pizza_order_task_res_store_info",
+                  "important": false,
+                  "aliases": [
+                    "place_pizza_order_task_res_store_info",
+                    "place_pizza_order_task",
+                    "res_store_info"
+                  ],
+                  "details": {
+                    "source": "place_pizza_order_task",
+                    "target": "res_store_info"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "place_pizza_order_task_res_order_details",
+                  "important": false,
+                  "aliases": [
+                    "place_pizza_order_task_res_order_details",
+                    "place_pizza_order_task",
+                    "res_order_details"
+                  ],
+                  "details": {
+                    "source": "place_pizza_order_task",
+                    "target": "res_order_details"
+                  }
+                },
+                {
+                  "category": "tool_capability",
+                  "name": "tool_pizza_finder_cap_find_store",
+                  "important": false,
+                  "aliases": [
+                    "tool_pizza_finder_cap_find_store",
+                    "tool_pizza_finder",
+                    "cap_find_store"
+                  ],
+                  "details": {
+                    "source": "tool_pizza_finder",
+                    "target": "cap_find_store"
+                  }
+                },
+                {
+                  "category": "tool_capability",
+                  "name": "tool_pizza_ordering_system_cap_place_order",
+                  "important": false,
+                  "aliases": [
+                    "tool_pizza_ordering_system_cap_place_order",
+                    "tool_pizza_ordering_system",
+                    "cap_place_order"
+                  ],
+                  "details": {
+                    "source": "tool_pizza_ordering_system",
+                    "target": "cap_place_order"
+                  }
+                },
+                {
+                  "category": "goal",
+                  "name": "order_pizza_goal",
+                  "important": false,
+                  "aliases": [
+                    "order_pizza_goal"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "capability",
+                  "name": "cap_find_store",
+                  "important": false,
+                  "aliases": [
+                    "cap_find_store",
+                    "find_store"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "capability",
+                  "name": "cap_place_order",
+                  "important": false,
+                  "aliases": [
+                    "cap_place_order",
+                    "place_order"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "res_user_location",
+                  "important": false,
+                  "aliases": [
+                    "res_user_location",
+                    "user_location_input"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "res_pizza_company_name",
+                  "important": false,
+                  "aliases": [
+                    "res_pizza_company_name",
+                    "pizza_company_name_optional_input"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "res_store_info",
+                  "important": false,
+                  "aliases": [
+                    "res_store_info",
+                    "store_information_found_store"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "res_order_details",
+                  "important": false,
+                  "aliases": [
+                    "res_order_details",
+                    "order_details_input_for_placing_order"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "res_order_confirmation",
+                  "important": false,
+                  "aliases": [
+                    "res_order_confirmation",
+                    "order_confirmation_produced_resource"
+                  ],
+                  "details": {}
+                }
+              ],
+              "by_category": {
+                "agent": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "agent_goal": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "agent_llm": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "capability": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 2
+                },
+                "config": {
+                  "score": 1.0,
+                  "matched": 6,
+                  "total": 6
+                },
+                "goal": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "language_model": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "project": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "resource": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 5
+                },
+                "step_task": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "task": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "task_agent": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "task_context": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "task_produces": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 2
+                },
+                "task_requires": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 4
+                },
+                "tool": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "tool_capability": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 2
+                },
+                "workflow": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "workflow_step": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                }
+              }
+            },
+            "important_subset": {
+              "score": 1.0,
+              "matched": 13,
+              "total": 13,
+              "missing": [],
+              "by_category": {
+                "agent": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "step_task": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "task": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "task_agent": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "task_context": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "tool": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "workflow": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "workflow_step": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                }
+              }
+            }
+          },
+          "wgi": {
+            "score": 1.0,
+            "normalized_graph_edit_distance": 0.0,
+            "labeled_score": 1.0,
+            "topology_score": 1.0,
+            "labeled_normalized_graph_edit_distance": 0.0,
+            "topology_normalized_graph_edit_distance": 0.0,
+            "exact_isomorphic": true,
+            "topology_isomorphic": true,
+            "edge_precision": 1.0,
+            "edge_recall": 1.0,
+            "edge_f1": 1.0,
+            "kg_nodes": [
+              "find_pizza_shop_task",
+              "place_pizza_order_task"
+            ],
+            "code_nodes": [
+              "find_pizza_shop_task",
+              "place_pizza_order_task"
+            ],
+            "kg_edges": [
+              {
+                "source": "find_pizza_shop_task",
+                "target": "place_pizza_order_task"
+              }
+            ],
+            "code_edges": [
+              {
+                "source": "find_pizza_shop_task",
+                "target": "place_pizza_order_task"
+              }
+            ],
+            "missing_nodes": [],
+            "extra_nodes": [],
+            "missing_edges": [],
+            "extra_edges": []
+          },
+          "syntax_ok": true,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.6818181818181818
+        },
+        {
+          "project": "stockbroker",
+          "kg_path": "/Users/ravie/dev/agento/kgs_original/LangGraph/stockbroker_instances.ttl",
+          "output_dir": "/Users/ravie/dev/agento/output_files/output_langgraph/stockbroker",
+          "status": "ok",
+          "kg_element_count": 52,
+          "code_element_count": 5,
+          "oec": {
+            "all_extracted": {
+              "score": 0.4807692307692308,
+              "matched": 25,
+              "total": 52,
+              "missing": [
+                {
+                  "category": "agent_goal",
+                  "name": "stockbroker_01_get_stock_info_goal",
+                  "important": false,
+                  "aliases": [
+                    "stockbroker_01_get_stock_info_goal",
+                    "stockbroker_01",
+                    "get_stock_info_goal"
+                  ],
+                  "details": {
+                    "source": "stockbroker_01",
+                    "target": "get_stock_info_goal"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "call_tools_llmmessage_resource",
+                  "important": false,
+                  "aliases": [
+                    "call_tools_llmmessage_resource",
+                    "call_tools",
+                    "llmmessage_resource"
+                  ],
+                  "details": {
+                    "source": "call_tools",
+                    "target": "llmmessage_resource"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "call_tools_uiitems_resource",
+                  "important": false,
+                  "aliases": [
+                    "call_tools_uiitems_resource",
+                    "call_tools",
+                    "uiitems_resource"
+                  ],
+                  "details": {
+                    "source": "call_tools",
+                    "target": "uiitems_resource"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "call_tools_financial_datasets_apikey",
+                  "important": false,
+                  "aliases": [
+                    "call_tools_financial_datasets_apikey",
+                    "call_tools",
+                    "financial_datasets_apikey"
+                  ],
+                  "details": {
+                    "source": "call_tools",
+                    "target": "financial_datasets_apikey"
+                  }
+                },
+                {
+                  "category": "task",
+                  "name": "get_prices_for_ticker",
+                  "important": true,
+                  "aliases": [
+                    "get_prices_for_ticker",
+                    "get_prices_for_ticker_task"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_produces",
+                  "name": "get_prices_for_ticker_one_day_prices_resource",
+                  "important": false,
+                  "aliases": [
+                    "get_prices_for_ticker_one_day_prices_resource",
+                    "get_prices_for_ticker",
+                    "one_day_prices_resource"
+                  ],
+                  "details": {
+                    "source": "get_prices_for_ticker",
+                    "target": "one_day_prices_resource"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "get_prices_for_ticker_thirty_day_prices_resource",
+                  "important": false,
+                  "aliases": [
+                    "get_prices_for_ticker_thirty_day_prices_resource",
+                    "get_prices_for_ticker",
+                    "thirty_day_prices_resource"
+                  ],
+                  "details": {
+                    "source": "get_prices_for_ticker",
+                    "target": "thirty_day_prices_resource"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "get_prices_for_ticker_financial_datasets_apikey",
+                  "important": false,
+                  "aliases": [
+                    "get_prices_for_ticker_financial_datasets_apikey",
+                    "get_prices_for_ticker",
+                    "financial_datasets_apikey"
+                  ],
+                  "details": {
+                    "source": "get_prices_for_ticker",
+                    "target": "financial_datasets_apikey"
+                  }
+                },
+                {
+                  "category": "task_capability",
+                  "name": "get_prices_for_ticker_get_stock_prices_capability",
+                  "important": false,
+                  "aliases": [
+                    "get_prices_for_ticker_get_stock_prices_capability",
+                    "get_prices_for_ticker",
+                    "get_stock_prices_capability"
+                  ],
+                  "details": {
+                    "source": "get_prices_for_ticker",
+                    "target": "get_stock_prices_capability"
+                  }
+                },
+                {
+                  "category": "task",
+                  "name": "get_price_snapshot_for_ticker",
+                  "important": true,
+                  "aliases": [
+                    "get_price_snapshot_for_ticker",
+                    "get_price_snapshot_task"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_produces",
+                  "name": "get_price_snapshot_for_ticker_price_snapshot_resource",
+                  "important": false,
+                  "aliases": [
+                    "get_price_snapshot_for_ticker_price_snapshot_resource",
+                    "get_price_snapshot_for_ticker",
+                    "price_snapshot_resource"
+                  ],
+                  "details": {
+                    "source": "get_price_snapshot_for_ticker",
+                    "target": "price_snapshot_resource"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "get_price_snapshot_for_ticker_financial_datasets_apikey",
+                  "important": false,
+                  "aliases": [
+                    "get_price_snapshot_for_ticker_financial_datasets_apikey",
+                    "get_price_snapshot_for_ticker",
+                    "financial_datasets_apikey"
+                  ],
+                  "details": {
+                    "source": "get_price_snapshot_for_ticker",
+                    "target": "financial_datasets_apikey"
+                  }
+                },
+                {
+                  "category": "task_capability",
+                  "name": "get_price_snapshot_for_ticker_buy_stock_capability",
+                  "important": false,
+                  "aliases": [
+                    "get_price_snapshot_for_ticker_buy_stock_capability",
+                    "get_price_snapshot_for_ticker",
+                    "buy_stock_capability"
+                  ],
+                  "details": {
+                    "source": "get_price_snapshot_for_ticker",
+                    "target": "buy_stock_capability"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "get_portfolio_portfolio_uiresource",
+                  "important": false,
+                  "aliases": [
+                    "get_portfolio_portfolio_uiresource",
+                    "get_portfolio",
+                    "portfolio_uiresource"
+                  ],
+                  "details": {
+                    "source": "get_portfolio",
+                    "target": "portfolio_uiresource"
+                  }
+                },
+                {
+                  "category": "task_capability",
+                  "name": "get_portfolio_get_portfolio_capability",
+                  "important": false,
+                  "aliases": [
+                    "get_portfolio_get_portfolio_capability",
+                    "get_portfolio",
+                    "get_portfolio_capability"
+                  ],
+                  "details": {
+                    "source": "get_portfolio",
+                    "target": "get_portfolio_capability"
+                  }
+                },
+                {
+                  "category": "tool_capability",
+                  "name": "tool_stock_price_get_stock_prices_capability",
+                  "important": false,
+                  "aliases": [
+                    "tool_stock_price_get_stock_prices_capability",
+                    "tool_stock_price",
+                    "get_stock_prices_capability"
+                  ],
+                  "details": {
+                    "source": "tool_stock_price",
+                    "target": "get_stock_prices_capability"
+                  }
+                },
+                {
+                  "category": "tool_capability",
+                  "name": "tool_portfolio_get_portfolio_capability",
+                  "important": false,
+                  "aliases": [
+                    "tool_portfolio_get_portfolio_capability",
+                    "tool_portfolio",
+                    "get_portfolio_capability"
+                  ],
+                  "details": {
+                    "source": "tool_portfolio",
+                    "target": "get_portfolio_capability"
+                  }
+                },
+                {
+                  "category": "tool_capability",
+                  "name": "tool_buy_stock_buy_stock_capability",
+                  "important": false,
+                  "aliases": [
+                    "tool_buy_stock_buy_stock_capability",
+                    "tool_buy_stock",
+                    "buy_stock_capability"
+                  ],
+                  "details": {
+                    "source": "tool_buy_stock",
+                    "target": "buy_stock_capability"
+                  }
+                },
+                {
+                  "category": "goal",
+                  "name": "get_stock_info_goal",
+                  "important": false,
+                  "aliases": [
+                    "get_stock_info_goal",
+                    "get_stock_information_and_perform_trades"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "capability",
+                  "name": "get_stock_prices_capability",
+                  "important": false,
+                  "aliases": [
+                    "get_stock_prices_capability",
+                    "get_stock_prices"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "environment",
+                  "name": "trading_environment",
+                  "important": false,
+                  "aliases": [
+                    "trading_environment"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "financial_datasets_api_key",
+                  "important": false,
+                  "aliases": [
+                    "financial_datasets_api_key",
+                    "financial_datasets_api_key_env_var",
+                    "financial_datasets_apikey"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "llm_message_resource",
+                  "important": false,
+                  "aliases": [
+                    "llm_message_resource",
+                    "llm_message",
+                    "llmmessage_resource"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "ui_items_resource",
+                  "important": false,
+                  "aliases": [
+                    "ui_items_resource",
+                    "ui_items",
+                    "uiitems_resource"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "one_day_prices_resource",
+                  "important": false,
+                  "aliases": [
+                    "one_day_prices_resource",
+                    "one_day_prices"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "thirty_day_prices_resource",
+                  "important": false,
+                  "aliases": [
+                    "thirty_day_prices_resource",
+                    "thirty_day_prices"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "portfolio_ui_resource",
+                  "important": false,
+                  "aliases": [
+                    "portfolio_ui_resource",
+                    "portfolio_ui",
+                    "portfolio_uiresource"
+                  ],
+                  "details": {}
+                }
+              ],
+              "by_category": {
+                "agent": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "agent_goal": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "agent_llm": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "agent_tool": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                },
+                "capability": {
+                  "score": 0.6666666666666666,
+                  "matched": 2,
+                  "total": 3
+                },
+                "config": {
+                  "score": 1.0,
+                  "matched": 6,
+                  "total": 6
+                },
+                "environment": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "goal": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "language_model": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "project": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "resource": {
+                  "score": 0.14285714285714285,
+                  "matched": 1,
+                  "total": 7
+                },
+                "step_task": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "task": {
+                  "score": 0.5,
+                  "matched": 2,
+                  "total": 4
+                },
+                "task_agent": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "task_capability": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 3
+                },
+                "task_produces": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 6
+                },
+                "task_requires": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 3
+                },
+                "tool": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                },
+                "tool_capability": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 3
+                },
+                "workflow": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "workflow_step": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                }
+              }
+            },
+            "important_subset": {
+              "score": 0.8823529411764706,
+              "matched": 15,
+              "total": 17,
+              "missing": [
+                {
+                  "category": "task",
+                  "name": "get_prices_for_ticker",
+                  "important": true,
+                  "aliases": [
+                    "get_prices_for_ticker",
+                    "get_prices_for_ticker_task"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task",
+                  "name": "get_price_snapshot_for_ticker",
+                  "important": true,
+                  "aliases": [
+                    "get_price_snapshot_for_ticker",
+                    "get_price_snapshot_task"
+                  ],
+                  "details": {}
+                }
+              ],
+              "by_category": {
+                "agent": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "agent_tool": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                },
+                "config": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "step_task": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "task": {
+                  "score": 0.5,
+                  "matched": 2,
+                  "total": 4
+                },
+                "task_agent": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "tool": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                },
+                "workflow": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "workflow_step": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                }
+              }
+            }
+          },
+          "wgi": {
+            "score": 1.0,
+            "normalized_graph_edit_distance": 0.0,
+            "labeled_score": 1.0,
+            "topology_score": 1.0,
+            "labeled_normalized_graph_edit_distance": 0.0,
+            "topology_normalized_graph_edit_distance": 0.0,
+            "exact_isomorphic": true,
+            "topology_isomorphic": true,
+            "edge_precision": 1.0,
+            "edge_recall": 1.0,
+            "edge_f1": 1.0,
+            "kg_nodes": [
+              "call_tools"
+            ],
+            "code_nodes": [
+              "call_tools"
+            ],
+            "kg_edges": [],
+            "code_edges": [],
+            "missing_nodes": [],
+            "extra_nodes": [],
+            "missing_edges": [],
+            "extra_edges": []
+          },
+          "syntax_ok": true,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.0
+        },
+        {
+          "project": "supervisor",
+          "kg_path": "/Users/ravie/dev/agento/kgs_original/LangGraph/supervisor_instances.ttl",
+          "output_dir": "/Users/ravie/dev/agento/output_files/output_langgraph/supervisor",
+          "status": "ok",
+          "kg_element_count": 95,
+          "code_element_count": 29,
+          "oec": {
+            "all_extracted": {
+              "score": 0.5368421052631579,
+              "matched": 51,
+              "total": 95,
+              "missing": [
+                {
+                  "category": "agent_llm",
+                  "name": "generative_ui_supervisor_lm_gpt_4_o_mini",
+                  "important": false,
+                  "aliases": [
+                    "generative_ui_supervisor_lm_gpt_4_o_mini",
+                    "generative_ui_supervisor",
+                    "lm_gpt_4_o_mini"
+                  ],
+                  "details": {
+                    "source": "generative_ui_supervisor",
+                    "target": "lm_gpt_4_o_mini"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_generative_ui_supervisor_temperature",
+                  "important": true,
+                  "aliases": [
+                    "agent_generative_ui_supervisor_temperature",
+                    "temperature",
+                    "0_7",
+                    "temperature_0_7"
+                  ],
+                  "details": {
+                    "key": "temperature",
+                    "owner": "generative_ui_supervisor",
+                    "owner_category": "agent",
+                    "value": "0.7"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_generative_ui_supervisor_max_tokens",
+                  "important": false,
+                  "aliases": [
+                    "agent_generative_ui_supervisor_max_tokens",
+                    "max_tokens",
+                    "1000",
+                    "max_tokens_1000"
+                  ],
+                  "details": {
+                    "key": "max_tokens",
+                    "owner": "generative_ui_supervisor",
+                    "owner_category": "agent",
+                    "value": "1000"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_generative_ui_supervisor_system_prompt",
+                  "important": false,
+                  "aliases": [
+                    "agent_generative_ui_supervisor_system_prompt",
+                    "system_prompt"
+                  ],
+                  "details": {
+                    "key": "system_prompt",
+                    "owner": "generative_ui_supervisor",
+                    "owner_category": "agent"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "router_task_router_tool_call_result",
+                  "important": false,
+                  "aliases": [
+                    "router_task_router_tool_call_result",
+                    "router_task",
+                    "router_tool_call_result"
+                  ],
+                  "details": {
+                    "source": "router_task",
+                    "target": "router_tool_call_result"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "router_task_router_prompt",
+                  "important": false,
+                  "aliases": [
+                    "router_task_router_prompt",
+                    "router_task",
+                    "router_prompt"
+                  ],
+                  "details": {
+                    "source": "router_task",
+                    "target": "router_prompt"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "stockbroker_task_stockbroker_result_resource",
+                  "important": false,
+                  "aliases": [
+                    "stockbroker_task_stockbroker_result_resource",
+                    "stockbroker_task",
+                    "stockbroker_result_resource"
+                  ],
+                  "details": {
+                    "source": "stockbroker_task",
+                    "target": "stockbroker_result_resource"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "trip_planner_task_trip_planner_result_resource",
+                  "important": false,
+                  "aliases": [
+                    "trip_planner_task_trip_planner_result_resource",
+                    "trip_planner_task",
+                    "trip_planner_result_resource"
+                  ],
+                  "details": {
+                    "source": "trip_planner_task",
+                    "target": "trip_planner_result_resource"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "open_code_task_open_code_result_resource",
+                  "important": false,
+                  "aliases": [
+                    "open_code_task_open_code_result_resource",
+                    "open_code_task",
+                    "open_code_result_resource"
+                  ],
+                  "details": {
+                    "source": "open_code_task",
+                    "target": "open_code_result_resource"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "order_pizza_task_order_pizza_result_resource",
+                  "important": false,
+                  "aliases": [
+                    "order_pizza_task_order_pizza_result_resource",
+                    "order_pizza_task",
+                    "order_pizza_result_resource"
+                  ],
+                  "details": {
+                    "source": "order_pizza_task",
+                    "target": "order_pizza_result_resource"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "general_input_task_general_input_response_resource",
+                  "important": false,
+                  "aliases": [
+                    "general_input_task_general_input_response_resource",
+                    "general_input_task",
+                    "general_input_response_resource"
+                  ],
+                  "details": {
+                    "source": "general_input_task",
+                    "target": "general_input_response_resource"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "general_input_task_general_input_prompt",
+                  "important": false,
+                  "aliases": [
+                    "general_input_task_general_input_prompt",
+                    "general_input_task",
+                    "general_input_prompt"
+                  ],
+                  "details": {
+                    "source": "general_input_task",
+                    "target": "general_input_prompt"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "writer_agent_task_writer_agent_document_resource",
+                  "important": false,
+                  "aliases": [
+                    "writer_agent_task_writer_agent_document_resource",
+                    "writer_agent_task",
+                    "writer_agent_document_resource"
+                  ],
+                  "details": {
+                    "source": "writer_agent_task",
+                    "target": "writer_agent_document_resource"
+                  }
+                },
+                {
+                  "category": "tool_capability",
+                  "name": "tool_stockbroker_capability_fetch_ticker",
+                  "important": false,
+                  "aliases": [
+                    "tool_stockbroker_capability_fetch_ticker",
+                    "tool_stockbroker",
+                    "capability_fetch_ticker"
+                  ],
+                  "details": {
+                    "source": "tool_stockbroker",
+                    "target": "capability_fetch_ticker"
+                  }
+                },
+                {
+                  "category": "tool_capability",
+                  "name": "tool_stockbroker_capability_trade_ticker",
+                  "important": false,
+                  "aliases": [
+                    "tool_stockbroker_capability_trade_ticker",
+                    "tool_stockbroker",
+                    "capability_trade_ticker"
+                  ],
+                  "details": {
+                    "source": "tool_stockbroker",
+                    "target": "capability_trade_ticker"
+                  }
+                },
+                {
+                  "category": "tool_capability",
+                  "name": "tool_stockbroker_capability_get_portfolio",
+                  "important": false,
+                  "aliases": [
+                    "tool_stockbroker_capability_get_portfolio",
+                    "tool_stockbroker",
+                    "capability_get_portfolio"
+                  ],
+                  "details": {
+                    "source": "tool_stockbroker",
+                    "target": "capability_get_portfolio"
+                  }
+                },
+                {
+                  "category": "tool_capability",
+                  "name": "tool_trip_planner_capability_suggest_restaurants",
+                  "important": false,
+                  "aliases": [
+                    "tool_trip_planner_capability_suggest_restaurants",
+                    "tool_trip_planner",
+                    "capability_suggest_restaurants"
+                  ],
+                  "details": {
+                    "source": "tool_trip_planner",
+                    "target": "capability_suggest_restaurants"
+                  }
+                },
+                {
+                  "category": "tool_capability",
+                  "name": "tool_trip_planner_capability_suggest_accommodations",
+                  "important": false,
+                  "aliases": [
+                    "tool_trip_planner_capability_suggest_accommodations",
+                    "tool_trip_planner",
+                    "capability_suggest_accommodations"
+                  ],
+                  "details": {
+                    "source": "tool_trip_planner",
+                    "target": "capability_suggest_accommodations"
+                  }
+                },
+                {
+                  "category": "tool_capability",
+                  "name": "tool_open_code_capability_write_react_todo",
+                  "important": false,
+                  "aliases": [
+                    "tool_open_code_capability_write_react_todo",
+                    "tool_open_code",
+                    "capability_write_react_todo"
+                  ],
+                  "details": {
+                    "source": "tool_open_code",
+                    "target": "capability_write_react_todo"
+                  }
+                },
+                {
+                  "category": "tool_capability",
+                  "name": "tool_order_pizza_capability_order_pizza",
+                  "important": false,
+                  "aliases": [
+                    "tool_order_pizza_capability_order_pizza",
+                    "tool_order_pizza",
+                    "capability_order_pizza"
+                  ],
+                  "details": {
+                    "source": "tool_order_pizza",
+                    "target": "capability_order_pizza"
+                  }
+                },
+                {
+                  "category": "tool_capability",
+                  "name": "tool_writer_agent_capability_write_document",
+                  "important": false,
+                  "aliases": [
+                    "tool_writer_agent_capability_write_document",
+                    "tool_writer_agent",
+                    "capability_write_document"
+                  ],
+                  "details": {
+                    "source": "tool_writer_agent",
+                    "target": "capability_write_document"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "tool_tool_router_tags",
+                  "important": false,
+                  "aliases": [
+                    "tool_tool_router_tags",
+                    "tags",
+                    "langsmith_nostream",
+                    "tags_langsmith_nostream"
+                  ],
+                  "details": {
+                    "key": "tags",
+                    "owner": "tool_router",
+                    "owner_category": "tool",
+                    "value": "langsmith:nostream"
+                  }
+                },
+                {
+                  "category": "tool_capability",
+                  "name": "tool_router_capability_route_selection",
+                  "important": false,
+                  "aliases": [
+                    "tool_router_capability_route_selection",
+                    "tool_router",
+                    "capability_route_selection"
+                  ],
+                  "details": {
+                    "source": "tool_router",
+                    "target": "capability_route_selection"
+                  }
+                },
+                {
+                  "category": "tool_capability",
+                  "name": "tool_general_input_capability_general_assistant",
+                  "important": false,
+                  "aliases": [
+                    "tool_general_input_capability_general_assistant",
+                    "tool_general_input",
+                    "capability_general_assistant"
+                  ],
+                  "details": {
+                    "source": "tool_general_input",
+                    "target": "capability_general_assistant"
+                  }
+                },
+                {
+                  "category": "language_model",
+                  "name": "lm_anthropic_claude_3_7",
+                  "important": false,
+                  "aliases": [
+                    "lm_anthropic_claude_3_7"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "language_model",
+                  "name": "lm_gemini_2_0_flash",
+                  "important": false,
+                  "aliases": [
+                    "lm_gemini_2_0_flash"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "language_model",
+                  "name": "lm_gpt_4_o_mini",
+                  "important": false,
+                  "aliases": [
+                    "lm_gpt_4_o_mini"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "goal",
+                  "name": "goal_provide_assistance",
+                  "important": false,
+                  "aliases": [
+                    "goal_provide_assistance",
+                    "provide_assistance_to_user"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "capability",
+                  "name": "capability_fetch_ticker",
+                  "important": false,
+                  "aliases": [
+                    "capability_fetch_ticker",
+                    "fetch_ticker_price"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "capability",
+                  "name": "capability_trade_ticker",
+                  "important": false,
+                  "aliases": [
+                    "capability_trade_ticker",
+                    "trade_ticker"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "capability",
+                  "name": "capability_get_portfolio",
+                  "important": false,
+                  "aliases": [
+                    "capability_get_portfolio",
+                    "get_portfolio"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "capability",
+                  "name": "capability_suggest_accommodations",
+                  "important": false,
+                  "aliases": [
+                    "capability_suggest_accommodations",
+                    "suggest_accommodations"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "capability",
+                  "name": "capability_write_react_todo",
+                  "important": false,
+                  "aliases": [
+                    "capability_write_react_todo",
+                    "write_react_todo_app"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "capability",
+                  "name": "capability_write_document",
+                  "important": false,
+                  "aliases": [
+                    "capability_write_document",
+                    "write_document"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "capability",
+                  "name": "capability_route_selection",
+                  "important": false,
+                  "aliases": [
+                    "capability_route_selection",
+                    "route_selection"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "objective",
+                  "name": "objective_handle_user_query",
+                  "important": false,
+                  "aliases": [
+                    "objective_handle_user_query",
+                    "handle_user_query"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "objective",
+                  "name": "objective_route_selection",
+                  "important": false,
+                  "aliases": [
+                    "objective_route_selection",
+                    "route_selection"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "router_tool_call_result",
+                  "important": false,
+                  "aliases": [
+                    "router_tool_call_result"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "stockbroker_result_resource",
+                  "important": false,
+                  "aliases": [
+                    "stockbroker_result_resource",
+                    "stockbroker_result"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "trip_planner_result_resource",
+                  "important": false,
+                  "aliases": [
+                    "trip_planner_result_resource",
+                    "trip_planner_result"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "open_code_result_resource",
+                  "important": false,
+                  "aliases": [
+                    "open_code_result_resource",
+                    "open_code_result"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "order_pizza_result_resource",
+                  "important": false,
+                  "aliases": [
+                    "order_pizza_result_resource",
+                    "order_pizza_result"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "general_input_response_resource",
+                  "important": false,
+                  "aliases": [
+                    "general_input_response_resource",
+                    "general_input_response"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "writer_agent_document_resource",
+                  "important": false,
+                  "aliases": [
+                    "writer_agent_document_resource",
+                    "writer_agent_document"
+                  ],
+                  "details": {}
+                }
+              ],
+              "by_category": {
+                "agent": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "agent_llm": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "agent_tool": {
+                  "score": 1.0,
+                  "matched": 7,
+                  "total": 7
+                },
+                "capability": {
+                  "score": 0.3,
+                  "matched": 3,
+                  "total": 10
+                },
+                "config": {
+                  "score": 0.7142857142857143,
+                  "matched": 10,
+                  "total": 14
+                },
+                "goal": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "language_model": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 3
+                },
+                "objective": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 2
+                },
+                "project": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "resource": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 7
+                },
+                "step_task": {
+                  "score": 1.0,
+                  "matched": 7,
+                  "total": 7
+                },
+                "task": {
+                  "score": 1.0,
+                  "matched": 7,
+                  "total": 7
+                },
+                "task_produces": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 7
+                },
+                "task_requires": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 2
+                },
+                "tool": {
+                  "score": 1.0,
+                  "matched": 7,
+                  "total": 7
+                },
+                "tool_capability": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 10
+                },
+                "workflow": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "workflow_step": {
+                  "score": 1.0,
+                  "matched": 7,
+                  "total": 7
+                }
+              }
+            },
+            "important_subset": {
+              "score": 0.9767441860465116,
+              "matched": 42,
+              "total": 43,
+              "missing": [
+                {
+                  "category": "config",
+                  "name": "agent_generative_ui_supervisor_temperature",
+                  "important": true,
+                  "aliases": [
+                    "agent_generative_ui_supervisor_temperature",
+                    "temperature",
+                    "0_7",
+                    "temperature_0_7"
+                  ],
+                  "details": {
+                    "key": "temperature",
+                    "owner": "generative_ui_supervisor",
+                    "owner_category": "agent",
+                    "value": "0.7"
+                  }
+                }
+              ],
+              "by_category": {
+                "agent": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "agent_tool": {
+                  "score": 1.0,
+                  "matched": 7,
+                  "total": 7
+                },
+                "config": {
+                  "score": 0.8333333333333334,
+                  "matched": 5,
+                  "total": 6
+                },
+                "step_task": {
+                  "score": 1.0,
+                  "matched": 7,
+                  "total": 7
+                },
+                "task": {
+                  "score": 1.0,
+                  "matched": 7,
+                  "total": 7
+                },
+                "tool": {
+                  "score": 1.0,
+                  "matched": 7,
+                  "total": 7
+                },
+                "workflow": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "workflow_step": {
+                  "score": 1.0,
+                  "matched": 7,
+                  "total": 7
+                }
+              }
+            }
+          },
+          "wgi": {
+            "score": 1.0,
+            "normalized_graph_edit_distance": 0.0,
+            "labeled_score": 1.0,
+            "topology_score": 1.0,
+            "labeled_normalized_graph_edit_distance": 0.0,
+            "topology_normalized_graph_edit_distance": 0.0,
+            "exact_isomorphic": true,
+            "topology_isomorphic": true,
+            "edge_precision": 1.0,
+            "edge_recall": 1.0,
+            "edge_f1": 1.0,
+            "kg_nodes": [
+              "general_input_task",
+              "open_code_task",
+              "order_pizza_task",
+              "router_task",
+              "stockbroker_task",
+              "trip_planner_task",
+              "writer_agent_task"
+            ],
+            "code_nodes": [
+              "general_input_task",
+              "open_code_task",
+              "order_pizza_task",
+              "router_task",
+              "stockbroker_task",
+              "trip_planner_task",
+              "writer_agent_task"
+            ],
+            "kg_edges": [
+              {
+                "source": "router_task",
+                "target": "general_input_task"
+              },
+              {
+                "source": "router_task",
+                "target": "open_code_task"
+              },
+              {
+                "source": "router_task",
+                "target": "order_pizza_task"
+              },
+              {
+                "source": "router_task",
+                "target": "stockbroker_task"
+              },
+              {
+                "source": "router_task",
+                "target": "trip_planner_task"
+              },
+              {
+                "source": "router_task",
+                "target": "writer_agent_task"
+              }
+            ],
+            "code_edges": [
+              {
+                "source": "router_task",
+                "target": "general_input_task"
+              },
+              {
+                "source": "router_task",
+                "target": "open_code_task"
+              },
+              {
+                "source": "router_task",
+                "target": "order_pizza_task"
+              },
+              {
+                "source": "router_task",
+                "target": "stockbroker_task"
+              },
+              {
+                "source": "router_task",
+                "target": "trip_planner_task"
+              },
+              {
+                "source": "router_task",
+                "target": "writer_agent_task"
+              }
+            ],
+            "missing_nodes": [],
+            "extra_nodes": [],
+            "missing_edges": [],
+            "extra_edges": []
+          },
+          "syntax_ok": true,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.65
+        },
+        {
+          "project": "trip-planner",
+          "kg_path": "/Users/ravie/dev/agento/kgs_original/LangGraph/trip-planner_instances.ttl",
+          "output_dir": "/Users/ravie/dev/agento/output_files/output_langgraph/trip-planner",
+          "status": "ok",
+          "kg_element_count": 65,
+          "code_element_count": 13,
+          "oec": {
+            "all_extracted": {
+              "score": 0.5538461538461539,
+              "matched": 36,
+              "total": 65,
+              "missing": [
+                {
+                  "category": "agent_llm",
+                  "name": "trip_planner_agent_language_model_gpt_4_o",
+                  "important": false,
+                  "aliases": [
+                    "trip_planner_agent_language_model_gpt_4_o",
+                    "trip_planner_agent",
+                    "language_model_gpt_4_o"
+                  ],
+                  "details": {
+                    "source": "trip_planner_agent",
+                    "target": "language_model_gpt_4_o"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_trip_planner_agent_bound_tools",
+                  "important": false,
+                  "aliases": [
+                    "agent_trip_planner_agent_bound_tools",
+                    "bound_tools",
+                    "extract_list_accommodations_list_restaurants",
+                    "bound_tools_extract_list_accommodations_list_restaurants"
+                  ],
+                  "details": {
+                    "key": "bound_tools",
+                    "owner": "trip_planner_agent",
+                    "owner_category": "agent",
+                    "value": "extract, list-accommodations, list-restaurants"
+                  }
+                },
+                {
+                  "category": "agent_capability",
+                  "name": "trip_planner_agent_capability_extract_information",
+                  "important": false,
+                  "aliases": [
+                    "trip_planner_agent_capability_extract_information",
+                    "trip_planner_agent",
+                    "capability_extract_information"
+                  ],
+                  "details": {
+                    "source": "trip_planner_agent",
+                    "target": "capability_extract_information"
+                  }
+                },
+                {
+                  "category": "agent_capability",
+                  "name": "trip_planner_agent_capability_classify_relevance",
+                  "important": false,
+                  "aliases": [
+                    "trip_planner_agent_capability_classify_relevance",
+                    "trip_planner_agent",
+                    "capability_classify_relevance"
+                  ],
+                  "details": {
+                    "source": "trip_planner_agent",
+                    "target": "capability_classify_relevance"
+                  }
+                },
+                {
+                  "category": "agent_capability",
+                  "name": "trip_planner_agent_capability_list_accommodations",
+                  "important": false,
+                  "aliases": [
+                    "trip_planner_agent_capability_list_accommodations",
+                    "trip_planner_agent",
+                    "capability_list_accommodations"
+                  ],
+                  "details": {
+                    "source": "trip_planner_agent",
+                    "target": "capability_list_accommodations"
+                  }
+                },
+                {
+                  "category": "agent_capability",
+                  "name": "trip_planner_agent_capability_list_restaurants",
+                  "important": false,
+                  "aliases": [
+                    "trip_planner_agent_capability_list_restaurants",
+                    "trip_planner_agent",
+                    "capability_list_restaurants"
+                  ],
+                  "details": {
+                    "source": "trip_planner_agent",
+                    "target": "capability_list_restaurants"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "task_extraction_trip_details_resource",
+                  "important": false,
+                  "aliases": [
+                    "task_extraction_trip_details_resource",
+                    "task_extraction",
+                    "trip_details_resource"
+                  ],
+                  "details": {
+                    "source": "task_extraction",
+                    "target": "trip_details_resource"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "task_extraction_conversation_history",
+                  "important": false,
+                  "aliases": [
+                    "task_extraction_conversation_history",
+                    "task_extraction",
+                    "conversation_history"
+                  ],
+                  "details": {
+                    "source": "task_extraction",
+                    "target": "conversation_history"
+                  }
+                },
+                {
+                  "category": "task_capability",
+                  "name": "task_extraction_capability_extract_information",
+                  "important": false,
+                  "aliases": [
+                    "task_extraction_capability_extract_information",
+                    "task_extraction",
+                    "capability_extract_information"
+                  ],
+                  "details": {
+                    "source": "task_extraction",
+                    "target": "capability_extract_information"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "task_classify_classification_result_resource",
+                  "important": false,
+                  "aliases": [
+                    "task_classify_classification_result_resource",
+                    "task_classify",
+                    "classification_result_resource"
+                  ],
+                  "details": {
+                    "source": "task_classify",
+                    "target": "classification_result_resource"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "task_classify_conversation_history",
+                  "important": false,
+                  "aliases": [
+                    "task_classify_conversation_history",
+                    "task_classify",
+                    "conversation_history"
+                  ],
+                  "details": {
+                    "source": "task_classify",
+                    "target": "conversation_history"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "task_classify_trip_details_resource",
+                  "important": false,
+                  "aliases": [
+                    "task_classify_trip_details_resource",
+                    "task_classify",
+                    "trip_details_resource"
+                  ],
+                  "details": {
+                    "source": "task_classify",
+                    "target": "trip_details_resource"
+                  }
+                },
+                {
+                  "category": "task_capability",
+                  "name": "task_classify_capability_classify_relevance",
+                  "important": false,
+                  "aliases": [
+                    "task_classify_capability_classify_relevance",
+                    "task_classify",
+                    "capability_classify_relevance"
+                  ],
+                  "details": {
+                    "source": "task_classify",
+                    "target": "capability_classify_relevance"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "task_call_tools_accommodations_list_resource",
+                  "important": false,
+                  "aliases": [
+                    "task_call_tools_accommodations_list_resource",
+                    "task_call_tools",
+                    "accommodations_list_resource"
+                  ],
+                  "details": {
+                    "source": "task_call_tools",
+                    "target": "accommodations_list_resource"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "task_call_tools_restaurants_list_resource",
+                  "important": false,
+                  "aliases": [
+                    "task_call_tools_restaurants_list_resource",
+                    "task_call_tools",
+                    "restaurants_list_resource"
+                  ],
+                  "details": {
+                    "source": "task_call_tools",
+                    "target": "restaurants_list_resource"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "task_call_tools_trip_details_resource",
+                  "important": false,
+                  "aliases": [
+                    "task_call_tools_trip_details_resource",
+                    "task_call_tools",
+                    "trip_details_resource"
+                  ],
+                  "details": {
+                    "source": "task_call_tools",
+                    "target": "trip_details_resource"
+                  }
+                },
+                {
+                  "category": "task_capability",
+                  "name": "task_call_tools_capability_list_accommodations",
+                  "important": false,
+                  "aliases": [
+                    "task_call_tools_capability_list_accommodations",
+                    "task_call_tools",
+                    "capability_list_accommodations"
+                  ],
+                  "details": {
+                    "source": "task_call_tools",
+                    "target": "capability_list_accommodations"
+                  }
+                },
+                {
+                  "category": "task_capability",
+                  "name": "task_call_tools_capability_list_restaurants",
+                  "important": false,
+                  "aliases": [
+                    "task_call_tools_capability_list_restaurants",
+                    "task_call_tools",
+                    "capability_list_restaurants"
+                  ],
+                  "details": {
+                    "source": "task_call_tools",
+                    "target": "capability_list_restaurants"
+                  }
+                },
+                {
+                  "category": "tool_capability",
+                  "name": "tool_extract_capability_extract_information",
+                  "important": false,
+                  "aliases": [
+                    "tool_extract_capability_extract_information",
+                    "tool_extract",
+                    "capability_extract_information"
+                  ],
+                  "details": {
+                    "source": "tool_extract",
+                    "target": "capability_extract_information"
+                  }
+                },
+                {
+                  "category": "tool_capability",
+                  "name": "tool_classify_capability_classify_relevance",
+                  "important": false,
+                  "aliases": [
+                    "tool_classify_capability_classify_relevance",
+                    "tool_classify",
+                    "capability_classify_relevance"
+                  ],
+                  "details": {
+                    "source": "tool_classify",
+                    "target": "capability_classify_relevance"
+                  }
+                },
+                {
+                  "category": "tool_capability",
+                  "name": "tool_list_accommodations_capability_list_accommodations",
+                  "important": false,
+                  "aliases": [
+                    "tool_list_accommodations_capability_list_accommodations",
+                    "tool_list_accommodations",
+                    "capability_list_accommodations"
+                  ],
+                  "details": {
+                    "source": "tool_list_accommodations",
+                    "target": "capability_list_accommodations"
+                  }
+                },
+                {
+                  "category": "tool_capability",
+                  "name": "tool_list_restaurants_capability_list_restaurants",
+                  "important": false,
+                  "aliases": [
+                    "tool_list_restaurants_capability_list_restaurants",
+                    "tool_list_restaurants",
+                    "capability_list_restaurants"
+                  ],
+                  "details": {
+                    "source": "tool_list_restaurants",
+                    "target": "capability_list_restaurants"
+                  }
+                },
+                {
+                  "category": "language_model",
+                  "name": "language_model_gpt_4_o",
+                  "important": false,
+                  "aliases": [
+                    "language_model_gpt_4_o"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "capability",
+                  "name": "capability_extract_information",
+                  "important": false,
+                  "aliases": [
+                    "capability_extract_information"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "capability",
+                  "name": "capability_classify_relevance",
+                  "important": false,
+                  "aliases": [
+                    "capability_classify_relevance"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "capability",
+                  "name": "capability_list_accommodations",
+                  "important": false,
+                  "aliases": [
+                    "capability_list_accommodations"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "capability",
+                  "name": "capability_list_restaurants",
+                  "important": false,
+                  "aliases": [
+                    "capability_list_restaurants"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "classification_result_resource",
+                  "important": false,
+                  "aliases": [
+                    "classification_result_resource"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "trip_details_resource",
+                  "important": false,
+                  "aliases": [
+                    "trip_details_resource"
+                  ],
+                  "details": {}
+                }
+              ],
+              "by_category": {
+                "agent": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "agent_capability": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 4
+                },
+                "agent_llm": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "agent_tool": {
+                  "score": 1.0,
+                  "matched": 4,
+                  "total": 4
+                },
+                "capability": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 4
+                },
+                "config": {
+                  "score": 0.8888888888888888,
+                  "matched": 8,
+                  "total": 9
+                },
+                "language_model": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "project": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "resource": {
+                  "score": 0.6,
+                  "matched": 3,
+                  "total": 5
+                },
+                "step_task": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                },
+                "task": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                },
+                "task_agent": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                },
+                "task_capability": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 4
+                },
+                "task_context": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "task_produces": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 4
+                },
+                "task_requires": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 4
+                },
+                "tool": {
+                  "score": 1.0,
+                  "matched": 4,
+                  "total": 4
+                },
+                "tool_capability": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 4
+                },
+                "workflow": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "workflow_step": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                }
+              }
+            },
+            "important_subset": {
+              "score": 1.0,
+              "matched": 26,
+              "total": 26,
+              "missing": [],
+              "by_category": {
+                "agent": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "agent_tool": {
+                  "score": 1.0,
+                  "matched": 4,
+                  "total": 4
+                },
+                "config": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "step_task": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                },
+                "task": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                },
+                "task_agent": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                },
+                "task_context": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "tool": {
+                  "score": 1.0,
+                  "matched": 4,
+                  "total": 4
+                },
+                "workflow": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "workflow_step": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                }
+              }
+            }
+          },
+          "wgi": {
+            "score": 1.0,
+            "normalized_graph_edit_distance": 0.0,
+            "labeled_score": 1.0,
+            "topology_score": 1.0,
+            "labeled_normalized_graph_edit_distance": 0.0,
+            "topology_normalized_graph_edit_distance": 0.0,
+            "exact_isomorphic": true,
+            "topology_isomorphic": true,
+            "edge_precision": 1.0,
+            "edge_recall": 1.0,
+            "edge_f1": 1.0,
+            "kg_nodes": [
+              "task_call_tools",
+              "task_classify",
+              "task_extraction"
+            ],
+            "code_nodes": [
+              "task_call_tools",
+              "task_classify",
+              "task_extraction"
+            ],
+            "kg_edges": [
+              {
+                "source": "task_classify",
+                "target": "task_call_tools"
+              },
+              {
+                "source": "task_classify",
+                "target": "task_extraction"
+              },
+              {
+                "source": "task_extraction",
+                "target": "task_call_tools"
+              }
+            ],
+            "code_edges": [
+              {
+                "source": "task_classify",
+                "target": "task_call_tools"
+              },
+              {
+                "source": "task_classify",
+                "target": "task_extraction"
+              },
+              {
+                "source": "task_extraction",
+                "target": "task_call_tools"
+              }
+            ],
+            "missing_nodes": [],
+            "extra_nodes": [],
+            "missing_edges": [],
+            "extra_edges": []
+          },
+          "syntax_ok": true,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.0
+        },
+        {
+          "project": "utils",
+          "kg_path": "/Users/ravie/dev/agento/kgs_original/LangGraph/utils_instances.ttl",
+          "output_dir": "/Users/ravie/dev/agento/output_files/output_langgraph/utils",
+          "status": "ok",
+          "kg_element_count": 31,
+          "code_element_count": 13,
+          "oec": {
+            "all_extracted": {
+              "score": 0.45161290322580644,
+              "matched": 14,
+              "total": 31,
+              "missing": [
+                {
+                  "category": "task_produces",
+                  "name": "capitalize_sentence_task_string_output_resource",
+                  "important": false,
+                  "aliases": [
+                    "capitalize_sentence_task_string_output_resource",
+                    "capitalize_sentence_task",
+                    "string_output_resource"
+                  ],
+                  "details": {
+                    "source": "capitalize_sentence_task",
+                    "target": "string_output_resource"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "capitalize_sentence_task_string_input_resource",
+                  "important": false,
+                  "aliases": [
+                    "capitalize_sentence_task_string_input_resource",
+                    "capitalize_sentence_task",
+                    "string_input_resource"
+                  ],
+                  "details": {
+                    "source": "capitalize_sentence_task",
+                    "target": "string_input_resource"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "capitalize_task_string_output_resource",
+                  "important": false,
+                  "aliases": [
+                    "capitalize_task_string_output_resource",
+                    "capitalize_task",
+                    "string_output_resource"
+                  ],
+                  "details": {
+                    "source": "capitalize_task",
+                    "target": "string_output_resource"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "capitalize_task_string_input_resource",
+                  "important": false,
+                  "aliases": [
+                    "capitalize_task_string_input_resource",
+                    "capitalize_task",
+                    "string_input_resource"
+                  ],
+                  "details": {
+                    "source": "capitalize_task",
+                    "target": "string_input_resource"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "format_messages_task_formatted_messages_resource",
+                  "important": false,
+                  "aliases": [
+                    "format_messages_task_formatted_messages_resource",
+                    "format_messages_task",
+                    "formatted_messages_resource"
+                  ],
+                  "details": {
+                    "source": "format_messages_task",
+                    "target": "formatted_messages_resource"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "format_messages_task_message_array_resource",
+                  "important": false,
+                  "aliases": [
+                    "format_messages_task_message_array_resource",
+                    "format_messages_task",
+                    "message_array_resource"
+                  ],
+                  "details": {
+                    "source": "format_messages_task",
+                    "target": "message_array_resource"
+                  }
+                },
+                {
+                  "category": "tool_capability",
+                  "name": "capitalize_tool_capitalize_sentence_capability",
+                  "important": false,
+                  "aliases": [
+                    "capitalize_tool_capitalize_sentence_capability",
+                    "capitalize_tool",
+                    "capitalize_sentence_capability"
+                  ],
+                  "details": {
+                    "source": "capitalize_tool",
+                    "target": "capitalize_sentence_capability"
+                  }
+                },
+                {
+                  "category": "tool_capability",
+                  "name": "capitalize_tool_capitalize_capability",
+                  "important": false,
+                  "aliases": [
+                    "capitalize_tool_capitalize_capability",
+                    "capitalize_tool",
+                    "capitalize_capability"
+                  ],
+                  "details": {
+                    "source": "capitalize_tool",
+                    "target": "capitalize_capability"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "tool_format_messages_tool_non_string_content_serialization",
+                  "important": false,
+                  "aliases": [
+                    "tool_format_messages_tool_non_string_content_serialization",
+                    "non_string_content_serialization",
+                    "json_stringify",
+                    "non_string_content_serialization_json_stringify"
+                  ],
+                  "details": {
+                    "key": "non_string_content_serialization",
+                    "owner": "format_messages_tool",
+                    "owner_category": "tool",
+                    "value": "JSON.stringify"
+                  }
+                },
+                {
+                  "category": "tool_capability",
+                  "name": "format_messages_tool_format_messages_capability",
+                  "important": false,
+                  "aliases": [
+                    "format_messages_tool_format_messages_capability",
+                    "format_messages_tool",
+                    "format_messages_capability"
+                  ],
+                  "details": {
+                    "source": "format_messages_tool",
+                    "target": "format_messages_capability"
+                  }
+                },
+                {
+                  "category": "capability",
+                  "name": "capitalize_sentence_capability",
+                  "important": false,
+                  "aliases": [
+                    "capitalize_sentence_capability"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "capability",
+                  "name": "capitalize_capability",
+                  "important": false,
+                  "aliases": [
+                    "capitalize_capability"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "capability",
+                  "name": "format_messages_capability",
+                  "important": false,
+                  "aliases": [
+                    "format_messages_capability"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "string_input_resource",
+                  "important": false,
+                  "aliases": [
+                    "string_input_resource"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "string_output_resource",
+                  "important": false,
+                  "aliases": [
+                    "string_output_resource"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "message_array_resource",
+                  "important": false,
+                  "aliases": [
+                    "message_array_resource"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "formatted_messages_resource",
+                  "important": false,
+                  "aliases": [
+                    "formatted_messages_resource"
+                  ],
+                  "details": {}
+                }
+              ],
+              "by_category": {
+                "capability": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 3
+                },
+                "config": {
+                  "score": 0.5,
+                  "matched": 1,
+                  "total": 2
+                },
+                "project": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "resource": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 4
+                },
+                "step_task": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                },
+                "task": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                },
+                "task_produces": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 3
+                },
+                "task_requires": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 3
+                },
+                "tool": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "tool_capability": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 3
+                },
+                "workflow": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "workflow_step": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                }
+              }
+            },
+            "important_subset": {
+              "score": 1.0,
+              "matched": 12,
+              "total": 12,
+              "missing": [],
+              "by_category": {
+                "step_task": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                },
+                "task": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                },
+                "tool": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "workflow": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "workflow_step": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                }
+              }
+            }
+          },
+          "wgi": {
+            "score": 1.0,
+            "normalized_graph_edit_distance": 0.0,
+            "labeled_score": 1.0,
+            "topology_score": 1.0,
+            "labeled_normalized_graph_edit_distance": 0.0,
+            "topology_normalized_graph_edit_distance": 0.0,
+            "exact_isomorphic": true,
+            "topology_isomorphic": true,
+            "edge_precision": 1.0,
+            "edge_recall": 1.0,
+            "edge_f1": 1.0,
+            "kg_nodes": [
+              "capitalize_sentence_task",
+              "capitalize_task",
+              "format_messages_task"
+            ],
+            "code_nodes": [
+              "capitalize_sentence_task",
+              "capitalize_task",
+              "format_messages_task"
+            ],
+            "kg_edges": [
+              {
+                "source": "capitalize_sentence_task",
+                "target": "capitalize_task"
+              },
+              {
+                "source": "capitalize_task",
+                "target": "format_messages_task"
+              }
+            ],
+            "code_edges": [
+              {
+                "source": "capitalize_sentence_task",
+                "target": "capitalize_task"
+              },
+              {
+                "source": "capitalize_task",
+                "target": "format_messages_task"
+              }
+            ],
+            "missing_nodes": [],
+            "extra_nodes": [],
+            "missing_edges": [],
+            "extra_edges": []
+          },
+          "syntax_ok": true,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.5111111111111111
+        },
+        {
+          "project": "writer-agent",
+          "kg_path": "/Users/ravie/dev/agento/kgs_original/LangGraph/writer-agent_instances.ttl",
+          "output_dir": "/Users/ravie/dev/agento/output_files/output_langgraph/writer-agent",
+          "status": "ok",
+          "kg_element_count": 44,
+          "code_element_count": 13,
+          "oec": {
+            "all_extracted": {
+              "score": 0.45454545454545453,
+              "matched": 20,
+              "total": 44,
+              "missing": [
+                {
+                  "category": "agent_llm",
+                  "name": "writer_annotation_agent_uuid_1_claude_3_5_sonnet",
+                  "important": false,
+                  "aliases": [
+                    "writer_annotation_agent_uuid_1_claude_3_5_sonnet",
+                    "writer_annotation_agent_uuid_1",
+                    "claude_3_5_sonnet"
+                  ],
+                  "details": {
+                    "source": "writer_annotation_agent_uuid_1",
+                    "target": "claude_3_5_sonnet"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_writer_annotation_agent_uuid_1_tags",
+                  "important": false,
+                  "aliases": [
+                    "agent_writer_annotation_agent_uuid_1_tags",
+                    "tags",
+                    "nostream",
+                    "tags_nostream"
+                  ],
+                  "details": {
+                    "key": "tags",
+                    "owner": "writer_annotation_agent_uuid_1",
+                    "owner_category": "agent",
+                    "value": "[\"nostream\"]"
+                  }
+                },
+                {
+                  "category": "agent_capability",
+                  "name": "writer_annotation_agent_uuid_1_capability_document_generation",
+                  "important": false,
+                  "aliases": [
+                    "writer_annotation_agent_uuid_1_capability_document_generation",
+                    "writer_annotation_agent_uuid_1",
+                    "capability_document_generation"
+                  ],
+                  "details": {
+                    "source": "writer_annotation_agent_uuid_1",
+                    "target": "capability_document_generation"
+                  }
+                },
+                {
+                  "category": "agent_capability",
+                  "name": "writer_annotation_agent_uuid_1_capability_tool_binding",
+                  "important": false,
+                  "aliases": [
+                    "writer_annotation_agent_uuid_1_capability_tool_binding",
+                    "writer_annotation_agent_uuid_1",
+                    "capability_tool_binding"
+                  ],
+                  "details": {
+                    "source": "writer_annotation_agent_uuid_1",
+                    "target": "capability_tool_binding"
+                  }
+                },
+                {
+                  "category": "agent_capability",
+                  "name": "writer_annotation_agent_uuid_1_capability_streaming_output",
+                  "important": false,
+                  "aliases": [
+                    "writer_annotation_agent_uuid_1_capability_streaming_output",
+                    "writer_annotation_agent_uuid_1",
+                    "capability_streaming_output"
+                  ],
+                  "details": {
+                    "source": "writer_annotation_agent_uuid_1",
+                    "target": "capability_streaming_output"
+                  }
+                },
+                {
+                  "category": "agent_capability",
+                  "name": "writer_annotation_agent_uuid_1_capability_create_draft",
+                  "important": false,
+                  "aliases": [
+                    "writer_annotation_agent_uuid_1_capability_create_draft",
+                    "writer_annotation_agent_uuid_1",
+                    "capability_create_draft"
+                  ],
+                  "details": {
+                    "source": "writer_annotation_agent_uuid_1",
+                    "target": "capability_create_draft"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "prepare_task_draft_document_candidate_resource",
+                  "important": false,
+                  "aliases": [
+                    "prepare_task_draft_document_candidate_resource",
+                    "prepare_task",
+                    "draft_document_candidate_resource"
+                  ],
+                  "details": {
+                    "source": "prepare_task",
+                    "target": "draft_document_candidate_resource"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "prepare_task_conversation_state_resource",
+                  "important": false,
+                  "aliases": [
+                    "prepare_task_conversation_state_resource",
+                    "prepare_task",
+                    "conversation_state_resource"
+                  ],
+                  "details": {
+                    "source": "prepare_task",
+                    "target": "conversation_state_resource"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "write_task_final_text_document",
+                  "important": false,
+                  "aliases": [
+                    "write_task_final_text_document",
+                    "write_task",
+                    "final_text_document"
+                  ],
+                  "details": {
+                    "source": "write_task",
+                    "target": "final_text_document"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "write_task_conversation_state_resource",
+                  "important": false,
+                  "aliases": [
+                    "write_task_conversation_state_resource",
+                    "write_task",
+                    "conversation_state_resource"
+                  ],
+                  "details": {
+                    "source": "write_task",
+                    "target": "conversation_state_resource"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "write_task_draft_document_candidate_resource",
+                  "important": false,
+                  "aliases": [
+                    "write_task_draft_document_candidate_resource",
+                    "write_task",
+                    "draft_document_candidate_resource"
+                  ],
+                  "details": {
+                    "source": "write_task",
+                    "target": "draft_document_candidate_resource"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "suggestions_task_suggestion_message_resource",
+                  "important": false,
+                  "aliases": [
+                    "suggestions_task_suggestion_message_resource",
+                    "suggestions_task",
+                    "suggestion_message_resource"
+                  ],
+                  "details": {
+                    "source": "suggestions_task",
+                    "target": "suggestion_message_resource"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "suggestions_task_conversation_state_resource",
+                  "important": false,
+                  "aliases": [
+                    "suggestions_task_conversation_state_resource",
+                    "suggestions_task",
+                    "conversation_state_resource"
+                  ],
+                  "details": {
+                    "source": "suggestions_task",
+                    "target": "conversation_state_resource"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "suggestions_task_last_aimessage_resource",
+                  "important": false,
+                  "aliases": [
+                    "suggestions_task_last_aimessage_resource",
+                    "suggestions_task",
+                    "last_aimessage_resource"
+                  ],
+                  "details": {
+                    "source": "suggestions_task",
+                    "target": "last_aimessage_resource"
+                  }
+                },
+                {
+                  "category": "tool_capability",
+                  "name": "draft_text_document_tool_capability_create_draft",
+                  "important": false,
+                  "aliases": [
+                    "draft_text_document_tool_capability_create_draft",
+                    "draft_text_document_tool",
+                    "capability_create_draft"
+                  ],
+                  "details": {
+                    "source": "draft_text_document_tool",
+                    "target": "capability_create_draft"
+                  }
+                },
+                {
+                  "category": "capability",
+                  "name": "capability_create_draft",
+                  "important": false,
+                  "aliases": [
+                    "capability_create_draft",
+                    "create_draft_document"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "capability",
+                  "name": "capability_document_generation",
+                  "important": false,
+                  "aliases": [
+                    "capability_document_generation",
+                    "document_generation"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "capability",
+                  "name": "capability_tool_binding",
+                  "important": false,
+                  "aliases": [
+                    "capability_tool_binding",
+                    "tool_binding"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "capability",
+                  "name": "capability_streaming_output",
+                  "important": false,
+                  "aliases": [
+                    "capability_streaming_output",
+                    "streaming_output"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "conversation_state_resource",
+                  "important": false,
+                  "aliases": [
+                    "conversation_state_resource"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "last_ai_message_resource",
+                  "important": false,
+                  "aliases": [
+                    "last_ai_message_resource",
+                    "last_aimessage_resource"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "draft_document_candidate_resource",
+                  "important": false,
+                  "aliases": [
+                    "draft_document_candidate_resource",
+                    "draft_candidate"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "final_text_document",
+                  "important": false,
+                  "aliases": [
+                    "final_text_document",
+                    "final_document"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "suggestion_message_resource",
+                  "important": false,
+                  "aliases": [
+                    "suggestion_message_resource"
+                  ],
+                  "details": {}
+                }
+              ],
+              "by_category": {
+                "agent": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "agent_capability": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 4
+                },
+                "agent_llm": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "agent_tool": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "capability": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 4
+                },
+                "config": {
+                  "score": 0.5,
+                  "matched": 1,
+                  "total": 2
+                },
+                "language_model": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "project": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "resource": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 5
+                },
+                "step_task": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                },
+                "task": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                },
+                "task_agent": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                },
+                "task_context": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "task_produces": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 3
+                },
+                "task_requires": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 5
+                },
+                "tool": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "tool_capability": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "workflow": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "workflow_step": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                }
+              }
+            },
+            "important_subset": {
+              "score": 1.0,
+              "matched": 17,
+              "total": 17,
+              "missing": [],
+              "by_category": {
+                "agent": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "agent_tool": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "step_task": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                },
+                "task": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                },
+                "task_agent": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                },
+                "task_context": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "tool": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "workflow": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "workflow_step": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                }
+              }
+            }
+          },
+          "wgi": {
+            "score": 1.0,
+            "normalized_graph_edit_distance": 0.0,
+            "labeled_score": 1.0,
+            "topology_score": 1.0,
+            "labeled_normalized_graph_edit_distance": 0.0,
+            "topology_normalized_graph_edit_distance": 0.0,
+            "exact_isomorphic": true,
+            "topology_isomorphic": true,
+            "edge_precision": 1.0,
+            "edge_recall": 1.0,
+            "edge_f1": 1.0,
+            "kg_nodes": [
+              "prepare_task",
+              "suggestions_task",
+              "write_task"
+            ],
+            "code_nodes": [
+              "prepare_task",
+              "suggestions_task",
+              "write_task"
+            ],
+            "kg_edges": [
+              {
+                "source": "prepare_task",
+                "target": "write_task"
+              },
+              {
+                "source": "write_task",
+                "target": "suggestions_task"
+              }
+            ],
+            "code_edges": [
+              {
+                "source": "prepare_task",
+                "target": "write_task"
+              },
+              {
+                "source": "write_task",
+                "target": "suggestions_task"
+              }
+            ],
+            "missing_nodes": [],
+            "extra_nodes": [],
+            "missing_edges": [],
+            "extra_edges": []
+          },
+          "syntax_ok": true,
+          "run_status": "N/A",
+          "run_output": "",
+          "gt_found": true,
+          "ast_sim": 0.4927536231884058
+        }
+      ]
+    }
+  ]
+}

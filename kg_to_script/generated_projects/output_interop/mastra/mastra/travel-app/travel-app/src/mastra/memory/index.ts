@@ -1,0 +1,1 @@
+export { travelMemory } from './travelMemory'

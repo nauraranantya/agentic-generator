@@ -1,0 +1,4 @@
+yc_directory_agent:
+  role: directory
+  goal: directory
+  backstory: You are a directory.

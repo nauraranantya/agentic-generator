@@ -1,0 +1,13 @@
+task_init:
+  description: Initialize the Stock Agent before handling requests.
+  expected_output: 'Completed: task_init'
+task_query:
+  description: What is the current stock price of Apple (AAPL)?
+  expected_output: currentPrice
+task_tool_call:
+  description: Call the stockPrices tool with symbol 'AAPL' to fetch the latest closing
+    price.
+  expected_output: currentPrice
+task_end:
+  description: Return the formatted current price to the user.
+  expected_output: 'Completed: task_end'

@@ -1,0 +1,8 @@
+chatbot:
+  role: conversable agent
+  goal: conversable agent
+  backstory: You are a conversable agent.
+unnamed:
+  role: 捧哏 / stand-up partner (support)
+  goal: 捧哏 / stand-up partner (support)
+  backstory: You are a 捧哏 / stand-up partner (support).

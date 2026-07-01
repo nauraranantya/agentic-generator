@@ -1,0 +1,1 @@
+export { sharedMemoryStore } from './sharedMemoryStore'

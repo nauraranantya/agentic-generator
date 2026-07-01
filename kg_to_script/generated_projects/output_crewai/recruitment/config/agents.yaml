@@ -1,0 +1,24 @@
+researcher:
+  role: Job Candidate Researcher
+  goal: 'Agent goal: find potential candidates matching provided job requirements.'
+  backstory: You are a Job Candidate Researcher.
+  allow_delegation: false
+  verbose: true
+matcher:
+  role: Candidate Matcher and Scorer
+  goal: 'Agent goal: evaluate and rank candidates against job requirements.'
+  backstory: You are a Candidate Matcher and Scorer.
+  allow_delegation: false
+  verbose: true
+communicator:
+  role: Candidate Outreach Strategist
+  goal: 'Agent goal: create outreach templates and communication plans.'
+  backstory: You are a Candidate Outreach Strategist.
+  allow_delegation: false
+  verbose: true
+reporter:
+  role: Candidate Reporting Specialist
+  goal: 'Agent goal: compile findings and recommend top candidates.'
+  backstory: You are a Candidate Reporting Specialist.
+  allow_delegation: false
+  verbose: true

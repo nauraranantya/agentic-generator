@@ -1,0 +1,4 @@
+mastra_agent:
+  role: workflow-executor
+  goal: workflow-executor
+  backstory: You are a workflow-executor.

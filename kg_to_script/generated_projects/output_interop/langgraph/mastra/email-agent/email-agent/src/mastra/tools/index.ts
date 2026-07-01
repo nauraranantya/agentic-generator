@@ -1,0 +1,1 @@
+export { toolWriteEmail } from './toolWriteEmail'

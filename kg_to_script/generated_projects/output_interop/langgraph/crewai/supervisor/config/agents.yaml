@@ -1,0 +1,32 @@
+supervisor:
+  role: supervisor
+  goal: supervisor
+  backstory: You are a supervisor.
+router:
+  role: router
+  goal: router
+  backstory: You are a router.
+general_input:
+  role: general_input_handler
+  goal: general_input_handler
+  backstory: You are a general_input_handler.
+stockbroker:
+  role: stockbroker_tool_agent
+  goal: stockbroker_tool_agent
+  backstory: You are a stockbroker_tool_agent.
+trip_planner:
+  role: trip_planner_tool_agent
+  goal: trip_planner_tool_agent
+  backstory: You are a trip_planner_tool_agent.
+open_code:
+  role: open_code_tool_agent
+  goal: open_code_tool_agent
+  backstory: You are a open_code_tool_agent.
+order_pizza:
+  role: order_pizza_tool_agent
+  goal: order_pizza_tool_agent
+  backstory: You are a order_pizza_tool_agent.
+writer_agent:
+  role: writer_agent_tool
+  goal: writer_agent_tool
+  backstory: You are a writer_agent_tool.

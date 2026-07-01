@@ -1,0 +1,13 @@
+task_write_email:
+  description: LLM task that generates an initial email draft from conversation history.
+  expected_output: 'An email object with fields: subject, body, to'
+task_interrupt:
+  description: Human-in-the-loop interruption UI which can edit, accept, ignore, or
+    request a rewrite.
+  expected_output: 'Completed: task_interrupt'
+task_rewrite_email:
+  description: LLM task that rewrites the email according to user edits or responses.
+  expected_output: 'An email object with fields: subject, body, to'
+task_send_email:
+  description: Finalization step that sends/renders the sent email confirmation.
+  expected_output: Confirmation message or sent-email UI component

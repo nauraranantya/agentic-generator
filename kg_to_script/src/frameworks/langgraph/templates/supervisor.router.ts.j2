@@ -1,0 +1,17 @@
+import type { SupervisorState } from "../types";
+
+const ROUTES = [{% for route in routes %}"{{ route.route_key }}"{% if not loop.last %}, {% endif %}{% endfor %}];
+const FALLBACK = "{{ (routes | selectattr('is_fallback') | map(attribute='route_key') | first) if (routes | selectattr('is_fallback') | list) else (routes[0].route_key if routes else 'generalInput') }}";
+
+export async function router(state: SupervisorState) {
+  const last = state.messages?.[state.messages.length - 1];
+  const text = String(last?.content ?? "").toLowerCase();
+
+  for (const route of ROUTES) {
+    if (text.includes(route.toLowerCase())) {
+      return { next: route };
+    }
+  }
+
+  return { next: FALLBACK };
+}

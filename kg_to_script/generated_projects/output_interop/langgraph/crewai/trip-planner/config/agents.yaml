@@ -1,0 +1,5 @@
+trip_planner_agent:
+  role: assistant
+  goal: assistant
+  backstory: Used by the trip planner LLM to format messages and construct tool calls
+    for bookings.

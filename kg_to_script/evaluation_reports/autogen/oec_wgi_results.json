@@ -1,0 +1,2699 @@
+{
+  "root": "/Users/ravie/dev/agento",
+  "frameworks": [
+    {
+      "key": "autogen",
+      "name": "AutoGen",
+      "kg_dir": "/Users/ravie/dev/agento/kgs_original/AutoGen",
+      "output_dir": "/Users/ravie/dev/agento/output_files/output_autogen",
+      "summary": {
+        "projects": 6,
+        "evaluated": 6,
+        "errors": 0,
+        "avg_oec_all": 0.5464835486433379,
+        "avg_oec_important": 0.9100602210856295,
+        "avg_wgi": 0.8333333333333334,
+        "avg_edge_f1": 0.8333333333333334,
+        "avg_ast_sim": 0.46530447536639485,
+        "syntax_success_rate": 1.0,
+        "run_success_rate": 0.0
+      },
+      "projects": [
+        {
+          "project": "L1_Multi-Agent_Conversation_and_Stand-up_Comedy",
+          "kg_path": "/Users/ravie/dev/agento/kgs_original/AutoGen/L1_Multi-Agent_Conversation_and_Stand-up_Comedy_instances.ttl",
+          "output_dir": "/Users/ravie/dev/agento/output_files/output_autogen/L1_Multi-Agent_Conversation_and_Stand-up_Comedy",
+          "status": "ok",
+          "kg_element_count": 14,
+          "code_element_count": 3,
+          "oec": {
+            "all_extracted": {
+              "score": 0.2857142857142857,
+              "matched": 4,
+              "total": 14,
+              "missing": [
+                {
+                  "category": "project",
+                  "name": "unnamed_project",
+                  "important": false,
+                  "aliases": [
+                    "unnamed_project"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "agent_llm",
+                  "name": "cathy_llm_default",
+                  "important": false,
+                  "aliases": [
+                    "cathy_llm_default",
+                    "cathy",
+                    "llm_default"
+                  ],
+                  "details": {
+                    "source": "cathy",
+                    "target": "llm_default"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_cathy_human_input_mode",
+                  "important": false,
+                  "aliases": [
+                    "agent_cathy_human_input_mode",
+                    "human_input_mode",
+                    "never",
+                    "human_input_mode_never"
+                  ],
+                  "details": {
+                    "key": "human_input_mode",
+                    "owner": "cathy",
+                    "owner_category": "agent",
+                    "value": "NEVER"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_cathy_is_termination_msg",
+                  "important": false,
+                  "aliases": [
+                    "agent_cathy_is_termination_msg",
+                    "is_termination_msg",
+                    "lambda_msg_i_gotta_go_in_msg_content",
+                    "is_termination_msg_lambda_msg_i_gotta_go_in_msg_content"
+                  ],
+                  "details": {
+                    "key": "is_termination_msg",
+                    "owner": "cathy",
+                    "owner_category": "agent",
+                    "value": "lambda msg: \"I gotta go\" in msg[\"content\"]"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_cathy_llm_config",
+                  "important": false,
+                  "aliases": [
+                    "agent_cathy_llm_config",
+                    "llm_config",
+                    "llm_config_external_variable_referenced_in_the_notebook_details_not_provided_in_excerpt",
+                    "llm_config_llm_config_external_variable_referenced_in_the_notebook_details_not_provided_in_excerpt"
+                  ],
+                  "details": {
+                    "key": "llm_config",
+                    "owner": "cathy",
+                    "owner_category": "agent",
+                    "value": "llm_config (external variable referenced in the notebook; details not provided in excerpt)"
+                  }
+                },
+                {
+                  "category": "agent_llm",
+                  "name": "joe_llm_default",
+                  "important": false,
+                  "aliases": [
+                    "joe_llm_default",
+                    "joe",
+                    "llm_default"
+                  ],
+                  "details": {
+                    "source": "joe",
+                    "target": "llm_default"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_joe_human_input_mode",
+                  "important": false,
+                  "aliases": [
+                    "agent_joe_human_input_mode",
+                    "human_input_mode",
+                    "never",
+                    "human_input_mode_never"
+                  ],
+                  "details": {
+                    "key": "human_input_mode",
+                    "owner": "joe",
+                    "owner_category": "agent",
+                    "value": "NEVER"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_joe_is_termination_msg",
+                  "important": false,
+                  "aliases": [
+                    "agent_joe_is_termination_msg",
+                    "is_termination_msg",
+                    "lambda_msg_i_gotta_go_in_msg_content_or_goodbye_in_msg_content",
+                    "is_termination_msg_lambda_msg_i_gotta_go_in_msg_content_or_goodbye_in_msg_content"
+                  ],
+                  "details": {
+                    "key": "is_termination_msg",
+                    "owner": "joe",
+                    "owner_category": "agent",
+                    "value": "lambda msg: \"I gotta go\" in msg[\"content\"] or \"Goodbye\" in msg[\"content\"]"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_joe_llm_config",
+                  "important": false,
+                  "aliases": [
+                    "agent_joe_llm_config",
+                    "llm_config",
+                    "llm_config_external_variable_referenced_in_the_notebook_details_not_provided_in_excerpt",
+                    "llm_config_llm_config_external_variable_referenced_in_the_notebook_details_not_provided_in_excerpt"
+                  ],
+                  "details": {
+                    "key": "llm_config",
+                    "owner": "joe",
+                    "owner_category": "agent",
+                    "value": "llm_config (external variable referenced in the notebook; details not provided in excerpt)"
+                  }
+                },
+                {
+                  "category": "language_model",
+                  "name": "llm_default",
+                  "important": false,
+                  "aliases": [
+                    "llm_default"
+                  ],
+                  "details": {}
+                }
+              ],
+              "by_category": {
+                "agent": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "agent_interaction": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "agent_llm": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 2
+                },
+                "config": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 6
+                },
+                "language_model": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "project": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                }
+              }
+            },
+            "important_subset": {
+              "score": 1.0,
+              "matched": 4,
+              "total": 4,
+              "missing": [],
+              "by_category": {
+                "agent": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "agent_interaction": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                }
+              }
+            }
+          },
+          "wgi": {
+            "score": 0.0,
+            "normalized_graph_edit_distance": 1.0,
+            "labeled_score": 0.0,
+            "topology_score": 0.0,
+            "labeled_normalized_graph_edit_distance": 1.0,
+            "topology_normalized_graph_edit_distance": 1.0,
+            "exact_isomorphic": false,
+            "topology_isomorphic": false,
+            "edge_precision": 0.0,
+            "edge_recall": 0.0,
+            "edge_f1": 0.0,
+            "kg_nodes": [],
+            "code_nodes": [
+              "cathy",
+              "joe"
+            ],
+            "kg_edges": [],
+            "code_edges": [
+              {
+                "source": "cathy",
+                "target": "joe"
+              }
+            ],
+            "missing_nodes": [],
+            "extra_nodes": [
+              "cathy",
+              "joe"
+            ],
+            "missing_edges": [],
+            "extra_edges": [
+              {
+                "source": "cathy",
+                "target": "joe"
+              }
+            ]
+          },
+          "syntax_ok": true,
+          "run_status": "IMPORT_ERROR",
+          "run_output": "    ...<2 lines>...\n    )\n  File \"/Users/ravie/dev/agento/output_files/output_autogen/L1_Multi-Agent_Conversation_and_Stand-up_Comedy/team.py\", line 2, in <module>\n    from autogen_agentchat.agents import AssistantAgent\nModuleNotFoundError: No module named 'autogen_agentchat'",
+          "gt_found": true,
+          "ast_sim": 0.5
+        },
+        {
+          "project": "L2_Sequential_Chats_and_Customer_Onboarding",
+          "kg_path": "/Users/ravie/dev/agento/kgs_original/AutoGen/L2_Sequential_Chats_and_Customer_Onboarding_instances.ttl",
+          "output_dir": "/Users/ravie/dev/agento/output_files/output_autogen/L2_Sequential_Chats_and_Customer_Onboarding",
+          "status": "ok",
+          "kg_element_count": 34,
+          "code_element_count": 10,
+          "oec": {
+            "all_extracted": {
+              "score": 0.5882352941176471,
+              "matched": 20,
+              "total": 34,
+              "missing": [
+                {
+                  "category": "agent_llm",
+                  "name": "onboarding_personal_information_agent_lm_gpt_3_5_turbo",
+                  "important": false,
+                  "aliases": [
+                    "onboarding_personal_information_agent_lm_gpt_3_5_turbo",
+                    "onboarding_personal_information_agent",
+                    "lm_gpt_3_5_turbo"
+                  ],
+                  "details": {
+                    "source": "onboarding_personal_information_agent",
+                    "target": "lm_gpt_3_5_turbo"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_onboarding_personal_information_agent_llm_config",
+                  "important": false,
+                  "aliases": [
+                    "agent_onboarding_personal_information_agent_llm_config",
+                    "llm_config",
+                    "model_gpt_3_5_turbo",
+                    "llm_config_model_gpt_3_5_turbo"
+                  ],
+                  "details": {
+                    "key": "llm_config",
+                    "owner": "onboarding_personal_information_agent",
+                    "owner_category": "agent",
+                    "value": "{\"model\": \"gpt-3.5-turbo\"}"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_onboarding_personal_information_agent_human_input_mode",
+                  "important": false,
+                  "aliases": [
+                    "agent_onboarding_personal_information_agent_human_input_mode",
+                    "human_input_mode",
+                    "never",
+                    "human_input_mode_never"
+                  ],
+                  "details": {
+                    "key": "human_input_mode",
+                    "owner": "onboarding_personal_information_agent",
+                    "owner_category": "agent",
+                    "value": "NEVER"
+                  }
+                },
+                {
+                  "category": "agent_llm",
+                  "name": "onboarding_topic_preference_agent_lm_gpt_3_5_turbo",
+                  "important": false,
+                  "aliases": [
+                    "onboarding_topic_preference_agent_lm_gpt_3_5_turbo",
+                    "onboarding_topic_preference_agent",
+                    "lm_gpt_3_5_turbo"
+                  ],
+                  "details": {
+                    "source": "onboarding_topic_preference_agent",
+                    "target": "lm_gpt_3_5_turbo"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_onboarding_topic_preference_agent_llm_config",
+                  "important": false,
+                  "aliases": [
+                    "agent_onboarding_topic_preference_agent_llm_config",
+                    "llm_config",
+                    "model_gpt_3_5_turbo",
+                    "llm_config_model_gpt_3_5_turbo"
+                  ],
+                  "details": {
+                    "key": "llm_config",
+                    "owner": "onboarding_topic_preference_agent",
+                    "owner_category": "agent",
+                    "value": "{\"model\": \"gpt-3.5-turbo\"}"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_onboarding_topic_preference_agent_human_input_mode",
+                  "important": false,
+                  "aliases": [
+                    "agent_onboarding_topic_preference_agent_human_input_mode",
+                    "human_input_mode",
+                    "never",
+                    "human_input_mode_never"
+                  ],
+                  "details": {
+                    "key": "human_input_mode",
+                    "owner": "onboarding_topic_preference_agent",
+                    "owner_category": "agent",
+                    "value": "NEVER"
+                  }
+                },
+                {
+                  "category": "agent_llm",
+                  "name": "customer_engagement_agent_lm_gpt_3_5_turbo",
+                  "important": false,
+                  "aliases": [
+                    "customer_engagement_agent_lm_gpt_3_5_turbo",
+                    "customer_engagement_agent",
+                    "lm_gpt_3_5_turbo"
+                  ],
+                  "details": {
+                    "source": "customer_engagement_agent",
+                    "target": "lm_gpt_3_5_turbo"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_customer_engagement_agent_llm_config",
+                  "important": false,
+                  "aliases": [
+                    "agent_customer_engagement_agent_llm_config",
+                    "llm_config",
+                    "model_gpt_3_5_turbo",
+                    "llm_config_model_gpt_3_5_turbo"
+                  ],
+                  "details": {
+                    "key": "llm_config",
+                    "owner": "customer_engagement_agent",
+                    "owner_category": "agent",
+                    "value": "{\"model\": \"gpt-3.5-turbo\"}"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_customer_engagement_agent_human_input_mode",
+                  "important": false,
+                  "aliases": [
+                    "agent_customer_engagement_agent_human_input_mode",
+                    "human_input_mode",
+                    "never",
+                    "human_input_mode_never"
+                  ],
+                  "details": {
+                    "key": "human_input_mode",
+                    "owner": "customer_engagement_agent",
+                    "owner_category": "agent",
+                    "value": "NEVER"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_customer_engagement_agent_is_termination_msg",
+                  "important": false,
+                  "aliases": [
+                    "agent_customer_engagement_agent_is_termination_msg",
+                    "is_termination_msg",
+                    "lambda_msg_terminate_in_msg_get_content_lower",
+                    "is_termination_msg_lambda_msg_terminate_in_msg_get_content_lower"
+                  ],
+                  "details": {
+                    "key": "is_termination_msg",
+                    "owner": "customer_engagement_agent",
+                    "owner_category": "agent",
+                    "value": "lambda msg: \"terminate\" in msg.get(\"content\").lower()"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "task_collect_personal_info_resource_customer_info_json",
+                  "important": false,
+                  "aliases": [
+                    "task_collect_personal_info_resource_customer_info_json",
+                    "task_collect_personal_info",
+                    "resource_customer_info_json"
+                  ],
+                  "details": {
+                    "source": "task_collect_personal_info",
+                    "target": "resource_customer_info_json"
+                  }
+                },
+                {
+                  "category": "workflow",
+                  "name": "customer_onboarding_workflow",
+                  "important": true,
+                  "aliases": [
+                    "customer_onboarding_workflow"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "language_model",
+                  "name": "lm_gpt_3_5_turbo",
+                  "important": false,
+                  "aliases": [
+                    "lm_gpt_3_5_turbo"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "resource_customer_info_json",
+                  "important": false,
+                  "aliases": [
+                    "resource_customer_info_json"
+                  ],
+                  "details": {}
+                }
+              ],
+              "by_category": {
+                "agent": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                },
+                "agent_interaction": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                },
+                "agent_llm": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 3
+                },
+                "config": {
+                  "score": 0.3,
+                  "matched": 3,
+                  "total": 10
+                },
+                "human_agent": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "language_model": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "project": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "resource": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "step_task": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                },
+                "task": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                },
+                "task_produces": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "workflow": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "workflow_step": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                }
+              }
+            },
+            "important_subset": {
+              "score": 0.9375,
+              "matched": 15,
+              "total": 16,
+              "missing": [
+                {
+                  "category": "workflow",
+                  "name": "customer_onboarding_workflow",
+                  "important": true,
+                  "aliases": [
+                    "customer_onboarding_workflow"
+                  ],
+                  "details": {}
+                }
+              ],
+              "by_category": {
+                "agent": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                },
+                "agent_interaction": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                },
+                "step_task": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                },
+                "task": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                },
+                "workflow": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "workflow_step": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                }
+              }
+            }
+          },
+          "wgi": {
+            "score": 1.0,
+            "normalized_graph_edit_distance": 0.0,
+            "labeled_score": 1.0,
+            "topology_score": 1.0,
+            "labeled_normalized_graph_edit_distance": 0.0,
+            "topology_normalized_graph_edit_distance": 0.0,
+            "exact_isomorphic": true,
+            "topology_isomorphic": true,
+            "edge_precision": 1.0,
+            "edge_recall": 1.0,
+            "edge_f1": 1.0,
+            "kg_nodes": [
+              "task_collect_personal_info",
+              "task_collect_topic_preferences",
+              "task_customer_proxy_to_engagement"
+            ],
+            "code_nodes": [
+              "task_collect_personal_info",
+              "task_collect_topic_preferences",
+              "task_customer_proxy_to_engagement"
+            ],
+            "kg_edges": [
+              {
+                "source": "task_collect_personal_info",
+                "target": "task_collect_topic_preferences"
+              },
+              {
+                "source": "task_collect_topic_preferences",
+                "target": "task_customer_proxy_to_engagement"
+              }
+            ],
+            "code_edges": [
+              {
+                "source": "task_collect_personal_info",
+                "target": "task_collect_topic_preferences"
+              },
+              {
+                "source": "task_collect_topic_preferences",
+                "target": "task_customer_proxy_to_engagement"
+              }
+            ],
+            "missing_nodes": [],
+            "extra_nodes": [],
+            "missing_edges": [],
+            "extra_edges": []
+          },
+          "syntax_ok": true,
+          "run_status": "IMPORT_ERROR",
+          "run_output": "    ...<4 lines>...\n    )\n  File \"/Users/ravie/dev/agento/output_files/output_autogen/L2_Sequential_Chats_and_Customer_Onboarding/team.py\", line 9, in <module>\n    from autogen_agentchat.agents import AssistantAgent\nModuleNotFoundError: No module named 'autogen_agentchat'",
+          "gt_found": true,
+          "ast_sim": 0.42857142857142855
+        },
+        {
+          "project": "L3_Reflection_and_Blogpost_Writing",
+          "kg_path": "/Users/ravie/dev/agento/kgs_original/AutoGen/L3_Reflection_and_Blogpost_Writing_instances.ttl",
+          "output_dir": "/Users/ravie/dev/agento/output_files/output_autogen/L3_Reflection_and_Blogpost_Writing",
+          "status": "ok",
+          "kg_element_count": 51,
+          "code_element_count": 12,
+          "oec": {
+            "all_extracted": {
+              "score": 0.5882352941176471,
+              "matched": 30,
+              "total": 51,
+              "missing": [
+                {
+                  "category": "agent_llm",
+                  "name": "writer_1_lm_gpt_4_o_mini",
+                  "important": false,
+                  "aliases": [
+                    "writer_1_lm_gpt_4_o_mini",
+                    "writer_1",
+                    "lm_gpt_4_o_mini"
+                  ],
+                  "details": {
+                    "source": "writer_1",
+                    "target": "lm_gpt_4_o_mini"
+                  }
+                },
+                {
+                  "category": "agent_llm",
+                  "name": "critic_1_lm_gpt_4_o_mini",
+                  "important": false,
+                  "aliases": [
+                    "critic_1_lm_gpt_4_o_mini",
+                    "critic_1",
+                    "lm_gpt_4_o_mini"
+                  ],
+                  "details": {
+                    "source": "critic_1",
+                    "target": "lm_gpt_4_o_mini"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_critic_1_initiate_chat_params",
+                  "important": false,
+                  "aliases": [
+                    "agent_critic_1_initiate_chat_params",
+                    "initiate_chat_params",
+                    "max_turns_2_summary_method_last_msg_trigger_writer_registered_nested_chats_will_be_invoked_when_writer_produces_output",
+                    "initiate_chat_params_max_turns_2_summary_method_last_msg_trigger_writer_registered_nested_chats_will_be_invoked_when_writer_produces_output"
+                  ],
+                  "details": {
+                    "key": "initiate_chat_params",
+                    "owner": "critic_1",
+                    "owner_category": "agent",
+                    "value": "max_turns=2; summary_method='last_msg'; trigger=writer (registered nested chats will be invoked when writer produces output)."
+                  }
+                },
+                {
+                  "category": "agent_llm",
+                  "name": "seo_reviewer_1_lm_gpt_3_5_turbo",
+                  "important": false,
+                  "aliases": [
+                    "seo_reviewer_1_lm_gpt_3_5_turbo",
+                    "seo_reviewer_1",
+                    "lm_gpt_3_5_turbo"
+                  ],
+                  "details": {
+                    "source": "seo_reviewer_1",
+                    "target": "lm_gpt_3_5_turbo"
+                  }
+                },
+                {
+                  "category": "agent_llm",
+                  "name": "legal_reviewer_1_lm_gpt_3_5_turbo",
+                  "important": false,
+                  "aliases": [
+                    "legal_reviewer_1_lm_gpt_3_5_turbo",
+                    "legal_reviewer_1",
+                    "lm_gpt_3_5_turbo"
+                  ],
+                  "details": {
+                    "source": "legal_reviewer_1",
+                    "target": "lm_gpt_3_5_turbo"
+                  }
+                },
+                {
+                  "category": "agent_llm",
+                  "name": "ethics_reviewer_1_lm_gpt_3_5_turbo",
+                  "important": false,
+                  "aliases": [
+                    "ethics_reviewer_1_lm_gpt_3_5_turbo",
+                    "ethics_reviewer_1",
+                    "lm_gpt_3_5_turbo"
+                  ],
+                  "details": {
+                    "source": "ethics_reviewer_1",
+                    "target": "lm_gpt_3_5_turbo"
+                  }
+                },
+                {
+                  "category": "agent_llm",
+                  "name": "meta_reviewer_1_lm_gpt_3_5_turbo",
+                  "important": false,
+                  "aliases": [
+                    "meta_reviewer_1_lm_gpt_3_5_turbo",
+                    "meta_reviewer_1",
+                    "lm_gpt_3_5_turbo"
+                  ],
+                  "details": {
+                    "source": "meta_reviewer_1",
+                    "target": "lm_gpt_3_5_turbo"
+                  }
+                },
+                {
+                  "category": "task",
+                  "name": "seo_review_task",
+                  "important": true,
+                  "aliases": [
+                    "seo_review_task",
+                    "task_seo_review"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_agent",
+                  "name": "seo_review_task_seo_reviewer_1",
+                  "important": true,
+                  "aliases": [
+                    "seo_review_task_seo_reviewer_1",
+                    "seo_review_task",
+                    "seo_reviewer_1"
+                  ],
+                  "details": {
+                    "source": "seo_review_task",
+                    "target": "seo_reviewer_1"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "seo_review_task_resource_seo_review",
+                  "important": false,
+                  "aliases": [
+                    "seo_review_task_resource_seo_review",
+                    "seo_review_task",
+                    "resource_seo_review"
+                  ],
+                  "details": {
+                    "source": "seo_review_task",
+                    "target": "resource_seo_review"
+                  }
+                },
+                {
+                  "category": "task",
+                  "name": "legal_review_task",
+                  "important": true,
+                  "aliases": [
+                    "legal_review_task",
+                    "task_legal_review"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_agent",
+                  "name": "legal_review_task_legal_reviewer_1",
+                  "important": true,
+                  "aliases": [
+                    "legal_review_task_legal_reviewer_1",
+                    "legal_review_task",
+                    "legal_reviewer_1"
+                  ],
+                  "details": {
+                    "source": "legal_review_task",
+                    "target": "legal_reviewer_1"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "legal_review_task_resource_legal_review",
+                  "important": false,
+                  "aliases": [
+                    "legal_review_task_resource_legal_review",
+                    "legal_review_task",
+                    "resource_legal_review"
+                  ],
+                  "details": {
+                    "source": "legal_review_task",
+                    "target": "resource_legal_review"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "ethics_review_task_resource_ethics_review",
+                  "important": false,
+                  "aliases": [
+                    "ethics_review_task_resource_ethics_review",
+                    "ethics_review_task",
+                    "resource_ethics_review"
+                  ],
+                  "details": {
+                    "source": "ethics_review_task",
+                    "target": "resource_ethics_review"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "meta_aggregation_task_resource_meta_suggestion",
+                  "important": false,
+                  "aliases": [
+                    "meta_aggregation_task_resource_meta_suggestion",
+                    "meta_aggregation_task",
+                    "resource_meta_suggestion"
+                  ],
+                  "details": {
+                    "source": "meta_aggregation_task",
+                    "target": "resource_meta_suggestion"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "blogpost_generation_task_resource_blogpost_draft",
+                  "important": false,
+                  "aliases": [
+                    "blogpost_generation_task_resource_blogpost_draft",
+                    "blogpost_generation_task",
+                    "resource_blogpost_draft"
+                  ],
+                  "details": {
+                    "source": "blogpost_generation_task",
+                    "target": "resource_blogpost_draft"
+                  }
+                },
+                {
+                  "category": "workflow",
+                  "name": "workflow_reflection_blogpost",
+                  "important": true,
+                  "aliases": [
+                    "workflow_reflection_blogpost",
+                    "reflection_and_blogpost_writing_workflow_pattern"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "language_model",
+                  "name": "lm_gpt_4_o_mini",
+                  "important": false,
+                  "aliases": [
+                    "lm_gpt_4_o_mini"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "language_model",
+                  "name": "lm_gpt_3_5_turbo",
+                  "important": false,
+                  "aliases": [
+                    "lm_gpt_3_5_turbo"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "goal",
+                  "name": "goal_blogpost",
+                  "important": false,
+                  "aliases": [
+                    "goal_blogpost"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "objective",
+                  "name": "objective_blogpost",
+                  "important": false,
+                  "aliases": [
+                    "objective_blogpost"
+                  ],
+                  "details": {}
+                }
+              ],
+              "by_category": {
+                "agent": {
+                  "score": 1.0,
+                  "matched": 6,
+                  "total": 6
+                },
+                "agent_llm": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 6
+                },
+                "config": {
+                  "score": 0.8571428571428571,
+                  "matched": 6,
+                  "total": 7
+                },
+                "goal": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "language_model": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 2
+                },
+                "objective": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "project": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "resource": {
+                  "score": 1.0,
+                  "matched": 5,
+                  "total": 5
+                },
+                "step_task": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                },
+                "task": {
+                  "score": 0.6,
+                  "matched": 3,
+                  "total": 5
+                },
+                "task_agent": {
+                  "score": 0.6,
+                  "matched": 3,
+                  "total": 5
+                },
+                "task_produces": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 5
+                },
+                "workflow": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "workflow_step": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                }
+              }
+            },
+            "important_subset": {
+              "score": 0.8275862068965517,
+              "matched": 24,
+              "total": 29,
+              "missing": [
+                {
+                  "category": "task",
+                  "name": "seo_review_task",
+                  "important": true,
+                  "aliases": [
+                    "seo_review_task",
+                    "task_seo_review"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_agent",
+                  "name": "seo_review_task_seo_reviewer_1",
+                  "important": true,
+                  "aliases": [
+                    "seo_review_task_seo_reviewer_1",
+                    "seo_review_task",
+                    "seo_reviewer_1"
+                  ],
+                  "details": {
+                    "source": "seo_review_task",
+                    "target": "seo_reviewer_1"
+                  }
+                },
+                {
+                  "category": "task",
+                  "name": "legal_review_task",
+                  "important": true,
+                  "aliases": [
+                    "legal_review_task",
+                    "task_legal_review"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_agent",
+                  "name": "legal_review_task_legal_reviewer_1",
+                  "important": true,
+                  "aliases": [
+                    "legal_review_task_legal_reviewer_1",
+                    "legal_review_task",
+                    "legal_reviewer_1"
+                  ],
+                  "details": {
+                    "source": "legal_review_task",
+                    "target": "legal_reviewer_1"
+                  }
+                },
+                {
+                  "category": "workflow",
+                  "name": "workflow_reflection_blogpost",
+                  "important": true,
+                  "aliases": [
+                    "workflow_reflection_blogpost",
+                    "reflection_and_blogpost_writing_workflow_pattern"
+                  ],
+                  "details": {}
+                }
+              ],
+              "by_category": {
+                "agent": {
+                  "score": 1.0,
+                  "matched": 6,
+                  "total": 6
+                },
+                "config": {
+                  "score": 1.0,
+                  "matched": 6,
+                  "total": 6
+                },
+                "step_task": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                },
+                "task": {
+                  "score": 0.6,
+                  "matched": 3,
+                  "total": 5
+                },
+                "task_agent": {
+                  "score": 0.6,
+                  "matched": 3,
+                  "total": 5
+                },
+                "workflow": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "workflow_step": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                }
+              }
+            }
+          },
+          "wgi": {
+            "score": 1.0,
+            "normalized_graph_edit_distance": 0.0,
+            "labeled_score": 1.0,
+            "topology_score": 1.0,
+            "labeled_normalized_graph_edit_distance": 0.0,
+            "topology_normalized_graph_edit_distance": 0.0,
+            "exact_isomorphic": true,
+            "topology_isomorphic": true,
+            "edge_precision": 1.0,
+            "edge_recall": 1.0,
+            "edge_f1": 1.0,
+            "kg_nodes": [
+              "blogpost_generation_task",
+              "ethics_review_task",
+              "meta_aggregation_task"
+            ],
+            "code_nodes": [
+              "blogpost_generation_task",
+              "ethics_review_task",
+              "meta_aggregation_task"
+            ],
+            "kg_edges": [
+              {
+                "source": "blogpost_generation_task",
+                "target": "ethics_review_task"
+              },
+              {
+                "source": "ethics_review_task",
+                "target": "meta_aggregation_task"
+              },
+              {
+                "source": "meta_aggregation_task",
+                "target": "blogpost_generation_task"
+              }
+            ],
+            "code_edges": [
+              {
+                "source": "blogpost_generation_task",
+                "target": "ethics_review_task"
+              },
+              {
+                "source": "ethics_review_task",
+                "target": "meta_aggregation_task"
+              },
+              {
+                "source": "meta_aggregation_task",
+                "target": "blogpost_generation_task"
+              }
+            ],
+            "missing_nodes": [],
+            "extra_nodes": [],
+            "missing_edges": [],
+            "extra_edges": []
+          },
+          "syntax_ok": true,
+          "run_status": "IMPORT_ERROR",
+          "run_output": "    ...<6 lines>...\n    )\n  File \"/Users/ravie/dev/agento/output_files/output_autogen/L3_Reflection_and_Blogpost_Writing/team.py\", line 15, in <module>\n    from autogen_agentchat.agents import AssistantAgent\nModuleNotFoundError: No module named 'autogen_agentchat'",
+          "gt_found": true,
+          "ast_sim": 0.47368421052631576
+        },
+        {
+          "project": "L4_Tool_Use_and_Conversational_Chess",
+          "kg_path": "/Users/ravie/dev/agento/kgs_original/AutoGen/L4_Tool_Use_and_Conversational_Chess_instances.ttl",
+          "output_dir": "/Users/ravie/dev/agento/output_files/output_autogen/L4_Tool_Use_and_Conversational_Chess",
+          "status": "ok",
+          "kg_element_count": 50,
+          "code_element_count": 9,
+          "oec": {
+            "all_extracted": {
+              "score": 0.56,
+              "matched": 28,
+              "total": 50,
+              "missing": [
+                {
+                  "category": "project",
+                  "name": "chessplayersteam",
+                  "important": false,
+                  "aliases": [
+                    "chessplayersteam"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "agent_llm",
+                  "name": "player_white_gpt_4_o_mini_language_model",
+                  "important": false,
+                  "aliases": [
+                    "player_white_gpt_4_o_mini_language_model",
+                    "player_white",
+                    "gpt_4_o_mini_language_model"
+                  ],
+                  "details": {
+                    "source": "player_white",
+                    "target": "gpt_4_o_mini_language_model"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_player_white_nested_chats",
+                  "important": false,
+                  "aliases": [
+                    "agent_player_white_nested_chats",
+                    "nested_chats",
+                    "trigger_player_black_chat_queue_sender_board_proxy_recipient_player_white_summary_method_last_msg",
+                    "nested_chats_trigger_player_black_chat_queue_sender_board_proxy_recipient_player_white_summary_method_last_msg"
+                  ],
+                  "details": {
+                    "key": "nested_chats",
+                    "owner": "player_white",
+                    "owner_category": "agent",
+                    "value": "trigger=player_black; chat_queue=[{sender=BoardProxy, recipient=Player_White, summary_method=last_msg}]"
+                  }
+                },
+                {
+                  "category": "agent_capability",
+                  "name": "player_white_capability_play_chess",
+                  "important": false,
+                  "aliases": [
+                    "player_white_capability_play_chess",
+                    "player_white",
+                    "capability_play_chess"
+                  ],
+                  "details": {
+                    "source": "player_white",
+                    "target": "capability_play_chess"
+                  }
+                },
+                {
+                  "category": "agent_capability",
+                  "name": "player_white_capability_request_legal_moves",
+                  "important": false,
+                  "aliases": [
+                    "player_white_capability_request_legal_moves",
+                    "player_white",
+                    "capability_request_legal_moves"
+                  ],
+                  "details": {
+                    "source": "player_white",
+                    "target": "capability_request_legal_moves"
+                  }
+                },
+                {
+                  "category": "agent_capability",
+                  "name": "player_white_capability_make_move",
+                  "important": false,
+                  "aliases": [
+                    "player_white_capability_make_move",
+                    "player_white",
+                    "capability_make_move"
+                  ],
+                  "details": {
+                    "source": "player_white",
+                    "target": "capability_make_move"
+                  }
+                },
+                {
+                  "category": "agent_llm",
+                  "name": "player_black_gpt_4_o_mini_language_model",
+                  "important": false,
+                  "aliases": [
+                    "player_black_gpt_4_o_mini_language_model",
+                    "player_black",
+                    "gpt_4_o_mini_language_model"
+                  ],
+                  "details": {
+                    "source": "player_black",
+                    "target": "gpt_4_o_mini_language_model"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_player_black_nested_chats",
+                  "important": false,
+                  "aliases": [
+                    "agent_player_black_nested_chats",
+                    "nested_chats",
+                    "trigger_player_white_chat_queue_sender_board_proxy_recipient_player_black_summary_method_last_msg",
+                    "nested_chats_trigger_player_white_chat_queue_sender_board_proxy_recipient_player_black_summary_method_last_msg"
+                  ],
+                  "details": {
+                    "key": "nested_chats",
+                    "owner": "player_black",
+                    "owner_category": "agent",
+                    "value": "trigger=player_white; chat_queue=[{sender=BoardProxy, recipient=Player_Black, summary_method=last_msg}]"
+                  }
+                },
+                {
+                  "category": "agent_capability",
+                  "name": "player_black_capability_play_chess",
+                  "important": false,
+                  "aliases": [
+                    "player_black_capability_play_chess",
+                    "player_black",
+                    "capability_play_chess"
+                  ],
+                  "details": {
+                    "source": "player_black",
+                    "target": "capability_play_chess"
+                  }
+                },
+                {
+                  "category": "agent_capability",
+                  "name": "player_black_capability_request_legal_moves",
+                  "important": false,
+                  "aliases": [
+                    "player_black_capability_request_legal_moves",
+                    "player_black",
+                    "capability_request_legal_moves"
+                  ],
+                  "details": {
+                    "source": "player_black",
+                    "target": "capability_request_legal_moves"
+                  }
+                },
+                {
+                  "category": "agent_capability",
+                  "name": "player_black_capability_make_move",
+                  "important": false,
+                  "aliases": [
+                    "player_black_capability_make_move",
+                    "player_black",
+                    "capability_make_move"
+                  ],
+                  "details": {
+                    "source": "player_black",
+                    "target": "capability_make_move"
+                  }
+                },
+                {
+                  "category": "task",
+                  "name": "task_get_legal_moves",
+                  "important": true,
+                  "aliases": [
+                    "task_get_legal_moves"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_produces",
+                  "name": "task_get_legal_moves_legal_moves_list",
+                  "important": false,
+                  "aliases": [
+                    "task_get_legal_moves_legal_moves_list",
+                    "task_get_legal_moves",
+                    "legal_moves_list"
+                  ],
+                  "details": {
+                    "source": "task_get_legal_moves",
+                    "target": "legal_moves_list"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "task_get_legal_moves_chess_board",
+                  "important": false,
+                  "aliases": [
+                    "task_get_legal_moves_chess_board",
+                    "task_get_legal_moves",
+                    "chess_board"
+                  ],
+                  "details": {
+                    "source": "task_get_legal_moves",
+                    "target": "chess_board"
+                  }
+                },
+                {
+                  "category": "task_context",
+                  "name": "task_get_legal_moves_task_make_move",
+                  "important": true,
+                  "aliases": [
+                    "task_get_legal_moves_task_make_move",
+                    "task_get_legal_moves",
+                    "task_make_move"
+                  ],
+                  "details": {
+                    "source": "task_get_legal_moves",
+                    "target": "task_make_move"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "tool_board_proxy_default_auto_reply",
+                  "important": false,
+                  "aliases": [
+                    "tool_board_proxy_default_auto_reply",
+                    "default_auto_reply",
+                    "please_make_a_move",
+                    "default_auto_reply_please_make_a_move"
+                  ],
+                  "details": {
+                    "key": "default_auto_reply",
+                    "owner": "board_proxy",
+                    "owner_category": "tool",
+                    "value": "Please make a move."
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "tool_board_proxy_human_input_mode",
+                  "important": false,
+                  "aliases": [
+                    "tool_board_proxy_human_input_mode",
+                    "human_input_mode",
+                    "never",
+                    "human_input_mode_never"
+                  ],
+                  "details": {
+                    "key": "human_input_mode",
+                    "owner": "board_proxy",
+                    "owner_category": "tool",
+                    "value": "NEVER"
+                  }
+                },
+                {
+                  "category": "tool_capability",
+                  "name": "tool_get_legal_moves_capability_request_legal_moves",
+                  "important": false,
+                  "aliases": [
+                    "tool_get_legal_moves_capability_request_legal_moves",
+                    "tool_get_legal_moves",
+                    "capability_request_legal_moves"
+                  ],
+                  "details": {
+                    "source": "tool_get_legal_moves",
+                    "target": "capability_request_legal_moves"
+                  }
+                },
+                {
+                  "category": "tool_capability",
+                  "name": "tool_make_move_capability_make_move",
+                  "important": false,
+                  "aliases": [
+                    "tool_make_move_capability_make_move",
+                    "tool_make_move",
+                    "capability_make_move"
+                  ],
+                  "details": {
+                    "source": "tool_make_move",
+                    "target": "capability_make_move"
+                  }
+                },
+                {
+                  "category": "workflow",
+                  "name": "workflow_pattern_conversational_chess",
+                  "important": true,
+                  "aliases": [
+                    "workflow_pattern_conversational_chess",
+                    "conversational_chess_workflow_pattern"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "language_model",
+                  "name": "gpt_4_o_mini_language_model",
+                  "important": false,
+                  "aliases": [
+                    "gpt_4_o_mini_language_model",
+                    "lm_gpt_4_turbo"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "capability",
+                  "name": "capability_request_legal_moves",
+                  "important": false,
+                  "aliases": [
+                    "capability_request_legal_moves",
+                    "request_legal_moves"
+                  ],
+                  "details": {}
+                }
+              ],
+              "by_category": {
+                "agent": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "agent_capability": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 6
+                },
+                "agent_llm": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 2
+                },
+                "capability": {
+                  "score": 0.6666666666666666,
+                  "matched": 2,
+                  "total": 3
+                },
+                "config": {
+                  "score": 0.6923076923076923,
+                  "matched": 9,
+                  "total": 13
+                },
+                "environment": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "language_model": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "project": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "resource": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "step_task": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "task": {
+                  "score": 0.6666666666666666,
+                  "matched": 2,
+                  "total": 3
+                },
+                "task_context": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "task_produces": {
+                  "score": 0.6666666666666666,
+                  "matched": 2,
+                  "total": 3
+                },
+                "task_requires": {
+                  "score": 0.5,
+                  "matched": 1,
+                  "total": 2
+                },
+                "tool": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                },
+                "tool_capability": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 2
+                },
+                "workflow": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "workflow_step": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                }
+              }
+            },
+            "important_subset": {
+              "score": 0.8125,
+              "matched": 13,
+              "total": 16,
+              "missing": [
+                {
+                  "category": "task",
+                  "name": "task_get_legal_moves",
+                  "important": true,
+                  "aliases": [
+                    "task_get_legal_moves"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "task_context",
+                  "name": "task_get_legal_moves_task_make_move",
+                  "important": true,
+                  "aliases": [
+                    "task_get_legal_moves_task_make_move",
+                    "task_get_legal_moves",
+                    "task_make_move"
+                  ],
+                  "details": {
+                    "source": "task_get_legal_moves",
+                    "target": "task_make_move"
+                  }
+                },
+                {
+                  "category": "workflow",
+                  "name": "workflow_pattern_conversational_chess",
+                  "important": true,
+                  "aliases": [
+                    "workflow_pattern_conversational_chess",
+                    "conversational_chess_workflow_pattern"
+                  ],
+                  "details": {}
+                }
+              ],
+              "by_category": {
+                "agent": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "config": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "step_task": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "task": {
+                  "score": 0.6666666666666666,
+                  "matched": 2,
+                  "total": 3
+                },
+                "task_context": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "tool": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                },
+                "workflow": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "workflow_step": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                }
+              }
+            }
+          },
+          "wgi": {
+            "score": 1.0,
+            "normalized_graph_edit_distance": 0.0,
+            "labeled_score": 1.0,
+            "topology_score": 1.0,
+            "labeled_normalized_graph_edit_distance": 0.0,
+            "topology_normalized_graph_edit_distance": 0.0,
+            "exact_isomorphic": true,
+            "topology_isomorphic": true,
+            "edge_precision": 1.0,
+            "edge_recall": 1.0,
+            "edge_f1": 1.0,
+            "kg_nodes": [
+              "task_initiate_chat_black_white",
+              "task_make_move"
+            ],
+            "code_nodes": [
+              "task_initiate_chat_black_white",
+              "task_make_move"
+            ],
+            "kg_edges": [
+              {
+                "source": "task_initiate_chat_black_white",
+                "target": "task_make_move"
+              },
+              {
+                "source": "task_make_move",
+                "target": "task_make_move"
+              }
+            ],
+            "code_edges": [
+              {
+                "source": "task_initiate_chat_black_white",
+                "target": "task_make_move"
+              },
+              {
+                "source": "task_make_move",
+                "target": "task_make_move"
+              }
+            ],
+            "missing_nodes": [],
+            "extra_nodes": [],
+            "missing_edges": [],
+            "extra_edges": []
+          },
+          "syntax_ok": true,
+          "run_status": "IMPORT_ERROR",
+          "run_output": "    ...<2 lines>...\n    )\n  File \"/Users/ravie/dev/agento/output_files/output_autogen/L4_Tool_Use_and_Conversational_Chess/team.py\", line 2, in <module>\n    from autogen_agentchat.agents import AssistantAgent\nModuleNotFoundError: No module named 'autogen_agentchat'",
+          "gt_found": true,
+          "ast_sim": 0.5238095238095238
+        },
+        {
+          "project": "L5_Coding_and_Financial_Analysis",
+          "kg_path": "/Users/ravie/dev/agento/kgs_original/AutoGen/L5_Coding_and_Financial_Analysis_instances.ttl",
+          "output_dir": "/Users/ravie/dev/agento/output_files/output_autogen/L5_Coding_and_Financial_Analysis",
+          "status": "ok",
+          "kg_element_count": 30,
+          "code_element_count": 5,
+          "oec": {
+            "all_extracted": {
+              "score": 0.6,
+              "matched": 18,
+              "total": 30,
+              "missing": [
+                {
+                  "category": "config",
+                  "name": "agent_code_executor_agent_llm_config",
+                  "important": false,
+                  "aliases": [
+                    "agent_code_executor_agent_llm_config",
+                    "llm_config",
+                    "please_continue_if_everything_is_done_reply_terminate",
+                    "llm_config_please_continue_if_everything_is_done_reply_terminate"
+                  ],
+                  "details": {
+                    "key": "llm_config",
+                    "owner": "code_executor_agent",
+                    "owner_category": "agent",
+                    "value": "Please continue. If everything is done, reply 'TERMINATE'."
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_code_executor_agent_code_execution_config",
+                  "important": false,
+                  "aliases": [
+                    "agent_code_executor_agent_code_execution_config",
+                    "code_execution_config",
+                    "please_continue_if_everything_is_done_reply_terminate",
+                    "code_execution_config_please_continue_if_everything_is_done_reply_terminate"
+                  ],
+                  "details": {
+                    "key": "code_execution_config",
+                    "owner": "code_executor_agent",
+                    "owner_category": "agent",
+                    "value": "Please continue. If everything is done, reply 'TERMINATE'."
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_code_executor_agent_human_input_mode",
+                  "important": false,
+                  "aliases": [
+                    "agent_code_executor_agent_human_input_mode",
+                    "human_input_mode",
+                    "please_continue_if_everything_is_done_reply_terminate",
+                    "human_input_mode_please_continue_if_everything_is_done_reply_terminate"
+                  ],
+                  "details": {
+                    "key": "human_input_mode",
+                    "owner": "code_executor_agent",
+                    "owner_category": "agent",
+                    "value": "Please continue. If everything is done, reply 'TERMINATE'."
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_code_executor_agent_default_auto_reply",
+                  "important": false,
+                  "aliases": [
+                    "agent_code_executor_agent_default_auto_reply",
+                    "default_auto_reply",
+                    "please_continue_if_everything_is_done_reply_terminate",
+                    "default_auto_reply_please_continue_if_everything_is_done_reply_terminate"
+                  ],
+                  "details": {
+                    "key": "default_auto_reply",
+                    "owner": "code_executor_agent",
+                    "owner_category": "agent",
+                    "value": "Please continue. If everything is done, reply 'TERMINATE'."
+                  }
+                },
+                {
+                  "category": "agent_llm",
+                  "name": "code_writer_agent_gpt_4_turbo",
+                  "important": false,
+                  "aliases": [
+                    "code_writer_agent_gpt_4_turbo",
+                    "code_writer_agent",
+                    "gpt_4_turbo"
+                  ],
+                  "details": {
+                    "source": "code_writer_agent",
+                    "target": "gpt_4_turbo"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_code_writer_agent_llm_config",
+                  "important": false,
+                  "aliases": [
+                    "agent_code_writer_agent_llm_config",
+                    "llm_config",
+                    "never",
+                    "llm_config_never"
+                  ],
+                  "details": {
+                    "key": "llm_config",
+                    "owner": "code_writer_agent",
+                    "owner_category": "agent",
+                    "value": "NEVER"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_code_writer_agent_code_execution_config",
+                  "important": false,
+                  "aliases": [
+                    "agent_code_writer_agent_code_execution_config",
+                    "code_execution_config",
+                    "never",
+                    "code_execution_config_never"
+                  ],
+                  "details": {
+                    "key": "code_execution_config",
+                    "owner": "code_writer_agent",
+                    "owner_category": "agent",
+                    "value": "NEVER"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_code_writer_agent_human_input_mode",
+                  "important": false,
+                  "aliases": [
+                    "agent_code_writer_agent_human_input_mode",
+                    "human_input_mode",
+                    "never",
+                    "human_input_mode_never"
+                  ],
+                  "details": {
+                    "key": "human_input_mode",
+                    "owner": "code_writer_agent",
+                    "owner_category": "agent",
+                    "value": "NEVER"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "stock_analysis_ytd_stock_gain_plot_ytd_stock_gains_png",
+                  "important": false,
+                  "aliases": [
+                    "stock_analysis_ytd_stock_gain_plot_ytd_stock_gains_png",
+                    "stock_analysis_ytd_stock_gain_plot",
+                    "ytd_stock_gains_png"
+                  ],
+                  "details": {
+                    "source": "stock_analysis_ytd_stock_gain_plot",
+                    "target": "ytd_stock_gains_png"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "stock_analysis_ytd_stock_gain_plot_chat_session_1",
+                  "important": false,
+                  "aliases": [
+                    "stock_analysis_ytd_stock_gain_plot_chat_session_1",
+                    "stock_analysis_ytd_stock_gain_plot",
+                    "chat_session_1"
+                  ],
+                  "details": {
+                    "source": "stock_analysis_ytd_stock_gain_plot",
+                    "target": "chat_session_1"
+                  }
+                },
+                {
+                  "category": "workflow",
+                  "name": "l_5_coding_financial_analysis_pattern",
+                  "important": true,
+                  "aliases": [
+                    "l_5_coding_financial_analysis_pattern",
+                    "l_5_coding_and_financial_analysis_pattern"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "language_model",
+                  "name": "gpt_4_turbo",
+                  "important": false,
+                  "aliases": [
+                    "gpt_4_turbo",
+                    "gpt_4_turbo_model"
+                  ],
+                  "details": {}
+                }
+              ],
+              "by_category": {
+                "agent": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "agent_interaction": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "agent_llm": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "agent_tool": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "config": {
+                  "score": 0.2222222222222222,
+                  "matched": 2,
+                  "total": 9
+                },
+                "goal": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "input_variable": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "language_model": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "objective": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "project": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "resource": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "step_task": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "task": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "task_agent": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "task_produces": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 2
+                },
+                "tool": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "workflow": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "workflow_step": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                }
+              }
+            },
+            "important_subset": {
+              "score": 0.9090909090909091,
+              "matched": 10,
+              "total": 11,
+              "missing": [
+                {
+                  "category": "workflow",
+                  "name": "l_5_coding_financial_analysis_pattern",
+                  "important": true,
+                  "aliases": [
+                    "l_5_coding_financial_analysis_pattern",
+                    "l_5_coding_and_financial_analysis_pattern"
+                  ],
+                  "details": {}
+                }
+              ],
+              "by_category": {
+                "agent": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "agent_interaction": {
+                  "score": 1.0,
+                  "matched": 2,
+                  "total": 2
+                },
+                "agent_tool": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "step_task": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "task": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "task_agent": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "tool": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "workflow": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "workflow_step": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                }
+              }
+            }
+          },
+          "wgi": {
+            "score": 1.0,
+            "normalized_graph_edit_distance": 0.0,
+            "labeled_score": 1.0,
+            "topology_score": 1.0,
+            "labeled_normalized_graph_edit_distance": 0.0,
+            "topology_normalized_graph_edit_distance": 0.0,
+            "exact_isomorphic": true,
+            "topology_isomorphic": true,
+            "edge_precision": 1.0,
+            "edge_recall": 1.0,
+            "edge_f1": 1.0,
+            "kg_nodes": [
+              "stock_analysis_ytd_stock_gain_plot"
+            ],
+            "code_nodes": [
+              "stock_analysis_ytd_stock_gain_plot"
+            ],
+            "kg_edges": [
+              {
+                "source": "stock_analysis_ytd_stock_gain_plot",
+                "target": "stock_analysis_ytd_stock_gain_plot"
+              }
+            ],
+            "code_edges": [
+              {
+                "source": "stock_analysis_ytd_stock_gain_plot",
+                "target": "stock_analysis_ytd_stock_gain_plot"
+              }
+            ],
+            "missing_nodes": [],
+            "extra_nodes": [],
+            "missing_edges": [],
+            "extra_edges": []
+          },
+          "syntax_ok": true,
+          "run_status": "IMPORT_ERROR",
+          "run_output": "    ...<2 lines>...\n    )\n  File \"/Users/ravie/dev/agento/output_files/output_autogen/L5_Coding_and_Financial_Analysis/team.py\", line 12, in <module>\n    from autogen_agentchat.agents import AssistantAgent\nModuleNotFoundError: No module named 'autogen_agentchat'",
+          "gt_found": true,
+          "ast_sim": 0.5128205128205128
+        },
+        {
+          "project": "L6-Planning_and_Stock_Report_Generation",
+          "kg_path": "/Users/ravie/dev/agento/kgs_original/AutoGen/L6-Planning_and_Stock_Report_Generation_instances.ttl",
+          "output_dir": "/Users/ravie/dev/agento/output_files/output_autogen/L6-Planning_and_Stock_Report_Generation",
+          "status": "ok",
+          "kg_element_count": 67,
+          "code_element_count": 18,
+          "oec": {
+            "all_extracted": {
+              "score": 0.6567164179104478,
+              "matched": 44,
+              "total": 67,
+              "missing": [
+                {
+                  "category": "config",
+                  "name": "system_unnamed_project_max_round",
+                  "important": false,
+                  "aliases": [
+                    "system_unnamed_project_max_round",
+                    "max_round",
+                    "10",
+                    "max_round_10"
+                  ],
+                  "details": {
+                    "key": "max_round",
+                    "owner": "unnamed_project",
+                    "owner_category": "system",
+                    "value": "10"
+                  }
+                },
+                {
+                  "category": "agent_llm",
+                  "name": "planner_agent_gpt_4_turbo",
+                  "important": false,
+                  "aliases": [
+                    "planner_agent_gpt_4_turbo",
+                    "planner_agent",
+                    "gpt_4_turbo"
+                  ],
+                  "details": {
+                    "source": "planner_agent",
+                    "target": "gpt_4_turbo"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_planner_agent_llm_config",
+                  "important": false,
+                  "aliases": [
+                    "agent_planner_agent_llm_config",
+                    "llm_config",
+                    "model_gpt_4_turbo",
+                    "llm_config_model_gpt_4_turbo"
+                  ],
+                  "details": {
+                    "key": "llm_config",
+                    "owner": "planner_agent",
+                    "owner_category": "agent",
+                    "value": "{\"model\": \"gpt-4-turbo\"}"
+                  }
+                },
+                {
+                  "category": "agent_llm",
+                  "name": "engineer_agent_gpt_4_turbo",
+                  "important": false,
+                  "aliases": [
+                    "engineer_agent_gpt_4_turbo",
+                    "engineer_agent",
+                    "gpt_4_turbo"
+                  ],
+                  "details": {
+                    "source": "engineer_agent",
+                    "target": "gpt_4_turbo"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_engineer_agent_llm_config",
+                  "important": false,
+                  "aliases": [
+                    "agent_engineer_agent_llm_config",
+                    "llm_config",
+                    "model_gpt_4_turbo",
+                    "llm_config_model_gpt_4_turbo"
+                  ],
+                  "details": {
+                    "key": "llm_config",
+                    "owner": "engineer_agent",
+                    "owner_category": "agent",
+                    "value": "{\"model\": \"gpt-4-turbo\"}"
+                  }
+                },
+                {
+                  "category": "agent_llm",
+                  "name": "executor_agent_gpt_4_turbo",
+                  "important": false,
+                  "aliases": [
+                    "executor_agent_gpt_4_turbo",
+                    "executor_agent",
+                    "gpt_4_turbo"
+                  ],
+                  "details": {
+                    "source": "executor_agent",
+                    "target": "gpt_4_turbo"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_executor_agent_llm_config",
+                  "important": false,
+                  "aliases": [
+                    "agent_executor_agent_llm_config",
+                    "llm_config",
+                    "model_gpt_4_turbo",
+                    "llm_config_model_gpt_4_turbo"
+                  ],
+                  "details": {
+                    "key": "llm_config",
+                    "owner": "executor_agent",
+                    "owner_category": "agent",
+                    "value": "{\"model\": \"gpt-4-turbo\"}"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_executor_agent_code_execution_config",
+                  "important": false,
+                  "aliases": [
+                    "agent_executor_agent_code_execution_config",
+                    "code_execution_config",
+                    "last_n_messages_3_work_dir_coding_use_docker_false",
+                    "code_execution_config_last_n_messages_3_work_dir_coding_use_docker_false"
+                  ],
+                  "details": {
+                    "key": "code_execution_config",
+                    "owner": "executor_agent",
+                    "owner_category": "agent",
+                    "value": "{\"last_n_messages\": 3, \"work_dir\": \"coding\", \"use_docker\": false}"
+                  }
+                },
+                {
+                  "category": "agent_llm",
+                  "name": "writer_agent_gpt_4_turbo",
+                  "important": false,
+                  "aliases": [
+                    "writer_agent_gpt_4_turbo",
+                    "writer_agent",
+                    "gpt_4_turbo"
+                  ],
+                  "details": {
+                    "source": "writer_agent",
+                    "target": "gpt_4_turbo"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "agent_writer_agent_llm_config",
+                  "important": false,
+                  "aliases": [
+                    "agent_writer_agent_llm_config",
+                    "llm_config",
+                    "model_gpt_4_turbo",
+                    "llm_config_model_gpt_4_turbo"
+                  ],
+                  "details": {
+                    "key": "llm_config",
+                    "owner": "writer_agent",
+                    "owner_category": "agent",
+                    "value": "{\"model\": \"gpt-4-turbo\"}"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "write_code_task_stock_data_resource",
+                  "important": false,
+                  "aliases": [
+                    "write_code_task_stock_data_resource",
+                    "write_code_task",
+                    "stock_data_resource"
+                  ],
+                  "details": {
+                    "source": "write_code_task",
+                    "target": "stock_data_resource"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "execute_code_task_execution_result",
+                  "important": false,
+                  "aliases": [
+                    "execute_code_task_execution_result",
+                    "execute_code_task",
+                    "execution_result"
+                  ],
+                  "details": {
+                    "source": "execute_code_task",
+                    "target": "execution_result"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "write_report_task_blog_draft",
+                  "important": false,
+                  "aliases": [
+                    "write_report_task_blog_draft",
+                    "write_report_task",
+                    "blog_draft"
+                  ],
+                  "details": {
+                    "source": "write_report_task",
+                    "target": "blog_draft"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "write_report_task_execution_result",
+                  "important": false,
+                  "aliases": [
+                    "write_report_task_execution_result",
+                    "write_report_task",
+                    "execution_result"
+                  ],
+                  "details": {
+                    "source": "write_report_task",
+                    "target": "execution_result"
+                  }
+                },
+                {
+                  "category": "task_produces",
+                  "name": "admin_feedback_task_blog_draft_refined",
+                  "important": false,
+                  "aliases": [
+                    "admin_feedback_task_blog_draft_refined",
+                    "admin_feedback_task",
+                    "blog_draft_refined"
+                  ],
+                  "details": {
+                    "source": "admin_feedback_task",
+                    "target": "blog_draft_refined"
+                  }
+                },
+                {
+                  "category": "task_requires",
+                  "name": "admin_feedback_task_blog_draft",
+                  "important": false,
+                  "aliases": [
+                    "admin_feedback_task_blog_draft",
+                    "admin_feedback_task",
+                    "blog_draft"
+                  ],
+                  "details": {
+                    "source": "admin_feedback_task",
+                    "target": "blog_draft"
+                  }
+                },
+                {
+                  "category": "config",
+                  "name": "tool_coding_environment_tool_executor_run_config",
+                  "important": false,
+                  "aliases": [
+                    "tool_coding_environment_tool_executor_run_config",
+                    "executor_run_config",
+                    "last_n_messages_3_work_dir_coding_use_docker_false",
+                    "executor_run_config_last_n_messages_3_work_dir_coding_use_docker_false"
+                  ],
+                  "details": {
+                    "key": "executor_run_config",
+                    "owner": "coding_environment_tool",
+                    "owner_category": "tool",
+                    "value": "{\"last_n_messages\": 3, \"work_dir\": \"coding\", \"use_docker\": false}"
+                  }
+                },
+                {
+                  "category": "workflow",
+                  "name": "stock_report_generation_pattern",
+                  "important": true,
+                  "aliases": [
+                    "stock_report_generation_pattern"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "language_model",
+                  "name": "gpt_4_turbo",
+                  "important": false,
+                  "aliases": [
+                    "gpt_4_turbo"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "goal",
+                  "name": "write_blog_goal",
+                  "important": false,
+                  "aliases": [
+                    "write_blog_goal"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "objective",
+                  "name": "stock_report_objective",
+                  "important": false,
+                  "aliases": [
+                    "stock_report_objective"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "stock_data_resource",
+                  "important": false,
+                  "aliases": [
+                    "stock_data_resource"
+                  ],
+                  "details": {}
+                },
+                {
+                  "category": "resource",
+                  "name": "execution_result",
+                  "important": false,
+                  "aliases": [
+                    "execution_result"
+                  ],
+                  "details": {}
+                }
+              ],
+              "by_category": {
+                "agent": {
+                  "score": 1.0,
+                  "matched": 4,
+                  "total": 4
+                },
+                "agent_interaction": {
+                  "score": 1.0,
+                  "matched": 6,
+                  "total": 6
+                },
+                "agent_llm": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 4
+                },
+                "agent_tool": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "config": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 7
+                },
+                "goal": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "human_agent": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "language_model": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "objective": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "project": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "resource": {
+                  "score": 0.6,
+                  "matched": 3,
+                  "total": 5
+                },
+                "step_task": {
+                  "score": 1.0,
+                  "matched": 6,
+                  "total": 6
+                },
+                "task": {
+                  "score": 1.0,
+                  "matched": 6,
+                  "total": 6
+                },
+                "task_agent": {
+                  "score": 1.0,
+                  "matched": 4,
+                  "total": 4
+                },
+                "task_context": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                },
+                "task_produces": {
+                  "score": 0.25,
+                  "matched": 1,
+                  "total": 4
+                },
+                "task_requires": {
+                  "score": 0.25,
+                  "matched": 1,
+                  "total": 4
+                },
+                "tool": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "workflow": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "workflow_step": {
+                  "score": 1.0,
+                  "matched": 6,
+                  "total": 6
+                }
+              }
+            },
+            "important_subset": {
+              "score": 0.9736842105263158,
+              "matched": 37,
+              "total": 38,
+              "missing": [
+                {
+                  "category": "workflow",
+                  "name": "stock_report_generation_pattern",
+                  "important": true,
+                  "aliases": [
+                    "stock_report_generation_pattern"
+                  ],
+                  "details": {}
+                }
+              ],
+              "by_category": {
+                "agent": {
+                  "score": 1.0,
+                  "matched": 4,
+                  "total": 4
+                },
+                "agent_interaction": {
+                  "score": 1.0,
+                  "matched": 6,
+                  "total": 6
+                },
+                "agent_tool": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "step_task": {
+                  "score": 1.0,
+                  "matched": 6,
+                  "total": 6
+                },
+                "task": {
+                  "score": 1.0,
+                  "matched": 6,
+                  "total": 6
+                },
+                "task_agent": {
+                  "score": 1.0,
+                  "matched": 4,
+                  "total": 4
+                },
+                "task_context": {
+                  "score": 1.0,
+                  "matched": 3,
+                  "total": 3
+                },
+                "tool": {
+                  "score": 1.0,
+                  "matched": 1,
+                  "total": 1
+                },
+                "workflow": {
+                  "score": 0.0,
+                  "matched": 0,
+                  "total": 1
+                },
+                "workflow_step": {
+                  "score": 1.0,
+                  "matched": 6,
+                  "total": 6
+                }
+              }
+            }
+          },
+          "wgi": {
+            "score": 1.0,
+            "normalized_graph_edit_distance": 0.0,
+            "labeled_score": 1.0,
+            "topology_score": 1.0,
+            "labeled_normalized_graph_edit_distance": 0.0,
+            "topology_normalized_graph_edit_distance": 0.0,
+            "exact_isomorphic": true,
+            "topology_isomorphic": true,
+            "edge_precision": 1.0,
+            "edge_recall": 1.0,
+            "edge_f1": 1.0,
+            "kg_nodes": [
+              "admin_feedback_task",
+              "execute_code_task",
+              "main_task",
+              "plan_information_task",
+              "write_code_task",
+              "write_report_task"
+            ],
+            "code_nodes": [
+              "admin_feedback_task",
+              "execute_code_task",
+              "main_task",
+              "plan_information_task",
+              "write_code_task",
+              "write_report_task"
+            ],
+            "kg_edges": [
+              {
+                "source": "execute_code_task",
+                "target": "write_report_task"
+              },
+              {
+                "source": "main_task",
+                "target": "plan_information_task"
+              },
+              {
+                "source": "plan_information_task",
+                "target": "write_code_task"
+              },
+              {
+                "source": "write_code_task",
+                "target": "execute_code_task"
+              },
+              {
+                "source": "write_report_task",
+                "target": "admin_feedback_task"
+              }
+            ],
+            "code_edges": [
+              {
+                "source": "execute_code_task",
+                "target": "write_report_task"
+              },
+              {
+                "source": "main_task",
+                "target": "plan_information_task"
+              },
+              {
+                "source": "plan_information_task",
+                "target": "write_code_task"
+              },
+              {
+                "source": "write_code_task",
+                "target": "execute_code_task"
+              },
+              {
+                "source": "write_report_task",
+                "target": "admin_feedback_task"
+              }
+            ],
+            "missing_nodes": [],
+            "extra_nodes": [],
+            "missing_edges": [],
+            "extra_edges": []
+          },
+          "syntax_ok": true,
+          "run_status": "IMPORT_ERROR",
+          "run_output": "    ...<5 lines>...\n    )\n  File \"/Users/ravie/dev/agento/output_files/output_autogen/L6-Planning_and_Stock_Report_Generation/team.py\", line 17, in <module>\n    from autogen_agentchat.agents import AssistantAgent\nModuleNotFoundError: No module named 'autogen_agentchat'",
+          "gt_found": true,
+          "ast_sim": 0.35294117647058826
+        }
+      ]
+    }
+  ]
+}

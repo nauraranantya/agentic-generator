@@ -1,0 +1,18 @@
+task_read_cv:
+  description: |
+    Extract relevant information from the given CV: professional summary, technical skills, work history, education, key achievements.
+  expected_output: |
+    A structured summary of the CV, including:
+    - Professional Summary
+    - Technical Skills
+    - Work History
+    - Education
+    - Key Achievements
+task_match_cv:
+  description: |
+    Match the CV to the job opportunities based on skills, experience, and key achievements; produce a ranked list.
+  expected_output: |
+    A ranked list of job opportunities that best match the CV, including:
+    - Job Title
+    - Match Score (based on skills and experience)
+    - Key Matching Points

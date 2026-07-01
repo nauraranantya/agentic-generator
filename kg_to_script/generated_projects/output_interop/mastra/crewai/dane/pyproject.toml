@@ -1,0 +1,41 @@
+[project]
+name = "unnamed_project"
+version = "0.1.0"
+description = "Mastra instance bundling agents, tools, memory and workflows for the Dane assist"
+authors = [{name = "Your Name", email = "you@example.com"}]
+readme = "README.md"
+requires-python = ">=3.10,<=3.13"
+
+dependencies = [
+    "crewai[tools]>=0.152.0",
+    "python-dotenv>=1.0.1",
+    "pyyaml>=6.0.1",
+    # TODO: add PyPI package for custom tool "ToolbrowserTool"
+    # TODO: add PyPI package for custom tool "ToolgoogleSearch"
+    # TODO: add PyPI package for custom tool "ToollistEvents"
+    # TODO: add PyPI package for custom tool "Toolcrawl"
+    # TODO: add PyPI package for custom tool "ToolexecaTool"
+    # TODO: add PyPI package for custom tool "ToolfsTool"
+    # TODO: add PyPI package for custom tool "ToolimageTool"
+    # TODO: add PyPI package for custom tool "ToolreadPDF"
+    # TODO: add PyPI package for custom tool "ToolpnpmBuild"
+    # TODO: add PyPI package for custom tool "ToolpnpmChangesetStatus"
+    # TODO: add PyPI package for custom tool "ToolpnpmChangesetPublish"
+    # TODO: add PyPI package for custom tool "ToolactiveDistTag"
+    # TODO: add PyPI package for custom tool "ToolslackClient"
+    # TODO: add PyPI package for custom tool "ToolfirecrawlIntegration"
+    # TODO: add PyPI package for custom tool "ToolgithubIntegration"
+    # TODO: add PyPI package for custom tool "ToolstabilityaiIntegration"
+    # TODO: add PyPI package for custom tool "ToolupstashStore"
+]
+
+[project.scripts]
+unnamed_project = "main:run"
+train      = "main:train"
+
+[tool.uv]
+dev-dependencies = []
+
+[build-system]
+requires      = ["hatchling"]
+build-backend = "hatchling.build"

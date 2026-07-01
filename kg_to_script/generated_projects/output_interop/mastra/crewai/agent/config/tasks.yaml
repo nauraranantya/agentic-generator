@@ -1,0 +1,30 @@
+task_query_pantry:
+  description: |
+    User asks what they can make given pantry ingredients (pasta, canned tomatoes, garlic, olive oil, dried herbs).
+  expected_output: Natural language recipe suggestions and possible ingredient substitutions.
+task_generate_text:
+  description: Alternate/duplicate generate usage with same pantry query.
+  expected_output: Natural language recipe suggestions.
+task_text_stream:
+  description: Streamed response for chicken/coconut/sweet potatoes/curry powder scenario.
+  expected_output: Streamed recipe text (incremental chunks) until completion.
+task_generate_stream:
+  description: Streaming variant with array input; yields streamed recipe.
+  expected_output: Streamed recipe text (incremental chunks) until completion.
+task_text_object:
+  description: Generate a lasagna recipe structured as an object with ingredients
+    and steps.
+  expected_output: |
+    JSON object with properties: ingredients (array of {name:string, amount:number}) and steps (array of strings).
+task_text_object_jsonschema:
+  description: Generate lasagna recipe constrained by provided JSON Schema.
+  expected_output: JSON matching the provided JSON Schema (ingredients and steps).
+task_generate_object:
+  description: Generate lasagna recipe with structured output (array input variant).
+  expected_output: JSON object with ingredients and steps as per zod schema.
+task_stream_object:
+  description: Streamed generation of a lasagna recipe as structured object.
+  expected_output: Streamed JSON chunks composing a structured recipe object.
+task_generate_stream_object:
+  description: Final streaming structured generation variant.
+  expected_output: Streamed JSON object containing ingredients and steps.

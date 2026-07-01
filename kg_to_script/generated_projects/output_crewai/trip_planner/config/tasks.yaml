@@ -1,0 +1,15 @@
+task_identify_city:
+  description: |
+    Task to analyze and select the best city for the trip based on weather, seasonal events, and travel costs.
+  expected_output: Detailed report on the chosen city including flight costs, weather
+    forecast, and attractions
+task_gather_city_info:
+  description: |
+    Task for local expert to compile an in-depth city guide including attractions, customs, events, and costs.
+  expected_output: Comprehensive city guide including hidden gems, cultural hotspots,
+    and practical travel tips
+task_plan_itinerary:
+  description: |
+    Task to expand the city guide into a full 7-day itinerary with daily plans, weather, packing suggestions, and budget.
+  expected_output: |
+    Complete expanded travel plan with daily schedule, weather conditions, packing suggestions, and budget breakdown

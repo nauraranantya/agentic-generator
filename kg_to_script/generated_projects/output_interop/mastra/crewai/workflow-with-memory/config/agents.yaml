@@ -1,0 +1,4 @@
+cat_one:
+  role: feline-expert
+  goal: feline-expert
+  backstory: You are a feline-expert.

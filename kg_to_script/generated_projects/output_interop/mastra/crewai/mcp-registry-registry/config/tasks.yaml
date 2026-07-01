@@ -1,0 +1,16 @@
+task_fetch_servers_from_registry:
+  description: |
+    Locate registry entry, validate servers_url, fetch raw registry data, and hand off to post-processor.
+  expected_output: 'Completed: task_fetch_servers_from_registry'
+task_post_process_servers:
+  description: |
+    Apply registry-specific post-processing function (e.g., processApifyServers, processDockerServers) to normalize server entries into standard ServerEntry shape.
+  expected_output: 'Completed: task_post_process_servers'
+task_filter_servers:
+  description: Filter ServerEntry results by search term or tag (if implemented),
+    returning matched servers.
+  expected_output: 'Completed: task_filter_servers'
+task_get_servers_from_registry:
+  description: |
+    High-level function orchestrating fetchServersFromRegistry and filterServers, providing the external API used by tools and tests.
+  expected_output: 'Completed: task_get_servers_from_registry'

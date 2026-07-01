@@ -1,0 +1,12 @@
+task_prepare:
+  description: Create an initial draft of the document by invoking the bound tool
+    and streaming response to the UI.
+  expected_output: 'Completed: task_prepare'
+task_writer:
+  description: |
+    Generate the full document content based on the user's request and earlier messages; stream to UI, then finalise.
+  expected_output: 'Completed: task_writer'
+task_suggestions:
+  description: |
+    Call the model to produce a finishing/suggestions message based on collected messages and tool call completions.
+  expected_output: 'Completed: task_suggestions'

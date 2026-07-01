@@ -1,0 +1,4 @@
+task_chat:
+  description: Invoke model with the system prompt and current state.messages; return
+    response messages.
+  expected_output: Chat response messages

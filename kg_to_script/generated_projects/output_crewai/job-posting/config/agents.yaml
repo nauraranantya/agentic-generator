@@ -1,0 +1,18 @@
+research_agent:
+  role: Research Analyst
+  goal: |
+    Analyze the company website and provided description to extract insights on culture, values, and specific needs.
+  backstory: You are a Research Analyst.
+  verbose: true
+writer_agent:
+  role: Job Description Writer
+  goal: Use insights from the Research Analyst to create a detailed, engaging, and
+    enticing job posting.
+  backstory: You are a Job Description Writer.
+  verbose: true
+review_agent:
+  role: Review and Editing Specialist
+  goal: |
+    Review the job posting for clarity, engagement, grammatical accuracy, and alignment with the company's culture and values.
+  backstory: You are a Review and Editing Specialist.
+  verbose: true

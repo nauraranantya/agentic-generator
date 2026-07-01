@@ -1,0 +1,12 @@
+{
+  "framework": "langgraph",
+  "language": "typescript",
+  "pattern": "linear",
+  "generated_files": [
+    ".env.example",
+    "index.ts",
+    "package.json",
+    "tsconfig.json"
+  ],
+  "timestamp": "2026-07-01T07:29:50.186331+00:00"
+}

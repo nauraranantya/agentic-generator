@@ -1,0 +1,7 @@
+task_log_cat_name:
+  description: 'Log the cat name provided in the trigger: console.log(`Hello, ${name}
+    🐈`)'
+  expected_output: 'rawText: Hello {name}'
+task_generate_species:
+  description: What is the most popular cat species?
+  expected_output: expects object with property 'species' (string)

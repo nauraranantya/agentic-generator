@@ -1,0 +1,16 @@
+task_step_one:
+  description: Doubles triggerData.inputValue and returns an object with { doubledValue
+    }.
+  expected_output: doubledValue
+task_step_three:
+  description: Triples triggerData.inputValue and returns an object with { tripledValue
+    }.
+  expected_output: tripledValue
+task_step_two:
+  description: |
+    Reads the payload from stepOne (doubledValue) and returns an object with { incrementedValue } which is doubledValue + 1.
+  expected_output: incrementedValue
+task_step_four:
+  description: |
+    Reads the payload from stepThree (tripledValue) and returns an object with { isEven } indicating whether tripledValue is even.
+  expected_output: isEven

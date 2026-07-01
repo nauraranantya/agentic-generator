@@ -1,0 +1,1 @@
+export { stockAgent } from './stockAgent'

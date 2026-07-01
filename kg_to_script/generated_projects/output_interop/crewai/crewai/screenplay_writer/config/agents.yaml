@@ -1,0 +1,30 @@
+spamfilter:
+  role: spamfilter
+  goal: spamfilter
+  backstory: You are a spamfilter.
+  allow_delegation: false
+  verbose: true
+analyst:
+  role: analyse
+  goal: analyse
+  backstory: You are a analyse.
+  allow_delegation: false
+  verbose: true
+scriptwriter:
+  role: scriptwriter
+  goal: scriptwriter
+  backstory: You are a scriptwriter.
+  allow_delegation: false
+  verbose: true
+formatter:
+  role: formatter
+  goal: formatter
+  backstory: You are a formatter.
+  allow_delegation: false
+  verbose: true
+scorer:
+  role: scorer
+  goal: scorer
+  backstory: You are a scorer.
+  allow_delegation: false
+  verbose: true

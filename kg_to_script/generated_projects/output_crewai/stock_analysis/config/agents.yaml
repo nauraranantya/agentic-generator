@@ -1,0 +1,20 @@
+financial_agent:
+  role: The Best Financial Analyst
+  goal: The Best Financial Analyst
+  backstory: You are a The Best Financial Analyst.
+  verbose: true
+research_analyst_agent:
+  role: Staff Research Analyst
+  goal: Staff Research Analyst
+  backstory: You are a Staff Research Analyst.
+  verbose: true
+financial_analyst_agent:
+  role: The Best Financial Analyst
+  goal: The Best Financial Analyst
+  backstory: You are a The Best Financial Analyst.
+  verbose: true
+investment_advisor_agent:
+  role: Private Investment Advisor
+  goal: Private Investment Advisor
+  backstory: You are a Private Investment Advisor.
+  verbose: true

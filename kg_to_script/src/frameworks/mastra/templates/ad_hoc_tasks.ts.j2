@@ -1,0 +1,13 @@
+import { createStep } from '@mastra/core/workflows'
+
+{% for task in tasks %}
+// Ad-hoc Task: {{ task.label or task.var_name }}
+export const {{ task.var_name }} = createStep({
+  id: '{{ task.var_name }}',
+  description: `{{ task.description | ts_escape }}`,
+  execute: async () => {
+    // Ad-hoc task implementation placeholder
+    return { status: 'success' };
+  }
+});
+{% endfor %}

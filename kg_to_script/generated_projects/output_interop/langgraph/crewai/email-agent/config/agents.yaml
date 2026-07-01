@@ -1,0 +1,4 @@
+email_assistant_agent:
+  role: Email Assistant
+  goal: Email Assistant
+  backstory: You are a Email Assistant.

@@ -1,0 +1,3 @@
+{% for mem in memory_configs %}
+export { {{ mem.var_name }} } from './{{ mem.var_name }}'
+{% endfor %}

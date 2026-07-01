@@ -1,0 +1,79 @@
+{% set ns = namespace(has_openai=false, has_anthropic=false) %}
+{% for agent in agents %}
+  {% if agent.provider == "anthropic" %}
+    {% set ns.has_anthropic = true %}
+  {% else %}
+    {% set ns.has_openai = true %}
+  {% endif %}
+{% endfor %}
+{% if not agents %}
+  {% set ns.has_openai = true %}
+{% endif %}
+{% if ns.has_openai %}
+import { ChatOpenAI } from "@langchain/openai";
+{% endif %}
+{% if ns.has_anthropic %}
+import { ChatAnthropic } from "@langchain/anthropic";
+{% endif %}
+import { Annotation, START, END, StateGraph } from "@langchain/langgraph";
+{% if tools %}
+import { tool } from "@langchain/core/tools";
+import { z } from "zod";
+{% endif %}
+
+const {{ graph_class_name }}Annotation = Annotation.Root({
+  messages: Annotation<any[]>({
+    reducer: (_, next) => next,
+    default: () => [],
+  }),
+});
+
+{% for tool in tools %}
+// Tool: {{ tool.var_name }}
+const {{ tool.var_name }} = tool(
+  async () => {
+    return "Result of {{ tool.var_name }}";
+  },
+  {
+    name: "{{ tool.var_name }}",
+    description: "{{ tool.description | ts_escape }}",
+    schema: z.object({}),
+  }
+);
+{% endfor %}
+
+
+{% if agents %}
+{% for agent in agents %}
+// Define Agent: {{ agent.var_name }}
+const {{ agent.var_name }} = async (state: typeof {{ graph_class_name }}Annotation.State) => {
+  const model = new {{ "ChatAnthropic" if agent.provider == "anthropic" else "ChatOpenAI" }}({ model: "{{ agent.model_name }}" });
+  const response = await model.invoke([
+    { role: "system", content: "{{ agent.prompt | ts_escape }}" },
+    ...state.messages,
+  ]);
+  return { messages: [response] };
+};
+{% endfor %}
+{% else %}
+// Define Default Agent
+const defaultAgent = async (state: typeof {{ graph_class_name }}Annotation.State) => {
+  const model = new ChatOpenAI({ model: "gpt-4o-mini" });
+  const response = await model.invoke([
+    { role: "system", content: "You are a helpful assistant." },
+    ...state.messages,
+  ]);
+  return { messages: [response] };
+};
+{% endif %}
+
+const graph = new StateGraph({{ graph_class_name }}Annotation)
+  .addNode("{{ nodes[0].ts_name if nodes else 'chat' }}", {{ agents[0].var_name if agents else 'defaultAgent' }})
+  .addEdge(START, "{{ nodes[0].ts_name if nodes else 'chat' }}")
+  .addEdge("{{ nodes[0].ts_name if nodes else 'chat' }}", END);
+
+export const agent = graph.compile();
+agent.name = "{{ graph_name | ts_escape }}";
+{% for wf_name in workflow_names %}
+// Workflow: {{ wf_name }}
+{% endfor %}

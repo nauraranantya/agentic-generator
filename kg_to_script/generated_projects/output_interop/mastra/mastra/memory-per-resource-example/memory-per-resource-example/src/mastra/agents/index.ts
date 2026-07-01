@@ -1,0 +1,1 @@
+export { personalAssistant } from './personalAssistant'
