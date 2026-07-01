@@ -19,3 +19,4 @@ output/*.py
 
 # Big directories
 node_modules/
+*.pdf

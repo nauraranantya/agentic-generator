@@ -1,1 +1,0 @@
-export { catOneMemory } from './catOneMemory'

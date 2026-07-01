@@ -1,0 +1,18 @@
+lead_market_analyst:
+  role: Lead Market Analyst
+  goal: |
+    Conduct amazing analysis of the products and competitors, providing in-depth insights to guide marketing strategies.
+  backstory: You are a Lead Market Analyst.
+  verbose: true
+chief_marketing_strategist:
+  role: Chief Marketing Strategist
+  goal: Synthesize amazing insights from product analysis to formulate incredible
+    marketing strategies.
+  backstory: You are a Chief Marketing Strategist.
+  verbose: true
+creative_content_creator:
+  role: Creative Content Creator
+  goal: |
+    Develop compelling and innovative content for social media campaigns, with a focus on creating high-impact ad copies.
+  backstory: You are a Creative Content Creator.
+  verbose: true

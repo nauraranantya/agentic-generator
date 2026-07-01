@@ -1,0 +1,33 @@
+[project]
+name = "unnamed_project"
+version = "0.1.0"
+description = "CrewAI-based team coordinating multiple analyst agents to produce stock analysis"
+authors = [{name = "Your Name", email = "you@example.com"}]
+readme = "README.md"
+requires-python = ">=3.10,<=3.13"
+
+dependencies = [
+    "crewai[tools]>=0.152.0",
+    "python-dotenv>=1.0.1",
+    "pyyaml>=6.0.1",
+    "langchain-community>=0.3.0",
+    # TODO: add PyPI package for custom tool "ToolCalculatorTool"
+    # TODO: add PyPI package for custom tool "ToolScrapeWebsiteTool"
+    # TODO: add PyPI package for custom tool "ToolWebsiteSearchTool"
+    # TODO: add PyPI package for custom tool "ToolTXTSearchTool"
+    # TODO: add PyPI package for custom tool "ToolSEC10KToolGeneric"
+    # TODO: add PyPI package for custom tool "ToolSEC10QToolGeneric"
+    # TODO: add PyPI package for custom tool "ToolSEC10KToolAMZN"
+    # TODO: add PyPI package for custom tool "ToolSEC10QToolAMZN"
+]
+
+[project.scripts]
+unnamed_project = "main:run"
+train      = "main:train"
+
+[tool.uv]
+dev-dependencies = []
+
+[build-system]
+requires      = ["hatchling"]
+build-backend = "hatchling.build"

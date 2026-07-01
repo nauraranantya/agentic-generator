@@ -1,6 +1,0 @@
-export { dane } from './dane'
-export { daneCommitMessage } from './daneCommitMessage'
-export { daneIssueLabeler } from './daneIssueLabeler'
-export { daneLinkChecker } from './daneLinkChecker'
-export { danePackagePublisher } from './danePackagePublisher'
-export { daneNewContributor } from './daneNewContributor'

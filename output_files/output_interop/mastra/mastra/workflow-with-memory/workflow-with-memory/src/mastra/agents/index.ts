@@ -1,1 +1,0 @@
-export { catOne } from './catOne'

@@ -1,1 +1,0 @@
-export { consoleTool } from './consoleTool'

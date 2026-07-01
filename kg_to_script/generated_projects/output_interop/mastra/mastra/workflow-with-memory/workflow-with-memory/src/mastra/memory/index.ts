@@ -1,0 +1,1 @@
+export { pgMemoryInstance } from './pgMemoryInstance'

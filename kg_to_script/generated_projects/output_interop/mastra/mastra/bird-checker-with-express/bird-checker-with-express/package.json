@@ -1,0 +1,22 @@
+{
+  "name": "bird-checker-with-express",
+  "version": "0.1.0",
+  "description": "Mastra instance that hosts the bird checker agent and associated tools.",
+  "type": "module",
+  "main": "src/mastra/index.ts",
+  "scripts": {
+    "dev": "tsx src/mastra/index.ts",
+    "build": "tsc",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@mastra/core": "latest",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "tsx": "^4.0.0",
+    "@types/node": "^20.0.0",
+    "mastra": "latest"
+  }
+}

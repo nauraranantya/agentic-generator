@@ -1,1 +1,0 @@
-export { mcpRegistryAgent } from './mcpRegistryAgent'

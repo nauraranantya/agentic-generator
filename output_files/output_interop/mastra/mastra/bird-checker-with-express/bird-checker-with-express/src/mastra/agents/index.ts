@@ -1,1 +1,0 @@
-export { birdChecker } from './birdChecker'
